@@ -14,6 +14,12 @@ export default {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
+            colors: {
+                coolblue: '#2563eb'
+            },
+            padding:{
+                '45': '12rem'
+            }
         },
     },
 
