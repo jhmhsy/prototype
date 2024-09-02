@@ -24,7 +24,7 @@
         </a>
         {{--<x-inputs.input-p>Register as
             <a href="{{ route('admin-register') }}" class="hover:underline">Admin</a> |
-            <a href="{{ route('admin-register') }}" class="hover:underline">Trainer</a>
+        <a href="{{ route('admin-register') }}" class="hover:underline">Trainer</a>
         </x-inputs.input-p>--}}
     </div>
     <div class="grid gap-1">
