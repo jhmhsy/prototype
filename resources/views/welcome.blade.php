@@ -1,33 +1,54 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Gym System</title>
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
-    <script src="https://kit.fontawesome.com/cf223ee5eb.js" crossorigin="anonymous"></script>
-    <!-- Styles -->
-    @vite(['resources/js/app.js'])
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gym Reservation</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <script src="{{ asset('js/darkmode.js') }}" defer></script>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+
 
 </head>
 
-<body class="bg-gray-900 text-white">
-    <div>
-        <header>
+<body class="bg-white dark:bg-darkmode_light">
+
+    <div class="flex flex-col min-h-screen">
+
+
+        <!-- Header sections-->
+        <header id="header-section">
             <x-custom.header-section />
         </header>
 
-        <main class="mt-10 m-auto w-full">
-            <x-custom.main-sections />
+        <header id="book-section">
+            <x-custom.book-section />
+        </header>
+
+        <!-- Main sections-->
+        <main id="main-section">
+            <x-custom.main-section />
         </main>
 
-        <footer class="dark:bg-darkmode_light p-6 md:py-12 w-full">
+
+
+        <div id="equipment-section">
+            <x-custom.equipment-section />
+        </div>
+
+        <!-- pricing sections-->
+        <div id="pricing-section">
+            <x-custom.pricing-section />
+        </div>
+
+        <!-- Footer sections-->
+        <footer id="footer-section">
             <x-custom.footer-section />
         </footer>
     </div>
+
 </body>
 
 </html>
