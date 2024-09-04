@@ -30,11 +30,6 @@
             <x-homepage.equipment-section />
         </div>
 
-        <!-- book sections-->
-        <header id="book-section">
-            <x-homepage.book-section />
-        </header>
-
         <!-- pricing sections-->
         <div id="pricing-section">
             <x-homepage.pricing-section />
