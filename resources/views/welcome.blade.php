@@ -17,32 +17,32 @@
     <div class="flex flex-col min-h-screen">
         <!-- Header sections-->
         <header id="header-section">
-            <x-custom.header-section />
+            <x-homepage.header-section />
         </header>
 
         <!-- Main sections-->
         <main id="main-section">
-            <x-custom.main-section />
+            <x-homepage.main-section />
         </main>
 
         <!-- equipment sections-->
         <div id="equipment-section">
-            <x-custom.equipment-section />
+            <x-homepage.equipment-section />
         </div>
 
         <!-- book sections-->
         <header id="book-section">
-            <x-custom.book-section />
+            <x-homepage.book-section />
         </header>
 
         <!-- pricing sections-->
         <div id="pricing-section">
-            <x-custom.pricing-section />
+            <x-homepage.pricing-section />
         </div>
 
         <!-- Footer sections-->
         <footer id="footer-section">
-            <x-custom.footer-section />
+            <x-homepage.footer-section />
         </footer>
     </div>
 </body>
