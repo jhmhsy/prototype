@@ -24,7 +24,13 @@
                     </div>
                     <div
                         class="flex flex-col items-center space-y-4 text-center border border/white-5 px-6 py-5 rounded-2xl hover:border-coolblue group transition-colors duration-300">
-                        <i class="fa-solid fa-calendar-days fa-3x"></i>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor"
+                            class="bi bi-calendar-check" viewBox="0 0 16 16">
+                            <path
+                                d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0" />
+                            <path
+                                d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z" />
+                        </svg>
                         <h3 class="text-xl font-bold group-hover:text-coolblue transition-colors duration-300">Class
                             Schedules</h3>
                         <p>Stay up-to-date with the latest class schedules and availability.</p>

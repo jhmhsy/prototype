@@ -14,10 +14,7 @@
 </head>
 
 <body class="bg-white ">
-
     <div class="flex flex-col min-h-screen">
-
-
         <!-- Header sections-->
         <header id="header-section">
             <x-custom.header-section />
@@ -27,8 +24,6 @@
         <main id="main-section">
             <x-custom.main-section />
         </main>
-
-
 
         <!-- equipment sections-->
         <div id="equipment-section">
@@ -45,14 +40,11 @@
             <x-custom.pricing-section />
         </div>
 
-
-
         <!-- Footer sections-->
         <footer id="footer-section">
             <x-custom.footer-section />
         </footer>
     </div>
-
 </body>
 
 </html>
