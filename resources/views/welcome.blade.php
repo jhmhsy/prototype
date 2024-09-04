@@ -13,7 +13,7 @@
 
 </head>
 
-<body class="bg-white dark:bg-darkmode_light">
+<body class="bg-white ">
 
     <div class="flex flex-col min-h-screen">
 
@@ -23,10 +23,6 @@
             <x-custom.header-section />
         </header>
 
-        <header id="book-section">
-            <x-custom.book-section />
-        </header>
-
         <!-- Main sections-->
         <main id="main-section">
             <x-custom.main-section />
@@ -34,14 +30,22 @@
 
 
 
+        <!-- equipment sections-->
         <div id="equipment-section">
             <x-custom.equipment-section />
         </div>
+
+        <!-- book sections-->
+        <header id="book-section">
+            <x-custom.book-section />
+        </header>
 
         <!-- pricing sections-->
         <div id="pricing-section">
             <x-custom.pricing-section />
         </div>
+
+
 
         <!-- Footer sections-->
         <footer id="footer-section">

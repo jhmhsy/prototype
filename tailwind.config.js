@@ -29,6 +29,11 @@ export default {
 
                 textblack: "#18191a",
                 textwhite: "#e4e6eb",
+
+                coolblue: "#2563eb",
+            },
+            padding: {
+                45: "12rem",
             },
         },
     },

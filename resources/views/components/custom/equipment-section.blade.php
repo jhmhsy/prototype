@@ -1,8 +1,11 @@
 <div class="w-full max-w-6xl mx-auto px-4 md:px-6 lg:px-8 py-12 md:py-16 lg:py-20">
     <div class="grid gap-12 md:gap-16 lg:gap- text-textblack dark:text-textwhite">
+        <h1 class="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">
+            We Provide
+        </h1>
         <section>
             <div class="flex items-center justify-between mb-6 md:mb-8">
-                <h2 class="text-2xl md:text-3xl font-bold">Gym Equipment</h2>
+                <h2 class="text-2xl md:text-3xl font-bold">Gym Equipment </h2>
                 <a class="hover:underline" href="#">View all</a>
             </div>
 
