@@ -16,7 +16,7 @@ function showSection(section) {
     // Show the selected section
     document.getElementById(section + "-section").classList.remove("hidden");
 
-    // Add 'active' class to the clicked link
+    // Add 'active' class to the clicked links
     document
         .querySelector(`[data-section="${section}"]`)
         .classList.add(
