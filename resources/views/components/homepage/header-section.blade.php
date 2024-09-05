@@ -1,6 +1,4 @@
-<div class="fixed top-0 left-[10%] w-[80%] px-4 lg:px-6 h-16 flex items-center text-textblack dark:text-textwhite
-    bg-transparent z-10">
-
+<nav class="border-b border-white/10 flex items-center justify-between py-5 px-10">
     <a class="flex items-center justify-center" href="#">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -15,7 +13,6 @@
                 d="M6.404 12.768a2 2 0 1 1-2.829-2.829l1.768-1.767a2 2 0 1 1-2.828-2.829l2.828-2.828a2 2 0 1 1 2.829 2.828l1.767-1.768a2 2 0 1 1 2.829 2.829z">
             </path>
         </svg>
-        <span class="sr-only">Gym Reservation</span>
         <button id="toggleDarkMode" type="button"
             class="p-2 transition-colors duration-300 text-black dark:text-white rounded">
             <svg width="10%" height="10%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -25,37 +22,42 @@
             </svg>
         </button>
     </a>
-    <nav class="ml-auto flex gap-4 sm:gap-6">
-        <div class="flex">
-            <!-- Navigation Links -->
-            <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                <x-nav-link href="#">
-                    {{ __('Home') }}
-                </x-nav-link>
+    <div class="fixed left-1/3 transform z-20">
+        <nav class=" flex gap-4 sm:gap-6">
+            <div class="flex">
+                <!-- Navigation Links -->
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link href="#">
+                        {{ __('Home') }}
+                    </x-nav-link>
 
 
-                @if (Auth::user())
+                    @if (Auth::user())
 
-                <x-nav-link :href="route('reservation')">
-                    {{ __('Reservation') }}
-                </x-nav-link>
-                @endif
+                    <x-nav-link :href="route('reservation')">
+                        {{ __('Reservation') }}
+                    </x-nav-link>
+                    @endif
 
 
-                <x-nav-link href="#equipment-section">
-                    {{ __('Features') }}
-                </x-nav-link>
+                    <x-nav-link href="#equipment-section">
+                        {{ __('Features') }}
+                    </x-nav-link>
 
-                <x-nav-link href="#pricing-section">
-                    {{ __('Pricing') }}
-                </x-nav-link>
+                    <x-nav-link href="#pricing-section">
+                        {{ __('Pricing') }}
+                    </x-nav-link>
 
-                <x-nav-link href="#footer-section">
-                    {{ __('Contacts') }}
-                </x-nav-link>
+                    <x-nav-link href="#footer-section">
+                        {{ __('Contacts') }}
+                    </x-nav-link>
+                </div>
             </div>
-        </div>
 
+
+        </nav>
+    </div>
+    <div>
         @if (Route::has('login'))
         @auth
         <div>
@@ -105,6 +107,6 @@
         @endif
         @endauth
         @endif
-    </nav>
+    </div>
 
-</div>
+</nav>
