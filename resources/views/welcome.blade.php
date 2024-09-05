@@ -1,6 +1,6 @@
 <x-guest-layout>
 
-    <body class="bg-white ">
+    <body class=" ">
         <div class="flex flex-col min-h-screen">
             <!-- Header sections-->
             <header id="header-section">
