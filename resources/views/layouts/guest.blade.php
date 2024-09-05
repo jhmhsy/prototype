@@ -28,7 +28,7 @@
         </header>
         @endisset
 
-        <div>
+        <div class="dark:bg-darkmode_dark dark:text-textwhite">
             {{ $slot }}
         </div>
     </div>

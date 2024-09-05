@@ -1,4 +1,4 @@
-<div class="w-full md:px-6 lg:px-8 mt-25 bg-secondary">
+<div class="w-full md:px-6 lg:px-8 mt-25 bg-secondary dark:bg-darkmode_dark">
     <div class="w-full mx-auto max-w-6xl py-10 grid gap-12 md:gap-16 lg:gap- text-textblack dark:text-textwhite">
         <h1 class="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">
             We Provide
