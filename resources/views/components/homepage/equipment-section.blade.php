@@ -1,5 +1,5 @@
-<div class="w-full max-w-6xl mx-auto px-4 md:px-6 lg:px-8 py-12 md:py-16 lg:py-20">
-    <div class="grid gap-12 md:gap-16 lg:gap- text-textblack dark:text-textwhite">
+<div class="w-full md:px-6 lg:px-8 mt-25 bg-secondary">
+    <div class="w-full mx-auto max-w-6xl py-10 grid gap-12 md:gap-16 lg:gap- text-textblack dark:text-textwhite">
         <h1 class="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">
             We Provide
         </h1>
@@ -28,7 +28,7 @@
                             d="M6.404 12.768a2 2 0 1 1-2.829-2.829l1.768-1.767a2 2 0 1 1-2.828-2.829l2.828-2.828a2 2 0 1 1 2.829 2.828l1.767-1.768a2 2 0 1 1 2.829 2.829z">
                         </path>
                     </svg>
-                    <h3 class="text-lg font-medium mb-2">Free Weights</h3>
+                    <h3 class="text-lg font-medium mb-2">Weights</h3>
                     <x-input-p class="text-muted-foreground text-sm">Variety of dumbbells and barbells for strength
                         training.</x-input-p>
                 </div>
@@ -74,9 +74,10 @@
         <section>
             <div class="flex items-center justify-between mb-6 md:mb-8">
                 <h2 class="text-2xl md:text-3xl font-bold">Gym Facilities</h2>
-                <a class="text-primary hover:underline" href="#">
+                <x-nav-link href="{{ route('features') }}"
+                    class="text-sm font-medium hover:underline underline-offset-4">
                     View all
-                </a>
+                </x-nav-link>
             </div>
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8 lg:gap-10">
                 <div

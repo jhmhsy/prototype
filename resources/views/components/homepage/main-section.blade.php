@@ -1,6 +1,6 @@
 <div>
     <section class="w-full h-[75vh] dark:bg-darkmode_light text-textblack dark:text-textwhite">
-        <div class="inset-0 flex flex-col items-center justify-center px-4 pt-45 text-center">
+        <div class="inset-0 flex flex-col items-center justify-center px-4 pt-40 text-center">
             <h1 class="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">
                 Elevate Your Fitness Journey
             </h1>
