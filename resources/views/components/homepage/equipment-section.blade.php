@@ -6,7 +6,10 @@
         <section>
             <div class="flex items-center justify-between mb-6 md:mb-8">
                 <h2 class="text-2xl md:text-3xl font-bold">Gym Equipment </h2>
-                <a class="hover:underline" href="#">View all</a>
+                <x-nav-link href="{{ route('features') }}"
+                    class="text-sm font-medium hover:underline underline-offset-4">
+                    View all
+                </x-nav-link>
             </div>
 
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8 lg:gap-10">
