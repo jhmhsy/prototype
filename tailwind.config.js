@@ -34,7 +34,11 @@ export default {
             },
             padding: {
                 45: "12rem",
+                25: "10rem"
             },
+            margin: {
+                25: "10rem"
+            }
         },
     },
 
