@@ -32,12 +32,24 @@
                 <x-nav-link href="#">
                     {{ __('Home') }}
                 </x-nav-link>
+
+
+                @if (Auth::user())
+
+                <x-nav-link :href="route('reservation')">
+                    {{ __('Reservation') }}
+                </x-nav-link>
+                @endif
+
+
                 <x-nav-link href="#equipment-section">
                     {{ __('Features') }}
                 </x-nav-link>
+
                 <x-nav-link href="#pricing-section">
                     {{ __('Pricing') }}
                 </x-nav-link>
+
                 <x-nav-link href="#footer-section">
                     {{ __('Contacts') }}
                 </x-nav-link>
