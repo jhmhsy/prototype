@@ -7,8 +7,7 @@
             <ul class=" space-y-2 font-medium">
                 <!--------------------------- DASHBOARD BUTTON --------------------------------->
                 <li>
-                    <a href="#" data-section="dashboard" onclick="showSection('dashboard')"
-                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                    <x-custom.sidenav-button href="#" data-section="dashboard" onclick="showSection('dashboard')">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                             class="w-5 h-5">
@@ -18,12 +17,11 @@
                             <rect width="7" height="5" x="3" y="16" rx="1"></rect>
                         </svg>
                         <span class="hidden lg:block ms-3">Dashboard</span>
-                    </a>
+                    </x-custom.sidenav-button>
                 </li>
                 <!--------------------------- EQUIPMENTS BUTTON --------------------------------->
                 <li>
-                    <a href="#" data-section="equipment" onclick="showSection('equipment')"
-                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                    <x-custom.sidenav-button href="#" data-section="equipment" onclick="showSection('equipment')">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                             class="w-5 h-5">
@@ -33,12 +31,11 @@
                             <circle cx="12" cy="13" r="3"></circle>
                         </svg>
                         <span class="hidden lg:block flex-1 ms-3 whitespace-nowrap">Equipment</span>
-                    </a>
+                    </x-custom.sidenav-button>
                 </li>
                 <!--------------------------- RESERVATION BUTTON --------------------------------->
                 <li>
-                    <a href="#" data-section="reservation" onclick="showSection('reservation')"
-                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                    <x-custom.sidenav-button href="#" data-section="reservation" onclick="showSection('reservation')">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                             class="w-5 h-5">
@@ -50,12 +47,11 @@
                             <path d="M13 11v2"></path>
                         </svg>
                         <span class="hidden lg:block flex-1 ms-3 whitespace-nowrap">Reservation</span>
-                    </a>
+                    </x-custom.sidenav-button>
                 </li>
                 <!--------------------------- EVENTS BUTTON --------------------------------->
                 <li>
-                    <a href="#" data-section="events" onclick="showSection('events')"
-                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                    <x-custom.sidenav-button href="#" data-section="events" onclick="showSection('events')">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                             class="w-5 h-5">
@@ -65,12 +61,11 @@
                             <path d="M3 10h18"></path>
                         </svg>
                         <span class="hidden lg:block flex-1 ms-3 whitespace-nowrap">Events</span>
-                    </a>
+                    </x-custom.sidenav-button>
                 </li>
                 <!--------------------------- FEEDBACK BUTTON --------------------------------->
                 <li>
-                    <a href="#" data-section="feedback" onclick="showSection('feedback')"
-                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                    <x-custom.sidenav-button href="#" data-section="feedback" onclick="showSection('feedback')">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                             class="w-5 h-5">
@@ -78,12 +73,11 @@
                             <path d="M20 18v-2a4 4 0 0 0-4-4H4"></path>
                         </svg>
                         <span class="hidden lg:block flex-1 ms-3 whitespace-nowrap">Feedback</span>
-                    </a>
+                    </x-custom.sidenav-button>
                 </li>
                 <!--------------------------- USERS BUTTON --------------------------------->
                 <li>
-                    <a href="#" data-section="users" onclick="showSection('users')" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100
-                        dark:hover:bg-gray-700 group">
+                    <x-custom.sidenav-button href="#" data-section="users" onclick="showSection('users')">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                             class="w-5 h-5">
@@ -93,12 +87,11 @@
                             <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
                         </svg>
                         <span class="hidden lg:block flex-1 ms-3 whitespace-nowrap">Users</span>
-                    </a>
+                    </x-custom.sidenav-button>
                 </li>
                 <!--------------------------- HELP BUTTON --------------------------------->
                 <li>
-                    <a href="#" data-section="help" onclick="showSection('help')" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100
-                        dark:hover:bg-gray-700 group">
+                    <x-custom.sidenav-button href="#" data-section="help" onclick="showSection('help')">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                             class="w-5 h-5">
@@ -109,14 +102,10 @@
                             <path d="m2 13 6 6"></path>
                         </svg>
                         <span class="hidden lg:block flex-1 ms-3 whitespace-nowrap">Help</span>
-                    </a>
+                    </x-custom.sidenav-button>
                 </li>
             </ul>
         </div>
     </aside>
-
-
-
-
 
 </div>
