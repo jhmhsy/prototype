@@ -1,4 +1,4 @@
-<div class="items-center w-full py-12 md:py-24 lg:py-32 dark:text-textwhite bg-secondary text-center">
+<div class="items-center w-full py-12 md:py-24 lg:py-32 dark:text-textwhite dark:bg-darkmode_light bg-secondary text-center">
     <div class="container grid items-center justify-center gap-4 px-4 text-center md:px-6 m-auto">
         <div class="space-y-3">
             <h2 class="text-3xl font-bold tracking-tighter md:text-4xl/tight">
@@ -26,7 +26,7 @@
     </div>
 </div>
 
-<div class="bg-white dark:bg-darkmode_light p-6 md:py-12 w-full">
+<div class="bg-white dark:bg-darkmode_dark p-6 md:py-12 w-full">
 
     <div class="container max-w-7xl grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-8 text-sm">
         <div class="grid gap-1">
