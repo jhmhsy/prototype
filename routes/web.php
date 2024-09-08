@@ -1,9 +1,9 @@
 <?php
 
-use App\Http\Controllers\dashboardController;
-use App\Http\Controllers\featuresController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\FeaturesController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\reservationController;
+use App\Http\Controllers\ReservationController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -11,7 +11,7 @@ Route::get('/', function () {
 })->name('welcome');
 
 
-Route::get('features', [featuresController::class, 'show'])
+Route::get('features', [FeaturesController::class, 'show'])
 ->name('features');
 
 /*
@@ -26,8 +26,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::get('/reservation', [reservationController::class, 'show'])->name('reservation');
-    Route::get('/dashboard', [dashboardController::class, 'show'])->name('dashboard');
+    Route::get('/reservation', [ReservationController::class, 'show'])->name('reservation');
+    Route::get('/dashboard', [DashboardController::class, 'show'])->name('dashboard');
 });
 
 require __DIR__.'/auth.php';
