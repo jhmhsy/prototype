@@ -6,10 +6,10 @@
         <section>
             <div class="flex items-center justify-between mb-6 md:mb-8">
                 <h2 class="text-2xl md:text-3xl font-bold">Gym Equipment </h2>
-                <x-nav-link href="{{ route('features') }}"
+                <x-inputs.nav-link href="{{ route('features') }}"
                     class="text-sm font-medium hover:underline underline-offset-4">
                     View all
-                </x-nav-link>
+                </x-inputs.nav-link>
             </div>
 
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8 lg:gap-10">
@@ -29,8 +29,9 @@
                         </path>
                     </svg>
                     <h3 class="text-lg font-medium mb-2">Weights</h3>
-                    <x-input-p class="text-muted-foreground text-sm">Variety of dumbbells and barbells for strength
-                        training.</x-input-p>
+                    <x-inputs.input-p class="text-muted-foreground text-sm">Variety of dumbbells and barbells for
+                        strength
+                        training.</x-inputs.input-p>
                 </div>
                 <div
                     class="bg-muted rounded-lg p-4 md:p-6 flex flex-col items-center text-center bg-white dark:bg-darkmode_light">
@@ -42,9 +43,10 @@
                         <circle cx="12" cy="14" r="8"></circle>
                     </svg>
                     <h3 class="text-lg font-medium mb-2">Cardio Equipment</h3>
-                    <x-input-p class="text-muted-foreground text-sm">Treadmills, ellipticals, and stationary bikes
+                    <x-inputs.input-p class="text-muted-foreground text-sm">Treadmills, ellipticals, and stationary
+                        bikes
                         for
-                        cardio.</x-input-p>
+                        cardio.</x-inputs.input-p>
                 </div>
                 <div
                     class="bg-muted rounded-lg p-4 md:p-6 flex flex-col items-center text-center bg-white dark:bg-darkmode_light">
@@ -54,8 +56,8 @@
                         <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
                     </svg>
                     <h3 class="text-lg font-medium mb-2">Stretching Area</h3>
-                    <x-input-p class="text-muted-foreground text-sm">Dedicated space for yoga, Pilates, and other
-                        stretching.</x-input-p>
+                    <x-inputs.input-p class="text-muted-foreground text-sm">Dedicated space for yoga, Pilates, and other
+                        stretching.</x-inputs.input-p>
                 </div>
                 <div
                     class="bg-muted rounded-lg p-4 md:p-6 flex flex-col items-center text-center bg-white dark:bg-darkmode_light">
@@ -66,18 +68,19 @@
                         <path d="M3 12h18"></path>
                     </svg>
                     <h3 class="text-lg font-medium mb-2">Rowing Machines</h3>
-                    <x-input-p class="text-muted-foreground text-sm">High-intensity rowing machines for a full-body
-                        workout.</x-input-p>
+                    <x-inputs.input-p class="text-muted-foreground text-sm">High-intensity rowing machines for a
+                        full-body
+                        workout.</x-inputs.input-p>
                 </div>
             </div>
         </section>
         <section>
             <div class="flex items-center justify-between mb-6 md:mb-8">
                 <h2 class="text-2xl md:text-3xl font-bold">Gym Facilities</h2>
-                <x-nav-link href="{{ route('features') }}"
+                <x-inputs.nav-link href="{{ route('features') }}"
                     class="text-sm font-medium hover:underline underline-offset-4">
                     View all
-                </x-nav-link>
+                </x-inputs.nav-link>
             </div>
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8 lg:gap-10">
                 <div
@@ -97,8 +100,9 @@
                         <path d="M20 11v.01"></path>
                     </svg>
                     <h3 class="text-lg font-medium mb-2">Locker Rooms</h3>
-                    <x-input-p class="text-muted-foreground text-sm">Spacious locker rooms with showers and changing
-                        areas.</x-input-p>
+                    <x-inputs.input-p class="text-muted-foreground text-sm">Spacious locker rooms with showers and
+                        changing
+                        areas.</x-inputs.input-p>
                 </div>
                 <div
                     class="bg-muted rounded-lg p-4 md:p-6 flex flex-col items-center text-center bg-white dark:bg-darkmode_light">
@@ -112,8 +116,9 @@
                         <path d="M14 17.85V10H6.15"></path>
                     </svg>
                     <h3 class="text-lg font-medium mb-2">Juice Bar</h3>
-                    <x-input-p class="text-muted-foreground text-sm">Refuel with a variety of healthy smoothies and
-                        juices.</x-input-p>
+                    <x-inputs.input-p class="text-muted-foreground text-sm">Refuel with a variety of healthy smoothies
+                        and
+                        juices.</x-inputs.input-p>
                 </div>
                 <div
                     class="bg-muted rounded-lg p-4 md:p-6 flex flex-col items-center text-center bg-white dark:bg-darkmode_light">
@@ -126,9 +131,9 @@
                         <path d="M2 21h20"></path>
                     </svg>
                     <h3 class="text-lg font-medium mb-2">Towel Service</h3>
-                    <x-input-p class="text-muted-foreground text-sm">Complimentary towel service for your workout
+                    <x-inputs.input-p class="text-muted-foreground text-sm">Complimentary towel service for your workout
                         needs.
-                    </x-input-p>
+                    </x-inputs.input-p>
                 </div>
                 <div
                     class="bg-muted rounded-lg p-4 md:p-6 flex flex-col items-center text-center bg-white dark:bg-darkmode_light">
@@ -141,9 +146,9 @@
                         <path d="M8.5 16.429a5 5 0 0 1 7 0"></path>
                     </svg>
                     <h3 class="text-lg font-medium mb-2">Free WiFi</h3>
-                    <x-input-p class="text-muted-foreground text-sm">Stay connected with high-speed wireless
+                    <x-inputs.input-p class="text-muted-foreground text-sm">Stay connected with high-speed wireless
                         internet
-                        access.</x-input-p>
+                        access.</x-inputs.input-p>
                 </div>
             </div>
         </section>
