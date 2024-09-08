@@ -41,12 +41,11 @@
 
         </nav>
     </div>
-    <div class="flex items-center justify-evenly">
+    <div class="flex items-center justify-between">
         <x-custom.darkmode-button></x-custom.darkmode-button>
         @if (Route::has('login'))
         @auth
-        <div>
-            
+        <div> 
             <x-dropdown>
                 <x-slot name="trigger">
                     <button class="inline-flex items-center px-3 py-2 border 
@@ -84,12 +83,13 @@
             </x-dropdown>
         </div>
         @else
-
-        <x-nav-link href="{{ route('login') }}" class="text-sm font-medium hover:underline underline-offset-4">Log in
+        <x-nav-link href="{{ route('login') }}" class="text-sm font-medium hover:underline underline-offset-4">
+            Log in
         </x-nav-link>
         @if (Route::has('register'))
         <x-nav-link href="{{ route('register') }}" class="text-sm font-medium hover:underline underline-offset-4">
-            Register</x-nav-link>
+            Register
+        </x-nav-link>
         @endif
         @endauth
         @endif

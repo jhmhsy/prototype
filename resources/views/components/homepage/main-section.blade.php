@@ -11,7 +11,6 @@
             <div class="container px-4 md:px-6 m-auto">
                 <div class="flex flex-col items-center justify-center space-y-4 text-center">
                     <div class="space-y-2">
-
                     </div>
                 </div>
                 <div class="mx-auto grid max-w-5xl gap-6 py-12 lg:grid-cols-3 lg:gap-12 ">
