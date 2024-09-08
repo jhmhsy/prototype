@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
-class ReservationController extends Controller
+class reservationController extends Controller
 {
     public function show(): View
     {
