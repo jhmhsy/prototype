@@ -13,7 +13,7 @@
             </svg>
 
             <span class="hidden lg:block flex-1 ms-3 whitespace-nowrap">Dashboard</span>
-            <span class="sm:hidden flex-1 ms-3 whitespace-nowrap">Dashboard</span>
+            <span class="sm:hidden flex-1 ms-3 whitespace-nowrap pr-20 pr-20">Dashboard</span>
         </x-custom.sidenav-button>
     </li>
     <!--------------------------- EQUIPMENTS BUTTON --------------------------------->
@@ -26,7 +26,7 @@
                 <circle cx="12" cy="13" r="3"></circle>
             </svg>
             <span class="hidden lg:block flex-1 ms-3 whitespace-nowrap">Equipment</span>
-            <span class="sm:hidden flex-1 ms-3 whitespace-nowrap">Equipment</span>
+            <span class="sm:hidden flex-1 ms-3 whitespace-nowrap pr-20 pr-20 pr-20 pr-20">Equipment</span>
         </x-custom.sidenav-button>
     </li>
     <!--------------------------- RESERVATION BUTTON --------------------------------->
@@ -42,7 +42,7 @@
                 <path d="M13 11v2"></path>
             </svg>
             <span class="hidden lg:block flex-1 ms-3 whitespace-nowrap">Reservation</span>
-            <span class="sm:hidden flex-1 ms-3 whitespace-nowrap">Reservation</span>
+            <span class="sm:hidden flex-1 ms-3 whitespace-nowrap pr-20 pr-20">Reservation</span>
         </x-custom.sidenav-button>
     </li>
     <!--------------------------- EVENTS BUTTON --------------------------------->
@@ -56,7 +56,7 @@
                 <path d="M3 10h18"></path>
             </svg>
             <span class="hidden lg:block flex-1 ms-3 whitespace-nowrap">Events</span>
-            <span class="sm:hidden flex-1 ms-3 whitespace-nowrap">Events</span>
+            <span class="sm:hidden flex-1 ms-3 whitespace-nowrap pr-20 pr-20">Events</span>
         </x-custom.sidenav-button>
     </li>
     <!--------------------------- FEEDBACK BUTTON --------------------------------->
@@ -68,7 +68,7 @@
                 <path d="M20 18v-2a4 4 0 0 0-4-4H4"></path>
             </svg>
             <span class="hidden lg:block flex-1 ms-3 whitespace-nowrap">Feedback</span>
-            <span class="sm:hidden flex-1 ms-3 whitespace-nowrap">Feedback</span>
+            <span class="sm:hidden flex-1 ms-3 whitespace-nowrap pr-20 pr-20">Feedback</span>
         </x-custom.sidenav-button>
     </li>
     <!--------------------------- USERS BUTTON --------------------------------->
@@ -82,7 +82,7 @@
                 <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
             </svg>
             <span class="hidden lg:block flex-1 ms-3 whitespace-nowrap">Users</span>
-            <span class="sm:hidden flex-1 ms-3 whitespace-nowrap">Users</span>
+            <span class="sm:hidden flex-1 ms-3 whitespace-nowrap pr-20 pr-20">Users</span>
         </x-custom.sidenav-button>
     </li>
     <!--------------------------- HELP BUTTON --------------------------------->
@@ -96,7 +96,7 @@
                 <path d="m2 13 6 6"></path>
             </svg>
             <span class="hidden lg:block flex-1 ms-3 whitespace-nowrap">Help</span>
-            <span class="sm:hidden flex-1 ms-3 whitespace-nowrap">Help</span>
+            <span class="sm:hidden flex-1 ms-3 whitespace-nowrap pr-20 pr-20">Help</span>
         </x-custom.sidenav-button>
     </li>
 </ul>
