@@ -51,7 +51,7 @@
         </div>
 
         <div class="flex items-center gap-4">
-            <x-inputs.primary-button>{{ __('Save') }}</x-inputs.primary-button>
+            <x-custom.secondary-button-reverse> {{ __('Save') }} </x-custom.secondary-button-reverse>
 
             @if (session('status') === 'profile-updated')
             <p x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 2000)"

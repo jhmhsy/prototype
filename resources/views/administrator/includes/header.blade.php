@@ -29,7 +29,9 @@
                 </x-custom.input-darkmode>
             </div>
 
-            @include('layouts.nav-dropdown')
+            <div class="block">
+                @include('navigations.settings-dropdown',['dropdown' => true])
+            </div>
         </div>
     </div>
 
