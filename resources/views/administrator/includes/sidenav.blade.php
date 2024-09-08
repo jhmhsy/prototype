@@ -1,6 +1,6 @@
 <!-- Default Design -->
 
-<ul class=" space-y-2 font-medium">
+<ul class=" space-y-2 font-medium ">
     <!--------------------------- DASHBOARD BUTTON --------------------------------->
     <li>
         <x-custom.sidenav-button href="#" data-section="dashboard" onclick="showSection('dashboard')">

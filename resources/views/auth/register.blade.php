@@ -86,12 +86,12 @@
                             <x-custom.secondary-button
                                 class="ms-3 inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2 w-full bg-white text-black dark:text-white dark:hover:bg-darkmode_lighter">
                                 {{ __('Register') }}
-                                </x-secondary-button>
+                            </x-custom.secondary-button>
 
-                                <diva class="mt-4 text-center text-sm text-thirdy dark:text-darkmode_lighter">
-                                    Don't have an account? <a
-                                        class="font-medium underline text-secondary dark:text-darkmode_lighter dark:hover:text-black hover:text-primary hover:text-white"
-                                        href="{{ route('login') }}">Sign in</a>
+                            <diva class="mt-4 text-center text-sm text-thirdy dark:text-darkmode_lighter">
+                                Don't have an account? <a
+                                    class="font-medium underline text-secondary dark:text-darkmode_lighter dark:hover:text-black hover:text-primary hover:text-white"
+                                    href="{{ route('login') }}">Sign in</a>
                         </div>
 
 
