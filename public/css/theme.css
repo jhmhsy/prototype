@@ -1,0 +1,13 @@
+/* styles.css */
+:root {
+    --primary: #ffffff;
+    --secondary: #e4e6eb;
+    --thirdy: #b0b3b8;
+    --darkmode-dark: #18191a;
+    --darkmode-light: #242526;
+    --darkmode-lighter: #3a3b3c;
+    --black: #000000;
+    --textblack: #18191a;
+    --textwhite: #e4e6eb;
+    --coolblue: #2563eb;
+}

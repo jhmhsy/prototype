@@ -1,4 +1,4 @@
-@props(['align' => 'right', 'width' => '48', 'contentClasses' => 'py-1 bg-white dark:bg-darkmode_light select-none'])
+@props(['align' => 'right', 'width' => '48', 'contentClasses' => 'py-1 bg-white dark:bg-gray-700'])
 
 @php
 $alignmentClasses = match ($align) {
@@ -15,7 +15,7 @@ default => $width,
 
 <div class="relative" x-data="{ open: false }" @click.outside="open = false" @close.stop="open = false">
     <div @click="open = ! open">
-        {{ $trigger }}
+        {{ $secondarytrigger }}
     </div>
 
     <div x-show="open" x-transition:enter="transition ease-out duration-200"
@@ -25,7 +25,7 @@ default => $width,
         class="absolute z-50 mt-2 {{ $width }} rounded-md shadow-lg {{ $alignmentClasses }}" style="display: none;"
         @click="open = false">
         <div class="rounded-md ring-1 ring-black ring-opacity-5 {{ $contentClasses }}">
-            {{ $content }}
+            {{ $secondarycontent }}
         </div>
     </div>
 </div>

@@ -4,19 +4,35 @@ function toggleDarkMode(event) {
     const htmlElement = document.documentElement;
     const isDarkMode = htmlElement.classList.toggle("dark");
     localStorage.setItem("darkMode", isDarkMode ? "enabled" : "disabled");
+    updateButtonVisibility(isDarkMode); // Update button visibility based on mode
 }
 
-// Check localStorage for dark mode preference and apply it
+// Checks localStorage for dark mode preference and apply it
 function applyDarkModePreference() {
     const darkModePreference = localStorage.getItem("darkMode");
-    if (darkModePreference === "enabled") {
-        document.documentElement.classList.add("dark");
+    const isDarkMode = darkModePreference === "enabled";
+    document.documentElement.classList.toggle("dark", isDarkMode);
+    updateButtonVisibility(isDarkMode); // Updates button visibility on page load
+}
+
+// Updates the visibility of the light and dark mode buttons
+function updateButtonVisibility(isDarkMode) {
+    const lightModeButton = document.getElementById("toggleLightMode");
+    const darkModeButton = document.getElementById("toggleDarkMode");
+
+    if (isDarkMode) {
+        lightModeButton.classList.remove("hidden");
+        darkModeButton.classList.add("hidden");
     } else {
-        document.documentElement.classList.remove("dark");
+        lightModeButton.classList.add("hidden");
+        darkModeButton.classList.remove("hidden");
     }
 }
 
-// Add event listener to the button
+// Add event listener to both buttons
+document
+    .getElementById("toggleLightMode")
+    ?.addEventListener("click", toggleDarkMode);
 document
     .getElementById("toggleDarkMode")
     ?.addEventListener("click", toggleDarkMode);
@@ -35,6 +51,7 @@ function updateDarkModeFromDropdown() {
                 "darkMode",
                 isDarkMode ? "enabled" : "disabled"
             );
+            updateButtonVisibility(isDarkMode); // Update buttons based on dropdown selection
         });
 
         // Set dropdown value based on localStorage

@@ -1,1 +1,0 @@
-<img src="{{ asset('images/gym-icon.png') }}" {{ $attributes->merge(['class' => 'w-40 h-40']) }} alt="Logo">
