@@ -1,6 +1,6 @@
 <div>
     <div
-        class="items-center w-full py-12 md:py-24 lg:py-32 dark:bg-darkmode_lighter dark:text-textwhite bg-secondary text-center">
+        class="items-center w-full py-12 md:py-24 lg:py-32 dark:bg-darkmode_lighter dark:text-textwhite  bg-secondary text-center">
         <div class="container grid items-center justify-center gap-4 px-4 text-center md:px-6 m-auto">
             <div class="space-y-3">
                 <h2 class="text-3xl font-bold tracking-tighter md:text-4xl/tight">
@@ -55,37 +55,36 @@
                     <x-input-p class="hover:underline">Member Management</x-input-p>
                 </a>
 
-            </div>
-            <div class="grid gap-1">
-                <h3 class="font-semibold text-blue-500">Resources</h3>
-                <a href="#">
-                    <x-input-p class="hover:underline">Blog</x-input-p>
-                </a>
-                <a href="#">
-                    <x-input-p class="hover:underline">FAQs</x-input-p>
-                </a>
-                <a href="#">
-                    <x-input-p class="hover:underline">Support</x-input-p>
-                </a>
-            </div>
-            <div class="grid gap-1">
-                <h3 class="font-semibold text-blue-500">Legal</h3>
-                <a href="#">
-                    <x-input-p class="hover:underline">Privacy Policy</x-input-p>
-                </a>
-                <a href="#">
-                    <x-input-p class="hover:underline">Terms of Service</x-input-p>
-                </a>
-                <a href="#">
-                    <x-input-p class="hover:underline">Refund Policy</x-input-p>
-                </a>
-            </div>
-            <div class="grid gap-1">
-                <h3 class="font-semibold text-blue-500">Contact</h3>
-                <a href="#">
-                    <x-input-p class="hover:underline">Email: info@gymreservation.com</x-input-p>
-                </a>
-            </div>
+        </div>
+        <div class="grid gap-1">
+            <h3 class="font-semibold text-blue-500">Resources</h3>
+            <a href="#">
+                <x-input-p class="hover:underline">Blog</x-input-p>
+            </a>
+            <a href="#">
+                <x-input-p class="hover:underline">FAQs</x-input-p>
+            </a>
+            <a href="#">
+                <x-input-p class="hover:underline">Support</x-input-p>
+            </a>
+        </div>
+        <div class="grid gap-1">
+            <h3 class="font-semibold text-blue-500">Legal</h3>
+            <a href="#">
+                <x-input-p class="hover:underline">Privacy Policy</x-input-p>
+            </a>
+            <a href="#">
+                <x-input-p class="hover:underline">Terms of Service</x-input-p>
+            </a>
+            <a href="#">
+                <x-input-p class="hover:underline">Refund Policy</x-input-p>
+            </a>
+        </div>
+        <div class="grid gap-1">
+            <h3 class="font-semibold text-blue-500">Contact</h3>
+            <a href="#">
+                <x-input-p class="hover:underline">Email: info@gymreservation.com</x-input-p>
+            </a>
         </div>
     </div>
 </div>

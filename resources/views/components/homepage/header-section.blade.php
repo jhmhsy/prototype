@@ -14,7 +14,7 @@
 
     <div class="fixed left-1/3 transform z-20">
         <nav class=" flex gap-4 sm:gap-6">
-            <div class="flex">
+            <div class="flex justify-evenly items-center text-center">
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 space-between sm:-my-px sm:ms-10 lg:flex ">
                     <x-nav-link href="#">
@@ -186,7 +186,7 @@
                     </div>
 
 
-                    <nav class="hidden lg:block flex gap-4 sm:gap-6">
+                    <nav class="hidden lg:block gap-4 sm:gap-6">
                         <div class="flex">
                             <!-- Navigation Links -->
                             <div class=" space-x-8 sm:-my-px sm:ms-10 lg:flex ">
