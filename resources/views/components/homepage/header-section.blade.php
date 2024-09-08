@@ -16,7 +16,7 @@
         <nav class=" flex gap-4 sm:gap-6">
             <div class="flex">
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 lg:flex ">
+                <div class="hidden space-x-8 space-between sm:-my-px sm:ms-10 lg:flex ">
                     <x-nav-link href="#">
                         {{ __('Home') }}
                     </x-nav-link>
@@ -132,19 +132,25 @@
                             <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
                         </div>
                         <div class="mt-3 space-y-1">
-                            <x-responsive-nav-link href="#equipment-section">
+                            <x-responsive-nav-link href="#Home">
                                 {{ __('Home') }}
                             </x-responsive-nav-link>
+
+                            @if (Auth::user())
+                            <x-responsive-nav-link href="#reservation">
+                                {{ __('Reservation') }}
+                            </x-responsive-nav-link>
+                            @endif
 
                             <x-responsive-nav-link href="#equipment-section">
                                 {{ __('Features') }}
                             </x-responsive-nav-link>
 
-                            <x-responsive-nav-link href="#equipment-section">
+                            <x-responsive-nav-link href="#pricing-section">
                                 {{ __('Pricing') }}
                             </x-responsive-nav-link>
 
-                            <x-responsive-nav-link href="#equipment-section">
+                            <x-responsive-nav-link href="#footer-section">
                                 {{ __('Contacts') }}
                             </x-responsive-nav-link>
                         </div>
