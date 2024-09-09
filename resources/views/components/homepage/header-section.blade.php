@@ -1,6 +1,6 @@
 <header>
     <div class=" flex items-center justify-between px-6 py-4 border-b border-border 
-        dark:bg-darkmode_light dark:text-white">
+        dark:bg-darkmode_light dark:text-white dark:border-b-white/50">
 
         <!-- dumbelss logo -->
         <div class="flex flex-row">

@@ -1,6 +1,6 @@
 <div class="relative flex justify-center py-12 md:py-20 lg:py-24 dark:text-textblack">
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 lg:gap-12 max-w-6xl w-full px-4 md:px-6 lg:px-8">
-        <div class="bg-secondary rounded-lg shadow-lg relative md:col-span-1 ">
+        <div class="bg-secondary rounded-lg shadow-lg relative md:col-span-1 hover:scale-110 transition-transform duration-300">
             <div class="p-6 md:p-8 lg:p-10">
                 <h3 class="text-2xl md:text-3xl font-bold mb-4">Starter</h3>
                 <div class="flex items-baseline mb-6">
@@ -25,10 +25,7 @@
                 </x-custom.secondary-button-reverse>
             </div>
         </div>
-
-
-
-        <div class="bg-blue-100 rounded-lg shadow-lg relative md:col-span-1 ">
+        <div class="bg-blue-100 rounded-lg shadow-lg relative md:col-span-1 hover:scale-110 transition-transform duration-300">
             <div class="p-6 md:p-8 lg:p-10">
                 <h3 class="text-2xl md:text-3xl font-bold mb-4">Pro</h3>
                 <div class="flex items-baseline mb-6">
@@ -61,7 +58,7 @@
             </div>
         </div>
 
-        <div class="bg-blue-300 rounded-lg shadow-lg relative md:col-span-1 ">
+        <div class="bg-blue-300 rounded-lg shadow-lg relative md:col-span-1 hover:scale-110 transition-transform duration-300">
             <div class="p-6 md:p-8 lg:p-10">
                 <h3 class="text-2xl md:text-3xl font-bold mb-4">Godmode</h3>
                 <div class="flex items-baseline mb-6">
