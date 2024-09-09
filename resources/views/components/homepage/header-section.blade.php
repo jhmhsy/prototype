@@ -42,7 +42,5 @@
             <!-- Responsive for home navigation -->
             @include('layouts.nav-burger', ['showburgerHome' => true])
         </div>
-
-
     </div>
 </header>
