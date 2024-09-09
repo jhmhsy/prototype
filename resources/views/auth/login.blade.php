@@ -12,10 +12,8 @@
                 <h2 class="inline-block rounded-lg bg-muted px-3 text-xl py-1 font-medium">Back</h2>
             </x-custom.nav-link>
         </div>--}}
-
-
         <!-- Login Form -->
-        <div class="flex flex-1 items-center justify-center p-8 bg-white/50 dark:bg-darkmode_dark">
+        <div class="mt-5 flex flex-1 items-center justify-center p-8 bg-white/50 dark:bg-darkmode_dark">
 
             <div class="max-w-md space-y-6 ">
                 <form method="POST" action="{{ route('login') }}">
