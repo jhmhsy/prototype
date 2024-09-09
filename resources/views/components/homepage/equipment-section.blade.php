@@ -12,7 +12,7 @@
                 </x-inputs.nav-link>
             </div>
 
-            <div class="grid grid max-w-6xl sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8 lg:gap-10 m-10">
+            <div class="grid max-w-6xl sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8 lg:gap-10 m-10">
                 <div
                     class="bg-muted rounded-lg p-4 md:p-6 flex flex-col items-center text-center bg-white dark:bg-darkmode_light border hover:border-coolblue group transition-colors duration-300 border/white-10 dark:border-white/50 dark:hover:border-coolblue">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
