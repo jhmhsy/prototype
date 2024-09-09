@@ -13,8 +13,9 @@
             </x-custom.nav-link>
         </div>
 
+        
         <!-- Login Form -->
-        <div class="bg-primary flex flex-1 items-center justify-center p-8 bg-white dark:bg-darkmode_dark">
+        <div class="flex flex-1 items-center justify-center p-8 bg-white/50 dark:bg-darkmode_dark">
 
             <div class="max-w-md space-y-6 ">
                 <form method="POST" action="{{ route('login') }}">
