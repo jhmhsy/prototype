@@ -28,7 +28,7 @@
                         </p>
                     </div>
 
-                    <div class="rounded-lg border bg-card text-card-foreground shadow-sm bg-darkmode_lessdark dark:bg-white text-textwhite dark:text-textblack mt-5"
+                    <div class="rounded-lg border bg-card text-card-foreground shadow-sm bg-darkmode_dark dark:bg-white text-textwhite dark:text-textblack mt-5"
                         data-v0-t="card">
                         <div class="flex flex-col space-y-1.5 px-6 py-4">
                             <h3 class="whitespace-nowrap font-semibold tracking-tight text-2xl">Login</h3>

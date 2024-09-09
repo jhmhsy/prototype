@@ -35,10 +35,12 @@ export default {
                 coolblue: "#2563eb",
             },
             padding: {
-                45: "12rem",
+                5: "1.5rem",
                 25: "10rem",
+                45: "12rem",
             },
             margin: {
+                15: "5rem",
                 25: "10rem",
             },
         },
