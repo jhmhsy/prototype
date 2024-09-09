@@ -2,7 +2,7 @@
 
     <body class="bg-white dark:bg-darkmode_dark">
         <div class="flex flex-col min-h-screen">
-            <!-- Header sections-->
+            <!-- Header sections--->
             <header id="header-section" class="dark:bg-darkmode_dark dark:text-textwhite">
                 <x-homepage.header-section />
             </header>

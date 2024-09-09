@@ -1,42 +1,46 @@
 <x-app-layout>
     <div class="">
         <div class="flex flex-col h-screen bg-white">
-            @include('administrator.includes.adminBaseHeader')
+            <!-- Header layout -->
+            @include('administrator.includes.header')
 
             <div class="flex flex-1">
-                @include('administrator.includes.adminBaseSidenav')
+
+                <!-- Sidebar layout -->
+                <aside id="default-sidebar"
+                    class="hidden sm:block top-0 left-0 z-40 w-30 xl:w-64 h-screen transition-transform -translate-x-full sm:translate-x-0"
+                    aria-label=" Sidebar dark:bg-darkmode_light dark:text-white">
+                    <div class="h-full px-3 py-4 overflow-y-auto dark:bg-darkmode_light dark:text-white">
+                        @include('administrator.includes.sidenav')
+                </aside>
 
                 <!-------------------------- MAIN CONTENT ----------------------------->
-                <main class="flex-1 p-6 dark:bg-darkmode_dark dark:text-white">
+                <main class="flex-1 p-6 dark:bg-darkmode_dark overflow-y-auto dark:text-white" @click="open = false">
                     <div id="main-content" class="flex-1 ">
 
                         <div id="dashboard-section" class="section-content hidden">
-                            @include('administrator.includes.adminDashboard')
+                            @include('administrator.includes.dashboard')
                         </div>
                         <div id="equipment-section" class="section-content hidden">
-                            @include('administrator.includes.adminEquipments')
+                            @include('administrator.includes.equipments')
                         </div>
                         <div id="events-section" class="section-content hidden">
-                            @include('administrator.includes.adminEvents')
+                            @include('administrator.includes.events')
                         </div>
                         <div id="feedback-section" class="section-content hidden">
-                            @include('administrator.includes.adminFeedback')
+                            @include('administrator.includes.feedback')
                         </div>
                         <div id="help-section" class="section-content hidden">
-                            @include('administrator.includes.adminHelp')
+                            @include('administrator.includes.help')
                         </div>
                         <div id="reservation-section" class="section-content hidden">
-                            @include('administrator.includes.adminReservation')
+                            @include('administrator.includes.reservation')
                         </div>
                         <div id="users-section" class="section-content hidden">
-                            @include('administrator.includes.adminUsers')
+                            @include('administrator.includes.users')
                         </div>
 
                     </div>
-
-                    <main>
-
-                    </main>
                 </main>
 
             </div>

@@ -10,6 +10,7 @@ export default {
         "./resources/views/**/*.blade.php",
         "./resources/**/*.vue",
         "./resources/**/*.js",
+        "./node_modules/flowbite/**/*.js",
     ],
 
     theme: {
@@ -34,16 +35,18 @@ export default {
             },
             padding: {
                 45: "12rem",
-                25: "10rem"
+                25: "10rem",
             },
             margin: {
-                25: "10rem"
-            }
+                25: "10rem",
+            },
         },
     },
 
     plugins: [
         require("@tailwindcss/forms"), // Retain the forms plugin
+        require("flowbite/plugin"),
+
         function ({ addUtilities }) {
             addUtilities(
                 {

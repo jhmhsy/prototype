@@ -7,6 +7,8 @@ use Illuminate\View\View;
 
 class reservationController extends Controller
 {
+
+
     public function show(): View
     {
         return view('subpages.reservation');
