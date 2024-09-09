@@ -57,7 +57,6 @@
                 </x-custom.secondary-button-reverse>
             </div>
         </div>
-
         <div class="bg-blue-300 rounded-lg shadow-lg relative md:col-span-1 hover:scale-110 transition-transform duration-300">
             <div class="p-6 md:p-8 lg:p-10">
                 <h3 class="text-2xl md:text-3xl font-bold mb-4">Godmode</h3>
@@ -90,7 +89,6 @@
                 </x-custom.secondary-button-reverse>
             </div>
         </div>
-
     </div>
 </div>
 </div>

@@ -33,7 +33,7 @@
                             class="group-hover:text-coolblue transition-colors duration-300">
                         </path>
                     </svg>
-                    <h3 class="text-lg font-medium mb-2">Weights</h3>
+                    <h3 class="text-lg font-medium mb-2 group-hover:text-coolblue transition-colors duration-300">Weights</h3>
                     <x-inputs.input-p class="text-muted-foreground text-sm">Variety of dumbbells and barbells for
                         strength
                         training.</x-inputs.input-p>
@@ -50,7 +50,7 @@
                         <circle cx="12" cy="14" r="8" class="group-hover:text-coolblue transition-colors duration-300">
                         </circle>
                     </svg>
-                    <h3 class="text-lg font-medium mb-2">Cardio Equipment</h3>
+                    <h3 class="text-lg font-medium mb-2 group-hover:text-coolblue transition-colors duration-300">Cardio Equipment</h3>
                     <x-inputs.input-p class="text-muted-foreground text-sm">Treadmills, ellipticals, and stationary
                         bikes
                         for
@@ -64,7 +64,7 @@
                         <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"
                             class="group-hover:text-coolblue transition-colors duration-300"></path>
                     </svg>
-                    <h3 class="text-lg font-medium mb-2">Stretching Area</h3>
+                    <h3 class="text-lg font-medium mb-2 group-hover:text-coolblue transition-colors duration-300">Stretching Area</h3>
                     <x-inputs.input-p class="text-muted-foreground text-sm">Dedicated space for yoga, Pilates, and other
                         stretching.</x-inputs.input-p>
                 </div>
@@ -77,7 +77,7 @@
                             class="group-hover:text-coolblue transition-colors duration-300"></rect>
                         <path d="M3 12h18" class="group-hover:text-coolblue transition-colors duration-300"></path>
                     </svg>
-                    <h3 class="text-lg font-medium mb-2">Rowing Machines</h3>
+                    <h3 class="text-lg font-medium mb-2 group-hover:text-coolblue transition-colors duration-300">Rowing Machines</h3>
                     <x-inputs.input-p class="text-muted-foreground text-sm">High-intensity rowing machines for a
                         full-body
                         workout.</x-inputs.input-p>
@@ -92,7 +92,7 @@
                     View all
                 </x-inputs.nav-link>
             </div>
-            <div class="grid grid max-w-6xl sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8 lg:gap-10 m-10">
+            <div class="grid max-w-6xl sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8 lg:gap-10 m-10">
                 <div
                     class="bg-muted rounded-lg p-4 md:p-6 flex flex-col items-center text-center bg-white dark:bg-darkmode_light border hover:border-coolblue group transition-colors duration-300 border/white-10 dark:border-white/50 dark:hover:border-coolblue">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -111,7 +111,7 @@
                         <path d="M17 14v.01" class="group-hover:text-coolblue transition-colors duration-300"></path>
                         <path d="M20 11v.01" class="group-hover:text-coolblue transition-colors duration-300"></path>
                     </svg>
-                    <h3 class="text-lg font-medium mb-2">Locker Rooms</h3>
+                    <h3 class="text-lg font-medium mb-2 group-hover:text-coolblue transition-colors duration-300">Locker Rooms</h3>
                     <x-inputs.input-p class="text-muted-foreground text-sm">Spacious locker rooms with showers and
                         changing
                         areas.</x-inputs.input-p>
@@ -131,7 +131,7 @@
                         <path d="M14 17.85V10H6.15" class="group-hover:text-coolblue transition-colors duration-300">
                         </path>
                     </svg>
-                    <h3 class="text-lg font-medium mb-2">Juice Bar</h3>
+                    <h3 class="text-lg font-medium mb-2 group-hover:text-coolblue transition-colors duration-300">Juice Bar</h3>
                     <x-inputs.input-p class="text-muted-foreground text-sm">Refuel with a variety of healthy smoothies
                         and
                         juices.</x-inputs.input-p>
@@ -147,7 +147,7 @@
                             class="group-hover:text-coolblue transition-colors duration-300"></path>
                         <path d="M2 21h20" class="group-hover:text-coolblue transition-colors duration-300"></path>
                     </svg>
-                    <h3 class="text-lg font-medium mb-2">Towel Service</h3>
+                    <h3 class="text-lg font-medium mb-2 group-hover:text-coolblue transition-colors duration-300">Towel Service</h3>
                     <x-inputs.input-p class="text-muted-foreground text-sm">Complimentary towel service for your workout
                         needs.
                     </x-inputs.input-p>
@@ -165,7 +165,7 @@
                         <path d="M8.5 16.429a5 5 0 0 1 7 0"
                             class="group-hover:text-coolblue transition-colors duration-300"></path>
                     </svg>
-                    <h3 class="text-lg font-medium mb-2">Free WiFi</h3>
+                    <h3 class="text-lg font-medium mb-2 group-hover:text-coolblue transition-colors duration-300">Free WiFi</h3>
                     <x-inputs.input-p class="text-muted-foreground text-sm">Stay connected with high-speed wireless
                         internet
                         access.</x-inputs.input-p>
