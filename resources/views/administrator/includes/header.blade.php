@@ -1,5 +1,5 @@
 <header>
-    <div class=" flex items-center justify-between px-6 py-4 border-b border-border 
+    <div class="flex items-center justify-between px-6 py-4 border-b border-border 
         dark:bg-darkmode_light dark:text-white">
 
         <div class="flex flex-row">

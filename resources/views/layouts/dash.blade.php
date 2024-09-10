@@ -20,80 +20,32 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="font-sans antialiased">
-    <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
-        <div>
+<body class="font-sans antialiased bg-white dark:bg-darkmode_dark min-w-[500px]">
+    <div class="bg-gray-100 dark:bg-gray-900">
 
-            <header class="flex items-center justify-between bg-background px-4 py-3 shadow-sm md:px-6">
-                <a class="flex items-center" href="#">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="h-6 w-6">
-                        <path d="m8 3 4 8 5-5 5 15H2L8 3z"></path>
-                    </svg>
-                    <span class="ml-2 text-lg font-medium">Acme Inc</span>
-                </a>
-                <div class="hidden space-x-4 md:flex">
+        <div class="flex flex-col h-screen bg-white">
+            <!--------- Header layout ----------->
+            @include('administrator.includes.header')
 
 
-                    <a class="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
-                        href="{{ route('users.index') }}">
-                        Manage Users
-                    </a>
-                    <a class="inline-flex items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
-                        href="{{ route('roles.index') }}">
-                        Manage Role
-                    </a>
-                    <a class="inline-flex items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
-                        href="{{ route('products.index') }}">
-                        Manage Product
-                    </a>
-                </div>
-                <div class="flex items-center space-x-4">
-                    <div class="hidden items-center space-x-4 md:flex">
-                        <span class="text-sm font-medium">John Doe</span>
-                        <button
-                            class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-10 w-10">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" class="h-5 w-5">
-                                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
-                                <polyline points="16 17 21 12 16 7"></polyline>
-                                <line x1="21" x2="9" y1="12" y2="12"></line>
-                            </svg>
-                            <span class="sr-only">Logout</span>
-                        </button>
+            <div class="flex flex-1">
+
+                <!-------------------------- Sidebar layout ------------------------>
+                <aside id="default-sidebar"
+                    class="hidden sm:block top-0 left-0 z-40 w-30 xl:w-64 h-screen transition-transform -translate-x-full sm:translate-x-0"
+                    aria-label=" Sidebar dark:bg-darkmode_light dark:text-white">
+                    <div class="h-full px-3 py-4 overflow-y-auto dark:bg-darkmode_light dark:text-white">
+                        @include('administrator.includes.sidenav')
                     </div>
-                    <button
-                        class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 w-10 md:hidden">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="h-6 w-6">
-                            <line x1="4" x2="20" y1="12" y2="12"></line>
-                            <line x1="4" x2="20" y1="6" y2="6"></line>
-                            <line x1="4" x2="20" y1="18" y2="18"></line>
-                        </svg>
-                        <span class="sr-only">Toggle menu</span>
-                    </button>
-                </div>
-            </header>
+                </aside>
 
-
-            <!-- Page Content -->
-            <main class="container mx-auto py-12 px-4 md:px-6">
-                <section class="py-4 container">
-                    <div class="row justify-content-center">
-                        <div class="col-md-12">
-                            <div class="card">
-                                <div class="card-body">
-                                    @yield('content')
-                                </div>
-                            </div>
-                        </div>
+                <!-------------------------- MAIN CONTENT ----------------------------->
+                <main class="flex-1 p-6 dark:bg-darkmode_dark overflow-y-auto dark:text-white" @click="open = false">
+                    <div id="main-content" class="flex-1 ">
+                        @yield('content')
                     </div>
-                </section>
-            </main>
-
+                </main>
+            </div>
         </div>
     </div>
 </body>

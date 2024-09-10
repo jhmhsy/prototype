@@ -1,3 +1,5 @@
+@extends('layouts.dash')
+@section('content')
 <div class="rounded-lg border bg-card text-card-foreground shadow-sm p-6" data-v0-t="card">
     <h1 class="text-2xl font-bold mb-6">Feedback</h1>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -34,3 +36,4 @@
         </div>
     </div>
 </div>
+@endsection
