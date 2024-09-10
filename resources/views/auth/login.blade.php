@@ -13,7 +13,7 @@
             </x-custom.nav-link>
         </div>
 
-        
+
         <!-- Login Form -->
         <div class="flex flex-1 items-center justify-center p-8 bg-white/50 dark:bg-darkmode_dark">
 
