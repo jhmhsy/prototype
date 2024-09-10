@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-dash-layout>
     <div class="">
         <div class="flex flex-col h-screen bg-white">
             <!-- Header layout -->
@@ -46,4 +46,4 @@
             </div>
         </div>
     </div>
-</x-app-layout>
+    </x-guest-layout>
