@@ -6,9 +6,12 @@
     {{ __('Profile') }}
 </x-inputs.dropdown-link>
 
+<!-- Permission to access dashboard -->
+@can('role-superadmin')
 <x-inputs.dropdown-link :href="route('dashboard')">
     {{ __('Dashboard') }}
 </x-inputs.dropdown-link>
+@endcan
 
 <!-- Authentication -->
 <form method="POST" action="{{ route('logout') }}">
@@ -44,9 +47,12 @@
                     <i class="fas fa-user mr-2"></i>{{ __('Profile') }}
                 </x-inputs.dropdown-link>
 
+                <!-- Permission to access dashboard -->
+                @can('role-superadmin')
                 <x-inputs.dropdown-link :href="route('dashboard')" class="hover:bg-secondary">
                     <i class="fas fa-tachometer-alt mr-2"></i>{{ __('Dashboard') }}
                 </x-inputs.dropdown-link>
+                @endcan
 
                 <hr class="border-thirdy my-2">
 

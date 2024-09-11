@@ -3,11 +3,23 @@
 
 <div class="flex flex-col gap-4">
     <div class="flex items-center justify-between">
-        <h1 class="text-2xl font-bold">User Management</h1>
-        <a class="" href="{{ route('users.create') }}">
-            Create User
-        </a>
+        <h1 class="text-2xl font-bold">Role Management</h1>
+
+        @can('role-create')
+        <a class="btn btn-success btn-sm mb-2" href="{{ route('roles.create') }}"><i class="fa fa-plus"></i> Create
+            New Role</a>
+        @endcan
+
+
     </div>
+
+    @session('success')
+    <div class="alert alert-success" role="alert">
+        {{ $value }}
+    </div>
+    @endsession
+
+
     <div class="rounded-lg border shadow-sm" data-v0-t="card">
         <div class="p-2">
             <div class="relative w-full overflow-auto">
@@ -19,47 +31,27 @@
                             <th class="h-12 px-4 text-left align-middle">
                                 Name
                             </th>
-                            <th class="h-12 px-4 text-left align-middle">
-                                Email
-                            </th>
-                            <th class="h-12 px-4 text-left align-middle">
-                                Roles
-                            </th>
+
                             <th class="h-12 px-4 text-left align-middle">
                                 Actions
                             </th>
+                        </tr>
                     </thead>
 
                     <tbody class="border-0">
-                        @foreach ($data as $key => $user)
+                        @foreach ($roles as $key => $role)
                         <tr class="border-b transition-colors hover:bg-muted/50 py-20">
 
 
-                            <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">{{ ++$i }}</td>
-                            <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0 font-medium">{{ $user->name }}
+                            <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">{{ ++$i }}
                             </td>
-                            <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">{{ $user->email }}</td>
-                            <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">
+                            <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0 font-medium">{{ $role->name }}
 
 
-                                @if(count($user->getRoleNames()) > 0)
-                                @foreach($user->getRoleNames() as $v)
-                                <x-custom.input-label class="badge badge-success text-black">
-                                    {{ $v }}
-                                </x-custom.input-label>
-                                @endforeach
-                                @else
-                                <x-custom.input-label class="badge badge-secondary text-gray-500">
-                                    User
-                                </x-custom.input-label>
-                                @endif
-
-
-                            </td>
                             <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">
                                 <div class="flex items-center gap-2">
 
-                                    <a href="{{ route('users.show',$user->id) }}"
+                                    <a href="{{ route('roles.show',$role->id) }}"
                                         class="inline-flex items-center justify-center  rounded-md text-sm font-medium ring-offset-background  disabled:pointer-events-none h-1 w-10">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -69,7 +61,9 @@
                                         </svg>
                                         <span class="sr-only">Show</span>
                                     </a>
-                                    <a href="{{ route('users.edit',$user->id) }}"
+
+                                    @can('role-edit')
+                                    <a href="{{ route('roles.edit',$role->id) }}"
                                         class="inline-flex items-center justify-center  rounded-md text-sm font-medium ring-offset-background  disabled:pointer-events-none h-1 w-10">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -80,12 +74,18 @@
                                         </svg>
                                         <span class="sr-only">Edit</span>
                                     </a>
+                                    @endcan
 
-                                    <form method="POST" style="display:inline">
+
+                                    @can('role-delete')
+                                    <form method="POST" action="{{ route('roles.destroy', $role->id) }}"
+                                        style="display:inline">
                                         @csrf
                                         @method('DELETE')
-                                        <a action="{{ route('users.destroy', $user->id) }}"
-                                            class="inline-flex items-center justify-center  rounded-md text-sm font-medium ring-offset-background  disabled:pointer-events-none h-1 w-10 text-red-500">
+
+                                        <button type="submit" class="inline-flex items-center justify-center rounded-md text-sm
+                                            font-medium ring-offset-background disabled:pointer-events-none h-1 w-10
+                                            text-red-500">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                                 stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4">
@@ -93,17 +93,18 @@
                                                 <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
                                                 <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
                                             </svg>
-                                            <span class="sr-only">Delete</span>
-                                        </a>
+                                        </button>
                                     </form>
+                                    @endcan
+
+
                                 </div>
                             </td>
                         </tr>
                         @endforeach
                     </tbody>
 
-
-                    {!! $data->links('pagination::bootstrap-5') !!}
+                    {!! $roles->links('pagination::bootstrap-5') !!}
 
                 </table>
             </div>

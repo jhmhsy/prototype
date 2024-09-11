@@ -31,9 +31,11 @@
                             {{ __('Profile') }}
                         </x-inputs.dropdown-link>
 
+                        @can('role-superadmin')
                         <x-inputs.dropdown-link :href="route('dashboard')">
                             {{ __('Dashboard') }}
                         </x-inputs.dropdown-link>
+                        @endcan
 
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">

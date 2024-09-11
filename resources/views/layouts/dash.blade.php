@@ -42,7 +42,10 @@
                 <!-------------------------- MAIN CONTENT ----------------------------->
                 <main class="flex-1 p-6 dark:bg-darkmode_dark overflow-y-auto dark:text-white" @click="open = false">
                     <div id="main-content" class="flex-1 ">
+
+                        @can('role-edit')
                         @yield('content')
+                        @endcan
                     </div>
                 </main>
             </div>

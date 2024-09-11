@@ -2,17 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Support\Facades\Auth;
 
-class dashboardController extends Controller
+class dashboardController extends BaseController
 {
+    public function __construct()
+    {
+        // checking dashboard permissions
+        $this->middleware('permission:role-superadmin', ['only' => ['show']]);
+    }
 
     public function show(): View
     {
         return view('administrator.dashboard');
     }
-
-    
 }
