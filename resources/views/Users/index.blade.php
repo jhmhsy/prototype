@@ -1,60 +1,110 @@
 @extends('layouts.dash')
 @section('content')
-<div class="row">
-    <div class="col-lg-12 margin-tb">
-        <div class="pull-left">
-            <h2>Users Management</h2>
-        </div>
-        <div class="pull-right">
-            <a class="btn btn-success mb-2" href="{{ route('users.create') }}"><i class="fa fa-plus"></i> Create New
-                User</a>
+
+<div class="flex flex-col gap-4">
+    <div class="flex items-center justify-between">
+        <h1 class="text-2xl font-bold">User Management</h1>
+        <button class="">
+            Create User
+        </button>
+    </div>
+    <div class="rounded-lg border shadow-sm" data-v0-t="card">
+        <div class="p-2">
+            <div class="relative w-full overflow-auto">
+                <table class="w-full text-sm">
+                    <thead class="">
+                        <tr class="border-b ">
+                            <th class="h-12 px-4 text-left align-middle">
+                                No.
+                            <th class="h-12 px-4 text-left align-middle">
+                                Name
+                            </th>
+                            <th class="h-12 px-4 text-left align-middle">
+                                Email
+                            </th>
+                            <th class="h-12 px-4 text-left align-middle">
+                                Roles
+                            </th>
+                            <th class="h-12 px-4 text-left align-middle">
+                                Actions
+                            </th>
+                        </tr>
+                    </thead>
+
+                    <tbody class="border-0">
+                        @foreach ($data as $key => $user)
+                        <tr class="border-b transition-colors hover:bg-muted/50 py-20">
+
+
+                            <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">{{ ++$i }}</td>
+                            <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0 font-medium">{{ $user->name }}
+                            </td>
+                            <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">{{ $user->email }}</td>
+                            <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">
+
+                                @if(!empty($user->getRoleNames()))
+                                @foreach($user->getRoleNames() as $v)
+                                <div class="inline-flex w-fit items-center whitespace-nowrap rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 text-foreground mr-2"
+                                    data-v0-t="badge">
+                                    {{ $v }}
+                                </div>
+                                @endforeach
+                                @endif
+
+
+                            </td>
+                            <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">
+                                <div class="flex items-center gap-2">
+
+                                    <a href="{{ route('users.show',$user->id) }}"
+                                        class="inline-flex items-center justify-center  rounded-md text-sm font-medium ring-offset-background  disabled:pointer-events-none h-1 w-10">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4">
+                                            <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
+                                            <circle cx="12" cy="12" r="3"></circle>
+                                        </svg>
+                                        <span class="sr-only">Show</span>
+                                    </a>
+                                    <a href="{{ route('users.edit',$user->id) }}"
+                                        class="inline-flex items-center justify-center  rounded-md text-sm font-medium ring-offset-background  disabled:pointer-events-none h-1 w-10">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4">
+                                            <path d="M12 22h6a2 2 0 0 0 2-2V7l-5-5H6a2 2 0 0 0-2 2v10"></path>
+                                            <path d="M14 2v4a2 2 0 0 0 2 2h4"></path>
+                                            <path d="M10.4 12.6a2 2 0 1 1 3 3L8 21l-4 1 1-4Z"></path>
+                                        </svg>
+                                        <span class="sr-only">Edit</span>
+                                    </a>
+
+                                    <form method="POST" style="display:inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <a action="{{ route('users.destroy', $user->id) }}"
+                                            class="inline-flex items-center justify-center  rounded-md text-sm font-medium ring-offset-background  disabled:pointer-events-none h-1 w-10 text-red-500">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4">
+                                                <path d="M3 6h18"></path>
+                                                <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
+                                                <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+                                            </svg>
+                                            <span class="sr-only">Delete</span>
+                                        </a>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+
+
+                    {!! $data->links('pagination::bootstrap-5') !!}
+
+                </table>
+            </div>
         </div>
     </div>
 </div>
-
-@session('success')
-<div class="alert alert-success" role="alert">
-    {{ $value }}
-</div>
-@endsession
-
-<table class="table table-bordered">
-    <tr>
-        <th>No</th>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Roles</th>
-        <th width="280px">Action</th>
-    </tr>
-    @foreach ($data as $key => $user)
-    <tr>
-        <td>{{ ++$i }}</td>
-        <td>{{ $user->name }}</td>
-        <td>{{ $user->email }}</td>
-        <td>
-            @if(!empty($user->getRoleNames()))
-            @foreach($user->getRoleNames() as $v)
-            <label class="badge bg-success">{{ $v }}</label>
-            @endforeach
-            @endif
-        </td>
-        <td>
-            <a class="btn btn-info btn-sm" href="{{ route('users.show',$user->id) }}"><i class="fa-solid fa-list"></i>
-                Show</a>
-            <a class="btn btn-primary btn-sm" href="{{ route('users.edit',$user->id) }}"><i
-                    class="fa-solid fa-pen-to-square"></i> Edit</a>
-            <form method="POST" action="{{ route('users.destroy', $user->id) }}" style="display:inline">
-                @csrf
-                @method('DELETE')
-
-                <button type="submit" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i> Delete</button>
-            </form>
-        </td>
-    </tr>
-    @endforeach
-</table>
-
-{!! $data->links('pagination::bootstrap-5') !!}
-
-<p class="text-center text-primary"><small>Tutorial by ItSolutionStuff.com</small></p>
 @endsection
