@@ -13,7 +13,7 @@
         <div class="fixed left-1/3 transform z-20">
             <nav class=" flex gap-4 sm:gap-6">
                 <div class="flex justify-evenly items-center text-center">
-                    <div class="hidden space-x-8 space-between sm:-my-px sm:ms-10 xl:block ">
+                    <div class="hidden space-x-8 space-evenly xl:block ">
                         @include('navigations.homenav',['default' => true])
                     </div>
                 </div>
@@ -21,7 +21,7 @@
         </div>
 
 
-        <div class="flex items-center gap-4">
+        <div class="flex items-center gap-1">
             <!-- Darkmode button icon -->
             <div role="group" dir="ltr" class="flex items-center justify-center gap-1" tabindex="0"
                 style="outline: none;">
@@ -30,7 +30,7 @@
             </div>
 
             <!-- login / register  -->
-            <div class="hidden sm:block">
+            <div class="hidden sm:block items-center text-center">
                 @include('navigations.login-dropdown', ['row' => true])
             </div>
 
