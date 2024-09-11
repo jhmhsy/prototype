@@ -23,6 +23,7 @@ export default {
                 primary: "#ffffff",
                 secondary: "#e4e6eb",
                 thirdy: "#b0b3b8",
+                darkmode_lessdark: '#3b3d40',
                 darkmode_dark: "#18191a",
                 darkmode_light: "#242526",
                 darkmode_lighter: "#3a3b3c",
@@ -34,10 +35,12 @@ export default {
                 coolblue: "#2563eb",
             },
             padding: {
-                45: "12rem",
+                5: "1.5rem",
                 25: "10rem",
+                45: "12rem",
             },
             margin: {
+                15: "5rem",
                 25: "10rem",
             },
         },

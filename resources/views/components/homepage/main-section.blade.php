@@ -1,4 +1,4 @@
-<section class="w-full  dark:bg-darkmode_light text-textblack dark:text-textwhite dark:border-white/10 
+<section class="w-full  dark:bg-darkmode_light text-textblack dark:text-textwhite 
         dark:border-white/10">
     <div class="inset-0 flex flex-col items-center justify-center px-4 pt-40 text-center  ">
         <h1 class="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">

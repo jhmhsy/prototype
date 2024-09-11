@@ -1,8 +1,8 @@
 <header>
-    <div class=" flex items-center justify-between px-6 py-4 border-b border-border 
-        dark:bg-darkmode_light dark:text-white">
+    <div class="flex-no-wrap fixed top-0 z-10 w-full bg-primary flex items-center justify-between px-6 py-4 border-b border-border 
+        dark:bg-darkmode_light dark:text-white dark:border-b-white/50">
 
-        <!-- dumbelss logo -->
+        <!-- dumbell logo -->
         <div class="flex flex-row">
             <a href="/">
                 <x-inputs.application-logo />
@@ -13,7 +13,6 @@
         <div class="fixed left-1/3 transform z-20">
             <nav class=" flex gap-4 sm:gap-6">
                 <div class="flex justify-evenly items-center text-center">
-
                     <div class="hidden space-x-8 space-between sm:-my-px sm:ms-10 xl:block ">
                         @include('navigations.homenav',['default' => true])
                     </div>
@@ -43,7 +42,5 @@
             <!-- Responsive for home navigation -->
             @include('layouts.nav-burger', ['showburgerHome' => true])
         </div>
-
-
     </div>
 </header>
