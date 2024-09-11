@@ -25,7 +25,7 @@
 @endif
 
 @if($dropdown ?? false)
-<div class=" sm:flex sm:items-center sm:ms-6 ">
+<div class=" sm:flex sm:items-center">
     <x-custom.dropdown align="right" width="56">
         <x-slot name="trigger">
             <x-custom.nav-link class="flex items-center">
