@@ -16,7 +16,7 @@
     <!-- Scripts -->
     <script src="{{ asset('js/darkmode.js') }}" defer></script>
     <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
-    <link rel="icon" href="images\gym-icon.png"> 
+    <link rel="icon" href="images\logo.png"> 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
