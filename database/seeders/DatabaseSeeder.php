@@ -20,5 +20,9 @@ class DatabaseSeeder extends Seeder
             'email' => 'user@gmail.com',
             'password' => '123456789',
         ]);
+        $this->call([
+            CreateAdminUserSeeder::class,
+            PermissionTableSeeder::class
+        ]);
     }
 }
