@@ -30,7 +30,7 @@
         </header>
         @endisset
 
-        <div class="dark:bg-darkmode_dark dark:text-textwhite">
+        <div class="dark:bg-darkmode_dark dark:text-textwhite bg-white shadow">
             {{ $slot }}
         </div>
     </div>
