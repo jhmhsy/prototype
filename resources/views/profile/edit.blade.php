@@ -1,16 +1,18 @@
 <x-app-layout>
     <x-slot name="header">
-        <x-custom.nav-link href="{{ route('welcome') }}" class="text-sm font-medium ">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6 ">
-                <path d="m12 19-7-7 7-7"></path>
-                <path d="M19 12H5"></path>
-            </svg>
-        </x-custom.nav-link>
-
-        <h2 class="inline-block  font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Profiles') }}
-        </h2>
+        <div class="items-center flex  space-x-3">
+            <x-custom.nav-link href="{{ route('welcome') }}" class="text-sm font-medium ">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6 ">
+                    <path d="m12 19-7-7 7-7"></path>
+                    <path d="M19 12H5"></path>
+                </svg>
+            </x-custom.nav-link>
+    
+            <h2 class="inline-block font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+                {{ __('Profile') }}
+            </h2>
+        </div>
     </x-slot>
 
 
