@@ -4,8 +4,6 @@
 <div class="w-full bg-background text-foreground ">
     <div class="container mx-auto px-4 py-8 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
-
-
             <div class="flex items-center gap-4 shadow-lg rounded-[10px] p-4 dark:bg-darkmode_light">
                 <span class="relative flex shrink-0 overflow-hidden rounded-full h-16 w-16">
                     <img class="aspect-square object-cover w-full h-full" alt="User Avatar"
