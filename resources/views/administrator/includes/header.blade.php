@@ -4,7 +4,7 @@
         dark:bg-darkmode_light dark:text-white">
 
         <div class="flex flex-row">
-            <!-- Harburger button for responsive sidebar, hides in pc screen, shows in mobile-->
+            <!-- Hamburger button for responsive sidebar, hides in pc screen, shows in mobile-->
             @include('layouts.nav-burger', ['showburgerAdmin' => true])
 
             <!-- Back button -->

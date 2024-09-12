@@ -51,9 +51,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/events', [EventsController::class, 'index'])->name('events');
     Route::get('/feedback', [FeedbackController::class, 'index'])->name('feedback');
     Route::get('/help', [HelpController::class, 'index'])->name('help');
-    Route::get('/Menu', [MenuController::class, 'index'])->name('Menu');
-
- 
+    Route::get('/menu', [MenuController::class, 'index'])->name('Menu');
 
 });
 

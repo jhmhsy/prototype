@@ -13,7 +13,7 @@
             </svg>
 
             <span class="hidden lg:block flex-1 ms-3 whitespace-nowrap">Dashboard</span>
-            <span class="sm:hidden flex-1 ms-3 whitespace-nowrap pr-20 pr-20">Dashboard</span>
+            <span class="sm:hidden flex-1 ms-3 whitespace-nowrap pr-20">Dashboard</span>
         </x-custom.sidenav-button>
     </li>
     <!--------------------------- EQUIPMENTS BUTTON --------------------------------->
@@ -26,7 +26,7 @@
                 <circle cx="12" cy="13" r="3"></circle>
             </svg>
             <span class="hidden lg:block flex-1 ms-3 whitespace-nowrap">Equipment</span>
-            <span class="sm:hidden flex-1 ms-3 whitespace-nowrap pr-20 pr-20 pr-20 pr-20">Equipment</span>
+            <span class="sm:hidden flex-1 ms-3 whitespace-nowrap pr-20">Equipment</span>
         </x-custom.sidenav-button>
     </li>
     <!--------------------------- RESERVATION BUTTON --------------------------------->
@@ -42,7 +42,7 @@
                 <path d="M13 11v2"></path>
             </svg>
             <span class="hidden lg:block flex-1 ms-3 whitespace-nowrap">Reservation</span>
-            <span class="sm:hidden flex-1 ms-3 whitespace-nowrap pr-20 pr-20">Reservation</span>
+            <span class="sm:hidden flex-1 ms-3 whitespace-nowrap pr-20">Reservation</span>
 
         </x-custom.sidenav-button>
     </li>
@@ -58,7 +58,7 @@
                 <path d="M3 10h18"></path>
             </svg>
             <span class="hidden lg:block flex-1 ms-3 whitespace-nowrap">Events</span>
-            <span class="sm:hidden flex-1 ms-3 whitespace-nowrap pr-20 pr-20">Events</span>
+            <span class="sm:hidden flex-1 ms-3 whitespace-nowrap pr-20">Events</span>
         </x-custom.sidenav-button>
     </li>
     <!--------------------------- FEEDBACK BUTTON --------------------------------->
@@ -71,7 +71,7 @@
                 <path d="M20 18v-2a4 4 0 0 0-4-4H4"></path>
             </svg>
             <span class="hidden lg:block flex-1 ms-3 whitespace-nowrap">Feedback</span>
-            <span class="sm:hidden flex-1 ms-3 whitespace-nowrap pr-20 pr-20">Feedback</span>
+            <span class="sm:hidden flex-1 ms-3 whitespace-nowrap pr-20">Feedback</span>
         </x-custom.sidenav-button>
     </li>
     <!--------------------------- USERS BUTTON --------------------------------->
@@ -85,7 +85,7 @@
                 <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
             </svg>
             <span class="hidden lg:block flex-1 ms-3 whitespace-nowrap">Users</span>
-            <span class="sm:hidden flex-1 ms-3 whitespace-nowrap pr-20 pr-20">Users</span>
+            <span class="sm:hidden flex-1 ms-3 whitespace-nowrap pr-20">Users</span>
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg"
                 viewBox="0 0 16 16">
                 <path
@@ -104,7 +104,7 @@
                 <path d="m2 13 6 6"></path>
             </svg>
             <span class="hidden lg:block flex-1 ms-3 whitespace-nowrap">Help</span>
-            <span class="sm:hidden flex-1 ms-3 whitespace-nowrap pr-20 pr-20">Help</span>
+            <span class="sm:hidden flex-1 ms-3 whitespace-nowrap pr-20">Help</span>
         </x-custom.sidenav-button>
     </li>
     <!--------------------------- User --------------------------------->
@@ -119,7 +119,7 @@
             </svg>
 
             <span class="hidden lg:block flex-1 ms-3 whitespace-nowrap">Manage Users</span>
-            <span class="sm:hidden flex-1 ms-3 whitespace-nowrap pr-20 pr-20">Manage
+            <span class="sm:hidden flex-1 ms-3 whitespace-nowrap pr-20">Manage
                 Users</span>
 
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg"
@@ -146,7 +146,7 @@
                     d="M4.81 1.37A6.5 6.5 0 0 1 14.56 7a.5.5 0 1 1-1 0 5.5 5.5 0 0 0-8.25-4.765.5.5 0 0 1-.5-.865m-.89 1.257a.5.5 0 0 1 .04.706A5.48 5.48 0 0 0 2.56 7a.5.5 0 0 1-1 0c0-1.664.626-3.184 1.655-4.333a.5.5 0 0 1 .706-.04ZM1.915 8.02a.5.5 0 0 1 .346.616l-.779 2.767a.5.5 0 1 1-.962-.27l.778-2.767a.5.5 0 0 1 .617-.346m12.15.481a.5.5 0 0 1 .49.51c-.03 1.499-.161 3.025-.727 4.533l-.07.187a.5.5 0 0 1-.936-.351l.07-.187c.506-1.35.634-2.74.663-4.202a.5.5 0 0 1 .51-.49" />
             </svg>
             <span class="hidden lg:block flex-1 ms-3 whitespace-nowrap">Manage Role</span>
-            <span class="sm:hidden flex-1 ms-3 whitespace-nowrap pr-20 pr-20 pr-20 pr-20">Manage
+            <span class="sm:hidden flex-1 ms-3 whitespace-nowrap pr-20">Manage
                 Role</span>
 
 
@@ -168,7 +168,7 @@
                     d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z" />
             </svg>
             <span class="hidden lg:block flex-1 ms-3 whitespace-nowrap">Products</span>
-            <span class="sm:hidden flex-1 ms-3 whitespace-nowrap pr-20 pr-20">Products</span>
+            <span class="sm:hidden flex-1 ms-3 whitespace-nowrap pr-20">Products</span>
 
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg"
                 viewBox="0 0 16 16">

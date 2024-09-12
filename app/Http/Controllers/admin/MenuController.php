@@ -9,6 +9,6 @@ class MenuController extends Controller
 {
     public function index()
     {
-        return view('administrator.includes.Menu');
+        return view('administrator.includes.menu');
     }
 }
