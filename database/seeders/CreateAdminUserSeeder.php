@@ -1,13 +1,13 @@
 <?php
-  
+
 namespace Database\Seeders;
-  
+
+use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\User;
-use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
-  
+use Spatie\Permission\Models\Role;
+
 class CreateAdminUserSeeder extends Seeder
 {
     /**
@@ -15,16 +15,27 @@ class CreateAdminUserSeeder extends Seeder
      */
     public function run(): void
     {
-        $user = User::factory()->create([
-            'name' => 'Super Admin', 
-            'email' => 'admin@gmail.com',
+        //
+        $admin = User::factory()->create([
+            'name' => 'Admin', 
+            'email' => 'admin@email.com',
             'password' => bcrypt('asdasdasd')
         ]);
-        
-        $role = Role::create(['name' => 'superadmin']);
-        $permissions = Permission::pluck('id','id')->all();
-        $role->syncPermissions($permissions);
-        $user->assignRole($role);
+        $adminRole = Role::create(['name' => 'Admin']);
 
+        $permissions = [
+            'product-list',
+            'product-create',
+            'product-edit',
+            'product-delete',
+            'is-admin',
+        ];
+
+        $permissions = Permission::whereIn('name', $permissions)
+            ->pluck('id', 'id')
+            ->all();
+
+        $adminRole->syncPermissions($permissions);
+        $admin->assignRole($adminRole);
     }
 }

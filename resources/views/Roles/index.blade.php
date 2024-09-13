@@ -13,8 +13,6 @@
             </div>
         </div>
 
-
-
         @can('role-create')
         <div class="flex items-center justify-between">
             <a class="" href="{{ route('roles.create') }}">

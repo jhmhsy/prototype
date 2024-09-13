@@ -11,7 +11,7 @@ class dashboardController extends BaseController
     public function __construct()
     {
         // checking dashboard permissions
-        $this->middleware('permission:role-superadmin', ['only' => ['show']]);
+        $this->middleware('permission:is-admin', ['only' => ['show']]);
     }
 
     public function show(): View

@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Middleware\RoleMiddleware;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 
@@ -28,12 +28,13 @@ Route::get('features', [FeaturesController::class, 'show'])
 ->name('features');
 
 
-
-
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-Route::group(['middleware' => ['auth']], function() {
+Route::group(['middleware' => ['auth', 'permission:is-super']], function(){
     Route::resource('roles', RoleController::class);
+});
+
+Route::group(['middleware' => ['auth', 'permission:is-admin']], function() {
     Route::resource('users', UserController::class);
     Route::resource('products', ProductController::class);
 });
@@ -54,5 +55,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/menu', [MenuController::class, 'index'])->name('Menu');
 
 });
+
+//Route::middleware(['auth', ])->group(function(){
+
+//});
 
 require __DIR__.'/auth.php';

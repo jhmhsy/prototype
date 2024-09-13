@@ -28,14 +28,15 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
-
-        $userID = filter_var($request->id, FILTER_VALIDATE_INT);
+        $userID = Auth::id();
+        //$superAdminID = 1;
+        //$adminID = 2;
         $hasRole = DB::table('model_has_roles')
             ->where('model_id', $userID)
-            ->where('role_id', 1)
+            ->where('role_id', [1, 2])
             ->exists();
         if ($hasRole) {
-            return redirect()->route('menu');
+            return redirect()->intended(route('dashboard', absolute: false));
         }
         return redirect()->intended(route('welcome', absolute: false));
     }
@@ -53,4 +54,5 @@ class AuthenticatedSessionController extends Controller
 
         return redirect('/');
     }
+
 }
