@@ -2,7 +2,7 @@
     <div class="flex min-h-screen flex-col">
         <x-homepage.header-section></x-homepage.header-section>
         <!-- Home button -->
-        {{--<div class="flex items-center">
+        {{-- <div class="flex items-center">
             <x-custom.nav-link href="{{ route('welcome') }}" class="text-sm font-medium hover:text-black m-4 px-7 ">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="30" fill="currentColor"
                     class="bi bi-arrow-return-left" viewBox="0 0 16 16">
@@ -11,7 +11,7 @@
                 </svg>
                 <h2 class="inline-block rounded-lg bg-muted px-3 text-xl py-1 font-medium">Back</h2>
             </x-custom.nav-link>
-        </div>--}}
+        </div> --}}
         <!-- Login Form -->
         <div class="mt-5 flex flex-1 items-center justify-center p-8 bg-white/70 dark:bg-darkmode_dark">
 
@@ -38,9 +38,9 @@
                                 <x-custom.input-label class="text-white dark:text-textblack" for="email"
                                     :value="__('Email')" />
                                 <x-custom.text-input-reverse class="block 3mt-1 w-full" id="email" type="email"
-                                    name="email" :value="old('email')" placeholder="johndoe@example.com" required autofocus
-                                    autocomplete="username" />
-                                <x-custom.input-error :messages="$errors->get('email')" class="mt-2" />
+                                    name="email" :value="old('email')" placeholder="johndoe@example.com" required
+                                    autofocus autocomplete="username" />
+                                <x-custom.input-error :errors="$errors->get('email')" class="mt-2" />
 
                             </div>
                             <div class="space-y-2">
@@ -49,7 +49,7 @@
                                 <x-custom.text-input-reverse class="block 3mt-1 w-full" id="password" type="password"
                                     name="password" placeholder="********" remem required
                                     autocomplete="current-password" />
-                                <x-custom.input-error :messages="$errors->get('password')" class="mt-2" />
+                                <x-custom.input-error :errors="$errors->get('password')" class="mt-2" />
                             </div>
                             <div class="flex items-center justify-between">
 
@@ -62,10 +62,10 @@
                                     <span>Remember me</span>
                                 </label>
                                 @if (Route::has('password.request'))
-                                <a class="text-red-500 text-sm font-medium underline hover:text-primary dark:text-gray-500 dark:hover:text-textblack"
-                                    href="{{ route('password.request') }}">
-                                    {{ __('Forgot your password?') }}
-                                </a>
+                                    <a class="text-red-500 text-sm font-medium underline hover:text-primary dark:text-gray-500 dark:hover:text-textblack"
+                                        href="{{ route('password.request') }}">
+                                        {{ __('Forgot your password?') }}
+                                    </a>
                                 @endif
                             </div>
                         </div>
