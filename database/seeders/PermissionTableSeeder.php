@@ -29,8 +29,5 @@ class PermissionTableSeeder extends Seeder
         foreach ($permissions as $permission) {
              Permission::create(['name' => $permission]);
         }
-
-        $role = Role::create(['name' => 'superadmin']);
-        $role->givePermissionTo(Permission::all());
     }
 }

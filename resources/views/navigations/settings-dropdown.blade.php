@@ -1,6 +1,5 @@
 @if (Route::has('login'))
     @auth
-
         @if ($column ?? false)
             <x-inputs.dropdown-link :href="route('profile.edit')">
                 {{ __('Profile') }}
@@ -14,10 +13,10 @@
             @endcan
 
             <!-- Authentication -->
-            <form method="POST" action="{{ route('logout') }}">
+            <form method="POST" action="{{ route('logout') }}" class="hover:bg-red-500">
                 @csrf
 
-                <x-inputs.dropdown-link :href="route('logout')"
+                <x-inputs.dropdown-link :href="route('logout')" class="hover:bg-red-500"
                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">
                     {{ __('Log Out') }}
@@ -44,8 +43,8 @@
 
                     <x-slot name="content" transparent>
                         <div
-                            class="rounded-t-none bg-white dark:bg-darkmode_dark text-white rounded-md shadow-lg border-white/10 border border-t-0">
-                            <x-inputs.dropdown-link :href="route('profile.edit')" class="hover:bg-secondary px-4 py-2 w-full">
+                            class="rounded-t-none bg-white dark:bg-darkmode_dark text-white shadow-lg border-white/10 border border-t-0">
+                            <x-inputs.dropdown-link :href="route('profile.edit')" class="hover:bg-blue-400 hover:text-white px-4 py-2 w-full">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     class="mr-2 bi bi-person-circle" viewBox="0 0 16 16">
                                     <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
@@ -57,7 +56,7 @@
 
                             <!-- Permission to access dashboard -->
                             @can('role-superadmin')
-                                <x-inputs.dropdown-link :href="route('dashboard')" class="hover:bg-secondary px-3 py-2 w-full">
+                                <x-inputs.dropdown-link :href="route('dashboard')" class="hover:bg-red-600 hover:text-white px-3 py-2 w-full">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                         class="mr-2 bi bi-speedometer2" viewBox="0 0 16 16">
                                         <path
@@ -76,7 +75,7 @@
                                 <x-inputs.dropdown-link :href="route('logout')"
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();"
-                                    class="hover:bg-secondary px-3 py-2">
+                                    class="hover:bg-red-600 hover:text-white px-3 py-2">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                         fill="currentColor" class="mr-2 bi bi-box-arrow-right" viewBox="0 0 16 16">
                                         <path fill-rule="evenodd"
