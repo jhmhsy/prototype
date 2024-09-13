@@ -7,9 +7,7 @@ use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
-use Spatie\Permission\Traits\HasRoles;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -29,14 +27,7 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
-        $userID = Auth::id();
-        $hasRole = DB::table('model_has_roles')
-                    ->where('model_id', $userID)
-                    ->where('role_id', 1)
-                    ->exists();
-        if($hasRole){
-            return redirect()->route('menu');
-        }
+
         return redirect()->intended(route('welcome', absolute: false));
     }
 
