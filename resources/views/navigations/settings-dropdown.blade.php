@@ -7,13 +7,13 @@
 
             <!-- Permission to access dashboard -->
             @can('role-superadmin')
-                <x-inputs.dropdown-link :href="route('dashboard')">
+                <x-inputs.dropdown-link :href="route('dashboard')" class="hover:bg-green-400">
                     {{ __('Dashboard') }}
                 </x-inputs.dropdown-link>
             @endcan
 
             <!-- Authentication -->
-            <form method="POST" action="{{ route('logout') }}" class="hover:bg-red-500">
+            <form method="POST" action="{{ route('logout') }}">
                 @csrf
 
                 <x-inputs.dropdown-link :href="route('logout')" class="hover:bg-red-500"
@@ -56,7 +56,7 @@
 
                             <!-- Permission to access dashboard -->
                             @can('role-superadmin')
-                                <x-inputs.dropdown-link :href="route('dashboard')" class="hover:bg-red-600 hover:text-white px-3 py-2 w-full">
+                                <x-inputs.dropdown-link :href="route('dashboard')" class="hover:bg-green-400 hover:text-white px-3 py-2 w-full">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                         class="mr-2 bi bi-speedometer2" viewBox="0 0 16 16">
                                         <path
@@ -75,7 +75,7 @@
                                 <x-inputs.dropdown-link :href="route('logout')"
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();"
-                                    class="hover:bg-red-600 hover:text-white px-3 py-2">
+                                    class="hover:bg-red-600 hover:text-white px-3 py-2 w-full">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                         fill="currentColor" class="mr-2 bi bi-box-arrow-right" viewBox="0 0 16 16">
                                         <path fill-rule="evenodd"
