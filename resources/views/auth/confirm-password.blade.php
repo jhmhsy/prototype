@@ -10,7 +10,7 @@
         @csrf
         <!-- Password -->
         <x-forms.field :value="__('Password')" :errors="$errors->get('password')" :name="'password'">
-            <x-forms.text-input id="password" class="block mt-1 w-full" type="password" name="password" required
+            <x-custom.floating-input id="password" class="block mt-1 w-full" type="password" name="password" required
                 autocomplete="current-password" />
         </x-forms-field>
 
