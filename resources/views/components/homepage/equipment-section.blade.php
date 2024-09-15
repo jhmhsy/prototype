@@ -1,5 +1,5 @@
 <div class="w-full mt-20 bg-secondary dark:bg-darkmode_light">
-    <div class="w-full md:px-6 lg:px-8 py-10 grid gap-12 md:gap-16 text-textblack dark:bg-darkmode_dark dark:text-textwhite">
+    <div class="w-full md:px-6 lg:px-8 pt-15 grid gap-12 md:gap-16 text-textblack dark:bg-darkmode_dark dark:text-textwhite">
         <h1 class="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">
             We Provide
         </h1>

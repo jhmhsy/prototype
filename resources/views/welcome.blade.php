@@ -18,7 +18,7 @@
             </div>
 
             <!-- pricing sections-->
-            <div id="pricing-section" class="dark:bg-darkmode_dark dark:text-textwhite">
+            <div id="pricing-section" class="dark:bg-darkmode_dark dark:text-textwhite bg-secondary">
                 <x-homepage.pricing-section />
             </div>
 
