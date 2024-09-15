@@ -27,35 +27,35 @@
                             </x-slot>
 
                             <x-slot name="content">
-                                <x-inputs.dropdown-link :href="route('profile.edit')">
+                                <x-forms.dropdown-link :href="route('profile.edit')">
                                     {{ __('Profile') }}
-                                </x-inputs.dropdown-link>
+                                </x-forms.dropdown-link>
 
                                 @can('is-admin')
-                                    <x-inputs.dropdown-link :href="route('dashboard')">
+                                    <x-forms.dropdown-link :href="route('dashboard')">
                                         {{ __('Dashboard') }}
-                                    </x-inputs.dropdown-link>
+                                    </x-forms.dropdown-link>
                                 @endcan
 
                                 <!-- Authentication -->
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
 
-                                    <x-inputs.dropdown-link :href="route('logout')"
+                                    <x-forms.dropdown-link :href="route('logout')"
                                         onclick="event.preventDefault();
                                                 this.closest('form').submit();">
                                         {{ __('Log Out') }}
-                                    </x-inputs.dropdown-link>
+                                    </x-forms.dropdown-link>
                                 </form>
                             </x-slot>
-                            </x-inputs.dropdown>
+                            </x-forms.dropdown>
                     </div>
 
             </div>
         </div>
     @else
         <div class="block sm:hidden">
-            <x-inputs.dropdown align="right" width="48">
+            <x-forms.dropdown align="right" width="48">
                 <x-slot name="trigger">
                     <button
                         class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
@@ -70,30 +70,30 @@
                 </x-slot>
 
                 <x-slot name="content">
-                    <x-inputs.dropdown-link href="{{ route('login') }}">
+                    <x-forms.dropdown-link href="{{ route('login') }}">
                         {{ __('Login') }}
-                    </x-inputs.dropdown-link>
-                    <x-inputs.dropdown-link href="{{ route('register') }}">
+                    </x-forms.dropdown-link>
+                    <x-forms.dropdown-link href="{{ route('register') }}">
                         {{ __('Register') }}
-                    </x-inputs.dropdown-link>
+                    </x-forms.dropdown-link>
 
                 </x-slot>
-            </x-inputs.dropdown>
+            </x-forms.dropdown>
         </div>
         <nav class="hidden sm:block gap-4 sm:gap-6">
             <div class="flex">
                 <!-- Navigation Links -->
                 <div class="flex">
 
-                    <x-inputs.nav-link href="{{ route('login') }}"
+                    <x-forms.nav-link href="{{ route('login') }}"
                         class="text-sm font-medium hover:underline underline-offset-4">Log
                         in
-                    </x-inputs.nav-link>
+                    </x-forms.nav-link>
                     @if (Route::has('register'))
-                        <x-inputs.nav-link href="{{ route('register') }}"
+                        <x-forms.nav-link href="{{ route('register') }}"
                             class="text-sm font-medium hover:underline underline-offset-4">
                             Register
-                        </x-inputs.nav-link>
+                        </x-forms.nav-link>
                     @endif
 
                 </div>

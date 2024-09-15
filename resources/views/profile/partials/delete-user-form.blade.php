@@ -9,10 +9,10 @@
         </p>
     </header>
 
-    <x-inputs.danger-button x-data="" x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')">
-        {{ __('Delete Account') }}</x-inputs.danger-button>
+    <x-forms.danger-button x-data="" x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')">
+        {{ __('Delete Account') }}</x-forms.danger-button>
 
-    <x-inputs.modal name="confirm-user-deletion" :show="$errors->userDeletion->isNotEmpty()" focusable>
+    <x-forms.modal name="confirm-user-deletion" :show="$errors->userDeletion->isNotEmpty()" focusable>
         <form method="post" action="{{ route('profile.destroy') }}" class="p-6">
             @csrf
             @method('delete')
@@ -26,23 +26,23 @@
             </p>
 
             <div class="mt-6">
-                <x-inputs.input-label for="password" value="{{ __('Password') }}" class="sr-only" />
+                <x-forms.input-label for="password" value="{{ __('Password') }}" class="sr-only" />
 
-                <x-inputs.text-input id="password" name="password" type="password" class="mt-1 block w-3/4"
+                <x-forms.text-input id="password" name="password" type="password" class="mt-1 block w-3/4"
                     placeholder="{{ __('Password') }}" />
 
-                <x-inputs.input-error :errors="$errors->userDeletion->get('password')" class="mt-2" />
+                <x-forms.error :errors="$errors->userDeletion->get('password')" class="mt-2" />
             </div>
 
             <div class="mt-6 flex justify-end">
-                <x-inputs.secondary-button x-on:click="$dispatch('close')">
+                <x-forms.secondary-button x-on:click="$dispatch('close')">
                     {{ __('Cancel') }}
-                </x-inputs.secondary-button>
+                </x-forms.secondary-button>
 
-                <x-inputs.danger-button class="ms-3">
+                <x-forms.danger-button class="ms-3">
                     {{ __('Delete Account') }}
-                </x-inputs.danger-button>
+                </x-forms.danger-button>
             </div>
         </form>
-    </x-inputs.modal>
+    </x-forms.modal>
 </section>

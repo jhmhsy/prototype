@@ -40,8 +40,12 @@ export default {
                 45: "12rem",
             },
             margin: {
+                13: "3.5rem",
                 15: "5rem",
                 25: "10rem",
+            },
+            spacing: {
+                15: "5rem"
             },
         },
     },

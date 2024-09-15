@@ -1,25 +1,25 @@
 @if (Route::has('login'))
     @auth
     @else
-        @if ($column ?? false)
-            <x-inputs.dropdown-link href="{{ route('login') }}" :active="request()->is('login')">
+        {{--@if ($column ?? false)
+            <x-forms.dropdown-link href="{{ route('login') }}" :active="request()->is('login')">
                 Log in
-            </x-inputs.dropdown-link>
+            </x-forms.dropdown-link>
             @if (Route::has('register'))
-                <x-inputs.dropdown-link href="{{ route('register') }}" :active="request()->is('register')">
+                <x-forms.dropdown-link href="{{ route('register') }}" :active="request()->is('register')">
                     Register
-                </x-inputs.dropdown-link>
+                </x-forms.dropdown-link>
             @endif
-        @endif
+        @endif--}}
 
         @if ($row ?? false)
-            <x-inputs.nav-link href="{{ route('login') }}" :active="request()->is('login')">
+            {{--<x-forms.nav-link href="{{ route('login') }}" :active="request()->is('login')">
                 Log in
-            </x-inputs.nav-link>
+            </x-forms.nav-link>--}}
             @if (Route::has('register'))
-                <x-inputs.nav-link href="{{ route('register') }}" :active="request()->is('register')">
+                <x-forms.nav-link href="{{ route('register') }}" :active="request()->is('register')">
                     Register
-                </x-inputs.nav-link>
+                </x-forms.nav-link>
             @endif
         @endif
 

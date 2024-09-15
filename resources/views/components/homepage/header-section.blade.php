@@ -1,32 +1,30 @@
 <header>
-    <div class="flex-no-wrap fixed top-0 z-10 w-full bg-primary flex items-center justify-between px-6 py-4 border-b border-border 
+    <div
+        class="flex-no-wrap fixed top-0 z-10 w-full bg-primary flex items-center justify-between px-6 py-2 border-b border-border 
         dark:bg-darkmode_light dark:text-white dark:border-b-white/50">
-
         <!-- dumbell logo -->
-        <div class="flex flex-row">
+        <div class="flex flex-row mr-13">
             <a href="/">
-                <x-inputs.application-logo />
+                <x-custom.application-logo />
             </a>
         </div>
 
         <!-- Navigation Links -->
-        <div class="fixed left-1/3 transform z-20">
-            <nav class=" flex gap-4 sm:gap-6">
+        <div class="flex justify-center">
+            <nav class="flex gap-4 sm:gap-6">
                 <div class="flex justify-evenly items-center text-center">
-                    <div class="hidden space-x-8 space-evenly xl:block ">
-                        @include('navigations.homenav',['default' => true])
+                    <div class="hidden xl:flex space-x-12">
+                        @include('navigations.homenav', ['default' => true])
                     </div>
                 </div>
             </nav>
         </div>
 
-
-        <div class="flex items-center gap-1">
+        <div class="flex items-center gap-2">
             <!-- Darkmode button icon -->
-            <div role="group" dir="ltr" class="flex items-center justify-center gap-1" tabindex="0"
+            <div role="group" dir="ltr" class="flex items-center justify-center" tabindex="0"
                 style="outline: none;">
-                <x-custom.input-darkmode>
-                </x-custom.input-darkmode>
+                <x-custom.darkmode />
             </div>
 
             <!-- login / register  -->
@@ -36,7 +34,7 @@
 
             <!-- settings hidden, shows only after login and onmobile responsive -->
             <div class="hidden sm:block">
-                @include('navigations.settings-dropdown',['dropdown' => true])
+                @include('navigations.settings-dropdown', ['dropdown' => true])
             </div>
 
             <!-- Responsive for home navigation -->
