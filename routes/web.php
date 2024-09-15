@@ -1,9 +1,22 @@
 <?php
-
+use App\Http\Middleware\RoleMiddleware;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\FeaturesController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\ReservationController;
+
+use App\Http\Controllers\public\FeaturesController;
+use App\Http\Controllers\public\ReservationController;
+
+use App\Http\Controllers\admin\HomeController;
+use App\Http\Controllers\admin\RoleController;
+use App\Http\Controllers\admin\UserController;
+use App\Http\Controllers\admin\ProductController;
+
+use App\Http\Controllers\admin\EquipmentController;
+use App\Http\Controllers\admin\EventsController;
+use App\Http\Controllers\admin\FeedbackController;
+use App\Http\Controllers\admin\HelpController;
+use App\Http\Controllers\admin\MenuController;
+
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -14,12 +27,17 @@ Route::get('/', function () {
 Route::get('features', [FeaturesController::class, 'show'])
 ->name('features');
 
-/*
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
- */
 
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+Route::group(['middleware' => ['auth', 'permission:is-super']], function(){
+    Route::resource('roles', RoleController::class);
+});
+
+Route::group(['middleware' => ['auth', 'permission:is-admin']], function() {
+    Route::resource('users', UserController::class);
+    Route::resource('products', ProductController::class);
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -28,6 +46,18 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/reservation', [ReservationController::class, 'show'])->name('reservation');
     Route::get('/dashboard', [DashboardController::class, 'show'])->name('dashboard');
+
+    Route::get('/reservation', [ReservationController::class, 'index'])->name('reservation');
+    Route::resource('equipment', EquipmentController::class);
+    Route::get('/events', [EventsController::class, 'index'])->name('events');
+    Route::get('/feedback', [FeedbackController::class, 'index'])->name('feedback');
+    Route::get('/help', [HelpController::class, 'index'])->name('help');
+    Route::get('/menu', [MenuController::class, 'index'])->name('Menu');
+
 });
+
+//Route::middleware(['auth', ])->group(function(){
+
+//});
 
 require __DIR__.'/auth.php';

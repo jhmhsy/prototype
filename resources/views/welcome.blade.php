@@ -13,7 +13,7 @@
             </main>
 
             <!-- equipment sections-->
-            <div id="equipment-section" class="dark:bg-darkmode_dark dark:text-textwhite">
+            <div id="equipment-section" class="dark:bg-darkmode_light dark:text-textwhite">
                 <x-homepage.equipment-section />
             </div>
 

@@ -20,7 +20,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="font-sans text-gray-900 antialiased">
+<body class="font-sans text-gray-900 antialiased min-w-[400px] bg-gray-200">
     <div>
         @isset($header)
         <header class="bg-white dark:bg-gray-800 shadow">
@@ -30,7 +30,7 @@
         </header>
         @endisset
 
-        <div class="dark:bg-darkmode_dark dark:text-textwhite">
+        <div class="dark:bg-darkmode_dark dark:text-textwhite bg-white shadow">
             {{ $slot }}
         </div>
     </div>
