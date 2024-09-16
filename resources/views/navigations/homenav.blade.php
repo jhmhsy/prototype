@@ -38,7 +38,7 @@
         </x-forms.responsive-nav-link>
     @endif
 
-    <x-forms.responsive-nav-link href="/#equipment-section">
+    <x-forms.responsive-nav-link href="/#equipment-section" :active="\Request::is('/#equipment-section')">
         {{ __('Features') }}
     </x-forms.responsive-nav-link>
 
