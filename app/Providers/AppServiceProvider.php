@@ -23,5 +23,9 @@ class AppServiceProvider extends ServiceProvider
     {
         Blade::componentNamespace('App\\View\\Components\\Public', 'public'); 
         Blade::component('dash-layout', DashLayout::class);
+        Blade::directive('active', function ($expression) {
+            list($pattern, $class) = explode(',', str_replace(['(',')', ' ', "'"], '', $expression));
+            return "<?= request()->is('$pattern') ? '$class' : ''; ?>";
+        });
     }
 }

@@ -1,40 +1,37 @@
 <?php
-use App\Http\Middleware\RoleMiddleware;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\ProfileController;
-
-use App\Http\Controllers\public\FeaturesController;
-use App\Http\Controllers\public\ReservationController;
-
-use App\Http\Controllers\admin\HomeController;
-use App\Http\Controllers\admin\RoleController;
-use App\Http\Controllers\admin\UserController;
-use App\Http\Controllers\admin\ProductController;
 
 use App\Http\Controllers\admin\EquipmentController;
 use App\Http\Controllers\admin\EventsController;
 use App\Http\Controllers\admin\FeedbackController;
 use App\Http\Controllers\admin\HelpController;
+use App\Http\Controllers\admin\HomeController;
 use App\Http\Controllers\admin\MenuController;
-
+use App\Http\Controllers\admin\ProductController;
+use App\Http\Controllers\admin\RoleController;
+use App\Http\Controllers\admin\UserController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PageController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\public\FeaturesController;
+use App\Http\Controllers\public\ReservationController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');
 
+
+Route::get('/', [PageController::class, 'index'])->name('welcome');
+
+//Route::get('/{status?}', [PageController::class, 'index'])->name('welcome.index');
 
 Route::get('features', [FeaturesController::class, 'show'])
-->name('features');
-
+    ->name('features');
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-Route::group(['middleware' => ['auth', 'permission:is-super']], function(){
+Route::group(['middleware' => ['auth', 'permission:is-super']], function () {
     Route::resource('roles', RoleController::class);
 });
 
-Route::group(['middleware' => ['auth', 'permission:is-admin']], function() {
+Route::group(['middleware' => ['auth', 'permission:is-admin']], function () {
     Route::resource('users', UserController::class);
     Route::resource('products', ProductController::class);
 });
@@ -52,7 +49,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/events', [EventsController::class, 'index'])->name('events');
     Route::get('/feedback', [FeedbackController::class, 'index'])->name('feedback');
     Route::get('/help', [HelpController::class, 'index'])->name('help');
-    Route::get('/menu', [MenuController::class, 'index'])->name('Menu');
+    Route::get('/menu', [MenuController::class, 'index'])->name('menu');
 
 });
 

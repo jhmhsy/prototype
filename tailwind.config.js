@@ -17,6 +17,7 @@ export default {
         extend: {
             fontFamily: {
                 sans: ["Figtree", ...defaultTheme.fontFamily.sans],
+                hanken: ["Hanken Grotesk", 'sans-serif']
             },
 
             colors: {
@@ -28,10 +29,9 @@ export default {
                 darkmode_light: "#242526",
                 darkmode_lighter: "#3a3b3c",
                 black: "#000000",
-
+                gray_1k: "#7a818c",
                 textblack: "#18191a",
                 textwhite: "#e4e6eb",
-
                 coolblue: "#2563eb",
             },
             padding: {

@@ -23,6 +23,7 @@ class PermissionTableSeeder extends Seeder
             'product-delete',
             'is-admin',
             'is-super',
+            'is-user'
         ];
 
         foreach ($permissions as $permission) {

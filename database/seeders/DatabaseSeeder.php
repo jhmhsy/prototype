@@ -18,12 +18,9 @@ class DatabaseSeeder extends Seeder
         $this->call([
             PermissionTableSeeder::class,
             CreateSuperAdminUserSeeder::class,
-            CreateAdminUserSeeder::class
+            CreateAdminUserSeeder::class,
+            CreateUserSeeder::class
         ]);
-        User::factory()->create([
-            'email' => 'user@gmail.com',
-            'name' => 'User',
-            'password' => 'asdasdasd'
-        ]);
+        
     }
 }

@@ -1,8 +1,7 @@
-
 <x-guest-layout>
     <div class="flex min-h-screen flex-col">
         <header>
-            <x-homepage.header-section/>
+            <x-homepage.header-section />
         </header>
         {{-- Login Form --}}
         <main class="mt-5 flex flex-1 items-center justify-center p-8 bg-white/70 dark:bg-darkmode_dark">
@@ -24,15 +23,14 @@
                             <h3 class="whitespace-nowrap font-semibold tracking-tight text-2xl mx-auto">Login</h3>
                         </div>
                         <div class="px-6 py-1 space-y-4">
-                            <x-forms.field class="space-y-2" :errors="$errors->get('password')" :value="__('Email')" :name="'email'">
-                                <x-custom.text-input class="block w-full" id="email" type="email"
-                                    name="email" :value="old('email')" placeholder="johndoe@example.com" required
-                                    autofocus autocomplete="username" />
+                            <x-forms.field class="space-y-2" :errors="$errors->get('email')" :value="__('Email')" :name="'email'">
+                                <x-custom.floating-input class="block w-full" id="email" type="email"
+                                    name="email" :value="old('email')" placeholder=" " required autofocus
+                                    autocomplete="username" />
                             </x-forms.field>
                             <x-forms.field class="space-y-2" :value="__('Password')" :errors="$errors->get('password')" :name="'password'">
-                                <x-custom.text-input class="block w-full" id="password" type="password"
-                                    name="password" placeholder="********" required
-                                    autocomplete="current-password" />
+                                <x-custom.floating-input class="block w-full" id="password" type="password"
+                                    name="password" placeholder="••••••••" required autocomplete="current-password" />
                             </x-forms.field>
                             <div class="flex items-center justify-between">
                                 <label
@@ -52,10 +50,10 @@
                             </div>
                         </div>
                         <div class="px-6 pb-5 pt-3 space-y-2">
-                            <x-custom.secondary-button
+                            <x-custom.primary-button
                                 class="w-full inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 px-6 py-2 dark:bg-white dark:text-black dark:hover:bg-white/50 dark:hover:text-white">
                                 {{ __('Sign in') }}
-                            </x-custom.secondary-button>
+                            </x-custom.primary-button>
 
                             <div class="text-center text-sm">
                                 Don't have an account? <a
