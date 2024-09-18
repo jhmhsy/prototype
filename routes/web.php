@@ -16,7 +16,10 @@ use App\Http\Controllers\public\FeaturesController;
 use App\Http\Controllers\public\ReservationController;
 use Illuminate\Support\Facades\Route;
 
+
+
 Route::get('/', [PageController::class, 'index'])->name('welcome');
+
 //Route::get('/{status?}', [PageController::class, 'index'])->name('welcome.index');
 
 Route::get('features', [FeaturesController::class, 'show'])
