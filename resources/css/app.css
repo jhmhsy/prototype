@@ -76,4 +76,17 @@
     }
 }
 
+.r-activeLink {
+    border-left-width: 4px;
+    border-left-color: #6366f1; /* border-indigo-400 */
+    color: #3730a3; /* text-indigo-700 */
+    background-color: #eef2ff; /* bg-indigo-50 */
+    outline: none; /* focus:outline-none */
+}
+
+.r-inactiveLink {
+    border-left-width: 4px;
+    border-left-color: transparent;
+    color: #4b5563; /* text-gray-600 */
+}
 

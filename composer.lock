@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9341c8e754cb484d0ba4a020d79f2043",
+    "content-hash": "615d138fe997692c77ab748d674aae97",
     "packages": [
         {
             "name": "brick/math",
@@ -2883,53 +2883,6 @@
                 "source": "https://github.com/bobthecow/psysh/tree/v0.12.4"
             },
             "time": "2024-06-10T01:18:23+00:00"
-        },
-        {
-            "name": "pyaesone17/active-state",
-            "version": "1.1.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/pyaesone17/active-state.git",
-                "reference": "c513c2282dfe33627011501a89339b482296ed9c"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/pyaesone17/active-state/zipball/c513c2282dfe33627011501a89339b482296ed9c",
-                "reference": "c513c2282dfe33627011501a89339b482296ed9c",
-                "shasum": ""
-            },
-            "type": "library",
-            "autoload": {
-                "files": [
-                    "src/helpers.php"
-                ],
-                "psr-4": {
-                    "Pyaesone17\\ActiveState\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Pyae Sone Nyein",
-                    "email": "promise286@gmail.com"
-                }
-            ],
-            "description": "Active State Checker For Laravel Url",
-            "homepage": "https://github.com/pyaesone17/active-state",
-            "keywords": [
-                "dynamic url",
-                "laravel",
-                "request",
-                "url checker"
-            ],
-            "support": {
-                "issues": "https://github.com/pyaesone17/active-state/issues",
-                "source": "https://github.com/pyaesone17/active-state/tree/master"
-            },
-            "time": "2017-06-20T11:15:25+00:00"
         },
         {
             "name": "ralouphie/getallheaders",
