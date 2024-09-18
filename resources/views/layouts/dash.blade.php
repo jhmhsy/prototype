@@ -13,7 +13,6 @@
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
         <!-- Scripts -->
-
         <script src="{{ asset('js/darkmode.js') }}" defer></script>
         <script src="{{ asset('js/dashboardnavigator.js') }}" defer></script>
         <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
@@ -34,7 +33,16 @@
                         class="hidden sm:block top-0 left-0 z-40 w-30 xl:w-64 h-screen transition-transform -translate-x-full sm:translate-x-0"
                         aria-label=" Sidebar dark:bg-darkmode_light dark:text-white">
                         <div class="h-full px-3 py-4 overflow-y-auto dark:bg-darkmode_light dark:text-white">
-                            @include('administrator.includes.sidenav')
+                            @can('is-user')
+                            {{-- this should be the reservation page --}}
+                                {{--@can('is-admin')
+                                    @include('administrator.includes.sidenav')
+                                @endcan
+                                @can('is-user')
+                                    {{-- user sidenav
+                                @endcan--}}
+                            @endcan
+
                         </div>
                     </aside>
 
