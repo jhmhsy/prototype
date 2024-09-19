@@ -2,7 +2,7 @@
 <div class="relative">
     {{ $slot }}
     @if ($value)
-        <x-custom.floating-label :$value for="{{ $name }}"/>
+    <x-custom.floating-label :$value for="{{ $name }}" />
     @endif
     <x-forms.error :$errors />
 </div>

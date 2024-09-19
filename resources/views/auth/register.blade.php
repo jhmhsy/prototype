@@ -24,22 +24,25 @@
                                 </h3>
                             </div>
                             <div class="px-6 py-2 space-y-4">
-                                <x-forms.field class="space-y-2" :value="__('Name')" :errors="$errors->get('name')" :name="'name'">
-                                    <x-custom.floating-input id="name" class="block mt-1 w-full" type="text"
-                                        name="name" :value="old('name')" required autofocus autocomplete="given-name"
+                                <x-forms.field class="space-y-2" :value="__('Name')" :errors="$errors->get('name')"
+                                    :name="'name'">
+                                    <x-custom.floating-input id="name" class="block mt-1 w-full" type="text" name="name"
+                                        :value="old('name')" required autofocus autocomplete="given-name"
                                         placeholder=" " />
                                 </x-forms.field>
-                                <x-forms.field class="space-y-2" :value="__('Email')" :errors="$errors->get('email')" :name="'email'">
+                                <x-forms.field class="space-y-2" :value="__('Email')" :errors="$errors->get('email')"
+                                    :name="'email'">
                                     <x-custom.floating-input id="email" class="block mt-1 w-full" type="email"
                                         name="email" :value="old('email')" placeholder=" " required
                                         autocomplete="username" />
                                 </x-forms.field>
-                                <x-forms.field class="space-y-2" :value="__('Password')" :errors="$errors->get('password')" :name="'password'">
+                                <x-forms.field class="space-y-2" :value="__('Password')"
+                                    :errors="$errors->get('password')" :name="'password'">
                                     <x-custom.floating-input id="password" class="block mt-1 w-full" type="password"
                                         name="password" placeholder="••••••••" required autocomplete="new-password" />
                                 </x-forms.field>
-                                <x-forms.field class="space-y-2" :value="__('Confirm Password')" :errors="$errors->get('password_confirmation')"
-                                    :name="'password_confirmation'">
+                                <x-forms.field class="space-y-2" :value="__('Confirm Password')"
+                                    :errors="$errors->get('password_confirmation')" :name="'password_confirmation'">
                                     <x-custom.floating-input id="password_confirmation" class="block mt-1 w-full"
                                         type="password" name="password_confirmation" placeholder="••••••••" required
                                         autocomplete="new-password" />

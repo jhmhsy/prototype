@@ -3,7 +3,8 @@
         <header>
             <x-homepage.header-section />
         </header>
-        <div class="flex items-center justify-center min-h-screen bg-gray-100 pt-20 px-4 sm:px-6 lg:px-8">
+        <div
+            class="flex items-center justify-center min-h-screen bg-gray-100 dark:bg-darkmode_dark pt-20 px-4 sm:px-6 lg:px-8">
             <div x-data="{ userType: null }" class="w-full max-w-md mb-3">
                 <div class="bg-white shadow-md rounded-lg overflow-hidden">
                     <div class="pt-6 px-6">
@@ -19,17 +20,16 @@
                                     Regular User
                                 </button>
                                 @if (Auth::user())
+                                <x-custom.rainbow-button @click="userType = userType === 'premium' ? null : 'premium'">
+                                    Premium User
+                                </x-custom.rainbow-button>
+                                @else
+                                <a href="{{ route('login') }}">
                                     <x-custom.rainbow-button
                                         @click="userType = userType === 'premium' ? null : 'premium'">
                                         Premium User
                                     </x-custom.rainbow-button>
-                                @else
-                                    <a href="{{ route('login') }}">
-                                        <x-custom.rainbow-button
-                                            @click="userType = userType === 'premium' ? null : 'premium'">
-                                            Premium User
-                                        </x-custom.rainbow-button>
-                                    </a>
+                                </a>
                                 @endif
                             </div>
                             <!-- Regular User Form -->
@@ -95,43 +95,43 @@
                                 x-transition:leave-end="opacity-0 transform translate-y-4" class="mt-6">
                                 <div class="bg-gradient-to-r from-purple-500 to-indigo-600 p-6 rounded-lg shadow-lg">
                                     @if (Auth::user())
-                                        <form>
-                                            <div class="mb-4">
-                                                <label for="premium-room"
-                                                    class="block text-white font-semibold mb-2">Room</label>
-                                                <select id="premium-room" name="room"
-                                                    class="w-full px-3 py-2 border border-purple-300 rounded-md focus:outline-none text-white focus:text-black  bg-white bg-opacity-20  placeholder-white::placeholder"
-                                                    required>
-                                                    <option value="">Select a room</option>
-                                                    <option value="yoga">Yoga Room</option>
-                                                    <option value="weights">Weights Room</option>
-                                                    <option value="cardio">Cardio Room</option>
-                                                    <option value="spa">Spa Room</option>
-                                                    <option value="pool">Pool</option>
-                                                </select>
-                                            </div>
-                                            <div class="mb-4">
-                                                <label for="premium-date"
-                                                    class="block text-white font-semibold mb-2">Date</label>
-                                                <input type="date" id="premium-date" name="date"
-                                                    class="w-full px-3 py-2 border border-purple-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white bg-opacity-20 text-white"
-                                                    required>
-                                            </div>
-                                            <div class="mb-4">
-                                                <label for="premium-time"
-                                                    class="block text-white font-semibold mb-2">Time</label>
-                                                <input type="time" id="premium-time" name="time"
-                                                    class="w-full px-3 py-2 border border-purple-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white bg-opacity-20 text-white"
-                                                    required>
-                                            </div>
-                                            <button type="submit"
-                                                class="w-full bg-white text-purple-600 py-2 px-4 rounded-md hover:bg-purple-100 transition duration-300 ease-in-out font-semibold">Reserve
-                                                Now</button>
-                                        </form>
-                                    @else
-                                        <div class="uppercase text-center text-xl font-extrabold text-white">
-                                            <h1>You need to log in first 🤪</h1>
+                                    <form>
+                                        <div class="mb-4">
+                                            <label for="premium-room"
+                                                class="block text-white font-semibold mb-2">Room</label>
+                                            <select id="premium-room" name="room"
+                                                class="w-full px-3 py-2 border border-purple-300 rounded-md focus:outline-none text-white focus:text-black  bg-white bg-opacity-20  placeholder-white::placeholder"
+                                                required>
+                                                <option value="">Select a room</option>
+                                                <option value="yoga">Yoga Room</option>
+                                                <option value="weights">Weights Room</option>
+                                                <option value="cardio">Cardio Room</option>
+                                                <option value="spa">Spa Room</option>
+                                                <option value="pool">Pool</option>
+                                            </select>
                                         </div>
+                                        <div class="mb-4">
+                                            <label for="premium-date"
+                                                class="block text-white font-semibold mb-2">Date</label>
+                                            <input type="date" id="premium-date" name="date"
+                                                class="w-full px-3 py-2 border border-purple-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white bg-opacity-20 text-white"
+                                                required>
+                                        </div>
+                                        <div class="mb-4">
+                                            <label for="premium-time"
+                                                class="block text-white font-semibold mb-2">Time</label>
+                                            <input type="time" id="premium-time" name="time"
+                                                class="w-full px-3 py-2 border border-purple-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white bg-opacity-20 text-white"
+                                                required>
+                                        </div>
+                                        <button type="submit"
+                                            class="w-full bg-white text-purple-600 py-2 px-4 rounded-md hover:bg-purple-100 transition duration-300 ease-in-out font-semibold">Reserve
+                                            Now</button>
+                                    </form>
+                                    @else
+                                    <div class="uppercase text-center text-xl font-extrabold text-white">
+                                        <h1>You need to log in first 🤪</h1>
+                                    </div>
                                     @endif
                                 </div>
                             </div>
@@ -142,23 +142,23 @@
         </div>
 
         <style>
-            @keyframes gradient {
-                0% {
-                    background-position: 0% 50%;
-                }
-
-                50% {
-                    background-position: 100% 50%;
-                }
-
-                100% {
-                    background-position: 0% 50%;
-                }
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
             }
 
-            .animate-gradient {
-                animation: gradient 2.5s ease infinite;
-                background-size: 200% 200%;
+            50% {
+                background-position: 100% 50%;
             }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .animate-gradient {
+            animation: gradient 2.5s ease infinite;
+            background-size: 200% 200%;
+        }
         </style>
 </x-guest-layout>
