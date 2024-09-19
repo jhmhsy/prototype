@@ -18,14 +18,10 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::get('/', [PageController::class, 'index'])->name('welcome');
-
-//Route::get('/{status?}', [PageController::class, 'index'])->name('welcome.index');
-
+Route::get('/', [PageController::class, 'index'])
+    ->name('welcome');
 Route::get('features', [FeaturesController::class, 'show'])
     ->name('features');
-
-Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::group(['middleware' => ['auth', 'permission:is-super']], function () {
     Route::resource('roles', RoleController::class);

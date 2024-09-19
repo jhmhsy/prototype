@@ -34,13 +34,13 @@
                         aria-label=" Sidebar dark:bg-darkmode_light dark:text-white">
                         <div class="h-full px-3 py-4 overflow-y-auto dark:bg-darkmode_light dark:text-white">
                             @can('is-user')
-                            {{-- this should be the reservation page --}}
-                                {{--@can('is-admin')
+                            {{--{{--this should be the reservation page --}}
+                                @can('is-admin')
                                     @include('administrator.includes.sidenav')
                                 @endcan
                                 @can('is-user')
-                                    {{-- user sidenav
-                                @endcan--}}
+
+                                @endcan
                             @endcan
 
                         </div>
