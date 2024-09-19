@@ -1,5 +1,5 @@
 <x-guest-layout>
-    <div class="flex min-h-screen flex-col pb-5">
+    <div class="flex min-h-screen flex-col pb-5 ">
         <header>
             <x-homepage.header-section />
         </header>
