@@ -80,8 +80,9 @@
                             placeholder="Confirm your new password" />
                     </div>
                     <div class="form-group">
-                        <strong>Role:</strong>
-                        <select name="roles[]" class=" rounded-[5px] form-control">
+                        <strong>Role:</strong><br>
+                        <select name="roles[]"
+                            class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50">
                             @foreach ($roles as $value => $label)
                             <option value="{{ $value }}" {{ isset($userRole[$value]) ? 'selected' : ''}}>
                                 {{ $label }}
