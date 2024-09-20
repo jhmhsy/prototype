@@ -26,7 +26,7 @@ Route::get('features', [FeaturesController::class, 'show'])
 Route::group(['middleware' => ['auth', 'isSuper']], function () {
     Route::resource('roles', RoleController::class);
 });
-Route::group(['middleware' => ['auth', 'isSuper']], routes: function () {
+Route::group(['middleware' => ['auth', 'isAdmin']], routes: function () {
     Route::resource('users', UserController::class);
     Route::resource('products', ProductController::class);
     Route::get('/reservations', [ReservationController::class, 'index'])->name('reservations');
