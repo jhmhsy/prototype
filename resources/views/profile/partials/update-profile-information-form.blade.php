@@ -17,19 +17,14 @@
         @csrf
         @method('patch')
 
-        <div>
-            <x-forms.input-label for="name" :value="__('Name')" />
+        <x-forms.field :value="__('Name')" :errors="$errors->get('name')" :for="'name'">
             <x-forms.text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)"
                 required autofocus autocomplete="name" />
-            <x-forms.error class="mt-2" :errors="$errors->get('name')" />
-        </div>
+        </x-forms.field>
 
-        <div>
-            <x-forms.input-label for="email" :value="__('Email')" />
+        <x-forms.field :value="__('Email')" :errors="$errors->get('email')" :for="'email'">
             <x-forms.text-input id="email" name="email" type="email" class="mt-1 block w-full" :value="old('email', $user->email)"
                 required autocomplete="username" />
-            <x-forms.error class="mt-2" :errors="$errors->get('email')" />
-
             @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && !$user->hasVerifiedEmail())
                 <div>
                     <p class="text-sm mt-2 text-gray-800 dark:text-gray-200">
@@ -48,7 +43,7 @@
                     @endif
                 </div>
             @endif
-        </div>
+        </x-forms.field>
 
         <div class="flex items-center gap-4">
             <x-custom.secondary-button-reverse> {{ __('Save') }} </x-custom.secondary-button-reverse>

@@ -2,7 +2,7 @@
     <x-forms.nav-link href="/" :active="request()->is('/')">
         {{ __('Home') }}
     </x-forms.nav-link>
-    <x-forms.nav-link :href="route('reserve')" :active="request()->routeIs('reserve')">
+    <x-forms.nav-link :href="route('reservation')" :active="request()->routeIs('reservation')">
         {{ __('Reservation') }}
     </x-forms.nav-link>
     <x-forms.nav-link href="/#equipment-section" class="inactivelink">
@@ -28,7 +28,7 @@
         {{ __('Home') }}
     </x-forms.responsive-nav-link>
 
-    <x-forms.responsive-nav-link :href="route('reserve')" :active="request()->routeIs('reserve')">
+    <x-forms.responsive-nav-link :href="route('reservation')" :active="request()->routeIs('reservation')">
         {{ __('Reservation') }}
     </x-forms.responsive-nav-link>
 

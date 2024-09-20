@@ -23,12 +23,12 @@
                             <h3 class="whitespace-nowrap font-semibold tracking-tight text-2xl mx-auto">Login</h3>
                         </div>
                         <div class="px-6 py-1 space-y-4">
-                            <x-forms.field class="space-y-2" :errors="$errors->get('email')" :value="__('Email')" :name="'email'">
+                            <x-forms.field :float="true" class="space-y-2" :errors="$errors->get('email')" :value="__('Email')" :for="'email'">
                                 <x-custom.floating-input class="block w-full" id="email" type="email"
                                     name="email" :value="old('email')" placeholder=" " required autofocus
                                     autocomplete="username" />
                             </x-forms.field>
-                            <x-forms.field class="space-y-2" :value="__('Password')" :errors="$errors->get('password')" :name="'password'">
+                            <x-forms.field :float="true" class="space-y-2" :value="__('Password')" :errors="$errors->get('password')" :for="'password'">
                                 <x-custom.floating-input class="block w-full" id="password" type="password"
                                     name="password" placeholder="••••••••" required autocomplete="current-password" />
                             </x-forms.field>

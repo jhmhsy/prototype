@@ -9,7 +9,7 @@
     <form method="POST" action="{{ route('password.confirm') }}">
         @csrf
         <!-- Password -->
-        <x-forms.field :value="__('Password')" :errors="$errors->get('password')" :name="'password'">
+        <x-forms.field :float="true" :value="__('Password')" :errors="$errors->get('password')" :for="'password'">
             <x-custom.floating-input id="password" class="block mt-1 w-full" type="password" name="password" required
                 autocomplete="current-password" />
             </x-forms-field>

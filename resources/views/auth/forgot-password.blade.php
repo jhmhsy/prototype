@@ -19,7 +19,7 @@
                 <form method="POST" action="{{ route('password.email') }}" class="">
                     @csrf
                     <!-- Email Address -->
-                    <x-forms.field class="space-y-2" :errors="$errors->get('email')" :value="__('Email')" :name="'email'">
+                    <x-forms.field :float="true" class="space-y-2" :errors="$errors->get('email')" :value="__('Email')" :for="'email'">
                         <x-custom.floating-input id="email" class="block mt-1 w-full" type="email" name="email"
                             :value="old('email')" required placeholder=" " />
                     </x-forms.field>
