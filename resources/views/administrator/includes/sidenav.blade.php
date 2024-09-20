@@ -88,11 +88,6 @@
             </svg>
             <span class="hidden lg:block flex-1 ms-3 whitespace-nowrap">Users</span>
             <span class="sm:hidden flex-1 ms-3 whitespace-nowrap pr-20">Users</span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                class="bi bi-x-lg" viewBox="0 0 16 16">
-                <path
-                    d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z" />
-            </svg>
         </x-custom.sidenav-button>
     </li>
     <!--------------------------- HELP BUTTON --------------------------------->
@@ -125,12 +120,6 @@
             <span class="hidden lg:block flex-1 ms-3 whitespace-nowrap">Manage Users</span>
             <span class="sm:hidden flex-1 ms-3 whitespace-nowrap pr-20">Manage
                 Users</span>
-
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                class="bi bi-x-lg" viewBox="0 0 16 16">
-                <path
-                    d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z" />
-            </svg>
         </x-custom.sidenav-button>
     </li>
     <!--------------------------- Permissions --------------------------------->
@@ -152,12 +141,6 @@
             <span class="hidden lg:block flex-1 ms-3 whitespace-nowrap">Manage Role</span>
             <span class="sm:hidden flex-1 ms-3 whitespace-nowrap pr-20">Manage
                 Role</span>
-
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                class="bi bi-x-lg" viewBox="0 0 16 16">
-                <path
-                    d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z" />
-            </svg>
         </x-custom.sidenav-button>
     </li>
     <!--------------------------- Products --------------------------------->
@@ -173,11 +156,11 @@
             <span class="hidden lg:block flex-1 ms-3 whitespace-nowrap">Products</span>
             <span class="sm:hidden flex-1 ms-3 whitespace-nowrap pr-20">Products</span>
 
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+            {{--<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                 class="bi bi-x-lg" viewBox="0 0 16 16">
                 <path
                     d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z" />
-            </svg>
+            </svg>--}}
         </x-custom.sidenav-button>
     </li>
 </ul>
