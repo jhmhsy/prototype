@@ -14,7 +14,7 @@
                             <h3 class="text-lg font-semibold mb-3">Select User Type:</h3>
                             <div class="flex flex-col sm:flex-row justify-center space-y-2 sm:space-y-0 sm:space-x-4">
                                 <button @click="userType = userType === 'regular' ? null : 'regular'"
-                                    :class="{ 'bg-blue-500 text-white': userType === 'regular', 'bg-gray-200 text-gray-700': userType !== 'regular' }"
+                                    :class="{ 'bg-blue-500 text-white': userType === 'regular', 'bg-gray-200 text-black': userType !== 'regular' }"
                                     class="px-4 py-2 rounded-md transition duration-300 ease-in-out w-full sm:w-auto hover:scale-105">
                                     Regular User
                                 </button>
@@ -26,7 +26,7 @@
                                 @else
                                     <a href="{{ route('login') }}">
                                         <x-custom.rainbow-button
-                                            @click="userType = userType === 'premium' ? null : 'premium'">
+                                            @click="userType = userType === 'premium' ? null : 'premium'" class="rainbow-border ">
                                             Premium User
                                         </x-custom.rainbow-button>
                                     </a>
