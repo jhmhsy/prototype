@@ -23,11 +23,10 @@ Route::get('/', [PageController::class, 'index'])
 Route::get('features', [FeaturesController::class, 'show'])
     ->name('features');
 
-Route::group(['middleware' => ['auth', 'permission:is-super']], function () {
+Route::group(['middleware' => ['auth', 'isSuper']], function () {
     Route::resource('roles', RoleController::class);
 });
-
-Route::group(['middleware' => ['auth', 'permission:is-admin']], function () {
+Route::group(['middleware' => ['auth', 'isSuper']], routes: function () {
     Route::resource('users', UserController::class);
     Route::resource('products', ProductController::class);
     Route::get('/reservations', [ReservationController::class, 'index'])->name('reservations');

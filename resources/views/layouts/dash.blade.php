@@ -32,17 +32,11 @@
                     <aside id="default-sidebar"
                         class="hidden sm:block top-0 left-0 z-40 w-30 xl:w-64 h-screen transition-transform -translate-x-full sm:translate-x-0"
                         aria-label=" Sidebar dark:bg-darkmode_light dark:text-white">
-                        <div class="h-full px-3 py-4 overflow-y-auto dark:bg-darkmode_light dark:text-white">
+                        <div class="h-full px-3 py-4 overflow-y-auto dark:bg-darkmode_light dark:text-white border-r-black">
                             @can('is-user')
-                            {{--{{--this should be the reservation page --}}
-                                @can('is-admin')
-                                    @include('administrator.includes.sidenav')
-                                @endcan
-                                @can('is-user')
-
-                                @endcan
+                                {{-- {{-- this should be the reservation page --}}
+                                @include('administrator.includes.sidenav')
                             @endcan
-
                         </div>
                     </aside>
 
@@ -50,7 +44,6 @@
                     <main class="flex-1 p-6 dark:bg-darkmode_dark overflow-y-auto dark:text-white"
                         @click="open = false">
                         <div id="main-content" class="flex-1 ">
-
                             @can('is-admin')
                                 @yield('content')
                             @endcan

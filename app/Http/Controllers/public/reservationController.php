@@ -11,6 +11,7 @@ class reservationController extends Controller
 
     public function index()
     {
+        
         return view('administrator.includes.reservations');
     }
 
