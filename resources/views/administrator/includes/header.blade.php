@@ -4,7 +4,7 @@
 
         <div class="flex flex-row">
             <!-- Hamburger button for responsive sidebar, hides in pc screen, shows in mobile-->
-            @include('layouts.nav-burger', ['showburgerAdmin' => true])
+            @include('navigations.nav-burger', ['showburgerAdmin' => true])
 
             <!-- Back button -->
             <div class="flex items-center gap-3 text-foreground px-2" href="#">

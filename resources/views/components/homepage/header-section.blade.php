@@ -36,7 +36,7 @@
             </div>
 
             <!-- Responsive for home navigation -->
-            @include('layouts.nav-burger', ['showburgerHome' => true])
+            @include('navigations.nav-burger', ['showburgerHome' => true])
         </div>
     </div>
 </header>
