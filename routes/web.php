@@ -30,6 +30,7 @@ Route::group(['middleware' => ['auth', 'isAdmin']], routes: function () {
     Route::resource('users', UserController::class);
     Route::resource('products', ProductController::class);
     Route::get('/reservations', [ReservationController::class, 'index'])->name('reservations');
+    Route::get('/users', [UserController::class, 'index'])->name('users.index');
 });
 Route::get('/reservation', function(){
     return view('components.booking.reservation');

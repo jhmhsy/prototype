@@ -2,16 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\View\View;
 use Illuminate\Routing\Controller as BaseController;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\View\View;
 
 class DashboardController extends BaseController
 {
     public function __construct()
     {
         // checking dashboard permissions
-        $this->middleware('permission:is-admin', ['only' => ['show']]);
+        $this->middleware('isAdmin', ['only' => ['show']]);
     }
 
     public function show(): View
