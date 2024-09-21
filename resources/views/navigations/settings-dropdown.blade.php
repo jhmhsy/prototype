@@ -1,30 +1,32 @@
 @if (Route::has('login'))
 @auth
 @if ($column ?? false)
-<x-forms.dropdown-link :href="route('profile.edit')">
-    {{ __('Profile') }}
-</x-forms.dropdown-link>
+<div class="flex flex-col select-none">
+    <x-forms.responsive-nav-link :href="route('profile.edit')">
+        {{ __('Profile') }}
+    </x-forms.responsive-nav-link>
 
-<!-- Permission to access dashboard -->
-@can('is-admin')
-<x-forms.dropdown-link :href="route('dashboard')" class="hover:bg-green-400">
-    {{ __('Dashboard') }}
-</x-forms.dropdown-link>
-@endcan
+    <!-- Permission to access dashboard -->
+    @can('is-admin')
+    <x-forms.responsive-nav-link :href="route('dashboard')" class="hover:bg-green-400 dark:hover:bg-green-400">
+        {{ __('Dashboard') }}
+    </x-forms.responsive-nav-link>
+    @endcan
 
-<!-- Authentication -->
-<form method="POST" action="{{ route('logout') }}">
-    @csrf
+    <!-- Authentication -->
+    <form method="POST" action="{{ route('logout') }}">
+        @csrf
 
-    <x-forms.dropdown-link :href="route('logout')" class="hover:bg-red-500" onclick="event.preventDefault();
+        <x-forms.responsive-nav-link :href="route('logout')" class="hover:bg-red-500 dark:hover:bg-red-500" onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-        {{ __('Log Out') }}
-    </x-forms.dropdown-link>
-</form>
+            {{ __('Log Out') }}
+        </x-forms.responsive-nav-link>
+    </form>
+</div>
 @endif
 
 @if ($dropdown ?? false)
-<div class=" sm:flex sm:items-center">
+<div class=" sm:flex sm:items-center select-none cursor-pointer ">
     <x-custom.dropdown align="right" width="56">
         <x-slot name="trigger">
             <x-custom.nav-link class="flex items-center">
@@ -41,7 +43,7 @@
         </x-slot>
 
         <x-slot name="content" transparent>
-            <div class=" bg-white dark:bg-darkmode_dark text-white shadow-lg border-white/10 border border-t-0">
+            <div class=" bg-white dark:bg-darkmode_dark text-white shadow-lg border-white/10 border border-t-0 p-1">
                 <x-forms.dropdown-link :href="route('profile.edit')"
                     class="hover:bg-blue-400 hover:text-white px-4 py-2 w-full">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
