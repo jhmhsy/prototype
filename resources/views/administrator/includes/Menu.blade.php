@@ -1,7 +1,9 @@
 @extends('layouts.dash')
 @section('content')
 
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<div class="grid md:grid-cols-1 lg:grid-cols-2 gap-6">
+    <div class="rounded-lg border bg-card text-card-foreground shadow-sm" data-v0-t="card">
+    </div>
     <div class="rounded-lg border bg-card text-card-foreground shadow-sm" data-v0-t="card">
         <div class="flex flex-col space-y-1.5 p-6">
             <h3 class="whitespace-nowrap text-2xl font-semibold leading-none tracking-tight">Dashboard
