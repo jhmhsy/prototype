@@ -1,6 +1,5 @@
 <header>
-    <div
-        class="flex items-center justify-between px-6 py-4 border-b border-border 
+    <div class="flex items-center justify-between px-6 py-4 border-b border-border 
         dark:bg-darkmode_light dark:text-white">
 
         <div class="flex flex-row">
@@ -24,7 +23,7 @@
         <div class="flex items-center gap-4">
             <div role="group" dir="ltr" class="flex items-center justify-center gap-1" tabindex="0"
                 style="outline: none;">
-                <x-custom.darkmode/>
+                <x-custom.darkmode />
             </div>
 
             <div class="block">

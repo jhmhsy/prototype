@@ -18,7 +18,7 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
 
-    <body class="font-sans text-gray-900 antialiased min-w-[400px] bg-gray-200">
+    <body class="font-sans text-gray-900 antialiased min-w-[350px] bg-gray-200">
         <div>
             @isset($header)
                 <header class="bg-white dark:bg-gray-800 shadow">

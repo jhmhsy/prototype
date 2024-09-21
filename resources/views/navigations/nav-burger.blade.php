@@ -1,4 +1,4 @@
-<!-- Burger Design for Admin Page-->
+<!-- Burger Design for Admin Page sidenavbar-->
 @if($showburgerAdmin ?? false)
 <div x-data="{ sidebarOpen: false }" class="sm:hidden">
     <!-- Sidebar toggle button -->
@@ -52,7 +52,7 @@
 </div>
 @endif
 
-<!-- Burger Design for Home Page-->
+<!-- Burger Design for Home Page sidenavbar-->
 @if($showburgerHome ?? false)
 <div x-data="{ sidebarOpen: false }" class="xl:hidden">
     <!-- Sidebar toggle button -->

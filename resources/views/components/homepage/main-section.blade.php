@@ -59,6 +59,10 @@
                     <p>Easily manage your membership details and billing information.</p>
                 </div>
             </div>
+            <x-forms.reverse-nav-link :href="route('reservation')" :active="request()->routeIs('reservation')"
+                class="px-20">
+                Book Now
+            </x-forms.reverse-nav-link>
         </div>
     </div>
 

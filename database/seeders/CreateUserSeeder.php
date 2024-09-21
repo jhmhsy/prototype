@@ -21,10 +21,6 @@ class CreateUserSeeder extends Seeder
             'password' => bcrypt('asdasdasd'),
         ]);
         $userRole = Role::firstOrCreate(['name' => 'User']);
-        $permission = Permission::where('name', 'is-user')
-            ->pluck('id', 'id')
-            ->first();
-        $userRole->syncPermissions($permission);
         $user->assignRole($userRole);
     }
 }
