@@ -85,7 +85,7 @@
                     <div class="mt-3 space-y-1">
 
                         <!-- login/ register dropdown -->
-                        <div class=" sm:hidden">
+                        <div class="sm:hidden">
                             @include('navigations.login-dropdown', ['column' => true])
                         </div>
 

@@ -19,6 +19,7 @@
             <div role="group" dir="ltr" class="flex items-center justify-center gap-1" tabindex="0"
                 style="outline: none;">
                 <x-custom.darkmode />
+                <x-custom.darkmode />
             </div>
 
             <div class="block">
