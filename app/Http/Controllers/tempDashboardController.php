@@ -6,7 +6,7 @@ use Illuminate\View\View;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Auth;
 
-class dashboardController extends BaseController
+class DashboardController extends BaseController
 {
     public function __construct()
     {
