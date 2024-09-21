@@ -16,7 +16,10 @@ class isAdmin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        abort_if(Auth::user()->roles[0]->name !== 'Admin', 403);
+        if (!in_array(Auth::user()->roles[0]->name, ['Admin', 'SuperAdmin'])) {
+            abort(403);
+        }
+
         return $next($request);
     }
 }

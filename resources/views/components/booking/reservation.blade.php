@@ -131,7 +131,7 @@
                                     </form>
                                     @else
                                     <div class="uppercase text-center text-xl font-extrabold text-white">
-                                        <h1>You need to log in first 🤪</h1>
+                                        <h1>You need to be logged in first 🤪</h1>
                                     </div>
                                     @endif
                                 </div>
