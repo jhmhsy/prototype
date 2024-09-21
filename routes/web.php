@@ -31,6 +31,7 @@ Route::group(['middleware' => ['auth', 'isAdmin']], routes: function () {
     Route::resource('products', ProductController::class);
     Route::get('/reservations', [ReservationController::class, 'index'])->name('reservations');
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
+    Route::get('/menu', [MenuController::class, 'index'])->name('menu');
 });
 Route::get('/reservation', function(){
     return view('components.booking.reservation');
@@ -44,8 +45,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/events', [EventsController::class, 'index'])->name('events');
     Route::get('/feedback', [FeedbackController::class, 'index'])->name('feedback');
     Route::get('/help', [HelpController::class, 'index'])->name('help');
-    Route::get('/menu', [MenuController::class, 'index'])->name('menu');
-
 });
 
 //Route::middleware(['auth', ])->group(function(){

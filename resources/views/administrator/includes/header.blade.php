@@ -1,6 +1,6 @@
 <header>
     <div
-        class="flex items-center justify-between px-6 py-4 border-b border-border 
+        class="flex items-center justify-between px-6 py-4 border-b dark:border-white/5 
         dark:bg-darkmode_light dark:text-white">
 
         <div class="flex flex-row mr-13 justify-between items-center">

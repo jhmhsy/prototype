@@ -31,10 +31,10 @@
 
                     <!-------------------------- Sidebar layout ------------------------>
                     <aside id="default-sidebar"
-                        class="hidden sm:block top-0 left-0 z-40 w-30 xl:w-64 h-screen transition-transform -translate-x-full sm:translate-x-0"
+                        class="hidden sm:block top-0 left-0 z-40 w-50 xl:w-55 h-screen transition-transform -translate-x-full sm:translate-x-0"
                         aria-label=" Sidebar dark:bg-darkmode_light dark:text-white">
                         <div
-                            class="h-full px-3 py-4 overflow-y-auto dark:bg-darkmode_light dark:text-white border-r">
+                            class="h-full px-3 py-4 overflow-y-auto dark:bg-darkmode_light dark:text-white border-r dark:border-white/5">
                             @hasanyrole('SuperAdmin|Admin')
                                 {{-- {{-- this should be the reservation page --}}
                                 @include('administrator.includes.sidenav')

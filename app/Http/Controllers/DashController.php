@@ -15,6 +15,6 @@ class DashController extends Controller
 
     public function show(): View
     {
-        return view('administrator.dashboard');
+        return view('administrator.menu');
     }
 }
