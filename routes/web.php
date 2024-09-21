@@ -9,7 +9,7 @@ use App\Http\Controllers\admin\MenuController;
 use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\admin\RoleController;
 use App\Http\Controllers\admin\UserController;
-use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DashController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\public\FeaturesController;
@@ -39,7 +39,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::get('/dashboard', [DashboardController::class, 'show'])->name('dashboard');
+    Route::get('/dashboard', [DashController::class, 'show'])->name('dashboard');
     Route::resource('equipment', EquipmentController::class);
     Route::get('/events', [EventsController::class, 'index'])->name('events');
     Route::get('/feedback', [FeedbackController::class, 'index'])->name('feedback');
