@@ -3,15 +3,15 @@
     <div class="flex flex-col gap-4">
         <div class="flex items-center justify-between">
             <h1 class="text-2xl font-bold">User Management</h1>
-            <a class="" href="{{ route('users.create') }}">
+            <x-custom.create-button class="text-white" href="{{ route('users.create') }}">
                 Create User
-            </a>
+            </x-custom.create-button>
         </div>
         <div class="rounded-lg border shadow-sm" data-v0-t="card">
             <div class="p-2">
                 <div class="relative w-full overflow-auto">
                     <table class="w-full text-sm">
-                        <thead class="">
+                        <thead>
                             <tr class="border-b ">
                                 <th class="h-12 px-4 text-left align-middle">
                                     No.
@@ -32,7 +32,6 @@
                         <tbody class="border-0">
                             @foreach ($data as $key => $user)
                                 <tr class="border-b transition-colors hover:bg-muted/50 py-20">
-
                                     <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">{{ ++$i }}</td>
                                     <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0 font-medium">
                                         {{ $user->name }}

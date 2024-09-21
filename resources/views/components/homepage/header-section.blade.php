@@ -4,7 +4,7 @@
         dark:bg-darkmode_light dark:text-white dark:border-b-white/50 uppercase">
         <!-- dumbell logo -->
         <div class="flex flex-row mr-13">
-            <a href="/">
+            <a href="{{ route('welcome') }}">
                 <x-custom.application-logo />
             </a>
         </div>
