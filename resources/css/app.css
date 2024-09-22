@@ -1,92 +1,41 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-/**{
-    border: 1px solid red;
-}*/
-/* Active Link Styling */
+/* Custom CSS */
 .activeLink {
-    display: inline-flex;
-    align-items: center;
-    padding-left: 0.25rem; /* px-1 */
-    padding-right: 0.25rem; /* px-1 */
-    padding-top: 0.25rem; /* pt-1 */
-    border-bottom-width: 2px; /* border-b-2 */
-    border-bottom-color: #6366f1; /* border-indigo-400 */
-    color: #1f2937; /* text-gray-900 */
-    font-size: 0.875rem; /* text-sm */
-    font-weight: 500; /* font-medium */
-    line-height: 1.25rem; /* leading-5 */
-    outline: none; /* focus:outline-none */
-    transition: border-color 0.15s ease-in-out; /* transition duration-150 ease-in-out */
+    @apply border-main text-main;
 }
 
 @media (prefers-color-scheme: dark) {
     .activeLink {
-        color: #1f2937;
-        border-bottom-color: #4f46e5; /* dark:border-indigo-600 */
+        @apply border-main;
     }
 }
 
-.activeLink:focus {
-    border-bottom-color: #4338ca; /* focus:border-indigo-700 */
-}
-
-
-/* Inactive Link Styling */
 .inactiveLink {
-    display: inline-flex;
-    align-items: center;
-    padding-left: 0.25rem; /* px-1 */
-    padding-right: 0.25rem; /* px-1 */
-    padding-top: 0.25rem; /* pt-1 */
-    border-bottom-width: 2px; /* border-b-2 */
-    border-bottom-color: transparent; /* border-transparent */
-    color: #000000; /* text-textblack */
-    font-size: 0.875rem; /* text-sm */
-    font-weight: 500; /* font-medium */
-    line-height: 1.25rem; /* leading-5 */
-    outline: none; /* focus:outline-none */
-    transition: border-color 0.15s ease-in-out; /* transition duration-150 ease-in-out */
+    @apply text-shade_9;
 }
 
 @media (prefers-color-scheme: dark) {
     .inactiveLink {
-        color: #7a818c; /* dark:text-gray-400 */
+        @apply text-shade_9;
     }
 }
 
-.inactiveLink:hover {
-    border-bottom-color: #d1d5db; /* hover:border-gray-300 */
-}
+/*.inactiveLink:hover {
+    @apply border-tint_4;
+}*/
 
-@media (prefers-color-scheme: dark) {
-    .inactiveLink:hover {
-        border-bottom-color: #374151; /* dark:hover:border-gray-700 */
-    }
-}
-
-.inactiveLink:focus {
-    border-bottom-color: #d1d5db; /* focus:border-gray-300 */
-}
-
-@media (prefers-color-scheme: dark) {
-    .inactiveLink:focus {
-        border-bottom-color: #374151; /* dark:focus:border-gray-700 */
-    }
-}
-
-.r-activeLink {
+/*.r-activeLink {
     border-left-width: 4px;
-    border-left-color: #6366f1; /* border-indigo-400 */
-    color: #3730a3; /* text-indigo-700 */
-    background-color: #eef2ff; /* bg-indigo-50 */
-    outline: none; /* focus:outline-none */
+    border-left-color: #6366f1;
+    color: #3730a3; 
+    background-color: #eef2ff; 
+    outline: none; 
 }
 
 .r-inactiveLink {
     border-left-width: 4px;
     border-left-color: transparent;
-    color: #4b5563; /* text-gray-600 */
-}
-
+    color: #4b5563; 
+}*/

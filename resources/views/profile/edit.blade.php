@@ -21,7 +21,7 @@
         <!-- SIDE NAV BAR SETTINGS -->
         <aside class="hidden w-60 flex-col bg-white dark:bg-darkmode_light text-black dark:text-textwhite p-6 sm:flex">
             <nav class="grid gap-2">
-                <a class="nav-link flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-thirdy hover:text-accent-foreground dark:hover:bg-darkmode_lighter"
+                <a class="nav-link flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-tertiary hover:text-accent-foreground dark:hover:bg-darkmode_lighter"
                     href="#" data-section="general" onclick="showSection('general')">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -34,7 +34,7 @@
                     General
                 </a>
 
-                <a class="nav-link flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-thirdy hover:text-accent-foreground dark:hover:bg-darkmode_lighter"
+                <a class="nav-link flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-tertiary hover:text-accent-foreground dark:hover:bg-darkmode_lighter"
                     href="#" data-section="security" onclick="showSection('security')">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -45,7 +45,7 @@
                     Security
                 </a>
 
-                <a class="nav-link flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-thirdy hover:text-accent-foreground dark:hover:bg-darkmode_lighter"
+                <a class="nav-link flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-tertiary hover:text-accent-foreground dark:hover:bg-darkmode_lighter"
                     href="#" data-section="display" onclick="showSection('display')">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -59,7 +59,7 @@
 
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
-                    <a class="nav-link flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-thirdy hover:text-accent-foreground dark:hover:bg-darkmode_lighter"
+                    <a class="nav-link flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-tertiary hover:text-accent-foreground dark:hover:bg-darkmode_lighter"
                         :href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"

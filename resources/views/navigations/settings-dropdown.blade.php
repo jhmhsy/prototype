@@ -70,7 +70,7 @@
                 </x-forms.dropdown-link>
                 @endcan
 
-                <hr class="border-thirdy">
+                <hr class="border-tertiary">
 
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf

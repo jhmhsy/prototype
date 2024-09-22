@@ -7,7 +7,7 @@ function showSection(section) {
     // Remove 'active' class from all nav links
     document.querySelectorAll(".nav-link").forEach((el) => {
         el.classList.remove(
-            "bg-thirdy",
+            "bg-tertiary",
             "dark:bg-darkmode_lighter",
             "text-accent-foreground"
         );
@@ -20,7 +20,7 @@ function showSection(section) {
     document
         .querySelector(`[data-section="${section}"]`)
         .classList.add(
-            "bg-thirdy",
+            "bg-tertiary",
             "dark:bg-darkmode_lighter",
             "text-accent-foreground"
         );

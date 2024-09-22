@@ -1,4 +1,4 @@
-<div class="w-full mt-20 bg-secondary dark:bg-darkmode_light">
+<div class="w-full mt-15 bg-tint_2 dark:bg-shade_8 text-shade_8 dark:text-tint_2">
     <div class="w-full md:px-6 lg:px-8 pt-15 grid gap-12 md:gap-16 text-textblack dark:bg-darkmode_dark dark:text-textwhite">
         <h1 class="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">
             We Provide
@@ -14,10 +14,10 @@
 
             <div class="grid max-w-6xl sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8 lg:gap-10 m-10">
                 <div
-                    class="bg-muted rounded-lg p-4 md:p-6 flex flex-col items-center text-center bg-white dark:bg-darkmode_light border hover:border-coolblue group transition-colors duration-300 border/white-10 dark:border-white/50 dark:hover:border-coolblue">
+                    class="bg-muted rounded-lg p-4 md:p-6 flex flex-col items-center text-center bg-tint_8 dark:bg-darkmode_light border hover:border-coolblue group transition-colors duration-300 border/white-10 dark:border-white/50 dark:hover:border-coolblue">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round" class="w-10 h-10 mb-4 text-black dark:text-white">
+                        stroke-linejoin="round" class="w-10 h-10 mb-4">
                         <path d="M14.4 14.4 9.6 9.6" class="group-hover:text-coolblue transition-colors duration-300">
                         </path>
                         <path

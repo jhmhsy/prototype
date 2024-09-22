@@ -7,12 +7,12 @@
                 Create User
             </x-custom.create-button>
         </div>
-        <div class="rounded-lg border shadow-sm" data-v0-t="card">
+        <div class="rounded-lg border dark:border-white/30 shadow-sm" data-v0-t="card">
             <div class="p-2">
                 <div class="relative w-full overflow-auto">
                     <table class="w-full text-sm">
                         <thead>
-                            <tr class="border-b ">
+                            <tr>
                                 <th class="h-12 px-4 text-left align-middle">
                                     No.
                                 <th class="h-12 px-4 text-left align-middle">
@@ -31,7 +31,7 @@
 
                         <tbody class="border-0">
                             @foreach ($data as $key => $user)
-                                <tr class="border-b transition-colors hover:bg-muted/50 py-20">
+                                <tr class="border-t dark:border-white/30 transition-colors hover:bg-muted/50 py-20">
                                     <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">{{ ++$i }}</td>
                                     <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0 font-medium">
                                         {{ $user->name }}

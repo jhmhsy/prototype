@@ -1,29 +1,18 @@
-<!--a dark button when hover turns bg-coolblue -->
-<a {{ $attributes->merge(['type' => 'button', 'class' => '
+<button {{ $attributes->merge(['class' => '
                 inline-flex items-center 
                 justify-center whitespace-nowrap 
-                ext-sm font-medium 
-                
+                text-sm font-medium 
                 h-10 
                 px-10 
                 py-3 
-                
                 rounded-md 
                 transition-colors 
-                bg-darkmode_dark 
-                text-textwhite 
-                hover:bg-coolblue 
+                bg-main 
+                text-tint_1
 
-                dark:bg-primary 
-                dark:text-textblack 
-                dark:hover:bg-coolblue 
-                dark:hover:text-textwhite 
-
-                ring-offset-background 
-                focus-visible:outline-none 
-                focus-visible:ring-2 
-                focus-visible:ring-ring 
-                focus-visible:ring-offset-2 
+                hover:bg-shade_1 
+                dark:text-tint_1 
+                dark:hover:bg-tint_7 
                 disabled:pointer-events-none disabled:opacity-50']) }}>
     {{ $slot }}
-</a>
+</button>

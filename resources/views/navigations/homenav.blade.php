@@ -5,15 +5,15 @@
 <x-forms.nav-link :href="route('reservation')" :active="request()->routeIs('reservation')">
     {{ __('Reservation') }}
 </x-forms.nav-link>
-<x-forms.nav-link href="/#equipment-section" class="inactivelink">
+<x-forms.nav-link href="/#equipment-section">
     {{ __('Features') }}
 </x-forms.nav-link>
 
-<x-forms.nav-link href="/#pricing-section" class="inactivelink">
+<x-forms.nav-link href="/#pricing-section">
     {{ __('Pricing') }}
 </x-forms.nav-link>
 
-<x-forms.nav-link href="/#footer-section" class="inactivelink">
+<x-forms.nav-link href="/#footer-section">
     {{ __('Contacts') }}
 </x-forms.nav-link>
 @if (!Auth::user())
@@ -32,15 +32,15 @@
     {{ __('Reservation') }}
 </x-forms.responsive-nav-link>
 
-<x-forms.responsive-nav-link href="/#equipment-section" class="r-inactiveLink">
+<x-forms.responsive-nav-link href="/#equipment-section">
     {{ __('Features') }}
 </x-forms.responsive-nav-link>
 
-<x-forms.responsive-nav-link href="/#pricing-section" class="r-inactivelink">
+<x-forms.responsive-nav-link href="/#pricing-section" >
     {{ __('Pricing') }}
 </x-forms.responsive-nav-link>
 
-<x-forms.responsive-nav-link href="/#footer-section" class="r-inactivelink">
+<x-forms.responsive-nav-link href="/#footer-section">
     {{ __('Contacts') }}
 </x-forms.responsive-nav-link>
 @if (!Auth::user())
