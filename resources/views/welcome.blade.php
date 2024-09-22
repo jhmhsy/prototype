@@ -17,12 +17,12 @@
             </div>
 
             <!-- pricing sections-->
-            <div id="pricing-section" class="dark:bg-darkmode_dark dark:text-textwhite bg-tint_2 dark:bg-shade_8">
+            <div id="pricing-section" class=" bg-tint_1 dark:bg-shade_9">
                 <x-homepage.pricing-section />
             </div>
 
             <!-- Footer sections-->
-            <footer id="footer-section" class="dark:bg-darkmode_dark dark:text-textwhite">
+            <footer id="footer-section" class="bg-white/90">
                 <x-homepage.footer-section />
             </footer>
         </div>

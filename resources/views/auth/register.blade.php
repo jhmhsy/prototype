@@ -1,22 +1,22 @@
 <x-guest-layout>
-    <div class="flex min-h-screen flex-col pb-5 ">
+    <div class="flex min-h-screen flex-col pb-5 bg-tint_1 dark:bg-shade_9 text-shade_8">
         <header>
             <x-homepage.header-section />
         </header>
         <!-- Register Form -->
-        <main class="bg-white/70 dark:bg-darkmode_dark justify-center mt-15 flex pt-3">
-            <div class="w-full max-w-md space-y-6">
+        <main class="dark:bg-darkmode_dark justify-center mt-15 flex pt-3">
+            <div class="w-full max-w-md space-y-6 text-shade_9">
                 <form method="POST" action="{{ route('register') }}">
                     @csrf
-                    <div class="space-y-2 text-center">
-                        <h1 class="text-3xl font-bold text-primary-foreground text-textblack dark:text-textwhite">
+                    <div class="space-y-2 text-center dark:text-tint_1">
+                        <h1 class="text-3xl font-bold text-primary-foreground ">
                             Register for Gym Reservations</h1>
                         <p class="text-primary-foreground/80">Easily book your gym sessions with our user-friendly
                             platform.
                         </p>
                     </div>
-                    <div class="dark:bg-darkmode_dark flex items-center justify-center">
-                        <div class="w-full mt-5 rounded-lg border bg-card text-card-foreground shadow-sm dark:border-white/10"
+                    <div class="dark:bg-darkmode_dark flex items-center justify-center ">
+                        <div class="w-full mt-5 rounded-lg border bg-card text-card-foreground shadow-sm dark:border-white/10 bg-tint_3 dark:bg-tint_7"
                             data-v0-t="card">
                             <div class="flex flex-col space-y-1.5 px-6 pt-4 pb-1">
                                 <h3 class="whitespace-nowrap font-semibold tracking-tight text-2xl mx-auto">Register an
@@ -56,7 +56,7 @@
                                 </x-custom.primary-button>
                                 <div class="text-center text-sm">
                                     Already have an account? <a
-                                        class="text-blue-500 font-medium underline hover:text-blue-600 dark:hover:text-black"
+                                        class="text-blue-500 font-medium underline hover:text-blue-600 dark:hover:text-blue-700"
                                         href="{{ route('login') }}">Login</a>
                                 </div>
                             </div>

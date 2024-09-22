@@ -4,11 +4,11 @@
             <x-homepage.header-section />
         </header>
         {{-- Login Form --}}
-        <main class="mt-5 flex flex-1 items-center justify-center p-8 bg-white/70 dark:bg-darkmode_dark">
+        <main class="mt-5 flex flex-1 items-center justify-center p-8 bg-tint_1 dark:bg-shade_9 text-shade_8 ">
             <div class="max-w-md space-y-6 ">
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
-                    <div class="space-y-2 text-center">
+                    <div class="space-y-2 text-center dark:text-tint_2">
                         <h1 class="text-3xl font-bold text-primary-foreground text-textblack dark:text-textwhite">
                             Welcome to
                             Gym
@@ -17,7 +17,7 @@
                             platform.
                         </p>
                     </div>
-                    <div class="rounded-lg border bg-card text-card-foreground shadow-sm mt-5 dark:border-white/10"
+                    <div class="rounded-lg bg-card text-card-foreground shadow-lg mt-5 bg-tint_3 dark:bg-tint_7 "
                         data-v0-t="card">
                         <div class="flex flex-col space-y-1.5 px-6 py-4">
                             <h3 class="whitespace-nowrap font-semibold tracking-tight text-2xl mx-auto">Login</h3>
@@ -53,13 +53,13 @@
                         </div>
                         <div class="px-6 pb-5 pt-3 space-y-2">
                             <x-custom.primary-button
-                                class="w-full inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 px-6 py-2 dark:bg-white dark:text-black dark:hover:bg-white/50 dark:hover:text-white">
+                                class="w-full inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background disabled:pointer-events-none disabled:opacity-50 px-6 py-2">
                                 {{ __('Sign in') }}
                             </x-custom.primary-button>
 
                             <div class="text-center text-sm">
                                 Don't have an account? <a
-                                    class="text-blue-500 font-medium underline hover:text-blue-600"
+                                    class="text-blue-500 font-medium underline dark:text-indigo-500 hover:text-blue-600"
                                     href="{{ route('register') }}">Register</a>
                             </div>
                         </div>

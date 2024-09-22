@@ -1,6 +1,6 @@
 <button
     {{ $attributes->merge(['class' => 'px-4 py-2 rounded-md transition duration-300 ease-in-out relative overflow-hidden w-full sm:w-auto rainbow-border']) }}>
-    <span class="text relative z-10  animated-text">{{ $slot }}</span>
+    <span class="text relative animated-text">{{ $slot }}</span>
 </button>
 <style>
     .rainbow-border {
@@ -8,11 +8,11 @@
         animation: spin 1.5s linear infinite;
         border-radius: 5px;
         color: black;
-        background: #e5e7eb;
         border: 3px solid transparent;
+        color: #6cc2bc;
         background-clip: padding-box, border-box;
         background-origin: padding-box, border-box;
-        background-image: linear-gradient(#e5e7eb, #e5e7eb), conic-gradient(from var(--bg-angle) in oklch longer hue, oklch(1 0.37 0) 0 0);
+        background-image: linear-gradient(#6cc2bc, #6cc2bc), conic-gradient(from var(--bg-angle) in oklch longer hue, oklch(1 0.37 0) 0 0);
     }
 
     @property --bg-angle {
@@ -50,6 +50,7 @@
     }
 
     .animated-text {
-        animation: textColorChange 3s linear infinite;
+        color: #010f0e;
+        /*animation: textColorChange 3s linear infinite;*/
     }
 </style>

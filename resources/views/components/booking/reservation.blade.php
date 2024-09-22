@@ -4,18 +4,18 @@
             <x-homepage.header-section />
         </header>
         <div
-            class="flex items-center justify-center min-h-screen bg-gray-100 dark:bg-darkmode_dark pt-20 px-4 sm:px-6 lg:px-8">
+            class="flex items-center justify-center min-h-screen bg-tint_1 dark:bg-shade_9 pt-20 px-4 sm:px-6 lg:px-8">
             <div x-data="{ userType: null }" class="w-full max-w-md mb-3">
-                <div class="bg-white shadow-md rounded-lg overflow-hidden">
+                <div class="bg-tint_3 dark:bg-tint_9 shadow-md rounded-lg overflow-hidden">
                     <div class="pt-6 px-6">
                         <h2 class="text-2xl font-bold text-center mb-6">Gym Reservation</h2>
 
                         <!-- User Type Selection -->
-                        <div class="mb-6">
+                        <div class="mb-6 text-shade_9">
                             <h3 class="text-lg font-semibold mb-3">Select User Type:</h3>
                             <div class="flex flex-col sm:flex-row justify-center space-y-2 sm:space-y-0 sm:space-x-4">
                                 <button @click="userType = userType === 'regular' ? null : 'regular'"
-                                    :class="{ 'bg-blue-500 text-white': userType === 'regular', 'bg-gray-200 text-black': userType !== 'regular' }"
+                                    :class="{ 'bg-tint_7 dark:bg-shade_3 text-shade_9 dark:text-tint_1': userType === 'regular', 'bg-tint_6 text-shade_9': userType !== 'regular' }"
                                     class="px-4 py-2 rounded-md transition duration-300 ease-in-out w-full sm:w-auto hover:scale-105">
                                     Regular User
                                 </button>
@@ -43,24 +43,24 @@
                                 <form>
                                     <div class="mb-4">
                                         <label for="regular-name"
-                                            class="block text-gray-700 font-semibold mb-2">Name</label>
+                                            class="block text-shade_8 font-semibold mb-2">Name</label>
                                         <input type="text" id="regular-name" name="name"
-                                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-main dark:bg-tint_3"
                                             required>
                                     </div>
                                     <div class="mb-4">
                                         <label for="regular-email"
-                                            class="items-center flex text-gray-700 font-semibold mb-2">Email &nbsp;<p
-                                                class="text-xs italic text-blue-500">(Optional)</p></label>
+                                            class="items-center flex text-shade_8 font-semibold mb-2">Email &nbsp;<p
+                                                class="text-xs italic text-main dark:text-shade_5">(Optional)</p></label>
                                         <input type="email" id="regular-email" name="email"
-                                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-main dark:bg-tint_3"
                                             required>
                                     </div>
                                     <div class="mb-4">
                                         <label for="regular-room"
-                                            class="block text-gray-700 font-semibold mb-2">Room</label>
+                                            class="block text-shade_8 font-semibold mb-2">Room</label>
                                         <select id="regular-room" name="room"
-                                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-main dark:bg-tint_3"
                                             required>
                                             <option value="">Select a room</option>
                                             <option value="yoga">Yoga Room</option>
@@ -70,20 +70,20 @@
                                     </div>
                                     <div class="mb-4">
                                         <label for="regular-date"
-                                            class="block text-gray-700 font-semibold mb-2">Date</label>
+                                            class="block text-shade_8 font-semibold mb-2">Date</label>
                                         <input type="date" id="regular-date" name="date"
-                                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-main dark:bg-tint_3"
                                             required>
                                     </div>
                                     <div class="mb-4">
                                         <label for="regular-time"
-                                            class="block text-gray-700 font-semibold mb-2">Time</label>
+                                            class="block text-shade_8 font-semibold mb-2">Time</label>
                                         <input type="time" id="regular-time" name="time"
-                                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-main dark:bg-tint_3"
                                             required>
                                     </div>
                                     <button type="submit"
-                                        class="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-300 ease-in-out">Reserve</button>
+                                        class="w-full bg-main text-white py-2 px-4 rounded-md hover:bg-shade_3 dark:hover:bg-shade_5 dark:bg-shade_3 transition duration-300 ease-in-out">Reserve</button>
                                 </form>
                             </div>
 
