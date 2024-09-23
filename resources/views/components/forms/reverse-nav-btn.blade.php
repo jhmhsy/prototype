@@ -10,7 +10,7 @@
                 
                 rounded-md 
                 transition-colors 
-                bg-darkmode_dark 
+                bg-darkmode_dark
                 text-textwhite 
                 hover:bg-coolblue 
 

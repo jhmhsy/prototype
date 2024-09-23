@@ -22,7 +22,7 @@
         <div class="flex items-center gap-2">
             <!-- Darkmode button icon -->
             <div role="group" dir="ltr" class="flex items-center justify-center" tabindex="0" style="outline: none;">
-                <x-custom.darkmode/>
+                <x-custom.darkmode />
             </div>
 
             <!-- login / register  -->

@@ -58,7 +58,7 @@
             </div>
         </div>
         <div
-            class="bg-blue-400 border border-black/30 rounded-lg shadow-xl relative md:col-span-1 hover:scale-110 transition-transform duration-300">
+            class="bg-blue-400 border border-black/30  rounded-lg shadow-xl relative md:col-span-1 hover:scale-110 transition-transform duration-300">
             <div class="p-6 md:p-8 lg:p-10">
                 <h3 class="text-2xl md:text-3xl font-bold mb-4">Godmode</h3>
                 <div class="flex items-baseline mb-6">

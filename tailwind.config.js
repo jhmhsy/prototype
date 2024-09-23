@@ -5,6 +5,7 @@ import forms from "@tailwindcss/forms";
 export default {
     darkMode: "class", // Explicitly disable dark mode
     content: [
+        "./src/**/*.{html,js,php}",
         "./vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php",
         "./storage/framework/views/*.php",
         "./resources/views/**/*.blade.php",
@@ -17,7 +18,7 @@ export default {
         extend: {
             fontFamily: {
                 sans: ["Figtree", ...defaultTheme.fontFamily.sans],
-                hanken: ["Hanken Grotesk", 'sans-serif']
+                hanken: ["Hanken Grotesk", "sans-serif"],
             },
 
             colors: {
@@ -43,6 +44,19 @@ export default {
                 primary: "#ffffff",
                 secondary: "#000000",
                 complementary: "#eacc22",
+
+                primary: "#ffffff",
+                secondary: "#e4e6eb",
+                thirdy: "#b0b3b8",
+                darkmode_lessdark: "#3b3d40",
+                darkmode_dark: "#18191a",
+                darkmode_light: "#242526",
+                darkmode_lighter: "#3a3b3c",
+                black: "#000000",
+                gray_1k: "#7a818c",
+                textblack: "#18191a",
+                textwhite: "#e4e6eb",
+                coolblue: "#2563eb",
             },
             padding: {
                 5: "1.5rem",
@@ -56,11 +70,11 @@ export default {
                 25: "10rem",
             },
             spacing: {
-                15: "5rem"
+                15: "5rem",
             },
-            width:{
-                55:"13rem"
-            }
+            width: {
+                55: "13rem",
+            },
         },
     },
 

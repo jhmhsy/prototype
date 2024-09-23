@@ -7,7 +7,7 @@
                 py-3 
                 rounded-md 
                 transition-colors 
-                bg-main 
+                bg-main
                 text-tint_1
 
                 hover:bg-shade_1 
