@@ -1,10 +1,19 @@
-@if ($default ?? false)
+@if($default ?? false)
 <x-forms.nav-link href="/" :active="request()->is('/')">
     {{ __('Home') }}
 </x-forms.nav-link>
+
 <x-forms.nav-link :href="route('reservation')" :active="request()->routeIs('reservation')">
     {{ __('Reservation') }}
 </x-forms.nav-link>
+
+<x-forms.nav-link :href="route('reserve.create')" :active="request()->routeIs('reserve')">
+    {{ __('Book') }}
+</x-forms.nav-link>
+<x-forms.nav-link :href="route('calendar')" :active="request()->routeIs('calendar')">
+    {{ __('Calendar') }}
+</x-forms.nav-link>
+
 <x-forms.nav-link href="/#equipment-section">
     {{ __('Features') }}
 </x-forms.nav-link>
@@ -13,9 +22,11 @@
     {{ __('Pricing') }}
 </x-forms.nav-link>
 
+
 <x-forms.nav-link href="/#footer-section">
     {{ __('Contacts') }}
 </x-forms.nav-link>
+
 @if (!Auth::user())
 <x-forms.nav-link href="{{ route('login') }}" :active="Request::is('login')">
     {{ __('Login') }}
@@ -32,15 +43,15 @@
     {{ __('Reservation') }}
 </x-forms.responsive-nav-link>
 
-<x-forms.responsive-nav-link href="/#equipment-section">
+<x-forms.responsive-nav-link href="/#equipment-section" class="r-inactiveLink">
     {{ __('Features') }}
 </x-forms.responsive-nav-link>
 
-<x-forms.responsive-nav-link href="/#pricing-section" >
+<x-forms.responsive-nav-link href="/#pricing-section" class="r-inactivelink">
     {{ __('Pricing') }}
 </x-forms.responsive-nav-link>
 
-<x-forms.responsive-nav-link href="/#footer-section">
+<x-forms.responsive-nav-link href="/#footer-section" class="r-inactivelink">
     {{ __('Contacts') }}
 </x-forms.responsive-nav-link>
 @if (!Auth::user())

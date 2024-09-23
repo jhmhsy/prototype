@@ -1,4 +1,4 @@
-<button {{ $attributes->merge(['class' => '
+<a {{ $attributes->merge(['class' => '
                 inline-flex items-center 
                 justify-center whitespace-nowrap 
                 text-sm font-medium 
@@ -15,4 +15,4 @@
                 dark:hover:bg-tint_7 
                 disabled:pointer-events-none disabled:opacity-50']) }}>
     {{ $slot }}
-</button>
+</a>

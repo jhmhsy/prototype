@@ -5,7 +5,7 @@
 
         <div class="flex flex-row mr-13 justify-between items-center">
             <!-- Hamburger button for responsive sidebar, hides in pc screen, shows in mobile-->
-            @include('layouts.nav-burger', ['showburgerAdmin' => true])
+            @include('navigations.nav-burger', ['showburgerAdmin' => true])
 
             <!-- Back button -->
             <a href="{{ route('welcome') }}">
