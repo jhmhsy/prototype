@@ -63,6 +63,12 @@
                 class="px-20">
                 Book Now
             </x-forms.reverse-nav-link>
+
+            <x-forms.reverse-nav-link :href="route('ticket.show')" :active="request()->routeIs('ticket.show')"
+                class="px-20">
+                Purchase ticket
+            </x-forms.reverse-nav-link>
+
         </div>
     </div>
 
