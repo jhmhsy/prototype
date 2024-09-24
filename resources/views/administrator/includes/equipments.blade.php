@@ -1,11 +1,11 @@
 @extends('layouts.dash')
 @section('content')
-<div class="rounded-lg border bg-card text-card-foreground shadow-sm p-6" data-v0-t="card">
+<div class="rounded-lg border bg-card text-card-foreground shadow-sm p-6 text-shade_9 dark:text-tint_1 border-shade_6/50 dark:border-white/5" data-v0-t="card">
     <h1 class="text-2xl font-bold mb-6">Equipment Management</h1>
-    <div class="bg-background rounded-lg shadow-lg">
-        <div class="relative w-full overflow-auto">
-            <table class="w-full caption-bottom text-sm">
-                <thead class="[&amp;_tr]:border-b">
+    <div class="bg-background rounded-lg shadow-lg" >
+        <div class="relative w-full overflow-auto ">
+            <table class="w-full caption-bottom text-sm ">
+                <thead class="[&amp;_tr]:border-b ">
                     <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
                         <th
                             class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
@@ -29,7 +29,7 @@
                         </th>
                     </tr>
                 </thead>
-                <tbody class="[&amp;_tr:last-child]:border-0">
+                <tbody class="[&amp;_tr:last-child]:border-0 ">
                     <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
                         <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0 font-medium">Forklift</td>
                         <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">Material Handling</td>

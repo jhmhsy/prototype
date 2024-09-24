@@ -57,18 +57,6 @@
                                             required>
                                     </div>
                                     <div class="mb-4">
-                                        <label for="regular-room"
-                                            class="block text-shade_8 font-semibold mb-2">Room</label>
-                                        <select id="regular-room" name="room"
-                                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-main dark:bg-tint_3"
-                                            required>
-                                            <option value="">Select a room</option>
-                                            <option value="yoga">Yoga Room</option>
-                                            <option value="weights">Weights Room</option>
-                                            <option value="cardio">Cardio Room</option>
-                                        </select>
-                                    </div>
-                                    <div class="mb-4">
                                         <label for="regular-date"
                                             class="block text-shade_8 font-semibold mb-2">Date</label>
                                         <input type="date" id="regular-date" name="date"

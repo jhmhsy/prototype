@@ -9,10 +9,10 @@
                 transition-colors 
                 bg-main 
                 text-tint_1
-
                 hover:bg-shade_1 
                 dark:text-tint_1 
                 dark:hover:bg-tint_7 
-                disabled:pointer-events-none disabled:opacity-50']) }}>
+                disabled:pointer-events-none 
+                disabled:opacity-50']) }}>
     {{ $slot }}
 </a>

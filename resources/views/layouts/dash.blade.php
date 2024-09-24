@@ -20,10 +20,9 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
 
-    <body class="font-sans antialiased bg-white dark:bg-darkmode_dark min-w-[500px]">
-        <div class="bg-gray-100 dark:bg-gray-900">
-
-            <div class="flex flex-col h-screen bg-white">
+    <body class="font-sans antialiased bg-tint_1 dark:bg-shade_9 min-w-[500px]">
+        <div class="bg-tint_1 dark:bg-shade_9">
+            <div class="flex flex-col h-screen ">
                 <!--------- Header layout ----------->
                 @include('administrator.includes.header')
 
@@ -34,7 +33,7 @@
                         class="hidden sm:block top-0 left-0 z-40 w-50 xl:w-55 h-screen transition-transform -translate-x-full sm:translate-x-0"
                         aria-label=" Sidebar dark:bg-darkmode_light dark:text-white">
                         <div
-                            class="h-full px-3 py-4 overflow-y-auto dark:bg-darkmode_light dark:text-white border-r dark:border-white/5">
+                            class="h-full px-3 py-4 overflow-y-auto dark:bg-darkmode_light bg-tint_1 dark:bg-shade_9 text-shade_9 dark:tint_1 border-r border-shade_6/50 dark:border-white/5">
                             @hasanyrole('SuperAdmin|Admin')
                                 {{-- {{-- this should be the reservation page --}}
                                 @include('administrator.includes.sidenav')
@@ -43,7 +42,7 @@
                     </aside>
 
                     <!-------------------------- MAIN CONTENT ----------------------------->
-                    <main class="flex-1 p-6 dark:bg-darkmode_dark overflow-y-auto dark:text-white"
+                    <main class="flex-1 p-6 dark:bg-darkmode_dark overflow-y-auto bg-tint_1 dark:bg-shade_9 dark:text-tint_1 text-shade_9"
                         @click="open = false">
                         <div id="main-content" class="flex-1 ">
                             @hasanyrole('SuperAdmin|Admin')

@@ -1,7 +1,7 @@
 @extends('layouts.dash')
 @section('content')
 
-<div class="rounded-lg border bg-card text-card-foreground shadow-sm p-6" data-v0-t="card">
+<div class="rounded-lg border bg-card text-card-foreground shadow-sm p-6 border-shade_6/50 dark:border-white/5" data-v0-t="card">
 
     <h1 class="text-2xl font-bold mb-6">Events</h1>
     <div class="bg-background rounded-lg shadow-lg">

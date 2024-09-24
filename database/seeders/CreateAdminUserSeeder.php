@@ -23,10 +23,10 @@ class CreateAdminUserSeeder extends Seeder
         $adminRole = Role::firstOrCreate(['name' => 'Admin']);
 
         $permissions = [
-            'product-list',
-            'product-create',
-            'product-edit',
-            'product-delete',
+            'role-list',
+            'role-create',
+            'role-edit',
+            'role-delete',
             'is-admin',
         ];
 

@@ -4,7 +4,6 @@ use App\Http\Controllers\admin\EquipmentController;
 use App\Http\Controllers\admin\EventsController;
 use App\Http\Controllers\admin\FeedbackController;
 use App\Http\Controllers\admin\HelpController;
-use App\Http\Controllers\admin\HomeController;
 use App\Http\Controllers\admin\MenuController;
 use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\admin\RoleController;
@@ -12,28 +11,29 @@ use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\DashController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\public\CalendarController;
 use App\Http\Controllers\public\FeaturesController;
 use App\Http\Controllers\public\ReservationController;
-use App\Http\Controllers\public\CalendarController;
 use App\Http\Controllers\Public\TicketController;
 use Illuminate\Support\Facades\Route;
 
-
-
 Route::get('/', [PageController::class, 'index'])
     ->name('welcome');
-    Route::get('features', [FeaturesController::class, 'show'])
-        ->name('features');
+Route::get('features', [FeaturesController::class, 'show'])
+    ->name('features');
 
-        
-Route::get('/calendar', [CalendarController::class, 'show'])->name('calendar');
+Route::get('/calendar', [CalendarController::class, 'show'])
+    ->name('calendar');
 
-Route::get('/reserve', [ReservationController::class, 'create'])->name('reserve.create');
-Route::post('/reserve', [ReservationController::class, 'store'])->name('reserve.store');
+Route::get('/reserve', [ReservationController::class, 'create'])
+    ->name('reserve.create');
+Route::post('/reserve', [ReservationController::class, 'store'])
+    ->name('reserve.store');
 
-Route::get('ticket', [TicketController::class, 'show'])->name('ticket.show');
-Route::post('ticket', [TicketController::class, 'store'])->name('ticket.store');
-
+Route::get('ticket', [TicketController::class, 'show'])
+    ->name('ticket.show');
+Route::post('ticket', [TicketController::class, 'store'])
+    ->name('ticket.store');
 
 Route::group(['middleware' => ['auth', 'isSuper']], function () {
     Route::resource('roles', RoleController::class);
@@ -41,24 +41,33 @@ Route::group(['middleware' => ['auth', 'isSuper']], function () {
 Route::group(['middleware' => ['auth', 'isAdmin']], routes: function () {
     Route::resource('users', UserController::class);
     Route::resource('products', ProductController::class);
-    Route::get('/reservations', [ReservationController::class, 'index'])->name('reservations');
-    Route::get('/users', [UserController::class, 'index'])->name('users.index');
-    Route::get('/menu', [MenuController::class, 'index'])->name('menu');
+    Route::get('/reservations', [ReservationController::class, 'index'])
+        ->name('reservations');
+    Route::get('/users', [UserController::class, 'index'])
+        ->name('users.index');
+    //Route::get('/menu', [MenuController::class, 'index'])
+    //    ->name('menu');
+    Route::get('/dashboard', [DashController::class, 'show'])
+        ->name('dashboard');
 });
-Route::get('/reservation', function(){
+Route::get('/reservation', function () {
     return view('components.booking.reservation');
 })->name('reservation');
 
-
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::get('/dashboard', [DashController::class, 'show'])->name('dashboard');
+    Route::get('/profile', [ProfileController::class, 'edit'])
+        ->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])
+        ->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])
+        ->name('profile.destroy');
     Route::resource('equipment', EquipmentController::class);
-    Route::get('/events', [EventsController::class, 'index'])->name('events');
-    Route::get('/feedback', [FeedbackController::class, 'index'])->name('feedback');
-    Route::get('/help', [HelpController::class, 'index'])->name('help');
+    Route::get('/events', [EventsController::class, 'index'])
+        ->name('events');
+    Route::get('/feedback', [FeedbackController::class, 'index'])
+        ->name('feedback');
+    Route::get('/help', [HelpController::class, 'index'])
+        ->name('help');
 });
 
 //Route::middleware(['auth', ])->group(function(){

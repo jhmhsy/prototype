@@ -64,7 +64,7 @@
 
 
         <x-forms.reverse-nav-link href="#equipment-section" :active="request()->routeIs('reservation')"
-            class="px-20 space-x-1 border border-main/20">
+            class="px-20 space-x-1 border border-main/20 text-white">
             <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor"
                 class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
                 <path fill-rule="evenodd"

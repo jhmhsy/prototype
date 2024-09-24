@@ -16,6 +16,8 @@ return new class extends Migration
         Schema::create('bookings', function (Blueprint $table) {
             $table->id(); // Automatically creates an auto-incrementing 'id' field
             $table->string('name');
+            $table->string('email')->nullable();
+            $table->time('time');
             $table->date('date');
             $table->timestamps(); // Automatically adds 'created_at' and 'updated_at' columns
         });

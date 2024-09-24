@@ -10,6 +10,11 @@ use App\Models\Booking;
 
 class reservationController extends Controller
 {
+    
+    public function index()
+    {
+        return view('administrator.includes.reservations');
+    }
     public function create()
     {
         return view('subpages.reserve');

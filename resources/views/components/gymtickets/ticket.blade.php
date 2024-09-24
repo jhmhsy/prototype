@@ -56,7 +56,6 @@
                             </svg>
                             Gcash
                         </label>
-
                     </div>
 
 

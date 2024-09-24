@@ -1,9 +1,9 @@
 <!-- Default Design -->
 
-<ul class="space-y-2 font-medium ">
+<ul class="space-y-2 font-medium text-shade_9 dark:text-tint_1">
     <!--------------------------- DASHBOARD BUTTON --------------------------------->
     <li>
-        <x-custom.sidenav-button href="{{ route('menu') }}" :active="request()->routeIs('menu')">
+        <x-custom.sidenav-button href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
                 <rect width="7" height="9" x="3" y="3" rx="1"></rect>
@@ -18,7 +18,7 @@
     <!--------------------------- EQUIPMENTS BUTTON --------------------------------->
     @can('is-admin')
     <li>
-        <x-custom.sidenav-button href="{{ route('equipment.index') }}">
+        <x-custom.sidenav-button href="{{ route('equipment.index') }}" :active="request()->routeIs('equipment.index')">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
                 <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z">
@@ -32,7 +32,7 @@
     @endcan
     <!--------------------------- RESERVATION BUTTON --------------------------------->
     <li>
-        <x-custom.sidenav-button href="{{ route('reservations') }}">
+        <x-custom.sidenav-button href="{{ route('reservations') }}" :active="request()->routeIs('reservations')">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
                 <path
@@ -50,7 +50,7 @@
     <!--------------------------- EVENTS BUTTON --------------------------------->
     <li>
 
-        <x-custom.sidenav-button href="{{ route('events') }}">
+        <x-custom.sidenav-button href="{{ route('events') }}" :active="request()->routeIs('events')">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
                 <path d="M8 2v4"></path>
@@ -65,7 +65,7 @@
     <!--------------------------- FEEDBACK BUTTON --------------------------------->
     <li>
 
-        <x-custom.sidenav-button href="{{ route('feedback') }}">
+        <x-custom.sidenav-button href="{{ route('feedback') }}" :active="request()->routeIs('feedback')">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
                 <polyline points="9 17 4 12 9 7"></polyline>
@@ -77,7 +77,7 @@
     </li>
     <!--------------------------- USERS BUTTON --------------------------------->
     <li>
-        <x-custom.sidenav-button href="{{ route('users.index') }}">
+        <x-custom.sidenav-button href="{{ route('users.index') }}" :active="request()->routeIs('users.*')">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
                 <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
@@ -85,43 +85,13 @@
                 <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
                 <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
             </svg>
-            <span class="hidden lg:block flex-1 ms-3 whitespace-nowrap">Users</span>
-            <span class="sm:hidden flex-1 ms-3 whitespace-nowrap pr-20">Users</span>
-        </x-custom.sidenav-button>
-    </li>
-    <!--------------------------- HELP BUTTON --------------------------------->
-    <li>
-        <x-custom.sidenav-button href="{{ route('help') }}">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
-                <path d="M11 12h2a2 2 0 1 0 0-4h-3c-.6 0-1.1.2-1.4.6L3 14"></path>
-                <path d="m7 18 1.6-1.4c.3-.4.8-.6 1.4-.6h4c1.1 0 2.1-.4 2.8-1.2l4.6-4.4a2 2 0 0 0-2.75-2.91l-4.2 3.9">
-                </path>
-                <path d="m2 13 6 6"></path>
-            </svg>
-            <span class="hidden lg:block flex-1 ms-3 whitespace-nowrap">Help</span>
-            <span class="sm:hidden flex-1 ms-3 whitespace-nowrap pr-20">Help</span>
-        </x-custom.sidenav-button>
-    </li>
-    <!--------------------------- User --------------------------------->
-    <li>
-        <x-custom.sidenav-button href="{{ route('users.index') }}">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
-                <rect width="7" height="9" x="3" y="3" rx="1"></rect>
-                <rect width="7" height="5" x="14" y="3" rx="1"></rect>
-                <rect width="7" height="9" x="14" y="12" rx="1"></rect>
-                <rect width="7" height="5" x="3" y="16" rx="1"></rect>
-            </svg>
-
             <span class="hidden lg:block flex-1 ms-3 whitespace-nowrap">Manage Users</span>
-            <span class="sm:hidden flex-1 ms-3 whitespace-nowrap pr-20">Manage
-                Users</span>
+            <span class="sm:hidden flex-1 ms-3 whitespace-nowrap pr-20">Manage Users</span>
         </x-custom.sidenav-button>
     </li>
     <!--------------------------- Permissions --------------------------------->
     <li>
-        <x-custom.sidenav-button href="{{ route('roles.index') }}">
+        <x-custom.sidenav-button href="{{ route('roles.index') }}" :active="request()->routeIs('roles.*')">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                 class="bi bi-fingerprint" viewBox="0 0 16 16">
                 <path
@@ -140,4 +110,20 @@
                 Role</span>
         </x-custom.sidenav-button>
     </li>
+    <!--------------------------- HELP BUTTON --------------------------------->
+    <li>
+        <x-custom.sidenav-button href="{{ route('help') }}" :active="request()->routeIs('help')">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+                <path d="M11 12h2a2 2 0 1 0 0-4h-3c-.6 0-1.1.2-1.4.6L3 14"></path>
+                <path d="m7 18 1.6-1.4c.3-.4.8-.6 1.4-.6h4c1.1 0 2.1-.4 2.8-1.2l4.6-4.4a2 2 0 0 0-2.75-2.91l-4.2 3.9">
+                </path>
+                <path d="m2 13 6 6"></path>
+            </svg>
+            <span class="hidden lg:block flex-1 ms-3 whitespace-nowrap">Help</span>
+            <span class="sm:hidden flex-1 ms-3 whitespace-nowrap pr-20">Help</span>
+        </x-custom.sidenav-button>
+    </li>
+    
+    
 </ul>

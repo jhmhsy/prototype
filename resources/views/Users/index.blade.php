@@ -1,6 +1,6 @@
 @extends('layouts.dash')
 @section('content')
-    <div class="flex flex-col gap-4">
+    <div class="flex flex-col gap-4 border-shade_6/50 dark:border-white/5">
         <div class="flex items-center justify-between">
             <h1 class="text-2xl font-bold">User Management</h1>
             <x-custom.create-button class="text-white" href="{{ route('users.create') }}">
@@ -8,7 +8,7 @@
             </x-custom.create-button>
         </div>
         <div class="rounded-lg border dark:border-white/30 shadow-sm" data-v0-t="card">
-            <div class="p-2">
+            <div class="p-2 ">
                 <div class="relative w-full overflow-auto">
                     <table class="w-full text-sm">
                         <thead>
@@ -56,7 +56,7 @@
                                         <div class="flex items-center gap-2">
 
                                             <a href="{{ route('users.show', $user->id) }}"
-                                                class="inline-flex items-center justify-center  rounded-md text-sm font-medium ring-offset-background  disabled:pointer-events-none h-1 w-10">
+                                                class="bg-main text-white uppercase inline-flex items-center justify-center text-xs font-medium h-9 rounded-md px-2">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -67,7 +67,7 @@
                                                 <span class="sr-only">Show</span>
                                             </a>
                                             <a href="{{ route('users.edit', $user->id) }}"
-                                                class="inline-flex items-center justify-center  rounded-md text-sm font-medium ring-offset-background  disabled:pointer-events-none h-1 w-10">
+                                                class="bg-blue-600 text-white uppercase inline-flex items-center justify-center text-xs font-medium h-9 rounded-md px-2">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -79,22 +79,14 @@
                                                 <span class="sr-only">Edit</span>
                                             </a>
 
-                                            <form method="POST" style="display:inline">
-                                                @csrf
-                                                @method('DELETE')
-                                                <a action="{{ route('users.destroy', $user->id) }}"
-                                                    class="inline-flex items-center justify-center  rounded-md text-sm font-medium ring-offset-background  disabled:pointer-events-none h-1 w-10 text-red-500">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                        viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                        class="h-4 w-4">
-                                                        <path d="M3 6h18"></path>
-                                                        <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
-                                                        <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
-                                                    </svg>
-                                                    <span class="sr-only">Delete</span>
-                                                </a>
-                                            </form>
+                                            @can('role-delete')
+                                                <x-custom.pop-up :normal="false" :name="'user'" :formId="'delete'"></x-custom.pop-up>
+                                                <form method="POST" action="{{ route('users.destroy', $user->id) }}"
+                                                    style="display:inline" id="delete" class="hidden">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                </form>
+                                            @endcan
                                         </div>
                                     </td>
                                 </tr>
