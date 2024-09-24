@@ -5,18 +5,24 @@ namespace App\Http\Controllers\Public;
 use App\Http\Controllers\Controller;
 use Illuminate\View\View;
 use App\Models\Booking;
+use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class CalendarController extends Controller
 {
     public function show(): View
     {
-        // Fetch all reserved dates from the bookings table
-        
-        $reservedDates = Booking::pluck('date');
+        $reservedDetails = Booking::select('name', 'email', 'room', 'date', 'time')->get();
+        return view('subpages.calendar', compact('reservedDetails'));
+    }
 
-    
-    // Debug the array structure
-        // Pass the dates to the view
-        return view('subpages.calendar', compact('reservedDates'));
+    public function getReservedHours(Request $request)
+    {
+        $request->validate(['date' => 'required|date']);
+        $reservedHours = Booking::whereDate('date', Carbon::parse($request->query('date'))->toDateString())
+            ->pluck('time')
+            ->map(fn($time) => Carbon::parse($time)->format('g:i A'));
+        
+        return response()->json($reservedHours);
     }
 }

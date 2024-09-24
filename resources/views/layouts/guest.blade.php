@@ -10,6 +10,8 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.min.js"></script>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <!-- Scripts -->
     <script src="{{ asset('js/darkmode.js') }}" defer></script>
@@ -30,7 +32,7 @@
         </header>
         @endisset
 
-        <div class="dark:bg-darkmode_dark dark:text-textwhite bg-white shadow">
+        <div class="dark:bg-darkmode_dark dark:text-textwhite bg-white">
             {{ $slot }}
         </div>
     </div>

@@ -5,6 +5,7 @@ import forms from "@tailwindcss/forms";
 export default {
     darkMode: "class", // Explicitly disable dark mode
     content: [
+        "./src/**/*.{html,js,php}",
         "./vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php",
         "./storage/framework/views/*.php",
         "./resources/views/**/*.blade.php",
@@ -17,10 +18,11 @@ export default {
         extend: {
             fontFamily: {
                 sans: ["Figtree", ...defaultTheme.fontFamily.sans],
-                hanken: ["Hanken Grotesk", 'sans-serif']
+                hanken: ["Hanken Grotesk", "sans-serif"],
             },
 
             colors: {
+                //custom green color shades
                 main: "#0a998f",
                 tint_1: "#e7f5f4",
                 tint_2: "#ceebe9",
@@ -43,6 +45,24 @@ export default {
                 primary: "#ffffff",
                 secondary: "#000000",
                 complementary: "#eacc22",
+
+                // custom color for default darkmode
+                darkmode_dark: "#18191a", //darkmode dark
+                darkmode_light: "#242526", //darkmode light
+                darkmode_lighter: "#3a3b3c", // darkmode lighter
+                darkmode_lighest: "#3b3d40", //darkmode lightest
+                gray_1k: "#7a818c",
+
+                //black,gray, white custom color for textP
+                textwhite: "#ffffff",
+                softgray: "#e6e6e6",
+                subtlegray: "#b3b3b3",
+                basegray: "#808080",
+                shadowgray: "#4d4d4d",
+                charcoalgray: "#555555",
+                textblack: "#000000",
+
+                coolblue: "#2563eb",
             },
             padding: {
                 5: "1.5rem",
@@ -56,11 +76,11 @@ export default {
                 25: "10rem",
             },
             spacing: {
-                15: "5rem"
+                15: "5rem",
             },
-            width:{
-                55:"13rem"
-            }
+            width: {
+                55: "13rem",
+            },
         },
     },
 

@@ -14,8 +14,9 @@
             </div>
             <div class="mx-auto w-full max-w-sm space-y-2">
                 <form class="flex gap-2">
-                    <x-forms.text-input class="h-10 w-full rounded-md px-3 py-2 text-sm items-center text-shade_9 border-shade_8" placeholder="Enter your email"
-                        type="email" />
+                    <x-forms.text-input
+                        class="h-10 w-full rounded-md px-3 py-2 text-sm items-center text-shade_9 border-shade_8"
+                        placeholder="Enter your email" type="email" />
                     <x-forms.reverse-nav-link
                         class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-300 disabled:pointer-events-none disabled:opacity-50 bg-blue-500 text-white hover:bg-blue-600 h-10 px-4 py-2"
                         type="submit">

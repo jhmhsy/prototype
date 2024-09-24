@@ -1,5 +1,6 @@
 <x-guest-layout>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <body class="bg-tint_1 dark:bg-shade_9">
         <div class="flex flex-col min-h-screen bg-tint_1 dark:bg-shade_9">
             <!-- Header sections--->
@@ -28,35 +29,35 @@
         </div>
     </body>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Function to update active link
-            function updateActiveLink() {
-                // Remove active class from all links and add inactive class
-                document.querySelectorAll('a').forEach(link => {
-                    const href = link.getAttribute('href');
-                    if (href !== '/' && href !== '/#') {
-                        link.classList.remove('activeLink');
-                        link.classList.add('inactiveLink');
-                    }
-                });
+    document.addEventListener('DOMContentLoaded', function() {
+        // Function to update active link
+        function updateActiveLink() {
+            // Remove active class from all links and add inactive class
+            document.querySelectorAll('a').forEach(link => {
+                const href = link.getAttribute('href');
+                if (href !== '/' && href !== '/#') {
+                    link.classList.remove('activeLink');
+                    link.classList.add('inactiveLink');
+                }
+            });
 
-                // Add active class to the current link and remove inactive class
-                const currentHash = window.location.hash;
-                if (currentHash && currentHash !== '#/') {
-                    const activeLink = document.querySelector(
-                        `a[href="${currentHash}"], a[href="/${currentHash}"]`);
-                    if (activeLink) {
-                        activeLink.classList.add('activeLink');
-                        activeLink.classList.remove('inactiveLink');
-                    }
+            // Add active class to the current link and remove inactive class
+            const currentHash = window.location.hash;
+            if (currentHash && currentHash !== '#/') {
+                const activeLink = document.querySelector(
+                    `a[href="${currentHash}"], a[href="/${currentHash}"]`);
+                if (activeLink) {
+                    activeLink.classList.add('activeLink');
+                    activeLink.classList.remove('inactiveLink');
                 }
             }
+        }
 
-            // Update active link on page load
-            updateActiveLink();
+        // Update active link on page load
+        updateActiveLink();
 
-            // Update active link on hash change
-            window.addEventListener('hashchange', updateActiveLink);
-        });
+        // Update active link on hash change
+        window.addEventListener('hashchange', updateActiveLink);
+    });
     </script>
 </x-guest-layout>

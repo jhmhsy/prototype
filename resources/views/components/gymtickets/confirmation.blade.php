@@ -1,23 +1,21 @@
 <x-guest-layout>
 
-    <div class="grid md:grid-cols- gap-8 max-w-6xl mx-auto py-12 px-4">
+    <div class="grid md:grid-cols-1 gap-8 max-w-6xl mx-auto py-12 px-4 border rounded-lg">
         <div class="space-y-6">
 
             <div class="flex items-center gap-2">
 
                 <div class="h-2 flex-1 bg-muted rounded-full">
-                    <div @click="step--" class="cursor-pointer h-2 w-2/3 bg-black rounded-full"></div>
+                    <div @click="step--" class="cursor-pointer h-2 w-2/3 bg-black dark:bg-white rounded-full"></div>
                 </div>
                 <span class="text-sm font-medium">Step 2 of 3</span>
             </div>
-            <div>
-                <h1 class="text-3xl font-bold">Payment</h1>
-                <p class="text-muted-foreground">Complete your ticket purchase by entering your payment information.</p>
-            </div>
+
             <div class="space-y-6">
                 <div>
-                    <h2 class="text-2xl font-bold">Order Summary</h2>
-                    <p class="text-muted-foreground">Review the details of your ticket purchase.</p>
+                    <h1 class="text-3xl font-bold">Payment</h1>
+                    <p class="text-muted-foreground">Complete your ticket purchase by entering your payment information.
+                    </p>
                 </div>
                 <div class="rounded-lg border bg-card text-card-foreground shadow-sm" data-v0-t="card">
                     <div class="flex flex-col space-y-1.5 p-6">
@@ -49,6 +47,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="space-y-6">
                 <div>
                     <h2 class="text-2xl font-bold">Total Amount</h2>

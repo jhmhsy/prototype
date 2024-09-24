@@ -14,13 +14,15 @@ return new class extends Migration
     public function up()
     {
         Schema::create('bookings', function (Blueprint $table) {
-            $table->id(); // Automatically creates an auto-incrementing 'id' field
-            $table->string('name');
-            $table->string('email')->nullable();
-            $table->time('time');
-            $table->date('date');
-            $table->timestamps(); // Automatically adds 'created_at' and 'updated_at' columns
+            $table->id(); 
+            $table->string('name'); 
+            $table->string('email'); 
+            $table->string('room');
+            $table->date('date'); 
+            $table->time('time'); 
+            $table->timestamps(); 
         });
+        
     }
 
     /**

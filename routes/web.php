@@ -22,22 +22,23 @@ Route::get('/', [PageController::class, 'index'])
 Route::get('features', [FeaturesController::class, 'show'])
     ->name('features');
 
-Route::get('/calendar', [CalendarController::class, 'show'])
-    ->name('calendar');
+Route::get('/', [PageController::class, 'index'])->name('welcome');
+Route::get('features', [FeaturesController::class, 'show'])->name('features');
+        
+Route::get('/calendar', [CalendarController::class, 'show'])->name('calendar');
+Route::get('/api/reserved-hours', [CalendarController::class, 'getReservedHours']);
 
-Route::get('/reserve', [ReservationController::class, 'create'])
-    ->name('reserve.create');
-Route::post('/reserve', [ReservationController::class, 'store'])
-    ->name('reserve.store');
+Route::post('/reserve', [ReservationController::class, 'store'])->name('reserve.store');
 
-Route::get('ticket', [TicketController::class, 'show'])
-    ->name('ticket.show');
-Route::post('ticket', [TicketController::class, 'store'])
-    ->name('ticket.store');
+Route::get('ticket', [TicketController::class, 'show'])->name('ticket.show');
+Route::post('ticket', [TicketController::class, 'store'])->name('ticket.store');
+
+Route::get('/reservation', function(){return view('components.booking.reservation');})->name('reservation');
 
 Route::group(['middleware' => ['auth', 'isSuper']], function () {
     Route::resource('roles', RoleController::class);
 });
+
 Route::group(['middleware' => ['auth', 'isAdmin']], routes: function () {
     Route::resource('users', UserController::class);
     Route::resource('products', ProductController::class);

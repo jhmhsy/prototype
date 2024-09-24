@@ -1,7 +1,7 @@
 <header>
     <div
         class="flex-no-wrap fixed top-0 z-10 w-full bg-tint_1 dark:bg-shade_9 flex items-center justify-between px-6 py-4 border-b border-border 
-        dark:bg-darkmode_light dark:border-b-white/50 uppercase ">
+        dark:border-b-white/50 uppercase ">
         <!-- dumbell logo -->
         <div class="flex flex-row mr-13">
             <a href="{{ route('welcome') }}">
@@ -22,8 +22,7 @@
 
         <div class="flex items-center gap-2">
             <!-- Darkmode button icon -->
-            <div role="group" dir="ltr" class="flex items-center justify-center" tabindex="0"
-                style="outline: none;">
+            <div role="group" dir="ltr" class="flex items-center justify-center" tabindex="0" style="outline: none;">
                 <x-custom.darkmode />
             </div>
 

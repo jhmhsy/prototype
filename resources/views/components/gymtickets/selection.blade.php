@@ -1,12 +1,13 @@
 <x-guest-layout>
 
-    <div class="grid md:grid-cols- gap-8 max-w-6xl mx-auto py-12 px-4">
+    <div class="grid md:grid-cols-1 gap-8 max-w-6xl mx-auto py-12 px-4 border rounded-lg">
         <div class="space-y-6">
+
 
             {{-- progress bar--}}
             <div class="flex items-center gap-2">
                 <div class="h-2 flex-1 bg-muted rounded-full">
-                    <div class="cursor-pointer h-2 w-1/3 bg-black rounded-full"></div>
+                    <div class="cursor-pointer h-2 w-1/3 bg-black dark:bg-white rounded-full"></div>
                 </div>
                 <span class="text-sm font-medium">Step 1 of 3</span>
             </div>
