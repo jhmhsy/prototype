@@ -129,3 +129,13 @@
     }
     </style>
 </x-guest-layout>
+
+
+<button
+    class="inline-flex items-center justify-center text-sm font-medium border bg-background h-10 px-4 py-2 bg-green-500 text-white">
+    Living Room
+</button>
+<button
+    class="inline-flex items-center justify-center text-sm font-medium border bg-background h-10 px-4 py-2 border-red-500 text-red-500">
+    Bedroom
+</button>
