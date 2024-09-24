@@ -22,6 +22,7 @@ export default {
             },
 
             colors: {
+                //custom green color shades
                 main: "#0a998f",
                 tint_1: "#e7f5f4",
                 tint_2: "#ceebe9",
@@ -45,17 +46,22 @@ export default {
                 secondary: "#000000",
                 complementary: "#eacc22",
 
-                primary: "#ffffff",
-                secondary: "#e4e6eb",
-                thirdy: "#b0b3b8",
-                darkmode_lessdark: "#3b3d40",
-                darkmode_dark: "#18191a",
-                darkmode_light: "#242526",
-                darkmode_lighter: "#3a3b3c",
-                black: "#000000",
+                // custom color for default darkmode
+                darkmode_dark: "#18191a", //darkmode dark
+                darkmode_light: "#242526", //darkmode light
+                darkmode_lighter: "#3a3b3c", // darkmode lighter
+                darkmode_lighest: "#3b3d40", //darkmode lightest
                 gray_1k: "#7a818c",
-                textblack: "#18191a",
-                textwhite: "#e4e6eb",
+
+                //black,gray, white custom color for textP
+                textwhite: "#ffffff",
+                softgray: "#e6e6e6",
+                subtlegray: "#b3b3b3",
+                basegray: "#808080",
+                shadowgray: "#4d4d4d",
+                charcoalgray: "#555555",
+                textblack: "#000000",
+
                 coolblue: "#2563eb",
             },
             padding: {

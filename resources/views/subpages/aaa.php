@@ -51,95 +51,90 @@
 
 
         <main class="flex-1 grid grid-cols-[70%_30%] gap-4 p-4 sm:p-6">
+
             {{-- Calendar --}}
             <div class="bg-muted rounded-md">
-                <div class="max-h-[85vh]" id="calendar"></div>
-                <script>
-                document.addEventListener('DOMContentLoaded', function() {
-                    var calendarEl = document.getElementById('calendar');
-                    var calendar = new FullCalendar.Calendar(calendarEl, {
-                        initialView: 'dayGridMonth',
-                        headerToolbar: {
-                            left: 'prev,next today',
-                            center: 'title',
-                            right: 'dayGridMonth,timeGridWeek'
-                        },
-                        events: [
-                            @foreach($reservedDetails as $booked) {
-                                title: '{{ $booked->name }}',
-                                start: '{{ \Carbon\Carbon::parse($booked->date . '
-                                ' . $booked->time)->toISOString() }}',
-                                allDay: false
+                <div class="bg-muted rounded-md">
+                    <!-- First div for the calendar -->
+                    <div class="max-h-[85vh] " id="calendar"></div>
+
+
+
+                    <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        var calendarEl = document.getElementById('calendar');
+
+                        var calendar = new FullCalendar.Calendar(calendarEl, {
+                            initialView: 'dayGridMonth',
+                            headerToolbar: {
+                                left: 'prev,next today',
+                                center: 'title',
+                                right: 'dayGridMonth,timeGridWeek'
                             },
-                            @endforeach
-                        ],
-                        dateClick: function(info) {
-                            loadReservedHours(info
-                                .dateStr); // Load reserved hours for the clicked date
-                        }
+
+                            events: [
+                                @foreach($reservedDetails as $booked) {
+                                    title: '{{ $booked->name }}',
+                                    start: '{{ \Carbon\Carbon::parse($booked->date . '
+                                    ' . $booked->time)->toISOString() }}',
+                                    allDay: false
+                                },
+                                @endforeach
+                            ],
+
+                            dateClick: function(info) {
+                                // Call function to load reserved hours for the clicked date
+                                loadReservedHours(info.dateStr);
+                            }
+                        });
+
+                        calendar.render();
                     });
 
-                    calendar.render();
-                });
 
-                function loadReservedHours(date) {
-                    fetch(`/api/reserved-hours?date=${date}`)
-                        .then(response => response.json())
-                        .then(data => {
-                            displayReservedHours(data);
-                        })
-                        .catch(error => console.error('Error fetching reserved hours:', error));
-                }
-
-                function displayReservedHours(reservedHours) {
-                    var hourDetailsDiv = document.getElementById('hourDetails');
-                    hourDetailsDiv.innerHTML = ''; // Clear previous content
-
-
-                    // Generate times from 7 AM to 9 PM
-                    const allTimes = [];
-                    for (let hour = 7; hour <= 21; hour++) {
-                        const time = (hour % 12 || 12) + ':00 ' + (hour < 12 ? 'AM' : 'PM');
-                        allTimes.push(time);
+                    function loadReservedHours(date) {
+                        // Make an AJAX request to fetch reserved hours for the selected date
+                        fetch(`/api/reserved-hours?date=${date}`)
+                            .then(response => response.json())
+                            .then(data => {
+                                console.log(data); // Check the response in the browser console
+                                displayReservedHours(data);
+                            })
+                            .catch(error => console.error('Error fetching reserved hours:', error));
                     }
 
-                    // Create a list to display reserved hours
-                    var list = document.createElement('ul');
-                    list.className = 'flex flex-col grid grid-cols-2 gap-2 p-0 m-0';
 
+                    function displayReservedHours(reservedHours) {
+                        var hourDetailsDiv = document.getElementById('hourDetails');
+                        hourDetailsDiv.innerHTML = ''; // Clear previous content
 
-                    allTimes.forEach(time => {
-                        var listItem = document.createElement('button');
-                        listItem.textContent = time; // Display the time
-                        listItem.style.width = '100%';
-                        listItem.style.padding = '6px';
-                        listItem.style.borderRadius = '4px';
-
-
-                        // Check if the time is reserved
-                        if (reservedHours.includes(time)) {
-                            listItem.className =
-                                'pointer-events-none select-none inline-flex items-center justify-center text-sm font-medium border bg-background h-10 px-4 py-2 bg-red-500 text-white';
-                        } else {
-                            listItem.className =
-                                'select-none inline-flex items-center justify-center text-sm font-medium border bg-background h-10 px-4 py-2 border-green-500 text-black hover:bg-green-500 active:bg-green-600';
-
+                        if (reservedHours.length === 0) {
+                            hourDetailsDiv.innerHTML = '<p>No hours reserved for this day.</p>';
+                            return;
                         }
 
-                        list.appendChild(listItem);
-                    });
+                        // Create a list to display reserved hours
+                        var list = document.createElement('ul');
+                        reservedHours.forEach(hour => {
+                            var listItem = document.createElement('li');
+                            listItem.textContent = hour; // Display reserved hour
+                            list.appendChild(listItem);
+                        });
+                        hourDetailsDiv.appendChild(list);
+                    }
+                    </script>
+                </div>
 
-                    hourDetailsDiv.appendChild(list);
-                }
-                </script>
+
+
             </div>
 
-            {{-- Hours --}}
+            {{-- Hours--}}
             <div class="bg-muted rounded-md p-4">
                 <div class="grid gap-2">
                     <div class="flex items-center justify-between">
                         <div class="font-medium">Available Hours</div>
-                        <div id="selectedDate" class="text-sm text-muted-foreground"></div>
+                        <div class="text-sm text-muted-foreground">Monday, April 24, 2023</div>
                     </div>
                     <div class="grid grid-cols-1 gap-2">
                         <!-- Second div for showing reserved hour details -->
@@ -148,7 +143,6 @@
                 </div>
             </div>
         </main>
-
     </div>
 
     <style>
@@ -158,10 +152,12 @@
 
     .fc-day:hover {
         background-color: seagreen;
+
     }
 
     .fc-day:active {
         background-color: darkgreen;
+
     }
     </style>
 </x-guest-layout>

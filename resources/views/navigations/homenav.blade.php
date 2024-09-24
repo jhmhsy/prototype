@@ -7,9 +7,6 @@
     {{ __('Reservation') }}
 </x-forms.nav-link>
 
-<x-forms.nav-link :href="route('reserve.create')" :active="request()->routeIs('reserve')">
-    {{ __('Book') }}
-</x-forms.nav-link>
 <x-forms.nav-link :href="route('calendar')" :active="request()->routeIs('calendar')">
     {{ __('Calendar') }}
 </x-forms.nav-link>
