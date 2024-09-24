@@ -3,23 +3,11 @@
 @tailwind utilities;
 /* Custom CSS */
 .activeLink {
-    @apply border-main text-main;
-}
-
-@media (prefers-color-scheme: dark) {
-    .activeLink {
-        @apply border-main;
-    }
+    @apply border-main text-main ;
 }
 
 .inactiveLink {
-    @apply text-shade_9;
-}
-
-@media (prefers-color-scheme: dark) {
-    .inactiveLink {
-        @apply text-shade_9;
-    }
+    @apply text-shade_9 dark:border-shade_9;
 }
 
 /*.inactiveLink:hover {

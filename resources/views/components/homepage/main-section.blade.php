@@ -49,21 +49,13 @@
                     <p>Easily manage your membership details and billing information.</p>
                 </div>
             </div>
-
-
-
-
-
         </div>
     </div>
     <div class="flex justify-center space-x-2 my-5 bg-tint_1 dark:bg-shade_9">
-        <x-forms.reverse-nav-link class="" :href="route('reservation')" :active="request()->routeIs('reservation')"
-            class="px-20 border border-main/20">
+        <x-custom.primary-button type="button" onclick="window.location.href = '{{ route('ticket.show') }}'">
             Book Now
-        </x-forms.reverse-nav-link>
-
-
-        <x-forms.reverse-nav-link href="#equipment-section" :active="request()->routeIs('reservation')"
+        </x-custom.primary-button>
+        <x-custom.primary-button type="button" onclick="window.location.href = '#equipment-section'" :active="request()->routeIs('reservation')"
             class="px-20 space-x-1 border border-main/20 text-white">
             <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor"
                 class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
@@ -74,12 +66,9 @@
             </svg>
             <p>Learn More</p>
 
-        </x-forms.reverse-nav-link>
+        </x-custom.primary-button>
 
-        <x-forms.reverse-nav-link :href="route('ticket.show')" :active="request()->routeIs('ticket.show')"
-            class="px-20">
-            Purchase ticket
-        </x-forms.reverse-nav-link>
+        
     </div>
 </section>
 
