@@ -51,10 +51,12 @@
         </div>
     </div>
     <div class="flex justify-center space-x-2 my-5">
-        <x-custom.primary-button class="dark:hover:text-white" type="button" onclick="window.location.href = '{{ route('ticket.show') }}'">
+        <x-custom.primary-button class="dark:hover:text-white" type="button"
+            onclick="window.location.href = '{{ route('ticket.show') }}'">
             Book Now
         </x-custom.primary-button>
-        <x-custom.primary-button type="button" onclick="window.location.href = '#equipment-section'" :active="request()->routeIs('reservation')"
+        <x-custom.primary-button type="button" onclick="window.location.href = '#equipment-section'"
+            :active="request()->routeIs('reservation')"
             class="px-20 space-x-1 border border-main/20 text-white dark:hover:text-white">
             <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor"
                 class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
@@ -68,4 +70,33 @@
     </div>
 </section>
 
-</div>
+<section x-data="{ currentImage: '/images/public/background-1.jpg', selectedButton: 1 }"
+    class="flex flex-col md:flex-row items-center justify-center p-8 bg-black text-textwhite">
+
+    <div class="w-full md:w-1/1 xl:w-1/2 p-4">
+        <img :src="currentImage" alt="Gym" class="sm:w-lg lg:w-full h-auto rounded-md" />
+    </div>
+
+    <div class="w-full md:w-1/2 p-4 space-y-8">
+        <button @click="currentImage = '/images/public/background-1.jpg'; selectedButton = 1"
+            :class="{'border-l-4 border-white': selectedButton === 1}" class="text-left w-full  p-4">
+            <h2 class="sm:text-lg md:text-1xl lg:text-3xl xl:text-5xl font-bold">Personal Training</h2>
+            <p class="sm:text-sm md:text-xl xl:text-2xl">Get personalized training sessions with our expert trainers.
+            </p>
+        </button>
+
+        <button @click="currentImage = '/images/public/background-2.jpg'; selectedButton = 2"
+            :class="{'border-l-4 border-white': selectedButton === 2}" class="text-left w-full p-4 ">
+            <h2 class="sm:text-lg md:text-1xl lg:text-3xl xl:text-5xl font-bold">Group Classes</h2>
+            <p class="sm:text-sm md:text-xl xl:text-2xl">Join our group classes and stay motivated with others.</p>
+        </button>
+
+
+
+        <button @click="currentImage = '/images/public/background-3.jpg'; selectedButton = 3"
+            :class="{'border-l-4 border-white': selectedButton === 3}" class="text-left w-full  p-4">
+            <h2 class="sm:text-lg md:text-1xl lg:text-3xl xl:text-5xl font-bold">State-of-the-Art Equipment</h2>
+            <p class="sm:text-sm md:text-xl xl:text-2xl">Access the latest and best equipment for your workouts.</p>
+        </button>
+    </div>
+</section>

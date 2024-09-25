@@ -2,7 +2,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <body class="bg-tint_1 dark:bg-shade_9">
-        <div class="bg-tint_1 flex flex-col min-h-screen dark:bg-shade_9">
+        <div class="bg-tint_1 flex flex-col min-h-screen dark:bg-shade_9 min-w-[600px]">
             <!-- Header sections--->
             <header id="header-section"
                 class="transition-transform duration-150 ease-in-out dark:bg-shade_8 dark:text-textwhite">
@@ -15,15 +15,17 @@
                 <x-homepage.main-section />
             </main>
             <!-- equipment sections-->
-            <div id="equipment-section"
-                class=" text-shade_9 dark:text-tint_1 equipment-section-style">
+            <div id="equipment-section" class=" text-shade_9 dark:text-tint_1 equipment-section-style">
                 <x-homepage.equipment-section />
             </div>
             <!-- pricing sections-->
-            <div id="pricing-section"
-                class="bg-tint_1 dark:bg-shade_9 ">
+            <div id="pricing-section" class="bg-tint_1 dark:bg-shade_9 ">
                 <div class="overlay"></div>
                 <x-homepage.pricing-section />
+            </div>
+
+            <div class=" text-shade_9 dark:text-tint_1 equipment-section-style">
+                <x-homepage.feedback-section />
             </div>
             <!-- Footer sections-->
             <footer id="footer-section" class="bg-white/90">
@@ -32,35 +34,35 @@
         </div>
     </body>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Function to update active link
-            function updateActiveLink() {
-                // Remove active class from all links and add inactive class
-                document.querySelectorAll('a').forEach(link => {
-                    const href = link.getAttribute('href');
-                    if (href !== '/' && href !== '/#') {
-                        link.classList.remove('activeLink');
-                        link.classList.add('inactiveLink');
-                    }
-                });
+    document.addEventListener('DOMContentLoaded', function() {
+        // Function to update active link
+        function updateActiveLink() {
+            // Remove active class from all links and add inactive class
+            document.querySelectorAll('a').forEach(link => {
+                const href = link.getAttribute('href');
+                if (href !== '/' && href !== '/#') {
+                    link.classList.remove('activeLink');
+                    link.classList.add('inactiveLink');
+                }
+            });
 
-                // Add active class to the current link and remove inactive class
-                const currentHash = window.location.hash;
-                if (currentHash && currentHash !== '#/') {
-                    const activeLink = document.querySelector(
-                        `a[href="${currentHash}"], a[href="/${currentHash}"]`);
-                    if (activeLink) {
-                        activeLink.classList.add('activeLink');
-                        activeLink.classList.remove('inactiveLink');
-                    }
+            // Add active class to the current link and remove inactive class
+            const currentHash = window.location.hash;
+            if (currentHash && currentHash !== '#/') {
+                const activeLink = document.querySelector(
+                    `a[href="${currentHash}"], a[href="/${currentHash}"]`);
+                if (activeLink) {
+                    activeLink.classList.add('activeLink');
+                    activeLink.classList.remove('inactiveLink');
                 }
             }
+        }
 
-            // Update active link on page load
-            updateActiveLink();
+        // Update active link on page load
+        updateActiveLink();
 
-            // Update active link on hash change
-            window.addEventListener('hashchange', updateActiveLink);
-        });
+        // Update active link on hash change
+        window.addEventListener('hashchange', updateActiveLink);
+    });
     </script>
 </x-guest-layout>
