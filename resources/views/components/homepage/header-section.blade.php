@@ -1,5 +1,6 @@
 <header>
-    <div class="flex-no-wrap fixed top-0 z-10 w-full bg-tint_1 dark:bg-shade_9 flex items-center justify-between px-6 py-4 border-b border-border dark:border-b-white/50 uppercase">
+    <div
+        class="flex-no-wrap fixed top-0 z-10 w-full bg-tint_1 dark:bg-shade_9 flex items-center justify-between px-6 py-4 border-b border-border dark:border-b-white/50 uppercase">
         <div class="flex flex-row mr-13">
             <a href="{{ route('welcome') }}" class="logo">
                 <x-custom.application-logo />
@@ -35,17 +36,17 @@
 </header>
 
 <script>
-    let lastScrollTop = 0;
-    const navbar = document.querySelector('header > div');
+let lastScrollTop = 0;
+const navbar = document.querySelector('header > div');
 
-    window.addEventListener('scroll', function() {
-        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+window.addEventListener('scroll', function() {
+    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
-        if (scrollTop > lastScrollTop) {
-            navbar.classList.add('collapsed');
-        } else {
-            navbar.classList.remove('collapsed');
-        }
-        lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
-    });
+    if (scrollTop > lastScrollTop) {
+        navbar.classList.add('collapsed');
+    } else {
+        navbar.classList.remove('collapsed');
+    }
+    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+});
 </script>

@@ -27,6 +27,8 @@ Route::get('features', [FeaturesController::class, 'show'])->name('features');
         
 Route::get('/calendar', [CalendarController::class, 'show'])->name('calendar');
 Route::get('/api/reserved-hours', [CalendarController::class, 'getReservedHours']);
+Route::get('/booking-status', 'CalendarController@getBookingStatus');
+
 
 Route::post('/reserve', [ReservationController::class, 'store'])->name('reserve.store');
 
