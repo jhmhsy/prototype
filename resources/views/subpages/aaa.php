@@ -106,42 +106,29 @@
 
                 // Create events based on the count
                 var events = Object.values(reservedDates).map(function(reservation) {
-                    // Determine colors and styles based on count
+                    // Determine color based on count
                     var color;
-                    var textc = 'white'; // Default text color
-                    var border = 'none'; // Default border
-                    var title;
-
                     if (reservation.count === totalReservations) {
-                        title = 'Full'; // Set title to "Full" if all reservations are taken
                         color = '#ff3333'; // Full reservations
-                        textc = 'white';
                     } else if (reservation.count >= 10) {
-                        title = 'Almost Full'; // Set title to "Almost Full" for orange
                         color = '#ff7133'; // More than half
-                        textc = 'white';
                     } else if (reservation.count >= 7) {
-                        title = 'Available'; // Set title to "Available" for yellow
                         color = 'yellow'; // More than half
-                        textc = 'black';
                     } else {
-                        title = 'Open'; // Set title to "Open" for green
                         color = '#66ff73'; // Default color
-                        textc = 'black';
                     }
 
                     return {
-                        title: title, // Use the updated title
+                        title: reservation.title,
                         start: reservation.start,
                         allDay: reservation.allDay,
                         backgroundColor: color, // Set background color
-                        textColor: textc, // Set text color
-                        borderColor: border, // Set border color
-                        editable: true // Allow event to be editable
+                        textColor: 'black', // Set text color to black for better contrast
+                        extendedProps: {
+                            padding: '5px'
+                        } // Add custom padding property
                     };
                 });
-
-
 
                 var calendar = new FullCalendar.Calendar(calendarEl, {
                     initialView: 'dayGridMonth',
@@ -153,15 +140,7 @@
                     events: events,
                     dateClick: function(info) {
                         loadReservedHours(info.dateStr); // Load reserved hours for the clicked date
-                    },
-                    //when the label is clicked, the date is also clicked
-                    eventDidMount: function(info) {
-                        info.el.addEventListener('click', function() {
-                            loadReservedHours(info.event
-                                .startStr);
-                        });
                     }
-
                 });
 
                 calendar.render();
@@ -183,7 +162,7 @@
                 hourDetailsDiv.innerHTML = ''; // Clear previous content
 
 
-                // Generate hours from 7 AM to 9 PM business hours
+                // Generate times from 7 AM to 9 PM
                 const allTimes = [];
                 for (let hour = 7; hour <= 20; hour++) {
                     const time = (hour % 12 || 12) + ':00 ' + (hour < 12 ? 'AM' : 'PM');
@@ -197,15 +176,16 @@
 
                 allTimes.forEach(time => {
                     var listItem = document.createElement('button');
-                    listItem.textContent = time;
-                    listItem.className = 'w-100% p-6px';
+                    listItem.textContent = time; // Display the time
+                    listItem.style.width = '100%';
+                    listItem.style.padding = '6px';
                     listItem.style.borderRadius = '4px';
 
 
                     // Check if the time is reserved
                     if (reservedHours.includes(time)) {
                         listItem.className =
-                            'pointer-events-none select-none inline-flex items-center justify-center text-sm font-medium border bg-background h-10 px-4 py-2 line-through bg-red-500 border text-black';
+                            'pointer-events-none select-none inline-flex items-center justify-center text-sm font-medium border bg-background h-10 px-4 py-2 bg-red-500 text-white';
                     } else {
                         listItem.className =
                             'select-none inline-flex items-center justify-center text-sm font-medium border bg-background h-10 px-4 py-2 border-green-500 text-black hover:bg-green-500 active:bg-green-600';
@@ -233,17 +213,6 @@
 
     .fc-day:active {
         background-color: darkgreen;
-    }
-
-    .fc-event {
-        transition: background-color 0.3s;
-    }
-
-    .fc-event:hover {
-        cursor: pointer;
-        z-index: 0;
-        background-color: violet;
-
     }
     </style>
 </x-guest-layout>
