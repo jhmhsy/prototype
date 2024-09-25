@@ -1,7 +1,16 @@
 <x-guest-layout>
 
-    <div class="flex flex-col min-h-screen">
+    <div class="flex flex-col min-h-screen min-w-[600px]">
         <header class="bg-background border-b flex items-center justify-between px-4 py-3 sm:px-6">
+            <x-custom.nav-link href="{{ route('welcome') }}" class="px-5 text-sm font-medium  underline-offset-4">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="h-5 w-5">
+                    <path d="m12 19-7-7 7-7"></path>
+                    <path d="M19 12H5"></path>
+                </svg>
+                back
+            </x-custom.nav-link>
 
             {{-- search bar--}}
             <div class="flex items-center gap-4 w-full ">
@@ -13,7 +22,10 @@
                         <path d="m21 21-4.3-4.3"></path>
                     </svg>
                     <input
-                        class="flex h-10 border border-input px-3 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 pl-10 pr-4 py-3 rounded-md w-full bg-muted focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary sm:w-[400px] md:w-[500px] lg:w-[600px]"
+                        class="flex h-10 border border-input px-3 text-sm ring-offset-background file:border-0 
+                        file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground 
+                        focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring 
+                        focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 pl-10 pr-4 py-3 rounded-md w-full bg-muted focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary sm:w-[400px] md:w-[500px] lg:w-[600px]"
                         placeholder="Search..." type="search" />
                 </div>
             </div>
@@ -50,92 +62,15 @@
         </header>
 
 
-        <main class="flex-1 grid grid-cols-[70%_30%] gap-4 p-4 sm:p-6">
+        <main class="flex-1 grid lg:grid-cols-10 gap-8 p-4 sm:p-6">
             {{-- Calendar --}}
-            <div class="bg-muted rounded-md">
+            <div class="bg-muted lg:col-span-7 sm:col-span-10 rounded-md">
                 <div class="max-h-[85vh]" id="calendar"></div>
-                <script>
-                document.addEventListener('DOMContentLoaded', function() {
-                    var calendarEl = document.getElementById('calendar');
-                    var calendar = new FullCalendar.Calendar(calendarEl, {
-                        initialView: 'dayGridMonth',
-                        headerToolbar: {
-                            left: 'prev,next today',
-                            center: 'title',
-                            right: 'dayGridMonth,timeGridWeek'
-                        },
-                        events: [
-                            @foreach($reservedDetails as $booked) {
-                                title: '{{ $booked->name }}',
-                                start: '{{ \Carbon\Carbon::parse($booked->date . '
-                                ' . $booked->time)->toISOString() }}',
-                                allDay: false
-                            },
-                            @endforeach
-                        ],
-                        dateClick: function(info) {
-                            loadReservedHours(info
-                                .dateStr); // Load reserved hours for the clicked date
-                        }
-                    });
 
-                    calendar.render();
-                });
-
-                function loadReservedHours(date) {
-                    fetch(`/api/reserved-hours?date=${date}`)
-                        .then(response => response.json())
-                        .then(data => {
-                            displayReservedHours(data);
-                        })
-                        .catch(error => console.error('Error fetching reserved hours:', error));
-                }
-
-                function displayReservedHours(reservedHours) {
-                    var hourDetailsDiv = document.getElementById('hourDetails');
-                    hourDetailsDiv.innerHTML = ''; // Clear previous content
-
-
-                    // Generate times from 7 AM to 9 PM
-                    const allTimes = [];
-                    for (let hour = 7; hour <= 21; hour++) {
-                        const time = (hour % 12 || 12) + ':00 ' + (hour < 12 ? 'AM' : 'PM');
-                        allTimes.push(time);
-                    }
-
-                    // Create a list to display reserved hours
-                    var list = document.createElement('ul');
-                    list.className = 'flex flex-col grid grid-cols-2 gap-2 p-0 m-0';
-
-
-                    allTimes.forEach(time => {
-                        var listItem = document.createElement('button');
-                        listItem.textContent = time; // Display the time
-                        listItem.style.width = '100%';
-                        listItem.style.padding = '6px';
-                        listItem.style.borderRadius = '4px';
-
-
-                        // Check if the time is reserved
-                        if (reservedHours.includes(time)) {
-                            listItem.className =
-                                'pointer-events-none select-none inline-flex items-center justify-center text-sm font-medium border bg-background h-10 px-4 py-2 bg-red-500 text-white';
-                        } else {
-                            listItem.className =
-                                'select-none inline-flex items-center justify-center text-sm font-medium border bg-background h-10 px-4 py-2 border-green-500 text-black hover:bg-green-500 active:bg-green-600';
-
-                        }
-
-                        list.appendChild(listItem);
-                    });
-
-                    hourDetailsDiv.appendChild(list);
-                }
-                </script>
             </div>
 
             {{-- Hours --}}
-            <div class="bg-muted rounded-md p-4">
+            <div class="bg-muted lg:col-span-3 sm:col-span-10 rounded-md">
                 <div class="grid gap-2">
                     <div class="flex items-center justify-between">
                         <div class="font-medium">Available Hours</div>
@@ -147,6 +82,142 @@
                     </div>
                 </div>
             </div>
+
+            <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                var calendarEl = document.getElementById('calendar');
+
+                // Group reservations by date
+                var reservedDates = {};
+                var totalReservations = 14; // Adjust this to your actual total reservation count
+
+                @foreach($reservedDetails as $booked)
+                var dateKey = '{{ \Carbon\Carbon::parse($booked->date)->toISOString() }}';
+                if (!reservedDates[dateKey]) {
+                    reservedDates[dateKey] = {
+                        count: 0, // Initialize count for each date
+                        title: 'Reserved',
+                        start: dateKey,
+                        allDay: true // Set to true to indicate it's an all-day event
+                    };
+                }
+                reservedDates[dateKey].count++; // Increment the count for that date
+                @endforeach
+
+                // Create events based on the count
+                var events = Object.values(reservedDates).map(function(reservation) {
+                    // Determine colors and styles based on count
+                    var color;
+                    var textc = 'white'; // Default text color
+                    var border = 'none'; // Default border
+                    var title;
+
+                    if (reservation.count === totalReservations) {
+                        title = 'Full'; // Set title to "Full" if all reservations are taken
+                        color = '#ff3333'; // Full reservations
+                        textc = 'white';
+                    } else if (reservation.count >= 10) {
+                        title = 'Almost Full'; // Set title to "Almost Full" for orange
+                        color = '#ff7133'; // More than half
+                        textc = 'white';
+                    } else if (reservation.count >= 7) {
+                        title = 'Available'; // Set title to "Available" for yellow
+                        color = 'yellow'; // More than half
+                        textc = 'black';
+                    } else {
+                        title = 'Open'; // Set title to "Open" for green
+                        color = '#66ff73'; // Default color
+                        textc = 'black';
+                    }
+
+                    return {
+                        title: title, // Use the updated title
+                        start: reservation.start,
+                        allDay: reservation.allDay,
+                        backgroundColor: color, // Set background color
+                        textColor: textc, // Set text color
+                        borderColor: border, // Set border color
+                        editable: true // Allow event to be editable
+                    };
+                });
+
+
+
+                var calendar = new FullCalendar.Calendar(calendarEl, {
+                    initialView: 'dayGridMonth',
+                    headerToolbar: {
+                        left: 'prev,today,next',
+                        center: 'title',
+                        right: 'dayGridMonth,timeGridWeek'
+                    },
+                    events: events,
+                    dateClick: function(info) {
+                        loadReservedHours(info.dateStr); // Load reserved hours for the clicked date
+                    },
+                    //when the label is clicked, the date is also clicked
+                    eventDidMount: function(info) {
+                        info.el.addEventListener('click', function() {
+                            loadReservedHours(info.event
+                                .startStr);
+                        });
+                    }
+
+                });
+
+                calendar.render();
+            });
+
+
+
+            function loadReservedHours(date) {
+                fetch(`/api/reserved-hours?date=${date}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        displayReservedHours(data);
+                    })
+                    .catch(error => console.error('Error fetching reserved hours:', error));
+            }
+
+            function displayReservedHours(reservedHours) {
+                var hourDetailsDiv = document.getElementById('hourDetails');
+                hourDetailsDiv.innerHTML = ''; // Clear previous content
+
+
+                // Generate hours from 7 AM to 9 PM business hours
+                const allTimes = [];
+                for (let hour = 7; hour <= 20; hour++) {
+                    const time = (hour % 12 || 12) + ':00 ' + (hour < 12 ? 'AM' : 'PM');
+                    allTimes.push(time);
+                }
+
+                // Create a list to display reserved hours
+                var list = document.createElement('ul');
+                list.className = 'flex flex-col grid grid-cols-2 gap-2 p-0 m-0';
+
+
+                allTimes.forEach(time => {
+                    var listItem = document.createElement('button');
+                    listItem.textContent = time;
+                    listItem.className = 'w-100% p-6px';
+                    listItem.style.borderRadius = '4px';
+
+
+                    // Check if the time is reserved
+                    if (reservedHours.includes(time)) {
+                        listItem.className =
+                            'pointer-events-none select-none inline-flex items-center justify-center text-sm font-medium border bg-background h-10 px-4 py-2 line-through bg-red-500 border text-black';
+                    } else {
+                        listItem.className =
+                            'select-none inline-flex items-center justify-center text-sm font-medium border bg-background h-10 px-4 py-2 border-green-500 text-black hover:bg-green-500 active:bg-green-600';
+
+                    }
+
+                    list.appendChild(listItem);
+                });
+
+                hourDetailsDiv.appendChild(list);
+            }
+            </script>
         </main>
 
     </div>
@@ -162,6 +233,17 @@
 
     .fc-day:active {
         background-color: darkgreen;
+    }
+
+    .fc-event {
+        transition: background-color 0.3s;
+    }
+
+    .fc-event:hover {
+        cursor: pointer;
+        z-index: 0;
+        background-color: violet;
+
     }
     </style>
 </x-guest-layout>
