@@ -16,12 +16,12 @@
             </main>
             <!-- equipment sections-->
             <div id="equipment-section"
-                class="bg-gradient-to-r from-[#0a998f] to-[#9dd6d2] text-shade_9 dark:text-tint_1">
+                class=" text-shade_9 dark:text-tint_1 equipment-section-style">
                 <x-homepage.equipment-section />
             </div>
             <!-- pricing sections-->
             <div id="pricing-section"
-                class="bg-tint_1 dark:bg-shade_9">
+                class="bg-tint_1 dark:bg-shade_9 ">
                 <div class="overlay"></div>
                 <x-homepage.pricing-section />
             </div>

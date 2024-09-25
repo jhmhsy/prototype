@@ -67,7 +67,8 @@ header > div {
 .flip-card:hover .flip-card-inner {
     transform: rotateY(180deg);
 }
-.flip-card-back, .flip-card-front {
+.flip-card-back,
+.flip-card-front {
     width: 100%;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
@@ -77,19 +78,24 @@ header > div {
 }
 .dark-overlay {
     position: absolute; /* Position the overlay absolutely within the main section */
-    top: 0;            /* Align to the top */
-    left: 0;           /* Align to the left */
-    right: 0;          /* Stretch to the right */
-    bottom: 0;         /* Stretch to the bottom */
+    top: 0; /* Align to the top */
+    left: 0; /* Align to the left */
+    right: 0; /* Stretch to the right */
+    bottom: 0; /* Stretch to the bottom */
     background-color: rgba(0, 0, 0, 0.5); /* Black color with 50% opacity */
-    z-index: 1;       /* Make sure the overlay is above the background */
+    z-index: 1; /* Make sure the overlay is above the background */
 }
 /* aaaaaaaaaaaaaaaaaaaaaaaaa */
 .glass {
-    background: rgba(255, 255, 255, 0.1); /* White background with transparency */
+    background: rgba(
+        255,
+        255,
+        255,
+        0.1
+    ); /* White background with transparency */
     backdrop-filter: blur(5px); /* Increased blur effect */
     border-radius: 15px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 #main-section {
     position: relative;
@@ -97,7 +103,7 @@ header > div {
 }
 
 #main-section .overlay {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
@@ -107,3 +113,38 @@ header > div {
     z-index: -1; /* Ensure the overlay is behind the content */
     pointer-events: none; /* Allow clicks to pass through the overlay */
 }
+
+.equipment-section-style {
+    position: relative;
+    padding: 4em 0 2em 0;
+    background-image: url("images/hurhur/overlay.png"),
+        url("images/hurhur/header.svg"),
+        linear-gradient(75deg, #0a998f 15%, #22a39a 55%);
+    background-color: #e7f5f4; /* or choose another tint/shade */
+    background-size: 100% 620%;
+    background-repeat: repeat;
+    background-size: 128px 128px, 100% 100%, auto;
+}
+@layer utilities {
+    .dark .equipment-section-style {
+        position: relative;
+        padding: 4em 0 2em 0;
+        background-image: url("images/hurhur/overlay.png"),
+            url("images/hurhur/header.svg"),
+            linear-gradient(75deg, #032e2b 15%, #043d39 55%);
+        background-color: #010f0e; /* Darker mode background color */
+        background-size: 100% 620%;
+        background-repeat: repeat;
+        background-size: 128px 128px, 100% 100%, auto;
+    }
+}
+/* 
+position: relative;
+    padding: 4em 0 2em 0;
+    background-image: url("images/hurhur/header.svg"),
+        url("images/hurhur/overlay.png"),
+        linear-gradient(75deg, #0a998f 15%, #087a72 55%);
+    background-color: #0a998f;
+    background-size: 100% 620%;
+    background-size: 128px 128px, 100% 620%, auto;
+    background-repeat: repeat, no-repeat, no-repeat; */
