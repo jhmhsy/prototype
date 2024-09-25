@@ -2,16 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
-#main-section {
-    background-image: main_bg_image; /* Replace with your image URL */
-    background-size: cover; /* Ensures the image covers the entire section */
-    background-position: center; /* Centers the image */
-    height: 100vh; /* Makes the section full height of the viewport */
-    color: white; /* Text color for visibility */
-    display: flex; /* Centers the content */
-    flex-direction: column; /* Aligns items vertically */
-    justify-content: center; /* Centers vertically */
-    align-items: center; /* Centers horizontally */
+header > div {
+    transition: height 3s ease-in-out, padding 0.3s ease-in-out, font-size 0.5s ease-in-out;
+}
+.collapsed {
+    height: 50px; /* Adjust height for collapsed state */
+    padding: 2px 6px; /* Adjust padding */
+}
+
+.collapsed .text, 
+.collapsed .logo, 
+.collapsed .darkmode {
+    font-size: 0.8em; /* Minimize text size */
+    transition: font-size 0.3s ease; /* Smooth transition for font size */
 }
 /* Custom CSS */
 @keyframes fadeOut {

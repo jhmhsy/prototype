@@ -3,7 +3,7 @@
     <body class="bg-tint_1 dark:bg-shade_9">
         <div class="flex flex-col min-h-screen bg-tint_1 dark:bg-shade_9">
             <!-- Header sections--->
-            <header id="header-section" class="dark:bg-shade_8 dark:text-textwhite">
+            <header c id="header-section" class="transition-transform duration-150 ease-in-out dark:bg-shade_8 dark:text-textwhite">
                 <x-homepage.header-section />
             </header>
 
