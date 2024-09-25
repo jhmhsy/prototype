@@ -116,7 +116,6 @@ header > div {
 
 .equipment-section-style {
     position: relative;
-    padding: 4em 0 2em 0;
     background-image: url("images/hurhur/overlay.png"),
         url("images/hurhur/header.svg"),
         linear-gradient(75deg, #0a998f 15%, #22a39a 55%);

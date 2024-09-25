@@ -1,5 +1,5 @@
 <div
-    class="w-full sm:px-4 md:px-6 lg:px-8 py-12 md:py-20 lg:py-24 grid gap-5 md:gap-7 text-textblack dark:text-textwhite">
+    class="w-full sm:px-4 md:px-6 lg:px-8 py-8 md:py-10 lg:py-15 grid gap-5 md:gap-7 text-textblack dark:text-textwhite">
     <h1 class="px-5 sm:px-6 md:px-8 text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">
         We Provide
     </h1>
