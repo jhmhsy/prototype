@@ -60,6 +60,7 @@ export default {
                 basegray: "#808080",
                 shadowgray: "#4d4d4d",
                 charcoalgray: "#555555",
+                darkgray: "#1c1c1c",
                 textblack: "#000000",
 
                 coolblue: "#2563eb",

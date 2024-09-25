@@ -49,12 +49,8 @@
                     <p>Easily manage your membership details and billing information.</p>
                 </div>
             </div>
-
-
-
-
-
         </div>
+
     </div>
     <div class="flex justify-center space-x-2 my-5 bg-tint_1 dark:bg-shade_9">
         <x-forms.reverse-nav-link class="" :href="route('reservation')" :active="request()->routeIs('reservation')"
