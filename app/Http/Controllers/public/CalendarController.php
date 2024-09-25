@@ -25,4 +25,6 @@ class CalendarController extends Controller
         
         return response()->json($reservedHours);
     }
+
+    
 }

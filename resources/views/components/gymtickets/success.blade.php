@@ -1,4 +1,21 @@
 <x-guest-layout>
+    <header class=" xl:absolute bg-background pt-4 ">
+        <div class="container mx-auto flex items-center justify-between px-4 md:px-6">
+            <a href="{{ route('welcome') }}"
+                class="inline-flex h-8 items-center justify-center rounded-md border border-input bg-background 
+                    px-4 text-sm font-medium shadow-sm transition-colors hover:bg-accent hover:text-accent-foreground 
+                    focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="mr-2 h-4 w-4">
+                    <path d="m12 19-7-7 7-7"></path>
+                    <path d="M19 12H5"></path>
+                </svg>
+                Back
+            </a>
+        </div>
+    </header>
+
 
     <div class="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto py-12 px-4">
         <div class="grid md:grid-cols-1 border rounded-lg  mx-auto py-12 px-4">
