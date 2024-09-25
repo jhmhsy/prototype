@@ -1,5 +1,6 @@
 <div class="relative flex flex-col justify-center items-center py-10 md:py-12 lg:py-20 dark:text-shade_9">
-    <div class="flex flex-col items-center">
+    <div
+        class="flex flex-col items-center bg-shade_1 bg-opacity-10 backdrop-blur-md p-5 rounded-md shadow-lg border border-white/20">
         <h1 class="text-tint_1 text-5xl tracking-tighter">
             Pricing plan
         </h1><br>
@@ -7,6 +8,7 @@
             Choose the plan that fits your fitness goals and lifestyle.
         </p>
     </div>
+
 
     <div class="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 lg:gap-12 max-w-6xl w-full px-4 md:px-6 lg:px-8">
 

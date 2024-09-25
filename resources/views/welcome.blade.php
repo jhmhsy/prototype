@@ -19,7 +19,9 @@
                 <x-homepage.equipment-section />
             </div>
             <!-- pricing sections-->
-            <div id="pricing-section" class="bg-tint_1 dark:bg-shade_9 ">
+            <div id="pricing-section"
+                class="bg-tint_1 dark:bg-shade_9 relative bg-[url('https://img.freepik.com/premium-photo/dark-moody-gym-interior-with-heavy-weights-floor-gym-equipment-background_163305-329787.jpg?w=900')] bg-no-repeat bg-cover bg-fixed">
+
                 <div class="overlay"></div>
                 <x-homepage.pricing-section />
             </div>
