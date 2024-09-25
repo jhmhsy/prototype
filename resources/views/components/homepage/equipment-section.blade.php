@@ -1,8 +1,9 @@
-<div class="w-full sm:px-4 md:px-6 lg:px-8 pt-15 py-12 md:py-20 lg:py-24 grid gap-12 md:gap-16 text-textblack dark:text-textwhite">
+<div
+    class="w-full sm:px-4 md:px-6 lg:px-8 py-12 md:py-20 lg:py-24 grid gap-5 md:gap-7 text-textblack dark:text-textwhite">
     <h1 class="px-5 sm:px-6 md:px-8 text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">
         We Provide
     </h1>
-    <section class="px-5 sm:px-6 md:px-8"ection>
+    <section class="px-5 sm:px-6 md:px-8">
         <div class="flex items-center justify-between mb-6 md:mb-8">
             <h2 class="text-2xl md:text-3xl font-bold">Gym Equipments </h2>
             <x-forms.nav-link href="{{ route('features') }}"
@@ -13,7 +14,7 @@
 
         <div class="grid max-w-6xl sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8 lg:gap-10 m-10">
             <div
-                class="bg-muted rounded-lg p-4 md:p-6 flex flex-col items-center text-center bg-primary dark:bg-tint_5 dark:text-shade_9 border group transition-colors duration-300 border/white-10 ">
+                class="hover:-translate-y-6 bg-muted rounded-lg p-4 md:p-6 flex flex-col items-center text-center bg-primary dark:bg-tint_5 dark:text-shade_9 group transition-all duration-300 ease-in-out border/white-10 border border-main">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                     class="w-10 h-10 mb-4 group-hover:text-main">
@@ -40,7 +41,7 @@
                     training.</x-forms.input-p>
             </div>
             <div
-                class="bg-muted rounded-lg p-4 md:p-6 flex flex-col items-center text-center bg-primary dark:bg-tint_5 dark:text-shade_9 border coolblue group transition-colors duration-300 border/white-10 ">
+                class="hover:-translate-y-6 bg-muted rounded-lg p-4 md:p-6 flex flex-col items-center text-center bg-primary dark:bg-tint_5 dark:text-shade_9 group transition-all duration-300 ease-in-out border/white-10 border border-main">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                     class="w-10 h-10 mb-4 group-hover:text-main text-shade_9 ">
@@ -60,7 +61,7 @@
                     cardio.</x-forms.input-p>
             </div>
             <div
-                class="bg-muted rounded-lg p-4 md:p-6 flex flex-col items-center text-center bg-primary dark:bg-tint_5 dark:text-shade_9 border coolblue group transition-colors duration-300 border/white-10 ">
+                class="hover:-translate-y-6 bg-muted rounded-lg p-4 md:p-6 flex flex-col items-center text-center bg-primary dark:bg-tint_5 dark:text-shade_9 group transition-all duration-300 ease-in-out border/white-10 border border-main">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                     class="w-10 h-10 mb-4 group-hover:text-main text-shade_9 ">
@@ -73,7 +74,7 @@
                     stretching.</x-forms.input-p>
             </div>
             <div
-                class="bg-muted rounded-lg p-4 md:p-6 flex flex-col items-center text-center bg-primary dark:bg-tint_5 dark:text-shade_9 border coolblue group transition-colors duration-300 border/white-10 ">
+                class="hover:-translate-y-6 bg-muted rounded-lg p-4 md:p-6 flex flex-col items-center text-center bg-primary dark:bg-tint_5 dark:text-shade_9 group transition-all duration-300 ease-in-out border/white-10 border border-main">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                     class="w-10 h-10 mb-4 group-hover:text-main text-shade_9 ">
@@ -100,10 +101,11 @@
         </div>
         <div class="grid max-w-6xl sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8 lg:gap-10 m-10">
             <div
-                class="bg-muted rounded-lg p-4 md:p-6 flex flex-col items-center text-center bg-primary dark:bg-tint_5 dark:text-shade_9 border coolblue group transition-colors duration-300 border/white-10 ">
+                class="hover:-translate-y-6 bg-muted rounded-lg p-4 md:p-6 flex flex-col items-center text-center bg-primary dark:bg-tint_5 dark:text-shade_9 group transition-all duration-300 ease-in-out border/white-10 border border-main">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="w-10 h-10 mb-4 group-hover:text-main text-shade_9 " class=" transition-colors duration-300">
+                    class="w-10 h-10 mb-4 group-hover:text-main text-shade_9 "
+                    class=" transition-colors duration-300">
                     <path d="m4 4 2.5 2.5" class=" transition-colors duration-300"></path>
                     <path d="M13.5 6.5a4.95 4.95 0 0 0-7 7" class=" transition-colors duration-300"></path>
                     <path d="M15 5 5 15" class=" transition-colors duration-300"></path>
@@ -123,7 +125,7 @@
                     areas.</x-forms.input-p>
             </div>
             <div
-                class="bg-muted rounded-lg p-4 md:p-6 flex flex-col items-center text-center bg-primary dark:bg-tint_5 dark:text-shade_9 border coolblue group transition-colors duration-300 border/white-10 ">
+                class="hover:-translate-y-6 bg-muted rounded-lg p-4 md:p-6 flex flex-col items-center text-center bg-primary dark:bg-tint_5 dark:text-shade_9 group transition-all duration-300 ease-in-out border/white-10 border border-main">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                     stroke-linejoin="round" class="w-10 h-10 mb-4 group-hover:text-main text-shade_9 ">
@@ -144,7 +146,7 @@
                     juices.</x-forms.input-p>
             </div>
             <div
-                class="bg-muted rounded-lg p-4 md:p-6 flex flex-col items-center text-center bg-primary dark:bg-tint_5 dark:text-shade_9 border coolblue group transition-colors duration-300 border/white-10 ">
+                class="hover:-translate-y-6 bg-muted rounded-lg p-4 md:p-6 flex flex-col items-center text-center bg-primary dark:bg-tint_5 dark:text-shade_9 group transition-all duration-300 ease-in-out border/white-10 border border-main">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                     stroke-linejoin="round" class="w-10 h-10 mb-4 group-hover:text-main text-shade_9 ">
@@ -162,7 +164,7 @@
                 </x-forms.input-p>
             </div>
             <div
-                class="bg-muted rounded-lg p-4 md:p-6 flex flex-col items-center text-center bg-primary dark:bg-tint_5 dark:text-shade_9 border coolblue group transition-colors duration-300 border/white-10 ">
+                class="hover:-translate-y-6 bg-muted rounded-lg p-4 md:p-6 flex flex-col items-center text-center bg-primary dark:bg-tint_5 dark:text-shade_9 group transition-all duration-300 ease-in-out border/white-10 border border-main">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                     stroke-linejoin="round" class="w-10 h-10 mb-4 group-hover:text-main text-shade_9 ">

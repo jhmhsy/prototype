@@ -3,51 +3,107 @@
 @tailwind utilities;
 
 header > div {
-    transition: height 3s ease-in-out, padding 0.3s ease-in-out, font-size 0.5s ease-in-out;
+    transition: height 3s ease-in-out, padding 0.3s ease-in-out,
+        font-size 0.5s ease-in-out;
 }
 .collapsed {
     height: 50px; /* Adjust height for collapsed state */
     padding: 2px 6px; /* Adjust padding */
 }
-
-.collapsed .text, 
-.collapsed .logo, 
+.background-f {
+    background-image: url("https://wallpaperaccess.com/full/569754.jpg")
+        no-repeat center center fixed;
+    background-size: cover;
+    height: 100vh;
+    width: 100%;
+}
+.collapsed .text,
+.collapsed .logo,
 .collapsed .darkmode {
     font-size: 0.8em; /* Minimize text size */
     transition: font-size 0.3s ease; /* Smooth transition for font size */
 }
 /* Custom CSS */
 @keyframes fadeOut {
-    from { opacity: 1; }
-    to { opacity: 0; }
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
 }
 @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 .activeLink {
-    @apply border-main text-main ;
+    @apply border-main text-main;
 }
 
 .inactiveLink {
     @apply text-shade_9 dark:border-shade_9;
 }
 
-/*.inactiveLink:hover {
-    @apply border-tint_4;
-}*/
-
-/*.r-activeLink {
-    border-left-width: 4px;
-    border-left-color: #6366f1;
-    color: #3730a3; 
-    background-color: #eef2ff; 
-    outline: none; 
+/* aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa */
+.flip-card {
+    background-color: transparent;
+    perspective: 1000px;
 }
 
-.r-inactiveLink {
-    border-left-width: 4px;
-    border-left-color: transparent;
-    color: #4b5563; 
-}*/
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+.flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+}
+.flip-card-back, .flip-card-front {
+    width: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+.flip-card-back {
+    transform: rotateY(180deg);
+}
+.dark-overlay {
+    position: absolute; /* Position the overlay absolutely within the main section */
+    top: 0;            /* Align to the top */
+    left: 0;           /* Align to the left */
+    right: 0;          /* Stretch to the right */
+    bottom: 0;         /* Stretch to the bottom */
+    background-color: rgba(0, 0, 0, 0.5); /* Black color with 50% opacity */
+    z-index: 1;       /* Make sure the overlay is above the background */
+}
+/* aaaaaaaaaaaaaaaaaaaaaaaaa */
+.glass {
+    background: rgba(255, 255, 255, 0.1); /* White background with transparency */
+    backdrop-filter: blur(5px); /* Increased blur effect */
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+}
+#main-section {
+    position: relative;
+    z-index: 1;
+}
+
+#main-section .overlay {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Dark overlay with 50% opacity */
+    z-index: -1; /* Ensure the overlay is behind the content */
+    pointer-events: none; /* Allow clicks to pass through the overlay */
+}
