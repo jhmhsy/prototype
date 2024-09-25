@@ -1,7 +1,28 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+#main-section {
+    background-image: main_bg_image; /* Replace with your image URL */
+    background-size: cover; /* Ensures the image covers the entire section */
+    background-position: center; /* Centers the image */
+    height: 100vh; /* Makes the section full height of the viewport */
+    color: white; /* Text color for visibility */
+    display: flex; /* Centers the content */
+    flex-direction: column; /* Aligns items vertically */
+    justify-content: center; /* Centers vertically */
+    align-items: center; /* Centers horizontally */
+}
 /* Custom CSS */
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
 .activeLink {
     @apply border-main text-main ;
 }

@@ -1,7 +1,7 @@
 <header>
     <div
         class="bg-tint_1 dark:bg-shade_9 flex items-center justify-between px-6 py-4 border-b border-shade_6/50 dark:border-white/5 
-        dark:bg-darkmode_light dark:text-white">
+         dark:text-white">
 
         <div class="flex flex-row mr-13 justify-between items-center">
             <!-- Hamburger button for responsive sidebar, hides in pc screen, shows in mobile-->

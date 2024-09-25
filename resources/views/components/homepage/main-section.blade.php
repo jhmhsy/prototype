@@ -1,4 +1,4 @@
-<section class="w-full dark:border-white/10 bg-tint_1 dark:bg-shade_9 dark:text-tint_1 text-shade_9">
+<section class="relative min-h-screen w-full dark:border-white/10 bg-tint_1 dark:bg-shade_9 dark:text-tint_1 text-shade_9">
     <div class="inset-0 flex flex-col items-center justify-center px-4 pt-40 text-center">
         <h1 class="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">
             Elevate Your Fitness Journey
@@ -13,12 +13,11 @@
                     class="flex flex-col items-center space-y-4 text-center border-main px-6 py-5 rounded-2xl border-2 group transition-colors duration-300">
                     <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor"
                         viewBox="0 0 48 48" id="In-Home-Mode--Streamline-Outlined----Material-Symbols">
-                        <path class="text-shade_5 dark:text-tint_5" fill="currentColor" fill="currentColor"
+                        <path class="text-shade_5 dark:text-tint_5" fill="currentColor"
                             d="M8 40.0002V20.0002L3.8 23.2002L2 20.8002L24 3.9502L46 20.8002L44.2 23.2002L24 7.7502L11 17.7002V37.0002H20.6V40.0002H8ZM30.55 44.0002L22.8 36.2502L24.9 34.1002L30.55 39.8002L41.9 28.5002L44 30.6002L30.55 44.0002Z"
                             stroke-width="1"></path>
                     </svg>
-                    <h3 class="text-xl font-bold text-shade_9 dark:text-tint_6">Easy
-                        Booking</h3>
+                    <h3 class="text-xl font-bold text-shade_9 dark:text-tint_6">Easy Booking</h3>
                     <p>Reserve your spot in your favorite classes with just a few clicks.</p>
                 </div>
                 <div
@@ -32,20 +31,18 @@
                             d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z"
                             class="text-shade_5 dark:text-tint_5" fill="currentColor" />
                     </svg>
-                    <h3 class="text-xl font-bold text-shade_9 dark:text-tint_6">Class
-                        Schedules</h3>
+                    <h3 class="text-xl font-bold text-shade_9 dark:text-tint_6">Class Schedules</h3>
                     <p>Stay up-to-date with the latest class schedules and availability.</p>
                 </div>
                 <div
-                    class="flex flex-col items-center space-y-4 text-center border-main px-6 py-5 rounded-2xl  border-2">
+                    class="flex flex-col items-center space-y-4 text-center border-main px-6 py-5 rounded-2xl border-2">
                     <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor"
                         class="bi bi-people" viewBox="0 0 16 16">
                         <path
                             d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1zm-7.978-1L7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002-.014.002zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4m3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0M6.936 9.28a6 6 0 0 0-1.23-.247A7 7 0 0 0 5 9c-4 0-5 3-5 4q0 1 1 1h4.216A2.24 2.24 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816M4.92 10A5.5 5.5 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275ZM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0m3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4"
                             class="text-shade_5 dark:text-tint_5" fill="currentColor" />
                     </svg>
-                    <h3 class="text-xl font-bold text-shade_9 dark:text-tint_6">Member
-                        Management</h3>
+                    <h3 class="text-xl font-bold text-shade_9 dark:text-tint_6">Member Management</h3>
                     <p>Easily manage your membership details and billing information.</p>
                 </div>
             </div>
@@ -65,11 +62,6 @@
                     d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0z" />
             </svg>
             <p>Learn More</p>
-
         </x-custom.primary-button>
-
-        
     </div>
 </section>
-
-{{--bg-tint_1 dark:bg-shade_9--}}

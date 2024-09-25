@@ -1,19 +1,18 @@
 <x-guest-layout>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <body class="bg-tint_1 dark:bg-shade_9">
         <div class="flex flex-col min-h-screen bg-tint_1 dark:bg-shade_9">
             <!-- Header sections--->
-            <header id="header-section" class="dark:bg-darkmode_dark dark:text-textwhite">
+            <header id="header-section" class="dark:bg-shade_8 dark:text-textwhite">
                 <x-homepage.header-section />
             </header>
 
             <!-- Main sections-->
-            <main id="main-section" class="dark:bg-shade_9 ">
+            <main id="main-section" class=" bg-tint_1 dark:bg-shade_9 relative mb-10">
                 <x-homepage.main-section />
             </main>
             <!-- equipment sections-->
-            <div id="equipment-section" class=" bg-tint_1 dark:bg-shade_9">
+            <div id="equipment-section" class="bg-tint_3 dark:bg-shade_8">
                 <x-homepage.equipment-section />
             </div>
 
