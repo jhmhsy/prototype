@@ -57,6 +57,18 @@ Route::get('/reservation', function () {
     return view('components.booking.reservation');
 })->name('reservation');
 
+
+
+Route::prefix('reservations')->group(function () {
+    
+Route::post('/', [ReservationController::class, 'store'])->name('reservations.store');
+Route::post('/accept/{id}', [ReservationController::class, 'accept'])->name('reservations.accept');
+Route::post('/reject/{id}', [ReservationController::class, 'reject'])->name('reservations.reject');
+Route::post('/restore/{id}', [ReservationController::class, 'restore'])->name('reservations.restore');
+Route::post('/cancel/{id}', [ReservationController::class, 'cancel'])->name('reservations.cancel');
+Route::post('/delete/{id}', [ReservationController::class, 'delete'])->name('reservations.delete');
+});
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])
         ->name('profile.edit');

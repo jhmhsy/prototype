@@ -1,5 +1,5 @@
 <div
-    class="flex flex-col md:flex-row items-center justify-center p-8 bg-white text-textblack dark:bg-black dark:text-textwhite">
+    class="grid gird-cols-1 gap-4 items-center justify-center p-8 bg-white text-textblack dark:bg-black dark:text-textwhite">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 px-10">
         <!-- Child 1 -->
         <div class="bg-background rounded-lg border p-6">
@@ -212,6 +212,106 @@
                 </div>
             </div>
         </div>
+
+
     </div>
+
+
+
+
+    <div class="grid grid-cols-1 gap-6 px-10">
+        <div class="bg-background md:max-w-2xl m-auto rounded-lg border p-6">
+            <div class="flex items-start gap-4">
+                <span class="relative flex shrink-0 overflow-hidden rounded-full w-10 h-10 border">
+                    <img class="aspect-square h-full w-full" alt="@shadcn" src="/placeholder-user.jpg" />
+                </span>
+
+                <div class="flex-1 space-y-2">
+                    @if (Route::has('login'))
+                    @auth
+                    <div class="flex items-center justify-between">
+                        <div class="space-x-2">
+                            <span class="font-medium">{{ Auth::user()->name }}</span>
+                            <span class="text-muted-foreground text-sm">{{ Auth::user()->email }}</span>
+                        </div>
+                    </div>
+                    @else
+                    <div class="flex items-center justify-between">
+                        <div class="space-x-2">
+                            <span class="font-medium">Guest</span>
+                            <span class="text-muted-foreground text-sm">guest@gmail.com</span>
+                        </div>
+                    </div>
+                    @endauth
+                    @endif
+
+
+                    <!-- resizer cause I dont know how to resiize the feedback comment section --->
+                    <div class="relative">
+                        <p class="text-xs -mt-4 opacity-0 text-muted-foreground">
+                            oooo oooo ooooo ooooooo oooooooo oooooooo oooooooo oooooooo ooooooo ooooooooo
+                        </p>
+                    </div>
+
+
+                    <div class="flex flex-row">
+
+                        <textarea x-data x-init="$el.style.height = 'auto'; $el.style.height = $el.scrollHeight + 'px'"
+                            @input="$el.style.height = 'auto'; $el.style.height = $el.scrollHeight + 'px'"
+                            class="w-full border border-input px-4 text-left text-sm min-h-[40px] rounded-2xl overflow-hidden pr-15"
+                            placeholder="Write your comment..."></textarea>
+
+
+                        <div class="flex items-center justify-end mt-2">
+                            <button
+                                class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 w-10 shrink-0">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="w-5 h-5">
+                                    <path d="m22 2-7 20-4-9-9-4Z"></path>
+                                    <path d="M22 2 11 13"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center ">
+                        <button
+                            class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-10 w-10">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="text-pink-600 w-4 h-4">
+                                <path
+                                    d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z">
+                                </path>
+                            </svg>
+                            <span class="sr-only">Like</span>
+                        </button>
+                        <button
+                            class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-10 w-10">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="w-4 h-4">
+                                <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path>
+                            </svg>
+                            <span class="sr-only">Comment</span>
+                        </button>
+                        <button
+                            class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-10 w-10">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="text-blue-600 w-4 h-4">
+                                <path d="m22 2-7 20-4-9-9-4Z"></path>
+                                <path d="M22 2 11 13"></path>
+                            </svg>
+                            <span class="sr-only">Share</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
 </div>
 </section>

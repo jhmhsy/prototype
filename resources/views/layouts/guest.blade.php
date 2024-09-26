@@ -23,6 +23,7 @@
 </head>
 
 <body class="font-sans antialiased min-w-[350px]">
+
     <div>
         @isset($header)
         <header>
