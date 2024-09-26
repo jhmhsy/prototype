@@ -20,9 +20,7 @@
             </div>
             <!-- pricing sections-->
             <div id="pricing-section"
-                class="bg-tint_1 dark:bg-shade_9 relative bg-[url('https://img.freepik.com/premium-photo/dark-moody-gym-interior-with-heavy-weights-floor-gym-equipment-background_163305-329787.jpg?w=900')] bg-no-repeat bg-cover bg-fixed">
-
-                <div class="overlay"></div>
+                class="bg-tint_1 dark:bg-shade_9 relative bg-[url('https://img.freepik.com/premium-photo/barbell-ground-with-dark-background-fitness-generative-ai_722401-50161.jpg?w=740')] bg-no-repeat bg-cover bg-fixed">
                 <x-homepage.pricing-section />
             </div>
 
@@ -36,35 +34,35 @@
         </div>
     </body>
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Function to update active link
-        function updateActiveLink() {
-            // Remove active class from all links and add inactive class
-            document.querySelectorAll('a').forEach(link => {
-                const href = link.getAttribute('href');
-                if (href !== '/' && href !== '/#') {
-                    link.classList.remove('activeLink');
-                    link.classList.add('inactiveLink');
-                }
-            });
+        document.addEventListener('DOMContentLoaded', function() {
+            // Function to update active link
+            function updateActiveLink() {
+                // Remove active class from all links and add inactive class
+                document.querySelectorAll('a').forEach(link => {
+                    const href = link.getAttribute('href');
+                    if (href !== '/' && href !== '/#') {
+                        link.classList.remove('activeLink');
+                        link.classList.add('inactiveLink');
+                    }
+                });
 
-            // Add active class to the current link and remove inactive class
-            const currentHash = window.location.hash;
-            if (currentHash && currentHash !== '#/') {
-                const activeLink = document.querySelector(
-                    `a[href="${currentHash}"], a[href="/${currentHash}"]`);
-                if (activeLink) {
-                    activeLink.classList.add('activeLink');
-                    activeLink.classList.remove('inactiveLink');
+                // Add active class to the current link and remove inactive class
+                const currentHash = window.location.hash;
+                if (currentHash && currentHash !== '#/') {
+                    const activeLink = document.querySelector(
+                        `a[href="${currentHash}"], a[href="/${currentHash}"]`);
+                    if (activeLink) {
+                        activeLink.classList.add('activeLink');
+                        activeLink.classList.remove('inactiveLink');
+                    }
                 }
             }
-        }
 
-        // Update active link on page load
-        updateActiveLink();
+            // Update active link on page load
+            updateActiveLink();
 
-        // Update active link on hash change
-        window.addEventListener('hashchange', updateActiveLink);
-    });
+            // Update active link on hash change
+            window.addEventListener('hashchange', updateActiveLink);
+        });
     </script>
 </x-guest-layout>

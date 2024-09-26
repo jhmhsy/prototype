@@ -50,7 +50,7 @@
                 </form>
                 <p class="text-xs text-muted-foreground">
                     By joining, you agree to our
-                    <a class="underline" href="#">
+                    <a class="dark:text-tint_4 underline" href="#">
                         Privacy Policy
                     </a>
                     .
@@ -174,13 +174,13 @@
         <div class="mt-5 border-t pt-8 text-center text-sm text-muted-foreground">
             <p>© 2024 Danao Gym Branch. All rights reserved.</p>
             <div class="mt-2 flex justify-center space-x-4">
-                <a class="hover:underline" href="#">
+                <a class="dark:text-tint_4 hover:underline" href="#">
                     Privacy Policy
                 </a>
-                <a class="hover:underline" href="#">
+                <a class="dark:text-tint_4 hover:underline" href="#">
                     Terms of Service
                 </a>
-                <a class="hover:underline" href="#">
+                <a class="dark:text-tint_4 hover:underline" href="#">
                     Cookie Policy
                 </a>
             </div>

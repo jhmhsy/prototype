@@ -102,7 +102,7 @@ header > div {
     z-index: 1;
 }
 
-#main-section .overlay {
+.overlay {
     content: "";
     position: absolute;
     top: 0;
@@ -127,7 +127,6 @@ header > div {
 @layer utilities {
     .dark .equipment-section-style {
         position: relative;
-        padding: 4em 0 2em 0;
         background-image: url("images/hurhur/overlay.png"),
             url("images/hurhur/header.svg"),
             linear-gradient(75deg, #032e2b 15%, #043d39 55%);

@@ -1,15 +1,14 @@
-<div class="relative flex flex-col justify-center items-center py-10 md:py-12 lg:py-20 dark:text-shade_9">
+<section class="relative flex flex-col justify-center items-center py-10 md:py-12 lg:py-20 dark:text-shade_9">
+    
     <div
-        class="flex flex-col items-center bg-shade_1 bg-opacity-10 backdrop-blur-md p-5 rounded-md shadow-lg border border-white/20">
+        class="flex text-main flex-col items-center rounded-md text-xl space-y-3">
         <h1 class="text-tint_1 text-5xl tracking-tighter">
             Pricing plan
-        </h1><br>
+        </h1>
         <p class="text-tint_1 max-w-[900px] md:text-xl lg:text-base xl:text-xl">
             Choose the plan that fits your fitness goals and lifestyle.
         </p>
     </div>
-
-
     <div class="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 lg:gap-12 max-w-6xl w-full px-4 md:px-6 lg:px-8">
 
         <div class="flip-card relative md:col-span-1 transition-transform duration-300">
@@ -265,5 +264,5 @@
             </div>
         </div>
     </div>
-</div>
+</section>
 </div>
