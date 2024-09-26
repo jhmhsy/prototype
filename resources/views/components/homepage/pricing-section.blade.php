@@ -229,7 +229,7 @@
                         Now</button>
                 </div>
                 <div class="flip-card-front px-5 py-2 md:p-8 lg:p-10 text-white">
-                    <h3 class="text-2xl md:text-3xl font-bold mb-4">Premium Gym Pass</h3>
+                    <h3 class="text-2xl md:text-3xl font-bold mb-4">VIP Gym Pass</h3>
                     <div class="flex items-baseline mb-6">
                         <span class="text-4xl md:text-5xl font-bold">₱500</span>
                         <span class="text-white opacity-75 ml-2">/1 week</span>
