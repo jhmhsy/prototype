@@ -30,13 +30,13 @@
         </div>
     </div>
 
-    <div class="max-w-full dark:bg-black dark:text-white container mx-auto px-4 py-12 sm:py-16 md:py-20">
+    <div class="max-w-full dark:bg-black dark:text-white container mx-auto px-4 pt-10 pb-5 sm:pt-15 md:pt-20">
         <div
             class="lg:flex lg:justify-evenly md:grid md:grid-cols-2 gap-8 sm:grid-cols-2 lg:grid-cols-3 justify-center mx-auto">
             <div class="space-y-4 mx-auto">
                 <a class="inline-flex items-center" href="#">
 
-                    <span class="ml-2 text-xl font-bold dark:text-white">Danao Gym</span>
+                    <span class="text-xl font-bold dark:text-white">Danao Gym</span>
                 </a>
                 <p class="text-muted-foreground">
                     Join today and take the first step towards achieving your fitness goals
@@ -166,16 +166,12 @@
                                 class="text-shadowgray group-hover:text-black dark:text-basegray dark:group-hover:text-white">Youtube</span>
                         </a>
                     </div>
-
-
-
-
                 </div>
 
             </div>
         </div>
 
-        <div class="mt-12 border-t pt-8 text-center text-sm text-muted-foreground">
+        <div class="mt-5 border-t pt-8 text-center text-sm text-muted-foreground">
             <p>© 2024 Danao Gym Branch. All rights reserved.</p>
             <div class="mt-2 flex justify-center space-x-4">
                 <a class="hover:underline" href="#">
