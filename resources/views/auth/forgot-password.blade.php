@@ -4,12 +4,12 @@
             <x-homepage.header-section />
         </header>
         {{-- Login Form --}}
-        <main class="mt-15 flex flex-1 items-center justify-center p-8 bg-white/70 dark:bg-darkmode_dark">
-            <div class="max-w-md space-y-3 border dark:border-white/10 px-4 py-5 shadow-md items-center rounded-md">
+        <main class="mt-15 flex flex-1 items-center justify-center p-8 bg-tint_1 dark:bg-shade_9">
+            <div class="bg-tint_3 dark:bg-tint_7 max-w-md space-y-3 border dark:border-white/10 px-4 py-5 shadow-md items-center rounded-md">
                 <div class="text-center">
                     <x-custom.forgot-logo />
                     <h1 class="font-bold text-xl">Forgot Password</h1>
-                    <div class="mb-4 text-sm text-gray-600 dark:text-gray-400 justify-full">
+                    <div class="mb-4 text-sm text-shade_9 dark:text-tint_1 justify-full">
                         {{ __('Forgot your password? No problem. Enter your email and we will send you a link to reset your password') }}
                     </div>
                 </div>
@@ -30,7 +30,6 @@
                     </div>
                 </form>
             </div>
-
         </main>
     </div>
 </x-guest-layout>

@@ -1,5 +1,5 @@
 @if($default ?? false)
-<x-forms.nav-link href="/" :active="request()->is('/')">
+<x-forms.nav-link href="/" :active="request()->is('/')" class="inactiveLink">
     {{ __('Home') }}
 </x-forms.nav-link>
 
@@ -25,7 +25,7 @@
 </x-forms.nav-link>
 
 @if (!Auth::user())
-<x-forms.nav-link href="{{ route('login') }}" :active="Request::is('login')">
+<x-forms.nav-link href="{{ route('login') }}" :active="Request::is('login') || Request::is('forgot-password')">
     {{ __('Login') }}
 </x-forms.nav-link>
 @endif

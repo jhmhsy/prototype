@@ -2,7 +2,7 @@
 
 @php
 $classes = ($active)
-    ? 'focus:outline-none border-main text-main dark:text-tint_4'
+    ? 'focus:outline-none border-main text-main dark:text-tint_4 dark:border-main'
     : 'border-tint_1 leading-5 hover:text-shade_4 dark:hover:text-tint_4 text-shade_9';
 @endphp
 
