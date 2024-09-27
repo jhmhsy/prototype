@@ -1,8 +1,8 @@
 <div
-    class="grid gird-cols-1 gap-4 items-center justify-center p-8 bg-white text-textblack dark:bg-black dark:text-textwhite">
+    class="w-full grid gird-cols-1 gap-4 items-center justify-center p-8 bg-white text-textblack dark:bg-black dark:text-textwhite">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 px-10">
         <!-- Child 1 -->
-        <div class="bg-background rounded-lg border p-6">
+        <div class="bg-background rounded-lg border dark:border-darkgray p-6">
             <div class="flex items-start gap-4">
                 <span class="relative flex shrink-0 overflow-hidden rounded-full w-10 h-10 border">
                     <img class="aspect-square h-full w-full" alt="@shadcn" src="/placeholder-user.jpg" />
@@ -11,8 +11,8 @@
                 <div class="flex-1 space-y-2">
                     <div class="flex items-center justify-between">
                         <div class="space-x-2">
-                            <span class="font-medium">NicoNi</span>
-                            <span class="text-muted-foreground text-sm">@NicoNi</span>
+                            <span class="dark:text-basegray font-medium">NicoNi</span>
+                            <span class="dark:text-basegray text-muted-foreground text-sm">@NicoNi</span>
                         </div>
                         <time class="text-muted-foreground text-sm">2h</time>
                     </div>
@@ -56,7 +56,7 @@
             </div>
         </div>
 
-        <div class="bg-background rounded-lg border p-6">
+        <div class="bg-background rounded-lg border dark:border-darkgray p-6">
             <div class="flex items-start gap-4">
                 <span class="relative flex shrink-0 overflow-hidden rounded-full w-10 h-10 border">
                     <img class="aspect-square h-full w-full" alt="@shadcn" src="/placeholder-user.jpg" />
@@ -64,8 +64,8 @@
                 <div class="flex-1 space-y-2">
                     <div class="flex items-center justify-between">
                         <div class="space-x-2">
-                            <span class="font-medium">Sumail</span>
-                            <span class="text-muted-foreground text-sm">@Sumail</span>
+                            <span class="dark:text-basegray font-medium">Sumail</span>
+                            <span class="dark:text-basegray text-muted-foreground text-sm">@Sumail</span>
                         </div>
                         <time class="text-muted-foreground text-sm">1d</time>
                     </div>
@@ -108,7 +108,7 @@
             </div>
         </div>
 
-        <div class="bg-background rounded-lg border p-6">
+        <div class="bg-background rounded-lg border dark:border-darkgray p-6">
             <div class="flex items-start gap-4">
                 <span class="relative flex shrink-0 overflow-hidden rounded-full w-10 h-10 border">
                     <img class="aspect-square h-full w-full" alt="@shadcn" src="/placeholder-user.jpg" />
@@ -116,8 +116,8 @@
                 <div class="flex-1 space-y-2">
                     <div class="flex items-center justify-between">
                         <div class="space-x-2">
-                            <span class="font-medium">Kai Cenash</span>
-                            <span class="text-muted-foreground text-sm">@KaiCenash</span>
+                            <span class="dark:text-basegray font-medium">Kai Cenash</span>
+                            <span class="dark:text-basegray text-muted-foreground text-sm">@KaiCenash</span>
                         </div>
                         <time class="text-muted-foreground text-sm">3d</time>
                     </div>
@@ -160,7 +160,7 @@
             </div>
         </div>
 
-        <div class="bg-background rounded-lg border p-6">
+        <div class="bg-background rounded-lg border dark:border-darkgray p-6">
             <div class="flex items-start gap-4">
                 <span class="relative flex shrink-0 overflow-hidden rounded-full w-10 h-10 border">
                     <img class="aspect-square h-full w-full" alt="@shadcn" src="/placeholder-user.jpg" />
@@ -168,12 +168,12 @@
                 <div class="flex-1 space-y-2">
                     <div class="flex items-center justify-between">
                         <div class="space-x-2">
-                            <span class="font-medium">Emily Wilson</span>
-                            <span class="text-muted-foreground text-sm">@emilywilson</span>
+                            <span class="dark:text-basegray font-medium">Emily Wilson</span>
+                            <span class="dark:text-basegray text-muted-foreground text-sm">@emilywilson</span>
                         </div>
                         <time class="text-muted-foreground text-sm">1w</time>
                     </div>
-                    <p class="text-muted-foreground">
+                    <p class=" text-muted-foreground ">
                         The interface is cluttered, making it hard to find available slots. I hope they improve the
                         navigation soon!
                     </p>
@@ -215,12 +215,8 @@
 
 
     </div>
-
-
-
-
     <div class="grid grid-cols-1 gap-6 px-10">
-        <div class="bg-background md:max-w-2xl m-auto rounded-lg border p-6">
+        <div class="bg-background md:max-w-2xl m-auto rounded-lg dark:border-darkgray border p-6">
             <div class="flex items-start gap-4">
                 <span class="relative flex shrink-0 overflow-hidden rounded-full w-10 h-10 border">
                     <img class="aspect-square h-full w-full" alt="@shadcn" src="/placeholder-user.jpg" />
@@ -231,15 +227,16 @@
                     @auth
                     <div class="flex items-center justify-between">
                         <div class="space-x-2">
-                            <span class="font-medium">{{ Auth::user()->name }}</span>
-                            <span class="text-muted-foreground text-sm">{{ Auth::user()->email }}</span>
+                            <span class="dark:text-basegray font-medium">{{ Auth::user()->name }}</span>
+                            <span
+                                class="dark:text-basegray text-muted-foreground text-sm">{{ Auth::user()->email }}</span>
                         </div>
                     </div>
                     @else
                     <div class="flex items-center justify-between">
                         <div class="space-x-2">
-                            <span class="font-medium">Guest</span>
-                            <span class="text-muted-foreground text-sm">guest@gmail.com</span>
+                            <span class="dark:text-basegray font-medium">Guest</span>
+                            <span class="dark:text-basegray text-muted-foreground text-sm">guest@gmail.com</span>
                         </div>
                     </div>
                     @endauth
@@ -258,16 +255,16 @@
 
                         <textarea x-data x-init="$el.style.height = 'auto'; $el.style.height = $el.scrollHeight + 'px'"
                             @input="$el.style.height = 'auto'; $el.style.height = $el.scrollHeight + 'px'"
-                            class="w-full border border-input px-4 text-left text-sm min-h-[40px] rounded-2xl overflow-hidden pr-15"
+                            class="w-full border border-input px-4 dark:bg-darkestgray text-left text-sm min-h-[40px] rounded-2xl overflow-hidden pr-15"
                             placeholder="Write your comment..."></textarea>
 
 
                         <div class="flex items-center justify-end mt-2">
                             <button
-                                class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 w-10 shrink-0">
+                                class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 dark:bg-black h-10 w-10 shrink-0">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round" class="w-5 h-5">
+                                    stroke-linejoin="round" class="w-5 h-5 dark:text-white ">
                                     <path d="m22 2-7 20-4-9-9-4Z"></path>
                                     <path d="M22 2 11 13"></path>
                                 </svg>
@@ -314,4 +311,3 @@
     </div>
 
 </div>
-</section>

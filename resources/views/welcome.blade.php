@@ -18,15 +18,19 @@
             <div id="equipment-section" class=" text-shade_9 dark:text-tint_1 equipment-section-style">
                 <x-homepage.equipment-section />
             </div>
+
+
             <!-- pricing sections-->
             <div id="pricing-section"
                 class="bg-tint_1 dark:bg-shade_9 relative bg-[url('https://img.freepik.com/premium-photo/barbell-ground-with-dark-background-fitness-generative-ai_722401-50161.jpg?w=740')] bg-no-repeat bg-cover bg-fixed">
                 <x-homepage.pricing-section />
             </div>
 
-            <div class=" text-shade_9 dark:text-tint_1 equipment-section-style">
+            <!-- feedback sections-->
+            <div id="feedback-section" class=" text-shade_9 dark:text-tint_1 equipment-section-style">
                 <x-homepage.feedback-section />
             </div>
+
             <!-- Footer sections-->
             <footer id="footer-section" class="bg-white/90">
                 <x-homepage.footer-section />

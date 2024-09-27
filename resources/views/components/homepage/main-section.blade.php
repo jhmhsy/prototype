@@ -71,29 +71,35 @@
 </section>
 
 <section x-data="{ currentImage: '/images/public/background-1.jpg', selectedButton: 1 }"
-    class="pattern1 flex flex-col md:flex-row items-center justify-center p-8 bg-white text-textblack dark:bg-black dark:text-textwhite">
+    class="pattern1 lex flex-col lg:flex-row items-center justify-center p-8 bg-white text-textblack dark:bg-black dark:text-textwhite">
     <div class="w-full md:w-1/1 xl:w-1/2 p-4">
         <img :src="currentImage" alt="Gym" class="sm:w-lg lg:w-full h-auto rounded-md" />
     </div>
 
-    <div class="w-full md:w-1/2 px-4 py-8 space-y-8">
+    <div class="w-full lg:w-1/2 px-4 py-8 space-y-8">
         <button @click="currentImage = '/images/public/background-1.jpg'; selectedButton = 1"
-            :class="{'border-l-4 border-black dark:border-white': selectedButton === 1}" class="text-left w-full px-4 py-1">
-            <h2 class="sm:text-md md:text-xl lg:text-1xl xl:text-2xl font-bold">Personal Training</h2>
-            <p class="sm:text-sm md:text-md lg:text-lg xl:text-xl">Get personalized training sessions with our expert trainers.
+            :class="{'border-l-4 border-black dark:border-white': selectedButton === 1}"
+            class="text-left w-full px-4 py-1">
+            <h2 class="sm:text-lg md:text-1xl lg:text-3xl xl:text-5xl font-bold">Personal Training</h2>
+            <p class="sm:text-sm md:text-md lg:text-lg xl:text-xl">Get personalized training sessions with our expert
+                trainers.
             </p>
         </button>
 
         <button @click="currentImage = '/images/public/background-2.jpg'; selectedButton = 2"
-            :class="{'border-l-4 border-black dark:border-white': selectedButton === 2}" class="text-left w-full px-4 py-1">
-            <h2 class="sm:text-md md:text-xl lg:text-1xl xl:text-2xl font-bold">Group Classes</h2>
-            <p class="sm:text-sm md:text-md lg:text-lg xl:text-xl">Join our group classes and stay motivated with others.</p>
+            :class="{'border-l-4 border-black dark:border-white': selectedButton === 2}"
+            class="text-left w-full px-4 py-1">
+            <h2 class="sm:text-lg md:text-1xl lg:text-3xl xl:text-5xl font-bold">Group Classes</h2>
+            <p class="sm:text-sm md:text-md lg:text-lg xl:text-xl">Join our group classes and stay motivated with
+                others.</p>
         </button>
 
         <button @click="currentImage = '/images/public/background-3.jpg'; selectedButton = 3"
-            :class="{'border-l-4 border-black dark:border-white': selectedButton === 3}" class="text-left w-full px-4 py-1">
-            <h2 class="sm:text-md md:text-xl lg:text-1xl xl:text-2xl font-bold">State-of-the-Art Equipment</h2>
-            <p class="sm:text-sm md:text-md lg:text-lg xl:text-xl">Access the latest and best equipment for your workouts.</p>
+            :class="{'border-l-4 border-black dark:border-white': selectedButton === 3}"
+            class="text-left w-full px-4 py-1">
+            <h2 class="sm:text-lg md:text-1xl lg:text-3xl xl:text-5xl font-bold">State-of-the-Art Equipment</h2>
+            <p class="sm:text-sm md:text-md lg:text-lg xl:text-xl">Access the latest and best equipment for your
+                workouts.</p>
         </button>
     </div>
 </section>

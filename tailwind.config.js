@@ -61,6 +61,8 @@ export default {
                 shadowgray: "#4d4d4d",
                 charcoalgray: "#555555",
                 darkgray: "#1c1c1c",
+                darkestgray: "#060606",
+
                 textblack: "#000000",
 
                 coolblue: "#2563eb",
@@ -82,7 +84,6 @@ export default {
             width: {
                 55: "13rem",
             },
-
         },
     },
 
