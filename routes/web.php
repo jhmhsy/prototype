@@ -40,7 +40,7 @@ Route::post('ticket', [TicketController::class, 'store'])
     ->name('ticket.store');
 
 Route::get('/reservation', function () {
-    return view('components.booking.reservation');
+    return view('subpages.reservation');
 })->name('reservation');
 
 Route::group(['middleware' => ['auth', 'isSuper']], function () {
@@ -58,7 +58,7 @@ Route::group(['middleware' => ['auth', 'isAdmin']], routes: function () {
         ->name('dashboard');
 });
 Route::get('/reservation', function () {
-    return view('components.booking.reservation');
+    return view('subpages.reservation');
 })->name('reservation');
 
 Route::prefix('reservations')->group(function () {
