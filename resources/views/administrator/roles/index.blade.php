@@ -12,7 +12,7 @@
 
             @can('role-create')
                 <div class="flex items-center justify-between">
-                    <x-custom.create-button href="{{ route('roles.create') }}">
+                    <x-custom.create-button onclick="window.location.href='{{ route('roles.create') }}'">
                         Create Role
                     </x-custom.create-button>
                 </div>
@@ -27,12 +27,11 @@
 
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 ">
             @foreach ($roles as $key => $role)
-                <div class="bg-tint_4 dark:bg-shade_3 rounded-lg shadow-md px-4 py-5 dark:bg-darkmode_light">
+                <div class="bg-tint_4 dark:bg-shade_3 rounded-lg shadow-md px-4 py-5 ">
                     <div class="flex items-center justify-between mb-4">
                         <div class="flex">
                             <h2 class="text-lg font-semibold">{{ $role->name }}</h2>
                         </div>
-
                     </div>
                     <div class="w-full grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 md:grid-cols-2 gap-2 text-xs">
                         @can('role-edit')

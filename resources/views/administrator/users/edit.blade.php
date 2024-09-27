@@ -3,7 +3,8 @@
     <div class="w-full bg-background text-foreground">
         <div class="container mx-auto sm:px-6 lg:px-8 space-y-3">
             <div class="flex items-center justify-between">
-                <a class="inline-flex items-center gap-2 text-muted-foreground " href="{{ route('users.index') }}">
+                <a class="inline-flex items-center gap-2 text-muted-foreground "
+                    href="{{ route('users.index') }}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                         class="h-5 w-5">

@@ -4,7 +4,6 @@ use App\Http\Controllers\admin\EquipmentController;
 use App\Http\Controllers\admin\EventsController;
 use App\Http\Controllers\admin\FeedbackController;
 use App\Http\Controllers\admin\HelpController;
-use App\Http\Controllers\admin\MenuController;
 use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\admin\RoleController;
 use App\Http\Controllers\admin\UserController;
@@ -22,20 +21,27 @@ Route::get('/', [PageController::class, 'index'])
 Route::get('features', [FeaturesController::class, 'show'])
     ->name('features');
 
-Route::get('/', [PageController::class, 'index'])->name('welcome');
-Route::get('features', [FeaturesController::class, 'show'])->name('features');
-        
-Route::get('/calendar', [CalendarController::class, 'show'])->name('calendar');
+Route::get('/', [PageController::class, 'index'])
+    ->name('welcome');
+Route::get('features', [FeaturesController::class, 'show'])
+    ->name('features');
+
+Route::get('/calendar', [CalendarController::class, 'show'])
+    ->name('calendar');
 Route::get('/api/reserved-hours', [CalendarController::class, 'getReservedHours']);
 Route::get('/booking-status', 'CalendarController@getBookingStatus');
 
+Route::post('/reserve', [ReservationController::class, 'store'])
+    ->name('reserve.store');
 
-Route::post('/reserve', [ReservationController::class, 'store'])->name('reserve.store');
+Route::get('ticket', [TicketController::class, 'show'])
+    ->name('ticket.show');
+Route::post('ticket', [TicketController::class, 'store'])
+    ->name('ticket.store');
 
-Route::get('ticket', [TicketController::class, 'show'])->name('ticket.show');
-Route::post('ticket', [TicketController::class, 'store'])->name('ticket.store');
-
-Route::get('/reservation', function(){return view('components.booking.reservation');})->name('reservation');
+Route::get('/reservation', function () {
+    return view('components.booking.reservation');
+})->name('reservation');
 
 Route::group(['middleware' => ['auth', 'isSuper']], function () {
     Route::resource('roles', RoleController::class);
@@ -43,13 +49,11 @@ Route::group(['middleware' => ['auth', 'isSuper']], function () {
 
 Route::group(['middleware' => ['auth', 'isAdmin']], routes: function () {
     Route::resource('users', UserController::class);
+    //Route::get('/users', [UserController::class, 'index'])
+    //    ->name('administrator.users.index');
     Route::resource('products', ProductController::class);
     Route::get('/reservations', [ReservationController::class, 'index'])
         ->name('reservations');
-    Route::get('/users', [UserController::class, 'index'])
-        ->name('users.index');
-    //Route::get('/menu', [MenuController::class, 'index'])
-    //    ->name('menu');
     Route::get('/dashboard', [DashController::class, 'show'])
         ->name('dashboard');
 });
@@ -57,16 +61,14 @@ Route::get('/reservation', function () {
     return view('components.booking.reservation');
 })->name('reservation');
 
-
-
 Route::prefix('reservations')->group(function () {
-    
-Route::post('/', [ReservationController::class, 'store'])->name('reservations.store');
-Route::post('/accept/{id}', [ReservationController::class, 'accept'])->name('reservations.accept');
-Route::post('/reject/{id}', [ReservationController::class, 'reject'])->name('reservations.reject');
-Route::post('/restore/{id}', [ReservationController::class, 'restore'])->name('reservations.restore');
-Route::post('/cancel/{id}', [ReservationController::class, 'cancel'])->name('reservations.cancel');
-Route::post('/delete/{id}', [ReservationController::class, 'delete'])->name('reservations.delete');
+
+    Route::post('/', [ReservationController::class, 'store'])->name('reservations.store');
+    Route::post('/accept/{id}', [ReservationController::class, 'accept'])->name('reservations.accept');
+    Route::post('/reject/{id}', [ReservationController::class, 'reject'])->name('reservations.reject');
+    Route::post('/restore/{id}', [ReservationController::class, 'restore'])->name('reservations.restore');
+    Route::post('/cancel/{id}', [ReservationController::class, 'cancel'])->name('reservations.cancel');
+    Route::post('/delete/{id}', [ReservationController::class, 'delete'])->name('reservations.delete');
 });
 
 Route::middleware('auth')->group(function () {

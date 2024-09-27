@@ -33,14 +33,13 @@
                     class="hidden sm:block top-0 left-0 z-40 w-50 xl:w-55 h-screen transition-transform -translate-x-full sm:translate-x-0"
                     aria-label=" Sidebar dark:bg-darkmode_light dark:text-white">
                     <div
-                        class="h-full px-3 py-4 overflow-y-auto dark:bg-darkmode_light bg-tint_1 dark:bg-shade_9 text-shade_9 dark:tint_1 border-r border-shade_6/50 dark:border-white/5">
+                        class="h-full px-3 py-4 overflow-y-auto bg-tint_1 dark:bg-shade_9 text-shade_9 dark:tint_1 border-r border-shade_6/50 dark:border-white/5">
                         @hasanyrole('SuperAdmin|Admin')
                         {{-- {{-- this should be the reservation page --}}
                         @include('administrator.includes.sidenav')
                         @endhasanyrole
                     </div>
                 </aside>
-
                 <!-------------------------- MAIN CONTENT ----------------------------->
                 <main
                     class="flex-1 p-6 overflow-y-auto bg-tint_1 dark:bg-shade_9 dark:text-tint_1 text-shade_9"

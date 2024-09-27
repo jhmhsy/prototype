@@ -3,7 +3,8 @@
     <div class="w-full bg-background text-foreground">
         <div class="container mx-auto space-y-3">
             <div class="flex items-center justify-between">
-                <a class="inline-flex items-center gap-2 text-muted-foreground " href="{{ route('users.index') }}">
+                <a class="inline-flex items-center gap-2 text-muted-foreground "
+                    href="{{ route('users.index') }}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                         class="h-5 w-5">
@@ -40,14 +41,14 @@
 
                         @if (count($user->getRoleNames()) > 0)
                             @foreach ($user->getRoleNames() as $v)
-                                <x-custom.input-label class="badge badge-success text-black">
+                                <x-forms.input-label class="badge badge-success text-black">
                                     {{ $v }}
-                                </x-custom.input-label>
+                                </x-forms.input-label>
                             @endforeach
                         @else
-                            <x-custom.input-label class="badge badge-secondary text-gray-500">
+                            <x-forms.input-label class="badge badge-secondary text-gray-500">
                                 User
-                            </x-custom.input-label>
+                            </x-forms.input-label>
                         @endif
 
                     </div>
@@ -79,7 +80,7 @@
                     </p>
                 </div>
             </div>
-            
+
         </div>
     </div>
 @endsection
