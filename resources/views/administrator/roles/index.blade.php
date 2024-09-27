@@ -35,23 +35,27 @@
                     </div>
                     <div class="w-full grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 md:grid-cols-2 gap-2 text-xs">
                         @can('role-edit')
-                            <a href="{{ route('roles.show', $role->id) }}"
-                                class="bg-main text-tint_1 uppercase inline-flex items-center justify-center text-xs font-medium disabled:pointer-events-none  h-9 rounded-md px-2">
+                            <x-custom.anchor-link href="{{ route('roles.show', $role->id) }}"
+                                class="bg-main hover:bg-shade_2">
                                 View
-                            </a>
+                            </x-custom.anchor-link>
                         @endcan
 
                         @can('role-edit')
-                            <a href="{{ route('roles.edit', $role->id) }}"
-                                class="bg-blue-500 text-tint_1 uppercase inline-flex items-center justify-center text-xs font-medium disabled:pointer-events-none h-9 rounded-md px-2">
+                            <x-custom.anchor-link :href="route('roles.edit', $role->id)" class="bg-blue-500 hover:bg-blue-600">
                                 Edit
-                            </a>
+                            </x-custom.anchor-link>
                         @endcan
 
                         @can('role-delete')
-                            <x-custom.pop-up :name="'role'" :formId="'delete'">
-                            </x-custom.pop-up>
-                            <form method="POST" action="{{ route('roles.destroy', $role->id) }}" style="display:inline"
+                            @if ($role->name == 'SuperAdmin')
+                                <x-custom.pop-up :disabled="true" :name="'role'" :formId="'delete'">
+                                </x-custom.pop-up>
+                            @else
+                                <x-custom.pop-up :name="'role'" :formId="'delete'">
+                                </x-custom.pop-up>
+                            @endif
+                            <form method="POST" action="{{ route('roles.destroy', $role->id) }}"style="display:inline"
                                 id="delete" class="hidden">
                                 @csrf
                                 @method('DELETE')

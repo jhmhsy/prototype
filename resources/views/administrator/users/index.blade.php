@@ -54,8 +54,8 @@
                                     </td>
                                     <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">
                                         <div class="flex items-center gap-2">
-                                            <a href="{{ route('users.show', $user->id) }}"
-                                                class="bg-main text-white uppercase inline-flex items-center justify-center text-xs font-medium h-9 rounded-md px-2">
+                                            <x-custom.anchor-link :href="route('users.show', $user->id)"
+                                                class="bg-main hover:bg-shade_2">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -63,10 +63,9 @@
                                                     <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
                                                     <circle cx="12" cy="12" r="3"></circle>
                                                 </svg>
-                                                <span class="sr-only">Show</span>
-                                            </a>
-                                            <a href="{{ route('users.edit', $user->id) }}"
-                                                class="bg-blue-600 text-white uppercase inline-flex items-center justify-center text-xs font-medium h-9 rounded-md px-2">
+                                            </x-custom.anchor-link>
+                                            <x-custom.anchor-link :href="route('users.edit', $user->id)"
+                                                class="bg-blue-500 hover:bg-blue-600">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -75,17 +74,16 @@
                                                     <path d="M14 2v4a2 2 0 0 0 2 2h4"></path>
                                                     <path d="M10.4 12.6a2 2 0 1 1 3 3L8 21l-4 1 1-4Z"></path>
                                                 </svg>
-                                                <span class="sr-only">Edit</span>
-                                            </a>
+                                            </x-custom.anchor-link>
                                             @can('role-delete')
-                                                @role('SuperAdmin')
+                                                @if($user->hasRole('SuperAdmin'))
                                                     <x-custom.pop-up :disabled="true" :normal="false" :name="'user'"
                                                         :formId="'delete'">
                                                     </x-custom.pop-up>
                                                 @else
                                                     <x-custom.pop-up :normal="false" :name="'user'" :formId="'delete'">
                                                     </x-custom.pop-up>
-                                                @endrole
+                                                @endif
                                                 <form method="POST" action="{{ route('users.destroy', $user->id) }}"
                                                     style="display:inline" id="delete" class="hidden">
                                                     @csrf
