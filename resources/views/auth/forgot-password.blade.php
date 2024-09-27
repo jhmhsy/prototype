@@ -5,7 +5,8 @@
         </header>
         {{-- Login Form --}}
         <main class="mt-15 flex flex-1 items-center justify-center p-8 bg-tint_1 dark:bg-shade_9">
-            <div class="bg-tint_3 dark:bg-tint_7 max-w-md space-y-3 border dark:border-white/10 px-4 py-5 shadow-md items-center rounded-md">
+            <div
+                class="bg-tint_3 dark:bg-tint_7 max-w-md space-y-3 border dark:border-white/10 px-4 py-5 shadow-md items-center rounded-md">
                 <div class="text-center">
                     <x-custom.forgot-logo />
                     <h1 class="font-bold text-xl">Forgot Password</h1>
@@ -14,12 +15,13 @@
                     </div>
                 </div>
                 <!-- Session Status -->
-                <x-forms.auth-session-status class="mb-4" :status="session('status')" />
+                <x-custom.auth-session-status class="mb-4" :status="session('status')" />
 
                 <form method="POST" action="{{ route('password.email') }}" class="">
                     @csrf
                     <!-- Email Address -->
-                    <x-forms.field :float="true" class="space-y-2" :errors="$errors->get('email')" :value="__('Email')" :for="'email'">
+                    <x-forms.field :float="true" class="space-y-2" :errors="$errors->get('email')" :value="__('Email')"
+                        :for="'email'">
                         <x-custom.floating-input id="email" class="block mt-1 w-full" type="email" name="email"
                             :value="old('email')" required placeholder=" " />
                     </x-forms.field>

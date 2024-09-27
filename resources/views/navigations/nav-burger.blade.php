@@ -2,13 +2,13 @@
 @if ($showburgerAdmin ?? false)
     <div x-data="{ sidebarOpen: false }" class="sm:hidden">
         <!-- Sidebar toggle button -->
-        <x-custom.nav-link @click="sidebarOpen = true" class=" rounded-md sm:hidden">
+        <x-forms.nav-link @click="sidebarOpen = true" class=" rounded-md sm:hidden">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 " fill="none" viewBox="0 0 24 24"
                 stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
 
-        </x-custom.nav-link>
+        </x-forms.nav-link>
 
         <!-- Sidebar -->
         <div x-show="sidebarOpen" x-transition:enter="transition ease-out duration-300 sm:hidden"
@@ -58,12 +58,12 @@
 @if ($showburgerHome ?? false)
     <div x-data="{ sidebarOpen: false }" class="xl:hidden">
         <!-- Sidebar toggle button -->
-        <x-custom.nav-link @click="sidebarOpen = true" class=" rounded-md xl:hidden">
+        <x-forms.nav-link @click="sidebarOpen = true" class=" rounded-md xl:hidden">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 " fill="none" viewBox="0 0 24 24"
                 stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
-        </x-custom.nav-link>
+        </x-forms.nav-link>
 
         <!-- Responsive  Sidebar -->
         <div x-show="sidebarOpen" x-transition:enter="transition ease-out duration-300 xl:hidden"

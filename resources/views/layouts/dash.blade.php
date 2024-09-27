@@ -43,7 +43,7 @@
 
                 <!-------------------------- MAIN CONTENT ----------------------------->
                 <main
-                    class="flex-1 p-6 dark:bg-darkmode_dark overflow-y-auto bg-tint_1 dark:bg-shade_9 dark:text-tint_1 text-shade_9"
+                    class="flex-1 p-6 overflow-y-auto bg-tint_1 dark:bg-shade_9 dark:text-tint_1 text-shade_9"
                     @click="open = false">
                     <div id="main-content" class="flex-1 ">
                         @hasanyrole('SuperAdmin|Admin')

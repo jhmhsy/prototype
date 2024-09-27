@@ -2,7 +2,7 @@
 <div class="relative">
     @if ($value)
         @unless ($float)
-            <x-custom.input-label :$value for="{{ $for }}" />
+            <x-forms.input-label :$value for="{{ $for }}" />
         @endunless
         {{ $slot }}
         @if ($float)
