@@ -5,27 +5,26 @@
                 <h2 class="text-3xl font-bold tracking-tighter md:text-4xl/tight">
                     Join Our Vibrant Community
                 </h2>
-                <x-forms.input-p
+                <x-custom.paragraph
                     class="mx-auto max-w-[600px] md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed text-shade_9 ">
                     Connect with like-minded individuals, attend exclusive
                     events, and take your fitness to new heights.
-                </x-forms.input-p>
+                </x-custom.paragraph>
             </div>
             <div class="mx-auto w-full max-w-sm space-y-2">
                 <form class="flex gap-2">
                     <x-forms.text-input
                         class="h-10 w-full rounded-md px-3 py-2 text-sm items-center text-shade_9 border-shade_8"
                         placeholder="Enter your email" type="email" />
-                    <x-forms.reverse-nav-link
-                        class="h-10 px-4 py-2 border border-shade_9 dark:text-shade_9"
+                    <x-forms.reverse-nav-link class="h-10 px-4 py-2 border border-shade_9 dark:text-shade_9"
                         type="submit">
                         Join Now
                     </x-forms.reverse-nav-link>
                 </form>
-                <x-forms.input-p class="text-xs text-shade_8 ">
+                <x-custom.paragraph class="text-xs text-shade_8 ">
                     Sign up to get notified about our latest updates and
                     promotions.
-                </x-forms.input-p>
+                </x-custom.paragraph>
             </div>
         </div>
     </div>
@@ -109,7 +108,6 @@
                             Blog</span></a>
                 </div>
 
-
                 <div class="text-center md:text-left  dark:text-white">
                     <h3 class="text-lg font-semibold mb-2">Connect with Us</h3>
 
@@ -125,8 +123,6 @@
                                 class="text-shadowgray group-hover:text-black dark:text-basegray dark:group-hover:text-white">Facebook</span>
                         </a>
                     </div>
-
-
 
                     <div>
                         <a href="#" class="flex items-center group">

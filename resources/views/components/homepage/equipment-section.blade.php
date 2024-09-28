@@ -6,12 +6,11 @@
     <section class="px-5 sm:px-6 md:px-8">
         <div class="flex items-center justify-between mb-6 md:mb-8">
             <h2 class="text-2xl md:text-3xl font-bold">Gym Equipments </h2>
-            <x-forms.nav-link href="{{ route('features') }}"
-                class="text-sm font-medium hover:underline underline-offset-4">
+            <x-forms.nav-link :href="route('features')"
+                class=" hover:underline underline-offset-4">
                 View all
             </x-forms.nav-link>
         </div>
-
         <div class="grid max-w-6xl sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8 lg:gap-10 m-10">
             <div style="border-radius: 40% 60% 30% 70% / 70% 40% 60% 30%"
                 class="hover:-translate-y-6 bg-muted p-4 md:p-6 flex flex-col items-center text-center bg-primary dark:bg-tint_5 dark:text-shade_9 group transition-all duration-300 ease-in-out border/white-10 border border-main">
@@ -29,10 +28,10 @@
                         class=" transition-colors duration-300"></path>
                 </svg>
                 <h3 class="text-lg font-medium mb-2 transition-colors duration-300">Weights</h3>
-                <x-forms.input-p class="text-muted-foreground text-sm text-shade_8">Variety of dumbbells and barbells
-                    for strength training.</x-forms.input-p>
+                <x-custom.paragraph :isdark="true" class="text-shade_8 text-muted-foreground text-sm ">Variety of dumbbells and barbells
+                    for strength training.</x-custom.paragraph>
             </div>
-            <div style="border-radius: 45% 55% 35% 65% / 65% 45% 55% 35%"
+            <div style="border-radius: 44% 56% 52% 48% / 70% 54% 46% 30%"
                 class="hover:-translate-y-6 bg-muted rounded-lg p-4 md:p-6 flex flex-col items-center text-center bg-primary dark:bg-tint_5 dark:text-shade_9 group transition-all duration-300 ease-in-out border/white-10 border border-main">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -46,11 +45,11 @@
                 </svg>
                 <h3 class="text-lg font-medium mb-2 transition-colors duration-300">Cardio
                     Equipment</h3>
-                <x-forms.input-p class="text-muted-foreground text-sm text-shade_8">Treadmills, ellipticals, and
+                <x-custom.paragraph :isdark="true" class="text-muted-foreground text-sm text-shade_8">Treadmills, ellipticals, and
                     stationary
                     bikes
                     for
-                    cardio.</x-forms.input-p>
+                    cardio.</x-custom.paragraph>
             </div>
             <div style="border-radius: 70% 30% 60% 40% / 40% 70% 30% 60%"
                 class="hover:-translate-y-6 bg-muted rounded-lg p-4 md:p-6 flex flex-col items-center text-center bg-primary dark:bg-tint_5 dark:text-shade_9 group transition-all duration-300 ease-in-out border/white-10 border border-main">
@@ -61,11 +60,11 @@
                 </svg>
                 <h3 class="text-lg font-medium mb-2 transition-colors duration-300">
                     Stretching Area</h3>
-                <x-forms.input-p class="text-muted-foreground text-sm text-shade_8">Dedicated space for yoga,
+                <x-custom.paragraph :isdark="true" class="text-muted-foreground text-sm text-shade_8">Dedicated space for yoga,
                     Pilates, and other
-                    stretching.</x-forms.input-p>
+                    stretching.</x-custom.paragraph>
             </div>
-            <div style="border-radius: 55% 45% 25% 75% / 75% 55% 45% 25%"
+            <div style="border-radius: 59% 41% 60% 40% / 64% 66% 34% 36%;"
                 class="hover:-translate-y-6 bg-muted rounded-lg p-4 md:p-6 flex flex-col items-center text-center bg-primary dark:bg-tint_5 dark:text-shade_9 group transition-all duration-300 ease-in-out border/white-10 border border-main">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -76,10 +75,10 @@
                 </svg>
                 <h3 class="text-lg font-medium mb-2 transition-colors duration-300">Rowing
                     Machines</h3>
-                <x-forms.input-p class="text-muted-foreground text-sm text-shade_8">High-intensity rowing machines
+                <x-custom.paragraph :isdark="true" class="text-muted-foreground text-sm text-shade_8">High-intensity rowing machines
                     for a
                     full-body
-                    workout.</x-forms.input-p>
+                    workout.</x-custom.paragraph>
             </div>
         </div>
     </section>
@@ -94,9 +93,9 @@
         <div class="grid max-w-6xl sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8 lg:gap-10 m-10">
             <div style="border-radius: 44% 56% 52% 48% / 70% 54% 46% 30%"
                 class="hover:-translate-y-6 bg-muted rounded-lg p-4 md:p-6 flex flex-col items-center text-center bg-primary dark:bg-tint_5 dark:text-shade_9 group transition-all duration-300 ease-in-out border/white-10 border border-main">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="w-10 h-10 mb-4 group-hover:text-main text-shade_9 "
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" class="w-10 h-10 mb-4 group-hover:text-main text-shade_9 "
                     class=" transition-colors duration-300">
                     <path d="m4 4 2.5 2.5" class=" transition-colors duration-300"></path>
                     <path d="M13.5 6.5a4.95 4.95 0 0 0-7 7" class=" transition-colors duration-300"></path>
@@ -111,10 +110,10 @@
                 </svg>
                 <h3 class="text-lg font-medium mb-2 transition-colors duration-300">
                     Locker Rooms</h3>
-                <x-forms.input-p class="text-muted-foreground text-sm text-shade_8">Spacious locker rooms with
+                <x-custom.paragraph :isdark="true" class="text-muted-foreground text-sm text-shade_8">Spacious locker rooms with
                     showers and
                     changing
-                    areas.</x-forms.input-p>
+                    areas.</x-custom.paragraph>
             </div>
             <div style="border-radius: 67% 33% 52% 48% / 51% 53% 47% 49%"
                 class="hover:-translate-y-6 bg-muted rounded-lg p-4 md:p-6 flex flex-col items-center text-center bg-primary dark:bg-tint_5 dark:text-shade_9 group transition-all duration-300 ease-in-out border/white-10 border border-main">
@@ -132,12 +131,12 @@
                 </svg>
                 <h3 class="text-lg font-medium mb-2 transition-colors duration-300">Juice
                     Bar</h3>
-                <x-forms.input-p class="text-muted-foreground text-sm text-shade_8">Refuel with a variety of healthy
+                <x-custom.paragraph :isdark="true" class="text-muted-foreground text-sm text-shade_8">Refuel with a variety of healthy
                     smoothies
                     and
-                    juices.</x-forms.input-p>
+                    juices.</x-custom.paragraph>
             </div>
-            <div style="border-radius: 44% 56% 52% 48% / 70% 54% 46% 30%"
+            <div style="border-radius: 45% 55% 35% 65% / 65% 45% 55% 35%"
                 class="hover:-translate-y-6 bg-muted rounded-lg p-4 md:p-6 flex flex-col items-center text-center bg-primary dark:bg-tint_5 dark:text-shade_9 group transition-all duration-300 ease-in-out border/white-10 border border-main">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -150,12 +149,12 @@
                 </svg>
                 <h3 class="text-lg font-medium mb-2 transition-colors duration-300">Towel
                     Service</h3>
-                <x-forms.input-p class="text-muted-foreground text-sm text-shade_8">Complimentary towel service for
+                <x-custom.paragraph :isdark="true" class="text-muted-foreground text-sm text-shade_8">Complimentary towel service for
                     your workout
                     needs.
-                </x-forms.input-p>
+                </x-custom.paragraph>
             </div>
-            <div style="border-radius: 59% 41% 60% 40% / 64% 66% 34% 36%;"
+            <div style="border-radius: 55% 45% 25% 75% / 75% 55% 45% 25%"
                 class="hover:-translate-y-6 bg-muted rounded-lg p-4 md:p-6 flex flex-col items-center text-center bg-primary dark:bg-tint_5 dark:text-shade_9 group transition-all duration-300 ease-in-out border/white-10 border border-main">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -167,10 +166,10 @@
                 </svg>
                 <h3 class="text-lg font-medium mb-2  transition-colors duration-300">Free
                     WiFi</h3>
-                <x-forms.input-p class="text-muted-foreground text-sm text-shade_8">Stay connected with high-speed
+                <x-custom.paragraph :isdark="true" class="text-muted-foreground text-sm text-shade_8">Stay connected with high-speed
                     wireless
                     internet
-                    access.</x-forms.input-p>
+                    access.</x-custom.paragraph>
             </div>
         </div>
     </section>

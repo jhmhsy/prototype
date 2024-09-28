@@ -1,6 +1,5 @@
-<button {{ $attributes->merge([
-    'type' => 'submit', 
-    'class' => 'inline-flex items-center 
+@php
+    $defaults = 'inline-flex items-center 
                 bg-white 
                 text-gray-700 
                 border 
@@ -27,7 +26,10 @@
                 dark:hover:bg-primary 
                 dark:hover:text-textblack 
                 dark:hover:border-darkmode_dark 
-                dark:focus:ring-offset-gray-800'
-]) }}>
+                dark:focus:ring-offset-gray-800';
+    $classes = $attributes->get('class') ? $attributes->get('class') . ' ' . $defaults : $defaults;
+@endphp
+
+<button {{ $attributes->merge(['type' => 'submit', 'class' => $classes]) }}>
     {{ $slot }}
 </button>
