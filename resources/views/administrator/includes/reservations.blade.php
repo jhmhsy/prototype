@@ -55,7 +55,7 @@
         </div>
 
         <main class="rounded-lg border dark:border-white/30 shadow-sm" data-v0-t="card">
-            <div x-show="currentTab === 'Pending'" class="p-2 ">
+            <div style="display: none;" x-show="currentTab === 'Pending'" class="p-2 ">
                 <div class="relative w-full overflow-auto">
                     <table class="w-full text-sm">
                         <thead>
@@ -117,7 +117,7 @@
                 </div>
             </div>
 
-            <div x-show="currentTab === 'Accepted'" class="p-2 ">
+            <div style="display: none;" x-show="currentTab === 'Accepted'" class="p-2 ">
                 <div class="relative w-full overflow-auto">
                     <table class="w-full text-sm">
                         <thead>
@@ -179,7 +179,7 @@
                 </div>
             </div>
 
-            <div x-show="currentTab === 'Rejected'" class="p-2 ">
+            <div style="display: none;" x-show="currentTab === 'Rejected'" class="p-2 ">
                 <div class="relative w-full overflow-auto">
                     <table class="w-full text-sm">
                         <thead>

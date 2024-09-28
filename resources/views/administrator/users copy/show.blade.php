@@ -1,10 +1,8 @@
 <section>
-    <div style="display: none;" x-show="openshowmodal === {{ $user->id }}"
-        @click="if ($event.target === $el) openshowmodal = null"
+    <div x-show="openshowmodal === {{ $user->id }}" @click="if ($event.target === $el) openshowmodal = null"
         class="fixed inset-0 bg-black opacity-50 z-40 select-none">
     </div>
-    <div style="display: none;"
-        class="modal fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-11/12 xl:w-4/5  p-4 z-50 "
+    <div class="modal fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-11/12 xl:w-4/5  p-4 z-50"
         x-show="openshowmodal === {{ $user->id }}" @click="if ($event.target === $el) openshowmodal = null"
         x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform scale-90"
         x-transition:enter-end="opacity-100 transform scale-100" x-transition:leave="transition ease-in duration-100"

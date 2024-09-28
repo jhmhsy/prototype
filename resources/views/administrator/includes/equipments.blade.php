@@ -1,7 +1,7 @@
 @extends('layouts.dash')
 @section('content')
 <section x-data="{ isOpen: false }">
-    <div class="rounded-lg border bg-card text-card-foreground shadow-sm p-6 bg-softgray text-shade_9 dark:text-tint_1 
+    <div class="rounded-lg border bg-card text-card-foreground shadow-sm p-6  text-shade_9 dark:text-tint_1 
     border-shade_6/50 dark:border-white/5" data-v0-t="card">
 
 
@@ -24,9 +24,11 @@
 
         <!-- Modal  -->
         <div>
-            <div x-show="isOpen" class="fixed select-none inset-0 bg-black opacity-50 z-40"></div>
+            <div style="display: none;" x-show="isOpen" class="fixed select-none inset-0 bg-black opacity-50 z-40">
+            </div>
 
-            <div class="modal fixed w-[90%] md:w-[60%] lg:w-[40%] xl:w-[35%] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 p-4"
+            <div style="display: none;"
+                class="modal fixed w-[90%] md:w-[60%] lg:w-[40%] xl:w-[35%] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 p-4"
                 x-show="isOpen" @click.away="isOpen = false" x-transition:enter="transition ease-out duration-300"
                 x-transition:enter-start="opacity-0 transform scale-90"
                 x-transition:enter-end="opacity-100 transform scale-100"
