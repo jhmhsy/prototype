@@ -21,8 +21,10 @@ class UserController extends Controller
      */
     public function index(Request $request): View
     {
+
         $data = User::latest()->paginate(5);
-        return view('administrator.users.index', compact('data'))
+        $roles = Role::pluck('name', 'name')->all(); // Add this line to get roles
+        return view('administrator.users.index', compact('data', 'roles'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
@@ -31,12 +33,7 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(): View
-    {
-        $roles = Role::pluck('name', 'name')->all();
-        
-        return view('administrator.users.create', compact('roles'));
-    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -68,12 +65,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id): View
-    {
-        $user = User::find($id);
-
-        return view('administrator.users.show', compact('user'));
-    }
+   
 
     /**
      * Show the form for editing the specified resource.
@@ -90,37 +82,53 @@ class UserController extends Controller
         return view('administrator.users.edit', compact('user', 'roles', 'userRole'));
     }
 
+    public function create(): View
+    {
+        $roles = Role::pluck('name', 'name')->all();
+
+        return view('administrator.users.create', compact('roles'));
+    }
+
+    public function show($id): View
+    {
+        $user = User::find($id);
+
+        return view('administrator.users.show', compact('user'));
+    }
+
     /**
      * Update the specified resource in storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id): RedirectResponse
-    {
-        $this->validate($request, [
-            'name' => 'required',
-            'email' => 'required|email|unique:users,email,'.$id,
-            'password' => 'same:confirm-password',
-            'roles' => 'required',
-        ]);
+  public function update(Request $request, $id): RedirectResponse
+{
+    $this->validate($request, [
+        'name' => 'required',
+        'email' => 'required|email|unique:users,email,'.$id,
+        'password' => 'same:confirm-password',
+        'roles' => 'required',
+    ]);
 
-        $input = $request->all();
-        if (! empty($input['password'])) {
-            $input['password'] = Hash::make($input['password']);
-        } else {
-            $input = Arr::except($input, ['password']);
-        }
-
-        $user = User::find($id);
-        $user->update($input);
-        DB::table('model_has_roles')->where('model_id', $id)->delete();
-
-        $user->assignRole($request->input('roles'));
-
-        return redirect()->route('users.show')
-            ->with('success', 'User updated successfully');
+    $input = $request->all();
+    if (! empty($input['password'])) {
+        $input['password'] = Hash::make($input['password']);
+    } else {
+        $input = Arr::except($input, ['password']);
     }
+
+    $user = User::find($id);
+    $user->update($input);
+    DB::table('model_has_roles')->where('model_id', $id)->delete();
+
+    $user->assignRole($request->input('roles'));
+
+    // Corrected redirect to include user ID
+    return redirect()->route('users.index', $id)
+        ->with('success', 'User updated successfully');
+}
+
 
     /**
      * Remove the specified resource from storage.

@@ -1,6 +1,6 @@
 <section class="relative flex flex-col justify-center items-center py-10 md:py-12 lg:py-20 dark:text-shade_9">
-    <div
-        class="flex text-main flex-col items-center rounded-md text-xl space-y-3">
+
+    <div class="flex text-main flex-col items-center rounded-md text-xl space-y-3">
         <h1 class="text-tint_1 text-5xl tracking-tighter">
             Pricing plan
         </h1>
@@ -264,4 +264,3 @@
         </div>
     </div>
 </section>
-</div>

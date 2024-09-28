@@ -44,7 +44,7 @@ export default {
                 shade_9: "#010f0e",
                 primary: "#ffffff",
                 secondary: "#000000",
-                complementary: "#eacc22",
+                complementary: "#fffd19",
 
                 // custom color for default darkmode
                 darkmode_dark: "#18191a", //darkmode dark
@@ -61,6 +61,8 @@ export default {
                 shadowgray: "#4d4d4d",
                 charcoalgray: "#555555",
                 darkgray: "#1c1c1c",
+                darkestgray: "#060606",
+
                 textblack: "#000000",
 
                 coolblue: "#2563eb",
@@ -82,7 +84,6 @@ export default {
             width: {
                 55: "13rem",
             },
-
         },
     },
 
