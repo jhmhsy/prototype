@@ -82,7 +82,7 @@
 
         <div class="flip-card relative md:col-span-1 transition-transform duration-300">
             <div
-                class="flip-card-inner bg-primary rounded-lg shade-xl border border-black/30 bg-gradient-to-r from-blue-500 to-purple-500">
+                class="flip-card-inner bg-primary rounded-lg shade-xl border border-black/30 bg-gradient-to-r from-[#5865f2] to-[#017ac2]">
                 <div class="flip-card-back absolute px-5 py-2 md:py-3 md:px-6 lg:py-4 lg:px-7 text-white">
                     <h3 class="text-2xl md:text-3xl font-bold mb-4 md:mb-4 sm:mb-0">Premium Pass</h3>
                     <div class="flex items-baseline mb-6 md:mb-6 sm:mb-0">
@@ -165,7 +165,7 @@
         </div>
         <div class="flip-card relative md:col-span-1 transition-transform duration-300">
             <div
-                class="flip-card-inner bg-primary rounded-lg shade-xl border border-black/30 bg-gradient-to-r from-red-500 to-yellow-500">
+                class="flip-card-inner bg-primary rounded-lg shade-xl border border-black/30 bg-gradient-to-r from-[#8846c5] to-[#ab5d8b]">
                 <div class="flip-card-back absolute px-5 py-2 md:py-3 md:px-6 lg:py-4 lg:px-7 text-white ">
                     <h3 class="text-2xl md:text-3xl font-bold mb-4 md:mb-4 sm:mb-0">VIP Pass</h3>
                     <div class="flex items-baseline mb-6 md:mb-6 sm:mb-0">
