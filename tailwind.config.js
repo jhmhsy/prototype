@@ -44,7 +44,7 @@ export default {
                 shade_9: "#010f0e",
                 primary: "#ffffff",
                 secondary: "#000000",
-                complementary: "#eacc22",
+                complementary: "#fffd19",
 
                 // custom color for default darkmode
                 darkmode_dark: "#18191a", //darkmode dark

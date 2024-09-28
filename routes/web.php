@@ -26,6 +26,8 @@ Route::get('/', [PageController::class, 'index'])
 Route::get('features', [FeaturesController::class, 'show'])
     ->name('features');
 
+Route::post('/feedback', [FeedbackController::class, 'store'])->name('feedback.store');
+
 Route::get('/calendar', [CalendarController::class, 'show'])
     ->name('calendar');
 Route::get('/api/reserved-hours', [CalendarController::class, 'getReservedHours']);
