@@ -1,33 +1,79 @@
-@extends('layouts.dash')
-
-@section('content')
-<div class="row">
-    <div class="col-lg-12 margin-tb">
-        <div class="pull-left">
-            <h2> Show Role</h2>
-        </div>
-        <div class="pull-right">
-            <a class="btn btn-primary" href="{{ route('roles.index') }}"> Back</a>
-        </div>
-    </div>
+<div style="display: none;" x-show="openshowmodal === {{ $role->id }}"
+    @click="if ($event.target === $el) openshowmodal = null" class="fixed inset-0 bg-black opacity-50 z-40 select-none">
 </div>
 
-<div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-12">
-        <div class="form-group">
-            <strong>Name:</strong>
-            {{ $role->name }}
+<div style="display: none;"
+    class="modal fixed w-[90%] md:w-[60%] lg:w-[40%] xl:w-[35%] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 p-4"
+    x-show="openshowmodal === {{ $role->id }}" @click="if ($event.target === $el) openshowmodal = null"
+    x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform scale-90"
+    x-transition:enter-end="opacity-100 transform scale-100" x-transition:leave="transition ease-in duration-100"
+    x-transition:leave-start="opacity-100 transform scale-100" x-transition:leave-end="opacity-0 transform scale-90">
+    <div @click.stop class="bg-white rounded shadow-lg w-full max-w-2xl max-h-[90vh] overflow-y-auto" @click.stop>
+        <div class="bg-white rounded shadow-lg w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+            <div class="flex flex-row p-6 justify-between bg-primary px-6 py-4 rounded-t-md">
+                <h3 class="whitespace-nowrap text-2xl font-semibold leading-none tracking-tight">
+                    Role
+                    Details</h3>
+                <button @click="openshowmodal = null"
+                    class="whitespace-nowrap text-2xl font-semibold leading-none tracking-tight"><svg
+                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="h-5 w-5">
+                        <path d="M18 6 6 18"></path>
+                        <path d="m6 6 12 12"></path>
+                    </svg>
+                    <span class="sr-only">Close</span>
+                </button>
+            </div>
+
+
+            <div class="space-y-4 p-6">
+                <div class="space-y-1">
+                    <div class="text-lg font-medium"> {{ $role->name }}</div>
+                    <p for="Role Details" class="text-muted-foreground">------ ------ --- -- ------ --<br> ---- --
+                        --------- --- ------- --
+                        ----- --------</p>
+                </div>
+
+                <div class="form-group">
+                    <h4 class="text-sm font-medium">Permissions</h4>
+                    <ul class="mt-2 space-y-2 text-sm">
+
+
+                        @if(isset($role->permissions) && count($role->permissions) > 0)
+                        @foreach ($role->permissions as $permission)
+                        <li class="flex items-center gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="h-4 w-4 text-green-500">
+                                <path d="M20 6 9 17l-5-5"></path>
+                            </svg>
+                            <span>{{ $permission->name }}</span>
+                        </li>
+                        @endforeach
+
+                        @else
+
+                        <li class="flex items-center gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                                class="h-4 w-4 text-red-500" viewBox="0 0 16 16">
+                                <path
+                                    d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z" />
+                            </svg>
+                            <span>No Permissions</span>
+                        </li>
+                        @endif
+
+
+
+                    </ul>
+                </div>
+            </div>
+
+
+
+
         </div>
     </div>
-    <div class="col-xs-12 col-sm-12 col-md-12">
-        <div class="form-group">
-            <strong>Permissions:</strong>
-            @if(!empty($rolePermissions))
-            @foreach($rolePermissions as $v)
-            <label class="label label-success">{{ $v->name }},</label>
-            @endforeach
-            @endif
-        </div>
-    </div>
+
 </div>
-@endsection
