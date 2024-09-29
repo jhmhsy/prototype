@@ -15,12 +15,26 @@ export default {
     ],
 
     theme: {
+        screens: {
+            'xs': '360px', // Add this line for the xs breakpoint
+            'sm': '640px',
+            'md': '768px',
+            'lg': '1024px',
+            'xl': '1280px',
+            '2xl': '1536px',
+        },
         extend: {
             fontFamily: {
                 sans: ["Figtree", ...defaultTheme.fontFamily.sans],
                 hanken: ["Hanken Grotesk", "sans-serif"],
             },
-
+            height: {
+                '72': '18rem',
+                '128': '32rem',
+            },
+            lineHeight: {
+                '20': '80px',
+            },
             colors: {
                 //custom green color shades
                 main: "#0a998f",

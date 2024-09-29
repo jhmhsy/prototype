@@ -1,7 +1,7 @@
 @extends('layouts.dash')
 @section('content')
 <div class="text-shade_9 dark:text-tint_1 border-shade_6/50 dark:border-white/5 flex flex-col space-y-3">
-    <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         <div class="border dark:border-white/30 border-shade_6/50 rounded-lg px-4 py-5 flex space-x-2 items-center">
             <svg width="50" height="50" xmlns="http://www.w3.org/2000/svg" class="text-main dark:text-tint_8"
                 fill="currentColor" viewBox="0 0 640 512">
@@ -50,6 +50,7 @@
             </div>
         </div>
     </div>
+
     <div class="grid md:grid-cols-1 lg:grid-cols-2 gap-6">
         <div class="rounded-lg border border-shade_6/50 dark:border-white/30 border-shade_6/50-white/5 bg-card text-card-foreground shadow-sm"
             data-v0-t="card">
