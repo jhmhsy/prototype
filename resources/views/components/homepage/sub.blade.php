@@ -5,10 +5,10 @@
             <h1 class="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">
                 Elevate Your Fitness Journey
             </h1>
-            <x-forms.input-p class="max-w-[600px] mt-4 text-lg">
+            <x-custom.paragraph class="max-w-[600px] mt-4 text-lg">
                 Easily book your gym sessions, manage your membership, and stay on top of your fitness goals
                 with our comprehensive reservation system.
-            </x-forms.input-p>
+            </x-custom.paragraph>
             <a class="inline-flex h-10 items-center justify-center rounded-md bg-blue-500 px-8 text-md font-medium text-white shadow transition-colors hover:bg-blue-600 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-blue-300 disabled:pointer-events-none disabled:opacity-50 mt-6"
                 href="#">
                 Reserve a Spot
@@ -57,11 +57,11 @@
                 <h2 class="text-3xl font-bold tracking-tighter md:text-4xl/tight">
                     Join Our Vibrant Community
                 </h2>
-                <x-forms.input-p
+                <x-custom.paragraph
                     class="mx-auto max-w-[600px] md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
                     Connect with like-minded individuals, attend exclusive events, and take your fitness to new
                     heights.
-                </x-forms.input-p>
+                </x-custom.paragraph>
             </div>
             <div class="mx-auto w-full max-w-sm space-y-2">
                 <form class="flex gap-2">
@@ -73,9 +73,9 @@
                         Join Now
                     </button>
                 </form>
-                <x-forms.input-p class="text-xs">
+                <x-custom.paragraph class="text-xs">
                     Sign up to get notified about our latest updates and promotions.
-                </x-forms.input-p>
+                </x-custom.paragraph>
             </div>
         </div>
     </section>

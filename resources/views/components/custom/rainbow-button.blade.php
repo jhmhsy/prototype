@@ -1,5 +1,10 @@
+@php
+    $defaults = 'px-4 py-2 rounded-md transition duration-300 ease-in-out relative overflow-hidden w-full sm:w-auto rainbow-border';
+    $classes = $attributes->get('class') ? $attributes->get('class').' '. $defaults : $defaults;
+@endphp
+
 <button
-    {{ $attributes->merge(['class' => 'px-4 py-2 rounded-md transition duration-300 ease-in-out relative overflow-hidden w-full sm:w-auto rainbow-border']) }}>
+    {{ $attributes->merge(['class' => $classes])}}>
     <span class="text relative animated-text">{{ $slot }}</span>
 </button>
 <style>
