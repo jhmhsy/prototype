@@ -53,7 +53,7 @@ header > div {
 }
 
 /* aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa */
-.flip-card {
+/*.flip-card {
     background-color: transparent;
     perspective: 1000px;
 }
@@ -78,7 +78,7 @@ header > div {
 }
 .flip-card-back {
     transform: rotateY(180deg);
-}
+}*/
 .dark-overlay {
     position: absolute; /* Position the overlay absolutely within the main section */
     top: 0; /* Align to the top */
@@ -176,4 +176,7 @@ header > div {
             #021f1d,
             #054d48
         );
+}
+.price{
+    font-size: 30px;
 }

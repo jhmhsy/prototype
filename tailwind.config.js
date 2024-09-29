@@ -32,6 +32,9 @@ export default {
                 '72': '18rem',
                 '128': '32rem',
             },
+            lineHeight: {
+                '20': '80px',
+            },
             colors: {
                 //custom green color shades
                 main: "#0a998f",
