@@ -1,5 +1,5 @@
 @php
-    $defaults = "font-bold text-tint_1 dark:text-tint_4";
+    $defaults = "font-bold text-shade_9 dark:text-tint_1";
     $classes = $attributes->get('class') ? $attributes->get('class').' '. $defaults : $defaults;
 @endphp
 

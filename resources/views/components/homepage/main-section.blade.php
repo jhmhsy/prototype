@@ -73,41 +73,41 @@
 </section>
 
 <section x-data="{ currentImage: '/images/public/background-1.jpg', selectedButton: 1 }"
-    class="relative min-h-screen w-full pattern1 flex flex-col md:flex-row items-center justify-center p-4 md:p-8 bg-white text-textblack dark:bg-black dark:text-textwhite">
-    <div class="w-full md:w-2/5 p-2 md:p-4">
+    class="relative min-h-screen w-full pattern4 flex flex-col md:flex-row items-center justify-center p-4 md:p-8 bg-white text-textblack dark:bg-black dark:text-textwhite">
+    <div class="w-full md:w-2/5 xs:p-3">
         <img :src="currentImage" alt="Gym" class="w-full h-auto rounded-md" />
     </div>
 
     <div class="w-full md:w-1/2 px-2 py-4 md:px-4 md:py-8 space-y-4 md:space-y-8">
         <button @click="currentImage = '/images/public/background-1.jpg'; selectedButton = 1"
-            :class="{ 'border-l-4 border-white dark:border-tint_5': selectedButton === 1 }"
+            :class="{ 'border-l-4 border-shade_9 dark:border-tint_1': selectedButton === 1 }"
             class="text-left w-full px-2 py-1 md:px-4 md:py-2">
             <x-custom.small-header class="text-lg md:text-2xl lg:text-3xl xl:text-4xl font-bold">
                 Personal Training
             </x-custom.small-header>
-            <x-custom.paragraph class="text-sm md:text-base lg:text-lg xl:text-xl text-gray-600">
+            <x-custom.paragraph :dark="true" class="text-sm md:text-base lg:text-lg xl:text-xl text-gray-600">
                 Get personalized training sessions with our expert trainers.
             </x-custom.paragraph>
         </button>
 
         <button @click="currentImage = '/images/public/background-2.jpg'; selectedButton = 2"
-            :class="{ 'border-l-4 border-white dark:border-tint_5': selectedButton === 2 }"
+            :class="{ 'border-l-4 border-shade_9 dark:border-tint_1': selectedButton === 2 }"
             class="text-left w-full px-2 py-1 md:px-4 md:py-2">
             <x-custom.small-header class="text-lg md:text-2xl lg:text-3xl xl:text-4xl font-bold">
                 Group Classes
             </x-custom.small-header>
-            <x-custom.paragraph class="text-sm md:text-base lg:text-lg xl:text-xl text-gray-600">
+            <x-custom.paragraph :dark="true" class="text-sm md:text-base lg:text-lg xl:text-xl text-gray-600">
                 Join our group classes and stay motivated with others.
             </x-custom.paragraph>
         </button>
 
         <button @click="currentImage = '/images/public/background-3.jpg'; selectedButton = 3"
-            :class="{ 'border-l-4 border-white dark:border-tint_5': selectedButton === 3 }"
+            :class="{ 'border-l-4 border-shade_9 dark:border-tint_1': selectedButton === 3 }"
             class="text-left w-full px-2 py-1 md:px-4 md:py-2">
             <x-custom.small-header class="text-lg md:text-2xl lg:text-3xl xl:text-4xl font-bold">
                 State-of-the-Art Equipment
             </x-custom.small-header>
-            <x-custom.paragraph class="text-sm md:text-base lg:text-lg xl:text-xl text-gray-600">
+            <x-custom.paragraph :dark="true" class="text-sm md:text-base lg:text-lg xl:text-xl text-gray-600">
                 Access the latest and best equipment for your workouts.
             </x-custom.paragraph>
         </button>

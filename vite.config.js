@@ -9,7 +9,7 @@ export default defineConfig({
         }),
     ],
     server: {
-        host: process.env.VITE_HOST,
+        host: '192.168.1.8',
         port: parseInt(process.env.VITE_PORT),
     },
 });

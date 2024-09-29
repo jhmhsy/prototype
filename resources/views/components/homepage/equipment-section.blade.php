@@ -1,16 +1,12 @@
 <div
-    class="w-full sm:px-4 md:px-6 lg:px-8 py-8 md:py-10 lg:py-15 grid gap-5 md:gap-7 text-textblack dark:text-textwhite">
-    <h1 class="px-5 sm:px-6 md:px-8 text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">
-        We Provide
-    </h1>
+    class="w-full sm:px-4 md:px-6 lg:px-8 py-8 md:py-10 lg:py-15 grid gap-2 text-textblack dark:text-textwhite pattern2">
     <section class="px-5 sm:px-6 md:px-8">
         <div class="flex items-center justify-between mb-6 md:mb-8">
-            <h2 class="text-2xl md:text-3xl font-bold">Gym Equipments </h2>
+            <x-custom.small-header class="text-2xl md:text-3xl font-bold">Gym Equipments </x-custom.small-header>
             <x-forms.nav-link :href="route('features')" class=" hover:underline underline-offset-4">
                 View all
             </x-forms.nav-link>
         </div>
-
         <div
             class="grid max-w-6xl grid-cols-2 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8 lg:gap-10 m-10">
             <div style="border-radius: 40% 60% 30% 70% / 70% 40% 60% 30%"
@@ -29,9 +25,9 @@
                         class=" transition-colors duration-300"></path>
                 </svg>
                 <h3 class="text-lg font-medium mb-2 transition-colors duration-300">Weights</h3>
-                <x-custom.paragraph :isdark="true" class="text-shade_8 text-muted-foreground text-sm ">Variety of
+                <h2 class="text-shade_8 text-muted-foreground text-sm ">Variety of
                     dumbbells and barbells
-                    for strength training.</x-custom.paragraph>
+                    for strength training.</h2>
             </div>
             <div style="border-radius: 45% 55% 35% 65% / 65% 45% 55% 35%"
                 class="hover:-translate-y-6 bg-muted p-4 xs:p-0 md:p-2 flex flex-col items-center text-center bg-primary dark:bg-tint_5 dark:text-shade_9 group transition-all duration-300 ease-in-out border/white-10 border border-main">
@@ -47,12 +43,12 @@
                 </svg>
                 <h3 class="text-lg font-medium mb-2 transition-colors duration-300">Cardio
                     Equipment</h3>
-                <x-custom.paragraph :isdark="true" class="text-muted-foreground text-sm text-shade_8">Treadmills,
+                <h2 class="text-muted-foreground text-sm text-shade_8">Treadmills,
                     ellipticals, and
                     stationary
                     bikes
                     for
-                    cardio.</x-custom.paragraph>
+                    cardio.</h2>
             </div>
             <div style="border-radius: 70% 30% 60% 40% / 40% 70% 30% 60%"
                 class="hover:-translate-y-6 bg-muted rounded-lg p-4 md:p-6 flex flex-col items-center text-center bg-primary dark:bg-tint_5 dark:text-shade_9 group transition-all duration-300 ease-in-out border/white-10 border border-main">
@@ -63,10 +59,10 @@
                 </svg>
                 <h3 class="text-lg font-medium mb-2 transition-colors duration-300">
                     Stretching Area</h3>
-                <x-custom.paragraph :isdark="true" class="text-muted-foreground text-sm text-shade_8">Dedicated space
+                <h2 class="text-muted-foreground text-sm text-shade_8">Dedicated space
                     for yoga,
                     Pilates, and other
-                    stretching.</x-custom.paragraph>
+                    stretching.</h2>
             </div>
             <div style="border-radius: 59% 41% 60% 40% / 64% 66% 34% 36%;"
                 class="hover:-translate-y-6 bg-muted rounded-lg p-4 md:p-6 flex flex-col items-center text-center bg-primary dark:bg-tint_5 dark:text-shade_9 group transition-all duration-300 ease-in-out border/white-10 border border-main">
@@ -79,11 +75,11 @@
                 </svg>
                 <h3 class="text-lg font-medium mb-2 transition-colors duration-300">Rowing
                     Machines</h3>
-                <x-custom.paragraph :isdark="true" class="text-muted-foreground text-sm text-shade_8">High-intensity
+                <h2 class="text-muted-foreground text-sm text-shade_8">High-intensity
                     rowing machines
                     for a
                     full-body
-                    workout.</x-custom.paragraph>
+                    workout.</h2>
             </div>
         </div>
     </section>
@@ -114,8 +110,9 @@
                     <path d="M20 11v.01" class=" transition-colors duration-300"></path>
                 </svg>
                 <h3 class="text-lg font-medium mb-2 transition-colors duration-300">Locker Rooms</h3>
-                <x-forms.input-p class="text-muted-foreground text-sm text-shade_8">Spacious locker rooms with showers
-                    and changing areas.</x-forms.input-p>
+                <h2 class="text-muted-foreground text-sm text-shade_8">Spacious
+                    locker rooms with showers
+                    and changing areas.</h2>
             </div>
             <div style="border-radius: 67% 33% 52% 48% / 51% 53% 47% 49%; width: 100%;"
                 class="hover:-translate-y-6 bg-muted rounded-lg p-4 md:p-6 flex flex-col items-center text-center bg-primary dark:bg-tint_5 dark:text-shade_9 group transition-all duration-300 ease-in-out border/white-10 border border-main">
@@ -129,8 +126,9 @@
                     <path d="M14 17.85V10H6.15" class=" transition-colors duration-300"></path>
                 </svg>
                 <h3 class="text-lg font-medium mb-2 transition-colors duration-300">Juice Bar</h3>
-                <x-forms.input-p class="text-muted-foreground text-sm text-shade_8">Refuel with a variety of healthy
-                    smoothies and juices.</x-forms.input-p>
+                <h2 class="text-muted-foreground text-sm text-shade_8">Refuel with a
+                    variety of healthy
+                    smoothies and juices.</h2>
             </div>
             <div style="border-radius: 44% 56% 52% 48% / 70% 54% 46% 30%; width: 100%;"
                 class="hover:-translate-y-6 bg-muted rounded-lg p-4 md:p-6 flex flex-col items-center text-center bg-primary dark:bg-tint_5 dark:text-shade_9 group transition-all duration-300 ease-in-out border/white-10 border border-main">
@@ -143,8 +141,9 @@
                     <path d="M2 21h20" class=" transition-colors duration-300"></path>
                 </svg>
                 <h3 class="text-lg font-medium mb-2 transition-colors duration-300">Towel Service</h3>
-                <x-forms.input-p class="text-muted-foreground text-sm text-shade_8">Complimentary towel service for
-                    your workout needs.</x-forms.input-p>
+                <h2 class="text-muted-foreground text-sm text-shade_8">Complimentary
+                    towel service for
+                    your workout needs.</h2>
             </div>
             <div style="border-radius: 59% 41% 60% 40% / 64% 66% 34% 36%; width: 100%;"
                 class="hover:-translate-y-6 bg-muted rounded-lg p-4 md:p-6 flex flex-col items-center text-center bg-primary dark:bg-tint_5 dark:text-shade_9 group transition-all duration-300 ease-in-out border/white-10 border border-main">
@@ -157,8 +156,9 @@
                     <path d="M8.5 16.429a5 5 0 0 1 7 0" class=" transition-colors duration-300"></path>
                 </svg>
                 <h3 class="text-lg font-medium mb-2  transition-colors duration-300">Free WiFi</h3>
-                <x-forms.input-p class="text-muted-foreground text-sm text-shade_8">Stay connected with high-speed
-                    wireless internet access.</x-forms.input-p>
+                <h2 class="text-muted-foreground text-sm text-shade_8">Stay connected
+                    with high-speed
+                    wireless internet access.</h2>
             </div>
         </div>
 

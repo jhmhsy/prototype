@@ -1,8 +1,8 @@
 <footer class="bg-white ">
-    <div class="pattern2 items-center w-full py-12 md:py-24 lg:py-32 bg-tint_3 dark:bg-shade_7 text-center">
+    <div class="pattern7 items-center w-full py-12 md:py-24 lg:py-32 bg-tint_3 dark:bg-shade_7 text-center">
         <div class="container grid items-center justify-center gap-4 px-4 text-center md:px-6 m-auto">
             <div class="space-y-3 text-shade_8 ">
-                <h2 class="text-3xl font-bold tracking-tighter md:text-4xl/tight">
+                <h2 class="text-tint_1 text-3xl font-bold tracking-tighter md:text-4xl/tight">
                     Join Our Vibrant Community
                 </h2>
                 <x-custom.paragraph
@@ -12,11 +12,11 @@
                 </x-custom.paragraph>
             </div>
             <div class="mx-auto w-full max-w-sm space-y-2">
-                <form class="flex gap-2">
+                <form class="flex flex-col xs:flex-row gap-2">
                     <x-forms.text-input
-                        class="h-10 w-full rounded-md px-3 py-2 text-sm items-center text-shade_9 border-shade_8"
+                        class="h-10 w-full rounded-md px-3 py-2 text-sm items-center text-tint_1"
                         placeholder="Enter your email" type="email" />
-                    <x-forms.reverse-nav-link class="h-10 px-4 py-2 border border-shade_9 dark:text-shade_9"
+                    <x-forms.reverse-nav-link class="h-10 px-4 py-2 border text-tint_1 border-tint_1 dark:text-shade_9 dark:border-shade_9"
                         type="submit">
                         Join Now
                     </x-forms.reverse-nav-link>
