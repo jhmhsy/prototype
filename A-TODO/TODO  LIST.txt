@@ -1,0 +1,80 @@
+CAPSTONE Percentage  -------    I dunno I guest ✅✅✅✅❌❌❌❌❌❌❌
+
+DASHBOARD--------------------------------------------------- 
+legend:✅ ❌
+
+
+
+
+DASHBOARD
+add a home button on dashboard side navbar when on mobile       ❌
+
+when on mobile, change the administrator panel title header to admin panel       ❌
+
+when on mobile, remove the logo in dashboard panel     ❌
+
+
+EVENTS
+Unconfirmed yet      ❌
+
+
+HELP
+Unconfirmed YEET     ❌
+
+
+EQUIPMENTS
+Add a create Equipments      ❌
+
+Add a Equipments Layouts        ✅
+
+Add a Equipments Controller, database table, Models, just a fucking connection to CRUD negaa     ❌
+
+Perfection     ❌❌❌
+
+
+
+
+LANDINGPAGE ---------------------------------------------------
+
+lOGO 
+Adjust the Logo its too common     ❌
+
+EVENTS
+Unconfirmed yet   ❌
+
+
+MAIN SECTION 
+Make it good like modern and clean    ✅
+
+
+FEEDBACK 
+responsiveness of feedbacks contents      ❌
+
+complete      ❌
+
+
+EQUIPMENTS
+A feature pages that shows the list of equipments     ❌
+
+
+CALENDAR
+Calendar Prototype   ✅
+
+Make the buttons hours clickable then will proceed to guest reservation page where it will auto input the clicked hours     ❌
+
+Design it     ❌
+
+
+PRICING PLANS 
+Very Demure   ✅
+
+
+FOOTER   
+Remake it its too boring       ✅
+
+Update its href to actually proceed to something     ❌ 
+
+
+PROFILE / SETTINGS 
+Needs Optimized        ❌
+ 
