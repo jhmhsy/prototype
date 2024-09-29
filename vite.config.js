@@ -15,3 +15,10 @@ export default defineConfig({
         port: 8000
     }
 });
+//export const anotherServerConfig = defineConfig({
+//    server: {
+//        host: '192.168.1.9',
+//        port: 8001
+//    },
+//    // Additional server configuration
+//});

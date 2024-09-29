@@ -16,7 +16,7 @@ export default {
 
     theme: {
         screens: {
-            'xs': '480px', // Add this line for the xs breakpoint
+            'xs': '360px', // Add this line for the xs breakpoint
             'sm': '640px',
             'md': '768px',
             'lg': '1024px',
@@ -29,6 +29,7 @@ export default {
                 hanken: ["Hanken Grotesk", "sans-serif"],
             },
             height: {
+                '72': '18rem',
                 '128': '32rem',
             },
             colors: {

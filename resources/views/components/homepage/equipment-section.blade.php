@@ -12,9 +12,9 @@
             </x-forms.nav-link>
         </div>
 
-        <div class="grid max-w-6xl grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8 lg:gap-10 m-10">
+        <div class="grid max-w-6xl grid-cols-2 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8 lg:gap-10 m-10">
             <div style="border-radius: 40% 60% 30% 70% / 70% 40% 60% 30%"
-                class="hover:-translate-y-6 bg-muted p-4 md:p-6 flex flex-col items-center text-center bg-primary dark:bg-tint_5 dark:text-shade_9 group transition-all duration-300 ease-in-out border/white-10 border border-main">
+                class="xs:p-4 hover:-translate-y-6 bg-muted p-4 md:p-6 flex flex-col items-center text-center bg-primary dark:bg-tint_5 dark:text-shade_9 group transition-all duration-300 ease-in-out border/white-10 border border-main">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                     class="w-10 h-10 mb-4 group-hover:text-main">
@@ -33,12 +33,14 @@
                     for strength training.</x-forms.input-p>
             </div>
             <div style="border-radius: 45% 55% 35% 65% / 65% 45% 55% 35%"
-                class="hover:-translate-y-6 bg-muted rounded-lg p-4 md:p-6 flex flex-col items-center text-center bg-primary dark:bg-tint_5 dark:text-shade_9 group transition-all duration-300 ease-in-out border/white-10 border border-main">
+                class="hover:-translate-y-6 bg-muted p-4 xs:p-0 md:p-2 flex flex-col items-center text-center bg-primary dark:bg-tint_5 dark:text-shade_9 group transition-all duration-300 ease-in-out border/white-10 border border-main">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                     class="w-10 h-10 mb-4 group-hover:text-main text-shade_9 ">
-                    <line x1="10" x2="14" y1="2" y2="2" class=" transition-colors duration-300"></line>
-                    <line x1="12" x2="15" y1="14" y2="11" class=" transition-colors duration-300"></line>
+                    <line x1="10" x2="14" y1="2" y2="2"
+                        class=" transition-colors duration-300"></line>
+                    <line x1="12" x2="15" y1="14" y2="11"
+                        class=" transition-colors duration-300"></line>
                     <circle cx="12" cy="14" r="8" class=" transition-colors duration-300">
                     </circle>
                 </svg>
@@ -68,7 +70,8 @@
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                     class="w-10 h-10 mb-4 group-hover:text-main text-shade_9 ">
-                    <rect width="18" height="18" x="3" y="3" rx="2" class=" transition-colors duration-300"></rect>
+                    <rect width="18" height="18" x="3" y="3" rx="2"
+                        class=" transition-colors duration-300"></rect>
                     <path d="M3 12h18" class=" transition-colors duration-300"></path>
                 </svg>
                 <h3 class="text-lg font-medium mb-2 transition-colors duration-300">Rowing
@@ -88,12 +91,13 @@
                 View all
             </x-forms.nav-link>
         </div>
-        <div class="grid max-w-6xl grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8 lg:gap-10 m-10">
-            <div style="border-radius: 44% 56% 52% 48% / 70% 54% 46% 30%"
+        <div
+            class="grid max-w-6xl grid-cols-2 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8 lg:gap-10 m-10">
+            <div style="border-radius: 44% 56% 52% 48% / 70% 54% 46% 30%; width: 100%;"
                 class="hover:-translate-y-6 bg-muted rounded-lg p-4 md:p-6 flex flex-col items-center text-center bg-primary dark:bg-tint_5 dark:text-shade_9 group transition-all duration-300 ease-in-out border/white-10 border border-main">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="w-10 h-10 mb-4 group-hover:text-main text-shade_9 " class=" transition-colors duration-300">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" class="w-10 h-10 mb-4 group-hover:text-main text-shade_9 ">
                     <path d="m4 4 2.5 2.5" class=" transition-colors duration-300"></path>
                     <path d="M13.5 6.5a4.95 4.95 0 0 0-7 7" class=" transition-colors duration-300"></path>
                     <path d="M15 5 5 15" class=" transition-colors duration-300"></path>
@@ -105,70 +109,55 @@
                     <path d="M17 14v.01" class=" transition-colors duration-300"></path>
                     <path d="M20 11v.01" class=" transition-colors duration-300"></path>
                 </svg>
-                <h3 class="text-lg font-medium mb-2 transition-colors duration-300">
-                    Locker Rooms</h3>
-                <x-forms.input-p class="text-muted-foreground text-sm text-shade_8">Spacious locker rooms with
-                    showers and
-                    changing
-                    areas.</x-forms.input-p>
+                <h3 class="text-lg font-medium mb-2 transition-colors duration-300">Locker Rooms</h3>
+                <x-forms.input-p class="text-muted-foreground text-sm text-shade_8">Spacious locker rooms with showers
+                    and changing areas.</x-forms.input-p>
             </div>
-            <div style="border-radius: 67% 33% 52% 48% / 51% 53% 47% 49%"
+            <div style="border-radius: 67% 33% 52% 48% / 51% 53% 47% 49%; width: 100%;"
                 class="hover:-translate-y-6 bg-muted rounded-lg p-4 md:p-6 flex flex-col items-center text-center bg-primary dark:bg-tint_5 dark:text-shade_9 group transition-all duration-300 ease-in-out border/white-10 border border-main">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="w-10 h-10 mb-4 group-hover:text-main text-shade_9 ">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" class="w-10 h-10 mb-4 group-hover:text-main text-shade_9 ">
                     <path d="M21.66 17.67a1.08 1.08 0 0 1-.04 1.6A12 12 0 0 1 4.73 2.38a1.1 1.1 0 0 1 1.61-.04z"
-                        class=" transition-colors duration-300">
-                    </path>
+                        class=" transition-colors duration-300"></path>
                     <path d="M19.65 15.66A8 8 0 0 1 8.35 4.34" class=" transition-colors duration-300"></path>
-                    <path d="m14 10-5.5 5.5" class=" transition-colors duration-300">
-                    </path>
-                    <path d="M14 17.85V10H6.15" class=" transition-colors duration-300">
-                    </path>
+                    <path d="m14 10-5.5 5.5" class=" transition-colors duration-300"></path>
+                    <path d="M14 17.85V10H6.15" class=" transition-colors duration-300"></path>
                 </svg>
-                <h3 class="text-lg font-medium mb-2 transition-colors duration-300">Juice
-                    Bar</h3>
+                <h3 class="text-lg font-medium mb-2 transition-colors duration-300">Juice Bar</h3>
                 <x-forms.input-p class="text-muted-foreground text-sm text-shade_8">Refuel with a variety of healthy
-                    smoothies
-                    and
-                    juices.</x-forms.input-p>
+                    smoothies and juices.</x-forms.input-p>
             </div>
-            <div style="border-radius: 44% 56% 52% 48% / 70% 54% 46% 30%"
+            <div style="border-radius: 44% 56% 52% 48% / 70% 54% 46% 30%; width: 100%;"
                 class="hover:-translate-y-6 bg-muted rounded-lg p-4 md:p-6 flex flex-col items-center text-center bg-primary dark:bg-tint_5 dark:text-shade_9 group transition-all duration-300 ease-in-out border/white-10 border border-main">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="w-10 h-10 mb-4 group-hover:text-main text-shade_9 ">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" class="w-10 h-10 mb-4 group-hover:text-main text-shade_9 ">
                     <path d="M3.5 21 14 3" class=" transition-colors duration-300"></path>
-                    <path d="M20.5 21 10 3" class=" transition-colors duration-300">
-                    </path>
+                    <path d="M20.5 21 10 3" class=" transition-colors duration-300"></path>
                     <path d="M15.5 21 12 15l-3.5 6" class=" transition-colors duration-300"></path>
                     <path d="M2 21h20" class=" transition-colors duration-300"></path>
                 </svg>
-                <h3 class="text-lg font-medium mb-2 transition-colors duration-300">Towel
-                    Service</h3>
+                <h3 class="text-lg font-medium mb-2 transition-colors duration-300">Towel Service</h3>
                 <x-forms.input-p class="text-muted-foreground text-sm text-shade_8">Complimentary towel service for
-                    your workout
-                    needs.
-                </x-forms.input-p>
+                    your workout needs.</x-forms.input-p>
             </div>
-            <div style="border-radius: 59% 41% 60% 40% / 64% 66% 34% 36%;"
+            <div style="border-radius: 59% 41% 60% 40% / 64% 66% 34% 36%; width: 100%;"
                 class="hover:-translate-y-6 bg-muted rounded-lg p-4 md:p-6 flex flex-col items-center text-center bg-primary dark:bg-tint_5 dark:text-shade_9 group transition-all duration-300 ease-in-out border/white-10 border border-main">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="w-10 h-10 mb-4 group-hover:text-main text-shade_9 ">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" class="w-10 h-10 mb-4 group-hover:text-main text-shade_9 ">
                     <path d="M12 20h.01" class=" transition-colors duration-300"></path>
                     <path d="M2 8.82a15 15 0 0 1 20 0" class=" transition-colors duration-300"></path>
                     <path d="M5 12.859a10 10 0 0 1 14 0" class=" transition-colors duration-300"></path>
                     <path d="M8.5 16.429a5 5 0 0 1 7 0" class=" transition-colors duration-300"></path>
                 </svg>
-                <h3 class="text-lg font-medium mb-2  transition-colors duration-300">Free
-                    WiFi</h3>
+                <h3 class="text-lg font-medium mb-2  transition-colors duration-300">Free WiFi</h3>
                 <x-forms.input-p class="text-muted-foreground text-sm text-shade_8">Stay connected with high-speed
-                    wireless
-                    internet
-                    access.</x-forms.input-p>
+                    wireless internet access.</x-forms.input-p>
             </div>
         </div>
+
     </section>
 
 </div>
