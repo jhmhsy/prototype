@@ -3,9 +3,6 @@ CAPSTONE Percentage  -------    I dunno I guest ✅✅✅✅❌❌❌❌❌❌�
 DASHBOARD--------------------------------------------------- 
 legend:✅ ❌
 
-
-
-
 DASHBOARD
 add a home button on dashboard side navbar when on mobile       ❌
 
