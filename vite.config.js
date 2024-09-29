@@ -11,6 +11,7 @@ export default defineConfig({
         }),
     ],
     server: {
+        host: '192.168.1.8', //add this 
         port: 8000
-      }
+    }
 });

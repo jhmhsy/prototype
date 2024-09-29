@@ -10,18 +10,18 @@
     </div>
     <div class="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 lg:gap-12 max-w-6xl w-full px-4 md:px-6 lg:px-8">
 
-        <div class="flip-card relative md:col-span-1 transition-transform duration-300">
+        <div class="flip-card relative md:col-span-1 transition-transform duration-300 h-64 xs:h-96 sm:h-80 md:h-72">
             <div class="flip-card-inner bg-primary rounded-lg shade-xl border border-black/30">
                 <div class="flip-card-back absolute px-5 py-2 md:py-3 md:px-6 lg:py-4 lg:px-7">
-                    <h3 class="text-2xl md:text-3xl font-bold mb-4 md:mb-4 sm:mb-0">Starter Pass</h3>
-                    <div class="flex items-baseline mb-6 md:mb-6 sm:mb-0">
+                    <h3 class="text-2xl md:text-3xl font-bold mb-4 md:mb-3 sm:mb-0">Starter Pass</h3>
+                    <div class="flex items-baseline mb-6 md:mb-6 sm:mb-6">
                         <span class="text-4xl md:text-5xl font-bold">₱50</span>
                         <span class="text-muted-foreground ml-2">/1 day</span>
                     </div>
                     <ul class="space-y-1 mb-3">
                         <li class="flex items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                fill="none" 6stroke="black" stroke-width="2" stroke-linecap="round"
+                                fill="none" stroke="black" stroke-width="2" stroke-linecap="round"
                                 stroke-linejoin="round" class="w-5 h-5 mr-2 text-primary">
                                 <path d="M20 6 9 17l-5-5"></path>
                             </svg>
@@ -51,7 +51,7 @@
                         class="py-2 w-full border bg-black rounded border-white text-white hover:bg-main transition-colors duration-300">Sign
                         Up
                         Now</button>
-                </div>
+            </div>
                 <div class="flip-card-front px-5 py-2 md:p-8 lg:p-10">
                     <h3 class="text-2xl md:text-3xl font-bold mb-4">Starter Gym Pass</h3>
                     <div class="flex items-baseline mb-6">
@@ -80,12 +80,12 @@
             </div>
         </div>
 
-        <div class="flip-card relative md:col-span-1 transition-transform duration-300">
+        <div class="flip-card relative md:col-span-1 transition-transform duration-300 h-64 sm:h-80 md:h-72">
             <div
                 class="flip-card-inner bg-primary rounded-lg shade-xl border border-black/30 bg-gradient-to-r from-[#5865f2] to-[#017ac2]">
                 <div class="flip-card-back absolute px-5 py-2 md:py-3 md:px-6 lg:py-4 lg:px-7 text-white">
-                    <h3 class="text-2xl md:text-3xl font-bold mb-4 md:mb-4 sm:mb-0">Premium Pass</h3>
-                    <div class="flex items-baseline mb-6 md:mb-6 sm:mb-0">
+                    <h3 class="text-2xl md:text-3xl font-bold mb-4 md:mb-3 sm:mb-0">Premium Pass</h3>
+                    <div class="flex items-baseline mb-6 md:mb-6 sm:mb-6">
                         <span class="text-4xl md:text-5xl font-bold">₱100</span>
                         <span class="text-white opacity-75 ml-2">/3 days</span>
                     </div>
@@ -163,11 +163,11 @@
                 </div>
             </div>
         </div>
-        <div class="flip-card relative md:col-span-1 transition-transform duration-300">
+        <div class="flip-card relative md:col-span-1 transition-transform duration-300 h-64 sm:h-80 md:h-72">
             <div
                 class="flip-card-inner bg-primary rounded-lg shade-xl border border-black/30 bg-gradient-to-r from-[#8846c5] to-[#ab5d8b]">
                 <div class="flip-card-back absolute px-5 py-2 md:py-3 md:px-6 lg:py-4 lg:px-7 text-white ">
-                    <h3 class="text-2xl md:text-3xl font-bold mb-4 md:mb-4 sm:mb-0">VIP Pass</h3>
+                    <h3 class="text-2xl md:text-3xl font-bold mb-4 md:mb-3 sm:mb-0">VIP Pass</h3>
                     <div class="flex items-baseline mb-6 md:mb-6 sm:mb-0">
                         <span class="text-4xl md:text-5xl font-bold">₱500</span>
                         <span class="text-white opacity-75 ml-2">/1 week</span>
