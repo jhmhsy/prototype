@@ -33,7 +33,7 @@
 
     <!-- Modal backdrop -->
     <div style="display: none;" x-show="open"
-        class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center" style="z-index: 999;">
+        class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
         <!-- Modal content -->
         <div @click.away="open = false" class="bg-tint_1 dark:bg-shade_9 rounded-lg shadow-xl p-6 max-w-md w-full">
             <button @click="open = false" type="button"
@@ -45,6 +45,7 @@
                 </svg>
                 <span class="sr-only">Close modal</span>
             </button>
+
             <div class="p-4 md:p-5 text-center">
                 <svg class="mx-auto mb-4 text-gray-400 w-12 h-12" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                     fill="none" viewBox="0 0 20 20">

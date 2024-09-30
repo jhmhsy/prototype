@@ -22,6 +22,39 @@
                 "isDefault": true
             },
             "isBackground": true
+        },
+        {
+            "label": "Run Migrate",
+            "type": "shell",
+            "command": "php artisan migrate --force",
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "isBackground": true
+        },
+        {
+            "label": "Run db:seed",
+            "type": "shell",
+            "command": "php artisan db:seed",
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "isBackground": true
+        },
+        {
+            "label": "Run Migrate Reset",
+            "type": "shell",
+            "command": "php artisan migrate:reset",
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "isBackground": true
         }
     ]
 }
