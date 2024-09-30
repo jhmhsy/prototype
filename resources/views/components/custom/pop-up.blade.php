@@ -33,7 +33,7 @@
 
     <!-- Modal backdrop -->
     <div style="display: none;" x-show="open"
-        class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center" style="z-index: 999;">
+        class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
         <!-- Modal content -->
         <div @click.away="open = false" class="bg-tint_1 dark:bg-shade_9 rounded-lg shadow-xl p-6 max-w-md w-full">
             <button @click="open = false" type="button"
@@ -60,6 +60,10 @@
                     class="text-white bg-red-600 hover:bg-red-800 focus:ring-1 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 ms-3 text-center">
                     Delete
                 </button>
+
+
+
+
                 <button @click="open = false" type="button"
                     class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 bg-white rounded-lg hover:bg-gray-100 dark:hover:bg-gray-400">
                     Cancel

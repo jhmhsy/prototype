@@ -22,12 +22,12 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="font-sans antialiased min-w-[350px]">
+<body class="font-sans antialiased min-w-[350px] h-screen w-full">
 
     <div>
         @isset($header)
         <header>
-            <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+            <div class=" mx-auto py-6 px-4 sm:px-6 lg:px-8">
                 {{ $header }}
             </div>
         </header>

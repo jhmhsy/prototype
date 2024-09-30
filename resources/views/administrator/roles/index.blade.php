@@ -57,18 +57,20 @@
 
                 @can('role-delete')
                 @if ($role->name == 'SuperAdmin')
-                <x-custom.pop-up :disabled="true" :name="'role'" :formId="'delete'">
+                <x-custom.pop-up :disabled="true" :name="'role'" :formId="'delete-'.$role->id">
                 </x-custom.pop-up>
                 @else
-                <x-custom.pop-up :name="'role'" :formId="'delete'">
+                <x-custom.pop-up :name="'role'" :formId="'delete-'.$role->id">
                 </x-custom.pop-up>
                 @endif
-                <form method="POST" action="{{ route('roles.destroy', $role->id) }}" style="display:inline" id="delete"
-                    class="hidden">
+
+                <form method="POST" action="{{ route('roles.destroy', $role->id) }}" style="display:inline"
+                    id="delete-{{ $role->id }}" class="hidden">
                     @csrf
                     @method('DELETE')
                 </form>
                 @endcan
+
             </div>
         </div>
         @endforeach

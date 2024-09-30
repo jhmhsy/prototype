@@ -154,9 +154,16 @@ public function index(Request $request): View
      */
     public function destroy($id): RedirectResponse
     {
+        $role = Role::find($id);
+        if (!$role) {
+            return redirect()->route('roles.index')
+                ->with('error', 'Role not found');
+        }
+    
         DB::table('roles')->where('id', $id)->delete();
-
+    
         return redirect()->route('roles.index')
             ->with('success', 'Role deleted successfully');
     }
+    
 }

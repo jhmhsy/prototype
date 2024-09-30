@@ -267,7 +267,7 @@
                         </div>
 
                         <!-- 3 icons -->
-                        <div class="grid grid-cols-2 justify-between items-center ">
+                        <div class="grid grid-cols-1 justify-between items-center ">
                             <div>
                                 <button
                                     class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-10 w-10">
@@ -305,7 +305,7 @@
                             <div>
                                 <div class="p-6 pl-20 grid gap-4">
                                     <div class="flex items-center gap-2">
-                                        <div class="flex space-x-2" x-data="{ selectedRating: 0 }">
+                                        <div class="flex flex-row space-x-2" x-data="{ selectedRating: 0 }">
                                             <!-- Star 1 -->
                                             <label class="flex items-center">
                                                 <input type="radio" name="rating" value="1" class="hidden"

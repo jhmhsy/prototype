@@ -83,20 +83,27 @@
                                         @include ("administrator.users.edit")
 
                                         @can('role-delete')
+                                        @php
+                                        // Generate a unique form ID based on the user ID
+                                        $uniqueFormId = 'delete-user-' . $user->id;
+                                        @endphp
+
                                         @if($user->hasRole('SuperAdmin'))
                                         <x-custom.pop-up :disabled="true" :normal="false" :name="'user'"
-                                            :formId="'delete'">
+                                            :formId="$uniqueFormId">
                                         </x-custom.pop-up>
                                         @else
-                                        <x-custom.pop-up :normal="false" :name="'user'" :formId="'delete'">
+                                        <x-custom.pop-up :normal="false" :name="'user'" :formId="$uniqueFormId">
                                         </x-custom.pop-up>
                                         @endif
+
                                         <form method="POST" action="{{ route('users.destroy', $user->id) }}"
-                                            style="display:inline" id="delete" class="hidden">
+                                            style="display:inline" id="{{ $uniqueFormId }}" class="hidden">
                                             @csrf
                                             @method('DELETE')
                                         </form>
                                         @endcan
+
 
                                         <!-- Edit Form -->
 
