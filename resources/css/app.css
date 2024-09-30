@@ -86,9 +86,9 @@ header > div {
 @layer utilities {
     .dark .equipment-section-style {
         position: relative;
-        background-image: url("images/hurhur/overlay.png"),
+        /* background-image: url("images/hurhur/overlay.png"),
             url("images/hurhur/header.svg"),
-            linear-gradient(75deg, #032e2b 15%, #043d39 55%);
+            linear-gradient(75deg, #032e2b 15%, #043d39 55%); */
         background-color: #010f0e; /* Darker mode background color */
         background-size: 100% 620%;
         background-repeat: repeat;

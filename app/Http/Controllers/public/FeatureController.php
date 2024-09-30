@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\public;
+namespace App\Http\Controllers\Public;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
-class featuresController extends Controller
+class FeatureController extends Controller
 {
 
 
