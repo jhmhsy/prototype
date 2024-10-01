@@ -16,10 +16,10 @@
                     <x-forms.text-input
                         class="h-10 w-full rounded-md px-3 py-2 text-sm items-center text-tint_1"
                         placeholder="Enter your email" type="email" />
-                    <x-forms.reverse-nav-link class="h-10 px-4 py-2 border text-tint_1 border-tint_1 dark:text-shade_9 dark:border-shade_9"
+                    <x-custom.primary-button class="h-10 px-4 py-2 border text-tint_1 border-tint_1 dark:text-shade_9 dark:border-shade_9"
                         type="submit">
                         Join Now
-                    </x-forms.reverse-nav-link>
+                    </x-custom.primary-button>
                 </form>
                 <x-custom.paragraph class="text-xs text-shade_8 ">
                     Sign up to get notified about our latest updates and

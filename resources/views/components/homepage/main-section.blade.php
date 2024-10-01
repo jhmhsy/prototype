@@ -1,6 +1,6 @@
 <section class="relative min-h-screen w-full dark:border-white/10 px-10 bg-gradient-to-br dark:from-shade_9 dark:via-main dark:to-tint_1 from-tint_1 via-main to-shade_9">
     <div class="inset-0 flex flex-col sm:flex-row items-center justify-between px-15 pt-40 pb-15">
-        <div class="text-white">
+        <div class="text-white w-full">
             <h1 class="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">
                 Elevate Your Fitness Journey
             </h1>
@@ -8,7 +8,7 @@
                 Our gym reservation system makes it easy to book your sessions, manage your membership, and
                 stay on top of your fitness goals.
             </x-custom.paragraph>
-            <div class="flex justify-start space-x-2 my-5">
+            <div class="flex flex-col sm:flex-row space-x-2 my-5">
                 <x-custom.primary-button type="button"
                     onclick="window.location.href = '{{ route('ticket.show') }}'">
                     Book Now

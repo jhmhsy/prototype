@@ -1,17 +1,15 @@
 @php
     $defaults = 'inline-flex items-center 
-                bg-white 
-                text-gray-700 
-                border 
-                border-gray-300 
+                bg-main 
+                text-tint_1 
                 rounded-md 
                 font-semibold 
                 text-xs 
                 uppercase 
                 tracking-widest 
                 shadow-sm 
-                hover:bg-darkmode_light 
-                hover:text-white 
+                hover:bg-white 
+                hover:text-gray-700 
                 focus:outline-none 
                 focus:ring-2 
                 focus:ring-indigo-500 
@@ -20,12 +18,10 @@
                 transition 
                 ease-in-out 
                 duration-150
-                dark:bg-darkmode_dark 
-                dark:border-gray-500 
+                dark:bg-main 
                 dark:text-white 
-                dark:hover:bg-primary 
+                dark:hover:bg-darkmode_dark 
                 dark:hover:text-textblack 
-                dark:hover:border-darkmode_dark 
                 dark:focus:ring-offset-gray-800';
     $classes = $attributes->get('class') ? $attributes->get('class') . ' ' . $defaults : $defaults;
 @endphp
