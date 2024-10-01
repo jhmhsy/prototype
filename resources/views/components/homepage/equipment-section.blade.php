@@ -166,10 +166,10 @@
     </section>
 </div> --}}
 <div
-    class="w-full sm:px-4 md:px-6 lg:px-8 py-8 md:py-10 lg:py-15 bg-gradient-to-b from-gray-100 to-white dark:from-shade_5 dark:to-shade_8">
+    class="w-full sm:px-4 md:px-6 lg:px-8 py-8 md:py-10 lg:py-15 bg-gradient-to-bl from-tint_1 via-tint_5 to-main dark:from-shade_5 dark:via-shade_8 dark:to-main">
     <section class="px-5 sm:px-6 md:px-8 mb-12">
         <div class="flex items-center justify-between mb-6 md:mb-8">
-            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white">Gym Equipment</h2>
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-tint_1">Gym Equipment</h2>
             <a href="{{ route('features') }}"
                 class="text-sm font-medium text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 transition-colors duration-300 hover:underline underline-offset-4">
                 View all
@@ -243,7 +243,7 @@
 
     <section class="px-5 sm:px-6 md:px-8">
         <div class="flex items-center justify-between mb-6 md:mb-8">
-            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white">Gym Facilities</h2>
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-tint_1">Gym Facilities</h2>
             <a href="{{ route('features') }}"
                 class="text-sm font-medium text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 transition-colors duration-300 hover:underline underline-offset-4">
                 View all

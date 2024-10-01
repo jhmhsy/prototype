@@ -1,4 +1,4 @@
-<section class="relative min-h-screen w-full dark:border-white/10 px-10 bg-gradient-to-br from-shade_9 via-main to-tint_1">
+<section class="relative min-h-screen w-full dark:border-white/10 px-10 bg-gradient-to-br dark:from-shade_9 dark:via-main dark:to-tint_1 from-tint_1 via-main to-shade_9">
     <div class="inset-0 flex flex-col sm:flex-row items-center justify-between px-15 pt-40 pb-15">
         <div class="text-white">
             <h1 class="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">
