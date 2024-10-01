@@ -14,12 +14,13 @@ class CreateAdminUserSeeder extends Seeder
      */
     public function run(): void
     {
-        //
-        $admin = User::factory()->create([
+        // Create the admin user directly without using the factory
+        $admin = User::create([
             'name' => 'Admin', 
             'email' => 'admin@email.com',
             'password' => bcrypt('asdasdasd')
         ]);
+
         $adminRole = Role::firstOrCreate(['name' => 'Admin']);
 
         $permissions = [
