@@ -3,10 +3,7 @@
 <section x-data="{ isOpen: false }">
     <div class="rounded-lg border bg-card text-card-foreground shadow-sm p-6  text-shade_9 dark:text-tint_1 
     border-shade_6/50 dark:border-white/5" data-v0-t="card">
-
-
         <div class="flex flex-row">
-
             <h1 class="text-2xl font-bold mb-6">Equipment Management</h1>
             <div class="ml-auto flex items-center gap-2">
                 <button @click="isOpen = true"

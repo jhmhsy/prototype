@@ -11,7 +11,7 @@
     {{ __('Calendar') }}
 </x-forms.nav-link>
 
-<x-forms.nav-link href="/#equipment-section">
+<x-forms.nav-link href="/#semi-section">
     {{ __('Features') }}
 </x-forms.nav-link>
 
@@ -40,7 +40,7 @@
     {{ __('Reservation') }}
 </x-forms.responsive-nav-link>
 
-<x-forms.responsive-nav-link href="/#equipment-section" class="r-inactiveLink">
+<x-forms.responsive-nav-link href="/#semi-section" class="r-inactiveLink">
     {{ __('Features') }}
 </x-forms.responsive-nav-link>
 
