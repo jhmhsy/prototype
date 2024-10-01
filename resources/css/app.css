@@ -52,7 +52,7 @@ header > div {
     left: 0; /* Align to the left */
     right: 0; /* Stretch to the right */
     bottom: 0; /* Stretch to the bottom */
-    background-color: rgba(0, 0, 0, 0.2); /* Black color with 50% opacity */
+    background-color: rgba(0, 0, 0, 0.5); /* Black color with 50% opacity */
     z-index: -1; /* Make sure the overlay is above the background */
 }
 /* aaaaaaaaaaaaaaaaaaaaaaaaa */

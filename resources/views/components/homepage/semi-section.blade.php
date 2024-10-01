@@ -20,8 +20,8 @@
                         </svg>
                         <x-custom.mini-header>Easy Booking</x-custom.mini-header>
                     </div>
-                    <x-custom.paragraph >Reserve your spot in your favorite classes with just a few
-                        clicks.</x-custom.paragraph>
+                    <p class="text-tint_1">Reserve your spot in your favorite classes with just a few
+                        clicks.</p>
                 </div>
             </button>
             <button @click="currentImage = '/images/public/background-2.jpg'; selectedButton = 2"
@@ -41,8 +41,8 @@
                         </svg>
                         <x-custom.mini-header>Class Schedules</x-custom.mini-header>
                     </div>
-                    <x-custom.paragraph >Stay up-to-date with the latest class schedules and
-                        availability.</x-custom.paragraph>
+                    <p class="text-tint_1" >Stay up-to-date with the latest class schedules and
+                        availability.</p>
                 </div>
             </button>
             <button @click="currentImage = '/images/public/background-3.jpg'; selectedButton = 3"
@@ -59,8 +59,8 @@
                         </svg>
                         <x-custom.mini-header>Member Management</x-custom.mini-header>
                     </div>
-                    <x-custom.paragraph >Easily manage your membership details and billing
-                        information.</x-custom.paragraph>
+                    <p class="text-tint_1" >Easily manage your membership details and billing
+                        information.</p>
                 </div>
             </button>
         </div>
