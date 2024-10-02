@@ -12,7 +12,8 @@
             <main id="main-section">
                 <x-homepage.main-section />
             </main>
-            <div id="semi-section" class="relative bg-[url('https://img.freepik.com/premium-photo/dark-moody-gym-interior-with-heavy-weights-floor-gym-equipment-background_163305-329787.jpg?w=900')] bg-no-repeat bg-cover bg-fixed">
+            <div id="semi-section"
+                class="relative bg-[url('https://img.freepik.com/premium-photo/dark-moody-gym-interior-with-heavy-weights-floor-gym-equipment-background_163305-329787.jpg?w=900')] bg-no-repeat bg-cover bg-fixed">
                 <div class="dark-overlay"></div>
                 <x-homepage.semi-section />
             </div>
