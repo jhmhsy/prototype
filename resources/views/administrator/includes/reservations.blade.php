@@ -66,9 +66,6 @@
                                     Email
                                 </th>
                                 <th class="h-12 px-4 text-left align-middle">
-                                    Room
-                                </th>
-                                <th class="h-12 px-4 text-left align-middle">
                                     Date
                                 </th>
                                 <th class="h-12 px-4 text-left align-middle">
@@ -86,7 +83,6 @@
                                 <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0 font-medium">
                                     {{ $booking->email }}
                                 </td>
-                                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">{{ $booking->room }}</td>
 
                                 <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">{{ $booking->date }}</td>
                                 <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">{{ $booking->time }}</td>
@@ -128,9 +124,6 @@
                                     Email
                                 </th>
                                 <th class="h-12 px-4 text-left align-middle">
-                                    Room
-                                </th>
-                                <th class="h-12 px-4 text-left align-middle">
                                     Date
                                 </th>
                                 <th class="h-12 px-4 text-left align-middle">
@@ -148,7 +141,6 @@
                                 <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0 font-medium">
                                     {{ $booking->email }}
                                 </td>
-                                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">{{ $booking->room }}</td>
 
                                 <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">{{ $booking->date }}</td>
                                 <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">{{ $booking->time }}</td>
@@ -190,9 +182,6 @@
                                     Email
                                 </th>
                                 <th class="h-12 px-4 text-left align-middle">
-                                    Room
-                                </th>
-                                <th class="h-12 px-4 text-left align-middle">
                                     Date
                                 </th>
                                 <th class="h-12 px-4 text-left align-middle">
@@ -210,7 +199,6 @@
                                 <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0 font-medium">
                                     {{ $booking->email }}
                                 </td>
-                                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">{{ $booking->room }}</td>
 
                                 <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">{{ $booking->date }}</td>
                                 <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">{{ $booking->time }}</td>

@@ -1,4 +1,4 @@
-@props(['active' => false, 'href' => '#'])
+@props(['active' => false])
 
 @php
 $classes = ($active)
@@ -7,6 +7,6 @@ $classes = ($active)
 $defaults = 'border-b-2 transition duration-150 ease-in-out inline-flex leading-5 font-medium text-sm items-center px-1 pt-1 dark:text-tint_1'
 @endphp 
 
-<a href="{{ $href }}" {{ $attributes->merge(['class' => $classes.' '.$defaults]) }}>
+<a {{ $attributes->merge(['class' => $classes.' '.$defaults]) }}>
     {{ $slot }}
 </a>

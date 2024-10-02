@@ -30,7 +30,6 @@ class reservationController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255', 
-            'room' => 'required|string|max:255',
             'date' => 'required|date',
             'time' => 'required|date_format:H:i',
         ]);
@@ -39,7 +38,6 @@ class reservationController extends Controller
         PendingBooking::create([
             'name' => $request->name,
             'email' => $request->email, 
-            'room' => $request->room, 
             'date' => $request->date,
             'time' => $request->time, 
         ]);
@@ -86,7 +84,6 @@ class reservationController extends Controller
         $rejectBooking = RejectedBooking::findOrFail($id);
         $rejectBooking->delete();
 
-      
         return redirect()->back()->with('success', 'Booking has been Deleted.');
     }
 }

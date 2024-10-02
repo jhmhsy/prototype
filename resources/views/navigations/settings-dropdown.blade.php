@@ -2,13 +2,13 @@
     @auth
         @if ($column ?? false)
             <div class="flex flex-col select-none">
-                <x-forms.responsive-nav-link :href="route('profile.edit')">
+                <x-forms.responsive-nav-link :href="route('profile.edit')" class="hover:bg-blue-400 ">
                     {{ __('Profile') }}
                 </x-forms.responsive-nav-link>
 
                 <!-- Permission to access dashboard -->
                 @can('is-admin')
-                    <x-forms.responsive-nav-link :href="route('dashboard')" class="hover:bg-green-400 dark:hover:bg-green-400">
+                    <x-forms.responsive-nav-link :href="route('dashboard')" class="hover:bg-green-400">
                         {{ __('Dashboard') }}
                     </x-forms.responsive-nav-link>
                 @endcan
@@ -17,7 +17,7 @@
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
 
-                    <x-forms.responsive-nav-link :href="route('logout')" class="hover:bg-red-500 dark:hover:bg-red-500"
+                    <x-forms.responsive-nav-link :href="route('logout')" class="hover:bg-red-500 "
                         onclick="event.preventDefault();
                                                 this.closest('form').submit();">
                         {{ __('Log Out') }}
