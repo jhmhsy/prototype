@@ -70,7 +70,20 @@
                             </div>
                             <div class="grid grid-cols-1 gap-2">
                                 <!-- Second div for showing reserved hour details -->
-                                <div id="hourDetails" class="mt-4 p-4 border border-gray-300 rounded-md"></div>
+                                <div id="selectionInfo" class="text-xs"></div>
+                                <div id="hourDetails"
+                                    class="p-4 border border-gray-300 rounded-md h-[160px] overflow-y-auto"></div>
+                                <div class="text-sm">
+                                    <form action="{{ route('reserve.store') }}" method="POST">
+                                        <x-forms.field :value="__('Name')" :errors="$errors->get('regular-name')" :for="'regular-name'">
+                                            <input placeholder="Juan Dela Cruz" type="text" id="regular-name"
+                                                name="name"
+                                                class="w-full px-2 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-main dark:bg-tint_3"
+                                                value="{{ Auth::user() ? Auth::user()->name : '' }}"
+                                                @auth disabled @endauth required>
+                                        </x-forms.field>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -82,10 +95,10 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var calendarEl = document.getElementById('calendar');
-
             // Group reservations by date
             var reservedDates = {};
             var totalReservations = 14; // Adjust this to your actual total reservation count
+            var rangeInfo;
 
             @foreach ($reservedDetails as $booked)
                 var dateKey = '{{ \Carbon\Carbon::parse($booked->date)->toISOString() }}';
@@ -137,18 +150,60 @@
                 };
             });
 
-
-
             var calendar = new FullCalendar.Calendar(calendarEl, {
                 initialView: 'dayGridMonth',
+                selectable: true,
+                selectHelper: true,
                 headerToolbar: {
                     left: 'title',
-                    center: 'prev,today,next',
-                    right: 'dayGridMonth,timeGridWeek'
+                    center: 'today prev,next',
+                    right: 'dayGridMonth,timeGridDay'
+                },
+                buttonText: {
+                    today: 'Today',
+                    month: 'Month',
+                    week: 'Week',
+                    day: 'Day'
                 },
                 events: events,
+                select: function(info) {
+                    var startDate = new Date(info.startStr).toLocaleDateString('en-US', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                    });
+                    var endDate = new Date(info.endStr).toLocaleDateString('en-US', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                    });
+                    rangeInfo = `From: ${startDate}, To: ${endDate}`;
+                    // You can load reserved hours or any custom logic for selected dates here
+                    // For now, we'll just show the reserved hours for the start date
+                    loadReservedHours(info.startStr);
+
+                    // Optionally, you can display selected range to the user
+                    var selectionInfoDiv = document.getElementById('selectionInfo');
+                    selectionInfoDiv.textContent = rangeInfo;
+                },
                 dateClick: function(info) {
-                    loadReservedHours(info.dateStr); // Load reserved hours for the clicked date
+                    var clickedDate = new Date(info.dateStr).toLocaleDateString('en-US', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                    });
+                    var rangeInfo = `Selected date: ${clickedDate}`;
+
+                    loadReservedHours(info.dateStr);
+                    var selectedDates = document.querySelectorAll('.fc-daygrid-day.selected-date');
+                    selectedDates.forEach(function(dateEl) {
+                        dateEl.classList.remove('selected-date');
+                    });
+                    var clickedDateEl = info.dayEl;
+                    clickedDateEl.classList.add('selected-date');
+
+                    var selectionInfoDiv = document.getElementById('selectionInfo');
+                    selectionInfoDiv.textContent = rangeInfo;
                 },
                 //when the label is clicked, the date is also clicked
                 eventDidMount: function(info) {
@@ -177,8 +232,6 @@
         function displayReservedHours(reservedHours) {
             var hourDetailsDiv = document.getElementById('hourDetails');
             hourDetailsDiv.innerHTML = ''; // Clear previous content
-
-
             // Generate hours from 7 AM to 9 PM business hours
             const allTimes = [];
             for (let hour = 7; hour <= 20; hour++) {
@@ -190,13 +243,11 @@
             var list = document.createElement('ul');
             list.className = 'flex flex-col grid grid-cols-2 gap-2 p-0 m-0';
 
-
             allTimes.forEach(time => {
                 var listItem = document.createElement('button');
                 listItem.textContent = time;
                 listItem.className = 'w-100% p-6px';
                 listItem.style.borderRadius = '4px';
-
 
                 // Check if the time is reserved
                 if (reservedHours.includes(time)) {
@@ -215,8 +266,20 @@
         }
     </script>
     <style>
+        .selected-date {
+            background-color: #3ab16e;
+        }
+
+        .fc-daygrid-day.fc-highlight {
+            background-color: #a0e6a0 !important;
+        }
+
         .fc-day {
             cursor: pointer;
+        }
+
+        .fc-day-today {
+            background-color: yellowgreen !important;
         }
 
         .fc-day:hover {
@@ -236,6 +299,5 @@
             z-index: 0;
             background-color: violet;
         }
-        
     </style>
 </x-guest-layout>

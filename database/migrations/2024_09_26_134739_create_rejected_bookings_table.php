@@ -12,7 +12,6 @@ class CreateRejectedBookingsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('email');
-            $table->string('room');
             $table->date('date');
             $table->time('time');
             $table->timestamps();

@@ -39,7 +39,7 @@
             </footer>
         </div>
         <script>
-            
+
         </script>
     </body>
 </x-guest-layout>

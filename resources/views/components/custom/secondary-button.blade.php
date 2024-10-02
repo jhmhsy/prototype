@@ -1,5 +1,6 @@
 @php
-    $defaults = 'inline-flex items-center 
+    $defaults = 'inline-flex items-center
+                text-center
                 bg-main 
                 text-tint_1 
                 rounded-md 

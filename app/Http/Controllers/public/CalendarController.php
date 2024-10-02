@@ -12,7 +12,7 @@ class CalendarController extends Controller
 {
     public function show(): View
     {
-        $reservedDetails = Booking::select('name', 'email', 'room', 'date', 'time')->get();
+        $reservedDetails = Booking::select('name', 'email', 'date', 'time')->get();
         return view('subpages.calendar', compact('reservedDetails'));
     }
 
