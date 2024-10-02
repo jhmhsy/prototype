@@ -30,6 +30,8 @@ Route::post('/feedback', [FeedbackController::class, 'store'])->name('feedback.s
 
 Route::get('/calendar', [CalendarController::class, 'show'])
     ->name('calendar');
+Route::post('/calendar', [ReservationController::class, 'store'])
+    ->name('calendar.store');
 Route::get('/api/reserved-hours', [CalendarController::class, 'getReservedHours']);
 Route::get('/booking-status', 'CalendarController@getBookingStatus');
 

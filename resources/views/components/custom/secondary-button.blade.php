@@ -21,8 +21,8 @@
                 duration-150
                 dark:bg-main 
                 dark:text-white 
-                dark:hover:bg-darkmode_dark 
-                dark:hover:text-textblack 
+                dark:hover:bg-shade_4 
+                dark:hover:text-white 
                 dark:focus:ring-offset-gray-800';
     $classes = $attributes->get('class') ? $attributes->get('class') . ' ' . $defaults : $defaults;
 @endphp

@@ -84,7 +84,6 @@ class reservationController extends Controller
         $rejectBooking = RejectedBooking::findOrFail($id);
         $rejectBooking->delete();
 
-      
         return redirect()->back()->with('success', 'Booking has been Deleted.');
     }
 }

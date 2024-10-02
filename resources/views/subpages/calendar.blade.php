@@ -6,24 +6,6 @@
         <main class="dark:bg-shade_9 justify-center mt-15 flex">
             <div class="flex flex-col min-h-screen min-w-[600px]">
                 <div class="bg-background border-b flex items-center justify-between px-4 py-3 sm:px-6">
-                    {{-- search bar --}}
-                    <div class="flex items-center gap-4 w-full ">
-                        <div class="relative flex-1">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round"
-                                class="lucide lucide-search absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground">
-                                <circle cx="11" cy="11" r="8"></circle>
-                                <path d="m21 21-4.3-4.3"></path>
-                            </svg>
-                            <input
-                                class="flex h-10 border border-input px-3 text-sm ring-offset-background file:border-0 
-                                file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground 
-                                focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring 
-                                focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 pl-10 pr-4 py-3 rounded-md w-full bg-muted focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary sm:w-[400px] md:w-[500px] lg:w-[600px]"
-                                placeholder="Search..." type="search" />
-                        </div>
-                    </div>
                     <div class="flex items-center gap-4">
                         <button
                             class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-10 w-10 rounded-full">
@@ -74,7 +56,7 @@
                                 <div id="hourDetails"
                                     class="p-4 border border-gray-300 rounded-md h-[160px] overflow-y-auto"></div>
                                 <div class="text-sm">
-                                    <form action="{{ route('reserve.store') }}" method="POST">
+                                    <form action="{{ route('calendar.store') }}" method="POST">
                                         <x-forms.field :value="__('Name')" :errors="$errors->get('regular-name')" :for="'regular-name'">
                                             <input placeholder="Juan Dela Cruz" type="text" id="regular-name"
                                                 name="name"
@@ -82,6 +64,25 @@
                                                 value="{{ Auth::user() ? Auth::user()->name : '' }}"
                                                 @auth disabled @endauth required>
                                         </x-forms.field>
+                                        <x-forms.field :value="__('Date')" :errors="$errors->get('regular-date')" :for="'regular-date'">
+                                            <input type="date" id="regular-date" name="date"
+                                                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-main dark:bg-tint_3"
+                                                required>
+                                        </x-forms.field>
+                                        <x-forms.field :value="__('Time')" :errors="$errors->get('regular-time')" :for="'regular-time'">
+                                            <select id="regular-time" name="time"
+                                                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-main dark:bg-tint_3 mb-4"
+                                                required>
+                                                <option value="" disabled selected>Select an hour</option>
+                                                <!-- Loop through 7 to 20 for full hours -->
+                                                @for ($i = 7; $i < 21; $i++)
+                                                    <option value="{{ str_pad($i, 2, '0', STR_PAD_LEFT) }}:00">
+                                                        {{ $i > 12 ? $i - 12 : $i }} {{ $i >= 12 ? 'pm' : 'am' }}
+                                                    </option>
+                                                @endfor
+                                            </select>
+                                        </x-forms.field><button type="submit"
+                                            class="w-full bg-main text-white py-2 px-4 rounded-md hover:bg-shade_3 dark:hover:bg-shade_5 dark:bg-shade_3 transition duration-300 ease-in-out">Reserve</button>
                                     </form>
                                 </div>
                             </div>
@@ -95,7 +96,6 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var calendarEl = document.getElementById('calendar');
-            // Group reservations by date
             var reservedDates = {};
             var totalReservations = 14; // Adjust this to your actual total reservation count
             var rangeInfo;
@@ -104,174 +104,156 @@
                 var dateKey = '{{ \Carbon\Carbon::parse($booked->date)->toISOString() }}';
                 if (!reservedDates[dateKey]) {
                     reservedDates[dateKey] = {
-                        count: 0, // Initialize count for each date
+                        count: 0,
                         title: 'Reserved',
                         start: dateKey,
-                        allDay: true // Set to true to indicate it's an all-day event
+                        allDay: true
                     };
                 }
-                reservedDates[dateKey].count++; // Increment the count for that date
+                reservedDates[dateKey].count++;
             @endforeach
 
-            // Create events based on the count
             var events = Object.values(reservedDates).map(function(reservation) {
-                // Determine colors and styles based on count
                 var color;
-                var textc = 'white'; // Default text color
-                var border = 'none'; // Default border
+                var textc = 'white';
+                var border = 'none';
                 var title;
 
                 if (reservation.count === totalReservations) {
-                    title = 'Full'; // Set title to "Full" if all reservations are taken
-                    color = '#ff3333'; // Full reservations
+                    title = 'Full';
+                    color = '#ff3333';
                     textc = 'white';
                 } else if (reservation.count >= 10) {
-                    title = 'Almost Full'; // Set title to "Almost Full" for orange
-                    color = '#ff7133'; // More than half
+                    title = 'Almost Full';
+                    color = '#ff7133';
                     textc = 'white';
                 } else if (reservation.count >= 7) {
-                    title = 'Available'; // Set title to "Available" for yellow
-                    color = 'yellow'; // More than half
+                    title = 'Available';
+                    color = 'yellow';
                     textc = 'black';
                 } else {
-                    title = 'Open'; // Set title to "Open" for green
-                    color = '#66ff73'; // Default color
+                    title = 'Open';
+                    color = '#66ff73';
                     textc = 'black';
                 }
 
                 return {
-                    title: title, // Use the updated title
+                    title: title,
                     start: reservation.start,
                     allDay: reservation.allDay,
-                    backgroundColor: color, // Set background color
-                    textColor: textc, // Set text color
-                    borderColor: border, // Set border color
-                    editable: true // Allow event to be editable
+                    backgroundColor: color,
+                    textColor: textc,
+                    borderColor: border,
+                    editable: true
                 };
             });
 
             var calendar = new FullCalendar.Calendar(calendarEl, {
                 initialView: 'dayGridMonth',
                 selectable: true,
-                selectHelper: true,
                 headerToolbar: {
                     left: 'title',
                     center: 'today prev,next',
                     right: 'dayGridMonth,timeGridDay'
                 },
-                buttonText: {
-                    today: 'Today',
-                    month: 'Month',
-                    week: 'Week',
-                    day: 'Day'
-                },
+                height: 650,
                 events: events,
                 select: function(info) {
-                    var startDate = new Date(info.startStr).toLocaleDateString('en-US', {
-                        year: 'numeric',
-                        month: 'long',
-                        day: 'numeric'
-                    });
-                    var endDate = new Date(info.endStr).toLocaleDateString('en-US', {
-                        year: 'numeric',
-                        month: 'long',
-                        day: 'numeric'
-                    });
-                    rangeInfo = `From: ${startDate}, To: ${endDate}`;
-                    // You can load reserved hours or any custom logic for selected dates here
-                    // For now, we'll just show the reserved hours for the start date
+                    rangeInfo = `From: ${info.startStr} To: ${info.endStr}`;
                     loadReservedHours(info.startStr);
-
-                    // Optionally, you can display selected range to the user
-                    var selectionInfoDiv = document.getElementById('selectionInfo');
-                    selectionInfoDiv.textContent = rangeInfo;
                 },
                 dateClick: function(info) {
-                    var clickedDate = new Date(info.dateStr).toLocaleDateString('en-US', {
-                        year: 'numeric',
-                        month: 'long',
-                        day: 'numeric'
-                    });
-                    var rangeInfo = `Selected date: ${clickedDate}`;
-
                     loadReservedHours(info.dateStr);
-                    var selectedDates = document.querySelectorAll('.fc-daygrid-day.selected-date');
-                    selectedDates.forEach(function(dateEl) {
-                        dateEl.classList.remove('selected-date');
-                    });
-                    var clickedDateEl = info.dayEl;
-                    clickedDateEl.classList.add('selected-date');
-
-                    var selectionInfoDiv = document.getElementById('selectionInfo');
-                    selectionInfoDiv.textContent = rangeInfo;
                 },
-                //when the label is clicked, the date is also clicked
                 eventDidMount: function(info) {
                     info.el.addEventListener('click', function() {
-                        loadReservedHours(info.event
-                            .startStr);
+                        loadReservedHours(info.event.startStr);
                     });
                 }
-
             });
 
             calendar.render();
-        });
 
-
-
-        function loadReservedHours(date) {
-            fetch(`/api/reserved-hours?date=${date}`)
-                .then(response => response.json())
-                .then(data => {
-                    displayReservedHours(data);
-                })
-                .catch(error => console.error('Error fetching reserved hours:', error));
-        }
-
-        function displayReservedHours(reservedHours) {
-            var hourDetailsDiv = document.getElementById('hourDetails');
-            hourDetailsDiv.innerHTML = ''; // Clear previous content
-            // Generate hours from 7 AM to 9 PM business hours
-            const allTimes = [];
-            for (let hour = 7; hour <= 20; hour++) {
-                const time = (hour % 12 || 12) + ':00 ' + (hour < 12 ? 'AM' : 'PM');
-                allTimes.push(time);
+            function loadReservedHours(date) {
+                fetch(`/api/reserved-hours?date=${date}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        displayReservedHours(data, date);
+                    })
+                    .catch(error => console.error('Error fetching reserved hours:', error));
             }
 
-            // Create a list to display reserved hours
-            var list = document.createElement('ul');
-            list.className = 'flex flex-col grid grid-cols-2 gap-2 p-0 m-0';
+            function displayReservedHours(reservedHours, selectedDate) {
+                var hourDetailsDiv = document.getElementById('hourDetails');
+                hourDetailsDiv.innerHTML = '';
 
-            allTimes.forEach(time => {
-                var listItem = document.createElement('button');
-                listItem.textContent = time;
-                listItem.className = 'w-100% p-6px';
-                listItem.style.borderRadius = '4px';
-
-                // Check if the time is reserved
-                if (reservedHours.includes(time)) {
-                    listItem.className =
-                        'pointer-events-none select-none inline-flex items-center justify-center text-sm font-medium border bg-background h-10 px-4 py-2 line-through bg-red-500 border text-black';
-                } else {
-                    listItem.className =
-                        'select-none inline-flex items-center justify-center text-sm font-medium border bg-background h-10 px-4 py-2 border-green-500 text-black hover:bg-green-500 active:bg-green-600';
-
+                const allTimes = [];
+                for (let hour = 7; hour <= 20; hour++) {
+                    const time = (hour % 12 || 12) + ':00 ' + (hour < 12 ? 'AM' : 'PM');
+                    allTimes.push(time);
                 }
 
-                list.appendChild(listItem);
-            });
+                var list = document.createElement('ul');
+                list.className = 'flex flex-col grid grid-cols-2 gap-2 p-0 m-0';
 
-            hourDetailsDiv.appendChild(list);
-        }
+                allTimes.forEach(time => {
+                    var listItem = document.createElement('button');
+                    listItem.textContent = time;
+                    listItem.className = 'w-100% p-6px';
+                    listItem.style.borderRadius = '4px';
+
+                    if (reservedHours.includes(time)) {
+                        listItem.className =
+                            'pointer-events-none select-none inline-flex items-center justify-center text-sm font-medium border bg-background h-10 px-4 py-2 line-through bg-red-500 border text-black';
+                    } else {
+                        listItem.className =
+                            'select-none inline-flex items-center justify-center text-sm font-medium border bg-background h-10 px-4 py-2 border-green-500 text-black hover:bg-green-500 active:bg-green-600';
+                        listItem.addEventListener('click', function() {
+                            handleTimeSlotSelection(selectedDate, time); // Pass both date and time
+                        });
+                    }
+
+                    list.appendChild(listItem);
+                });
+
+                hourDetailsDiv.appendChild(list);
+            }
+
+            // Updated to accept both date and time
+            function handleTimeSlotSelection(date, time) {
+                var dateInput = document.getElementById('regular-date');
+                var timeInput = document.getElementById('regular-time');
+
+                // Set the date
+                dateInput.value = date.split('T')[0]; // Convert ISO date to 'YYYY-MM-DD'
+                timeInput.value = convertTo24Hour(time); // Set the time
+            }
+
+            function convertTo24Hour(time12h) {
+                const [time, modifier] = time12h.split(' ');
+                let [hours, minutes] = time.split(':');
+
+                if (hours === '12') {
+                    hours = '00';
+                }
+
+                if (modifier === 'PM') {
+                    hours = parseInt(hours, 10) + 12;
+                }
+
+                return `${hours.padStart(2, '0')}:${minutes}`;
+            }
+        });
     </script>
+
     <style>
-        .selected-date {
-            background-color: #3ab16e;
+        .selected-date,
+        .selected-date:hover {
+            background-color: #b6e0dd;
         }
 
-        .fc-daygrid-day.fc-highlight {
-            background-color: #a0e6a0 !important;
+        .fc-highlight {
+            background-color: #b6e0dd !important;
         }
 
         .fc-day {
@@ -279,15 +261,23 @@
         }
 
         .fc-day-today {
-            background-color: yellowgreen !important;
+            background-color: #85ccc7 !important;
+            /* Use tint_5 for today's date */
+            position: relative;
+            /* Set position relative for absolute positioning of inner border */
+            border: 2px solid #0a998f;
+            /* Inner border using main color */
+            border-radius: 4px;
+            /* Optional: to soften the corners */
         }
 
         .fc-day:hover {
-            background-color: seagreen;
+            background-color: #b6e0dd;
+            ;
         }
 
         .fc-day:active {
-            background-color: darkgreen;
+            background-color: #0a998f;
         }
 
         .fc-event {

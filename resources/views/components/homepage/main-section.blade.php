@@ -1,8 +1,8 @@
 <section
     class="relative min-h-screen w-full dark:border-white/10 px-4 sm:px-10 bg-gradient-to-br dark:from-shade_9 dark:via-main dark:to-tint_1 from-tint_1 via-main to-shade_9 flex items-center justify-center sm:justify-between">
     <div
-        class="w-full mt-10 flex flex-col md:flex-row items-center justify-center px-4 sm:px-15 py-10 sm:py-0 space-y-7">
-        <div class="text-white text-center sm:text-left space-y-5">
+        class="w-full mt-13 flex flex-col md:flex-row items-center justify-center px-4 sm:px-15 py-10 sm:py-0 space-y-3">
+        <div class="text-white text-center md:text-left space-y-3">
             <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter">
                 Elevate Your Fitness Journey
             </h1>
@@ -12,7 +12,7 @@
                 stay on top of your fitness goals.
             </x-custom.paragraph>
             <div class="items-center">
-                <div class="flex flex-col sm:flex-row items-center gap-2 ">
+                <div class="flex flex-col md:flex-row items-center gap-2 ">
                     <x-custom.secondary-button type="button" onclick="window.location.href = '{{ route('ticket.show') }}'"
                     class="w-auto h-10 px-4 py-2 border">
                     Book Now
@@ -31,7 +31,7 @@
                 </div>
             </div>
         </div>
-        <div class="container flex justify-center sm:justify-start px-2 sm:px-4 md:px-6 m-auto">
+        <div class="container flex justify-center px-2 sm:px-4 md:px-6">
             <img class="rounded-xl w-full"
                 src="https://img.freepik.com/free-photo/low-angle-view-unrecognizable-muscular-build-man-preparing-lifting-barbell-health-club_637285-2497.jpg?t=st=1727743360~exp=1727746960~hmac=7e0bf7885ab8fcd6befaf8eea6232011cdfce301515c9d57d0ca7bd5c9ade0b1&w=740"
                 alt="man-with-barbel">
