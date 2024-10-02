@@ -82,16 +82,24 @@
                         <tbody class="border-0">
                             @foreach ($pendingBookings as $booking)
                             <tr class="border-t dark:border-white/30 transition-colors hover:bg-muted/50 py-20">
-                                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">{{ $booking->name }}</td>
-                                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0 font-medium">
+                                <td class="px-4  py-3 align-middle [&amp;:has([role=checkbox])]:pr-0">
+                                    {{ $booking->name }}
+                                </td>
+                                <td class="px-4  py-3 align-middle [&amp;:has([role=checkbox])]:pr-0 font-medium">
                                     {{ $booking->email }}
                                 </td>
-                                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">{{ $booking->room }}</td>
+                                <td class="px-4  py-3 align-middle [&amp;:has([role=checkbox])]:pr-0">
+                                    {{ $booking->room }}
+                                </td>
 
-                                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">{{ $booking->date }}</td>
-                                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">{{ $booking->time }}</td>
+                                <td class="px-4  py-3 align-middle [&amp;:has([role=checkbox])]:pr-0">
+                                    {{ $booking->date }}
+                                </td>
+                                <td class="px-4  py-3 align-middle [&amp;:has([role=checkbox])]:pr-0">
+                                    {{ $booking->time }}
+                                </td>
 
-                                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">
+                                <td class="px-4  py-3 align-middle [&amp;:has([role=checkbox])]:pr-0">
                                     <div class="flex items-center gap-2">
 
                                         <form action="{{ route('reservations.accept', $booking->id) }}" method="POST"
@@ -144,16 +152,24 @@
                         <tbody class="border-0">
                             @foreach ($acceptedBookings as $booking)
                             <tr class="border-t dark:border-white/30 transition-colors hover:bg-muted/50 py-20">
-                                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">{{ $booking->name }}</td>
-                                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0 font-medium">
+                                <td class="px-4  py-3 align-middle [&amp;:has([role=checkbox])]:pr-0">
+                                    {{ $booking->name }}
+                                </td>
+                                <td class="px-4  py-3 align-middle [&amp;:has([role=checkbox])]:pr-0 font-medium">
                                     {{ $booking->email }}
                                 </td>
-                                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">{{ $booking->room }}</td>
+                                <td class="px-4  py-3 align-middle [&amp;:has([role=checkbox])]:pr-0">
+                                    {{ $booking->room }}
+                                </td>
 
-                                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">{{ $booking->date }}</td>
-                                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">{{ $booking->time }}</td>
+                                <td class="px-4  py-3 align-middle [&amp;:has([role=checkbox])]:pr-0">
+                                    {{ $booking->date }}
+                                </td>
+                                <td class="px-4  py-3 align-middle [&amp;:has([role=checkbox])]:pr-0">
+                                    {{ $booking->time }}
+                                </td>
 
-                                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">
+                                <td class="px-4  py-3 align-middle [&amp;:has([role=checkbox])]:pr-0">
                                     <div class="flex items-center gap-2">
                                         <form action="{{ route('reservations.accept', $booking->id) }}" method="POST"
                                             style="display:inline;">
@@ -206,16 +222,24 @@
                         <tbody class="border-0">
                             @foreach ($rejectedBookings as $booking)
                             <tr class="border-t dark:border-white/30 transition-colors hover:bg-muted/50 py-20">
-                                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">{{ $booking->name }}</td>
-                                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0 font-medium">
+                                <td class="px-4  py-3 align-middle [&amp;:has([role=checkbox])]:pr-0">
+                                    {{ $booking->name }}
+                                </td>
+                                <td class="px-4  py-3 align-middle [&amp;:has([role=checkbox])]:pr-0 font-medium">
                                     {{ $booking->email }}
                                 </td>
-                                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">{{ $booking->room }}</td>
+                                <td class="px-4  py-3 align-middle [&amp;:has([role=checkbox])]:pr-0">
+                                    {{ $booking->room }}
+                                </td>
 
-                                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">{{ $booking->date }}</td>
-                                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">{{ $booking->time }}</td>
+                                <td class="px-4  py-3 align-middle [&amp;:has([role=checkbox])]:pr-0">
+                                    {{ $booking->date }}
+                                </td>
+                                <td class="px-4  py-3 align-middle [&amp;:has([role=checkbox])]:pr-0">
+                                    {{ $booking->time }}
+                                </td>
 
-                                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">
+                                <td class="px-4  py-3 align-middle [&amp;:has([role=checkbox])]:pr-0">
                                     <div class="flex items-center gap-2">
 
                                         <form action="{{ route('reservations.restore', $booking->id) }}" method="POST"

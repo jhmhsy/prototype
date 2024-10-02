@@ -6,13 +6,14 @@ legend:✅ ❌
 DASHBOARD
 add a home button on dashboard side navbar when on mobile       ✅
 
-when on mobile, change the administrator panel title header to admin panel       ❌
+when on mobile, change the administrator panel title header to admin panel       ✅
 
 when on mobile, remove the logo in dashboard panel     ✅
 
 
 EVENTS
-Unconfirmed yet      ❌
+create simple crud    ✅
+
 
 
 HELP
@@ -20,11 +21,11 @@ Unconfirmed YEET     ❌
 
 
 EQUIPMENTS
-Add a create Equipments      ❌
+Add a create Equipments      ✅
 
 Add a Equipments Layouts        ✅
 
-Add a Equipments Controller, database table, Models, just a fucking connection to CRUD negaa     ❌
+Add a Equipments Controller, database table, Models, just a fucking connection to CRUD negaa     ✅
 
 Perfection     ❌❌❌
 
@@ -37,7 +38,9 @@ lOGO
 Adjust the Logo its too common     ❌
 
 EVENTS
-Unconfirmed yet   ❌
+Unconfirmed yet   ✅
+
+design a front end of it          ❌
 
 
 MAIN SECTION 
@@ -52,6 +55,16 @@ complete      ❌
 
 EQUIPMENTS
 A feature pages that shows the list of equipments     ❌
+
+
+TICKET SALES
+Design Payment panel  ✅
+
+Storing Datas    ✅  
+
+Qrcode Implementation     ❌
+
+Payment Implementation      ❌
 
 
 CALENDAR
@@ -75,7 +88,3 @@ Update its href to actually proceed to something     ❌
 PROFILE / SETTINGS 
 Needs Optimized        ❌
  
-<<<<<<< HEAD
-=======
-
->>>>>>> henrybranch

@@ -19,39 +19,32 @@ class EquipmentController extends Controller
 
     public function store(Request $request)
     {
-
-        
         // Validate inputs
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'type' => 'required|string|max:255',
             'details' => 'required',
             'extra_details' => 'nullable',
-            'images' => 'required|array|max:3', // Limit to 3 images
-            'images.*' => 'image|mimes:jpeg,png,jpg,gif', // Validate image types without size limit
+            'images' => 'required|array|max:3', 
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif', // size limit gone
 
         ]);
     
-        // Handle image uploads
         $imagePaths = [];
         if ($request->has('images')) {
             foreach ($request->file('images') as $image) {
-                // Store the image and save the path
+            
                 $imagePaths[] = $image->store('images/equipment', 'public');
             }
         }
        
-        // Save the equipment with image paths
         Equipment::create([
             'name' => $validatedData['name'],
             'type' => $validatedData['type'],
             'details' => $validatedData['details'],
             'extra_details' => $validatedData['extra_details'],
-            'images' => $imagePaths, // Directly save as an array, no need for json_encode
+            'images' => $imagePaths, 
         ]);
-    
-
-        
 
         return redirect()->route('equipment.index')->with('success', 'Equipment added successfully!');
     }

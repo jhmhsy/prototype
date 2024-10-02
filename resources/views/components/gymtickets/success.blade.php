@@ -44,10 +44,16 @@
                             style="aspect-ratio: 200 / 200; object-fit: cover;" class="w-full max-w-[200px]" />
                     </div>
                     <p class="text-basegray">Please show this QR code to the gym staff to redeem your tickets.</p>
-                    <x-forms.reverse-nav-btn
-                        class="inline-flex items-center justify-center rounded-md text-sm font-medium disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2">
-                        Download QR Code
-                    </x-forms.reverse-nav-btn>
+                    <div class="flex gap-5">
+                        <x-forms.reverse-nav-btn onclick="window.location.href = '{{ route('welcome') }}'"
+                            class="inline-flex items-center justify-center rounded-md text-sm font-medium disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2">
+                            Home
+                        </x-forms.reverse-nav-btn>
+                        <x-forms.reverse-nav-btn
+                            class="inline-flex items-center justify-center rounded-md text-sm font-medium disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2">
+                            Download QR Code
+                        </x-forms.reverse-nav-btn>
+                    </div>
                 </div>
             </div>
         </div>

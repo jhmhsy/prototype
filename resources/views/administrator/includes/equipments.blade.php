@@ -58,31 +58,27 @@
                     <tbody class="[&amp;_tr:last-child]:border-0">
                         @foreach ($equipments as $equipment)
                         <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
-                            <td class=" align-middle [&amp;:has([role=checkbox])]:pr-0 font-medium">
+                            <td class="px-4 align-middle [&amp;:has([role=checkbox])]:pr-0 font-medium">
                                 {{ $equipment->name }}</td>
-                            <td class=" align-middle [&amp;:has([role=checkbox])]:pr-0">{{ $equipment->type }}</td>
-                            <td class=" align-middle [&amp;:has([role=checkbox])]:pr-0">
+                            <td class="px-4 align-middle [&amp;:has([role=checkbox])]:pr-0">{{ $equipment->type }}</td>
+                            <td class="px-4 align-middle [&amp;:has([role=checkbox])]:pr-0">
                                 <div class="inline-flex w-fit items-center whitespace-nowrap rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
                                     data-v0-t="badge">
                                     {{ $equipment->details }}
                                 </div>
                             </td>
-                            <td class=" align-middle [&amp;:has([role=checkbox])]:pr-0">{{ $equipment->extra_details }}
+                            <td class="px-4 align-middle [&amp;:has([role=checkbox])]:pr-0">
+                                {{ $equipment->extra_details }}
                             </td>
 
-                            <td class=" flex flex-row gap-1 align-middle[&amp;:has([role=checkbox])]:pr-0">
+                            <td class="px-4 flex flex-row gap-1 align-middle[&amp;:has([role=checkbox])]:pr-0">
                                 @foreach (($equipment->images)
                                 as $image)
                                 <img src=" {{ asset('storage/' . $image) }}" alt="{{ $equipment->name }}"
                                     class="max-w-10 max-h-10">
                                 @endforeach
                             </td>
-
-
-
-
-
-                            <td class=" align-middle [&amp;:has([role=checkbox])]:pr-0">
+                            <td class="px-4 align-middle [&amp;:has([role=checkbox])]:pr-0">
                                 <div class="flex items-center justify-end gap-2">
 
 
@@ -117,8 +113,6 @@
                             </td>
                         </tr>
                         @endforeach
-
-
                     </tbody>
                 </table>
                 {!! $equipments->links('pagination::bootstrap-5') !!}

@@ -7,13 +7,13 @@ use App\Http\Controllers\Admin\HelpController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\TicketController;
 use App\Http\Controllers\DashController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Public\CalendarController;
 use App\Http\Controllers\Public\FeatureController;
 use App\Http\Controllers\Public\ReservationsController;
-use App\Http\Controllers\Public\TicketController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [PageController::class, 'index'])
@@ -39,13 +39,19 @@ Route::get('/booking-status', 'CalendarController@getBookingStatus');
 Route::post('/reserve', [ReservationsController::class, 'store'])
     ->name('reserve.store');
 
-Route::get('ticket', [TicketController::class, 'show'])
-    ->name('ticket.show');
-Route::post('ticket', [TicketController::class, 'store'])
-    ->name('ticket.store');
+
+
     Route::post('/equipment/store', [EquipmentController::class, 'store'])->name('equipment.store');
-    
-    Route::post('/equipment/index', [EquipmentController::class, 'store'])->name('equipment.index');
+    Route::post('/equipment/index', [EquipmentController::class, 'index'])->name('equipment.index');
+   
+    Route::get('/events/index', [EventsController::class, 'index'])->name('events.index');
+Route::post('/events/store', [EventsController::class, 'store'])->name('events.store');
+
+Route::get('ticket/selection', [TicketController::class, 'show'])->name('ticket.show');
+Route::get('ticket/success', [TicketController::class, 'success'])->name('ticket.success');
+Route::get('/ticket/index', [TicketController::class, 'index'])->name('ticket.index');
+Route::post('/ticket/success', [TicketController::class, 'store'])->name('ticket.store');
+
 
 Route::get('/reservation', function () {
     return view('subpages.reservation');
@@ -89,6 +95,10 @@ Route::middleware('auth')->group(function () {
     Route::resource('equipment', EquipmentController::class);
     Route::get('/events', [EventsController::class, 'index'])
         ->name('events');
+        Route::get('/ticket', [TicketController::class, 'index'])
+        ->name('ticket');
+
+        
     Route::get('/feedback', [FeedbackController::class, 'index'])
         ->name('feedback');
     Route::get('/help', [HelpController::class, 'index'])
