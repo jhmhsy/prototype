@@ -49,7 +49,7 @@
                     </ul>
                     <div
                         class="sign-up bg-gradient-to-r from-[#5865f2] to-[#017ac2] dark:from-[#017ac2]  dark:to-[#5865f2] rounded-full font-medium relative inline-block border-2 border-tint_1 hover:border-shade_9 transition-all duration-300">
-                        <x-custom.rounded-button >
+                        <x-custom.rounded-button>
                             Signup Now
                         </x-custom.rounded-button>
                     </div>
@@ -78,7 +78,7 @@
                         class="sign-up bg-gradient-to-r from-[#8846c5] to-[#ab5d8b] dark:from-[#8846c5] dark:to-[#ab5d8b] rounded-full font-medium relative inline-block border-2 border-tint_1 hover:border-shade_9 transition-all duration-300">
                         <x-custom.rounded-button>
                             Signup Now
-                        </x-custom.rounded-butt>
+                            </x-custom.rounded-butt>
                     </div>
                 </div>
             </div>

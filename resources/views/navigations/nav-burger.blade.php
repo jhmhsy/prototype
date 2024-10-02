@@ -10,7 +10,7 @@
     </x-forms.nav-link>
 
     <!-- Sidebar -->
-    <div x-show="sidebarOpen" x-transition:enter="transition ease-out duration-300 sm:hidden"
+    <div style="display: none;" x-show="sidebarOpen" x-transition:enter="transition ease-out duration-300 sm:hidden"
         x-transition:enter-start="-translate-x-full" x-transition:enter-end="translate-x-0"
         x-transition:leave="transition ease-in duration-300" x-transition:leave-start="translate-x-0"
         x-transition:leave-end="-translate-x-full" @click.away="sidebarOpen = false"
@@ -27,7 +27,10 @@
 
             <!-- Sidebar content -->
             <nav class="flex-1 px-4 py-6 overflow-y-auto">
-                <h2 class="text-xl font-semibold mb-4">Menu</h2>
+                <a href="{{ route('welcome') }}">
+                    <h2 class="text-xl font-semibold mb-4">Menu</h2>
+                </a>
+
                 <ul class="space-y-2">
                     <div>
 
@@ -44,7 +47,7 @@
     </div>
 
     <!-- Overlay -->
-    <div x-show="sidebarOpen" x-transition:enter="transition-opacity ease-out duration-300"
+    <div style="display: none;" x-show="sidebarOpen" x-transition:enter="transition-opacity ease-out duration-300"
         x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
         x-transition:leave="transition-opacity ease-in duration-300" x-transition:leave-start="opacity-100"
         x-transition:leave-end="opacity-0" class="fixed inset-0 bg-black bg-opacity-50 z-20"
@@ -63,7 +66,7 @@
     </x-forms.nav-link>
 
     <!-- Responsive  Sidebar -->
-    <div x-show="sidebarOpen" x-transition:enter="transition ease-out duration-300 xl:hidden"
+    <div style="display: none;" x-show="sidebarOpen" x-transition:enter="transition ease-out duration-300 xl:hidden"
         x-transition:enter-start="translate-x-full" x-transition:enter-end="translate-x-0"
         x-transition:leave="transition ease-in duration-300" x-transition:leave-start="translate-x-0"
         x-transition:leave-end="translate-x-full" @click.away="sidebarOpen = false"
@@ -111,7 +114,7 @@
     </div>
 
     <!-- Overlay -->
-    <div x-show="sidebarOpen" x-transition:enter="transition-opacity ease-out duration-300"
+    <div style="display: none;" x-show="sidebarOpen" x-transition:enter="transition-opacity ease-out duration-300"
         x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
         x-transition:leave="transition-opacity ease-in duration-300" x-transition:leave-start="opacity-100"
         x-transition:leave-end="opacity-0" class="fixed inset-0 bg-black bg-opacity-50 z-20"

@@ -4,11 +4,11 @@ DASHBOARD---------------------------------------------------
 legend:✅ ❌
 
 DASHBOARD
-add a home button on dashboard side navbar when on mobile       ❌
+add a home button on dashboard side navbar when on mobile       ✅
 
 when on mobile, change the administrator panel title header to admin panel       ❌
 
-when on mobile, remove the logo in dashboard panel     ❌
+when on mobile, remove the logo in dashboard panel     ✅
 
 
 EVENTS

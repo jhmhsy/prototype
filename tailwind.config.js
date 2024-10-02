@@ -16,24 +16,35 @@ export default {
 
     theme: {
         screens: {
-            'xs': '360px', // Add this line for the xs breakpoint
-            'sm': '640px',
-            'md': '768px',
-            'lg': '1024px',
-            'xl': '1280px',
-            '2xl': '1536px',
+            xs: "360px", // Add this line for the xs breakpoint
+            sm: "640px",
+            md: "768px",
+            lg: "1024px",
+            xl: "1280px",
+            "2xl": "1536px",
         },
         extend: {
             fontFamily: {
                 sans: ["Figtree", ...defaultTheme.fontFamily.sans],
                 hanken: ["Hanken Grotesk", "sans-serif"],
+                roboto: ["Roboto", "sans-serif"],
+            },
+            fontWeight: {
+                thin: 100,
+                extraLight: 200,
+                light: 300,
+                normal: 400,
+                medium: 500,
+                bold: 700,
+                extraBold: 800,
+                black: 900,
             },
             height: {
-                '72': '18rem',
-                '128': '32rem',
+                72: "18rem",
+                128: "32rem",
             },
             lineHeight: {
-                '20': '80px',
+                20: "80px",
             },
             colors: {
                 //custom green color shades

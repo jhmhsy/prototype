@@ -10,7 +10,7 @@
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.bunny.net/css?family=roboto:100,300,400,500,900" rel="stylesheet" />
 
     <!-- Scripts -->
     <script src="{{ asset('js/darkmode.js') }}" defer></script>
@@ -41,8 +41,7 @@
                     </div>
                 </aside>
                 <!-------------------------- MAIN CONTENT ----------------------------->
-                <main
-                    class="flex-1 p-6 overflow-y-auto bg-tint_1 dark:bg-shade_9 dark:text-tint_1 text-shade_9"
+                <main class="flex-1 p-6 overflow-y-auto bg-tint_1 dark:bg-shade_9 dark:text-tint_1 text-shade_9"
                     @click="open = false">
                     <div id="main-content" class="flex-1 ">
                         @hasanyrole('SuperAdmin|Admin')

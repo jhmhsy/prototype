@@ -11,8 +11,8 @@
                 <rect width="7" height="9" x="14" y="12" rx="1"></rect>
                 <rect width="7" height="5" x="3" y="16" rx="1"></rect>
             </svg>
-            <span class="hidden lg:block flex-1 ms-3 whitespace-nowrap">Dashboard</span>
-            <span class="sm:hidden flex-1 ms-3 whitespace-nowrap pr-20">Dashboard</span>
+            <span class="hidden lg:block flex-1 ms-3 whitespace-nowrap">Overview</span>
+            <span class="sm:hidden flex-1 ms-3 whitespace-nowrap pr-20">Overview</span>
         </x-custom.sidenav-button>
     </li>
     <!--------------------------- EQUIPMENTS BUTTON --------------------------------->

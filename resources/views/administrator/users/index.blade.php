@@ -6,7 +6,6 @@
 
 
         <div class="flex flex-row">
-
             <h1 class="text-2xl font-bold mb-6">User Management</h1>
             <div class="ml-auto flex items-center gap-2">
                 <button @click.prevent="opencreatemodal = !opencreatemodal"
@@ -22,6 +21,7 @@
                 @include ("administrator.users.create")
             </div>
         </div>
+
         <div class="rounded-lg border dark:border-white/30 shadow-sm" data-v0-t="card">
             <div class="p-2">
                 <div class="relative w-full overflow-auto">
@@ -32,17 +32,20 @@
                                 <th class="h-12 px-4 text-left align-middle">Name</th>
                                 <th class="h-12 px-4 text-left align-middle">Email</th>
                                 <th class="h-12 px-4 text-left align-middle">Roles</th>
+
                                 <th class="h-12 px-4 text-left align-middle">Actions</th>
                             </tr>
+
+
                         </thead>
 
-                        <tbody class="border-0">
+                        <tbody class="border-0 ">
                             @foreach ($data as $key => $user)
                             <tr class="border-t dark:border-white/30 transition-colors hover:bg-muted/50 py-20">
-                                <td class="p-4 align-middle">{{ ++$i }}</td>
-                                <td class="p-4 align-middle font-medium">{{ $user->name }}</td>
-                                <td class="p-4 align-middle">{{ $user->email }}</td>
-                                <td class="p-4 align-middle">
+                                <td class="align-middle">{{ ++$i }}</td>
+                                <td class="align-middle font-medium">{{ $user->name }}</td>
+                                <td class="align-middle">{{ $user->email }}</td>
+                                <td class="align-middle">
                                     @if (count($user->getRoleNames()) > 0)
                                     @foreach ($user->getRoleNames() as $v)
                                     <x-forms.input-label class="badge badge-success text-black">
@@ -56,7 +59,7 @@
                                     @endif
                                 </td>
 
-                                <td class="p-4 align-middle">
+                                <td class="align-middle">
                                     <div class="flex items-center gap-2">
                                         <x-custom.anchor-link
                                             @click.prevent="openshowmodal = openshowmodal === {{ $user->id }} ? null : {{ $user->id }}"

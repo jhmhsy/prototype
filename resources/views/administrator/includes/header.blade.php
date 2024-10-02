@@ -7,10 +7,11 @@
             @include('navigations.nav-burger', ['showburgerAdmin' => true])
 
             <!-- Back button -->
-            <a href="{{ route('welcome') }}">
+            <a href="{{ route('welcome') }}" class="hidden sm:block">
                 <x-custom.application-logo />
             </a>
-            <span class="ml-3 text-xl font-bold">Administrator Panel</span>
+            <span class="hidden md:block ml-3 text-xl font-bold">Administrator Panel</span>
+            <span class="block md:hidden ml-3 text-xl font-bold">Dashboard</span>
         </div>
 
         <!-- Darkmode button icon -->

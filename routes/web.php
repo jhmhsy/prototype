@@ -26,6 +26,9 @@ Route::get('/', [PageController::class, 'index'])
 Route::get('features', [FeatureController::class, 'show'])
     ->name('features');
 
+
+
+
 Route::post('/feedback', [FeedbackController::class, 'store'])->name('feedback.store');
 
 Route::get('/calendar', [CalendarController::class, 'show'])
@@ -40,6 +43,9 @@ Route::get('ticket', [TicketController::class, 'show'])
     ->name('ticket.show');
 Route::post('ticket', [TicketController::class, 'store'])
     ->name('ticket.store');
+    Route::post('/equipment/store', [EquipmentController::class, 'store'])->name('equipment.store');
+    
+    Route::post('/equipment/index', [EquipmentController::class, 'store'])->name('equipment.index');
 
 Route::get('/reservation', function () {
     return view('subpages.reservation');
@@ -87,6 +93,7 @@ Route::middleware('auth')->group(function () {
         ->name('feedback');
     Route::get('/help', [HelpController::class, 'index'])
         ->name('help');
+
 });
 
 //Route::middleware(['auth', ])->group(function(){
