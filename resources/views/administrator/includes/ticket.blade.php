@@ -6,7 +6,18 @@
 
         <div class="flex flex-row">
             <h1 class="text-2xl font-bold mb-6">Manage Tickets </h1>
-
+            <div class="ml-auto flex items-center gap-2">
+                <button @click="isOpen = true"
+                    class="hover:bg-green-400 focus:bg-green-500 inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground rounded-md px-3 h-8 gap-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="h-3.5 w-3.5">
+                        <path d="M5 12h14"></path>
+                        <path d="M12 5v14"></path>
+                    </svg>
+                    <span class="sr-only sm:not-sr-only sm:whitespace-nowrap ">Scan/QrCode</span>
+                </button>
+            </div>
         </div>
 
         <div>
@@ -103,48 +114,15 @@
                 <div class="bg-white rounded shadow-lg w-full max-w-2xl max-h-[90vh] overflow-y-auto">
                     <div class=" mt-50 p-4">
                         <div class="flex flex-col space-y-1.5 px-6">
-                            <h3 class="whitespace-nowrap tracking-tight text-2xl font-bold">New Event</h3>
-                            <p class="text-sm text-muted-foreground">Whats this new event? </p>
+                            <h3 class="whitespace-nowrap tracking-tight text-2xl font-bold">Scan QRCode</h3>
+
                         </div>
 
                         <div class="p-6">
 
 
 
-                            <form action="{{ route('ticket.store') }}" method="POST">
-                                @csrf
-                                <!-- This is important for CSRF protection -->
-
-                                <div class="grid gap-2">
-                                    <label for="name">Name</label>
-                                    <input id="name" name="name" placeholder="Enter your name" required />
-                                </div>
-
-                                <div class="grid gap-2">
-                                    <label for="email">Email</label>
-                                    <input id="email" name="email" placeholder="Enter your email" type="email"
-                                        required />
-                                </div>
-
-                                <div class="grid gap-2">
-                                    <label for="quantity">Quantity</label>
-                                    <select id="numberSelect" name="quantity" required>
-                                        <option value="" disabled selected>ticket quantity</option>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                    </select>
-                                </div>
-
-                                <div class="grid gap-2">
-                                    <label for="status">Status</label>
-                                    <input id="status" name="status" placeholder="Enter status" required />
-                                </div>
-
-                                <button type="submit">Submit</button>
-                            </form>
-
+                            <h1>camera here</h1>
 
                         </div>
                     </div>

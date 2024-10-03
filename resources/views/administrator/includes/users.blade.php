@@ -1,7 +1,8 @@
 @extends('layouts.dash')
 @section('content')
 
-<div class="rounded-lg border text-shade_9 dark:text-tint_1 border-shade_6/50 dark:border-white/5 text-card-foreground shadow-sm p-6" data-v0-t="card">
+<div class="rounded-lg border text-shade_9 dark:text-tint_1 border-shade_6/50 dark:border-white/5 text-card-foreground shadow-sm p-6"
+    data-v0-t="card">
     <div class="flex items-center justify-between mb-6">
         <h1 class="text-2xl font-bold">User List</h1>
         <div class="flex items-center gap-4">

@@ -15,18 +15,13 @@ class TicketController extends Controller
         return view('components.gymtickets.ticket');
     }
     
-    
-    
-    
     public function index()
     {
         $tickets = Ticket::paginate(10); 
         return view('administrator.includes.ticket', compact('tickets'));
     }
 
-    public function store(Request $request)
-    {
-    
+    public function store(Request $request) {
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
@@ -34,10 +29,24 @@ class TicketController extends Controller
             'status' => 'required|string|max:255',
         ]);
     
-        Ticket::create($validatedData);
-     
-        return redirect()->route('ticket.success')->with('success', 'Event added successfully!'); 
+        $ticket = Ticket::create($validatedData);
+    
+        // Generate QR code data
+        $qrData = "Name: {$ticket->name}, Email: {$ticket->email}, Quantity: {$ticket->quantity}, Status: {$ticket->status}";
+        $qrCodeUrl = "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=" . urlencode($qrData);
+    
+        // Store the QR code data in the session
+        session(['qrCodeData' => $qrData]);
+    
+        // Redirect to success page with QR code URL
+        return redirect()->route('ticket.success')->with([
+            'success' => 'Event added successfully!',
+            'qrCodeUrl' => $qrCodeUrl,
+        ]);
     }
+    
+    
+
     
     public function success(): View
     {

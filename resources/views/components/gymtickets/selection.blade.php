@@ -57,7 +57,7 @@
                 </div>
 
                 <!-- status default temporary -->
-                <input type="hidden" id="N/A" name="status" value="default_value" />
+                <input type="hidden" id="N/A" name="status" value="unclaimed" />
 
 
                 <x-forms.reverse-nav-btn @click="step++" class="cursor-pointer h-10 px-4 py-2 w-full">
