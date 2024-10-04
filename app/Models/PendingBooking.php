@@ -12,7 +12,6 @@ class PendingBooking extends Model
     protected $fillable = [
         'name',
         'email',
-        'room',
         'date',
         'time',
         'status',

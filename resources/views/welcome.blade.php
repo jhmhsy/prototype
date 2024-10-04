@@ -2,10 +2,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <body class="bg-tint_1 dark:bg-shade_9">
-        <div class="bg-tint_1 flex flex-col min-h-screen dark:bg-shade_9 min-w-[360px]">
+        <div class="flex flex-col min-h-screen dark:bg-shade_9 min-w-[360px]">
             <!-- Header sections--->
             <header id="header-section"
-                class="transition-transform duration-150 ease-in-out dark:bg-shade_8 dark:text-textwhite">
+                class="transition-transform duration-150 ease-in-out dark:text-textwhite">
                 <x-homepage.header-section />
             </header>
             <!-- Main sections-->
@@ -38,5 +38,8 @@
                 <x-homepage.footer-section />
             </footer>
         </div>
+        <script>
+
+        </script>
     </body>
 </x-guest-layout>

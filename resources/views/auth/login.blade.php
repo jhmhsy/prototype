@@ -51,10 +51,10 @@
                             </div>
                         </div>
                         <div class="px-6 pb-5 pt-3 space-y-2">
-                            <x-custom.primary-button
+                            <x-custom.secondary-button
                                 class="w-full inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background disabled:pointer-events-none disabled:opacity-50 px-6 py-2">
                                 {{ __('Sign in') }}
-                            </x-custom.primary-button>
+                            </x-custom.secondary-button>
 
                             <div class="text-center text-sm">
                                 Don't have an account? <a

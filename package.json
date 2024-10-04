@@ -16,7 +16,8 @@
         "vite": "^5.0"
     },
     "dependencies": {
-        "flowbite": "^2.5.1"
+        "@fullcalendar/react": "^6.1.15",
+        "flowbite": "^2.5.1",
+        "fullcalendar": "^6.1.15"
     }
 }
-

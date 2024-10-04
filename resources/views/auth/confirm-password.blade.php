@@ -12,12 +12,11 @@
         <x-forms.field :float="true" :value="__('Password')" :errors="$errors->get('password')" :for="'password'">
             <x-custom.floating-input id="password" class="block mt-1 w-full" type="password" name="password" required
                 autocomplete="current-password" />
-            </x-forms-field>
-
-            <div class="flex justify-end mt-4">
-                <x-custom.primary-button>
-                    {{ __('Confirm') }}
-                </x-custom.primary-button>
-            </div>
+        </x-forms.field>
+        <div class="flex justify-end mt-4">
+            <x-custom.primary-button>
+                {{ __('Confirm') }}
+            </x-custom.primary-button>
+        </div>
     </form>
 </x-guest-layout>

@@ -5,21 +5,35 @@
 html {
     scroll-behavior: smooth;
 }
+
 header > div {
-    transition: height 3s ease-in-out, padding 0.3s ease-in-out,
-        font-size 0.5s ease-in-out;
+    transition: all 0.4s ease-in-out, padding 0.4s ease-in-out,
+        font-size 0.3s ease-in-out;
+    height: 75px; /* Initial height */
+    padding: 10px 20px; /* Initial padding */
 }
+
 .collapsed {
     height: 50px; /* Adjust height for collapsed state */
-    padding: 2px 6px; /* Adjust padding */
-    transition: height 3s ease-in-out;
+    padding: 5px 10px; /* Adjust padding */
+    @apply bg-tint_1 dark:bg-shade_4 ;
 }
+
 .collapsed .text,
 .collapsed .logo,
 .collapsed .darkmode {
     font-size: 0.8em; /* Minimize text size */
-    transition: font-size 0.3s ease; /* Smooth transition for font size */
+    @apply text-main
 }
+
+.activeLink {
+    @apply border-main text-main;
+}
+
+.inactiveLink {
+    @apply border-transparent text-black hover:text-main dark:text-tint_1 dark:border-transparent dark:hover:text-tint_4; /* Apply inactive styles correctly */
+}
+
 /* Custom CSS */
 @keyframes fadeOut {
     from {
@@ -36,14 +50,6 @@ header > div {
     to {
         opacity: 1;
     }
-}
-
-.activeLink {
-    @apply border-main text-main;
-}
-
-.inactiveLink {
-    @apply text-shade_9 dark:border-shade_9;
 }
 
 .dark-overlay {

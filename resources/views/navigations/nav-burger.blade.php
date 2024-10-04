@@ -29,22 +29,19 @@
                 <h2 class="text-xl font-semibold mb-4">Menu</h2>
                 <ul class="space-y-2">
                     <div class="mt-3 space-y-1">
-
-                        <!-- login/ register dropdown -->
-                        <div class="sm:hidden">
-                            @include('navigations.login-dropdown', ['column' => true])
+                        <!-- Home navigation Contents-->
+                        <div>
+                            @include('navigations.home-nav', ['responsive' => true])
                         </div>
-
                         <!-- Settings Dropdown-->
                         <div class=" sm:hidden">
                             @include('navigations.settings-dropdown', ['column' => true])
                         </div>
 
-                        <!-- Home navigation Contents-->
-                        <div>
-                            @include('navigations.home-nav', ['responsive' => true])
+                        <!-- login/ register dropdown -->
+                        <div class="sm:hidden">
+                            @include('navigations.login-dropdown', ['column' => true])
                         </div>
-
                     </div>
                 </ul>
             </nav>

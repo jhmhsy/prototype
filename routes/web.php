@@ -19,11 +19,23 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::get('/', [HomeController::class, 'index'])
+    Route::get('/', [HomeController::class, 'index'])
     ->name('welcome');
     
 //⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎ PUBLIC   
 
+    Route::post('/feedback', [FeedbackController::class, 'store'])->name('feedback.store');
+
+    Route::get('/calendar', [CalendarController::class, 'show'])
+    ->name('calendar');
+    Route::post('/calendar', [ReservationsController::class, 'store'])
+    ->name('calendar.store');
+
+    Route::get('/api/reserved-hours', [CalendarController::class, 'getReservedHours']);
+    Route::get('/booking-status', 'CalendarController@getBookingStatus');
+
+    Route::post('/reserve', [ReservationsController::class, 'store'])
+    ->name('reserve.store');
     Route::post('/feedback', [FeedbackController::class, 'store'])->name('feedback.store');
     Route::get('features', [FeatureController::class, 'show'])->name('features');
     Route::get('/calendar', [CalendarController::class, 'show'])->name('calendar');
