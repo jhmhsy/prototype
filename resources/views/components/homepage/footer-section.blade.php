@@ -45,7 +45,7 @@
                 </p>
                 <form class="flex gap-2">
 
-                    <x-custom.primary-button class="dark:hover:text-white" type="button"
+                    <x-custom.primary-button type="button"
                         onclick="window.location.href = '{{ route('ticket.show') }}'">
                         Join Now
                     </x-custom.primary-button>

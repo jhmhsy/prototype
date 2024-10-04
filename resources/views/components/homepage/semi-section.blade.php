@@ -6,9 +6,11 @@
             <img :src="currentImage" alt="Gym" class="w-full h-auto rounded-md" />
         </div>
         <div class="w-full md:w-2/5 px-2 md:px-4 space-y-1 md:space-y-2">
-            <button @click="currentImage = '/images/public/background-1.jpg'; selectedButton = 1"
+            <button 
+                @mouseenter="currentImage = '/images/public/background-1.jpg'; selectedButton = 1"
+                @mouseleave="currentImage = '/images/public/background-1.jpg'"
                 :class="{ 'border-l-4 border-main': selectedButton === 1 }"
-                class="text-left w-full px-2 py-1 md:px-4 md:py-2">
+                class="text-left w-full px-2 py-1 md:px-4 md:py-2 hover:translate-x-2 transition-transform duration-300">
                 <div
                     class="glass flex flex-col justify-start space-y-1 border-main px-6 py-5 rounded-2xl border-2 group transition-colors duration-300">
                     <div class="flex space-x-3">
@@ -20,13 +22,14 @@
                         </svg>
                         <x-custom.mini-header>Easy Booking</x-custom.mini-header>
                     </div>
-                    <p class="text-tint_1">Reserve your spot in your favorite classes with just a few
-                        clicks.</p>
+                    <p class="text-tint_1">Reserve your spot in your favorite classes with just a few clicks.</p>
                 </div>
             </button>
-            <button @click="currentImage = '/images/public/background-2.jpg'; selectedButton = 2"
+            <button 
+                @mouseenter="currentImage = '/images/public/background-2.jpg'; selectedButton = 2"
+                @mouseleave="currentImage = '/images/public/background-1.jpg'"
                 :class="{ 'border-l-4 border-main': selectedButton === 2 }"
-                class="text-left w-full px-2 py-1 md:px-4 md:py-2">
+                class="text-left w-full px-2 py-1 md:px-4 md:py-2 hover:translate-x-2 transition-transform duration-300">
                 <div
                     class="glass flex flex-col justify-start space-y-1 border-main px-6 py-5 rounded-2xl border-2 group transition-colors duration-300">
                     <div class="flex space-x-3">
@@ -41,13 +44,14 @@
                         </svg>
                         <x-custom.mini-header>Class Schedules</x-custom.mini-header>
                     </div>
-                    <p class="text-tint_1" >Stay up-to-date with the latest class schedules and
-                        availability.</p>
+                    <p class="text-tint_1">Stay up-to-date with the latest class schedules and availability.</p>
                 </div>
             </button>
-            <button @click="currentImage = '/images/public/background-3.jpg'; selectedButton = 3"
+            <button 
+                @mouseenter="currentImage = '/images/public/background-3.jpg'; selectedButton = 3"
+                @mouseleave="currentImage = '/images/public/background-1.jpg'"
                 :class="{ 'border-l-4 border-main': selectedButton === 3 }"
-                class="text-left w-full px-2 py-1 md:px-4 md:py-2">
+                class="text-left w-full px-2 py-1 md:px-4 md:py-2 hover:translate-x-2 transition-transform duration-300">
                 <div
                     class="glass flex flex-col justify-start space-y-1 border-main px-6 py-5 rounded-2xl border-2 group transition-colors duration-300">
                     <div class="flex space-x-3">
@@ -59,8 +63,7 @@
                         </svg>
                         <x-custom.mini-header>Member Management</x-custom.mini-header>
                     </div>
-                    <p class="text-tint_1" >Easily manage your membership details and billing
-                        information.</p>
+                    <p class="text-tint_1">Easily manage your membership details and billing information.</p>
                 </div>
             </button>
         </div>
