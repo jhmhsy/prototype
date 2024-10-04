@@ -72,9 +72,8 @@
                                 </td>
 
                                 <td class="px-4 flex flex-row gap-1 align-middle[&amp;:has([role=checkbox])]:pr-0">
-                                    @foreach (($equipment->images)
-                                    as $image)
-                                    <img src=" {{ asset('storage/' . $image) }}" alt="{{ $equipment->name }}"
+                                    @foreach (($equipment->images) as $image)
+                                    <img src="{{ asset('storage/' . $image) }}" alt="{{ $equipment->name }}"
                                         class="max-w-10 max-h-10">
                                     @endforeach
                                 </td>
