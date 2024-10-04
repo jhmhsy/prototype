@@ -1,5 +1,4 @@
-    @extends('layouts.dash')
-    @section('content')
+<x-dash-layout>
 
     <div class="flex flex-col gap-4 border-shade_6/50 dark:border-white/5"
         x-data="{ openUserId: null, openshowmodal: null, opencreatemodal: null }">
@@ -123,4 +122,4 @@
         </div>
     </div>
 
-    @endsection
+</x-dash-layout>

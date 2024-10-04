@@ -13,11 +13,14 @@ class isAdmin
      * Handle an incoming request.
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
+     * @return Response
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!in_array(Auth::user()->roles[0]->name, ['Admin', 'SuperAdmin'])) {
-            abort(403);
+        $userRoles = Auth::user()->roles->pluck('name')->toArray();
+
+        if (!array_intersect($userRoles, ['Admin', 'SuperAdmin'])) {
+            abort(403); // Forbidden
         }
 
         return $next($request);

@@ -12,7 +12,7 @@ class EquipmentController extends Controller
     {
         $equipments = Equipment::paginate(10);
 
-        return view('administrator.includes.equipments' ,compact('equipments'));
+        return view('administrator.equipment.index' ,compact('equipments'));
     }
    
     

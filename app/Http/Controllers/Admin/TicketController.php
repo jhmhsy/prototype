@@ -18,7 +18,7 @@ class TicketController extends Controller
     public function index()
     {
         $tickets = Ticket::paginate(10); 
-        return view('administrator.includes.ticket', compact('tickets'));
+        return view('administrator.ticket.index', compact('tickets'));
     }
 
     public function store(Request $request) {

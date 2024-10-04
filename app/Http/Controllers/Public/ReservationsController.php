@@ -20,7 +20,7 @@ class ReservationsController extends Controller
         $acceptedBookings = Booking::all();
         $rejectedBookings = RejectedBooking::all();
         
-        return view('administrator.includes.reservations', compact('pendingBookings', 'acceptedBookings', 'rejectedBookings'));
+        return view('administrator.reservation.index', compact('pendingBookings', 'acceptedBookings', 'rejectedBookings'));
         
     }
     

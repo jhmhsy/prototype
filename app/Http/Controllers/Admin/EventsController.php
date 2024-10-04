@@ -11,7 +11,7 @@ class EventsController extends Controller
     public function index()
     {
         $events = Event::paginate(10); 
-        return view('administrator.includes.events', compact('events'));
+        return view('administrator.event.index', compact('events'));
     }
 
     public function store(Request $request)

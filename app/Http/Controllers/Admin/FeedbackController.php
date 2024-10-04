@@ -33,7 +33,7 @@ class FeedbackController extends Controller
             $monthlyTotal =0;
             $yearlyTotal =0;
         };
-        return view('administrator.includes.feedback', compact('totalFeedback', 'positiveTotal', 'negativeTotal', 'monthlyTotal', 'yearlyTotal'));
+        return view('administrator.feedback.index', compact('totalFeedback', 'positiveTotal', 'negativeTotal', 'monthlyTotal', 'yearlyTotal'));
     }
 
     public function store(Request $request)
