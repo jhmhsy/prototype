@@ -1,5 +1,5 @@
 @if ($default ?? false)
-    <x-forms.nav-link href="/" :active="request()->is('/')" class="inactiveLink">
+    <x-forms.nav-link href="/" :active="request()->is('/')">
         {{ __('Home') }}
     </x-forms.nav-link>
 

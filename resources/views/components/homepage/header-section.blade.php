@@ -1,6 +1,5 @@
 <header>
-    <div
-        class="flex-no-wrap fixed top-0 z-10 w-full bg-tint_1 dark:bg-shade_9 flex items-center justify-between px-6 py-4 border-b border-border uppercase">
+    <div class="flex-no-wrap fixed top-0 z-10 w-full  flex items-center justify-between px-6 py-4 uppercase">
         <div class="flex flex-row mr-13">
             <a href="{{ route('welcome') }}" class="logo">
                 <x-custom.application-logo />
@@ -37,31 +36,33 @@
         document.addEventListener('DOMContentLoaded', function() {
             // Function to update active link
             function updateActiveLink() {
+                // Get the current path from the URL (e.g., /register)
+                const currentPath = window.location.pathname;
+
                 // Remove active class from all links and add inactive class
                 document.querySelectorAll('a').forEach(link => {
                     const href = link.getAttribute('href');
+                    // Only process non-hash and non-root links
                     if (href !== '/' && href !== '/#') {
+                        // Add inactive classes to all links by default
                         link.classList.remove('activeLink', 'r-activeLink');
                         link.classList.add('inactiveLink', 'r-inactiveLink');
+
+                        // Check if the link matches the current path
+                        if (href === currentPath) {
+                            // If the link matches, mark it as active
+                            link.classList.add('activeLink', 'r-activeLink');
+                            link.classList.remove('inactiveLink', 'r-inactiveLink');
+                        }
                     }
                 });
-                // Add active class to the current link and remove inactive class
-                const currentHash = window.location.hash;
-                if (currentHash && currentHash !== '#/') {
-                    const activeLink = document.querySelector(
-                        `a[href="${currentHash}"], a[href="/${currentHash}"]`);
-                    if (activeLink) {
-                        activeLink.classList.add('activeLink', 'r-activeLink');
-                        activeLink.classList.remove('inactiveLink', 'r-inactiveLink');
-                    }
-                }
             }
 
             // Update active link on page load
             updateActiveLink();
 
-            // Update active link on hash change
-            window.addEventListener('hashchange', updateActiveLink);
+            // Update active link when navigating without a page reload (e.g., using hashes)
+            window.addEventListener('popstate', updateActiveLink);
         });
     </script>
 </header>

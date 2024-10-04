@@ -15,7 +15,7 @@
                             platform.
                         </p>
                     </div>
-                    <div class="bg-mtint_1 dark:bg-darkmode_dark flex items-center justify-center ">
+                    <div class="bg-tint_1 dark:bg-shade_9 flex items-center justify-center ">
                         <div class="w-full mt-5 rounded-lg border bg-card text-card-foreground shadow-sm dark:border-white/10 bg-tint_3 dark:bg-tint_7"
                             data-v0-t="card">
                             <div class="flex flex-col space-y-1.5 px-6 pt-4 pb-1">
