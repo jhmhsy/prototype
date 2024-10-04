@@ -17,11 +17,11 @@
                         class="flex-1 h-10 w-full sm:w-auto rounded-md px-3 py-2 text-sm items-center text-tint_1"
                         placeholder="Enter your email" type="email" />
                     <div>
-                        <x-custom.secondary-button
+                        <x-custom.primary-button
                             class="h-10 w-auto px-4 py-2 border space-x-2 text-tint_1 border-tint_1 dark:text-shade_9 dark:border-shade_9"
                             type="submit">
                             Join Us
-                        </x-custom.secondary-button>
+                        </x-custom.primary-button>
                     </div>
                 </form>
             </div>

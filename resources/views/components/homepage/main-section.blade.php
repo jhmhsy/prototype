@@ -18,7 +18,7 @@
                     Book Now
                 </x-custom.secondary-button>
                 <x-custom.secondary-button type="button" onclick="window.location.href = '#equipment-section'"
-                    :active="request()->routeIs('reservation')" class="items-center w-auto h-10 px-4 py-2 space-x-1 rounded-lg">
+                    :active="request()->routeIs('reservation')" class="items-center w-auto h-10 px-4 py-2 space-x-1 border">
                     <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="currentColor"
                         class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
                         <path fill-rule="evenodd"
