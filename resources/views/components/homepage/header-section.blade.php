@@ -36,24 +36,23 @@
         document.addEventListener('DOMContentLoaded', function() {
             // Function to update active link
             function updateActiveLink() {
-                // Get the current path from the URL (e.g., /register)
+                // Get the current path and hash from the URL
                 const currentPath = window.location.pathname;
+                const currentHash = window.location.hash;
 
-                // Remove active class from all links and add inactive class
-                document.querySelectorAll('a').forEach(link => {
+                // Remove active class from all navbar links and add inactive class
+                document.querySelectorAll('.nav-link').forEach(link => { // Only target .nav-link
                     const href = link.getAttribute('href');
-                    // Only process non-hash and non-root links
-                    if (href !== '/' && href !== '/#') {
-                        // Add inactive classes to all links by default
-                        link.classList.remove('activeLink', 'r-activeLink');
-                        link.classList.add('inactiveLink', 'r-inactiveLink');
 
-                        // Check if the link matches the current path
-                        if (href === currentPath) {
-                            // If the link matches, mark it as active
-                            link.classList.add('activeLink', 'r-activeLink');
-                            link.classList.remove('inactiveLink', 'r-inactiveLink');
-                        }
+                    // Remove active styles by default
+                    link.classList.remove('activeLink', 'r-activeLink');
+                    link.classList.add('inactiveLink', 'r-inactiveLink');
+
+                    // Match the full href, including the hash for hash-based links
+                    if (href === currentPath || (href === currentPath + currentHash)) {
+                        // Mark as active if the href matches the current path or hash
+                        link.classList.add('activeLink', 'r-activeLink');
+                        link.classList.remove('inactiveLink', 'r-inactiveLink');
                     }
                 });
             }
@@ -61,7 +60,7 @@
             // Update active link on page load
             updateActiveLink();
 
-            // Update active link when navigating without a page reload (e.g., using hashes)
+            // Update active link when navigating without a full page reload
             window.addEventListener('popstate', updateActiveLink);
         });
     </script>

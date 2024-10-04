@@ -11,15 +11,15 @@
         {{ __('Calendar') }}
     </x-forms.nav-link>
 
-    <x-forms.nav-link href="/#semi-section">
+    <x-forms.nav-link href="/#semi-section" class="nav-link">
         {{ __('Features') }}
     </x-forms.nav-link>
 
-    <x-forms.nav-link href="/#pricing-section">
+    <x-forms.nav-link href="/#pricing-section" class="nav-link">
         {{ __('Pricing') }}
     </x-forms.nav-link>
 
-    <x-forms.nav-link href="/#footer-section">
+    <x-forms.nav-link href="/#footer-section" class="nav-link">
         {{ __('Contacts') }}
     </x-forms.nav-link>
 

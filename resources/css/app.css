@@ -23,10 +23,11 @@ header > div {
 .collapsed .logo,
 .collapsed .darkmode {
     font-size: 0.8em; /* Minimize text size */
+    @apply text-main
 }
 
 .activeLink {
-    @apply border-main text-main dark:text-tint_4;
+    @apply border-main text-main;
 }
 
 .inactiveLink {
