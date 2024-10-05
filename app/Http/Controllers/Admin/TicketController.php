@@ -43,6 +43,8 @@ class TicketController extends Controller
 //OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
 
 
+
+//takes inputs ( name, email, quantity, status "unclaimed as default"), and sets randome secure encryption key. 
     public function store(Request $request)
 {
     $request->validate([
@@ -83,6 +85,7 @@ class TicketController extends Controller
     ]);
     }
     
+    //scans the database for the same encryption key provided to the staff, if exist then will show the use details that corresponds to the key
     public function scanTicket(Request $request)
     {
         $encryptedKey = $request->input('encrypted_id');
@@ -104,6 +107,7 @@ class TicketController extends Controller
         }
     }   
 
+    //if 'claimed' btn is clicked, changes the users status to claimed and deletes the encryption key to not claim again
     public function claimTicket(Request $request)
     {
         $ticket = Ticket::findOrFail($request->input('ticket_id'));
