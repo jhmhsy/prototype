@@ -16,18 +16,18 @@ header > div {
 .collapsed {
     height: 50px; /* Adjust height for collapsed state */
     padding: 5px 10px; /* Adjust padding */
-    @apply bg-tint_1 dark:bg-shade_4 ;
+    @apply bg-tint_1 dark:bg-shade_4;
 }
 
 .collapsed .text,
 .collapsed .logo,
 .collapsed .darkmode {
     font-size: 0.8em; /* Minimize text size */
-    @apply text-main
+    @apply text-main;
 }
 
 .activeLink {
-    @apply border-main text-main;
+    @apply border-main text-main dark:text-tint_4 dark:border-main;
 }
 
 .inactiveLink {
