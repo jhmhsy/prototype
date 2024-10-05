@@ -123,9 +123,6 @@
                             <div class="p-6">
 
 
-
-                                <h1>camera here</h1>
-
                             </div>
                         </div>
                     </div>

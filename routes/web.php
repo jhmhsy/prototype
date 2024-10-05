@@ -17,10 +17,17 @@ use App\Http\Controllers\Public\FeatureController;
 use App\Http\Controllers\Public\ReservationsController;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\QrCodeController;
 
 
-    Route::get('/', [HomeController::class, 'index'])
-    ->name('welcome');
+
+    Route::get('/', [HomeController::class, 'index'])->name('welcome');
+    
+
+//     Route::get('/scan', [TicketController::class, 'showScanPage'])->name('scan.show');
+// Route::post('/scan', [TicketController::class, 'scanTicket'])->name('scan.ticket');
+// Route::post('/scan/claim', [TicketController::class, 'claimTicket'])->name('scan.claim');
+//     Route::get('/', [HomeController::class, 'index'])->name('welcome');
     
 //⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎ PUBLIC   
 
@@ -63,8 +70,7 @@ use Illuminate\Support\Facades\Route;
 
 //⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎ ADMIN
 
-
-    Route::middleware(['isAdmin'])->group(function () {
+    Route::group(['middleware' => ['auth', 'isAdmin']], function () {
         Route::prefix('admin')->group(function () {
             Route::get('/overview', [OverviewController::class, 'index'])->name('administrator.overview');
             Route::get('/reservations', [ReservationsController::class, 'index'])->name('administrator.reservations');
@@ -74,7 +80,12 @@ use Illuminate\Support\Facades\Route;
             Route::get('/users', [UserController::class, 'index'])->name('administrator.users');
             Route::get('/roles', [RoleController::class, 'index'])->name('administrator.roles');
             Route::get('/feedback', [FeedbackController::class, 'index'])->name('administrator.feedback');
-            Route::get('/help', [HelpController::class, 'index'])->name('administrator.help');    
+            Route::get('/help', [HelpController::class, 'index'])->name('administrator.help');   
+            
+            Route::get('/scan', [TicketController::class, 'showScanPage'])->name('administrator.scan');
+            Route::post('/scan', [TicketController::class, 'scanTicket'])->name('scan.ticket');
+            Route::post('/scan/claim', [TicketController::class, 'claimTicket'])->name('scan.claim');
+
         });
         
         Route::prefix('reservations')->group(function () {
@@ -85,6 +96,10 @@ use Illuminate\Support\Facades\Route;
             Route::post('/cancel/{id}', [ReservationsController::class, 'cancel'])->name('reservations.cancel');
             Route::post('/delete/{id}', [ReservationsController::class, 'delete'])->name('reservations.delete');
         });
+
+       
+
+
     });
 
     Route::group(['middleware' => ['auth', 'isSuper']], function () { 

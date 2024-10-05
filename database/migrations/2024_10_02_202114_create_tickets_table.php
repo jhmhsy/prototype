@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('email');  
             $table->integer('quantity');
             $table->string('status'); 
+            $table->binary('encrypted_key');
+            $table->binary('encrypted_id');
             $table->timestamps();
         });
     }

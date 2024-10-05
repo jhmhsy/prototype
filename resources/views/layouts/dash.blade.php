@@ -12,9 +12,13 @@
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
+
     <!-- Scripts -->
     <script src="{{ asset('js/darkmode.js') }}" defer></script>
     <script src="{{ asset('js/dashboardnavigator.js') }}" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsqr/1.4.0/jsQR.js"></script>
+
+
     <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
     <link rel="icon" href="images\logo.png">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
