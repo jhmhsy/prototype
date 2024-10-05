@@ -2,7 +2,8 @@
     <div class="flex-no-wrap fixed top-0 z-10 w-full  flex items-center justify-between px-6 py-4 uppercase">
         <div class="flex flex-row mr-13">
             <a href="{{ route('welcome') }}" class="logo">
-                <x-custom.application-logo />
+                <img src="{{ asset('images/logo colored.png') }}" width="50" height="50" alt="logo">
+                {{--<x-custom.application-logo />--}}
             </a>
         </div>
 

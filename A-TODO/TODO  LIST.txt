@@ -11,18 +11,14 @@ when on mobile, remove the logo in dashboard panel     ✅
 EVENTS
 create simple crud    ✅
 
-
-
 HELP
 No plans yet     ❌
-     
 
 
 EQUIPMENTS
 Add a create Equipments      ✅
 Add a Equipments Layouts        ✅
 Add a Equipments Controller, database table, Models, just a fucking connection to CRUD negaa     ✅
-
 Apply Equipments Layouts        ❌
 Perfection     ❌❌❌ Far From it
 
@@ -31,12 +27,12 @@ Perfection     ❌❌❌ Far From it
 
 LANDINGPAGE ---------------------------------------------------
 
-Logo
-Adjust the Logo its too common     ❌
+LOGO
+Adjust the Logo its too common     ✅
+Need revision      ❓
 
 EVENTS
 Unconfirmed yet   ✅
-
 design a front end of it          ❌
 
 
@@ -46,7 +42,6 @@ Make it good like modern and clean    ✅
 
 FEEDBACK 
 responsiveness of feedbacks contents      ❌
-
 complete      ❌
 
 
@@ -56,31 +51,21 @@ A feature pages that shows the list of equipments     ❌
 
 TICKET SALES
 Design Payment panel  ✅
-
 Storing Datas    ✅  
-
 Qrcode Implementation     ❌
-
 Payment Implementation      ❌
-
 
 CALENDAR
 Calendar Prototype   ✅
-
-Make the buttons hours clickable then will proceed to guest reservation page where it will auto input the clicked hours     ❌
-
+Calendar darmode colors    ❌
 Made a mini reservation page inside calendar for ease of use ✅
-
 Design it     ✅
-
 
 PRICING PLANS 
 Very Demure   ✅
 
-
 FOOTER   
 Remake it its too boring       ✅
-
 Update its href to actually proceed to something     ❌ HAHAHHAHA-h
 
 

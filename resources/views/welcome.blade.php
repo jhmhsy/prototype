@@ -5,7 +5,7 @@
         <div class="flex flex-col min-h-screen dark:bg-shade_9 min-w-[360px]">
             <!-- Header sections--->
             <header id="header-section"
-                class="transition-transform duration-150 ease-in-out dark:text-textwhite">
+                class="transition-transform duration-150 ease-in-out">
                 <x-homepage.header-section />
             </header>
             <!-- Main sections-->

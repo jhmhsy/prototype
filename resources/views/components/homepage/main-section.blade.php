@@ -1,6 +1,5 @@
 <section
-    class="relative min-h-screen w-full dark:border-white/10 px-4 sm:px-10 bg-gradient-to-br dark:from-shade_9 dark:via-main dark:to-tint_1 from-tint_1 via-main to-shade_9 flex items-center justify-center sm:justify-between">
-
+    class="relative min-h-screen w-full dark:border-white/10 px-4 sm:px-10 bg-gradient-to-br dark:from-shade_9 dark:via-shade_7 dark:to-shade_5 from-tint_3 via-main to-tint_1 flex items-center justify-center sm:justify-between">
 
     <div
         class="w-full mt-13 flex flex-col md:flex-row items-center justify-center px-4 sm:px-15 py-10 sm:py-0 space-y-3">
@@ -46,11 +45,8 @@
                 src="https://img.freepik.com/free-photo/low-angle-view-unrecognizable-muscular-build-man-preparing-lifting-barbell-health-club_637285-2497.jpg?t=st=1727743360~exp=1727746960~hmac=7e0bf7885ab8fcd6befaf8eea6232011cdfce301515c9d57d0ca7bd5c9ade0b1&w=740"
                 style="width: 100vw; height: 100vh; min-width: 100%; min-height: 100%; left: 0; top: 0; object-fit: cover;" />
 
-
-
         </div>
     </div>
-
 
 </section>
 <section class="w-full h-[5vh] bg-black">

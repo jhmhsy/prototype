@@ -26,7 +26,7 @@
     <script src="{{ asset('js/progressBar.js') }}" defer></script>
 
     <!-- Favicon -->
-    <link rel="icon" href="{{ asset('images/logo.png') }}">
+    <link rel="icon" href="{{ asset('images/logo colored.png') }}">
 
     <!-- Vite -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
