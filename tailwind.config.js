@@ -28,6 +28,7 @@ export default {
                 sans: ["Figtree", ...defaultTheme.fontFamily.sans],
                 hanken: ["Hanken Grotesk", "sans-serif"],
                 roboto: ["Roboto", "sans-serif"],
+                opensans: ["Open Sans", "sans-serif"],
             },
             fontWeight: {
                 thin: 100,

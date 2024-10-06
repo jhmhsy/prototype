@@ -30,58 +30,31 @@
 </head>
 
 <body class="font-opensans antialiased min-w-screen bg-tint_1 dark:bg-shade_9 ">
-    <!-- <div id="breakpoint" class="select-none fixed bg-black text-white w-10 h-10 z-50 text-sm px-3 py-2">Loading...</div> -->
+    <div id="breakpoint" class="fixed bg-black text-white w-10 h-10 z-50 text-sm px-3 py-2">Loading...</div>
+
+    <div class="flex w-full">
 
 
-    <div x-data="layout()" x-init="init()" class="flex h-screen">
-        <!-- SIDE NAVBAR -->
+        <!-- NAVIGATION -->
+
+
         @include ('administrator.side-navigation')
 
-        <div class="flex flex-col w-full ">
-            <!-- HEADER -->
+
+        <div class="flex flex-col w-full">
+
+            <!-- SIDE NAVIGATION -->
             @include ('administrator.header-navigation')
 
-            <!-- Main content -->
+
+            <!--  MAIN CONTENT -->
             <main class="flex-1 p-6 ">
                 {{ $slot }}
             </main>
         </div>
+
+
     </div>
-
-    <script>
-    function layout() {
-        return {
-            sidebarOpen: false,
-            init() {
-                this.sidebarOpen = localStorage.getItem('sidebarOpen') === 'true';
-                this.$watch('sidebarOpen', (value) => {
-                    localStorage.setItem('sidebarOpen', value);
-                });
-
-                // Check screen size on load and resize
-                this.checkScreenSize();
-                window.addEventListener('resize', () => this.checkScreenSize());
-            },
-            toggleSidebar() {
-                this.sidebarOpen = !this.sidebarOpen;
-            },
-            closeSidebar() {
-                if (window.innerWidth < 1024) {
-                    this.sidebarOpen = false;
-                }
-            },
-            checkScreenSize() {
-                if (window.innerWidth >= 1024) {
-                    this.sidebarOpen = localStorage.getItem('sidebarOpen') === 'true';
-                } else {
-                    this.sidebarOpen = false;
-                }
-            }
-        }
-    }
-    </script>
-
-
 </body>
 
 </html>

@@ -10,6 +10,7 @@
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=open-sans:300,400,500,600,700" rel="stylesheet" />
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     <!-- FullCalendar -->
@@ -24,6 +25,7 @@
     <script src="{{ asset('js/darkmode.js') }}" defer></script>
     <script src="{{ asset('js/hrefScrollAnimation.js') }}" defer></script>
     <script src="{{ asset('js/progressBar.js') }}" defer></script>
+    <script src="screensize.js"></script>
 
     <!-- Favicon -->
     <link rel="icon" href="{{ asset('images/logo.png') }}">
@@ -32,7 +34,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="font-sans antialiased min-w-[350px]">
+<body class="font-opensans antialiased min-w-[350px]">
 
     <div>
         @isset($header)

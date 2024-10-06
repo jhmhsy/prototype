@@ -12,7 +12,7 @@ use App\Models\PendingBooking;
 
 class ReservationsController extends Controller
 {
-    
+    // --------------------------------------------------- View
 
     public function index()
     {
@@ -23,6 +23,38 @@ class ReservationsController extends Controller
         return view('administrator.reservation.index', compact('pendingBookings', 'acceptedBookings', 'rejectedBookings'));
         
     }
+
+    public function pending()
+    {
+        $pendingBookings = PendingBooking::all();
+        
+        return view('administrator.reservation.pending', compact('pendingBookings'));
+        
+    }
+    public function active()
+    {
+        $acceptedBookings = Booking::all();
+        
+        return view('administrator.reservation.active', compact('acceptedBookings'));
+        
+    }
+
+    public function suspended()
+    {
+        $rejectedBookings = RejectedBooking::all();
+        
+        return view('administrator.reservation.canceled', compact('rejectedBookings'));
+        
+    }
+
+    public function History()
+    {
+        
+        return view('administrator.reservation.history');
+        
+    }
+
+    // ------------------------------------------------------------------ Configurations
     
     public function store(Request $request)
     {

@@ -1,41 +1,12 @@
-<div style="display:none;" x-show="sidebarOpen" @click.away="closeSidebar"
-    x-transition:enter-start="opacity-0 transform -translate-x-full"
-    x-transition:enter-end="opacity-100 transform translate-x-0" x-transition:leave="transition ease-in duration-300"
-    x-transition:leave-start="opacity-100 transform translate-x-0"
-    x-transition:leave-end="opacity-0 transform -translate-x-full">
-
+<div>
     <aside id="separator-sidebar"
-        class="fixed md:relative top-0 left-0 z-40 w-80 h-screen bg-white transition-transform translate-x-0 sm:block "
+        class="relative hidden top-0 left-0 z-40 w-80 h-screen transition-transform -translate-x-full sm:translate-x-0 sm:block "
         aria-label="Sidebar">
 
         <div class="h-screen px-3 py-4 overflow-y-auto flex flex-col justify-between bg-gray-50 dark:bg-gray-800">
-
             <ul class="space-y-2 overflow-y-auto font-medium">
 
-                <li class="flex gap-2">
-                    <button @click="toggleSidebar" class="sm:hidden p-2 mr-4 focus:outline-none">
-                        <svg style="display:none;" x-show="!sidebarOpen" class="w-6 h-6" fill="none"
-                            stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M4 6h16M4 12h16M4 18h16">
-                            </path>
-                        </svg>
 
-
-                        <svg style="display:none;" x-show="sidebarOpen" class="w-6 h-6" fill="none"
-                            stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M4 6h16M4 12h16M4 18h16">
-                            </path>
-                        </svg>
-                    </button>
-
-                    <div class="flex flex-row mr-13">
-                        <a href="{{ route('welcome') }}" class="logo">
-                            <x-custom.application-logo />
-                        </a>
-                    </div>
-                </li>
                 <!--︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼ OVERVIEW ︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼  -->
                 <li>
                     <a href="{{ route('administrator.overview') }}" class="flex items-center p-2 rounded-lg group 
