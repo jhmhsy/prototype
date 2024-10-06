@@ -1,11 +1,11 @@
 <x-guest-layout>
-    <div class="overflow-y-hidden flex min-h-screen flex-col bg-tint_1 dark:bg-shade_7 text-shade_9  dark:text-tint_1">
+    <div class="flex h-screen flex-col bg-tint_1 dark:bg-shade_7 text-shade_9  dark:text-tint_1">
         <header>
             <x-homepage.header-section />
         </header>
-        <main class="dark:bg-shade_7 justify-center mt-15 flex ">
-            <div class="flex flex-col min-h-screen min-w-[600px] p-0 m-0">
-                <div class="flex-1 grid lg:grid-cols-10 gap-8 px-2 pb-0 sm:px-6 sm:py-3">
+        <main class="dark:bg-shade_7 justify-center pt-15 flex h-full">
+            <div class="flex flex-col min-h-full min-w-[600px] p-0 m-0">
+                <div class="flex-1 grid min-h-full lg:grid-cols-10 gap-8 px-2 pb-0 sm:px-6 sm:py-3">
                     {{-- Calendar --}}
                     <div class="bg-muted lg:col-span-7 sm:col-span-10 rounded-md">
                         <div class="max-h-[85vh]" id="calendar"></div>
