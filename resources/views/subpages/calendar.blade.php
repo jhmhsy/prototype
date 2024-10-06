@@ -28,18 +28,18 @@
                                         <x-forms.field :value="__('Name')" :errors="$errors->get('regular-name')" :for="'regular-name'">
                                             <input placeholder="Juan Dela Cruz" type="text" id="regular-name"
                                                 name="name"
-                                                class="w-full px-2 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-main dark:bg-tint_3"
+                                                class="w-full px-2 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-main dark:bg-tint_3 dark:text-shade_9 placeholder-shade_9/50"
                                                 value="{{ Auth::user() ? Auth::user()->name : '' }}"
                                                 @auth disabled @endauth required>
                                         </x-forms.field>
                                         <x-forms.field :value="__('Date')" :errors="$errors->get('regular-date')" :for="'regular-date'">
                                             <input type="date" id="regular-date" name="date"
-                                                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-main dark:bg-tint_3"
+                                                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-main dark:bg-tint_3 dark:text-shade_9"
                                                 required>
                                         </x-forms.field>
                                         <x-forms.field :value="__('Time')" :errors="$errors->get('regular-time')" :for="'regular-time'">
                                             <select id="regular-time" name="time"
-                                                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-main dark:bg-tint_3 mb-4"
+                                                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-main dark:bg-tint_3 dark:text-shade_9 mb-4"
                                                 required>
                                                 <option value="" disabled selected>Select an hour</option>
                                                 <!-- Loop through 7 to 20 for full hours -->
@@ -173,10 +173,10 @@
 
                     if (reservedHours.includes(time)) {
                         listItem.className =
-                            'pointer-events-none select-none inline-flex items-center justify-center text-sm font-medium border bg-background h-10 px-4 py-2 line-through bg-red-500 border text-black';
+                            'pointer-events-none select-none inline-flex items-center justify-center text-sm font-medium border bg-background h-10 px-4 py-2 line-through bg-red-500 border text-shade_9 dark:text-tint_1';
                     } else {
                         listItem.className =
-                            'select-none inline-flex items-center justify-center text-sm font-medium border bg-background h-10 px-4 py-2 border-green-500 text-black hover:bg-green-500 active:bg-green-600';
+                            'select-none inline-flex items-center justify-center text-sm font-medium border bg-background h-10 px-4 py-2 border-green-500  text-shade_9 dark:text-tint_1 hover:bg-green-500 active:bg-green-600';
                         listItem.addEventListener('click', function() {
                             handleTimeSlotSelection(selectedDate, time); // Pass both date and time
                         });
@@ -211,19 +211,20 @@
                 }
             }
 
+            // Adjusted function for proper 12-hour to 24-hour conversion
             function convertTo24Hour(time12h) {
                 const [time, modifier] = time12h.split(' ');
                 let [hours, minutes] = time.split(':');
 
+                // Correctly handle 12 AM and 12 PM cases
                 if (hours === '12') {
-                    hours = '00';
+                    hours = modifier === 'AM' ? '00' : '12'; // 12 AM should be 00:00, 12 PM should stay 12:00
+                } else if (modifier === 'PM') {
+                    // Convert PM times except for 12 PM
+                    hours = (parseInt(hours, 10) + 12).toString();
                 }
 
-                if (modifier === 'PM') {
-                    hours = parseInt(hours, 10) + 12;
-                }
-
-                return `${hours.padStart(2, '0')}:${minutes}`;
+                return `${hours.padStart(2, '0')}:${minutes}`; // Ensure 2-digit format for hours
             }
         });
     </script>
