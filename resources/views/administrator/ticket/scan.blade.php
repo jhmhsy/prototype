@@ -1,19 +1,18 @@
 <x-dash-layout>
     <section class="grid grid-cols-1 gap-5">
-        <h1 class="text-4xl pb-5 font-bold">Scan Ticket</h1>
+        <h1 class="text-4xl pb-5 font-bold dark:text-white">Scan Ticket</h1>
 
         <form action="{{ route('scan.ticket') }}" method="POST">
             @csrf
             <div class="grid grid-cols-1 gap-4 w-1/2">
-                <h1 class="text-red-500 font-bold text-2xl">Sorry for inconvenience, Scanner is currently Unavailable!
+                <h1 class="text-red-500 font-bold text-2xl ">Sorry for inconvenience, Scanner is
+                    currently Unavailable!
                 </h1>
                 <p class="text-red-400">Please download the QR code provided and manually scan it at a public scanner.
                     Once scanned, please
                     enter the encrypted text here. Thank you!</p>
                 <div>
-                    <label
-                        class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                        for="encryption-key">
+                    <label class="text-sm font-medium dark:text-white" for="encryption-key">
                         Encryption Key
                     </label>
                     <input

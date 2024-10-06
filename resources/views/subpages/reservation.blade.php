@@ -3,7 +3,7 @@
         <header>
             <x-homepage.header-section />
         </header>
-        <div class="flex items-center justify-center min-h-screen bg-tint_1 dark:bg-shade_9 pt-20 px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-center min-h-screen bg-tint_1 dark:bg-shade_7 pt-20 px-4 sm:px-6 lg:px-8">
             <div class="w-full max-w-md mb-3">
                 <div
                     class=" shadow-md rounded-lg overflow-hidden @guest bg-tint_3 dark:bg-tint_9 @else bg-gradient-to-r from-purple-500 to-indigo-600 @endguest ">

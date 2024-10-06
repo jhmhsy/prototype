@@ -1,19 +1,19 @@
 <x-dash-layout>
     <section x-data="{ isOpen: false }">
-        <div class="rounded-lg border bg-card text-card-foreground shadow-sm p-6  text-shade_9 dark:text-tint_1 
+        <div class="rounded-lg border shadow-sm p-6  text-shade_9  
     border-shade_6/50 dark:border-white/5" data-v0-t="card">
             <div class="flex flex-row">
-                <h1 class="text-2xl font-bold mb-6">Equipment Management</h1>
+                <h1 class="text-lg font-bold mb-6 dark:text-white">Equipment Management</h1>
                 <div class="ml-auto flex items-center gap-2">
                     <button @click="isOpen = true"
                         class="hover:bg-green-400 focus:bg-green-500 inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground rounded-md px-3 h-8 gap-1">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="h-3.5 w-3.5">
+                            class="h-3.5 w-3.5 dark:text-white">
                             <path d="M5 12h14"></path>
                             <path d="M12 5v14"></path>
                         </svg>
-                        <span class="sr-only sm:not-sr-only sm:whitespace-nowrap ">New Reservation</span>
+                        <span class="sr-only sm:not-sr-only dark:text-white">New Reservation</span>
                     </button>
                 </div>
             </div>
@@ -21,63 +21,65 @@
             <div>
                 <div class="relative w-full overflow-auto pr-20">
                     <table class="w-full caption-bottom text-sm ">
-                        <thead class="[&amp;_tr]:border-b ">
+                        <thead class="text-black dark:text-white ">
                             <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
-                                <th
-                                    class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
+                                <th class="h-12 px-4 text-left align-middle font-medium ">
+                                    No
+                                </th>
+                                <th class="h-12 px-4 text-left align-middle font-medium ">
                                     Equipment
                                 </th>
-                                <th
-                                    class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
+                                <th class="h-12 px-4 text-left align-middle font-medium ">
                                     Type
                                 </th>
-                                <th
-                                    class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
+                                <th class="h-12 px-4 text-left align-middle font-medium ">
                                     Details
                                 </th>
-                                <th
-                                    class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
+                                <th class="h-12 px-4 text-left align-middle font-medium ">
                                     Extra Details
                                 </th>
 
-                                <th
-                                    class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
+                                <th class="h-12 px-4 text-left align-middle font-medium ">
                                     Images
                                 </th>
 
 
-                                <th
-                                    class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0 w-[120px]">
+                                <th class="h-12 px-4 text-left align-middle font-medium  w-[120px]">
                                     Actions
                                 </th>
 
 
                             </tr>
                         </thead>
-                        <tbody class="[&amp;_tr:last-child]:border-0">
+                        <tbody class="text-gray-600 dark:text-gray-400">
                             @foreach ($equipments as $equipment)
-                            <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
-                                <td class="px-4 align-middle [&amp;:has([role=checkbox])]:pr-0 font-medium">
-                                    {{ $equipment->name }}</td>
-                                <td class="px-4 align-middle [&amp;:has([role=checkbox])]:pr-0">{{ $equipment->type }}
+                            <tr
+                                class=" transition-colors py-10 {{ $loop->iteration % 2 == 0 ? 'bg-gray-100 dark:bg-peak_2' : '' }}">
+
+                                <td class="px-4 align-middle  ">
+                                    {{ $equipment->id }}
                                 </td>
-                                <td class="px-4 align-middle [&amp;:has([role=checkbox])]:pr-0">
-                                    <div class="inline-flex w-fit items-center whitespace-nowrap rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
-                                        data-v0-t="badge">
-                                        {{ $equipment->details }}
-                                    </div>
+                                <td class="px-4 align-middle  ">
+                                    {{ $equipment->name }}
                                 </td>
-                                <td class="px-4 align-middle [&amp;:has([role=checkbox])]:pr-0">
-                                    {{ $equipment->extra_details }}
+                                <td class="px-4 align-middle ">{{ $equipment->type }}
                                 </td>
 
-                                <td class="px-4 flex flex-row gap-1 align-middle[&amp;:has([role=checkbox])]:pr-0">
+                                <td class="px-4 align-middle ">
+                                    {{ \Illuminate\Support\Str::limit($equipment->details, 15) }}
+                                </td>
+
+                                <td class="px-4 align-middle ">
+                                    {{ \Illuminate\Support\Str::limit($equipment->extra_details, 20) }}
+                                </td>
+
+                                <td class="px-4 flex flex-row gap-1 align-middle">
                                     @foreach (($equipment->images) as $image)
                                     <img src="{{ asset('storage/' . $image) }}" alt="{{ $equipment->name }}"
                                         class="max-w-10 max-h-10">
                                     @endforeach
                                 </td>
-                                <td class="px-4 align-middle [&amp;:has([role=checkbox])]:pr-0">
+                                <td class="px-4 align-middle ">
                                     <div class="flex items-center justify-end gap-2">
 
 
@@ -136,7 +138,7 @@
                     <div class="bg-white rounded shadow-lg w-full max-w-2xl max-h-[90vh] overflow-y-auto">
                         <div class=" mt-50 p-4">
                             <div class="flex flex-col space-y-1.5 px-6">
-                                <h3 class="whitespace-nowrap tracking-tight text-2xl font-bold">Add Equipment</h3>
+
                                 <p class="text-sm text-muted-foreground">Enter the details of the new equipment.</p>
                             </div>
 

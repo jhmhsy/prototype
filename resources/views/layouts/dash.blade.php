@@ -29,7 +29,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="font-opensans antialiased min-w-screen bg-tint_1 dark:bg-shade_9 ">
+<body class="font-opensans antialiased min-w-screen bg-tint_1 dark:bg-peak_1     ">
     <!-- <div id="breakpoint" class="select-none fixed bg-black text-white w-10 h-10 z-50 text-sm px-3 py-2">Loading...</div> -->
 
 
@@ -42,7 +42,11 @@
             @include ('administrator.header-navigation')
 
             <!-- Main content -->
-            <main class="flex-1 p-6 ">
+            <main class="flex-1 px-6 sm:overflow-y-auto">
+                <div class="flex text-sm py-4 gap-2 dark:text-gray-500">
+                    <h1>Admin ➥ </h1>
+                    <?php echo basename($_SERVER['PHP_SELF']); ?>
+                </div>
                 {{ $slot }}
             </main>
         </div>

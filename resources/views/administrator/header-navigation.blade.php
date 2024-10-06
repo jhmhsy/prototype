@@ -1,7 +1,6 @@
 <header>
-    <div class="bg-tint_1 dark:bg-shade_9 flex items-center justify-between px-6 py-4 border-b border-shade_6/50 dark:border-white/5 
+    <div class=" bg-gray-50 dark:bg-peak_2  flex items-center justify-between px-6 py-4 border-b  
          dark:text-white z-0">
-
 
         <div class="flex flex-row mr-13 justify-between items-center">
             <!-- Hamburger button for responsive sidebar, hides in pc screen, shows in mobile-->
@@ -19,13 +18,6 @@
                     </path>
                 </svg>
             </button>
-
-            <!-- Back button -->
-            <a href="{{ route('welcome') }}" class="hidden sm:block">
-                <x-custom.application-logo />
-            </a>
-            <span class="hidden md:block ml-3 text-xl font-bold">Administrator Panel</span>
-            <span class="block md:hidden ml-3 text-xl font-bold">Dashboard</span>
         </div>
 
         <!-- Darkmode button icon -->

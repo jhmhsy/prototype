@@ -1,10 +1,10 @@
 <x-guest-layout>
-    <div class="flex min-h-screen flex-col">
+    <div class="flex min-h-screen flex-col bg-tint_1 dark:bg-shade_7 text-shade_9">
         <header>
             <x-homepage.header-section />
         </header>
         {{-- Login Form --}}
-        <main class="mt-5 flex flex-1 items-center justify-center p-8 bg-tint_1 dark:bg-shade_9 text-shade_8 ">
+        <main class="mt-5 flex flex-1 items-center justify-center p-8">
             <div class="max-w-md space-y-6 ">
                 <form method="POST" action="{{ route('login') }}">
                     @csrf

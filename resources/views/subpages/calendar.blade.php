@@ -1,5 +1,5 @@
 <x-guest-layout>
-    <div class="flex min-h-screen flex-col bg-tint_1 dark:bg-shade_9 text-shade_8">
+    <div class="flex min-h-screen flex-col bg-tint_1 dark:bg-shade_7 text-shade_9 dark:text-tint_1">
         <header>
             <x-homepage.header-section />
         </header>
@@ -49,7 +49,7 @@
                                                     </option>
                                                 @endfor
                                             </select>
-                                        </x-forms.field><button type="submit"
+                                        </x-forms.field><button @click="{}" type="submit"
                                             class="w-full bg-main text-white py-2 px-4 rounded-md hover:bg-shade_3 dark:hover:bg-shade_5 dark:bg-shade_3 transition duration-300 ease-in-out">Reserve</button>
                                     </form>
                                 </div>
@@ -86,6 +86,7 @@
                 var textc = 'white';
                 var border = 'none';
                 var title;
+                var selectedButton = null;
 
                 if (reservation.count === totalReservations) {
                     title = 'Full';
@@ -195,6 +196,19 @@
                 // Set the date
                 dateInput.value = date.split('T')[0]; // Convert ISO date to 'YYYY-MM-DD'
                 timeInput.value = convertTo24Hour(time); // Set the time
+
+                // Deselect previous button if it exists
+                const previouslySelected = document.querySelector('.selected');
+                if (previouslySelected) {
+                    previouslySelected.classList.remove('selected');
+                }
+
+                // Select the current button
+                const currentButton = Array.from(document.querySelectorAll('#hourDetails button'))
+                    .find(button => button.textContent.trim() === time);
+                if (currentButton) {
+                    currentButton.classList.add('selected');
+                }
             }
 
             function convertTo24Hour(time12h) {
@@ -215,6 +229,15 @@
     </script>
 
     <style>
+        .selected {
+            background-color: #0e9f6e;
+            /* Color for selected button */
+            border-color: #0a998f;
+            /* Border color for selected button */
+            color: white;
+            /* Text color for selected button */
+        }
+
         .selected-date,
         .selected-date:hover {
             background-color: #b6e0dd;

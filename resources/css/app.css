@@ -16,22 +16,22 @@ header > div {
 .collapsed {
     height: 50px; /* Adjust height for collapsed state */
     padding: 5px 10px; /* Adjust padding */
-    @apply bg-tint_1 dark:bg-shade_4 ;
+    @apply bg-tint_1 dark:bg-shade_4;
 }
 
 .collapsed .text,
 .collapsed .logo,
 .collapsed .darkmode {
     font-size: 0.8em; /* Minimize text size */
-    @apply text-main
+    @apply text-main;
 }
 
 .activeLink {
-    @apply border-main text-main;
+    @apply border-main text-main dark:text-tint_4 dark:border-main;
 }
 
 .inactiveLink {
-    @apply border-transparent text-black hover:text-main dark:text-tint_1 dark:border-transparent dark:hover:text-tint_4; /* Apply inactive styles correctly */
+    @apply border-transparent dark:border-transparent dark:text-tint_1 dark:hover:text-tint_4 hover:text-main;  /* Apply inactive styles correctly */
 }
 
 /* Custom CSS */
