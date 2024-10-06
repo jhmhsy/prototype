@@ -28,6 +28,7 @@ export default {
                 sans: ["Figtree", ...defaultTheme.fontFamily.sans],
                 hanken: ["Hanken Grotesk", "sans-serif"],
                 roboto: ["Roboto", "sans-serif"],
+                opensans: ["Open Sans", "sans-serif"],
             },
             fontWeight: {
                 thin: 100,
@@ -71,6 +72,12 @@ export default {
                 secondary: "#000000",
                 complementary: "#fffd19",
 
+                peak_1: "#030c12",
+                peak_2: "#081522",
+                peak_3: "#050c17",
+                peak_4: "#03090f",
+                peak_5: "#020508",
+
                 // custom color for default darkmode
                 darkmode_dark: "#18191a", //darkmode dark
                 darkmode_light: "#242526", //darkmode light
@@ -82,7 +89,7 @@ export default {
                 textwhite: "#ffffff",
                 softgray: "#e6e6e6",
                 subtlegray: "#b3b3b3",
-                basegray: "#808080",
+                basegray: "gray-500",
                 shadowgray: "#4d4d4d",
                 charcoalgray: "#555555",
                 darkgray: "#1c1c1c",

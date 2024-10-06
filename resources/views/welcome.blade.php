@@ -4,8 +4,7 @@
     <body class="bg-tint_1 dark:bg-shade_9">
         <div class="flex flex-col min-h-screen dark:bg-shade_9 min-w-[360px]">
             <!-- Header sections--->
-            <header id="header-section"
-                class="transition-transform duration-150 ease-in-out">
+            <header id="header-section" class="transition-transform duration-150 ease-in-out">
                 <x-homepage.header-section />
             </header>
             <!-- Main sections-->

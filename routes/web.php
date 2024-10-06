@@ -73,7 +73,17 @@ use App\Http\Controllers\QrCodeController;
     Route::group(['middleware' => ['auth', 'isAdmin']], function () {
         Route::prefix('admin')->group(function () {
             Route::get('/overview', [OverviewController::class, 'index'])->name('administrator.overview');
-            Route::get('/reservations', [ReservationsController::class, 'index'])->name('administrator.reservations');
+           
+
+
+            Route::prefix('reservations')->group(function () {
+                Route::get('/unifiedview', [ReservationsController::class, 'index'])->name('administrator.unifiedview');
+                Route::get('/active', [ReservationsController::class, 'active'])->name('administrator.active');
+                Route::get('/pending', [ReservationsController::class, 'pending'])->name('administrator.pending');
+                Route::get('/suspended', [ReservationsController::class, 'suspended'])->name('administrator.suspended');
+                Route::get('/history', [ReservationsController::class, 'history'])->name('administrator.history');
+            });
+            
             Route::get('/equipments', [EquipmentController::class, 'index'])->name('administrator.equipments');
             Route::get('/events', [EventsController::class, 'index'])->name('administrator.events');
             Route::get('/tickets', [TicketController::class, 'index'])->name('administrator.tickets');

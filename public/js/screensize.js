@@ -1,4 +1,3 @@
-// Function to update the size indicator
 function updateSize() {
     const breakpointElement = document.getElementById("breakpoint");
     const width = window.innerWidth;
@@ -21,3 +20,6 @@ function updateSize() {
 // Update size on load and on resize
 window.addEventListener("load", updateSize);
 window.addEventListener("resize", updateSize);
+
+// Call updateSize once to initialize the size on load
+updateSize();
