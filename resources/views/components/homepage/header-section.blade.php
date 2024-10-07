@@ -1,9 +1,9 @@
 <header>
-    <div
-        class=" fixed top-0 z-10 w-full bg-tint_1 dark:bg-shade_9 flex items-center justify-between px-6 py-4 border-b border-border uppercase">
+    <div class="flex-no-wrap fixed top-0 z-10 w-full  flex items-center justify-between px-6 py-4 uppercase">
         <div class="flex flex-row mr-13">
             <a href="{{ route('welcome') }}" class="logo">
-                <x-custom.application-logo />
+                <img src="{{ asset('images/logo colored.png') }}" width="50" height="50" alt="logo">
+                {{--<x-custom.application-logo />--}}
             </a>
         </div>
 
@@ -33,49 +33,36 @@
             @include('navigations.nav-burger', ['showburgerHome' => true])
         </div>
     </div>
-</header>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Function to update active link
+        function updateActiveLink() {
+            // Get the current path and hash from the URL
+            const currentPath = window.location.pathname;
+            const currentHash = window.location.hash;
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Function to update active link
-    function updateActiveLink() {
-        // Remove active class from all links and add inactive class
-        document.querySelectorAll('a').forEach(link => {
-            const href = link.getAttribute('href');
-            if (href !== '/' && href !== '/#') {
-                link.classList.remove('activeLink');
-                link.classList.add('inactiveLink');
-            }
-        });
-        // Add active class to the current link and remove inactive class
-        const currentHash = window.location.hash;
-        if (currentHash && currentHash !== '#/') {
-            const activeLink = document.querySelector(
-                `a[href="${currentHash}"], a[href="/${currentHash}"]`);
-            if (activeLink) {
-                activeLink.classList.add('activeLink');
-                activeLink.classList.remove('inactiveLink');
-            }
+            // Remove active class from all navbar links and add inactive class
+            document.querySelectorAll('.nav-link').forEach(link => { // Only target .nav-link
+                const href = link.getAttribute('href');
+
+                // Remove active styles by default
+                link.classList.remove('activeLink', 'r-activeLink');
+                link.classList.add('inactiveLink', 'r-inactiveLink');
+
+                // Match the full href, including the hash for hash-based links
+                if (href === currentPath || (href === currentPath + currentHash)) {
+                    // Mark as active if the href matches the current path or hash
+                    link.classList.add('activeLink', 'r-activeLink');
+                    link.classList.remove('inactiveLink', 'r-inactiveLink');
+                }
+            });
         }
-    }
 
-    // Update active link on page load
-    updateActiveLink();
+        // Update active link on page load
+        updateActiveLink();
 
-    // Update active link on hash change
-    window.addEventListener('hashchange', updateActiveLink);
-});
-let lastScrollTop = 0;
-const navbar = document.querySelector('header > div');
-
-window.addEventListener('scroll', function() {
-    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
-    if (scrollTop > lastScrollTop) {
-        navbar.classList.add('collapsed');
-    } else {
-        navbar.classList.remove('collapsed');
-    }
-    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
-});
-</script>
+        // Update active link when navigating without a full page reload
+        window.addEventListener('popstate', updateActiveLink);
+    });
+    </script>
+</header>

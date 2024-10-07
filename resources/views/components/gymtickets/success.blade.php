@@ -1,4 +1,5 @@
 <x-guest-layout>
+    @if(session('qrCodeUrl'))
     <header class=" xl:absolute bg-background pt-4 ">
         <div class="container mx-auto flex items-center justify-between px-4 md:px-6">
             <a href="{{ route('welcome') }}"
@@ -27,30 +28,39 @@
             </div>
             <div>
                 <h1 class="text-3xl font-bold">Confirmation and QR Code</h1>
-                <p class="text-basegray  pb-5">Thank you for your purchase. Here is your order summary and QR
-                    code.
+                <p class="text-basegray  pb-5">Thank you for your purchase. We appreciate your business and look forward
+                    to seeing you at the
+                    gym.
                 </p>
             </div>
             <div class="dark:bg-darkmode_light space-y-6 border dark:border-none rounded-lg p-6">
                 <div>
                     <h2 class="text-2xl font-bold">Thank You!</h2>
-                    <p class="text-basegray">We appreciate your business and look forward to seeing you at the
-                        gym.</p>
+                    <p class="text-basegray">Please show this QR code to the gym staff to redeem your tickets.</p>
                 </div>
 
                 <div class="flex flex-col items-center gap-4">
+
+                    <!-- QR CODE HERE -->
                     <div class="bg-white p-8 rounded-lg shadow-lg">
-                        <img src="/placeholder.svg" alt="QR Code" width="200" height="200"
-                            style="aspect-ratio: 200 / 200; object-fit: cover;" class="w-full max-w-[200px]" />
+
+                        <img id="qrcode" src="{{ session('qrCodeUrl') }}" alt="QR Code" class="w-full max-w-[200px]">
+
+
+
                     </div>
-                    <p class="text-basegray">Please show this QR code to the gym staff to redeem your tickets.</p>
-                    <x-forms.reverse-nav-btn
-                        class="inline-flex items-center justify-center rounded-md text-sm font-medium disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2">
-                        Download QR Code
-                    </x-forms.reverse-nav-btn>
+                    <p class="text-basegray">For one-time use only. Keep it confidential, do NOT share.</p>
+                    <div class="flex gap-5">
+                        <x-forms.reverse-nav-btn onclick="downloadQrCode()"
+                            class="inline-flex items-center justify-center rounded-md text-sm font-medium disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2">
+                            Download QR Code
+                        </x-forms.reverse-nav-btn>
+
+                    </div>
                 </div>
             </div>
         </div>
+
 
         <div class="space-y-6 p-6 border rounded-lg">
             <div>
@@ -89,4 +99,33 @@
             </div>
         </div>
     </div>
+
+    @endif
 </x-guest-layout>
+
+
+<!-- Downloads Qr Code -->
+<script>
+function downloadQrCode() {
+    const qrData = @json(session('qrCodeData'));
+    const fileName = 'qr_code.png';
+    const size = '200x200';
+    const apiUrl =
+        `https://api.qrserver.com/v1/create-qr-code/?size=${size}&data=${encodeURIComponent(qrData)}`;
+
+    fetch(apiUrl)
+        .then(response => response.blob())
+        .then(blob => {
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.style.display = 'none';
+            a.href = url;
+            a.download = fileName;
+            document.body.appendChild(a);
+            a.click();
+            window.URL.revokeObjectURL(url);
+            document.body.removeChild(a);
+        })
+        .catch(error => console.error('Error downloading QR code:', error));
+}
+</script>

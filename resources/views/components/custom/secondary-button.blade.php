@@ -1,32 +1,5 @@
 @php
-    $defaults = 'inline-flex items-center 
-                bg-white 
-                text-gray-700 
-                border 
-                border-gray-300 
-                rounded-md 
-                font-semibold 
-                text-xs 
-                uppercase 
-                tracking-widest 
-                shadow-sm 
-                hover:bg-darkmode_light 
-                hover:text-white 
-                focus:outline-none 
-                focus:ring-2 
-                focus:ring-indigo-500 
-                focus:ring-offset-2 
-                disabled:opacity-25 
-                transition 
-                ease-in-out 
-                duration-150
-                dark:bg-darkmode_dark 
-                dark:border-gray-500 
-                dark:text-white 
-                dark:hover:bg-primary 
-                dark:hover:text-textblack 
-                dark:hover:border-darkmode_dark 
-                dark:focus:ring-offset-gray-800';
+    $defaults = 'inline-flex items-center text-center bg-main text-tint_1 font-semibold text-xs uppercase shadow-sm hover:bg-white hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25 transition ease-in-out duration-150 dark:bg-main dark:text-white dark:hover:bg-shade_4 dark:hover:text-white  dark:focus:ring-offset-gray-800 rounded-full tracking-widest items-center w-auto h-10 px-4 py-2 space-x-1';
     $classes = $attributes->get('class') ? $attributes->get('class') . ' ' . $defaults : $defaults;
 @endphp
 

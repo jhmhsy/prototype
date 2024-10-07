@@ -16,7 +16,7 @@
                 <h1 class="text-3xl font-bold">Select Tickets</h1>
                 <p class="text-muted-foreground">Fill out the form below to choose your tickets.</p>
             </div>
-            <form class="grid gap-6">
+            <div class="grid gap-6">
                 <div class="grid gap-2">
                     <label
                         class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
@@ -25,7 +25,7 @@
                     </label>
                     <input
                         class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                        id="name" placeholder="Enter your name" />
+                        id="name" name="name" placeholder="Enter your name" />
                 </div>
                 <div class="grid gap-2">
                     <label
@@ -35,7 +35,7 @@
                     </label>
                     <input
                         class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                        id="email" placeholder="Enter your email" type="email" />
+                        id="email" name="email" placeholder="Enter your email" type="email" />
                 </div>
                 <div class="grid gap-2">
                     <label
@@ -46,7 +46,7 @@
 
 
 
-                    <select id="numberSelect"
+                    <select id="numberSelect" name="quantity"
                         class="mt-1 block w-full bo rder-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
                         <option value="" disabled selected>ticket quantity</option>
                         <option value="1">1</option>
@@ -56,12 +56,14 @@
                     </select>
                 </div>
 
+                <!-- status default temporary -->
+                <input type="hidden" id="N/A" name="status" value="unclaimed" />
 
 
                 <x-forms.reverse-nav-btn @click="step++" class="cursor-pointer h-10 px-4 py-2 w-full">
                     Continue to Payment
                 </x-forms.reverse-nav-btn>
-            </form>
+            </div>
         </div>
     </div>
 

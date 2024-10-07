@@ -1,43 +1,39 @@
-CAPSTONE Percentage  -------    I dunno I guest ✅✅✅✅❌❌❌❌❌❌❌
+CAPSTONE Percentage  -------    I dunno I guess ✅✅✅✅❌❌❌❌❌❌❌
 
 DASHBOARD--------------------------------------------------- 
 legend:✅ ❌
 
 DASHBOARD
-add a home button on dashboard side navbar when on mobile       ❌
-
-when on mobile, change the administrator panel title header to admin panel       ❌
-
-when on mobile, remove the logo in dashboard panel     ❌
-
+Add a home button on dashboard side navbar when on mobile       ✅
+when on mobile, change the administrator panel title header to admin panel       ✅
+when on mobile, remove the logo in dashboard panel     ✅
 
 EVENTS
-Unconfirmed yet      ❌
-
+create simple crud    ✅
 
 HELP
-Unconfirmed YEET     ❌
+No plans yet     ❌
 
 
 EQUIPMENTS
-Add a create Equipments      ❌
-
+Add a create Equipments      ✅
 Add a Equipments Layouts        ✅
-
-Add a Equipments Controller, database table, Models, just a fucking connection to CRUD negaa     ❌
-
-Perfection     ❌❌❌
+Add a Equipments Controller, database table, Models, just a fucking connection to CRUD negaa     ✅
+Apply Equipments Layouts        ❌
+Perfection     ❌❌❌ Far From it
 
 
 
 
 LANDINGPAGE ---------------------------------------------------
 
-lOGO 
-Adjust the Logo its too common     ❌
+LOGO
+Adjust the Logo its too common     ✅
+Need revision      ❓
 
 EVENTS
-Unconfirmed yet   ❌
+Unconfirmed yet   ✅
+design a front end of it          ❌
 
 
 MAIN SECTION 
@@ -46,7 +42,6 @@ Make it good like modern and clean    ✅
 
 FEEDBACK 
 responsiveness of feedbacks contents      ❌
-
 complete      ❌
 
 
@@ -54,28 +49,26 @@ EQUIPMENTS
 A feature pages that shows the list of equipments     ❌
 
 
+TICKET SALES
+Design Payment panel  ✅
+Storing Datas    ✅  
+Qrcode Implementation     ❌
+Payment Implementation      ❌
+
 CALENDAR
 Calendar Prototype   ✅
-
-Make the buttons hours clickable then will proceed to guest reservation page where it will auto input the clicked hours     ❌
-
-Design it     ❌
-
+Calendar darmode colors    ❌
+Made a mini reservation page inside calendar for ease of use ✅
+Design it     ✅
 
 PRICING PLANS 
 Very Demure   ✅
 
-
 FOOTER   
 Remake it its too boring       ✅
-
-Update its href to actually proceed to something     ❌ 
+Update its href to actually proceed to something     ❌ HAHAHHAHA-h
 
 
 PROFILE / SETTINGS 
-Needs Optimized        ❌
+Needs optimization, cancel if no-time        ❌
  
-<<<<<<< HEAD
-=======
-
->>>>>>> henrybranch

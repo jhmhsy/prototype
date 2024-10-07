@@ -55,6 +55,17 @@
                 "isDefault": true
             },
             "isBackground": true
+        },
+        {
+            "label": "Run Fresh Migration with seed",
+            "type": "shell",
+            "command": "php artisan migrate:fresh --seed",
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "isBackground": true
         }
     ]
 }

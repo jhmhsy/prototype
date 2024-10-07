@@ -22,10 +22,12 @@
 
         <div class="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto py-12 px-4">
 
-            <div x-show="step === 1">
-                @include('components.gymtickets.selection')
-            </div>
-
+            <form action="{{ route('ticket.store') }}" method="POST">
+                @csrf
+                <div x-show="step === 1">
+                    @include('components.gymtickets.selection')
+                </div>
+            </form>
             <div x-show="step === 2" x-transition>
                 @include('components.gymtickets.confirmation')
             </div>

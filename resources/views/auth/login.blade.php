@@ -1,10 +1,10 @@
 <x-guest-layout>
-    <div class="flex min-h-screen flex-col">
+    <div class="flex min-h-screen flex-col bg-tint_1 dark:bg-shade_7 text-shade_9">
         <header>
             <x-homepage.header-section />
         </header>
         {{-- Login Form --}}
-        <main class="mt-5 flex flex-1 items-center justify-center p-8 bg-tint_1 dark:bg-shade_9 text-shade_8 ">
+        <main class="mt-5 flex flex-1 items-center justify-center p-8">
             <div class="max-w-md space-y-6 ">
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
@@ -23,14 +23,13 @@
                             <h3 class="whitespace-nowrap font-semibold tracking-tight text-2xl mx-auto">Login</h3>
                         </div>
                         <div class="px-6 py-1 space-y-4">
-                            <x-forms.field :float="true" class="space-y-2" :errors="$errors->get('email')" :value="__('Email')"
-                                :for="'email'">
-                                <x-custom.floating-input class="block w-full" id="email" type="email"
-                                    name="email" :value="old('email')" placeholder=" " required autofocus
-                                    autocomplete="username" />
+                            <x-forms.field :float="true" class="space-y-2" :errors="$errors->get('email')"
+                                :value="__('Email')" :for="'email'">
+                                <x-custom.floating-input class="block w-full" id="email" type="email" name="email"
+                                    :value="old('email')" placeholder=" " required autofocus autocomplete="username" />
                             </x-forms.field>
-                            <x-forms.field :float="true" class="space-y-2" :value="__('Password')" :errors="$errors->get('password')"
-                                :for="'password'">
+                            <x-forms.field :float="true" class="space-y-2" :value="__('Password')"
+                                :errors="$errors->get('password')" :for="'password'">
                                 <x-custom.floating-input class="block w-full" id="password" type="password"
                                     name="password" placeholder="••••••••" required autocomplete="current-password" />
                             </x-forms.field>
@@ -44,18 +43,18 @@
                                     <span>Remember me</span>
                                 </label>
                                 @if (Route::has('password.request'))
-                                    <a class="text-red-500 text-sm font-medium underline hover:text-red-600"
-                                        href="{{ route('password.request') }}">
-                                        {{ __('Forgot your password?') }}
-                                    </a>
+                                <a class="text-red-500 text-sm font-medium underline hover:text-red-600"
+                                    href="{{ route('password.request') }}">
+                                    {{ __('Forgot your password?') }}
+                                </a>
                                 @endif
                             </div>
                         </div>
                         <div class="px-6 pb-5 pt-3 space-y-2">
-                            <x-custom.primary-button
+                            <x-custom.secondary-button
                                 class="w-full inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background disabled:pointer-events-none disabled:opacity-50 px-6 py-2">
                                 {{ __('Sign in') }}
-                            </x-custom.primary-button>
+                            </x-custom.secondary-button>
 
                             <div class="text-center text-sm">
                                 Don't have an account? <a
@@ -66,6 +65,32 @@
                     </div>
 
                 </form>
+
+
+                <!-- TEMPORARY AUTHENTICATION FOR USER/ADMIN cause im lazey typing -->
+                <form method="POST" action="{{ route('login') }}">
+                    @csrf
+                    <input hidden type="email" name="email" value="admin@gmail.com">
+                    <input hidden type="password" name="password" value="asdasdasd">
+                    <x-custom.primary-button
+                        class="w-full inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background disabled:pointer-events-none disabled:opacity-50 px-6 py-2">
+                        {{ __('Sign in as Admin') }}
+                    </x-custom.primary-button>
+                </form>
+
+                <form method="POST" action="{{ route('login') }}">
+                    @csrf
+                    <input hidden type="email" name="email" value="user@gmail.com">
+                    <input hidden type="password" name="password" value="asdasdasd">
+
+
+                    <x-custom.primary-button
+                        class="w-full inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background disabled:pointer-events-none disabled:opacity-50 px-6 py-2">
+                        {{ __('Sign in as User') }}
+                    </x-custom.primary-button>
+
+                </form>
+
             </div>
         </main>
     </div>

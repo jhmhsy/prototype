@@ -12,7 +12,6 @@ class RejectedBooking extends Model
     protected $fillable = [
         'name',
         'email',
-        'room',
         'date',
         'time',
     ];

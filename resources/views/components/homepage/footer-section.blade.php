@@ -11,21 +11,24 @@
                     events, and take your fitness to new heights.
                 </x-custom.paragraph>
             </div>
-            <div class="mx-auto w-full max-w-sm space-y-2">
-                <form class="flex flex-col xs:flex-row gap-2">
+            <div class="mx-auto max-w-sm space-y-2">
+                <form class="flex flex-col sm:flex-row gap-2">
                     <x-forms.text-input
-                        class="h-10 w-full rounded-md px-3 py-2 text-sm items-center text-tint_1"
+                        class="flex-1 h-10 w-full sm:w-auto rounded-md px-3 py-2 text-sm items-center text-tint_1"
                         placeholder="Enter your email" type="email" />
-                    <x-forms.reverse-nav-link class="h-10 px-4 py-2 border text-tint_1 border-tint_1 dark:text-shade_9 dark:border-shade_9"
-                        type="submit">
-                        Join Now
-                    </x-forms.reverse-nav-link>
+                    <div>
+                        <x-custom.primary-button
+                            class="h-10 w-auto px-4 py-2 border space-x-2 text-tint_1 border-tint_1 dark:text-shade_9 dark:border-shade_9"
+                            type="submit">
+                            Join Us
+                        </x-custom.primary-button>
+                    </div>
                 </form>
-                <x-custom.paragraph class="text-xs text-shade_8 ">
-                    Sign up to get notified about our latest updates and
-                    promotions.
-                </x-custom.paragraph>
             </div>
+            <x-custom.paragraph class="text-xs text-shade_8 ">
+                Sign up to get notified about our latest updates and
+                promotions.
+            </x-custom.paragraph>
         </div>
     </div>
 
@@ -42,7 +45,7 @@
                 </p>
                 <form class="flex gap-2">
 
-                    <x-custom.primary-button class="dark:hover:text-white" type="button"
+                    <x-custom.primary-button type="button"
                         onclick="window.location.href = '{{ route('ticket.show') }}'">
                         Join Now
                     </x-custom.primary-button>
