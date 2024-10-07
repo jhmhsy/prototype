@@ -1,5 +1,26 @@
 <footer class="bg-white ">
-    <div class="pattern7 items-center w-full py-12 md:py-24 lg:py-32 bg-tint_3 dark:bg-shade_7 text-center">
+    <div class="items-center w-full py-12 md:py-24 lg:py-32 bg-tint_3 dark:bg-shade_7 text-center">
+        <div class="gradientchuchu">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="visual"
+                viewBox="0 0 900 600" width="900" height="600" version="1.1">
+                <defs>
+                    <filter id="blur1" x="-10%" y="-10%" width="120%" height="120%">
+                        <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                        <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+                        <feGaussianBlur stdDeviation="161" result="effect1_foregroundBlur" />
+                    </filter>
+                </defs>
+                <rect width="900" height="600" fill="#6600FF" />
+                <g filter="url(#blur1)">
+                    <circle cx="440" cy="548" fill="#00CC99" r="357" />
+                    <circle cx="665" cy="572" fill="#6600FF" r="357" />
+                    <circle cx="480" cy="213" fill="#00CC99" r="357" />
+                    <circle cx="693" cy="138" fill="#00CC99" r="357" />
+                    <circle cx="337" cy="359" fill="#6600FF" r="357" />
+                    <circle cx="646" cy="388" fill="#00CC99" r="357" />
+                </g>
+            </svg>
+        </div>
         <div class="container grid items-center justify-center gap-4 px-4 text-center md:px-6 m-auto">
             <div class="space-y-3 text-shade_8 ">
                 <h2 class="text-tint_1 text-3xl font-bold tracking-tighter md:text-4xl/tight">
@@ -129,7 +150,8 @@
 
                     <div>
                         <a href="#" class="flex items-center group">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                fill="currentColor"
                                 class="bi bi-instagram text-shadowgray group-hover:text-black dark:text-basegray dark:group-hover:text-white"
                                 viewBox="0 0 16 16">
                                 <path
@@ -142,7 +164,8 @@
 
                     <div>
                         <a href="#" class="flex items-center group">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                fill="currentColor"
                                 class="bi bi-twitter-x text-shadowgray group-hover:text-black dark:text-basegray dark:group-hover:text-white"
                                 viewBox="0 0 16 16">
                                 <path
@@ -155,7 +178,8 @@
 
                     <div>
                         <a href="#" class="flex items-center group">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                fill="currentColor"
                                 class="bi bi-youtube text-shadowgray group-hover:text-black dark:text-basegray dark:group-hover:text-white"
                                 viewBox="0 0 16 16">
                                 <path
