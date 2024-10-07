@@ -1,17 +1,17 @@
 <x-guest-layout>
-    <div class="flex min-h-screen flex-col pb-5 bg-tint_1 dark:bg-shade_7 text-shade_9">
+    <div class="flex h-screen flex-col pb-5 bg-tint_1 dark:bg-shade_7 text-shade_9">
         <header>
             <x-homepage.header-section />
         </header>
         <!-- Register Form -->
-        <main class="justify-center mt-15 flex pt-3">
+        <main class="justify-center pt-15 flex px-8">
             <div class="w-full max-w-md space-y-6 text-shade_9">
                 <form method="POST" action="{{ route('register') }}">
                     @csrf
                     <div class="space-y-2 text-center dark:text-tint_1">
                         <h1 class="text-3xl font-bold text-primary-foreground ">
                             Register for Gym Reservations</h1>
-                        <p class="text-primary-foreground/80">Easily book your gym sessions with our user-friendly
+                        <p class="text-primary-foreground/80 text-sm">Easily book your gym sessions with our user-friendly
                             platform.
                         </p>
                     </div>

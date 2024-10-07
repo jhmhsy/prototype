@@ -1,11 +1,11 @@
 <x-guest-layout>
-    <div class="flex min-h-screen flex-col bg-tint_1 dark:bg-shade_7 text-shade_9 dark:text-tint_1">
+    <div class="flex h-screen flex-col bg-tint_1 dark:bg-shade_7 text-shade_9  dark:text-tint_1">
         <header>
             <x-homepage.header-section />
         </header>
-        <main class="dark:bg-shade_9 justify-center mt-15 flex">
-            <div class="flex flex-col min-h-screen min-w-[600px]">
-                <div class="flex-1 grid lg:grid-cols-10 gap-8 px-4 sm:p-6">
+        <main class="dark:bg-shade_7 justify-center pt-15 flex h-full">
+            <div class="flex flex-col min-h-full min-w-[600px] p-0 m-0">
+                <div class="flex-1 grid min-h-full lg:grid-cols-10 gap-8 px-2 pb-0 sm:px-6 sm:py-3">
                     {{-- Calendar --}}
                     <div class="bg-muted lg:col-span-7 sm:col-span-10 rounded-md">
                         <div class="max-h-[85vh]" id="calendar"></div>
@@ -22,24 +22,25 @@
                                 <!-- Second div for showing reserved hour details -->
                                 <div id="selectionInfo" class="text-xs"></div>
                                 <div id="hourDetails"
-                                    class="p-4 border border-gray-300 rounded-md h-[160px] overflow-y-auto"></div>
+                                    class="p-4 border border-gray-300 dark:border-white/50 rounded-md h-[160px] overflow-y-auto">
+                                </div>
                                 <div class="text-sm">
                                     <form action="{{ route('calendar.store') }}" method="POST">
                                         <x-forms.field :value="__('Name')" :errors="$errors->get('regular-name')" :for="'regular-name'">
                                             <input placeholder="Juan Dela Cruz" type="text" id="regular-name"
                                                 name="name"
-                                                class="w-full px-2 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-main dark:bg-tint_3"
+                                                class="w-full px-2 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-main dark:bg-tint_3 dark:text-shade_9 placeholder-shade_9/50"
                                                 value="{{ Auth::user() ? Auth::user()->name : '' }}"
                                                 @auth disabled @endauth required>
                                         </x-forms.field>
                                         <x-forms.field :value="__('Date')" :errors="$errors->get('regular-date')" :for="'regular-date'">
                                             <input type="date" id="regular-date" name="date"
-                                                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-main dark:bg-tint_3"
+                                                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-main dark:bg-tint_3 dark:text-shade_9"
                                                 required>
                                         </x-forms.field>
                                         <x-forms.field :value="__('Time')" :errors="$errors->get('regular-time')" :for="'regular-time'">
                                             <select id="regular-time" name="time"
-                                                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-main dark:bg-tint_3 mb-4"
+                                                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-main dark:bg-tint_3 dark:text-shade_9 mb-4"
                                                 required>
                                                 <option value="" disabled selected>Select an hour</option>
                                                 <!-- Loop through 7 to 20 for full hours -->
@@ -125,6 +126,11 @@
                     center: 'today prev,next',
                     right: 'dayGridMonth,timeGridDay'
                 },
+                buttonText: {
+                    today: 'Today', // Change "Today" button text
+                    month: 'Month',
+                    day: 'Day'
+                },
                 height: 650,
                 events: events,
                 select: function(info) {
@@ -173,10 +179,10 @@
 
                     if (reservedHours.includes(time)) {
                         listItem.className =
-                            'pointer-events-none select-none inline-flex items-center justify-center text-sm font-medium border bg-background h-10 px-4 py-2 line-through bg-red-500 border text-black';
+                            'pointer-events-none select-none inline-flex items-center justify-center text-sm font-medium border bg-background h-10 px-4 py-2 line-through bg-red-500 border text-shade_9 dark:text-tint_1';
                     } else {
                         listItem.className =
-                            'select-none inline-flex items-center justify-center text-sm font-medium border bg-background h-10 px-4 py-2 border-green-500 text-black hover:bg-green-500 active:bg-green-600';
+                            'select-none inline-flex items-center justify-center text-sm font-medium border bg-background h-10 px-4 py-2 border-green-500  text-shade_9 dark:text-tint_1 hover:bg-green-500 active:bg-green-600';
                         listItem.addEventListener('click', function() {
                             handleTimeSlotSelection(selectedDate, time); // Pass both date and time
                         });
@@ -211,19 +217,20 @@
                 }
             }
 
+            // Adjusted function for proper 12-hour to 24-hour conversion
             function convertTo24Hour(time12h) {
                 const [time, modifier] = time12h.split(' ');
                 let [hours, minutes] = time.split(':');
 
+                // Correctly handle 12 AM and 12 PM cases
                 if (hours === '12') {
-                    hours = '00';
+                    hours = modifier === 'AM' ? '00' : '12'; // 12 AM should be 00:00, 12 PM should stay 12:00
+                } else if (modifier === 'PM') {
+                    // Convert PM times except for 12 PM
+                    hours = (parseInt(hours, 10) + 12).toString();
                 }
 
-                if (modifier === 'PM') {
-                    hours = parseInt(hours, 10) + 12;
-                }
-
-                return `${hours.padStart(2, '0')}:${minutes}`;
+                return `${hours.padStart(2, '0')}:${minutes}`; // Ensure 2-digit format for hours
             }
         });
     </script>
@@ -234,8 +241,7 @@
             /* Color for selected button */
             border-color: #0a998f;
             /* Border color for selected button */
-            color: white;
-            /* Text color for selected button */
+            @apply text-tint_1 dark:text-shade_9;
         }
 
         .selected-date,
@@ -279,6 +285,11 @@
             cursor: pointer;
             z-index: 0;
             background-color: violet;
+        }
+
+        .fc .fc-col-header-cell,
+        .fc .fc-daygrid-day {
+            @apply dark:border-white/50
         }
     </style>
 </x-guest-layout>

@@ -1,6 +1,6 @@
 <header>
     <div class=" bg-gray-50 dark:bg-peak_2  flex items-center justify-between px-6 py-4 border-b  
-         dark:text-white z-0">
+         dark:text-white z-60">
 
         <div class="flex flex-row mr-13 justify-between items-center">
             <!-- Hamburger button for responsive sidebar, hides in pc screen, shows in mobile-->

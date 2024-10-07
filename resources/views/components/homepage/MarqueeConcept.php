@@ -7,7 +7,6 @@
                 class="text-sm font-medium text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 transition-colors duration-300 hover:underline underline-offset-4">
                 View all
             </a>
-
             <div id="size-indicator" class="size-indicator  text-black  font-bold">
                 Current Size: <h1 id="breakpoint">Loading...</h1>
             </div>

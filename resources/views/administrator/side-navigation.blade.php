@@ -11,8 +11,7 @@
         <div class="h-screen px-3 py-4 overflow-y-auto flex flex-col justify-between bg-gray-50 dark:bg-peak_2">
 
             <ul class="space-y-2 overflow-y-auto font-medium">
-
-                <li class="flex">
+                <li class="flex pb-5">
                     <button @click="toggleSidebar" class=" sm:hidden p-2 mr-4 focus:outline-none">
                         <svg style="display:none;" x-show="!sidebarOpen" class="w-6 h-6" fill="none"
                             stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -341,4 +340,5 @@ dark:hover:bg-gray-700 dark:hover:text-white
             </ul>
         </div>
     </aside>
+
 </div>

@@ -1,5 +1,5 @@
 <footer class="bg-white ">
-    <div class="pattern7 items-center w-full py-12 md:py-24 lg:py-32 bg-tint_3 dark:bg-shade_7 text-center">
+    <div class="top-footer items-center w-full py-12 md:py-24 lg:py-32 text-center relative">
         <div class="container grid items-center justify-center gap-4 px-4 text-center md:px-6 m-auto">
             <div class="space-y-3 text-shade_8 ">
                 <h2 class="text-tint_1 text-3xl font-bold tracking-tighter md:text-4xl/tight">
@@ -31,7 +31,6 @@
             </x-custom.paragraph>
         </div>
     </div>
-
     <div class="max-w-full dark:bg-black dark:text-white container mx-auto px-4 pt-10 pb-5 sm:pt-15 md:pt-20">
         <div
             class="lg:flex lg:justify-evenly md:grid md:grid-cols-2 gap-8 sm:grid-cols-2 lg:grid-cols-3 justify-center mx-auto">
@@ -185,4 +184,25 @@
             </div>
         </div>
     </div>
+    <style>
+        .top-footer {
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 200% 200%;
+            animation: gradient 8s ease infinite;
+        }
+
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+    </style>
 </footer>

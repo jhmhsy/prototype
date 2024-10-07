@@ -1,10 +1,10 @@
 <x-guest-layout>
-    <div class="flex min-h-screen flex-col bg-tint_1 dark:bg-shade_7 text-shade_9">
+    <div class="flex h-screen flex-col bg-tint_1 dark:bg-shade_7 text-shade_9">
         <header>
             <x-homepage.header-section />
         </header>
         {{-- Login Form --}}
-        <main class="mt-5 flex flex-1 items-center justify-center p-8">
+        <main class="pt-15 flex flex-1 items-center justify-center px-8">
             <div class="max-w-md space-y-6 ">
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
@@ -13,7 +13,7 @@
                             Welcome to
                             Gym
                             Reservations</h1>
-                        <p class="text-primary-foreground/80">Easily book your gym sessions with our user-friendly
+                        <p class="text-primary-foreground/80 text-sm">Easily book your gym sessions with our user-friendly
                             platform.
                         </p>
                     </div>
@@ -63,11 +63,9 @@
                             </div>
                         </div>
                     </div>
-
                 </form>
 
-
-                <!-- TEMPORARY AUTHENTICATION FOR USER/ADMIN cause im lazey typing -->
+                {{--<!-- TEMPORARY AUTHENTICATION FOR USER/ADMIN cause im lazey typing -->
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
                     <input hidden type="email" name="email" value="admin@gmail.com">
@@ -89,8 +87,7 @@
                         {{ __('Sign in as User') }}
                     </x-custom.primary-button>
 
-                </form>
-
+                </form>--}}
             </div>
         </main>
     </div>

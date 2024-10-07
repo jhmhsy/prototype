@@ -43,16 +43,31 @@
             @include ('administrator.header-navigation')
 
             <!-- Main content -->
-            <main class="flex-1 px-6 sm:overflow-y-auto">
-                <div class="flex text-sm py-4 gap-2 dark:text-gray-500">
-                    <h1>Admin ➥ </h1>
-                    <?php echo basename($_SERVER['PHP_SELF']); ?>
+            <main
+                :class="{ 'flex-1 px-6 sm:overflow-y-auto relative': isLoading, 'flex-1 px-6 sm:overflow-y-auto ': !isLoading }"
+                x-data="globalLoader()">
+                <div x-show="isLoading" style="display:none;"
+                    class="absolute inset-0 bg-white bg-opacity-75 dark:bg-gray-800 dark:bg-opacity-75 flex items-center justify-center"
+                    :class="{ 'z-50': isLoading, 'z-[-1]': !isLoading }">
+                    <link href="{{ asset('css/loaders/blue-spinner.css') }}" rel="stylesheet" defer>
+                    <div class="spinner"></div>
                 </div>
-                {{ $slot }}
+
+
+
+                <!-- Your page content -->
+                <div x-show="!isLoading" x-transition:enter="transition ease-out duration-300"
+                    x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100">
+                    <div class="flex text-sm py-4 gap-2 dark:text-gray-500">
+                        <h1>Admin ➥ </h1>
+                        <?php echo basename($_SERVER['PHP_SELF']); ?>
+                    </div>
+                    {{ $slot }}
+                </div>
             </main>
         </div>
     </div>
-
+    <script src="{{ asset('js/global-loader.js') }}"></script>
     <script>
     function layout() {
         return {
