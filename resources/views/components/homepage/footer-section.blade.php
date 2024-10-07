@@ -31,28 +31,6 @@
             </x-custom.paragraph>
         </div>
     </div>
-    <style>
-        .top-footer {
-            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-            background-size: 200% 200%;
-            animation: gradient 8s ease infinite;
-        }
-
-        @keyframes gradient {
-            0% {
-                background-position: 0% 50%;
-            }
-
-            50% {
-                background-position: 100% 50%;
-            }
-
-            100% {
-                background-position: 0% 50%;
-            }
-        }
-    </style>
-
     <div class="max-w-full dark:bg-black dark:text-white container mx-auto px-4 pt-10 pb-5 sm:pt-15 md:pt-20">
         <div
             class="lg:flex lg:justify-evenly md:grid md:grid-cols-2 gap-8 sm:grid-cols-2 lg:grid-cols-3 justify-center mx-auto">
@@ -206,4 +184,25 @@
             </div>
         </div>
     </div>
+    <style>
+        .top-footer {
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 200% 200%;
+            animation: gradient 8s ease infinite;
+        }
+
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+    </style>
 </footer>
