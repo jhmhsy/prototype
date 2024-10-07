@@ -89,7 +89,7 @@ export default {
                 textwhite: "#ffffff",
                 softgray: "#e6e6e6",
                 subtlegray: "#b3b3b3",
-                basegray: "gray-500",
+                basegray: "rgb(107, 114, 128)",
                 shadowgray: "#4d4d4d",
                 charcoalgray: "#555555",
                 darkgray: "#1c1c1c",

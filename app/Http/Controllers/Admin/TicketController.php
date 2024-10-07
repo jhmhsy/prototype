@@ -98,20 +98,6 @@ public function store(Request $request)
         'success' => 'Ticket created successfully!',
         'qrCodeUrl' => $dataUrl,
     ]);
-
-    // // Generate QR code based on the encryption key
-    // $qrCode = new QrCode($binaryKey);
-    // $qrCode->setSize(300);
-    // $writer = new PngWriter();
-    // $result = $writer->write($qrCode);
-    // $dataUrl = $result->getDataUri();
-
-    // session(['qrCodeData' => $binaryKey]);
-
-    // return redirect()->route('ticket.success')->with([
-    //     'success' => 'Ticket created successfully!',
-    //     'qrCodeUrl' => $dataUrl,
-    // ]);
 }
     
     //scans the database for the same encryption key provided to the staff, if exist then will show the use details that corresponds to the key

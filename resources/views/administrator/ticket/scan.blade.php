@@ -5,15 +5,15 @@
         <div class="grid grid-cols-1 md:grid-cols-2 justify-evenly ">
             <!------------------ UPLOAD SECTION---------------- -->
             <div class="flex flex-col gap-2">
-                <div class="rounded-lg w-full max-w-md mx-auto">
+                <div class="rounded-lg w-full max-w-md mx-auto bg-white dark:bg-peak_2">
                     <div class="flex flex-col space-y-1.5 p-6">
-                        <h3 class="text-2xl font-semibold">Upload Image
+                        <h3 class="text-2xl font-semibold dark:text-white">Upload Image
                         </h3>
-                        <p class="text-sm text-muted-foreground">
+                        <p class="text-sm text-basegray">
                             Kindly insert the QR code you received in here.
                         </p>
                     </div>
-                    <div class="p-6 grid gap-6 shadow-md ">
+                    <div class="p-6 grid gap-6 shadow-md dark:shadow-2xl mx-6 ">
                         <div class="">
                             <!-- BUpload Button-->
                             <div>
@@ -21,12 +21,12 @@
                                     class="flex flex-col items-center justify-center h-30 space-y-2 cursor-pointer">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round" class="w-8 h-8">
+                                        stroke-linejoin="round" class="w-8 h-8 dark:text-white">
                                         <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
                                         <polyline points="17 8 12 3 7 8"></polyline>
                                         <line x1="12" x2="12" y1="3" y2="15"></line>
                                     </svg>
-                                    <p>Drag and drop an image or click to upload</p>
+                                    <p class="text-basegray">Drag and drop an image or click to upload</p>
                                     <input type="file" id="qrInput" accept="image/*" class="hidden">
                                 </label>
                             </div>
@@ -39,7 +39,6 @@
                             </div>
                         </div>
                     </div>
-                    <p hidden id="result"></p>
                     <!-- TAKE THE QRCODE RESULT WILL BE RECIEVED HERE TO BE SENT TO CONTROLLER -->
                     <form action="{{ route('scan.ticket') }}" method="POST">
                         @csrf
@@ -48,7 +47,7 @@
                                 placeholder="Encrypted text will appear here">
                         </div>
                         <button type="submit"
-                            class="m-10 inline-flex items-center text-sm font-medium hover:text-white hover:bg-blue-700 active:bg-black  bg-coolblue text-white h-11 rounded-md px-40 ">
+                            class="m-10 inline-flex items-center text-sm font-medium hover:text-white hover:bg-blue-700 active:bg-black dark:active:bg-blue-800   bg-coolblue text-white h-11 rounded-md px-40 ">
                             Scan
                         </button>
                     </form>

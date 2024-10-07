@@ -1,4 +1,5 @@
 <x-guest-layout>
+    <x-custom.loader2 />
     <div>
         <header>
             <x-homepage.header-section />
@@ -14,31 +15,33 @@
                             <div class="mt-6">
                                 <form action="{{ route('reserve.store') }}" method="POST">
                                     @csrf
-                                    <x-forms.field :value="__('Name')" :errors="$errors->get('regular-name')" :for="'regular-name'">
-                                        <input placeholder="Juan Dela Cruz" type="text" id="regular-name"
-                                            name="name"
+                                    <x-forms.field :value="__('Name')" :errors="$errors->get('regular-name')"
+                                        :for="'regular-name'">
+                                        <input placeholder="Juan Dela Cruz" type="text" id="regular-name" name="name"
                                             class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-main dark:bg-tint_3"
-                                            value="{{ Auth::user() ? Auth::user()->name : '' }}"
-                                            @auth disabled @endauth required>
+                                            value="{{ Auth::user() ? Auth::user()->name : '' }}" @auth disabled @endauth
+                                            required>
                                     </x-forms.field>
 
-                                    <x-forms.field :value="__('Date')" :errors="$errors->get('regular-date')" :for="'regular-date'">
+                                    <x-forms.field :value="__('Date')" :errors="$errors->get('regular-date')"
+                                        :for="'regular-date'">
                                         <input type="date" id="regular-date" name="date"
                                             class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-main dark:bg-tint_3"
                                             required>
                                     </x-forms.field>
 
-                                    <x-forms.field :value="__('Time')" :errors="$errors->get('regular-time')" :for="'regular-time'">
+                                    <x-forms.field :value="__('Time')" :errors="$errors->get('regular-time')"
+                                        :for="'regular-time'">
                                         <select id="regular-time" name="time"
                                             class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-main dark:bg-tint_3 mb-4"
                                             required>
                                             <option value="" disabled selected>Select an hour</option>
                                             <!-- Loop through 7 to 20 for full hours -->
-                                            @for ($i = 7; $i < 21; $i++)
-                                                <option value="{{ str_pad($i, 2, '0', STR_PAD_LEFT) }}:00">
-                                                    {{ $i > 12 ? $i - 12 : $i }} {{ $i >= 12 ? 'pm' : 'am' }}
+                                            @for ($i = 7; $i < 21; $i++) <option
+                                                value="{{ str_pad($i, 2, '0', STR_PAD_LEFT) }}:00">
+                                                {{ $i > 12 ? $i - 12 : $i }} {{ $i >= 12 ? 'pm' : 'am' }}
                                                 </option>
-                                            @endfor
+                                                @endfor
                                         </select>
                                     </x-forms.field>
                                     <button type="submit"
@@ -52,23 +55,23 @@
         </div>
 
         <style>
-            @keyframes gradient {
-                0% {
-                    background-position: 0% 50%;
-                }
-
-                50% {
-                    background-position: 100% 50%;
-                }
-
-                100% {
-                    background-position: 0% 50%;
-                }
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
             }
 
-            .animate-gradient {
-                animation: gradient 2.5s ease infinite;
-                background-size: 200% 200%;
+            50% {
+                background-position: 100% 50%;
             }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .animate-gradient {
+            animation: gradient 2.5s ease infinite;
+            background-size: 200% 200%;
+        }
         </style>
 </x-guest-layout>

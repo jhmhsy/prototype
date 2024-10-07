@@ -1,4 +1,5 @@
 <x-dash-layout>
+    <x-custom.loader2 />
     <section x-data="{ isOpen: false }">
         <div class="rounded-lg border shadow-sm p-6  text-shade_9  
     border-shade_6/50 dark:border-white/5" data-v0-t="card">

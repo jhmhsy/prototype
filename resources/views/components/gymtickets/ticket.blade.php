@@ -1,4 +1,6 @@
 <x-guest-layout>
+
+    <x-custom.loader2 />
     <form action="{{ route('ticket.store') }}" method="POST" x-data="{ step: 1 }">
         @csrf
         <header class=" xl:absolute bg-background pt-4 ">
@@ -22,12 +24,10 @@
 
         <div class="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto py-12 px-4">
 
-            <form action="{{ route('ticket.store') }}" method="POST">
-                @csrf
-                <div x-show="step === 1">
-                    @include('components.gymtickets.selection')
-                </div>
-            </form>
+            <div x-show="step === 1">
+                @include('components.gymtickets.selection')
+            </div>
+
             <div x-show="step === 2" x-transition>
                 @include('components.gymtickets.confirmation')
             </div>
