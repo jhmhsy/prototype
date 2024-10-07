@@ -67,7 +67,7 @@
 </div> --}}
 
 {{-- v.2 (the cute one) --}}
-{{--<div>
+<div>
     <label class="ui-switch">
         <input type="checkbox" id="toggleDarkLightMode" name="light-switch"
             class="light-switch data-[state=on]:bg-accent data-[state=on]:text-accent-foreground">
@@ -179,10 +179,10 @@
         // Apply dark mode preference on load
         applyDarkModePreference();
     </script>
-</div>--}}
+</div>
 
 {{-- v.3 this works somehow --}}
-<div>
+{{--<div>
     <label class="dark-mode-toggle">
         <input type="checkbox" id="darkModeToggle" name="light-switch"
             class="light-switch data-[state=on]:bg-accent data-[state=on]:text-accent-foreground" tabindex="-1">
@@ -266,7 +266,7 @@
         // Apply dark mode preference on page load
         document.addEventListener('DOMContentLoaded', applyDarkModePreference);
     </script>
-</div>
+</div>--}}
 
 {{-- v.4 simple --}}
 {{--<div>
