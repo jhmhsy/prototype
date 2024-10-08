@@ -18,6 +18,11 @@ use Illuminate\Support\Facades\Route;
 
 
 
+use App\Http\Controllers\PaymentController;
+
+Route::get('/create-payment', [PaymentController::class, 'pay'])->name('payment.create');
+Route::post('/webhook-receiver', [PaymentController::class, 'webhook'])->name('webhook');
+Route::get('/payment-result', [PaymentController::class, 'showResult'])->name('payment.result');
 //Welcome Page  
 Route::get('/', [HomeController::class, 'index'])->name('welcome');
 

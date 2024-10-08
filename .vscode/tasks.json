@@ -35,7 +35,7 @@
             "isBackground": true
         },
         {
-            "label": "Run Seeders",
+            "label": "Run db:seed",
             "type": "shell",
             "command": "php artisan db:seed",
             "problemMatcher": [],
@@ -46,9 +46,9 @@
             "isBackground": true
         },
         {
-            "label": "Run Fresh Migration with seed",
+            "label": "Run Migrate Reset",
             "type": "shell",
-            "command": "php artisan migrate:fresh --seed",
+            "command": "php artisan migrate:reset",
             "problemMatcher": [],
             "group": {
                 "kind": "build",
