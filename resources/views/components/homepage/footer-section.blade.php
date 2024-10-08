@@ -31,13 +31,13 @@
             </x-custom.paragraph>
         </div>
     </div>
-    <div class="max-w-full dark:bg-black dark:text-white container mx-auto px-4 pt-10 pb-1 sm:pt-15 md:pt-20">
+    <div class="max-w-full dark:bg-black dark:text-white container mx-auto px-4 pt-7 pb-1 sm:pt-10 md:pt-20 text-sm">
         <div
             class="lg:flex lg:justify-evenly md:grid md:grid-cols-2 gap-8 sm:grid-cols-2 lg:grid-cols-3 justify-center mx-auto">
             <div class="space-y-4 mx-auto">
                 <a class="inline-flex items-center" href="#">
 
-                    <span class="text-xl font-bold dark:text-white">Danao Gym</span>
+                    <span class="text-lg font-bold dark:text-white">Danao Gym</span>
                 </a>
                 <p class="text-muted-foreground">
                     Join today and take the first step towards achieving your fitness goals
@@ -58,10 +58,10 @@
                 </p>
             </div>
 
-            <div class="grid grid-cols-3 gap-8 sm:grid-cols-3 mx-auto">
+            <div class="mt-2 grid grid-cols-3 gap-8 sm:grid-cols-3 mx-auto">
 
                 <div class="text-center md:text-left">
-                    <h3 class="text-lg font-semibold mb-2">Contact Us</h3>
+                    <h3 class="text-md font-semibold mb-2">Contact Us</h3>
                     <a href="#">
                         <span
                             class="block text-shadowgray hover:text-black dark:text-basegray dark:hover:text-white">Home</span></a>
@@ -84,7 +84,7 @@
                 </div>
 
                 <div class="text-center md:text-left">
-                    <h3 class="text-lg font-semibold mb-2">Quick Links</h3>
+                    <h3 class="text-md font-semibold mb-2">Quick Links</h3>
                     <a href="#">
                         <span
                             class="block text-shadowgray hover:text-black dark:text-basegray dark:hover:text-white">Privacy
@@ -111,7 +111,7 @@
                 </div>
 
                 <div class="text-center md:text-left  dark:text-white">
-                    <h3 class="text-lg font-semibold mb-2">Connect with Us</h3>
+                    <h3 class="text-md font-semibold mb-2">Connect with Us</h3>
 
                     <div>
                         <a href="#" class="flex items-center group">

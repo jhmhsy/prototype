@@ -1,9 +1,9 @@
 <div
     class="w-full grid grid-cols-1 gap-4 items-center justify-center p-8 bg-white text-textblack dark:bg-black dark:text-textwhite">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 px-10">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 px-10 xs:px-0">
         <!-- Child 1 -->
         <div class="bg-background rounded-lg border dark:border-darkgray p-6">
-            <div class="flex items-start gap-4 xs:flex-col">
+            <div class="flex flex-col items-start gap-4 xs:flex-row">
                 <span class="relative flex shrink-0 overflow-hidden rounded-full w-10 h-10 border">
                     <img class="aspect-square h-full w-full" alt="@shadcn" src="/placeholder-user.jpg" />
                 </span>
@@ -56,7 +56,7 @@
         </div>
 
         <div class="bg-background rounded-lg border dark:border-darkgray p-6">
-            <div class="flex items-start gap-4">
+            <div class="flex flex-col items-start gap-4 xs:flex-row">
                 <span class="relative flex shrink-0 overflow-hidden rounded-full w-10 h-10 border">
                     <img class="aspect-square h-full w-full" alt="@shadcn" src="/placeholder-user.jpg" />
                 </span>
@@ -108,7 +108,7 @@
         </div>
 
         <div class="bg-background rounded-lg border dark:border-darkgray p-6">
-            <div class="flex items-start gap-4">
+            <div class="flex flex-col items-start gap-4 xs:flex-row">
                 <span class="relative flex shrink-0 overflow-hidden rounded-full w-10 h-10 border">
                     <img class="aspect-square h-full w-full" alt="@shadcn" src="/placeholder-user.jpg" />
                 </span>
@@ -160,7 +160,7 @@
         </div>
 
         <div class="bg-background rounded-lg border dark:border-darkgray p-6">
-            <div class="flex items-start gap-4">
+            <div class="flex flex-col items-start gap-4 xs:flex-row">
                 <span class="relative flex shrink-0 overflow-hidden rounded-full w-10 h-10 border">
                     <img class="aspect-square h-full w-full" alt="@shadcn" src="/placeholder-user.jpg" />
                 </span>
