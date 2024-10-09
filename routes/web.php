@@ -15,14 +15,20 @@ use App\Http\Controllers\Public\CalendarController;
 use App\Http\Controllers\Public\FeatureController;
 use App\Http\Controllers\Public\ReservationsController;
 use Illuminate\Support\Facades\Route;
-
-
-
 use App\Http\Controllers\PaymentController;
 
-Route::get('/create-payment', [PaymentController::class, 'pay'])->name('payment.create');
-Route::post('/webhook-receiver', [PaymentController::class, 'webhook'])->name('webhook');
-Route::get('/payment-result', [PaymentController::class, 'showResult'])->name('payment.result');
+
+
+Route::post('/pay', [PaymentController::class, 'pay'])->name('payment.pay');
+Route::get('/success', [PaymentController::class, 'success']);
+Route::get('/cancel', [PaymentController::class, 'cancel']);
+
+
+// Route::get('/create-payment', [PaymentController::class, 'pay'])->name('payment.create');
+// Route::post('/webhook-receiver', [PaymentController::class, 'webhook'])->name('webhook');
+// Route::get('/payment-result', [PaymentController::class, 'showResult'])->name('payment.result');
+
+
 //Welcome Page  
 Route::get('/', [HomeController::class, 'index'])->name('welcome');
 

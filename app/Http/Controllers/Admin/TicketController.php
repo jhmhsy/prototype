@@ -13,6 +13,12 @@ use Endroid\QrCode\Writer\PngWriter;
 use App\Models\TicketKeyHistory;
 use Endroid\QrCode\ErrorCorrectionLevel;
 
+use Illuminate\Http\Exceptions\ThrottleRequestsException;
+use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\Cache\RateLimiting\Limit;
+
+use App\Models\PaymentTransaction;
+
 
 class TicketController extends Controller
 {
@@ -48,12 +54,32 @@ class TicketController extends Controller
 //takes inputs ( name, email, quantity, status "unclaimed as default"), and sets randome secure encryption key. 
 public function store(Request $request)
 {
+
+    $key = 'store-ticket:' . $request->ip(); // Unique key for the user's IP
+
+    // Check if the user has exceeded the limit
+    if (RateLimiter::tooManyAttempts($key, 1)) {
+        // Provide feedback to the user if they exceed the limit
+        return response()->json(['message' => 'Too many requests, please try again later.'], 429);
+    }
+    // Increment the attempts
+    RateLimiter::hit($key, 20);
+    
+    
+    
     $request->validate([
-        'name' => 'required|string|max:255',
-        'email' => 'required|email|max:255',
-        'quantity' => 'required|integer|min:1',
+        'name' => 'required|string',
+        'email' => 'required|email',
+        'phone' => 'required|string',
+        'currency' => 'required|string',
+        'amount' => 'required|numeric',
+        'description' => 'required|string',
+        'item_name' => 'required|string',
+        'quantity' => 'required|integer',
+        'payment' => 'required|string',
     ]);
 
+    
 
     do {
         // Generate a random string of 30 characters
@@ -74,8 +100,14 @@ public function store(Request $request)
     $ticket = Ticket::create([
         'name' => $request->name,
         'email' => $request->email,
+        'phone' => $request->phone,
+        'currency' => $request->currency,
+        'amount' => $request->amount,
+        'description' => $request->description,
+        'item_name' => $request->item_name,
         'quantity' => $request->quantity,
-        'status' => 'unclaimed',
+        'status' => 'unclaimed', // Default value
+        'payment' => $request->payment, // New field
         'encrypted_key' => $binaryKey,
         'encrypted_id' => $binaryKey,
     ]);

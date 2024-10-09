@@ -1,7 +1,7 @@
 <x-guest-layout>
 
     <x-custom.loader2 />
-    <form action="{{ route('ticket.store') }}" method="POST" x-data="{ step: 1 }">
+    <form action="{{ route('payment.pay') }}" method="POST" x-data="{ step: 1 }">
         @csrf
         <header class=" xl:absolute bg-background pt-4 ">
             <div class="container mx-auto flex items-center justify-between px-4 md:px-6">

@@ -4,15 +4,28 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use App\Models\PaymentTransaction;
+use App\Http\Controllers\Admin\TicketController;
+use Illuminate\Support\Facades\Redirect;
+use Curl;
 
 class PaymentController extends Controller
 {
-    public function pay()
+    public function pay(Request $request)
     {
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'phone' => 'required|string|max:15',
+            'quantity' => 'required|integer|min:1',
+        ]);
+    
+        $amount = ($validatedData['quantity'] * 50) * 100; // Assuming 50 PHP per item
+        
         $curl = curl_init();
-
+    
         curl_setopt_array($curl, [
-            CURLOPT_URL => "https://api.paymongo.com/v1/links",
+            CURLOPT_URL => "https://api.paymongo.com/v1/checkout_sessions",
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => "",
             CURLOPT_MAXREDIRS => 10,
@@ -22,73 +35,167 @@ class PaymentController extends Controller
             CURLOPT_POSTFIELDS => json_encode([
                 'data' => [
                     'attributes' => [
-                        'amount' => 50000,
-                        'description' => 'asdasdasd',
-                        'remarks' => 'payment test1'
+                        'billing' => [
+                            'name' => $validatedData['name'],
+                            'email' => $validatedData['email'],
+                            'phone' => $validatedData['phone'],
+                        ],
+                        'send_email_receipt' => false,
+                        'show_description' => true,
+                        'show_line_items' => true,
+                        'line_items' => [
+                            [
+                                'currency' => 'PHP',
+                                'amount' => $amount,
+                                'description' => 'item details zzzzzzzzz',
+                                'name' => 'ticket',
+                                'quantity' => (int)$validatedData['quantity']  // Ensure quantity is an integer
+                            ]
+                        ],
+                        'payment_method_types' => ['gcash'],
+                        'cancel_url' => 'http://127.0.0.1:8000/cancel',
+                        'success_url' => 'http://127.0.0.1:8000/success',
+                        'description' => 'checkout details zzzzzzzzzzzzzz'
                     ]
                 ]
             ]),
             CURLOPT_HTTPHEADER => [
+                "Content-Type: application/json",
                 "accept: application/json",
-                "authorization: Basic " . base64_encode(env('AUTH_PAY')),
-                "content-type: application/json"
+                "authorization: Basic " . base64_encode(env('AUTH_PAY'))
             ],
         ]);
 
+          $response = curl_exec($curl);
+        $err = curl_error($curl);
+        
+        curl_close($curl);
+        
+        if ($err) {
+            echo "cURL Error #:" . $err;
+        } else {
+            $response_data = json_decode($response, true);
+            
+            $checkout_session_id = $response_data['data']['id'];
+            Session::put('checkout_session_id', $checkout_session_id);
+            
+            $checkout_url = $response_data['data']['attributes']['checkout_url'];
+            
+            return redirect()->away($checkout_url);
+        }
+    }
+    
+
+
+    
+
+    public function success()
+    {
+        // Retrieve the checkout session ID from the session
+        $checkout_session_id = Session::get('checkout_session_id');
+    
+        if (!$checkout_session_id) {
+            return response()->json(['error' => 'No checkout session ID found'], 400);
+        }
+    
+        $curl = curl_init();
+    
+        curl_setopt_array($curl, [
+            CURLOPT_URL => "https://api.paymongo.com/v1/checkout_sessions/{$checkout_session_id}",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "GET",
+            CURLOPT_HTTPHEADER => [
+                "accept: application/json",
+                "authorization: Basic " . base64_encode(env('AUTH_PAY'))
+            ],
+        ]);
+    
         $response = curl_exec($curl);
         $err = curl_error($curl);
-
+    
         curl_close($curl);
-
+    
         if ($err) {
-            return "cURL Error #:" . $err;
-        } else {
-            $responseData = json_decode($response, true);
-            $checkoutUrl = $responseData['data']['attributes']['checkout_url'] ?? null;
-            
-            if ($checkoutUrl) {
-                return redirect()->away($checkoutUrl);
-            } else {
-                return "Error: Unable to get checkout URL";
-            }
+            return response()->json(['error' => "cURL Error: $err"], 500);
         }
+    
+        $data = json_decode($response, true);
+        
+        if (!isset($data['data']['attributes']['payments'][0]['attributes']['status'])) {
+            return response()->json(['error' => 'Invalid response from PayMongo'], 500);
+        }
+    
+        // Extract important details
+$checkoutDetails = $data['data']['attributes'];
+$paymentDetails = $checkoutDetails['payments'][0]['attributes'];
+$lineItem = $checkoutDetails['line_items'][0];
+
+// Prepare payment data
+$paymentData = [
+    'checkout_session_id' => $checkout_session_id,
+    'name' => $checkoutDetails['billing']['name'],
+    'email' => $checkoutDetails['billing']['email'],
+    'phone' => $checkoutDetails['billing']['phone'],
+    'currency' => $paymentDetails['currency'],
+    'amount' => $paymentDetails['amount'],
+    'description' => $checkoutDetails['description'],
+    'item_name' => $lineItem['name'],
+    'quantity' => $lineItem['quantity'],
+    'status' => $paymentDetails['status']
+];
+
+// Use updateOrCreate to efficiently handle both new and existing records
+$payment = PaymentTransaction::updateOrCreate(
+    ['checkout_session_id' => $checkout_session_id],
+    $paymentData
+);
+
+// Prepare to send to TicketController
+$ticketData = $paymentData;
+$ticketData['payment'] = $paymentData['status'];
+unset($ticketData['checkout_session_id'], $ticketData['status']);
+return app(TicketController::class)->store(new Request($ticketData));
     }
 
-    public function webhook(Request $request)
-    {
-        $webhook_secret = env('Webhook_Secret');
-        $webhook_signature = $request->header('Paymongo-Signature');
-        $event_data = $request->getContent();
-        
-        $signature_parts = explode(',', $webhook_signature);
-        $timestamp = explode('=', $signature_parts[0])[1];
-        $signature = explode('=', $signature_parts[1])[1];
-        
-        $signed_payload = $timestamp . '.' . $event_data;
-        $computed_signature = hash_hmac('sha256', $signed_payload, $webhook_secret);
-        
-        if (hash_equals($computed_signature, $signature)) {
-            // Store the event data in the session
-            Session::put('webhook_data', $event_data);
-            
-            // You might want to return a success response to PayMongo
-            return response('Webhook Received', 200);
-        } else {
-            // Invalid signature
-            return response('Invalid Signature', 400);
-        }
-    }
 
-    public function showResult()
+    
+    public function cancel()
     {
-        $webhook_data = Session::get('webhook_data');
-        Session::forget('webhook_data'); // Clear the data after retrieving it
-        
-        if ($webhook_data) {
-            echo "Received webhook data:\n";
-            echo json_encode(json_decode($webhook_data), JSON_PRETTY_PRINT);
-        } else {
-            echo "No webhook data available.";
-        }
+        $checkout_session_id = Session::get('checkout_session_id');
+
+if (!$checkout_session_id) {
+    return response()->json(['error' => 'No checkout session ID found'], 400);
+}
+
+$curl = curl_init();
+
+curl_setopt_array($curl, [
+  CURLOPT_URL => "https://api.paymongo.com/v1/checkout_sessions/{$checkout_session_id}/expire",
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_ENCODING => "",
+  CURLOPT_MAXREDIRS => 10,
+  CURLOPT_TIMEOUT => 30,
+  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+  CURLOPT_CUSTOMREQUEST => "POST",
+  CURLOPT_HTTPHEADER => [
+    "accept: application/json",
+    "authorization: Basic " . base64_encode(env('AUTH_PAY'))  // Make sure to use environment variable
+  ],
+]);
+
+$response = curl_exec($curl);
+$err = curl_error($curl);
+
+curl_close($curl);
+
+if ($err) {
+  echo "cURL Error #:" . $err;
+} else {
+  echo $response;
+}
     }
 }

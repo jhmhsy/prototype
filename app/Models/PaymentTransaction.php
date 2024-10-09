@@ -5,13 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Ticket extends Model
+class PaymentTransaction extends Model
 {
     use HasFactory;
 
-
-
     protected $fillable = [
+        'checkout_session_id',
         'name',
         'email',
         'phone',
@@ -21,8 +20,9 @@ class Ticket extends Model
         'item_name',
         'quantity',
         'status',
-        'payment',
-        'encrypted_key',
-        'encrypted_id',
     ];
+
+    public $timestamps = false;
+
+ 
 }
