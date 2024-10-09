@@ -5,7 +5,7 @@
 html {
     scroll-behavior: smooth;
 }
-
+/* purgecss start ignore */
 header > div {
     transition: all 0.4s ease-in-out, padding 0.4s ease-in-out,
         font-size 0.3s ease-in-out;
@@ -51,7 +51,7 @@ header > div {
         opacity: 1;
     }
 }
-
+/* purgecss end ignore */
 .dark-overlay {
     position: absolute; /* Position the overlay absolutely within the main section */
     top: 0; /* Align to the top */
