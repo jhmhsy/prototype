@@ -51,12 +51,12 @@
                             </div>
                             <div class="px-6 pt-2 pb-5 space-y-2">
                                 <x-custom.secondary-button
-                                    class="w-full inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 px-6 py-2 dark:bg-white dark:text-black dark:hover:bg-white/50 dark:hover:text-white">
+                                    class="w-full inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 px-6 py-2 ">
                                     {{ __('Register') }}
                                 </x-custom.secondary-button>
                                 <div class="text-center text-sm">
                                     Already have an account? <a
-                                        class="text-blue-500 font-medium underline hover:text-blue-600 dark:hover:text-blue-700"
+                                        class="text-blue-500 font-medium underline hover:text-blue-300 dark:hover:text-blue-500"
                                         href="{{ route('login') }}">Login</a>
                                 </div>
                             </div>

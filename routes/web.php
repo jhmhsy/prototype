@@ -25,7 +25,7 @@ Route::get('/', [HomeController::class, 'index'])->name('welcome');
 //⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎ 𝗣𝗨𝗕𝗟𝗜𝗖
 
 
-Route::get('features', [FeatureController::class, 'show'])->name('features');
+Route::get('/features', [FeatureController::class, 'show'])->name('features');
 Route::get('/calendar', [CalendarController::class, 'show'])->name('calendar');
 Route::post('/calendar', [ReservationsController::class, 'store'])->name('calendar.store');
 Route::get('/api/reserved-hours', [CalendarController::class, 'getReservedHours']);

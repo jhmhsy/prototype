@@ -153,7 +153,7 @@
                     </div>
 
                     <div>
-                        <a href="#" class="flex items-center group">
+                        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="flex items-center group">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 class="bi bi-youtube text-shadowgray group-hover:text-black dark:text-basegray dark:group-hover:text-white"
                                 viewBox="0 0 16 16">
