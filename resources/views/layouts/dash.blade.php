@@ -58,38 +58,8 @@
             </main>
         </div>
     </div>
-
-    <script>
-    function layout() {
-        return {
-            sidebarOpen: false,
-            init() {
-                this.sidebarOpen = localStorage.getItem('sidebarOpen') === 'true';
-                this.$watch('sidebarOpen', (value) => {
-                    localStorage.setItem('sidebarOpen', value);
-                });
-
-                // Check screen size on load and resize
-                this.checkScreenSize();
-                window.addEventListener('resize', () => this.checkScreenSize());
-            },
-            toggleSidebar() {
-                this.sidebarOpen = !this.sidebarOpen;
-            },
-            closeSidebar() {
-                if (window.innerWidth < 1024) {
-                    this.sidebarOpen = false;
-                }
-            },
-            checkScreenSize() {
-                if (window.innerWidth >= 1024) {
-                    this.sidebarOpen = localStorage.getItem('sidebarOpen') === 'true';
-                } else {
-                    this.sidebarOpen = false;
-                }
-            }
-        }
-    }
+    <script>//minified it
+    function layout(){return{sidebarOpen:!1,init(){this.sidebarOpen="true"===localStorage.getItem("sidebarOpen"),this.$watch("sidebarOpen",e=>{localStorage.setItem("sidebarOpen",e)}),this.checkScreenSize(),window.addEventListener("resize",()=>this.checkScreenSize())},toggleSidebar(){this.sidebarOpen=!this.sidebarOpen},closeSidebar(){window.innerWidth<1024&&(this.sidebarOpen=!1)},checkScreenSize(){window.innerWidth>=1024?this.sidebarOpen="true"===localStorage.getItem("sidebarOpen"):this.sidebarOpen=!1}}}
     </script>
 
 

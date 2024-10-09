@@ -32,35 +32,6 @@
         @include('navigations.nav-burger', ['showburgerHome' => true])
     </div>
 </div>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Function to update active link
-        function updateActiveLink() {
-            // Get the current path and hash from the URL
-            const currentPath = window.location.pathname;
-            const currentHash = window.location.hash;
-
-            // Remove active class from all navbar links and add inactive class
-            document.querySelectorAll('.nav-link').forEach(link => { // Only target .nav-link
-                const href = link.getAttribute('href');
-
-                // Remove active styles by default
-                link.classList.remove('activeLink', 'r-activeLink');
-                link.classList.add('inactiveLink', 'r-inactiveLink');
-
-                // Match the full href, including the hash for hash-based links
-                if (href === currentPath || (href === currentPath + currentHash)) {
-                    // Mark as active if the href matches the current path or hash
-                    link.classList.add('activeLink', 'r-activeLink');
-                    link.classList.remove('inactiveLink', 'r-inactiveLink');
-                }
-            });
-        }
-
-        // Update active link on page load
-        updateActiveLink();
-
-        // Update active link when navigating without a full page reload
-        window.addEventListener('popstate', updateActiveLink);
-    });
+<script>//minified it
+    document.addEventListener("DOMContentLoaded",function(){function i(){let i=window.location.pathname,t=window.location.hash;document.querySelectorAll(".nav-link").forEach(e=>{let n=e.getAttribute("href");e.classList.remove("activeLink","r-activeLink"),e.classList.add("inactiveLink","r-inactiveLink"),(n===i||n===i+t)&&(e.classList.add("activeLink","r-activeLink"),e.classList.remove("inactiveLink","r-inactiveLink"))})}i(),window.addEventListener("popstate",i)});
 </script>

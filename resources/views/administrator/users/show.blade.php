@@ -88,7 +88,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="bg-white rounded-lg p-6 shadow-sm">
                         <div class="grid gap-4">
                             <h3 class="text-lg font-semibold">Subscription Details</h3>

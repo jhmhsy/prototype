@@ -110,7 +110,6 @@
                 color = '#66ff73';
                 textc = 'black';
             }
-
             return {
                 title: title,
                 start: reservation.start,
