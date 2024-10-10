@@ -35,8 +35,6 @@
 
 <body class="font-opensans antialiased min-w-screen bg-tint_1 dark:bg-peak_1     ">
     <!-- <div id="breakpoint" class="select-none fixed bg-black text-white w-10 h-10 z-50 text-sm px-3 py-2">Loading...</div> -->
-
-
     <div x-data="layout()" x-init="init()" class="flex h-screen">
         <!-- SIDE NAVBAR -->
         @include ('administrator.side-navigation')

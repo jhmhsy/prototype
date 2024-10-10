@@ -19,6 +19,7 @@ class OverviewController extends Controller
             $totalFeedbackRating = Feedback::whereBetween('rating', [3, 5])->count();
             //$sales =
         } catch (\Exception $e) {
+            $data = 0;
             $users = 0;
             $totalBooking = 0;
             $totalFeedbackRating = 0;
