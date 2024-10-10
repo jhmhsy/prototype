@@ -177,7 +177,7 @@ dark:hover:bg-gray-700 dark:hover:text-white
 
                 <!--︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼ TICKETS ︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼  -->
                 <li
-                    x-data="{ open: {{ request()->routeIs('administrator.tickets') || request()->routeIs('administrator.scan') ? 'true' : 'false' }} }">
+                    x-data="{ open: {{ request()->routeIs('administrator.tickets') || request()->routeIs('ticket.scan') || request()->routeIs('ticket.transaction') || request()->routeIs('ticket.scanticket') ? 'true' : 'false' }} }">
                     <button type="button" class="flex items-center w-full p-2 text-base 
 text-gray-500 dark:text-gray-500 
 hover:bg-gray-300 hover:text-black 
@@ -206,12 +206,20 @@ dark:hover:bg-gray-700 dark:hover:text-white
                         </li>
 
                         <li>
-                            <a href="{{ route('administrator.scan') }}"
+                            <a href="{{ route('ticket.scan') }}"
                                 class="flex items-center w-full p-2 text-gray-500 dark:text-gray-500 hover:bg-gray-300 hover:text-black 
 dark:hover:bg-gray-700 dark:hover:text-white 
-{{ request()->routeIs('administrator.scan') ? 'bg-gray-300 text-textblack dark:bg-gray-700 dark:text-white text-sm' : 'text-sm' }} transition-colors duration-300 pl-11 rounded-lg group">
+{{ request()->routeIs('ticket.scan') ? 'bg-gray-300 text-textblack dark:bg-gray-700 dark:text-white text-sm' : 'text-sm' }} transition-colors duration-300 pl-11 rounded-lg group">
                                 Ticket Scanner</a>
                         </li>
+                        <li>
+                            <a href="{{ route('ticket.transaction') }}"
+                                class="flex items-center w-full p-2 text-gray-500 dark:text-gray-500 hover:bg-gray-300 hover:text-black 
+dark:hover:bg-gray-700 dark:hover:text-white 
+{{ request()->routeIs('ticket.transaction') ? 'bg-gray-300 text-textblack dark:bg-gray-700 dark:text-white text-sm' : 'text-sm' }} transition-colors duration-300 pl-11 rounded-lg group">
+                                Transaction History</a>
+                        </li>
+
                     </ul>
                 </li>
 

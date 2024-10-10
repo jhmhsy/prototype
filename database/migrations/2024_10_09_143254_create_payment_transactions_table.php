@@ -14,16 +14,20 @@ return new class extends Migration
         Schema::create('payment_transactions', function (Blueprint $table) {
             $table->id();
             $table->string('checkout_session_id')->unique();
+            $table->integer('amount');
+            $table->timestamp('paid_at');
+            $table->string('status');
+            $table->string('payment_method');
             $table->string('name');
             $table->string('email');
             $table->string('phone');
-            $table->string('currency');
-            $table->integer('amount');
-            $table->string('description');
+            $table->text('description');
             $table->string('item_name');
             $table->integer('quantity');
-            $table->string('status'); 
-            $table->timestamp('updated_at')->nullable(); //
+            $table->string('currency');
+            $table->integer('fee');
+            $table->integer('net_amount');
+            $table->timestamps();
         });
     }
 

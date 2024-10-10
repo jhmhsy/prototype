@@ -34,7 +34,7 @@
                     <div class="dark:text-white">{{ $ticket->status }}</div>
                 </div>
                 @if($ticket->status !== 'claimed')
-                <form action="{{ route('scan.claim') }}" method="POST">
+                <form action="{{ route('ticket.claim') }}" method="POST">
                     @csrf
                     <input type="hidden" name="ticket_id" value="{{ $ticket->id }}">
                     <button type="submit"

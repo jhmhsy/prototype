@@ -11,15 +11,22 @@ class PaymentTransaction extends Model
 
     protected $fillable = [
         'checkout_session_id',
+        'amount',
+        'paid_at',
+        'status',
+        'payment_method',
         'name',
         'email',
         'phone',
-        'currency',
-        'amount',
         'description',
         'item_name',
         'quantity',
-        'status',
+        'currency',
+        'fee',
+        'net_amount'
+    ];
+    protected $casts = [
+        'paid_at' => 'datetime',
     ];
 
     public $timestamps = false;

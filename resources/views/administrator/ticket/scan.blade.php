@@ -40,7 +40,7 @@
                         </div>
                     </div>
                     <!-- TAKE THE QRCODE RESULT WILL BE RECIEVED HERE TO BE SENT TO CONTROLLER -->
-                    <form action="{{ route('scan.ticket') }}" method="POST">
+                    <form action="{{ route('ticket.scanticket') }}" method="POST">
                         @csrf
                         <div>
                             <input hidden type="text" id="encryptedInput" name="encrypted_id" readonly

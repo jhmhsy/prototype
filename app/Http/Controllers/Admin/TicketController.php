@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Ticket;
+use App\Models\PaymentTransaction;
 use Illuminate\View\View;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Crypt;
@@ -17,7 +18,7 @@ use Illuminate\Http\Exceptions\ThrottleRequestsException;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Cache\RateLimiting\Limit;
 
-use App\Models\PaymentTransaction;
+
 
 
 class TicketController extends Controller
@@ -44,6 +45,12 @@ class TicketController extends Controller
     public function showScanPage()
     {
         return view('administrator.ticket.scan');
+    }
+
+    public function transaction()
+    {   
+       $transactions = PaymentTransaction::paginate(10); 
+        return view('administrator.ticket.transaction', compact('transactions'));
     }
 
     
@@ -150,7 +157,7 @@ public function store(Request $request)
         if ($ticket) {
             return view('administrator.ticket.scan', ['ticket' => $ticket]);
         } else {
-            return redirect()->route('administrator.scan')->with('error', 'No matching ticket found.');
+            return redirect()->route('ticket.scan')->with('error', 'No matching ticket found.');
         }
     }   
 
@@ -160,7 +167,7 @@ public function store(Request $request)
         $ticket = Ticket::findOrFail($request->input('ticket_id'));
     
         if ($ticket->status === 'claimed') {
-            return redirect()->route('administrator.scan')->with('error', 'This ticket has already been claimed.');
+            return redirect()->route('ticket.scan')->with('error', 'This ticket has already been claimed.');
         }
     
        
@@ -168,29 +175,11 @@ public function store(Request $request)
         $ticket->encrypted_key = 'claimed';
         $ticket->save();
     
-        return redirect()->route('administrator.scan')->with('success', 'Ticket has been successfully claimed.');
+        return redirect()->route('ticket.scan')->with('success', 'Ticket has been successfully claimed.');
     }
 
 
 
-    public function showUploader()
-    {
-        return view('administrator.ticket.scan');
-    }
 
-    public function handleUpload(Request $request)
-    {
-        $request->validate([
-            'qr_code' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);
-
-        if ($request->file('qr_code')) {
-            // Process the uploaded image here
-            // For now, we'll just return a success message
-            return response()->json(['message' => 'Image uploaded successfully']);
-        }
-
-        return response()->json(['error' => 'No image uploaded'], 400);
-    }
     
 }

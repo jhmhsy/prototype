@@ -1,7 +1,21 @@
 <x-guest-layout>
-
     <x-custom.loader2 />
-    <form action="{{ route('payment.pay') }}" method="POST" x-data="{ step: 1 }">
+
+    <form action="{{ route('payment.pay') }}" method="POST" x-data="{
+step: 1,
+fullname: '',
+quantity: 1,
+amount: 0,
+cost: 50,
+name: '',
+email: '',
+phone: '',
+showError: false,
+isValidEmail(email) {
+const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+return re.test(String(email).toLowerCase());
+}
+}">
         @csrf
         <header class=" xl:absolute bg-background pt-4 ">
             <div class="container mx-auto flex items-center justify-between px-4 md:px-6">
@@ -23,6 +37,7 @@
 
 
         <div class="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto py-12 px-4">
+
 
             <div x-show="step === 1">
                 @include('components.gymtickets.selection')

@@ -90,9 +90,14 @@ Route::group(['middleware' => ['auth', 'isAdmin']], function () {
         Route::get('/feedback', [FeedbackController::class, 'index'])->name('administrator.feedback');
         Route::get('/help', [HelpController::class, 'index'])->name('administrator.help');
 
-        Route::get('/scan', [TicketController::class, 'showScanPage'])->name('administrator.scan');
-        Route::post('/scan', [TicketController::class, 'scanTicket'])->name('scan.ticket');
-        Route::post('/scan/claim', [TicketController::class, 'claimTicket'])->name('scan.claim');
+
+        Route::prefix('ticket')->group(function () {
+            Route::get('/scan', [TicketController::class, 'showScanPage'])->name('ticket.scan');
+            Route::get('/transaction', [TicketController::class, 'transaction'])->name('ticket.transaction');
+            Route::post('/scan', [TicketController::class, 'scanTicket'])->name('ticket.scanticket');
+            Route::post('/scan/claim', [TicketController::class, 'claimTicket'])->name('ticket.claim');
+        });
+       
 
     });
 

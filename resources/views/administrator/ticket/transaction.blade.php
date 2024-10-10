@@ -1,10 +1,9 @@
 <x-dash-layout>
-    <section x-data="{ isOpen: false }">
-        <div class="rounded-lg border shadow-sm p-6  text-shade_9  
-    border-shade_6/50 dark:border-white/5">
+    <section>
+        <div class=" rounded-lg border shadow-sm p-6 text-shade_9 border-shade_6/50 dark:border-white/5">
 
             <div class="flex flex-row">
-                <h1 class="text-lg font-bold mb-6 dark:text-white">Tickets info</h1>
+                <h1 class="text-lg font-bold mb-6 dark:text-white">Transaction History</h1>
 
             </div>
 
@@ -20,7 +19,16 @@
                                     Email
                                 </th>
                                 <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground ">
+                                    Item
+                                </th>
+                                <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground ">
                                     Quantity
+                                </th>
+                                <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground ">
+                                    Currency
+                                </th>
+                                <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground ">
+                                    Ammount
                                 </th>
                                 <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground ">
                                     Status
@@ -33,18 +41,26 @@
                         </thead>
 
                         <tbody class="text-gray-600 dark:text-gray-400">
-                            @foreach ($tickets as $ticket)
+                            @foreach ($transactions as $transaction)
                             <tr
                                 class=" transition-colors py-10 {{ $loop->iteration % 2 == 0 ? 'bg-gray-100 dark:bg-peak_2' : '' }}">
                                 <td class="px-4 align-middle  font-medium">
-                                    {{ $ticket->name }}</td>
-                                <td class="px-4 align-middle ">{{ $ticket->email }}
+                                    {{ $transaction->name }}</td>
+                                <td class="px-4 align-middle ">{{ $transaction->email }}
                                 </td>
-                                <td class="px-4 align-middle ">{{ $ticket->quantity }}
+                                <td class="px-4 align-middle ">{{ $transaction->item_name }}
                                 </td>
+                                <td class="px-4 align-middle ">{{ $transaction->quantity }}
+                                </td>
+                                <td class="px-4 align-middle text-blue-500">{{ $transaction->currency }}
+                                </td>
+                                <td class="px-4 align-middle"> ₱ {{ number_format($transaction->amount / 100, 2) }}
+                                </td>
+
+
                                 <td
-                                    class="px-4 align-middle  {{ $ticket->status === 'claimed' ? 'text-green-500' : 'text-red-500' }}">
-                                    {{ $ticket->status }}
+                                    class="px-4 align-middle  {{ $transaction->status === 'claimed' ? 'text-green-500' : 'text-red-500' }}">
+                                    {{ $transaction->status }}
                                 </td>
 
 
@@ -75,7 +91,7 @@
                                                 <path d="M3 6h18"></path>
                                                 <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
                                                 <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
-                                            </svg>
+                   section                  </svg>
                                         </x-custom.anchor-link>
 
                                     </div>
@@ -89,33 +105,6 @@
 
 
 
-                <!-- Modal -->
-
-                <div style="display: none;" x-show="isOpen" class="fixed select-none inset-0 bg-black opacity-50 z-40">
-                </div>
-
-                <div style="display: none;"
-                    class="modal fixed w-[90%] md:w-[60%] lg:w-[40%] xl:w-[35%] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 p-4"
-                    x-show="isOpen" @click.away="isOpen = false" x-transition:enter="transition ease-out duration-300"
-                    x-transition:enter-start="opacity-0 transform scale-90"
-                    x-transition:enter-end="opacity-100 transform scale-100"
-                    x-transition:leave="transition ease-in duration-100"
-                    x-transition:leave-start="opacity-100 transform scale-100"
-                    x-transition:leave-end="opacity-0 transform scale-90" @click.away="isOpen = false">
-                    <div class="bg-white rounded shadow-lg w-full max-w-2xl max-h-[90vh] overflow-y-auto">
-                        <div class=" mt-50 p-4">
-                            <div class="flex flex-col space-y-1.5 px-6">
-                                <h3 class="whitespace-nowrap tracking-tight text-2xl font-bold">Scan QRCode</h3>
-
-                            </div>
-
-                            <div class="p-6">
-
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
