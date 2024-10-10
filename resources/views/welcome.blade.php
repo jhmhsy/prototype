@@ -7,7 +7,7 @@
                 <x-homepage.header-section />
             </header>
             <!-- Main sections-->
-            <main id="main-section" class="bg-tint_5 dark:bg-shade_7">
+            <main id="main-section" class="bg-tint_3 dark:bg-shade_7">
                 <x-homepage.main-section />
                 
             </main>

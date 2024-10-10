@@ -3,12 +3,12 @@
 
     <div
         class="w-full mt-13 flex flex-col md:flex-row items-center justify-center px-4 sm:px-15 py-10 sm:py-0 space-y-3">
-        <div class="text-white text-center md:text-left space-y-3 z-10">
+        <div class="text-shade_9 dark:text-tint_1 text-center md:text-left space-y-3 z-10">
             <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter">
                 Elevate Your Fitness Journey
             </h1>
             <x-custom.paragraph :dark="true"
-                class="max-w-full sm:max-w-[900px] text-white  sm:text-xl md:text-lg lg:text-xl ">
+                class="max-w-full sm:max-w-[900px]  sm:text-xl md:text-lg lg:text-xl ">
                 Our gym reservation system makes it easy to book your sessions, manage your membership, and
                 stay on top of your fitness goals.
             </x-custom.paragraph>
@@ -33,7 +33,6 @@
             </div>
         </div>
         <div class="container flex justify-center px-2 sm:px-4 md:px-6">
-
             <!-- responsiveness manual hahaha  -->
             <!-- shows on pc -->
             <img class="rounded-xl hidden lg:block w-full z-10"

@@ -46,14 +46,8 @@
             @include ('administrator.header-navigation')
 
             <!-- Main content -->
-            <main class="flex-1 px-6 sm:overflow-y-auto">
+            <main class="flex-1 px-6 sm:overflow-y-auto py-5">
                 <x-custom.loader2 />
-                <div class="flex text-sm py-4 gap-2 dark:text-gray-500">
-
-
-                    <h1>Admin ➥ </h1>
-                    <?php echo basename($_SERVER['PHP_SELF']); ?>
-                </div>
                 {{ $slot }}
             </main>
         </div>
