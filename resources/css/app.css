@@ -111,22 +111,69 @@ header > div {
 }
 
 .animateee {
-    position: absolute; /* Keep the absolute positioning */
-    bottom: 0; /* Change from top: 0 to bottom: 0 */
-    left: 0; /* Keep left at 0 */
-    width: 100%; /* Keep width at 100% */
-    overflow: hidden; /* Keep overflow hidden */
-    line-height: 0; /* Keep line-height at 0 */
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
 }
 .bg-svg-background {
     background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="visual" viewBox="0 0 900 600" width="900" height="600" version="1.1"><defs><filter id="blur1" x="-10%" y="-10%" width="120%" height="120%"><feFlood flood-opacity="0" result="BackgroundImageFix" /><feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" /><feGaussianBlur stdDeviation="161" result="effect1_foregroundBlur" /></filter></defs><rect width="900" height="600" fill="%236600FF" /><g filter="url(%23blur1)"><circle cx="440" cy="548" fill="%2300CC99" r="357" /><circle cx="665" cy="572" fill="%236600FF" r="357" /><circle cx="480" cy="213" fill="%2300CC99" r="357" /><circle cx="693" cy="138" fill="%2300CC99" r="357" /><circle cx="337" cy="359" fill="%236600FF" r="357" /><circle cx="646" cy="388" fill="%2300CC99" r="357" /></g></svg>');
-    background-size: cover; /* Adjusts the size of the SVG to cover the entire div */
-    background-position: center; /* Centers the SVG in the div */
-    position: absolute; /* Positioning to ensure it stays in the background */
-    top: 0; /* Aligns to the top */
-    left: 0; /* Aligns to the left */
-    right: 0; /* Aligns to the right */
-    bottom: 0; /* Aligns to the bottom */
-    z-index: -1; /* Places it behind other content */
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
 }
 
+@layer base {
+    /* Default (Light Mode) Scrollbar (( LAZY FUCK ))*/
+    ::-webkit-scrollbar {
+        width: 5px;
+        border-radius: 20px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1; /* Light mode track */
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: #888; /* Light mode thumb */
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #555; /* Light mode thumb hover */
+    }
+
+    /* Dark Mode Scrollbar (( CURENT DARK MODE ))*/
+    .dark ::-webkit-scrollbar-track {
+        background: #333; /* Dark mode track */
+    }
+
+    .dark ::-webkit-scrollbar-thumb {
+        background: #555; /* Dark mode thumb */
+    }
+
+    .dark ::-webkit-scrollbar-thumb:hover {
+        background: #888; /* Dark mode thumb hover */
+    }
+
+    /* For auto dark mode based on system preference (( CURENT LIGHT MODE ))  */
+    @media (prefers-color-scheme: dark) {
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1; /* Dark mode track */
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #888; /* Dark mode thumb */
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555; /* Dark mode thumb hover */
+        }
+    }
+}

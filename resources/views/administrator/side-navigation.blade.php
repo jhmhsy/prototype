@@ -303,7 +303,7 @@ dark:hover:bg-gray-700 dark:hover:text-white
                 </li>
             </ul>
             <!--︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼ SETTINGS ︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼  -->
-            <ul class="pt-4 mt-4 space-y-2 font-medium border-t border-gray-200 dark:border-gray-700">
+            <ul class="pt-4 mt-4 space-y-2 font-medium border-t border-gray-300  dark:border-gray-700">
                 <li>
                     <a href="{{ route('administrator.events') }}" class="flex items-center p-2 rounded-lg group 
    text-gray-500 dark:text-gray-500 
