@@ -5,35 +5,30 @@
 html {
     scroll-behavior: smooth;
 }
-
+/* purgecss start ignore */
 header > div {
     transition: all 0.4s ease-in-out, padding 0.4s ease-in-out,
         font-size 0.3s ease-in-out;
     height: 75px; /* Initial height */
     padding: 10px 20px; /* Initial padding */
 }
-
 .collapsed {
     height: 50px; /* Adjust height for collapsed state */
     padding: 5px 10px; /* Adjust padding */
     @apply bg-tint_1 dark:bg-shade_4;
 }
-
 .collapsed .text,
 .collapsed .logo,
 .collapsed .darkmode {
     font-size: 0.8em; /* Minimize text size */
     @apply text-main;
 }
-
 .activeLink {
     @apply border-main text-main dark:text-tint_4 dark:border-main;
 }
-
 .inactiveLink {
     @apply border-transparent dark:border-transparent dark:text-tint_1 dark:hover:text-tint_4 hover:text-main; /* Apply inactive styles correctly */
 }
-
 /* Custom CSS */
 @keyframes fadeOut {
     from {
@@ -51,7 +46,7 @@ header > div {
         opacity: 1;
     }
 }
-
+/* purgecss end ignore */
 .dark-overlay {
     position: absolute; /* Position the overlay absolutely within the main section */
     top: 0; /* Align to the top */
@@ -77,55 +72,14 @@ header > div {
     position: relative;
     z-index: 1;
 }
-
-.overlay {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5); /* Dark overlay with 50% opacity */
-    z-index: -1; /* Ensure the overlay is behind the content */
-    pointer-events: none; /* Allow clicks to pass through the overlay */
-}
-@layer utilities {
-    .dark .equipment-section-style {
-        position: relative;
-        /* background-image: url("images/hurhur/overlay.png"),
-            url("images/hurhur/header.svg"),
-            linear-gradient(75deg, #032e2b 15%, #043d39 55%); */
-        background-color: #010f0e; /* Darker mode background color */
-        background-size: 100% 620%;
-        background-repeat: repeat;
-        background-size: 128px 128px, 100% 100%, auto;
-    }
-}
-
-.fancy-border-radius {
-    border-radius: "50% 25% 75% 25% / 25% 50% 75% 50%";
-    display: inline-block;
-}
 .price {
     font-size: 30px;
 }
-
 .animateee {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    overflow: hidden;
-    line-height: 0;
-}
-.bg-svg-background {
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="visual" viewBox="0 0 900 600" width="900" height="600" version="1.1"><defs><filter id="blur1" x="-10%" y="-10%" width="120%" height="120%"><feFlood flood-opacity="0" result="BackgroundImageFix" /><feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" /><feGaussianBlur stdDeviation="161" result="effect1_foregroundBlur" /></filter></defs><rect width="900" height="600" fill="%236600FF" /><g filter="url(%23blur1)"><circle cx="440" cy="548" fill="%2300CC99" r="357" /><circle cx="665" cy="572" fill="%236600FF" r="357" /><circle cx="480" cy="213" fill="%2300CC99" r="357" /><circle cx="693" cy="138" fill="%2300CC99" r="357" /><circle cx="337" cy="359" fill="%236600FF" r="357" /><circle cx="646" cy="388" fill="%2300CC99" r="357" /></g></svg>');
-    background-size: cover;
-    background-position: center;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: -1;
+    position: absolute; /* Keep the absolute positioning */
+    bottom: 0; /* Change from top: 0 to bottom: 0 */
+    left: 0; /* Keep left at 0 */
+    width: 100%; /* Keep width at 100% */
+    overflow: hidden; /* Keep overflow hidden */
+    line-height: 0; /* Keep line-height at 0 */
 }

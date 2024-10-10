@@ -1,7 +1,7 @@
 <section class="relative flex flex-col justify-center items-center py-10 md:py-12 lg:py-20 dark:text-shade_9">
     <div class="px-10 xs:px-2 w-full">
         <div class="grid grid-cols-3 md:grid-cols-3 sm:grid-cols-2 xs:grid-cols-1 gap-3 text-tint_1 p-3 ">
-            <div class="pricing-table price-single  text-center py-8 rounded-lg relative group glass">
+            <div class="text-center py-8 rounded-lg relative group glass">
                 <div
                     class="head border-b border-tint_1 pb-12 transition-all duration-500 ease-in-out group-hover:border-main">
                     <h4 class="title mb-5 text-xl font-bold text-tint_1">Standard</h4>
@@ -28,7 +28,7 @@
                     </div>
                 </div>
             </div>
-            <div class="pricing-table price-single  text-center py-8 rounded-lg relative group glass">
+            <div class="text-center py-8 rounded-lg relative group glass">
                 <div
                     class="head border-b border-tint_1 pb-12 transition-all duration-500 ease-in-out group-hover:border-[#5865f2]">
                     <h4 class="title mb-5 text-xl font-bold text-tint_1">Premium</h4>
@@ -55,7 +55,7 @@
                     </div>
                 </div>
             </div>
-            <div class="pricing-table price-single  text-center py-8 rounded-lg relative group glass">
+            <div class="text-center py-8 rounded-lg relative group glass">
                 <div
                     class="head border-b border-tint_1 pb-12 transition-all duration-500 ease-in-out group-hover:border-[#8846c5]">
                     <h4 class="title mb-5 text-xl font-bold text-tint_1">Premium+</h4>

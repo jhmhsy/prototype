@@ -1,7 +1,6 @@
 <x-dash-layout>
     <section class="grid grid-cols-1 gap-5">
         <h1 class="text-4xl pb-5 font-bold dark:text-white">Scan Ticket</h1>
-
         <div class="grid grid-cols-1 md:grid-cols-2 justify-evenly ">
             <!------------------ UPLOAD SECTION---------------- -->
             <div class="flex flex-col gap-2">
@@ -52,21 +51,10 @@
                         </button>
                     </form>
                 </div>
-
-
             </div>
-
             <!---------------- USER DETAILS SECTION ---------------->
             @include ('administrator.ticket.scan-details')
-
         </div>
-
     </section>
-
-
-
-
 </x-dash-layout>
-
-<!-- SCRIPT TO CONVERT QR TO ENCRYPTION KEY -->
 <script src="{{ asset('js/QrcodeUpload.js') }}" defer></script>

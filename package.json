@@ -6,17 +6,19 @@
         "build": "vite build"
     },
     "devDependencies": {
+        "@fullhuman/postcss-purgecss": "^6.0.0",
         "@tailwindcss/forms": "^0.5.2",
         "alpinejs": "^3.4.2",
         "autoprefixer": "^10.4.20",
         "axios": "^1.6.4",
         "laravel-vite-plugin": "^1.0",
-        "postcss": "^8.4.44",
+        "postcss": "^8.4.47",
         "tailwindcss": "^3.4.10",
         "vite": "^5.0"
     },
     "dependencies": {
         "@fullcalendar/react": "^6.1.15",
+        "chart.js": "^4.4.4",
         "flowbite": "^2.5.1",
         "fullcalendar": "^6.1.15"
     }

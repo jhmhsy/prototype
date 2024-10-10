@@ -110,7 +110,6 @@
                 color = '#66ff73';
                 textc = 'black';
             }
-
             return {
                 title: title,
                 start: reservation.start,
@@ -245,7 +244,7 @@
         /* Color for selected button */
         border-color: #0a998f;
         /* Border color for selected button */
-        @apply text-tint_1 dark: text-shade_9;
+        @apply text-tint_1 dark:text-shade_9;
     }
 
     .selected-date,
