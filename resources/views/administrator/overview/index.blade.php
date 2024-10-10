@@ -12,7 +12,6 @@
                     <p class="text-2xl font-bold">{{ $users }}</p>
                 </div>
             </div>
-
             <div class="bg-white dark:bg-peak_2  rounded-lg px-4 py-5 flex space-x-2 items-center">
                 <svg width="40" height="40" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
                     class="text-yellow-300  dark:text-yellow-300 " fill="currentColor">
@@ -34,7 +33,7 @@
                 </svg>
                 <div>
                     <h1 class="text-sm">Total Reservations</h1>
-                    <p class="text-xl font-bold">{{  $totalBooking }}</p>
+                    <p class="text-xl font-bold">{{ $totalBooking }}</p>
                 </div>
             </div>
             <div class="bg-white dark:bg-peak_2 rounded-lg px-4 py-5 flex space-x-2 items-center">
@@ -46,149 +45,33 @@
                 </svg>
                 <div>
                     <h1 class="text-sm">Positive Feedbacks</h1>
-                    <p class="text-xl font-bold">{{ $totalFeedbackRating}}</p>
+                    <p class="text-xl font-bold">{{ $totalFeedbackRating }}</p>
                 </div>
             </div>
         </div>
-
         <div class="grid md:grid-cols-1 lg:grid-cols-2 gap-6">
             <div class="rounded-lg  bg-white dark:bg-peak_2  shadow-sm">
-                <div class=" flex flex-col space-y-1.5 p-6">
-                    <h3 class=" text-2xl font-semibold dark:text-white">Dashboard
+                <div class=" flex flex-col space-y-1.5 px-6 pt-6">
+                    <h3 class=" text-2xl font-semibold dark:text-white">Reservations
                     </h3>
-                    <p class="text-sm text-gray-500 dark:text-gray-500">Get an overview of your business performance.
+                    <p class="text-sm text-gray-500 dark:text-gray-500">Get an overview of the most recent reservations.
                     </p>
                 </div>
                 <div class="p-6">
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="flex flex-col items-start gap-2">
-                            <div class="text-sm dark:text-gray-500">Revenue</div>
-                            <div class="text-2xl font-bold dark:text-white">$45,231.89</div>
-                            <div class="text-xs dark:text-white">+20.1% from last month</div>
-                        </div>
-                        <div class="flex flex-col items-start gap-2">
-                            <div class="text-sm dark:text-gray-500">Subscriptions</div>
-                            <div class="text-2xl font-bold dark:text-white">+2350</div>
-                            <div class="text-xs dark:text-white">+180.1% from last month</div>
-                        </div>
-                        <div class="flex flex-col items-start gap-2">
-                            <div class="text-sm dark:text-gray-500">Sales</div>
-                            <div class="text-2xl font-bold dark:text-white">+12,234</div>
-                            <div class="text-xs dark:text-white">+19% from last month</div>
-                        </div>
-                        <div class="flex flex-col items-start gap-2">
-                            <div class="text-sm dark:text-gray-500">Active Now</div>
-                            <div class="text-2xl font-bold dark:text-white">+573</div>
-                            <div class="text-xs dark:text-white">+201 since last hour</div>
-                        </div>
-                    </div>
+                    <canvas class="w-full h-full" id="users" width="400" height="300" aria-label="Bar"
+                        role="img">
+                    </canvas>
                 </div>
             </div>
             <div class="rounded-lg  bg-white dark:bg-peak_2 bg-card  shadow-sm">
                 <div class=" flex flex-col space-y-1.5 p-6">
-                    <h3 class=" text-2xl font-semibold text-black dark:text-white">Recent
-                        Orders</h3>
-                    <p class="text-sm text-gray-500">View and manage your recent orders.</p>
+                    <h3 class=" text-2xl font-semibold text-black dark:text-white">Sales</h3>
+                    <p class="text-sm text-gray-500">View and manage your recent sales.</p>
                 </div>
                 <div class="p-6">
-                    <div class="relative w-full overflow-auto">
-                        <table class="w-full caption-bottom text-sm">
-                            <thead
-                                class="[&amp;_tr]:border border-shade_6/50 dark:border dark:border-white/30 border-shade_6/50-white/5-b">
-                                <tr
-                                    class="border border-shade_6/50 dark:border dark:border-white/30 border-shade_6/50-white/5-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
-                                    <th class="h-12 px-4 text-left align-middle font-medium  ">
-                                        Invoice
-                                    </th>
-                                    <th class="h-12 px-4 text-left align-middle font-medium  ">
-                                        Status
-                                    </th>
-                                    <th class="h-12 px-4 text-left align-middle font-medium  ">
-                                        Method
-                                    </th>
-                                    <th class="h-12 px-4 align-middle font-medium   text-right">
-                                        Amount
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody
-                                class="[&amp;_tr:last-child]:border  border-shade_6/50 dark:border dark:border-white/30 border-shade_6/50-white/5-0">
-                                <tr
-                                    class="border  border-shade_6/50 dark:border dark:border-white/30 border-shade_6/50-white/5-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
-                                    <td class="p-4 align-middle  font-medium">
-                                        INV001</td>
-                                    <td class="p-4 align-middle ">
-                                        <div class="inline-flex w-fit items-center  rounded-full dark:border-white/30-white/5 px-2.5 py-0.5 text-xs font-semibold transition-colors  border  border-shade_6/50 dark:border dark:border-white/30 border-shade_6/50-white/5-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80"
-                                            data-v0-t="badge">
-                                            Paid
-                                        </div>
-                                    </td>
-                                    <td class="p-4 align-middle ">Credit Card
-                                    </td>
-                                    <td class="p-4 align-middle  text-right">
-                                        $250.00</td>
-                                </tr>
-                                <tr
-                                    class="border  border-shade_6/50 dark:border dark:border-white/30 border-shade_6/50-white/5-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
-                                    <td class="p-4 align-middle  font-medium">
-                                        INV002</td>
-                                    <td class="p-4 align-middle ">
-                                        <div class="inline-flex w-fit items-center  rounded-full border  border-shade_6/50 dark:border dark:border-white/30 border-shade_6/50-white/5 px-2.5 py-0.5 text-xs font-semibold transition-colors  text-foreground"
-                                            data-v0-t="badge">
-                                            Pending
-                                        </div>
-                                    </td>
-                                    <td class="p-4 align-middle ">PayPal</td>
-                                    <td class="p-4 align-middle  text-right">
-                                        $150.00</td>
-                                </tr>
-                                <tr
-                                    class="border  border-shade_6/50 dark:border dark:border-white/30 border-shade_6/50-white/5-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
-                                    <td class="p-4 align-middle  font-medium">
-                                        INV003</td>
-                                    <td class="p-4 align-middle ">
-                                        <div class="inline-flex w-fit items-center  rounded-full border  border-shade_6/50 dark:border dark:border-white/30 border-shade_6/50-white/5 px-2.5 py-0.5 text-xs font-semibold transition-colors  text-foreground"
-                                            data-v0-t="badge">
-                                            Unpaid
-                                        </div>
-                                    </td>
-                                    <td class="p-4 align-middle ">Bank Transfer
-                                    </td>
-                                    <td class="p-4 align-middle  text-right">
-                                        $350.00</td>
-                                </tr>
-                                <tr
-                                    class="border  border-shade_6/50 dark:border dark:border-white/30 border-shade_6/50-white/5-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
-                                    <td class="p-4 align-middle  font-medium">
-                                        INV004</td>
-                                    <td class="p-4 align-middle ">
-                                        <div class="inline-flex w-fit items-center  rounded-full dark:border-white/30-white/5 px-2.5 py-0.5 text-xs font-semibold transition-colors  border  border-shade_6/50 dark:border dark:border-white/30 border-shade_6/50-white/5-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80"
-                                            data-v0-t="badge">
-                                            Paid
-                                        </div>
-                                    </td>
-                                    <td class="p-4 align-middle ">Credit Card
-                                    </td>
-                                    <td class="p-4 align-middle  text-right">
-                                        $450.00</td>
-                                </tr>
-                                <tr
-                                    class="border  border-shade_6/50 dark:border dark:border-white/30 border-shade_6/50-white/5-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
-                                    <td class="p-4 align-middle  font-medium">
-                                        INV005</td>
-                                    <td class="p-4 align-middle ">
-                                        <div class="inline-flex w-fit items-center  rounded-full dark:border-white/30-white/5 px-2.5 py-0.5 text-xs font-semibold transition-colors  border  border-shade_6/50 dark:border dark:border-white/30 border-shade_6/50-white/5-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80"
-                                            data-v0-t="badge">
-                                            Paid
-                                        </div>
-                                    </td>
-                                    <td class="p-4 align-middle ">PayPal</td>
-                                    <td class="p-4 align-middle  text-right">
-                                        $550.00</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                    <canvas class="w-full h-full" id="sales-line" width="400" height="300" aria-label="Line"
+                        role="img">
+                    </canvas>
                 </div>
             </div>
             <div class="rounded-lg  bg-white  dark:bg-peak_2 bg-card  shadow-sm">
@@ -198,55 +81,155 @@
                     <p class="text-sm text-gray-500">Stay up-to-date with your upcoming events.</p>
                 </div>
                 <div class="p-6">
-                    <div class="grid gap-4">
-                        <div class="flex items-center gap-4">
-                            <div class="bg-muted rounded-full w-12 h-12 flex items-center justify-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round" class="w-6 h-6 ">
-                                    <path d="M8 2v4"></path>
-                                    <path d="M16 2v4"></path>
-                                    <rect width="18" height="18" x="3" y="4" rx="2"></rect>
-                                    <path d="M3 10h18"></path>
-                                </svg>
-                            </div>
-                            <div>
-                                <div class="font-medium dark:text-white">Company Retreat</div>
-                                <div class="text-sm dark:text-gray-500">August 15, 2023</div>
-                            </div>
-                        </div>
-                        <div class="flex items-center gap-4">
-                            <div class="bg-muted rounded-full w-12 h-12 flex items-center justify-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round" class="w-6 h-6 ">
-                                    <path d="M8 2v4"></path>
-                                    <path d="M16 2v4"></path>
-                                    <rect width="18" height="18" x="3" y="4" rx="2"></rect>
-                                    <path d="M3 10h18"></path>
-                                </svg>
-                            </div>
-                            <div>
-                                <div class="font-medium dark:text-white">Product Launch</div>
-                                <div class="text-sm dark:text-gray-500">September 1, 2023</div>
-                            </div>
-                        </div>
-                        <div class="flex items-center gap-4">
-                            <div class="bg-muted rounded-full w-12 h-12 flex items-center justify-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round" class="w-6 h-6 ">
-                                    <path d="M8 2v4"></path>
-                                    <path d="M16 2v4"></path>
-                                    <rect width="18" height="18" x="3" y="4" rx="2"></rect>
-                                    <path d="M3 10h18"></path>
-                                </svg>
-                            </div>
-                            <div></div>
-                        </div>
-                    </div>
+                    <canvas class="w-full h-full" id="sales-pie" width="300" height="300" aria-label="Line"
+                        role="img">
+                    </canvas>
                 </div>
             </div>
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    const ctx1 = document.getElementById('users').getContext('2d');
+                    const ctx2 = document.getElementById('sales-line').getContext('2d');
+                    const ctx3 = document.getElementById('sales-pie').getContext('2d');
+                    function sixMonths() {
+                        const months = [];
+                        const now = new Date();
+                        for (let i = 5; i >= 0; i--) {
+                            const month = new Date(now.getFullYear(), now.getMonth() - i);
+                            months.push(month.toLocaleString('default', {
+                                month: 'short'
+                            }));
+                        }
+                        return months;
+                    }
+                    function getReserveData(){
+                        //replace with actual data for the last 6 months
+                        return [150, 180, 210, 240, 270, 300];
+                    }
+                    const monthLabel = sixMonths();
+                    const monthlyData = {
+                        labels: monthLabel,
+                        datasets: [{
+                            label: 'Monthly Gym Reservations',
+                            data: getReserveData(),
+                            backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 1
+                        }]
+                    };
+
+                    new Chart(ctx1, {
+                        type: "bar",
+                        data: monthlyData,
+                        options: {
+                            responsive: true,
+                            scales: {
+                                y: {
+                                    beginAtZero: true,
+                                    min: 0,
+                                    max: 500,
+                                    ticks: {
+                                        callback: function(value) {
+                                            return value.toString();
+                                        }
+                                    },
+                                    title: {
+                                        display: true,
+                                        text: 'Number of reservations'
+                                    }
+                                },
+                                x: {
+                                    title: {
+                                        display: true,
+                                        text: 'Month'
+                                    }
+                                }
+                            },
+                            plugins: {
+                                legend: {
+                                    display: true,
+                                    position: 'bottom'
+                                },
+                                title: {
+                                    display: true,
+                                    text: 'Monthly Gym Reservations'
+                                }
+                            }
+                        }
+                    });
+                    const salesData = {
+                        labels: monthLabel,
+                        datasets: [{
+                            label: 'Monthly Sales',
+                            data: [5000, 6000, 2200, 7800, 4200, 6800],
+                            fill: false,
+                            backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 1
+                        }]
+                    };
+                    new Chart(ctx2, {
+                        type: "line",
+                        data: salesData,
+                        options: {
+                            responsive: true,
+                            scales: {
+                                y: {
+                                    beginAtZero: true,
+                                    title: {
+                                        display: true,
+                                        text: 'Sales ($)'
+                                    }
+                                },
+                                x: {
+                                    title: {
+                                        display: true,
+                                        text: 'Month'
+                                    }
+                                }
+                            },
+                            plugins: {
+                                legend: {
+                                    display: true,
+                                    position: 'bottom'
+                                },
+                                title: {
+                                    display: true,
+                                    text: 'Monthly Sales'
+                                }
+                            }
+                        }
+                    });
+                    // Pie chart
+                    const xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
+                    const yValues = [55, 49, 44, 24, 15];
+                    const barColors = ["#b91d47", "#00aba9", "#2b5797", "#e8c3b9", "#1e7145"];
+                    new Chart(ctx3, {
+                        type: "pie",
+                        data: {
+                            labels: xValues,
+                            datasets: [{
+                                backgroundColor: barColors,
+                                data: yValues
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            plugins: {
+                                title: {
+                                    display: true,
+                                    text: "World Wide Wine Production"
+                                },
+                                legend: {
+                                    display: true,
+                                    position: 'bottom'
+                                }
+                            }
+                        }
+                    });
+                });
+            </script>
         </div>
     </div>
 </x-dash-layout>

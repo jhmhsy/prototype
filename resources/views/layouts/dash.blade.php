@@ -35,8 +35,6 @@
 
 <body class="font-opensans antialiased min-w-screen bg-tint_1 dark:bg-peak_1     ">
     <!-- <div id="breakpoint" class="select-none fixed bg-black text-white w-10 h-10 z-50 text-sm px-3 py-2">Loading...</div> -->
-
-
     <div x-data="layout()" x-init="init()" class="flex h-screen">
         <!-- SIDE NAVBAR -->
         @include ('administrator.side-navigation')
@@ -46,14 +44,8 @@
             @include ('administrator.header-navigation')
 
             <!-- Main content -->
-            <main class="flex-1 px-6 sm:overflow-y-auto">
+            <main class="flex-1 px-6 sm:overflow-y-auto py-5">
                 <x-custom.loader2 />
-                <div class="flex text-sm py-4 gap-2 dark:text-gray-500">
-
-
-                    <h1>Admin ➥ </h1>
-                    <?php echo basename($_SERVER['PHP_SELF']); ?>
-                </div>
                 {{ $slot }}
             </main>
         </div>
