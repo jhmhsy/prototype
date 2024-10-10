@@ -12,11 +12,16 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->alias([
-            'isAdmin' =>\App\Http\Middleware\isAdmin::class,
-            'isSuper' =>\App\Http\Middleware\isSuper::class,
+            'isAdmin' => \App\Http\Middleware\isAdmin::class,
+            'isSuper' => \App\Http\Middleware\isSuper::class,
             'role' => \Spatie\Permission\Middleware\RoleMiddleware::class,
             'permission' => \Spatie\Permission\Middleware\PermissionMiddleware::class,
-            'role_or_permission' => \Spatie\Permission\Middleware\RoleOrPermissionMiddleware::class
+            'role_or_permission' => \Spatie\Permission\Middleware\RoleOrPermissionMiddleware::class,
+        ]);
+
+        // Add CSRF token validation exception
+        $middleware->validateCsrfTokens(except: [
+            'webhook-receiver',
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

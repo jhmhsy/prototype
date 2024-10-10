@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Ticket;
+use App\Models\PaymentTransaction;
 use Illuminate\View\View;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Crypt;
@@ -12,6 +13,12 @@ use Endroid\QrCode\QrCode;
 use Endroid\QrCode\Writer\PngWriter;
 use App\Models\TicketKeyHistory;
 use Endroid\QrCode\ErrorCorrectionLevel;
+
+use Illuminate\Http\Exceptions\ThrottleRequestsException;
+use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\Cache\RateLimiting\Limit;
+
+
 
 
 class TicketController extends Controller
@@ -40,6 +47,12 @@ class TicketController extends Controller
         return view('administrator.ticket.scan');
     }
 
+    public function transaction()
+    {   
+       $transactions = PaymentTransaction::paginate(10); 
+        return view('administrator.ticket.transaction', compact('transactions'));
+    }
+
     
 //OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
 
@@ -48,12 +61,32 @@ class TicketController extends Controller
 //takes inputs ( name, email, quantity, status "unclaimed as default"), and sets randome secure encryption key. 
 public function store(Request $request)
 {
+
+    $key = 'store-ticket:' . $request->ip(); // Unique key for the user's IP
+
+    // Check if the user has exceeded the limit
+    if (RateLimiter::tooManyAttempts($key, 1)) {
+        // Provide feedback to the user if they exceed the limit
+        return response()->json(['message' => 'Too many requests, please try again later.'], 429);
+    }
+    // Increment the attempts
+    RateLimiter::hit($key, 20);
+    
+    
+    
     $request->validate([
-        'name' => 'required|string|max:255',
-        'email' => 'required|email|max:255',
-        'quantity' => 'required|integer|min:1',
+        'name' => 'required|string',
+        'email' => 'required|email',
+        'phone' => 'required|string',
+        'currency' => 'required|string',
+        'amount' => 'required|numeric',
+        'description' => 'required|string',
+        'item_name' => 'required|string',
+        'quantity' => 'required|integer',
+        'payment' => 'required|string',
     ]);
 
+    
 
     do {
         // Generate a random string of 30 characters
@@ -74,8 +107,14 @@ public function store(Request $request)
     $ticket = Ticket::create([
         'name' => $request->name,
         'email' => $request->email,
+        'phone' => $request->phone,
+        'currency' => $request->currency,
+        'amount' => $request->amount,
+        'description' => $request->description,
+        'item_name' => $request->item_name,
         'quantity' => $request->quantity,
-        'status' => 'unclaimed',
+        'status' => 'unclaimed', // Default value
+        'payment' => $request->payment, // New field
         'encrypted_key' => $binaryKey,
         'encrypted_id' => $binaryKey,
     ]);
@@ -118,7 +157,7 @@ public function store(Request $request)
         if ($ticket) {
             return view('administrator.ticket.scan', ['ticket' => $ticket]);
         } else {
-            return redirect()->route('administrator.scan')->with('error', 'No matching ticket found.');
+            return redirect()->route('ticket.scan')->with('error', 'No matching ticket found.');
         }
     }   
 
@@ -128,7 +167,7 @@ public function store(Request $request)
         $ticket = Ticket::findOrFail($request->input('ticket_id'));
     
         if ($ticket->status === 'claimed') {
-            return redirect()->route('administrator.scan')->with('error', 'This ticket has already been claimed.');
+            return redirect()->route('ticket.scan')->with('error', 'This ticket has already been claimed.');
         }
     
        
@@ -136,29 +175,11 @@ public function store(Request $request)
         $ticket->encrypted_key = 'claimed';
         $ticket->save();
     
-        return redirect()->route('administrator.scan')->with('success', 'Ticket has been successfully claimed.');
+        return redirect()->route('ticket.scan')->with('success', 'Ticket has been successfully claimed.');
     }
 
 
 
-    public function showUploader()
-    {
-        return view('administrator.ticket.scan');
-    }
 
-    public function handleUpload(Request $request)
-    {
-        $request->validate([
-            'qr_code' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);
-
-        if ($request->file('qr_code')) {
-            // Process the uploaded image here
-            // For now, we'll just return a success message
-            return response()->json(['message' => 'Image uploaded successfully']);
-        }
-
-        return response()->json(['error' => 'No image uploaded'], 400);
-    }
     
 }

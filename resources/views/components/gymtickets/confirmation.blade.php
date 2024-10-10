@@ -26,20 +26,27 @@
                         <div class="grid gap-4">
                             <div class="flex items-center justify-between">
                                 <span>Name</span>
-                                <span>Jason Sullano</span>
+                                <span x-text="name"></span>
                             </div>
 
                             <div class="flex items-center justify-between">
                                 <span>Quantity</span>
-                                <span>2</span>
+                                <span x-text="quantity"> </span>
                             </div>
                             <div class="flex items-center justify-between">
                                 <span>Days Duration</span>
-                                <span>2</span>
+                                <div class="flex gap-1">
+                                    <span x-text="quantity"></span>
+                                    <span>days</span>
+                                </div>
+
                             </div>
                             <div class="flex items-center justify-between">
                                 <span>Ticket Price</span>
-                                <span>$49.50</span>
+                                <div class="flex">
+                                    <span>₱&nbsp;</span>
+                                    <span x-text="cost"></span>
+                                </div>
                             </div>
                             <div data-orientation="horizontal" role="none" class="shrink-0 bg-border h-[1px] w-full">
                             </div>
@@ -51,7 +58,12 @@
             <div class="space-y-6">
                 <div>
                     <h2 class="text-2xl font-bold">Total Amount</h2>
-                    <p class="text-4xl font-bold">$99.00</p>
+
+                    <div class="flex">
+                        <p class="text-4xl font-bold">₱</p>
+                        <p class="text-4xl font-bold" x-text="amount"></p>
+                        <p class="text-4xl font-bold">.00</p>
+                    </div>
                 </div>
 
                 <x-forms.reverse-nav-btn type="submit" class="cursor-pointer h-10 px-4 py-2 w-full">

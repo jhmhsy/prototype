@@ -15,7 +15,18 @@ use App\Http\Controllers\Public\CalendarController;
 use App\Http\Controllers\Public\FeatureController;
 use App\Http\Controllers\Public\ReservationsController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PaymentController;
 
+
+
+Route::post('/pay', [PaymentController::class, 'pay'])->name('payment.pay');
+Route::get('/success', [PaymentController::class, 'success']);
+Route::get('/cancel', [PaymentController::class, 'cancel']);
+
+
+// Route::get('/create-payment', [PaymentController::class, 'pay'])->name('payment.create');
+// Route::post('/webhook-receiver', [PaymentController::class, 'webhook'])->name('webhook');
+// Route::get('/payment-result', [PaymentController::class, 'showResult'])->name('payment.result');
 
 
 //Welcome Page  
@@ -79,9 +90,14 @@ Route::group(['middleware' => ['auth', 'isAdmin']], function () {
         Route::get('/feedback', [FeedbackController::class, 'index'])->name('administrator.feedback');
         Route::get('/help', [HelpController::class, 'index'])->name('administrator.help');
 
-        Route::get('/scan', [TicketController::class, 'showScanPage'])->name('administrator.scan');
-        Route::post('/scan', [TicketController::class, 'scanTicket'])->name('scan.ticket');
-        Route::post('/scan/claim', [TicketController::class, 'claimTicket'])->name('scan.claim');
+
+        Route::prefix('ticket')->group(function () {
+            Route::get('/scan', [TicketController::class, 'showScanPage'])->name('ticket.scan');
+            Route::get('/transaction', [TicketController::class, 'transaction'])->name('ticket.transaction');
+            Route::post('/scan', [TicketController::class, 'scanTicket'])->name('ticket.scanticket');
+            Route::post('/scan/claim', [TicketController::class, 'claimTicket'])->name('ticket.claim');
+        });
+       
 
     });
 

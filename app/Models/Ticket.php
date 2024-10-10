@@ -9,8 +9,20 @@ class Ticket extends Model
 {
     use HasFactory;
 
+
+
     protected $fillable = [
-        'name', 'email', 'quantity', 'status', 'encrypted_key', 'encrypted_id'  
-        //,  random qrcode
+        'name',
+        'email',
+        'phone',
+        'currency',
+        'amount',
+        'description',
+        'item_name',
+        'quantity',
+        'status',
+        'payment',
+        'encrypted_key',
+        'encrypted_id',
     ];
 }
