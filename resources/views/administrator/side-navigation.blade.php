@@ -237,10 +237,6 @@ dark:hover:bg-gray-700 dark:hover:text-white
                                 d="M14 2a3.963 3.963 0 0 0-1.4.267 6.439 6.439 0 0 1-1.331 6.638A4 4 0 1 0 14 2Zm1 9h-1.264A6.957 6.957 0 0 1 15 15v2a2.97 2.97 0 0 1-.184 1H19a1 1 0 0 0 1-1v-1a5.006 5.006 0 0 0-5-5ZM6.5 9a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9ZM8 10H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5Z" />
                         </svg>
                         <span class="flex-1 ms-3 whitespace-nowrap text-sm">Users</span>
-                        <span
-                            class="inline-flex items-center text-green-500 hover:text-green-700 justify-center px-2 ms-3 text-xs font-medium  rounded-full">
-                            Super Admin</span>
-
                     </a>
                 </li>
                 <!--︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼ ROLES ︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼  -->
@@ -258,9 +254,9 @@ dark:hover:bg-gray-700 dark:hover:text-white
                         </svg>
 
                         <span class="flex-1 ms-3 whitespace-nowrap text-sm">Roles</span>
-                        <span
+                        {{--<span
                             class="inline-flex items-center text-green-500 hover:text-green-700 justify-center px-2 ms-3 text-xs font-medium  rounded-full">
-                            Super Admin</span>
+                            Super Admin</span>--}}
 
                     </a>
                 </li>
