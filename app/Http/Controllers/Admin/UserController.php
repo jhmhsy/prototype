@@ -22,7 +22,7 @@ class UserController extends Controller
     public function index(Request $request): View
     {
 
-        $data = User::latest()->paginate(10);
+        $data = User::orderBy('id', 'asc')->paginate(10);
         $roles = Role::pluck('name', 'name')->all(); // Add this line to get roles
         return view('administrator.users.index', compact('data', 'roles'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
