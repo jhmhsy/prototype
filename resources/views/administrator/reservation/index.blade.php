@@ -3,7 +3,7 @@
         x-data="{ currentTab: 'Pending', titles: { pending: 'Pending Reservations', accepted: 'Accepted Reservations', rejected: 'Rejected Reservations' } }">
 
         <div class="mb-4">
-            <h1 class="text-xl font-bold mb-4" x-text="titles[currentTab.toLowerCase()]"></h1>
+            <h1 class="text-xl font-bold mb-4 text-black dark:text-white" x-text="titles[currentTab.toLowerCase()]"></h1>
         </div>
 
         @if (session('success'))
@@ -39,9 +39,9 @@
                         Rejected
                     </button>
                 </div>
-                <div class="ml-auto flex items-center gap-2">
+                <div class="ml-auto flex items-center gap-2 text-black dark:text-white">
                     <button
-                        class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground rounded-md px-3 h-8 gap-1">
+                        class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground rounded-md px-3 h-8 gap-1 dark:border-white/30">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                             class="h-3.5 w-3.5">
@@ -53,7 +53,7 @@
                 </div>
             </div>
 
-            <main class="rounded-lg border dark:border-white/30 shadow-sm" data-v0-t="card">
+            <main class="rounded-lg border dark:border-white/30 shadow-sm text-black dark:text-white" data-v0-t="card">
                 <div style="display: none;" x-show="currentTab === 'Pending'" class="p-2 ">
                     <div class="relative w-full overflow-auto">
                         <table class="w-full text-sm">
