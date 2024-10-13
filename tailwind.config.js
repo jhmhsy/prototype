@@ -116,6 +116,7 @@ export default {
             width: {
                 55: "13rem",
             },
+            
         },
     },
 
