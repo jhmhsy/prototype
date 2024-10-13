@@ -1,8 +1,8 @@
 <x-dash-layout>
-    <div class="container mx-auto py-8 px-4 sm:px-6 lg:px-8 text:black" x-data="{ openeditmodal: null, openshowmodal: null, opencreatemodal: null }">
+    <div class="container mx-auto py-8 px-4 sm:px-6 lg:px-8 text:black dark:text-gray-300" x-data="{ openeditmodal: null, openshowmodal: null, opencreatemodal: null }">
         <div class="flex flex-row">
 
-            <h1 class="text-2xl font-bold mb-6">User Management</h1>
+            <h1 class="text-2xl font-bold mb-6 ">User Management</h1>
             <div class="ml-auto flex items-center gap-2">
                 <button @click.prevent="opencreatemodal = !opencreatemodal"
                     class="hover:bg-green-400 focus:bg-green-500 inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground rounded-md px-3 h-8 gap-1">
