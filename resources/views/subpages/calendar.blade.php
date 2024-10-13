@@ -31,9 +31,8 @@
                                             :for="'regular-name'">
                                             <input placeholder="Juan Dela Cruz" type="text" id="regular-name"
                                                 name="name"
-                                                class="w-full px-2 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-main dark:bg-tint_3 dark:text-shade_9 placeholder-shade_9/50"
-                                                value="{{ Auth::user() ? Auth::user()->name : '' }}" @auth disabled
-                                                @endauth required>
+                                                class="w-full px-2 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-main dark:bg-tint_3 {{ Auth::user() ? 'text-gray-400' : 'text-shade_9 dark:text-shade_9' }} placeholder-shade_9/50"
+                                                value="{{ Auth::user() ? Auth::user()->name : '' }}" @auth disabled @endauth required>
                                         </x-forms.field>
                                         <x-forms.field :value="__('Date')" :errors="$errors->get('regular-date')"
                                             :for="'regular-date'">
@@ -246,14 +245,17 @@
         /* Border color for selected button */
         @apply text-tint_1 dark:text-shade_9;
     }
-
+    .fc-dayGridMonth-view .fc-view .fc-daygrid, table{
+        @apply dark:border-white/50 !important;
+    }
     .selected-date,
     .selected-date:hover {
         background-color: #b6e0dd;
     }
 
-    .fc-highlight {
+    .fc .fc-highlight {
         background-color: #b6e0dd !important;
+        color: #000 !important;
     }
 
     .fc-day {
