@@ -1,5 +1,6 @@
 @props(['name' => 'default', 'formId' => 'default', 'normal' => true, 'disabled' => false])
 <div x-data="{ open: false }" x-cloak>
+    <x-custom.alert-warning>Deleted</x-custom.alert-warning>
     <!-- Modal trigger button -->
     @if ($disabled)
     <button
@@ -56,14 +57,10 @@
                 </div>
                 <h3 class="mb-5 text-lg font-normal text-gray-500">Are you sure you want to delete this
                     {{ $name }}?</h3>
-                <button @click="document.getElementById('{{ $formId }}').submit();" type="button"
+                    <button @click="warningAlert(); document.getElementById('{{ $formId }}').submit();" type="button"
                     class="text-white bg-red-600 hover:bg-red-800 focus:ring-1 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 ms-3 text-center">
                     Delete
                 </button>
-
-
-
-
                 <button @click="open = false" type="button"
                     class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 bg-white rounded-lg hover:bg-gray-100 dark:hover:bg-gray-400">
                     Cancel

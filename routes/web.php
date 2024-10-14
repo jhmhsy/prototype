@@ -74,11 +74,9 @@ Route::group(['middleware' => ['auth', 'isAdmin']], function () {
         Route::get('/roles', [RoleController::class, 'index'])->name('administrator.roles');
         Route::get('/feedback', [FeedbackController::class, 'index'])->name('administrator.feedback');
         Route::get('/help', [HelpController::class, 'index'])->name('administrator.help');
-
         Route::get('/scan', [TicketController::class, 'showScanPage'])->name('administrator.scan');
         Route::post('/scan', [TicketController::class, 'scanTicket'])->name('scan.ticket');
         Route::post('/scan/claim', [TicketController::class, 'claimTicket'])->name('scan.claim');
-
     });
 
 });

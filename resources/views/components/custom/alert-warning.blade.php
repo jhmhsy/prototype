@@ -1,4 +1,4 @@
-<div id="alert"
+<div id="warning-alert"
     class="absolute bottom-4 left-1/2 transform -translate-x-1/2 justify-center z-50 flex p-2 bg-red-200 text-red-800 text-sm rounded border border-red-300 my-3 opacity-0 transition-opacity duration-500"  style="display: none;">
     <div class="flex-shrink mr-2">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -10,7 +10,7 @@
 
 <script>
     function warningAlert() {
-        var alertBox = document.getElementById('alert');
+        var alertBox = document.getElementById('warning-alert');
         alertBox.style.display = 'flex';
         setTimeout(function() {
             alertBox.classList.remove('opacity-0'); // Show the alert 

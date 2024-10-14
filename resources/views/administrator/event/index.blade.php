@@ -4,13 +4,13 @@
             data-v0-t="card">
 
             <div class="flex flex-row">
-                <h1 class="text-xl font-bold mb-6 dark:text-white">Mange your Events</h1>
+                <h1 class="text-xl font-bold mb-6 dark:text-white">Manage your Events</h1>
                 <div class="ml-auto flex items-center gap-2">
                     <button @click="isOpen = true"
                         class="hover:bg-green-400 focus:bg-green-500 inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground rounded-md px-3 h-8 gap-1">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="h-3.5 w-3.5 dark:text-white">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" class="h-3.5 w-3.5 dark:text-white">
                             <path d="M5 12h14"></path>
                             <path d="M12 5v14"></path>
                         </svg>
@@ -53,63 +53,62 @@
 
                         <tbody class="text-gray-600 dark:text-gray-400">
                             @foreach ($events as $event)
-                            <tr
-                                class=" transition-colors py-10 {{ $loop->iteration % 2 == 0 ? 'bg-gray-100 dark:bg-peak_2' : '' }}">
+                                <tr
+                                    class=" transition-colors py-10 {{ $loop->iteration % 2 == 0 ? 'bg-gray-100 dark:bg-peak_2' : '' }}">
 
+                                    <td class="px-4 align-middle [&amp;:has([role=checkbox])]:pr-0 font-medium">
+                                        {{ $event->name }}</td>
+                                    <td class="px-4 align-middle [&amp;:has([role=checkbox])]:pr-0">
+                                        {{ $event->location }}
+                                    </td>
 
-                                <td class="px-4 align-middle [&amp;:has([role=checkbox])]:pr-0 font-medium">
-                                    {{ $event->name }}</td>
-                                <td class="px-4 align-middle [&amp;:has([role=checkbox])]:pr-0">{{ $event->location }}
-                                </td>
+                                    <td class="px-4 align-middle ">
+                                        {{ \Illuminate\Support\Str::limit($event->details, 15) }}
+                                    </td>
 
-                                <td class="px-4 align-middle ">
-                                    {{ \Illuminate\Support\Str::limit($event->details, 15) }}
-                                </td>
+                                    <td class="px-4 align-middle [&amp;:has([role=checkbox])]:pr-0">{{ $event->date }}
+                                    </td>
+                                    <td class="px-4 align-middle [&amp;:has([role=checkbox])]:pr-0">{{ $event->time }}
+                                    </td>
 
-                                <td class="px-4 align-middle [&amp;:has([role=checkbox])]:pr-0">{{ $event->date }}</td>
-                                <td class="px-4 align-middle [&amp;:has([role=checkbox])]:pr-0">{{ $event->time }}</td>
+                                    <td class="px-4 align-middle [&amp;:has([role=checkbox])]:pr-0">
+                                        <div class="flex items-center justify-end gap-2">
 
-                                <td class="px-4 align-middle [&amp;:has([role=checkbox])]:pr-0">
-                                    <div class="flex items-center justify-end gap-2">
+                                            <x-custom.anchor-link class="bg-main hover:bg-shade_2">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                    class="h-4 w-4">
+                                                    <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
+                                                    <circle cx="12" cy="12" r="3"></circle>
+                                                </svg>
+                                            </x-custom.anchor-link>
+                                            <x-custom.anchor-link class="bg-green-500 hover:bg-green-600">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                    fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
+                                                    <path
+                                                        d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001m-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708z" />
+                                                </svg>
+                                            </x-custom.anchor-link>
+                                            <x-custom.anchor-link class="bg-red-500 hover:bg-red-600">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                    class="  text-red-500h-4 w-4">
+                                                    <path d="M3 6h18"></path>
+                                                    <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
+                                                    <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+                                                </svg>
+                                            </x-custom.anchor-link>
 
-
-                                        <x-custom.anchor-link class="bg-main hover:bg-shade_2">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4">
-                                                <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
-                                                <circle cx="12" cy="12" r="3"></circle>
-                                            </svg>
-                                        </x-custom.anchor-link>
-                                        <x-custom.anchor-link class="bg-main hover:bg-shade_2">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4">
-                                                <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
-                                                <circle cx="12" cy="12" r="3"></circle>
-                                            </svg>
-                                        </x-custom.anchor-link>
-                                        <x-custom.anchor-link class="bg-red-500 hover:bg-red-600">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round"
-                                                class="  text-red-500h-4 w-4">
-                                                <path d="M3 6h18"></path>
-                                                <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
-                                                <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
-                                            </svg>
-                                        </x-custom.anchor-link>
-
-                                    </div>
-                                </td>
-                            </tr>
+                                        </div>
+                                    </td>
+                                </tr>
                             @endforeach
                         </tbody>
                     </table>
                     {!! $events->links('pagination::bootstrap-5') !!}
                 </div>
-
-
 
                 <!-- Modal -->
 
@@ -128,15 +127,13 @@
                         <div class=" mt-50 p-4">
                             <div class="flex flex-col space-y-1.5 px-6">
                                 <h3 class="whitespace-nowrap tracking-tight text-2xl font-bold">New Event</h3>
-                                <p class="text-sm text-muted-foreground">Whats this new event? </p>
+                                <p class="text-sm text-muted-foreground">What is this new event? </p>
                             </div>
 
                             <div class="p-6">
 
-
                                 <form action="{{ route('events.store') }}" method="POST" enctype="multipart/form-data">
                                     @csrf
-
                                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                         <div class="space-y-2">
                                             <label
@@ -177,36 +174,37 @@
                                         </label>
                                         <textarea
                                             class="flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                                            name="details" id="details" required placeholder="We do party beitch"
-                                            rows="4"></textarea>
+                                            name="details" id="details" required placeholder="We do party beitch" rows="4"></textarea>
                                     </div>
 
                                     <div class="mb-4">
-                                        <label for="date" class="block text-shade_8 font-semibold mb-2">Date</label>
+                                        <label for="date"
+                                            class="block text-shade_8 font-semibold mb-2">Date</label>
                                         <input type="date" id="date" name="date"
                                             class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-main dark:bg-tint_3"
                                             required>
                                     </div>
 
                                     <div class="mb-4">
-                                        <label for="time" class="block text-shade_8 font-semibold mb-2">Time</label>
+                                        <label for="time"
+                                            class="block text-shade_8 font-semibold mb-2">Time</label>
                                         <select id="time" name="time"
                                             class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-main dark:bg-tint_3"
                                             required>
                                             <option value="" disabled selected>Select an hour</option>
                                             <!-- Loop through 7 to 20 for full hours -->
-                                            @for ($i = 7; $i < 21; $i++) <option
-                                                value="{{ str_pad($i, 2, '0', STR_PAD_LEFT) }}:00">
-                                                {{ $i > 12 ? $i - 12 : $i }} {{ $i >= 12 ? 'pm' : 'am' }}
+                                            @for ($i = 7; $i < 21; $i++)
+                                                <option value="{{ str_pad($i, 2, '0', STR_PAD_LEFT) }}:00">
+                                                    {{ $i > 12 ? $i - 12 : $i }} {{ $i >= 12 ? 'pm' : 'am' }}
                                                 </option>
-                                                @endfor
+                                            @endfor
                                         </select>
                                     </div>
 
                                     <button
                                         class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 w-full"
                                         type="submit">
-                                        Add Equipment
+                                        Add Event
                                     </button>
                                 </form>
                             </div>
