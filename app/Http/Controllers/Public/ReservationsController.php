@@ -26,7 +26,6 @@ class ReservationsController extends Controller
     public function pending()
     {
         $pendingBookings = PendingBooking::all();
-
         return view('administrator.reservation.pending', compact('pendingBookings'));
 
     }

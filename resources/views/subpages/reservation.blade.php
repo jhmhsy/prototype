@@ -1,9 +1,9 @@
 <x-guest-layout>
     <x-custom.loader2 />
-    {{--@if (session('success'))
+    {{-- @if (session('success'))
         <x-custom.alert>{{ session('success') }}</x-custom.alert>
-    @endif--}}
-    
+    @endif --}}
+
     <div>
 
         <header>
@@ -17,19 +17,24 @@
                         <h2 class="text-2xl font-bold text-center mb-6">Gym Reservation</h2>
                         <div class="mb-6 text-shade_9">
                             <!-- Regular User Form -->
-                            {{--<button id="text-alert"
-                                class="mb-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                                Test Alert
-                            </button>--}}
                             <div class="mt-6">
                                 <form action="{{ route('reserve.store') }}" method="POST">
                                     @csrf
                                     <x-forms.field :value="__('Name')" :errors="$errors->get('regular-name')" :for="'regular-name'">
                                         <input placeholder="Juan Dela Cruz" type="text" id="regular-name"
                                             name="name"
-                                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-main dark:bg-tint_3 {{ Auth::user() ? 'text-gray-400' : 'text-shade_9 dark:text-shade_9' }}"
-                                            value="{{ Auth::user() ? Auth::user()->name : '' }}"
-                                            @auth disabled @endauth required>
+                                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-main dark:bg-tint_3 {{ Auth::user() ? 'text-gray-400' : 'text-shade_9 dark:text-shade_9' }}
+                                            placeholder-shade_9/50"
+                                            value="{{ old('name', Auth::user() ? Auth::user()->name : '') }}"
+                                            {{ Auth::user() ? 'readonly' : '' }} required>
+                                    </x-forms.field>
+
+                                    <x-forms.field :value="__('Email')" :errors="$errors->get('email')" :for="'email'">
+                                        <input placeholder="JohnDoe@email.com" type="email" id="email"
+                                            name="email"
+                                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-main dark:bg-tint_3 {{ Auth::user() ? 'text-gray-400' : 'text-shade_9 dark:text-shade_9' }} placeholder-shade_9/50"
+                                            value="{{ old('email', Auth::user() ? Auth::user()->email : '') }}"
+                                            {{ Auth::user() ? 'readonly' : '' }} required>
                                     </x-forms.field>
 
                                     <x-forms.field :value="__('Date')" :errors="$errors->get('regular-date')" :for="'regular-date'">
