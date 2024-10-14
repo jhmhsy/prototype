@@ -1,4 +1,4 @@
-<div x-show="loading" class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center">
+<div x-data="globalLoader()" x-show="loading" class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center">
     <div class="sk-circle">
         <div class="sk-circle1 sk-child"></div>
         <div class="sk-circle2 sk-child"></div>
@@ -117,61 +117,76 @@
         -webkit-animation-delay: -1s;
         animation-delay: -1s;
     }
+
     .sk-circle .sk-circle4:before {
         -webkit-animation-delay: -0.9s;
         animation-delay: -0.9s;
     }
+
     .sk-circle .sk-circle5:before {
         -webkit-animation-delay: -0.8s;
         animation-delay: -0.8s;
     }
+
     .sk-circle .sk-circle6:before {
         -webkit-animation-delay: -0.7s;
         animation-delay: -0.7s;
     }
+
     .sk-circle .sk-circle7:before {
         -webkit-animation-delay: -0.6s;
         animation-delay: -0.6s;
     }
+
     .sk-circle .sk-circle8:before {
         -webkit-animation-delay: -0.5s;
         animation-delay: -0.5s;
     }
+
     .sk-circle .sk-circle9:before {
         -webkit-animation-delay: -0.4s;
         animation-delay: -0.4s;
     }
+
     .sk-circle .sk-circle10:before {
         -webkit-animation-delay: -0.3s;
         animation-delay: -0.3s;
     }
+
     .sk-circle .sk-circle11:before {
         -webkit-animation-delay: -0.2s;
         animation-delay: -0.2s;
     }
+
     .sk-circle .sk-circle12:before {
         -webkit-animation-delay: -0.1s;
         animation-delay: -0.1s;
     }
+
     @-webkit-keyframes sk-circleBounceDelay {
+
         0%,
         80%,
         100% {
             -webkit-transform: scale(0);
             transform: scale(0);
         }
+
         40% {
             -webkit-transform: scale(1);
             transform: scale(1);
         }
     }
+
     @keyframes sk-circleBounceDelay {
+
         0%,
         80%,
         100% {
             -webkit-transform: scale(0);
             transform: scale(0);
         }
+
         40% {
             -webkit-transform: scale(1);
             transform: scale(1);
@@ -180,5 +195,13 @@
 </style>
 <script>
     //loader script
-    document.addEventListener("DOMContentLoaded",function(){let e=document.getElementById("myForm"),t=document.querySelector("[x-data]");e.addEventListener("submit",function(n){n.preventDefault(),t.__x.$data.loading=!0,setTimeout(()=>{e.submit()},1e3)})});
+    document.addEventListener("DOMContentLoaded", function() {
+        let e = document.getElementById("myForm"),
+            t = document.querySelector("[x-data]");
+        e.addEventListener("submit", function(n) {
+            n.preventDefault(), t.__x.$data.loading = !0, setTimeout(() => {
+                e.submit()
+            }, 1e3)
+        })
+    });
 </script>

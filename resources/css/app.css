@@ -83,3 +83,12 @@ header > div {
     overflow: hidden; /* Keep overflow hidden */
     line-height: 0; /* Keep line-height at 0 */
 }
+#alert-border-3 {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    width: 90%;
+    max-width: 600px;
+}

@@ -27,6 +27,7 @@
                                 </div>
                                 <div class="text-sm">
                                     <form action="{{ route('calendar.store') }}" method="POST">
+                                        @csrf
                                         <x-forms.field :value="__('Name')" :errors="$errors->get('regular-name')"
                                             :for="'regular-name'">
                                             <input placeholder="Juan Dela Cruz" type="text" id="regular-name"
