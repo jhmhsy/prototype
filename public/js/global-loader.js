@@ -1,7 +1,6 @@
 document.addEventListener("alpine:init", () => {
     Alpine.data("globalLoader", (minLoadTime = 1000) => ({
         isLoading: true,
-
         init() {
             const startTime = Date.now();
             const checkLoadStatus = () => {

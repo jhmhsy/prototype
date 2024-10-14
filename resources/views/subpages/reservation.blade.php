@@ -1,11 +1,7 @@
 <x-guest-layout>
     <x-custom.loader2 />
-    {{-- @if (session('success'))
-        <x-custom.alert>{{ session('success') }}</x-custom.alert>
-    @endif --}}
-
+    <x-custom.alert-success>Reservation Success!</x-custom.alert-success>
     <div>
-
         <header>
             <x-homepage.header-section />
         </header>
@@ -18,7 +14,7 @@
                         <div class="mb-6 text-shade_9">
                             <!-- Regular User Form -->
                             <div class="mt-6">
-                                <form action="{{ route('reserve.store') }}" method="POST">
+                                <form action="{{ route('reserve.store') }}" method="POST" onsubmit="successAlert()">
                                     @csrf
                                     <x-forms.field :value="__('Name')" :errors="$errors->get('regular-name')" :for="'regular-name'">
                                         <input placeholder="Juan Dela Cruz" type="text" id="regular-name"
@@ -65,56 +61,57 @@
                 </div>
             </div>
         </div>
+    </div>
 
-        <style>
-            @keyframes gradient {
-                0% {
-                    background-position: 0% 50%;
-                }
-
-                50% {
-                    background-position: 100% 50%;
-                }
-
-                100% {
-                    background-position: 0% 50%;
-                }
+    <style>
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
             }
 
-            .animate-gradient {
-                animation: gradient 2.5s ease infinite;
-                background-size: 200% 200%;
+            50% {
+                background-position: 100% 50%;
             }
-        </style>
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                const alert = document.getElementById('alert-border-3');
-                const alertMessage = document.getElementById('alert-message');
-                const testButton = document.getElementById('test-alert');
-                const closeButton = alert.querySelector('button[data-dismiss-target="#alert-border-3"]');
 
-                function showAlert(message) {
-                    alertMessage.textContent = 'Success! ' + message;
-                    alert.style.display = 'flex';
-                    setTimeout(function() {
-                        alert.style.display = 'none';
-                    }, 5000);
-                }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
 
-                if (closeButton) {
-                    closeButton.addEventListener('click', function() {
-                        alert.style.display = 'none';
-                    });
-                }
+        .animate-gradient {
+            animation: gradient 2.5s ease infinite;
+            background-size: 200% 200%;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const alert = document.getElementById('alert-border-3');
+            const alertMessage = document.getElementById('alert-message');
+            const testButton = document.getElementById('test-alert');
+            const closeButton = alert.querySelector('button[data-dismiss-target="#alert-border-3"]');
 
-                testButton.addEventListener('click', function() {
-                    showAlert('This is a test alert message.');
+            function showAlert(message) {
+                alertMessage.textContent = 'Success! ' + message;
+                alert.style.display = 'flex';
+                setTimeout(function() {
+                    alert.style.display = 'none';
+                }, 5000);
+            }
+
+            if (closeButton) {
+                closeButton.addEventListener('click', function() {
+                    alert.style.display = 'none';
                 });
+            }
 
-                // Check for flash message
-                @if (session('success'))
-                    showAlert("{{ session('success') }}");
-                @endif
+            testButton.addEventListener('click', function() {
+                showAlert('This is a test alert message.');
             });
-        </script>
+
+            // Check for flash message
+            @if (session('success'))
+                showAlert("{{ session('success') }}");
+            @endif
+        });
+    </script>
 </x-guest-layout>

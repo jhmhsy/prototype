@@ -1,5 +1,6 @@
 <x-guest-layout>
     <x-custom.loader2 />
+    <x-custom.alert-success>Reservation Success!</x-custom.alert-success>
     <div class="flex h-screen flex-col bg-tint_1 dark:bg-shade_7 text-shade_9  dark:text-tint_1">
         <header>
             <x-homepage.header-section />
@@ -26,7 +27,8 @@
                                     class="p-4 border border-gray-300 dark:border-white/50 rounded-md h-[160px] overflow-y-auto">
                                 </div>
                                 <div class="text-sm">
-                                    <form action="{{ route('calendar.store') }}" method="POST">
+                                    <form action="{{ route('calendar.store') }}" method="POST"
+                                        onsubmit="successAlert()">
                                         @csrf
                                         <x-forms.field :value="__('Name')" :errors="$errors->get('name')" :for="'name'">
                                             <input placeholder="Juan Dela Cruz" type="text" id="name"
