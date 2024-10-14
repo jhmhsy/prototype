@@ -23,7 +23,7 @@
                 <div class="relative w-full overflow-auto pr-20">
                     <table class="w-full caption-bottom text-sm ">
                         <thead class="dark:text-white">
-                            <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+                            <tr class="transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
                                 <th
                                     class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
                                     Event
@@ -45,7 +45,7 @@
                                     Time
                                 </th>
                                 <th
-                                    class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0 w-[120px]">
+                                    class="h-12 px-4 text-center align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0 w-[120px]">
                                     Actions
                                 </th>
                             </tr>
@@ -72,8 +72,7 @@
                                     </td>
 
                                     <td class="px-4 align-middle [&amp;:has([role=checkbox])]:pr-0">
-                                        <div class="flex items-center justify-end gap-2">
-
+                                        <div class="flex items-center justify-center gap-2">
                                             <x-custom.anchor-link class="bg-main hover:bg-shade_2">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -129,9 +128,7 @@
                                 <h3 class="whitespace-nowrap tracking-tight text-2xl font-bold">New Event</h3>
                                 <p class="text-sm text-muted-foreground">What is this new event? </p>
                             </div>
-
                             <div class="p-6">
-
                                 <form action="{{ route('events.store') }}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -159,13 +156,10 @@
                                                     <option value="backdoor">Backdoor</option>
                                                     <option value="studio">Studio</option>
                                                     <option value="stage">Stage</option>
-
                                                 </select>
                                             </div>
                                         </div>
-
                                     </div>
-
                                     <div class="space-y-2">
                                         <label
                                             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
@@ -202,7 +196,7 @@
                                     </div>
 
                                     <button
-                                        class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 w-full"
+                                        class="bg-white text-black border-2 border-basegray rounded-md text-sm font-medium hover:bg-darkgray hover:text-white h-10 px-4 py-2 w-full"
                                         type="submit">
                                         Add Event
                                     </button>

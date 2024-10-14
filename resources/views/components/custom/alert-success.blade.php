@@ -1,6 +1,6 @@
 <div id="alert"
-    class="absolute bottom-4 left-1/2 transform -translate-x-1/2 justify-center z-50 flex p-2 bg-green-200 text-green-800 text-sm rounded border border-green-300 my-3 opacity-0 transition-opacity duration-500"
-    style="display: none;">
+    class="absolute bottom-4 left-1/2 transform -translate-x-1/2 justify-center flex p-2 bg-green-200 text-green-800 text-sm rounded border border-green-300 my-3 opacity-0 transition-opacity duration-500"
+    style="display: none;z-index: 9999;">
     <div class="flex-shrink mr-2">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
             <path fill-rule="evenodd"

@@ -20,7 +20,7 @@ border-shade_6/50 dark:border-white/5" data-v0-t="card">
                         <th class="h-12 px-4 text-left align-middle">
                             Time
                         </th>
-                        <th class="h-12 px-4 text-left align-middle">
+                        <th class="h-12 px-4 text-center align-middle">
                             Actions
                         </th>
                 </thead>
@@ -28,7 +28,7 @@ border-shade_6/50 dark:border-white/5" data-v0-t="card">
                 <tbody class="text-gray-600 dark:text-gray-400">
                     @foreach ($acceptedBookings as $booking)
                     <tr
-                        class=" transition-colors py-10 {{ $loop->iteration % 2 == 0 ? 'bg-gray-100 dark:bg-peak_2' : '' }}">
+                        class="transition-colors py-10 {{ $loop->iteration % 2 == 0 ? 'bg-gray-100 dark:bg-peak_2' : '' }}">
                         <td class="px-4  py-3 align-middle [&amp;:has([role=checkbox])]:pr-0">
                             {{ $booking->name }}
                         </td>
@@ -47,7 +47,7 @@ border-shade_6/50 dark:border-white/5" data-v0-t="card">
                         </td>
 
                         <td class="px-4  py-3 align-middle [&amp;:has([role=checkbox])]:pr-0">
-                            <div class="flex items-center gap-2">
+                            <div class="flex items-center justify-center gap-2">
                                 <form action="{{ route('reservations.accept', $booking->id) }}" method="POST"
                                     style="display:inline;">
                                     @csrf

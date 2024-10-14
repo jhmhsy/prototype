@@ -23,7 +23,7 @@
                 <div class="relative w-full overflow-auto pr-20">
                     <table class="w-full caption-bottom text-sm ">
                         <thead class="text-black dark:text-white ">
-                            <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+                            <tr class="transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
                                 <th class="h-12 px-4 text-left align-middle font-medium ">
                                     No
                                 </th>
@@ -39,17 +39,12 @@
                                 <th class="h-12 px-4 text-left align-middle font-medium ">
                                     Extra Details
                                 </th>
-
                                 <th class="h-12 px-4 text-left align-middle font-medium ">
                                     Images
                                 </th>
-
-
-                                <th class="h-12 px-4 text-left align-middle font-medium  w-[120px]">
+                                <th class="h-12 px-4 text-center align-middle font-medium  w-[120px]">
                                     Actions
                                 </th>
-
-
                             </tr>
                         </thead>
                         <tbody class="text-gray-600 dark:text-gray-400">
@@ -80,10 +75,8 @@
                                         class="max-w-10 max-h-10">
                                     @endforeach
                                 </td>
-                                <td class="px-4 align-middle ">
-                                    <div class="flex items-center justify-end gap-2">
-
-
+                                <td class="px-4 align-middle">
+                                    <div class="flex items-center justify-center gap-2">
                                         <x-custom.anchor-link class="bg-main hover:bg-shade_2">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"

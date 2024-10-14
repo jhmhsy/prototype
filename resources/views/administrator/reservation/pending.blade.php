@@ -20,7 +20,7 @@ border-shade_6/50 dark:border-white/5">
                         <th class="h-12 px-4 text-left align-middle">
                             Time
                         </th>
-                        <th class="h-12 px-4 text-left align-middle">
+                        <th class="h-12 px-4 text-center align-middle">
                             Actions
                         </th>
                 </thead>
@@ -47,7 +47,7 @@ border-shade_6/50 dark:border-white/5">
                         </td>
 
                         <td class="px-4  py-3 align-middle [&amp;:has([role=checkbox])]:pr-0">
-                            <div class="flex items-center gap-2">
+                            <div class="flex items-center justify-center gap-2">
 
                                 <form action="{{ route('reservations.accept', $booking->id) }}" method="POST"
                                     style="display:inline;">

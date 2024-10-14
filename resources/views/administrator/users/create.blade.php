@@ -18,7 +18,7 @@
                     <h3 class="whitespace-nowrap tracking-tight text-2xl font-bold">Create New User</h3>
                 </div>
 
-                @if (count($errors) > 0)
+                @if (count($errors) != 0)
                     <div class="alert alert-danger">
                         <strong>Whoops!</strong> There were some problems with your input.<br><br>
                         <ul>
@@ -38,13 +38,11 @@
                                     <label class="text-sm font-medium leading-none">Name</label>
                                     <input type="text" name="name" placeholder="Name" required
                                         class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background">
-                                    <x-custom.error :errors="$errors->get('name')" />
                                 </div>
                                 <div class="space-y-2">
                                     <label class="text-sm font-medium leading-none">Email</label>
                                     <input type="email" name="email" placeholder="Enter Your Email" required
                                         class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background">
-                                    <x-custom.error :errors="$errors->get('email')" />
                                 </div>
                             </div>
                             <div class="flex flex-col gap-4">
@@ -52,13 +50,11 @@
                                     <label class="text-sm font-medium leading-none">Password</label>
                                     <input type="password" name="password" placeholder="••••••••"
                                         class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background">
-                                    <x-custom.error :errors="$errors->get('password')" />
                                 </div>
                                 <div class="space-y-2">
                                     <label class="text-sm font-medium leading-none">Confirm Password</label>
                                     <input type="password" name="confirm-password" placeholder="Confirm Password"
                                         class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background">
-                                    <x-custom.error :errors="$errors->get('confirm-password')" />
                                 </div>
                                 <div class="space-y-2 mb-3">
                                     <label class="text-sm font-medium leading-none">Choose a Role for this User</label>

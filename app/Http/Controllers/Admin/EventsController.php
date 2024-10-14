@@ -25,7 +25,6 @@ class EventsController extends Controller
         ]);
 
         Event::create($validatedData); 
-
-        return redirect()->route('events.index')->with('success', 'Event added successfully!');
+        return redirect()->route('admin.events')->with('success', 'Event added successfully!');
     }
 }

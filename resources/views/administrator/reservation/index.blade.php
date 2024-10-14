@@ -2,12 +2,12 @@
     <div class="flex flex-col gap-4 border-shade_6/50 dark:border-white/5"
         x-data="{ currentTab: 'Pending', titles: { pending: 'Pending Reservations', accepted: 'Accepted Reservations', rejected: 'Rejected Reservations' } }">
 
-        <div class="mb-4">
-            <h1 class="text-xl font-bold mb-4 text-black dark:text-white" x-text="titles[currentTab.toLowerCase()]"></h1>
+        <div>
+            <h1 class="text-xl font-bold mb-2 text-black dark:text-white" x-text="titles[currentTab.toLowerCase()]"></h1>
         </div>
 
         @if (session('success'))
-        <div class="bg-green-500 text-white p-2 mb-4 rounded">
+        <div class="bg-green-500 text-white p-2 -mt-2 rounded">
             {{ session('success') }}
         </div>
         @endif
@@ -73,7 +73,7 @@
                                     <th class="h-12 px-4 text-left align-middle">
                                         Time
                                     </th>
-                                    <th class="h-12 px-4 text-left align-middle">
+                                    <th class="h-12 px-4 text-center align-middle">
                                         Actions
                                     </th>
                             </thead>
@@ -98,9 +98,8 @@
                                         {{ $booking->time }}
                                     </td>
 
-                                    <td class="px-4  py-3 align-middle [&amp;:has([role=checkbox])]:pr-0">
-                                        <div class="flex items-center gap-2">
-
+                                    <td class="px-4 py-3 align-middle [&amp;:has([role=checkbox])]:pr-0">
+                                        <div class="flex items-center justify-center gap-2">
                                             <form action="{{ route('reservations.accept', $booking->id) }}"
                                                 method="POST" style="display:inline;">
                                                 @csrf
@@ -143,7 +142,7 @@
                                     <th class="h-12 px-4 text-left align-middle">
                                         Time
                                     </th>
-                                    <th class="h-12 px-4 text-left align-middle">
+                                    <th class="h-12 px-4 text-center align-middle">
                                         Actions
                                     </th>
                             </thead>
@@ -169,7 +168,7 @@
                                     </td>
 
                                     <td class="px-4  py-3 align-middle [&amp;:has([role=checkbox])]:pr-0">
-                                        <div class="flex items-center gap-2">
+                                        <div class="flex items-center justify-center gap-2">
                                             <form action="{{ route('reservations.accept', $booking->id) }}"
                                                 method="POST" style="display:inline;">
                                                 @csrf
@@ -213,7 +212,7 @@
                                     <th class="h-12 px-4 text-left align-middle">
                                         Time
                                     </th>
-                                    <th class="h-12 px-4 text-left align-middle">
+                                    <th class="h-12 px-4 text-center align-middle">
                                         Actions
                                     </th>
                             </thead>
@@ -239,7 +238,7 @@
                                     </td>
 
                                     <td class="px-4  py-3 align-middle [&amp;:has([role=checkbox])]:pr-0">
-                                        <div class="flex items-center gap-2">
+                                        <div class="flex items-center justify-center gap-2">
 
                                             <form action="{{ route('reservations.restore', $booking->id) }}"
                                                 method="POST" style="display:inline;">

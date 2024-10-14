@@ -1,5 +1,6 @@
 <x-guest-layout>
     <x-custom.loader2 />
+    <x-custom.alert-success>Reservation Success!</x-custom.alert-success>
     <div>
         <header>
             <x-homepage.header-section />
@@ -15,7 +16,7 @@
                             <div class="mt-6">
                                 <form action="{{ route('reserve.store') }}" method="POST" onsubmit="successAlert()">
                                     @csrf
-                                    <x-custom.alert></x-custom.alert>
+                                    
                                     <x-forms.field :value="__('Name')" :errors="$errors->get('regular-name')" :for="'regular-name'">
                                         <input placeholder="Juan Dela Cruz" type="text" id="regular-name"
                                             name="name"
