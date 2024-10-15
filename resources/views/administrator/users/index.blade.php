@@ -120,7 +120,7 @@
                             @endforeach
                         </tbody>
                     </table>
-                    {!! $data->links('pagination::bootstrap-5') !!}
+                    {{ $data->links('pagination::simple-tailwind') }}
                 </div>
             </div>
         </div>
