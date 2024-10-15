@@ -25,12 +25,12 @@
     <script src="{{ asset('js/jsqr.js') }}" defer></script>
 
     <!-- screen size indicator TEMPORARY), just copy the below VV-->
-    {{--    <div id="breakpoint" class="fixed bg-black text-white w-50 h-50 z-50 text-lg px-5 py-2">Loading...</div>            --}}
+    {{-- <div id="breakpoint" class="fixed bg-black text-white w-50 h-50 z-50 text-lg px-5 py-2">Loading...</div> --}}
     <script src="{{ asset('js/screensize.js') }}" defer></script>
 
     <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
     <link rel="icon" href="images\logo.png">
-    @vite(['resources/css/app.css','resources/css/app2.css', 'resources/js/app.js'])
+    @vite(['resources/css/app.css', 'resources/css/app2.css', 'resources/js/app.js'])
 </head>
 
 <body class="font-opensans antialiased min-w-screen bg-tint_1 dark:bg-peak_1     ">
@@ -50,7 +50,7 @@
         </div>
     </div>
     <script>//minified it
-    function layout(){return{sidebarOpen:!1,init(){this.sidebarOpen="true"===localStorage.getItem("sidebarOpen"),this.$watch("sidebarOpen",e=>{localStorage.setItem("sidebarOpen",e)}),this.checkScreenSize(),window.addEventListener("resize",()=>this.checkScreenSize())},toggleSidebar(){this.sidebarOpen=!this.sidebarOpen},closeSidebar(){window.innerWidth<1024&&(this.sidebarOpen=!1)},checkScreenSize(){window.innerWidth>=1024?this.sidebarOpen="true"===localStorage.getItem("sidebarOpen"):this.sidebarOpen=!1}}}
+        function layout() { return { sidebarOpen: !1, init() { this.sidebarOpen = "true" === localStorage.getItem("sidebarOpen"), this.$watch("sidebarOpen", e => { localStorage.setItem("sidebarOpen", e) }), this.checkScreenSize(), window.addEventListener("resize", () => this.checkScreenSize()) }, toggleSidebar() { this.sidebarOpen = !this.sidebarOpen }, closeSidebar() { window.innerWidth < 1024 && (this.sidebarOpen = !1) }, checkScreenSize() { window.innerWidth >= 1024 ? this.sidebarOpen = "true" === localStorage.getItem("sidebarOpen") : this.sidebarOpen = !1 } } }
     </script>
 
 

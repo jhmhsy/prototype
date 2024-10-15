@@ -21,12 +21,27 @@ class UserController extends Controller
      */
     public function index(Request $request): View
     {
+        $search = $request->input('search');
+        $sortBy = $request->get('sortBy', 'id');
+        $sortDirection = $request->get('sortDirection', 'asc');
 
-        $data = User::orderBy('id', 'asc')->simplePaginate(10);
-        $roles = Role::pluck('name', 'name')->all(); // Add this line to get roles
-        return view('administrator.users.index', compact('data', 'roles'))
-            ->with('i', ($request->input('page', 1) - 1) * 5);
+        $data = User::with('roles') // Make sure to eager load roles
+            ->when($search, function ($query, $search) {
+                return $query->where('name', 'like', "%{$search}%")
+                    ->orWhere('email', 'like', "%{$search}%")
+                    ->orWhereHas('roles', function ($query) use ($search) {
+                        $query->where('name', 'like', "%{$search}%");
+                    });
+            })
+            ->orderBy($sortBy, $sortDirection)
+            ->paginate(10);
+
+        $roles = Role::pluck('name', 'name')->all();
+
+        return view('administrator.users.index', compact('data', 'roles', 'sortBy', 'sortDirection', 'search'))
+            ->with('i', ($request->input('page', 1) - 1) * 10);
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -63,7 +78,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-   
+
 
     /**
      * Show the form for editing the specified resource.
@@ -100,32 +115,32 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-  public function update(Request $request, $id): RedirectResponse
-{
-    $this->validate($request, [
-        'name' => 'required',
-        'email' => 'required|email|unique:users,email,'.$id,
-        'password' => 'same:confirm-password',
-        'roles' => 'required',
-    ]);
+    public function update(Request $request, $id): RedirectResponse
+    {
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email,' . $id,
+            'password' => 'same:confirm-password',
+            'roles' => 'required',
+        ]);
 
-    $input = $request->all();
-    if (! empty($input['password'])) {
-        $input['password'] = Hash::make($input['password']);
-    } else {
-        $input = Arr::except($input, ['password']);
+        $input = $request->all();
+        if (!empty($input['password'])) {
+            $input['password'] = Hash::make($input['password']);
+        } else {
+            $input = Arr::except($input, ['password']);
+        }
+
+        $user = User::find($id);
+        $user->update($input);
+        DB::table('model_has_roles')->where('model_id', $id)->delete();
+
+        $user->assignRole($request->input('roles'));
+
+        // Corrected redirect to include user ID
+        return redirect()->route('users.index', $id)
+            ->with('success', 'User updated successfully');
     }
-
-    $user = User::find($id);
-    $user->update($input);
-    DB::table('model_has_roles')->where('model_id', $id)->delete();
-
-    $user->assignRole($request->input('roles'));
-
-    // Corrected redirect to include user ID
-    return redirect()->route('users.index', $id)
-        ->with('success', 'User updated successfully');
-}
 
 
     /**

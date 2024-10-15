@@ -1,31 +1,90 @@
 <x-dash-layout>
     <div class="rounded-lg border shadow-sm p-6  text-shade_9  
-border-shade_6/50 dark:border-white/5">
-        <h1 class="text-lg font-bold mb-6 dark:text-blue-500">Awaiting Confirmations</h1>
+border-shade_6/50 dark:border-white/5" data-v0-t="card">
+        <div class="flex flex-col gap-2">
+            <div class="flex justify-between">
+                <h1 class="text-xl font-bold dark:text-white">Active Reservation</h1>
+
+            </div>
+
+
+            <span class="text-sm text-gray-600 dark:text-gray-400" @if ($pendingBookings->isEmpty()) style="display:
+                none;" @endif>
+                Page {{ $pendingBookings->currentPage() }} of {{ $pendingBookings->lastPage() }}
+            </span>
+
+
+            <!-- Pagination / search bar controls -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <!-- Pagination -->
+                <div>
+                    {{ $pendingBookings->links('vendor.pagination.custom-pagination') }}
+                </div>
+
+
+                <!-- Search bar -->
+                <form method="GET" action="{{ route('administrator.pending') }}" class="mb-4">
+                    <div class="relative">
+                        <button type="submit"
+                            class="absolute inset-y-0 left-0 flex items-center p-2 text-gray-500 dark:text-gray-400">
+                            <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                viewBox="0 0 20 20">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                            </svg>
+                            <span class="sr-only">Search</span> <!-- For accessibility -->
+                        </button>
+                        <input type="text" name="search" value="{{ request('search') }}" placeholder="Search events..."
+                            class="block w-full py-2 pl-10 pr-4 text-sm border border-gray-300 rounded-md dark:border-gray-800 dark:bg-peak_2 dark:text-white" />
+                    </div>
+                </form>
+
+
+            </div>
+        </div>
         <div class="relative w-full overflow-auto">
             <table class="w-full text-sm">
-                <thead class="text-black dark:text-white ">
-                    <tr>
+                <thead class="text-black dark:text-white">
+                    <tr class="transition-colors hover:bg-muted/50">
                         <th class="h-12 px-4 text-left align-middle">
-                            Name
-                        <th class="h-12 px-4 text-left align-middle">
-                            Email
+                            <a href="{{ route('administrator.pending', ['sortBy' => 'name', 'sortDirection' => $sortBy === 'name' && $sortDirection === 'asc' ? 'desc' : 'asc', 'search' => request('search')]) }}"
+                                class="{{ $sortBy === 'name' ? 'text-black dark:text-white' : 'text-gray-500' }}">
+                                Name
+                            </a>
                         </th>
                         <th class="h-12 px-4 text-left align-middle">
-                            Room
+                            <a href="{{ route('administrator.pending', ['sortBy' => 'email', 'sortDirection' => $sortBy === 'email' && $sortDirection === 'asc' ? 'desc' : 'asc', 'search' => request('search')]) }}"
+                                class="{{ $sortBy === 'email' ? 'text-black dark:text-white' : 'text-gray-500' }}">
+                                Email
+                            </a>
                         </th>
                         <th class="h-12 px-4 text-left align-middle">
-                            Date
+                            <a href="{{ route('administrator.pending', ['sortBy' => 'date', 'sortDirection' => $sortBy === 'date' && $sortDirection === 'asc' ? 'desc' : 'asc', 'search' => request('search')]) }}"
+                                class="{{ $sortBy === 'date' ? 'text-black dark:text-white' : 'text-gray-500' }}">
+                                Date
+                            </a>
                         </th>
                         <th class="h-12 px-4 text-left align-middle">
-                            Time
+                            <a href="{{ route('administrator.pending', ['sortBy' => 'time', 'sortDirection' => $sortBy === 'time' && $sortDirection === 'asc' ? 'desc' : 'asc', 'search' => request('search')]) }}"
+                                class="{{ $sortBy === 'time' ? 'text-black dark:text-white' : 'text-gray-500' }}">
+                                Time
+                            </a>
                         </th>
                         <th class="h-12 px-4 text-center align-middle">
                             Actions
                         </th>
+                    </tr>
                 </thead>
 
+
                 <tbody class="text-gray-600 dark:text-gray-400">
+                    @if ($pendingBookings->isEmpty())
+                    <tr>
+                        <td colspan="6" class="text-center py-4">
+                            <span class="text-gray-600 dark:text-gray-400">No Active Bookings yet.</span>
+                        </td>
+                    </tr>
+                    @else
                     @foreach ($pendingBookings as $booking)
                     <tr
                         class=" transition-colors py-10 {{ $loop->iteration % 2 == 0 ? 'bg-gray-100 dark:bg-peak_2' : '' }}">
@@ -65,6 +124,7 @@ border-shade_6/50 dark:border-white/5">
                         </td>
                     </tr>
                     @endforeach
+                    @endif
                 </tbody>
 
 

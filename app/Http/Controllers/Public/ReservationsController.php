@@ -23,28 +23,62 @@ class ReservationsController extends Controller
 
     }
 
-    public function pending()
+    public function active(Request $request)
     {
-        $pendingBookings = PendingBooking::all();
-        return view('administrator.reservation.pending', compact('pendingBookings'));
+        $search = $request->input('search');
+        $sortBy = $request->get('sortBy', 'created_at');
+        $sortDirection = $request->get('sortDirection', 'asc');
 
+        $acceptedBookings = Booking::when($search, fn($query) => $query->where(
+            fn($q) =>
+            $q->where('name', 'like', "%{$search}%")
+                ->orWhere('email', 'like', "%{$search}%")
+                ->orWhere('date', 'like', "%{$search}%")
+                ->orWhere('time', 'like', "%{$search}%")
+        ))
+            ->orderBy($sortBy, $sortDirection)
+            ->paginate(10);
+
+        return view('administrator.reservation.active', compact('acceptedBookings', 'sortBy', 'sortDirection', 'search'));
     }
 
-    public function active()
+    public function pending(Request $request)
     {
-        $acceptedBookings = Booking::all();
+        $search = $request->input('search');
+        $sortBy = $request->get('sortBy', 'created_at');
+        $sortDirection = $request->get('sortDirection', 'asc');
 
-        return view('administrator.reservation.active', compact('acceptedBookings'));
+        $pendingBookings = PendingBooking::when($search, fn($query) => $query->where(
+            fn($q) =>
+            $q->where('name', 'like', "%{$search}%")
+                ->orWhere('email', 'like', "%{$search}%")
+                ->orWhere('date', 'like', "%{$search}%")
+                ->orWhere('time', 'like', "%{$search}%")
+        ))
+            ->orderBy($sortBy, $sortDirection)
+            ->paginate(10);
 
+        return view('administrator.reservation.pending', compact('pendingBookings', 'sortBy', 'sortDirection', 'search'));
+    }
+    public function suspended(Request $request)
+    {
+        $search = $request->input('search');
+        $sortBy = $request->get('sortBy', 'created_at');
+        $sortDirection = $request->get('sortDirection', 'asc');
+
+        $rejectedBookings = RejectedBooking::when($search, fn($query) => $query->where(
+            fn($q) =>
+            $q->where('name', 'like', "%{$search}%")
+                ->orWhere('email', 'like', "%{$search}%")
+                ->orWhere('date', 'like', "%{$search}%")
+                ->orWhere('time', 'like', "%{$search}%")
+        ))
+            ->orderBy($sortBy, $sortDirection)
+            ->paginate(10);
+
+        return view('administrator.reservation.canceled', compact('rejectedBookings', 'sortBy', 'sortDirection', 'search'));
     }
 
-    public function suspended()
-    {
-        $rejectedBookings = RejectedBooking::all();
-
-        return view('administrator.reservation.canceled', compact('rejectedBookings'));
-
-    }
 
     public function History()
     {
@@ -118,3 +152,13 @@ class ReservationsController extends Controller
         return redirect()->back()->with('success', 'Booking has been Deleted.');
     }
 }
+
+
+
+// public function active()
+// {
+//     $rejectedBookings = RejectedBooking::all();
+
+//     return view('administrator.reservation.canceled', compact('rejectedBookings'));
+
+// }

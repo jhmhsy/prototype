@@ -33,16 +33,16 @@ Route::get('/cancel', [PaymentController::class, 'cancel']);
 Route::get('/', [HomeController::class, 'index'])->name('welcome');
 //⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎ 𝗣𝗨𝗕𝗟𝗜𝗖
 
+
 Route::get('/features', [FeatureController::class, 'show'])->name('features');
 Route::get('/calendar', [CalendarController::class, 'show'])->name('calendar');
-Route::post('/calendar', [CalendarController::class, 'store'])->name('calendar.store');
+Route::post('/calendar', [ReservationsController::class, 'store'])->name('calendar.store');
 Route::get('/api/reserved-hours', [CalendarController::class, 'getReservedHours']);
 Route::get('/booking-status', 'CalendarController@getBookingStatus');
+
 Route::post('/reserve', [ReservationsController::class, 'store'])->name('reserve.store');
 Route::post('/feedback', [FeedbackController::class, 'store'])->name('feedback.store');
-Route::get('/reservation', function () {
-    return view('subpages.reservation');
-})->name('reservation');
+Route::get('/reservation', function () {return view('subpages.reservation');})->name('reservation');
 
 Route::get('/users', [UserController::class, 'index'])->name('admin.users.index');
 Route::get('/settings', [UserController::class, 'settings'])->name('admin.settings');
@@ -51,10 +51,10 @@ Route::post('/equipment/store', [EquipmentController::class, 'store'])->name('eq
 Route::post('/events/store', [EventsController::class, 'store'])->name('events.store');
 
 Route::prefix('ticket')->group(function () {
-    Route::get('/selection', [TicketController::class, 'show'])->name('ticket.show');
-    Route::get('/success', [TicketController::class, 'success'])->name('ticket.success');
-    Route::get('/index', [TicketController::class, 'index'])->name('ticket.index');
-    Route::post('/success', [TicketController::class, 'store'])->name('ticket.store');
+Route::get('/selection', [TicketController::class, 'show'])->name('ticket.show');
+Route::get('/success', [TicketController::class, 'success'])->name('ticket.success');
+Route::get('/index', [TicketController::class, 'index'])->name('ticket.index');
+Route::post('/success', [TicketController::class, 'store'])->name('ticket.store');
 });
 
 //⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎ 𝗔𝗗𝗠𝗜𝗡
@@ -95,7 +95,7 @@ Route::group(['middleware' => ['auth', 'isAdmin']], function () {
             Route::post('/scan', [TicketController::class, 'scanTicket'])->name('ticket.scanticket');
             Route::post('/scan/claim', [TicketController::class, 'claimTicket'])->name('ticket.claim');
         });
-
+       
 
     });
 
@@ -125,6 +125,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/help', [HelpController::class, 'index'])->name('help');
 });
 
+
+
+
+
 //------------------ TRASH
 
 //     Route::get('/scan', [TicketController::class, 'showScanPage'])->name('scan.show');
@@ -141,4 +145,4 @@ Route::middleware('auth')->group(function () {
 
 //});
 
-require __DIR__ . '/auth.php';
+require __DIR__.'/auth.php';

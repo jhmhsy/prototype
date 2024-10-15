@@ -10,8 +10,8 @@ return [
 
     'url' => env('APP_URL', 'http://localhost'),
 
-  // 'timezone' => env('APP_TIMEZONE', 'UTC'),
-  'timezone' => 'Asia/Manila',
+    // 'timezone' => env('APP_TIMEZONE', 'UTC'),
+    'timezone' => 'Asia/Manila',
 
 
     'locale' => env('APP_LOCALE', 'en'),
@@ -33,4 +33,5 @@ return [
         'driver' => env('APP_MAINTENANCE_DRIVER', 'file'),
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
+    Yajra\DataTables\DataTablesServiceProvider::class,
 ];

@@ -6,15 +6,29 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Event;
 use Illuminate\Support\Facades\DB;
+use Yajra\DataTables\DataTables;
 
 class EventsController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        $search = $request->input('search');
+        $sortBy = $request->get('sortBy', 'created_at');
+        $sortDirection = $request->get('sortDirection', 'asc');
 
-        $events = Event::orderBy('created_at', 'asc')->simplePaginate(10);
-        return view('administrator.event.index', compact('events'));
+        $events = Event::when($search, fn($query) => $query->where(
+            fn($q) =>
+            $q->where('name', 'like', "%{$search}%")
+                ->orWhere('location', 'like', "%{$search}%")
+                ->orWhere('details', 'like', "%{$search}%")
+        ))
+            ->orderBy($sortBy, $sortDirection)
+            ->paginate(10);
+
+        return view('administrator.event.index', compact('events', 'sortBy', 'sortDirection', 'search'));
     }
+
+
 
     public function store(Request $request)
     {

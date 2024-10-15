@@ -3,7 +3,8 @@
         x-data="{ currentTab: 'Pending', titles: { pending: 'Pending Reservations', accepted: 'Accepted Reservations', rejected: 'Rejected Reservations' } }">
 
         <div>
-            <h1 class="text-xl font-bold mb-2 text-black dark:text-white" x-text="titles[currentTab.toLowerCase()]"></h1>
+            <h1 class="text-xl font-bold mb-2 text-black dark:text-white" x-text="titles[currentTab.toLowerCase()]">
+            </h1>
         </div>
 
         @if (session('success'))
