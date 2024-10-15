@@ -23,7 +23,7 @@
         <div class="rounded-lg" data-v0-t="card">
             <div class="p-2">
                 <div class="relative w-full overflow-auto">
-                    <table class="w-full text-sm">
+                    <table class="w-full text-sm mb-3">
                         <thead class="text-black dark:text-white ">
                             <tr>
                                 <th class="h-12 px-4 text-left align-middle">ID</th>
@@ -120,7 +120,9 @@
                             @endforeach
                         </tbody>
                     </table>
-                    {{ $data->links('pagination::simple-tailwind') }}
+                    <div class="m-1">
+                        {{ $data->links('pagination::simple-tailwind') }}
+                    </div>
                 </div>
             </div>
         </div>

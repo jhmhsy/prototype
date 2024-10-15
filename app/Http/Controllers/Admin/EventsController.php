@@ -12,7 +12,7 @@ class EventsController extends Controller
     public function index()
     {
 
-        $events = Event::simplePaginate(10); 
+        $events = Event::orderBy('created_at', 'asc')->simplePaginate(10); 
         return view('administrator.event.index', compact('events'));
     }
 
