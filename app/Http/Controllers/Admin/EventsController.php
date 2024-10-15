@@ -4,13 +4,15 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Event; 
+use App\Models\Event;
+use Illuminate\Support\Facades\DB;
 
 class EventsController extends Controller
 {
     public function index()
     {
-        $events = Event::paginate(10); 
+
+        $events = Event::simplePaginate(10); 
         return view('administrator.event.index', compact('events'));
     }
 
@@ -25,6 +27,6 @@ class EventsController extends Controller
         ]);
 
         Event::create($validatedData); 
-        return redirect()->route('admin.events')->with('success', 'Event added successfully!');
+        return redirect()->route('events')->with('success', 'Event added successfully!');
     }
 }

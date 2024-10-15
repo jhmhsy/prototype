@@ -21,7 +21,7 @@
 
             <div>
                 <div class="relative w-full overflow-auto pr-20">
-                    <table class="w-full caption-bottom text-sm ">
+                    <table class="w-full caption-bottom text-sm mb-3">
                         <thead class="dark:text-white">
                             <tr class="transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
                                 <th
@@ -106,11 +106,12 @@
                             @endforeach
                         </tbody>
                     </table>
-                    {!! $events->links('pagination::bootstrap-5') !!}
+                    <div class="m-1">
+                        {{ $events->links('pagination::simple-tailwind') }}
+                    </div>
                 </div>
 
                 <!-- Modal -->
-
                 <div style="display: none;" x-show="isOpen" class="fixed select-none inset-0 bg-black opacity-50 z-40">
                 </div>
 
