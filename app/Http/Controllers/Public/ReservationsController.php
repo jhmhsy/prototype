@@ -3,12 +3,11 @@
 namespace App\Http\Controllers\Public;
 
 use App\Http\Controllers\Controller;
+use App\Models\Booking;
+use App\Models\PendingBooking;
+use App\Models\RejectedBooking;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
-use Illuminate\Support\Facades\Validator;
-use App\Models\Booking;
-use App\Models\RejectedBooking;
-use App\Models\PendingBooking;
 
 class ReservationsController extends Controller
 {
@@ -19,61 +18,58 @@ class ReservationsController extends Controller
         $pendingBookings = PendingBooking::all();
         $acceptedBookings = Booking::all();
         $rejectedBookings = RejectedBooking::all();
-        
+
         return view('administrator.reservation.index', compact('pendingBookings', 'acceptedBookings', 'rejectedBookings'));
-        
+
     }
 
     public function pending()
     {
         $pendingBookings = PendingBooking::all();
-        
         return view('administrator.reservation.pending', compact('pendingBookings'));
-        
+
     }
+
     public function active()
     {
         $acceptedBookings = Booking::all();
-        
+
         return view('administrator.reservation.active', compact('acceptedBookings'));
-        
+
     }
 
     public function suspended()
     {
         $rejectedBookings = RejectedBooking::all();
-        
+
         return view('administrator.reservation.canceled', compact('rejectedBookings'));
-        
+
     }
 
     public function History()
     {
-        
+
         return view('administrator.reservation.history');
-        
+
     }
 
     // ------------------------------------------------------------------ Configurations
-    
+
     public function store(Request $request)
     {
-
         $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|email|max:255', 
+            'email' => 'required|email|max:255',
             'date' => 'required|date',
             'time' => 'required|date_format:H:i',
         ]);
 
- 
         PendingBooking::create([
             'name' => $request->name,
-            'email' => $request->email, 
+            'email' => $request->email,
             'date' => $request->date,
-            'time' => $request->time, 
+            'time' => $request->time,
         ]);
-
         return redirect()->back()->with('success', 'Booking has been made and is pending approval.');
     }
 
@@ -82,6 +78,7 @@ class ReservationsController extends Controller
         $pendingBooking = PendingBooking::findOrFail($id);
         Booking::create($pendingBooking->toArray());
         $pendingBooking->delete();
+
         return redirect()->back()->with('success', 'Booking has been accepted.');
     }
 
@@ -90,6 +87,7 @@ class ReservationsController extends Controller
         $pendingBooking = PendingBooking::findOrFail($id);
         RejectedBooking::create($pendingBooking->toArray());
         $pendingBooking->delete();
+
         return redirect()->back()->with('success', 'Booking has been rejected.');
     }
 
@@ -99,6 +97,7 @@ class ReservationsController extends Controller
 
         PendingBooking::create($rejectBooking->toArray());
         $rejectBooking->delete();
+
         return redirect()->back()->with('success', 'Booking has been restored.');
     }
 

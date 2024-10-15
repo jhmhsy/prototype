@@ -42,7 +42,7 @@
                         @endcan
 
                         @can('role-edit')
-                            @if ($role->name == 'SuperAdmin')
+                            @if ($role->name == 'SuperAdmin' && $role->id == 1)
                                 <button
                                     class="bg-gray-400 text-white uppercase inline-flex items-center justify-center text-xs font-medium h-9 rounded-md px-2"
                                     disabled>
@@ -59,7 +59,7 @@
                         @endcan
 
                         @can('role-delete')
-                            @if ($role->name == 'SuperAdmin')
+                            @if ($role->name == 'SuperAdmin' && $role->id == 1)
                                 <x-custom.pop-up :disabled="true" :name="'role'" :formId="'delete-' . $role->id">
                                 </x-custom.pop-up>
                             @else

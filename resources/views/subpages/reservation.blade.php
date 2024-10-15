@@ -1,5 +1,6 @@
 <x-guest-layout>
     <x-custom.loader2 />
+    <x-custom.alert-success>Reservation Success!</x-custom.alert-success>
     <div>
         <header>
             <x-homepage.header-section />
@@ -13,35 +14,43 @@
                         <div class="mb-6 text-shade_9">
                             <!-- Regular User Form -->
                             <div class="mt-6">
-                                <form action="{{ route('reserve.store') }}" method="POST">
+                                <form action="{{ route('reserve.store') }}" method="POST" onsubmit="successAlert()">
                                     @csrf
-                                    <x-forms.field :value="__('Name')" :errors="$errors->get('regular-name')"
-                                        :for="'regular-name'">
-                                        <input placeholder="Juan Dela Cruz" type="text" id="regular-name" name="name"
-                                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-main dark:bg-tint_3 {{ Auth::user() ? 'text-gray-400' : 'text-shade_9 dark:text-shade_9' }}"
-                                            value="{{ Auth::user() ? Auth::user()->name : '' }}" @auth disabled @endauth
-                                            required>
+                                    
+                                    <x-forms.field :value="__('Name')" :errors="$errors->get('regular-name')" :for="'regular-name'">
+                                        <input placeholder="Juan Dela Cruz" type="text" id="regular-name"
+                                            name="name"
+                                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-main dark:bg-tint_3 {{ Auth::user() ? 'text-gray-400' : 'text-shade_9 dark:text-shade_9' }}
+                                            placeholder-shade_9/50"
+                                            value="{{ old('name', Auth::user() ? Auth::user()->name : '') }}"
+                                            {{ Auth::user() ? 'readonly' : '' }} required>
                                     </x-forms.field>
 
-                                    <x-forms.field :value="__('Date')" :errors="$errors->get('regular-date')"
-                                        :for="'regular-date'">
+                                    <x-forms.field :value="__('Email')" :errors="$errors->get('email')" :for="'email'">
+                                        <input placeholder="JohnDoe@email.com" type="email" id="email"
+                                            name="email"
+                                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-main dark:bg-tint_3 {{ Auth::user() ? 'text-gray-400' : 'text-shade_9 dark:text-shade_9' }} placeholder-shade_9/50"
+                                            value="{{ old('email', Auth::user() ? Auth::user()->email : '') }}"
+                                            {{ Auth::user() ? 'readonly' : '' }} required>
+                                    </x-forms.field>
+
+                                    <x-forms.field :value="__('Date')" :errors="$errors->get('regular-date')" :for="'regular-date'">
                                         <input type="date" id="regular-date" name="date"
                                             class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-main dark:bg-tint_3"
                                             required>
                                     </x-forms.field>
 
-                                    <x-forms.field :value="__('Time')" :errors="$errors->get('regular-time')"
-                                        :for="'regular-time'">
+                                    <x-forms.field :value="__('Time')" :errors="$errors->get('regular-time')" :for="'regular-time'">
                                         <select id="regular-time" name="time"
                                             class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-main dark:bg-tint_3 mb-4"
                                             required>
                                             <option value="" disabled selected>Select an hour</option>
                                             <!-- Loop through 7 to 20 for full hours -->
-                                            @for ($i = 7; $i < 21; $i++) <option
-                                                value="{{ str_pad($i, 2, '0', STR_PAD_LEFT) }}:00">
-                                                {{ $i > 12 ? $i - 12 : $i }} {{ $i >= 12 ? 'pm' : 'am' }}
+                                            @for ($i = 7; $i < 21; $i++)
+                                                <option value="{{ str_pad($i, 2, '0', STR_PAD_LEFT) }}:00">
+                                                    {{ $i > 12 ? $i - 12 : $i }} {{ $i >= 12 ? 'pm' : 'am' }}
                                                 </option>
-                                                @endfor
+                                            @endfor
                                         </select>
                                     </x-forms.field>
                                     <button type="submit"
@@ -53,8 +62,9 @@
                 </div>
             </div>
         </div>
+    </div>
 
-        <style>
+    <style>
         @keyframes gradient {
             0% {
                 background-position: 0% 50%;
@@ -73,5 +83,36 @@
             animation: gradient 2.5s ease infinite;
             background-size: 200% 200%;
         }
-        </style>
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const alert = document.getElementById('alert-border-3');
+            const alertMessage = document.getElementById('alert-message');
+            const testButton = document.getElementById('test-alert');
+            const closeButton = alert.querySelector('button[data-dismiss-target="#alert-border-3"]');
+
+            function showAlert(message) {
+                alertMessage.textContent = 'Success! ' + message;
+                alert.style.display = 'flex';
+                setTimeout(function() {
+                    alert.style.display = 'none';
+                }, 5000);
+            }
+
+            if (closeButton) {
+                closeButton.addEventListener('click', function() {
+                    alert.style.display = 'none';
+                });
+            }
+
+            testButton.addEventListener('click', function() {
+                showAlert('This is a test alert message.');
+            });
+
+            // Check for flash message
+            @if (session('success'))
+                showAlert("{{ session('success') }}");
+            @endif
+        });
+    </script>
 </x-guest-layout>

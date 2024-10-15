@@ -22,7 +22,7 @@ class UserController extends Controller
     public function index(Request $request): View
     {
 
-        $data = User::orderBy('id', 'asc')->paginate(10);
+        $data = User::orderBy('id', 'asc')->simplePaginate(10);
         $roles = Role::pluck('name', 'name')->all(); // Add this line to get roles
         return view('administrator.users.index', compact('data', 'roles'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
@@ -51,10 +51,8 @@ class UserController extends Controller
 
         $input = $request->all();
         $input['password'] = Hash::make($input['password']);
-
         $user = User::create($input);
         $user->assignRole($request->input('roles'));
-
         return redirect()->route('users.index')
             ->with('success', 'User created successfully');
     }
