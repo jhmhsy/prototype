@@ -10,16 +10,16 @@
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
+    <link rel="preload" href="https://fonts.bunny.net/css?family=open-sans:300,400,500,600,700" as="style" />
     <link href="https://fonts.bunny.net/css?family=open-sans:300,400,500,600,700" rel="stylesheet" />
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     <!-- FullCalendar -->
     <link href='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.css' rel='stylesheet' />
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js' defer></script>
 
     <!-- Loaders -->
-    <link href="{{ asset('css/loaders/blue-spinner.css') }}" rel="stylesheet" defer>
-    <script src="{{ asset('js/global-loader.js') }}"></script>
+    <link href="{{ asset('css/loaders/blue-spinner.css') }}" rel="stylesheet">
+    <script src="{{ asset('js/global-loader.js') }}" defer></script>
 
     <!-- Flowbite -->
     <link href="{{ asset('path/to/flowbite/dist/flowbite.min.css') }}" rel="stylesheet">
@@ -30,10 +30,11 @@
     <script src="{{ asset('js/hrefScrollAnimation.js') }}" defer></script>
     <script src="{{ asset('js/progressBar.js') }}" defer></script>
     <script src="//unpkg.com/alpinejs" defer></script>
-    <script src="screensize.js"></script>
+    <script src="screensize.js" defer></script>
 
     <!-- Favicon -->
     <link rel="icon" href="{{ asset('images/logo colored.png') }}">
+
 
     <!-- Vite -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -45,11 +46,11 @@
 
     <div>
         @isset($header)
-        <header>
-            <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                {{ $header }}
-            </div>
-        </header>
+            <header>
+                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                    {{ $header }}
+                </div>
+            </header>
         @endisset
 
         <!-- Main Content -->
@@ -59,6 +60,9 @@
         </div>
     </div>
 
+    <div style="display:none;">
+        <x-custom.darkmode />
+    </div>
 </body>
 
 

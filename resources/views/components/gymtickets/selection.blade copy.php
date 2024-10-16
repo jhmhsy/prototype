@@ -33,7 +33,7 @@
                     </label>
                     <input type="email" id="email" name="email"
                         class="flex h-10 w-full rounded-md border dark:border-none  px-3 py-2 text-sm dark:bg-peak_1"
-                        x-model="email" placeholder="youremail@example.com" />
+                        x-model="email" placeholder="Enter your email" />
                     <p style="display:none;" x-show="showError && !email" x-cloak class="error text-xs text-red-500">
                         Email is required.
                     </p>
@@ -47,7 +47,7 @@
                         Phone No#
                     </label>
                     <input class="flex h-10 w-full rounded-md border dark:border-none  px-3 py-2 text-sm dark:bg-peak_1"
-                        id="phone" name="phone" placeholder="63 + " type="tel" x-model="phone" maxlength="15"
+                        id="phone" name="phone" placeholder="63+ " type="tel" x-model="phone" maxlength="15"
                         @input="phone = phone.replace(/[^0-9]/g, '')">
                     <p style="display:none;" x-show="showError && !phone" x-cloak class="error text-xs text-red-500">
                         Phone number is required.
