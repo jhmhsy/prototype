@@ -16,8 +16,18 @@ use App\Http\Controllers\Public\FeatureController;
 use App\Http\Controllers\Public\ReservationsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\MemberController;
+use App\Http\Controllers\CheckinController;
 
+Route::get('/checkin', [CheckinController::class, 'index'])->name('checkin.index');
+Route::post('/checkin/{member}', [CheckinController::class, 'checkin'])->name('checkin.store');
+Route::get('/checkin/history', [CheckinController::class, 'history'])->name('checkin.history');
 
+Route::get('/members/create', [MemberController::class, 'create'])->name('members.create');
+Route::post('/members', [MemberController::class, 'store'])->name('members.store');
+Route::get('/members/index', [MemberController::class, 'index'])->name('members.index');
+Route::post('/members/{id}/extend', [MemberController::class, 'extend'])->name('members.extend');
+Route::post('/members/{id}/rent-locker', [MemberController::class, 'rentLocker'])->name('members.rent-locker');
 
 Route::post('/pay', [PaymentController::class, 'pay'])->name('payment.pay');
 Route::get('/success', [PaymentController::class, 'success']);
@@ -42,7 +52,9 @@ Route::get('/booking-status', 'CalendarController@getBookingStatus');
 
 Route::post('/reserve', [ReservationsController::class, 'store'])->name('reserve.store');
 Route::post('/feedback', [FeedbackController::class, 'store'])->name('feedback.store');
-Route::get('/reservation', function () {return view('subpages.reservation');})->name('reservation');
+Route::get('/reservation', function () {
+    return view('subpages.reservation');
+})->name('reservation');
 
 Route::get('/users', [UserController::class, 'index'])->name('admin.users.index');
 Route::get('/settings', [UserController::class, 'settings'])->name('admin.settings');
@@ -51,10 +63,10 @@ Route::post('/equipment/store', [EquipmentController::class, 'store'])->name('eq
 Route::post('/events/store', [EventsController::class, 'store'])->name('events.store');
 
 Route::prefix('ticket')->group(function () {
-Route::get('/selection', [TicketController::class, 'show'])->name('ticket.show');
-Route::get('/success', [TicketController::class, 'success'])->name('ticket.success');
-Route::get('/index', [TicketController::class, 'index'])->name('ticket.index');
-Route::post('/success', [TicketController::class, 'store'])->name('ticket.store');
+    Route::get('/selection', [TicketController::class, 'show'])->name('ticket.show');
+    Route::get('/success', [TicketController::class, 'success'])->name('ticket.success');
+    Route::get('/index', [TicketController::class, 'index'])->name('ticket.index');
+    Route::post('/success', [TicketController::class, 'store'])->name('ticket.store');
 });
 
 //⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎ 𝗔𝗗𝗠𝗜𝗡
@@ -95,7 +107,7 @@ Route::group(['middleware' => ['auth', 'isAdmin']], function () {
             Route::post('/scan', [TicketController::class, 'scanTicket'])->name('ticket.scanticket');
             Route::post('/scan/claim', [TicketController::class, 'claimTicket'])->name('ticket.claim');
         });
-       
+
 
     });
 
@@ -145,4 +157,4 @@ Route::middleware('auth')->group(function () {
 
 //});
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

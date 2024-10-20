@@ -24,4 +24,10 @@ class Kernel extends HttpKernel
         // Other middleware...
         'admin' => \App\Http\Middleware\isAdmin::class,
     ];
+
+    protected function schedule(Schedule $schedule)
+    {
+        $schedule->command('locker:update-status')->daily();
+    }
+
 }

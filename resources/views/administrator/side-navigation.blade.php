@@ -54,12 +54,104 @@
                         <span class="ms-3 text-sm">Overview</span>
                     </a>
                 </li>
+                <!--︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼ CHECK-IN ︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼  -->
+                <li
+                    x-data="{ open: {{ request()->routeIs('checkin.index') || request()->routeIs('checkin.history') ? 'true' : 'false' }} }">
+                    <button type="button" class="flex items-center w-full p-2 text-base 
+text-gray-500 dark:text-gray-500 
+hover:bg-gray-300 hover:text-black 
+dark:hover:bg-gray-700 dark:hover:text-white transition-colors duration-300 rounded-lg group" @click="open = !open"
+                        aria-controls="dropdown-example">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="w-4 h-4">
+                            <path
+                                d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z">
+                            </path>
+                            <path d="M13 5v2"></path>
+                            <path d="M13 17v2"></path>
+                            <path d="M13 11v2"></path>
+                        </svg>
+                        <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap text-sm">
+                            Daily Check-in's</span>
+                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 10 6">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m1 1 4 4 4-4" />
+                        </svg>
+                    </button>
+
+                    <ul style="display:none;" x-show="open" x-transition class="py-2 space-y-2">
+                        <li>
+                            <a href="{{ route('checkin.index') }}"
+                                class="flex items-center w-full p-2 text-gray-500 dark:text-gray-500 hover:bg-gray-300 hover:text-black 
+dark:hover:bg-gray-700 dark:hover:text-white 
+{{ request()->routeIs('checkin.index') ? 'bg-gray-300 text-textblack dark:bg-gray-700 dark:text-white text-sm' : 'text-sm' }} pl-11 transition-colors duration-300 rounded-lg group">
+                                Manage Check-in</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('checkin.history') }}"
+                                class="flex items-center w-full p-2 text-gray-500 dark:text-gray-500 hover:bg-gray-300 hover:text-black 
+dark:hover:bg-gray-700 dark:hover:text-white 
+{{ request()->routeIs('checkin.history') ? 'bg-gray-300 text-textblack dark:bg-gray-700 dark:text-white text-sm' : 'text-sm' }} pl-11 transition-colors duration-300 rounded-lg group">
+                                Checkin Log</a>
+                        </li>
+
+
+                    </ul>
+                </li>
+                <!--︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼ MEMBER CONTROL ︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼  -->
+                <li
+                    x-data="{ open: {{ request()->routeIs('members.create') || request()->routeIs('members.index') ? 'true' : 'false' }} }">
+                    <button type="button" class="flex items-center w-full p-2 text-base 
+text-gray-500 dark:text-gray-500 
+hover:bg-gray-300 hover:text-black 
+dark:hover:bg-gray-700 dark:hover:text-white transition-colors duration-300 rounded-lg group" @click="open = !open"
+                        aria-controls="dropdown-example">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="w-4 h-4">
+                            <path
+                                d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z">
+                            </path>
+                            <path d="M13 5v2"></path>
+                            <path d="M13 17v2"></path>
+                            <path d="M13 11v2"></path>
+                        </svg>
+                        <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap text-sm">
+                            Member Controls</span>
+                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 10 6">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m1 1 4 4 4-4" />
+                        </svg>
+                    </button>
+
+                    <ul style="display:none;" x-show="open" x-transition class="py-2 space-y-2">
+                        <li>
+                            <a href="{{ route('members.index') }}"
+                                class="flex items-center w-full p-2 text-gray-500 dark:text-gray-500 hover:bg-gray-300 hover:text-black 
+dark:hover:bg-gray-700 dark:hover:text-white 
+{{ request()->routeIs('members.index') ? 'bg-gray-300 text-textblack dark:bg-gray-700 dark:text-white text-sm' : 'text-sm' }} pl-11 transition-colors duration-300 rounded-lg group">
+                                Member Overview</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('members.create') }}"
+                                class="flex items-center w-full p-2 text-gray-500 dark:text-gray-500 hover:bg-gray-300 hover:text-black 
+dark:hover:bg-gray-700 dark:hover:text-white 
+{{ request()->routeIs('members.create') ? 'bg-gray-300 text-textblack dark:bg-gray-700 dark:text-white text-sm' : 'text-sm' }} pl-11 transition-colors duration-300 rounded-lg group">
+                                Add Member</a>
+                        </li>
+
+
+                    </ul>
+                </li>
                 <!--︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼ RESERVATION ︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼  -->
-                <li x-data="{ open: {{ request()->routeIs('administrator.unifiedview') 
-                    || request()->routeIs('administrator.active') 
-                    || request()->routeIs('administrator.pending') 
-                    || request()->routeIs('administrator.suspended')
-                    || request()->routeIs('administrator.history') ? 'true' : 'false' }} }">
+                <li x-data="{ open: {{ request()->routeIs('administrator.unifiedview')
+    || request()->routeIs('administrator.active')
+    || request()->routeIs('administrator.pending')
+    || request()->routeIs('administrator.suspended')
+    || request()->routeIs('administrator.history') ? 'true' : 'false' }} }">
                     <button type="button" class="flex items-center w-full p-2 text-base 
 text-gray-500 dark:text-gray-500 
 hover:bg-gray-300 hover:text-black 
