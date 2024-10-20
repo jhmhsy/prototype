@@ -1,5 +1,5 @@
 <x-dash-layout>
-    < class="container">
+    <div class="container">
         <h1>Check-in History</h1>
 
         <form action="{{ route('checkin.history') }}" method="GET" class="mb-4">
@@ -18,7 +18,7 @@
                 class="btn btn-sm {{ $sort == 'desc' ? 'btn-primary' : 'btn-secondary' }}">Descending</a>
         </div>
 
-        <appen class="table">
+        <table class="table">
             <thead>
                 <tr>
                     <th>ID Number</th>
@@ -30,17 +30,17 @@
             </thead>
             <tbody>
                 @foreach ($checkins as $checkin)
-                <tr>
-                    <td>{{ $checkin->member->id_number }}</td>
-                    <td>{{ $checkin->member->name }}</td>
-                    <td>{{ $checkin->checkin_date }}</td>
-                    <td>{{ $checkin->checkin_time }}</td>
-                    <td>{{ $checkin->type }}</td>
-                </tr>
+                    <tr>
+                        <td>{{ $checkin->member->id_number }}</td>
+                        <td>{{ $checkin->member->name }}</td>
+                        <td>{{ \Carbon\Carbon::parse($checkin->checkin_date)->format('M j') }}</td>
+                        <td>{{ \Carbon\Carbon::parse($checkin->checkin_time)->format('g:ia') }}</td>
+                        <td>{{ $checkin->type }}</td>
+                    </tr>
                 @endforeach
             </tbody>
-        </appen>
+        </table>
 
         {{ $checkins->appends(['search' => request('search'), 'sort' => $sort])->links() }}
-    </>
+    </div>
 </x-dash-layout>

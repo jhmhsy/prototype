@@ -26,6 +26,16 @@ class CheckinController extends Controller
     {
         $now = Carbon::now();
 
+        // Check if the member has already checked in today
+        $alreadyCheckedIn = CheckinRecord::where('user_id', $member->id)
+            ->whereDate('checkin_date', $now->toDateString())
+            ->exists();
+
+        if ($alreadyCheckedIn) {
+            return redirect()->back()->with('error', 'You have already checked in today.');
+        }
+
+        // Proceed with check-in if no check-in exists for today
         CheckinRecord::create([
             'user_id' => $member->id,
             'type' => 'walking',
@@ -35,6 +45,7 @@ class CheckinController extends Controller
 
         return redirect()->back()->with('success', 'Check-in recorded successfully.');
     }
+
 
     public function history(Request $request)
     {

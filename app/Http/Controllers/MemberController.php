@@ -23,8 +23,8 @@ class MemberController extends Controller
     }
     public function create()
     {
-
-        return view('administrator.members.create');
+        $occupiedLockers = Locker::where('status', 'Active')->pluck('locker_no')->toArray();
+        return view('administrator.members.create', compact('occupiedLockers'));
     }
 
     public function store(Request $request)
@@ -33,14 +33,25 @@ class MemberController extends Controller
             'name' => 'required|string|max:255',
             'phone' => 'required|string|max:255',
             'email' => 'required|email|max:255',
-            'service_type' => 'required|in:Monthly,Yearly',
-            'start_date' => 'required|date',
-            'amount' => 'required|numeric',
-            'locker_start_date' => 'required|date',
-            'locker_no' => 'required:numeric',
-            'locker_amount' => 'required|numeric',
+            // Service types must be present
+            'service_type_1' => 'required|string|max:255',
+            'service_type_2' => 'nullable|string|max:255',
+            'service_type_3' => 'nullable|string|max:255',
+            'service_type_4' => 'nullable|string|max:255',
+            // Locker fields can be nullable
+            'locker_start_date_1' => 'nullable|date',
+            'locker_start_date_2' => 'nullable|date',
+            'locker_start_date_3' => 'nullable|date',
+            'locker_start_date_4' => 'nullable|date',
+            'locker_no_1' => 'nullable|integer',
+            'locker_no_2' => 'nullable|integer',
+            'locker_no_3' => 'nullable|integer',
+            'locker_no_4' => 'nullable|integer',
+            'locker_amount_1' => 'nullable|numeric',
+            'locker_amount_2' => 'nullable|numeric',
+            'locker_amount_3' => 'nullable|numeric',
+            'locker_amount_4' => 'nullable|numeric',
         ]);
-
         // Create member
         $member = Member::create([
             'id_number' => rand(10000, 99999),
@@ -51,30 +62,37 @@ class MemberController extends Controller
             'user_identifier' => Str::random(28),
         ]);
 
-        // Create service
-        $service = new Service([
-            'service_type' => $request->service_type,
-            'start_date' => $request->start_date,
-            'due_date' => $this->calculateDueDate($request->start_date, $request->service_type),
-            'amount' => $request->amount,
-            'status' => 'Active',
-            'service_id' => 'SRV-' . Str::random(10),
-        ]);
 
-        $member->services()->save($service);
+        // Handle multiple subscriptions (up to 4)
+        for ($i = 1; $i <= 4; $i++) {
+            if ($request->has("service_type_{$i}")) {
+                $service = new Service([
+                    'service_type' => $request->input("service_type_{$i}"),
+                    'start_date' => $request->input("start_date_{$i}"),
+                    'due_date' => $this->calculateDueDate($request->input("start_date_{$i}"), $request->input("service_type_{$i}")),
+                    'amount' => $request->input("amount_{$i}"),
+                    'status' => 'Active',
+                    'service_id' => 'SRV-' . Str::random(10),
+                ]);
+                $member->services()->save($service);
+            }
+        }
 
-        // Create locker
-        $locker = new Locker([
-            'start_date' => $request->locker_start_date,
-            'due_date' => $this->calculateDueDate($request->locker_start_date, 'Monthly'),
-            'amount' => $request->locker_amount,
-            'locker_no' => $request->locker_no,
-            'status' => 'Active',
-        ]);
+        // Save lockers
+        for ($i = 1; $i <= 4; $i++) {
+            // Only create a locker if the start date is filled
+            if ($request->filled("locker_start_date_{$i}")) {
+                $member->lockers()->create([
+                    'start_date' => $request->input("locker_start_date_{$i}"),
+                    'due_date' => $this->calculateDueDate($request->input("locker_start_date_{$i}"), 'Monthly'),
+                    'amount' => $request->input("locker_amount_{$i}"),
+                    'locker_no' => $request->input("locker_no_{$i}"),
+                    'status' => 'Active',
+                ]);
+            }
+        }
 
-        $member->lockers()->save($locker);
-
-        return redirect()->back()->with('success', 'Member registered successfully with service and locker!');
+        return redirect()->back()->with('success', 'Member registered successfully with services and lockers!');
     }
 
     private function calculateDueDate($startDate, $serviceType)

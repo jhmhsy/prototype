@@ -1,5 +1,6 @@
 <x-guest-layout>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <body class="bg-tint_1 dark:bg-shade_7">
         <div class="flex flex-col min-h-screen dark:bg-shade_7 min-w-[360px]">
             <!-- Header sections--->
