@@ -28,6 +28,11 @@ class Member extends Model
         return $this->hasMany(Locker::class, 'user_id');
     }
 
+    public function treadmills()
+    {
+        return $this->hasMany(Treadmill::class, 'user_id');
+    }
+
     public function checkinRecords()
     {
         return $this->hasMany(CheckinRecord::class, 'user_id');

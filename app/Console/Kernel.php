@@ -32,6 +32,8 @@ class Kernel extends ConsoleKernel
         $schedule->command('locker:update-status')->everyMinute();
 
         $schedule->command('service:update-status')->everyMinute();
+
+        $schedule->command('treadmill:update-status')->everyMinute();
     }
 
 

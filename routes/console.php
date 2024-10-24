@@ -17,3 +17,8 @@ Schedule::command('service:update-status')
     ->everyMinute()
     ->appendOutputTo(storage_path('logs/scheduler.log'))
     ->emailOutputOnFailure('your-email@example.com');
+
+Schedule::command('treadmill:update-status')
+    ->everyMinute()
+    ->appendOutputTo(storage_path('logs/scheduler.log'))
+    ->emailOutputOnFailure('your-email@example.com');

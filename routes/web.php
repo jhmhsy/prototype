@@ -28,6 +28,7 @@ Route::post('/members', [MemberController::class, 'store'])->name('members.store
 Route::get('/members/index', [MemberController::class, 'index'])->name('members.index');
 Route::post('/members/{id}/extend', [MemberController::class, 'extend'])->name('members.extend');
 Route::post('/members/{id}/rent-locker', [MemberController::class, 'rentLocker'])->name('members.rent-locker');
+Route::post('/members/{id}/extendTreadmill', [MemberController::class, 'extendTreadmill'])->name('members.extendTreadmill');
 
 Route::post('/pay', [PaymentController::class, 'pay'])->name('payment.pay');
 Route::get('/success', [PaymentController::class, 'success']);
