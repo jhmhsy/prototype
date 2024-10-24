@@ -19,12 +19,7 @@
                         class="fixed select-none inset-0 bg-black opacity-50 z-40">
                     </div>
                     <!-- Member Details Modal -->
-                    <div x-show="open" @click.away="open = false" x-transition:enter="transition ease-out duration-300"
-                        x-transition:enter-start="opacity-0 transform scale-90"
-                        x-transition:enter-end="opacity-100 transform scale-100"
-                        x-transition:leave="transition ease-in duration-100"
-                        x-transition:leave-start="opacity-100 transform scale-100"
-                        x-transition:leave-end="opacity-0 transform scale-90"
+                    <div x-show="open" @click.away="open = false"
                         class="modal fixed w-[90%] md:w-[60%] lg:w-[40%] xl:w-[35%] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 p-4 bg-white">
 
                         <div class="mt-3 text-center">
@@ -39,50 +34,45 @@
                                     User ID: {{ $member->user_identifier }}
                                 </p>
                                 <h4 class="font-semibold mt-4">Services</h4>
-
-                                <!-- <div class="max-h-[300px] overflow-y-scroll"> -->
-                                <div>
-                                    <table class="min-w-full mt-2">
-                                        <thead>
-                                            <tr>
-                                                <th class="px-4 py-2">Start Date</th>
-                                                <th class="px-4 py-2">Due Date</th>
-                                                <th class="px-4 py-2">Amount</th>
-                                                <th class="px-4 py-2">Service</th>
-                                                <th class="px-4 py-2">Status</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach($member->services as $service)
-                                            <tr>
-                                                <td class="border px-4 py-2">
-                                                    {{ \Carbon\Carbon::parse($service->start_date)->format('M j, Y') }}
-                                                </td>
-                                                <td class="border px-4 py-2">
-                                                    {{ \Carbon\Carbon::parse($service->due_date)->format('M j, Y') }}
-                                                </td>
-                                                <td class="border px-4 py-2">${{ $service->amount }}</td>
-                                                <td class="border px-4 py-2">{{ $service->service_type }}</td>
-                                                <td class="border px-4 py-2">{{ $service->status }}</td>
-                                            </tr>
-                                            @endforeach
-                                            @foreach($member->lockers as $locker)
-                                            <tr>
-                                                <td class="border px-4 py-2">
-                                                    {{ \Carbon\Carbon::parse($locker->start_date)->format('M j, Y') }}
-                                                </td>
-                                                <td class="border px-4 py-2">
-                                                    {{ \Carbon\Carbon::parse($locker->due_date)->format('M j, Y') }}
-                                                </td>
-                                                <td class="border px-4 py-2">${{ $locker->amount }}</td>
-                                                <td class="border px-4 py-2">Locker #{{ $locker->locker_no }}</td>
-                                                <td class="border px-4 py-2">{{ $locker->status }}</td>
-                                            </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                                </div>
-
+                                <table class="min-w-full mt-2">
+                                    <thead>
+                                        <tr>
+                                            <th class="px-4 py-2">Start Date</th>
+                                            <th class="px-4 py-2">Due Date</th>
+                                            <th class="px-4 py-2">Amount</th>
+                                            <th class="px-4 py-2">Service</th>
+                                            <th class="px-4 py-2">Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach($member->services as $service)
+                                        <tr>
+                                            <td class="border px-4 py-2">
+                                                {{ \Carbon\Carbon::parse($service->start_date)->format('M j, Y') }}
+                                            </td>
+                                            <td class="border px-4 py-2">
+                                                {{ \Carbon\Carbon::parse($service->due_date)->format('M j, Y') }}
+                                            </td>
+                                            <td class="border px-4 py-2">${{ $service->amount }}</td>
+                                            <td class="border px-4 py-2">{{ $service->service_type }}</td>
+                                            <td class="border px-4 py-2">{{ $service->status }}</td>
+                                        </tr>
+                                        @endforeach
+                                        @foreach($member->lockers as $locker)
+                                        <tr>
+                                            <td class="border px-4 py-2">
+                                                {{ \Carbon\Carbon::parse($locker->start_date)->format('M j, Y') }}
+                                            </td>
+                                            <td class="border px-4 py-2">
+                                                {{ \Carbon\Carbon::parse($locker->due_date)->format('M j, Y') }}
+                                            </td>
+                                            <td class="border px-4 py-2">${{ $locker->amount }}</td>
+                                            <td class="border px-4 py-2">Locker #{{ $locker->locker_no }}</td>
+                                            <td class="border px-4 py-2">{{ $locker->status }}</td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
 
 
                             </div>
@@ -97,7 +87,7 @@
                         </div>
                         <div class="items-center px-4 py-3">
                             <button @click="open = false"
-                                class="px-4 py-2 bg-blue-500 text-white text-base font-medium rounded-md w-full shadow-sm hover:bg-blue-600 focuateutline-none focus:ring-2 focus:ring-blue-300">
+                                class="px-4 py-2 bg-blue-500 text-white text-base font-medium rounded-md w-full shadow-sm hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300">
                                 Close
                             </button>
                         </div>
@@ -109,12 +99,6 @@
                     </div>
                     <!-- Member Details Modal -->
                     <div x-show="extendOpen" @click.away="extendOpen = false"
-                        x-transition:enter="transition ease-out duration-300"
-                        x-transition:enter-start="opacity-0 transform scale-90"
-                        x-transition:enter-end="opacity-100 transform scale-100"
-                        x-transition:leave="transition ease-in duration-100"
-                        x-transition:leave-start="opacity-100 transform scale-100"
-                        x-transition:leave-end="opacity-0 transform scale-90"
                         class="modal fixed w-[90%] md:w-[60%] lg:w-[40%] xl:w-[35%] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 p-4 bg-white">
 
                         <h3 class="text-lg leading-6 font-medium text-gray-900 mb-4">Extend Subscription</h3>
@@ -145,7 +129,7 @@
                                 Extend
                             </button>
                         </form>
-                        <button @click="extendOpen = false, open = true"
+                        <button @click="extendOpen = false"
                             class="mt-4 w-full bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400">
                             Cancel
                         </button>
@@ -159,12 +143,6 @@
                     </div>
                     <!-- Member Details Modal -->
                     <div x-show="rentLockerOpen" @click.away="rentLockerOpen = false"
-                        x-transition:enter="transition ease-out duration-300"
-                        x-transition:enter-start="opacity-0 transform scale-90"
-                        x-transition:enter-end="opacity-100 transform scale-100"
-                        x-transition:leave="transition ease-in duration-100"
-                        x-transition:leave-start="opacity-100 transform scale-100"
-                        x-transition:leave-end="opacity-0 transform scale-90"
                         class="modal fixed w-[90%] md:w-[60%] lg:w-[40%] xl:w-[35%] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 p-4 bg-white">
 
                         <h3 class="text-lg leading-6 font-medium text-gray-900 mb-4">Rent More Locker</h3>
@@ -202,7 +180,7 @@
                                 Rent Locker
                             </button>
                         </form>
-                        <button @click="rentLockerOpen = false, open = true"
+                        <button @click="rentLockerOpen = false"
                             class="mt-4 w-full bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400">
                             Cancel
                         </button>

@@ -14,13 +14,13 @@ class CreateSuperAdminUserSeeder extends Seeder
      */
     public function run(): void
     {
-        
+
         $superAdmin = User::firstOrCreate(
             ['email' => 'admin@gmail.com'],
             [
                 'name' => 'Super Admin',
                 'password' => bcrypt('asdasdasd'),
-                'email_verified_at' => now(), 
+                'email_verified_at' => now(),
             ]
         );
 

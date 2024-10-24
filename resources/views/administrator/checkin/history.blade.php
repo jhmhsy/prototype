@@ -1,68 +1,46 @@
 <x-dash-layout>
-    <div class="container mx-auto px-4 py-8">
-        <h1 class="text-3xl font-bold mb-6">Check-in History</h1>
+    <div class="container">
+        <h1>Check-in History</h1>
 
-        <form action="{{ route('checkin.history') }}" method="GET" class="mb-6">
-            <div class="flex">
-                <input type="text" name="search" class="form-input flex-grow rounded-l-md"
-                    placeholder="Search by Name or ID Number" value="{{ request('search') }}">
-                <button type="submit"
-                    class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-r-md transition duration-300">Search</button>
+        <form action="{{ route('checkin.history') }}" method="GET" class="mb-4">
+            <div class="input-group">
+                <input type="text" name="search" class="form-control" placeholder="Search by Name or ID Number"
+                    value="{{ request('search') }}">
+                <button type="submit" class="btn btn-primary">Search</button>
             </div>
         </form>
 
-        <div class="mb-6 flex items-center">
-            <span class="mr-3 text-gray-700">Sort by date:</span>
+        <div class="mb-3">
+            <span>Sort by date: </span>
             <a href="{{ route('checkin.history', ['sort' => 'asc', 'search' => request('search')]) }}"
-                class="mr-2 px-3 py-1 rounded {{ $sort == 'asc' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300' }} transition duration-300">Ascending</a>
+                class="btn btn-sm {{ $sort == 'asc' ? 'btn-primary' : 'btn-secondary' }}">Ascending</a>
             <a href="{{ route('checkin.history', ['sort' => 'desc', 'search' => request('search')]) }}"
-                class="px-3 py-1 rounded {{ $sort == 'desc' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300' }} transition duration-300">Descending</a>
+                class="btn btn-sm {{ $sort == 'desc' ? 'btn-primary' : 'btn-secondary' }}">Descending</a>
         </div>
 
-        <div class="overflow-x-auto bg-white shadow-md rounded-lg">
-            <table class="min-w-full table-auto">
-                <thead class="bg-gray-50">
-                    <tr>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID
-                            Number</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name
-                        </th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            CHECKED-IN Date
-                        </th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            CHECKED-IN Time
-                        </th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type
-                        </th>
-                    </tr>
-                </thead>
-                <tbody class="bg-white divide-y divide-gray-200">
-                    @foreach ($checkins as $checkin)
-                        <tr class="hover:bg-gray-50">
-                            <td class="px-6 py-4 whitespace-nowrap">{{ $checkin->member->id_number }}</td>
-                            <td class="px-6 py-4 whitespace-nowrap">{{ $checkin->member->name }}</td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                {{ \Carbon\Carbon::parse($checkin->checkin_date)->format('M j') }}
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                {{ \Carbon\Carbon::parse($checkin->checkin_time)->format('g:ia') }}
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <span
-                                    class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full 
-                                            {{ $checkin->type === 'Check-in' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800' }}">
-                                    {{ $checkin->type }}
-                                </span>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID Number</th>
+                    <th>Name</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Type</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($checkins as $checkin)
+                <tr>
+                    <td>{{ $checkin->member->id_number }}</td>
+                    <td>{{ $checkin->member->name }}</td>
+                    <td>{{ \Carbon\Carbon::parse($checkin->checkin_date)->format('M j') }}</td>
+                    <td>{{ \Carbon\Carbon::parse($checkin->checkin_time)->format('g:ia') }}</td>
+                    <td>{{ $checkin->type }}</td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
 
-        <div class="mt-6">
-            {{ $checkins->appends(['search' => request('search'), 'sort' => $sort])->links() }}
-        </div>
+        {{ $checkins->appends(['search' => request('search'), 'sort' => $sort])->links() }}
     </div>
 </x-dash-layout>

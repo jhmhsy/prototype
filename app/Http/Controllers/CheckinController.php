@@ -11,13 +11,48 @@ class CheckinController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Member::query();
+        $query = Member::query()
+            ->with(['services', 'lockers']); // Eager load relationships to prevent N+1 queries
 
+        // Apply search filter if provided
         if ($request->has('search')) {
             $query->where('id_number', 'like', '%' . $request->search . '%');
         }
 
+        // Get paginated results
         $members = $query->paginate(10);
+
+        // Process each member's subscription status
+        foreach ($members as $member) {
+            // Initialize subscription status flags
+            $member->hasSubscriptions = false;
+            $member->hasOverdueSubscription = false;
+            $member->hasValidSubscription = false;
+
+            // Check services
+            foreach ($member->services as $service) {
+                $member->hasSubscriptions = true; // Has at least one service
+
+                if ($service->status === 'Overdue') {
+                    $member->hasOverdueSubscription = true;
+                }
+                if (in_array($service->status, ['Due', 'Active', 'Inactive'])) {
+                    $member->hasValidSubscription = true;
+                }
+            }
+
+            // Check lockers
+            foreach ($member->lockers as $locker) {
+                $member->hasSubscriptions = true; // Has at least one locker
+
+                if ($locker->status === 'Overdue') {
+                    $member->hasOverdueSubscription = true;
+                }
+                if (in_array($locker->status, ['Due', 'Active', 'Inactive'])) {
+                    $member->hasValidSubscription = true;
+                }
+            }
+        }
 
         return view('administrator.checkin.index', compact('members'));
     }
@@ -35,7 +70,58 @@ class CheckinController extends Controller
             return redirect()->back()->with('error', 'You have already checked in today.');
         }
 
-        // Proceed with check-in if no check-in exists for today
+        // Load relationships if not already loaded
+        $member->load(['services', 'lockers']);
+
+        // Check if user has any subscriptions
+        $hasSubscriptions = $member->services->count() > 0 || $member->lockers->count() > 0;
+
+        if (!$hasSubscriptions) {
+            return redirect()->back()->with('error', 'Cannot check in: No active subscriptions found.');
+        }
+
+        // Check if this is a forced check-in for overdue subscription
+        $forceCheckin = $request->input('force_checkin', false);
+
+        // Check subscription statuses
+        $hasValidSubscription = false;
+        $hasOverdueSubscription = false;
+
+        // Check services
+        foreach ($member->services as $service) {
+            if (in_array($service->status, ['Due', 'Active', 'Inactive'])) {
+                $hasValidSubscription = true;
+            }
+            if ($service->status === 'Overdue') {
+                $hasOverdueSubscription = true;
+            }
+        }
+
+        // Check lockers
+        foreach ($member->lockers as $locker) {
+            if (in_array($locker->status, ['Due', 'Active', 'Inactive'])) {
+                $hasValidSubscription = true;
+            }
+            if ($locker->status === 'Overdue') {
+                $hasOverdueSubscription = true;
+            }
+        }
+
+        // If has overdue subscription and not forcing check-in, return with warning
+        if ($hasOverdueSubscription && !$forceCheckin) {
+            return redirect()->back()->with([
+                'warning' => true,
+                'member_id' => $member->id,
+                'message' => 'Warning: User has overdue subscriptions.'
+            ]);
+        }
+
+        // If no valid subscription and no force check-in, prevent check-in
+        if (!$hasValidSubscription && !$forceCheckin) {
+            return redirect()->back()->with('error', 'Cannot check in: No valid subscription found.');
+        }
+
+        // Proceed with check-in
         CheckinRecord::create([
             'user_id' => $member->id,
             'type' => 'walking',

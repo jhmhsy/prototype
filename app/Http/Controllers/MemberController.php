@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Artisan;
 use App\Models\Member;
 use App\Models\Service;
 use App\Models\Locker;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
+
 
 class MemberController extends Controller
 {
@@ -17,10 +19,8 @@ class MemberController extends Controller
         $members = Member::with(['services', 'lockers'])->get();
         $occupiedLockers = Locker::where('status', 'Active')->pluck('locker_no')->toArray();
         return view('administrator.members.index', compact('members', 'occupiedLockers'));
-
-
-
     }
+
     public function create()
     {
         $occupiedLockers = Locker::where('status', 'Active')->pluck('locker_no')->toArray();
@@ -91,7 +91,7 @@ class MemberController extends Controller
                 ]);
             }
         }
-
+        $this->updateServiceStatus();
         return redirect()->back()->with('success', 'Member registered successfully with services and lockers!');
     }
 
@@ -127,6 +127,8 @@ class MemberController extends Controller
 
         $member->services()->save($newService);
 
+        $this->updateServiceStatus();
+
         return redirect()->back()->with('success', 'Subscription extended successfully.');
     }
 
@@ -135,7 +137,6 @@ class MemberController extends Controller
         $request->validate([
             'locker_no' => 'required|string',
             'start_date' => 'required|date',
-            'amount' => 'required|numeric|min:0',
         ]);
 
         $member = Member::findOrFail($id);
@@ -147,12 +148,29 @@ class MemberController extends Controller
             'locker_no' => $request->locker_no,
             'start_date' => $startDate->toDateString(),
             'due_date' => $dueDate->toDateString(),
-            'amount' => $request->amount,
+            'amount' => 100,
             'status' => 'Active',
         ]);
 
         $member->lockers()->save($newLocker);
 
+        $this->updateLockerStatus();
+
         return redirect()->back()->with('success', 'New locker rented successfully.');
     }
+
+
+
+
+
+    public function UpdateServiceStatus()
+    {
+        Artisan::call('service:update-status');
+    }
+    public function updateLockerStatus()
+    {
+        Artisan::call('locker:update-status');
+    }
+
+
 }

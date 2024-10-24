@@ -66,6 +66,20 @@
                 "isDefault": true
             },
             "isBackground": true
+        },
+        {
+            "label": "Run Schedule Work",
+            "type": "shell",
+            "command": "php artisan schedule:work",
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "isBackground": true,
+            "runOptions": {
+                "runOn": "folderOpen"
+            }
         }
     ]
 }
