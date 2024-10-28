@@ -19,6 +19,10 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\CheckinController;
 
+
+Route::get('/members/{member}/latest-start-date', [MemberController::class, 'getLatestStartDate'])
+    ->name('members.latest-start-date');
+
 Route::get('/checkin', [CheckinController::class, 'index'])->name('checkin.index');
 Route::post('/checkin/{member}', [CheckinController::class, 'checkin'])->name('checkin.store');
 Route::get('/checkin/history', [CheckinController::class, 'history'])->name('checkin.history');

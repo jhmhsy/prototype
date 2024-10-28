@@ -12,6 +12,8 @@
     <link href="https://fonts.bunny.net/css?family=roboto:100,300,400,500,900" rel="stylesheet" />
 
     <!-- Scripts -->
+    <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
     <script src="{{ asset('js/darkmode.js') }}" defer></script>
     <script src="{{ asset('js/dashboardnavigator.js') }}" defer></script>
@@ -26,11 +28,11 @@
     <div x-data="{ loading: false }" class="min-h-screen bg-gray-100 dark:bg-gray-900">
         <!-- Page Heading -->
         @isset($header)
-            <header class="bg-white dark:bg-gray-800 shadow">
-                <div class="max-w-7xl py-6 px-4 sm:px-6 lg:px-8">
-                    {{ $header }}
-                </div>
-            </header>
+        <header class="bg-white dark:bg-gray-800 shadow">
+            <div class="max-w-7xl py-6 px-4 sm:px-6 lg:px-8">
+                {{ $header }}
+            </div>
+        </header>
         @endisset
 
         <!-- Page Content -->

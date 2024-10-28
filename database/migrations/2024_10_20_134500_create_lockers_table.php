@@ -13,6 +13,7 @@ return new class extends Migration {
             $table->date('start_date');
             $table->date('due_date');
             $table->decimal('amount', 8, 2);
+            $table->integer('month');
             $table->integer('locker_no');
             $table->enum('status', ['Active', 'Inactive', 'Expired', 'Due', 'Overdue']);
         });

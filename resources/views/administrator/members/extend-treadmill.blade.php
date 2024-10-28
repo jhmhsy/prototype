@@ -12,12 +12,15 @@
     <h3 class="text-lg leading-6 font-medium text-gray-900 mb-4">Extend Treadmill Duration</h3>
     <form action="{{ route('members.extendTreadmill', $member->id) }}" method="POST">
         @csrf
+        <input hidden name="form_token" value="{{ session('form_token') }}">
 
-        <div class="mb-4">
+        <div class="mb-4" x-data="{ treadmillStartDate: new Date().toISOString().slice(0, 10) }">
             <label for="treadmill_start_date">Treadmill Start Date:</label>
-            <input type="date" name="treadmill_start_date"
+            <input type="date" name="treadmill_start_date" x-model="treadmillStartDate"
                 class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
         </div>
+
+
         <div class="mb-4">
             <label for="treadmill_months">How many months?</label>
             <input type="number" name="treadmill_months" min="1" max="12"

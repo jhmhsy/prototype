@@ -11,13 +11,18 @@ class CheckinController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Member::query()
-            ->with(['services', 'lockers']); // Eager load relationships to prevent N+1 queries
+        $query = Member::query()->with(['services', 'lockers']);
 
-        // Apply search filter if provided
         if ($request->has('search')) {
-            $query->where('id_number', 'like', '%' . $request->search . '%');
+            $searchTerm = $request->search;
+            $query->where(function ($query) use ($searchTerm) {
+                $query->where('id_number', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('id', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('name', 'like', '%' . $searchTerm . '%');
+            });
         }
+
+
 
         // Get paginated results
         $members = $query->paginate(10);

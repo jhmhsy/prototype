@@ -10,6 +10,7 @@
     <h3 class="text-lg leading-6 font-medium text-gray-900 mb-4">Extend Subscription</h3>
     <form action="{{ route('members.extend', $member->id) }}" method="POST">
         @csrf
+        <input hidden name="form_token" value="{{ session('form_token') }}">
         <div class="mb-4">
             <label for="service_type" class="block text-sm font-medium text-gray-700">Service
                 Type</label>
@@ -19,16 +20,20 @@
                 <option value="Yearly">Yearly</option>
             </select>
         </div>
-        <div class="mb-4">
-            <label for="start_date" class="block text-sm font-medium text-gray-700">Start
-                Date</label>
-            <input type="date" id="start_date" name="start_date" required
+        <div class="mb-4" x-data="{ serviceStartDate: new Date().toISOString().slice(0, 10) }">
+            <label for="start_date" class="block text-sm font-medium text-gray-700">
+                Starting Date</label>
+            <input type="date" id="start_date" name="start_date" x-model="serviceStartDate" required
                 class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
         </div>
+
+
+
         <div class="mb-4">
-            <label for="amount" class="block text-sm font-medium text-gray-700">Amount</label>
-            <input type="number" id="amount" name="amount" step="0.01" required
+            <label for="month" class="block text-sm font-medium text-gray-700">How many Months (max 12)</label>
+            <input type="number" name="month" placeholder="1"
                 class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+
         </div>
         <button type="submit" class="w-full bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
             Extend

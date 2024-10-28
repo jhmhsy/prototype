@@ -17,6 +17,7 @@ class Locker extends Model
         'start_date',
         'due_date',
         'amount',
+        'month',
         'status',
     ];
 

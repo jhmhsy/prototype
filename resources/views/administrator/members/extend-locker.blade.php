@@ -11,20 +11,31 @@
     <h3 class="text-lg leading-6 font-medium text-gray-900 mb-4">Rent More Locker</h3>
     <form action="{{ route('members.rent-locker', $member->id) }}" method="POST">
         @csrf
+        <input hidden name="form_token" value="{{ session('form_token') }}">
         <div class="mb-4">
             <label for="locker_no" class="block text-sm font-medium text-gray-700">Locker
                 Number</label>
             <select id="locker_no" name="locker_no" required
                 class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                <option value="" disabled selected>Select a locker</option>
-                @for ($i = 1; $i <= 27; $i++) <option value="{{ $i }}" {{ in_array(
-                        $i,
-                        $occupiedLockers
-                    ) ? 'disabled' : '' }}>
-                    Locker No. {{ $i }}
-                    {{ in_array($i, $occupiedLockers) ? '(Unavailable)' : '' }}
-                    </option>
-                    @endfor
+                @php
+                $allOccupied = true;
+                $firstAvailable = null;
+
+                // Find first available locker
+                for ($i = 1; $i <= 21; $i++) { if (!in_array($i, $occupiedLockers)) { $firstAvailable=$i;
+                    $allOccupied=false; break; } } @endphp @if ($allOccupied) <option value="" disabled selected>All
+                    lockers are occupied</option>
+                    @else
+                    <option value="" disabled>Select a locker</option>
+                    @endif
+
+                    @for ($i = 1; $i <= 21; $i++) <option value="{{ $i }}"
+                        {{ in_array($i, $occupiedLockers) ? 'disabled' : '' }}
+                        {{ $i === $firstAvailable ? 'selected' : '' }}>
+                        Locker No. {{ $i }}
+                        {{ in_array($i, $occupiedLockers) ? '(Unavailable)' : '' }}
+                        </option>
+                        @endfor
             </select>
         </div>
         <div class="mb-4">
@@ -34,8 +45,8 @@
                 class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
         </div>
         <div class="mb-4">
-            <label for="amount" class="block text-sm font-medium text-gray-700">Amount</label>
-            <input type="number" id="amount" name="amount" step="0.01" required
+            <label for="amount" class="block text-sm font-medium text-gray-700">For How many Month</label>
+            <input type="number" name="locker_month"
                 class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
         </div>
         <button type="submit" class="w-full bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
