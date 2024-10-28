@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Member;
 use App\Models\Service;
 use App\Models\Locker;
@@ -12,17 +13,23 @@ use Illuminate\Support\Str;
 use Carbon\Carbon;
 
 
+
+use Endroid\QrCode\QrCode;
+use Endroid\QrCode\Writer\PngWriter;
+
+use Endroid\QrCode\ErrorCorrectionLevel;
+
+
 class MemberController extends Controller
 {
 
     public function index()
     {
-        $members = Member::with(['services', 'lockers', 'treadmills'])->get();
+        $members = Member::with(['services', 'lockers', 'treadmills', 'qrcode'])->get();
         $occupiedLockers = Locker::where('status', 'Active')->pluck('locker_no')->toArray();
         session()->put('form_token', uniqid());
         return view('administrator.members.index', compact('members', 'occupiedLockers'));
     }
-
 
     public function create()
     {
@@ -83,6 +90,28 @@ class MemberController extends Controller
             'fb' => $request->fb,
             'email' => $request->email,
             'user_identifier' => Str::random(28),
+        ]);
+
+        // Generate QR Code
+        $qrData = $member->id_number; // Using member's ID number as QR data
+        $qrCode = new QrCode(data: $qrData);
+        $qrCode->setSize(300)
+            ->setMargin(10)
+            ->setErrorCorrectionLevel(ErrorCorrectionLevel::High)
+            ->setEncoding(new \Endroid\QrCode\Encoding\Encoding('UTF-8'));
+
+        $writer = new PngWriter();
+        $result = $writer->write($qrCode);
+
+        $fileName = 'qrcode_' . $member->id_number . '_' . time() . '.png';
+
+        $imagePath = 'public/qrcodes/' . $fileName;
+        Storage::put($imagePath, $result->getString());
+
+        // Create QR code record in database
+        $member->qrcode()->create([
+            'qr_image_path' => $fileName,
+            'qr_data' => $qrData
         ]);
 
 
@@ -149,8 +178,14 @@ class MemberController extends Controller
 
         $this->updateServiceStatus();
         $this->updateLockerStatus();
-        return redirect()->back()->with('success', 'Member registered successfully with services and lockers!');
+
+        return redirect()->back()->with([
+            'success' => 'Member registered successfully with services and lockers!',
+            'qrCodeUrl' => Storage::url('qrcodes/' . $fileName)
+        ]);
     }
+
+
 
 
 
@@ -271,6 +306,39 @@ class MemberController extends Controller
         return redirect()->back()->with('success', 'New Treadmill rented successfully.');
     }
 
+    public function generateQrCode(Member $member)
+    {
+        // Check if QR code already exists
+        if ($member->qrcode) {
+            return redirect()->back()->with('error', 'QR Code already exists for this member');
+        }
+
+        // Generate QR Code
+        $qrData = $member->id_number; // Using member's ID number as QR data
+        $qrCode = new QrCode($qrData);
+        $qrCode->setSize(300)
+            ->setMargin(10)
+            ->setErrorCorrectionLevel(ErrorCorrectionLevel::High)
+            ->setEncoding(new \Endroid\QrCode\Encoding\Encoding('UTF-8'));
+
+        $writer = new PngWriter();
+        $result = $writer->write($qrCode);
+
+        // Generate unique filename
+        $fileName = 'qrcode_' . $member->id_number . '_' . time() . '.png';
+
+        // Save QR code image to storage
+        $imagePath = 'public/qrcodes/' . $fileName;
+        Storage::put($imagePath, $result->getString());
+
+        // Create QR code record in database
+        $member->qrcode()->create([
+            'qr_image_path' => $fileName,
+            'qr_data' => $qrData
+        ]);
+
+        return redirect()->back()->with('success', 'QR Code generated successfully!');
+    }
 
 
 

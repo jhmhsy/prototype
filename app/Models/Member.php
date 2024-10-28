@@ -37,4 +37,9 @@ class Member extends Model
     {
         return $this->hasMany(CheckinRecord::class, 'user_id');
     }
+
+    public function qrcode()
+    {
+        return $this->hasOne(MemberQrcode::class);
+    }
 }

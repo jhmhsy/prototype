@@ -20,6 +20,8 @@ use App\Http\Controllers\MemberController;
 use App\Http\Controllers\CheckinController;
 
 
+Route::post('/members/{member}/generate-qrcode', [MemberController::class, 'generateQrCode'])->name('members.generate-qrcode');
+
 Route::get('/members/{member}/latest-start-date', [MemberController::class, 'getLatestStartDate'])
     ->name('members.latest-start-date');
 
