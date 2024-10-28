@@ -12,8 +12,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
 
-
-
 use Endroid\QrCode\QrCode;
 use Endroid\QrCode\Writer\PngWriter;
 
@@ -23,13 +21,28 @@ use Endroid\QrCode\ErrorCorrectionLevel;
 class MemberController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
-        $members = Member::with(['services', 'lockers', 'treadmills', 'qrcode'])->get();
+        $query = Member::with(['services', 'lockers', 'treadmills', 'qrcode']);
+
+        if ($request->has('search')) {
+            $searchTerm = $request->search;
+            $query->where(function ($subQuery) use ($searchTerm) {
+                $subQuery->where('id_number', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('id', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('name', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('email', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('fb', 'like', '%' . $searchTerm . '%');
+            });
+        }
+        $members = $query->get();
+
+
         $occupiedLockers = Locker::where('status', 'Active')->pluck('locker_no')->toArray();
         session()->put('form_token', uniqid());
         return view('administrator.members.index', compact('members', 'occupiedLockers'));
     }
+
 
     public function create()
     {
@@ -137,7 +150,6 @@ class MemberController extends Controller
             }
         }
 
-
         // STORE LOCKERS
         for ($i = 1; $i <= 4; $i++) {
             // Only create a locker if the start date is filled
@@ -157,9 +169,6 @@ class MemberController extends Controller
                 ]);
             }
         }
-
-
-
 
         // STORE TREADMILLS
         if ($request->filled("treadmill_start_date")) {
@@ -184,10 +193,6 @@ class MemberController extends Controller
             'qrCodeUrl' => Storage::url('qrcodes/' . $fileName)
         ]);
     }
-
-
-
-
 
     private function calculateDueDate($startDate, $serviceType, $months = 1)
     {
@@ -267,6 +272,11 @@ class MemberController extends Controller
         $member->lockers()->save($newLocker);
 
         $this->updateLockerStatus();
+
+
+
+
+
         return redirect()->back()->with('success', 'New locker rented successfully.');
     }
 

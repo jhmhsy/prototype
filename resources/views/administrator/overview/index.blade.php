@@ -8,8 +8,8 @@
                         d="M144 0a80 80 0 1 1 0 160A80 80 0 1 1 144 0zM512 0a80 80 0 1 1 0 160A80 80 0 1 1 512 0zM0 298.7C0 239.8 47.8 192 106.7 192l42.7 0c15.9 0 31 3.5 44.6 9.7c-1.3 7.2-1.9 14.7-1.9 22.3c0 38.2 16.8 72.5 43.3 96c-.2 0-.4 0-.7 0L21.3 320C9.6 320 0 310.4 0 298.7zM405.3 320c-.2 0-.4 0-.7 0c26.6-23.5 43.3-57.8 43.3-96c0-7.6-.7-15-1.9-22.3c13.6-6.3 28.7-9.7 44.6-9.7l42.7 0C592.2 192 640 239.8 640 298.7c0 11.8-9.6 21.3-21.3 21.3l-213.3 0zM224 224a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zM128 485.3C128 411.7 187.7 352 261.3 352l117.3 0C452.3 352 512 411.7 512 485.3c0 14.7-11.9 26.7-26.7 26.7l-330.7 0c-14.7 0-26.7-11.9-26.7-26.7z" />
                 </svg>
                 <div>
-                    <h1 class="text-sm">Total Users</h1>
-                    <p class="text-2xl font-bold">{{ $users }}</p>
+                    <h1 class="text-sm">Total Members</h1>
+                    <p class="text-2xl font-bold">{{ $members }}</p>
                 </div>
             </div>
             <div class="bg-white dark:bg-peak_2  rounded-lg px-4 py-5 flex space-x-2 items-center">
@@ -20,8 +20,8 @@
                         d="M320 96L192 96 144.6 24.9C137.5 14.2 145.1 0 157.9 0L354.1 0c12.8 0 20.4 14.2 13.3 24.9L320 96zM192 128l128 0c3.8 2.5 8.1 5.3 13 8.4C389.7 172.7 512 250.9 512 416c0 53-43 96-96 96L96 512c-53 0-96-43-96-96C0 250.9 122.3 172.7 179 136.4c0 0 0 0 0 0s0 0 0 0c4.8-3.1 9.2-5.9 13-8.4zm84 88c0-11-9-20-20-20s-20 9-20 20l0 14c-7.6 1.7-15.2 4.4-22.2 8.5c-13.9 8.3-25.9 22.8-25.8 43.9c.1 20.3 12 33.1 24.7 40.7c11 6.6 24.7 10.8 35.6 14l1.7 .5c12.6 3.8 21.8 6.8 28 10.7c5.1 3.2 5.8 5.4 5.9 8.2c.1 5-1.8 8-5.9 10.5c-5 3.1-12.9 5-21.4 4.7c-11.1-.4-21.5-3.9-35.1-8.5c-2.3-.8-4.7-1.6-7.2-2.4c-10.5-3.5-21.8 2.2-25.3 12.6s2.2 21.8 12.6 25.3c1.9 .6 4 1.3 6.1 2.1c0 0 0 0 0 0s0 0 0 0c8.3 2.9 17.9 6.2 28.2 8.4l0 14.6c0 11 9 20 20 20s20-9 20-20l0-13.8c8-1.7 16-4.5 23.2-9c14.3-8.9 25.1-24.1 24.8-45c-.3-20.3-11.7-33.4-24.6-41.6c-11.5-7.2-25.9-11.6-37.1-15c0 0 0 0 0 0l-.7-.2c-12.8-3.9-21.9-6.7-28.3-10.5c-5.2-3.1-5.3-4.9-5.3-6.7c0-3.7 1.4-6.5 6.2-9.3c5.4-3.2 13.6-5.1 21.5-5c9.6 .1 20.2 2.2 31.2 5.2c10.7 2.8 21.6-3.5 24.5-14.2s-3.5-21.6-14.2-24.5c-6.5-1.7-13.7-3.4-21.1-4.7l0-13.9z" />
                 </svg>
                 <div>
-                    <h1 class="text-sm">Total Sales</h1>
-                    <p class="text-xl font-bold">₱150,000</p>
+                    <h1 class="text-sm">Monthly Subscriptions</h1>
+                    <p class="text-xl font-bold">{{$subscription}}</p>
                 </div>
             </div>
             <div class="bg-white dark:bg-peak_2 rounded-lg px-4 py-5 flex space-x-2 items-center">
@@ -58,8 +58,7 @@
                     </p>
                 </div>
                 <div class="p-6">
-                    <canvas class="w-full h-full" id="users" width="400" height="300" aria-label="Bar"
-                        role="img">
+                    <canvas class="w-full h-full" id="users" width="400" height="300" aria-label="Bar" role="img">
                     </canvas>
                 </div>
             </div>
@@ -69,8 +68,7 @@
                     <p class="text-sm text-gray-500">View and manage your recent sales.</p>
                 </div>
                 <div class="p-6">
-                    <canvas class="w-full h-full" id="sales-line" width="400" height="300" aria-label="Line"
-                        role="img">
+                    <canvas class="w-full h-full" id="sales-line" width="400" height="300" aria-label="Line" role="img">
                     </canvas>
                 </div>
             </div>
@@ -81,17 +79,17 @@
                     <p class="text-sm text-gray-500">Stay up-to-date with your upcoming events.</p>
                 </div>
                 <div class="p-6">
-                    <canvas class="w-full h-full" id="sales-pie" width="300" height="300" aria-label="Line"
-                        role="img">
+                    <canvas class="w-full h-full" id="sales-pie" width="300" height="300" aria-label="Line" role="img">
                     </canvas>
                 </div>
             </div>
             <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
             <script>
-                document.addEventListener('DOMContentLoaded', function() {
+                document.addEventListener('DOMContentLoaded', function () {
                     const ctx1 = document.getElementById('users').getContext('2d');
                     const ctx2 = document.getElementById('sales-line').getContext('2d');
                     const ctx3 = document.getElementById('sales-pie').getContext('2d');
+
                     function sixMonths() {
                         const months = [];
                         const now = new Date();
@@ -103,7 +101,8 @@
                         }
                         return months;
                     }
-                    function getReserveData(){
+
+                    function getReserveData() {
                         //replace with actual data for the last 6 months
                         return [150, 180, 210, 240, 270, 300];
                     }
@@ -130,7 +129,7 @@
                                     min: 0,
                                     max: 500,
                                     ticks: {
-                                        callback: function(value) {
+                                        callback: function (value) {
                                             return value.toString();
                                         }
                                     },

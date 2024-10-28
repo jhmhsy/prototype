@@ -1,11 +1,11 @@
 <!-- Rent More Locker Modal -->
-<div style="display: none;" x-show="rentLockerOpen" class="fixed select-none inset-0 bg-black opacity-50 z-40">
+<div style="display:none;" x-show="rentLockerOpen" class="fixed select-none inset-0 bg-black opacity-50 z-40">
 </div>
 <!-- Member Details Modal -->
-<div x-show="rentLockerOpen" @click.away="rentLockerOpen = false" x-transition:enter="transition ease-out duration-300"
-    x-transition:enter-start="opacity-0 transform scale-90" x-transition:enter-end="opacity-100 transform scale-100"
-    x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100 transform scale-100"
-    x-transition:leave-end="opacity-0 transform scale-90"
+<div style="display:none;" x-show="rentLockerOpen" @click.away="rentLockerOpen = false"
+    x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform scale-90"
+    x-transition:enter-end="opacity-100 transform scale-100" x-transition:leave="transition ease-in duration-100"
+    x-transition:leave-start="opacity-100 transform scale-100" x-transition:leave-end="opacity-0 transform scale-90"
     class="modal fixed w-[90%] md:w-[60%] lg:w-[40%] xl:w-[35%] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 p-4 bg-white">
 
     <h3 class="text-lg leading-6 font-medium text-gray-900 mb-4">Rent More Locker</h3>
@@ -18,24 +18,29 @@
             <select id="locker_no" name="locker_no" required
                 class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                 @php
-                $allOccupied = true;
-                $firstAvailable = null;
+                    $allOccupied = true;
+                    $firstAvailable = null;
 
-                // Find first available locker
-                for ($i = 1; $i <= 21; $i++) { if (!in_array($i, $occupiedLockers)) { $firstAvailable=$i;
-                    $allOccupied=false; break; } } @endphp @if ($allOccupied) <option value="" disabled selected>All
-                    lockers are occupied</option>
-                    @else
+                    // Find first available locker
+                    for ($i = 1; $i <= 21; $i++) {
+                        if (!in_array($i, $occupiedLockers)) {
+                            $firstAvailable = $i;
+                            $allOccupied = false;
+                            break;
+                        }
+                } @endphp @if ($allOccupied)
+                    <option value="" disabled selected>All
+                        lockers are occupied</option>
+                @else
                     <option value="" disabled>Select a locker</option>
-                    @endif
+                @endif
 
-                    @for ($i = 1; $i <= 21; $i++) <option value="{{ $i }}"
-                        {{ in_array($i, $occupiedLockers) ? 'disabled' : '' }}
-                        {{ $i === $firstAvailable ? 'selected' : '' }}>
+                @for ($i = 1; $i <= 21; $i++)
+                    <option value="{{ $i }}" {{ in_array($i, $occupiedLockers) ? 'disabled' : '' }} {{ $i === $firstAvailable ? 'selected' : '' }}>
                         Locker No. {{ $i }}
                         {{ in_array($i, $occupiedLockers) ? '(Unavailable)' : '' }}
-                        </option>
-                        @endfor
+                    </option>
+                @endfor
             </select>
         </div>
         <div class="mb-4">

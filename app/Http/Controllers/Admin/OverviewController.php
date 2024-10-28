@@ -9,21 +9,26 @@ use App\Models\PendingBooking;
 use App\Models\RejectedBooking;
 use App\Models\User;
 
+use App\Models\Member;
+use App\Models\Service;
+
 class OverviewController extends Controller
 {
     public function index()
     {
         try {
-            $users = User::count();
+            $members = Member::count();
+            $subscription = Service::count();
             $totalBooking = Booking::count() + RejectedBooking::count() + PendingBooking::count();
             $totalFeedbackRating = Feedback::whereBetween('rating', [3, 5])->count();
             //$sales =
         } catch (\Exception $e) {
             $data = 0;
-            $users = 0;
+            $members = 0;
+            $subscription = 0;
             $totalBooking = 0;
             $totalFeedbackRating = 0;
         }
-        return view('administrator.overview.index', compact('users', 'totalBooking', 'totalFeedbackRating'));
+        return view('administrator.overview.index', compact('members', 'subscription', 'totalBooking', 'totalFeedbackRating'));
     }
 }
