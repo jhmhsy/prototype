@@ -1,0 +1,44 @@
+.tooltip {
+    transition: opacity 0.2s, visibility 0.2s;
+    /* Add visibility transition */
+    opacity: 0;
+    /* Start as invisible */
+    pointer-events: none;
+    /* Prevent interactions */
+    will-change: opacity;
+    /* Optimize rendering */
+    white-space: nowrap;
+    /* Prevent text from wrapping */
+    display: inline-block;
+    /* Maintain inline behavior */
+    min-width: 100px;
+    /* Optional: Set a minimum width for better aesthetics */
+    padding: 0.5rem;
+    /* Flexible height */
+}
+
+.tooltip.hidden {
+    display: none;
+    /* Hide tooltip */
+}
+
+.tooltip.visible {
+    display: block;
+    /* Show tooltip */
+    opacity: 1;
+    /* Make it visible */
+}
+
+/* Position the tooltip directly above the button */
+.relative {
+    position: relative;
+    /* Ensure the tooltip is positioned relative to this container */
+}
+
+.tooltip-button:hover + .tooltip {
+    /* Styles when hovered */
+    opacity: 1;
+    /* Make tooltip visible on hover */
+    visibility: visible;
+    /* Ensure it is visible */
+}

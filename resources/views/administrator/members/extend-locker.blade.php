@@ -9,7 +9,9 @@
     class="modal fixed w-[90%] md:w-[60%] lg:w-[40%] xl:w-[35%] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 p-4 bg-white">
 
     <h3 class="text-lg leading-6 font-medium text-gray-900 mb-4">Rent More Locker</h3>
-    <form action="{{ route('members.rent-locker', $member->id) }}" method="POST">
+    <form action="{{ route('members.rent-locker', $member->id) }}" method="POST" id="locker-form-{{ $member->id }}"
+        class="locker-form" x-data="{ month: '', showError: false }"
+        @submit.prevent="showError = !month; if (!showError) $el.submit();">
         @csrf
         <input hidden name="form_token" value="{{ session('form_token') }}">
         <div class="mb-4">
@@ -18,44 +20,73 @@
             <select id="locker_no" name="locker_no" required
                 class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                 @php
-                    $allOccupied = true;
-                    $firstAvailable = null;
+                $allOccupied = true;
+                $firstAvailable = null;
 
-                    // Find first available locker
-                    for ($i = 1; $i <= 21; $i++) {
-                        if (!in_array($i, $occupiedLockers)) {
-                            $firstAvailable = $i;
-                            $allOccupied = false;
-                            break;
-                        }
-                } @endphp @if ($allOccupied)
-                    <option value="" disabled selected>All
-                        lockers are occupied</option>
-                @else
+                // Find first available locker
+                for ($i = 1; $i <= 21; $i++) { if (!in_array($i, $occupiedLockers)) { $firstAvailable=$i;
+                    $allOccupied=false; break; } } @endphp @if ($allOccupied) <option value="" disabled selected>All
+                    lockers are occupied</option>
+                    @else
                     <option value="" disabled>Select a locker</option>
-                @endif
+                    @endif
 
-                @for ($i = 1; $i <= 21; $i++)
-                    <option value="{{ $i }}" {{ in_array($i, $occupiedLockers) ? 'disabled' : '' }} {{ $i === $firstAvailable ? 'selected' : '' }}>
+                    @for ($i = 1; $i <= 21; $i++) <option value="{{ $i }}"
+                        {{ in_array($i, $occupiedLockers) ? 'disabled' : '' }}
+                        {{ $i === $firstAvailable ? 'selected' : '' }}>
                         Locker No. {{ $i }}
                         {{ in_array($i, $occupiedLockers) ? '(Unavailable)' : '' }}
-                    </option>
-                @endfor
+                        </option>
+                        @endfor
             </select>
         </div>
+
+
         <div class="mb-4">
-            <label for="start_date" class="block text-sm font-medium text-gray-700">Start
-                Date</label>
-            <input type="date" id="start_date" name="start_date" required
-                class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+
+
+            <label for="locker_start_date_{{ $member->id }}" class="block text-sm font-medium text-gray-700">
+                Start Date
+            </label>
+            <div class="flex space-x-2">
+                <input type="date" id="locker_start_date_{{ $member->id }}" name="start_date" required
+                    class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                <div class="relative inline-block">
+                    <button type="button" onclick="refreshDate({{ $member->id }}, 'lockers', 'locker')"
+                        class="mt-2 inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 tooltip-button">
+                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                        </svg>
+                    </button>
+                    <div class="tooltip hidden absolute z-10 bg-white text-black text-xs py-1 px-2 mt-1" role="tooltip">
+                        Automatically updates the date to reflect the most recent rented lockers due date
+                    </div>
+                </div>
+
+            </div>
+
         </div>
+
+        <!-- Month Selection -->
         <div class="mb-4">
-            <label for="amount" class="block text-sm font-medium text-gray-700">For How many Month</label>
-            <input type="number" name="locker_month"
+            <label for="month_{{ $member->id }}" class="block text-sm font-medium text-gray-700">
+                How many Months (max 12)
+            </label>
+            <input x-model="month" type="number" id="month_{{ $member->id }}" name="month" placeholder="1" min="1"
+                max="12"
                 class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+
+            <!-- Error Message -->
+            <p x-show="showError" x-cloak class="error text-xs text-red-500">
+                Months quantity is needed.
+            </p>
         </div>
+
+        <!-- Submit Button -->
         <button type="submit" class="w-full bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
-            Rent Locker
+            Confirm
         </button>
     </form>
     <button @click="rentLockerOpen = false, open = true"

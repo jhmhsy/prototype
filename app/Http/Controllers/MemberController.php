@@ -10,6 +10,7 @@ use App\Models\Locker;
 use App\Models\Treadmill;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Http\JsonResponse;
 use Carbon\Carbon;
 
 use Endroid\QrCode\QrCode;
@@ -252,11 +253,11 @@ class MemberController extends Controller
         $request->validate([
             'locker_no' => 'required|string',
             'start_date' => 'required|date',
-            'locker_month' => 'required|numeric|min:1|max:12',
+            'month' => 'required|numeric|min:1|max:12',
         ]);
 
         $member = Member::findOrFail($id);
-        $months = intval($request->input("locker_month"));
+        $months = intval($request->input("month"));
         $startDate = $request->input("start_date");
 
         $totalamount = $months * 100;
@@ -273,10 +274,6 @@ class MemberController extends Controller
 
         $this->updateLockerStatus();
 
-
-
-
-
         return redirect()->back()->with('success', 'New locker rented successfully.');
     }
 
@@ -292,13 +289,13 @@ class MemberController extends Controller
         session()->forget('form_token');
 
         $request->validate([
-            'treadmill_start_date' => 'nullable|date',
-            'treadmill_months' => 'nullable|integer|min:1|max:12', // Assuming 12 is the max
+            'start_date' => 'nullable|date',
+            'month' => 'nullable|integer|min:1|max:12', // Assuming 12 is the max
         ]);
 
         $member = Member::findOrFail($id);
-        $startDate = $request->input("treadmill_start_date");
-        $months = intval($request->input("treadmill_months"));
+        $startDate = $request->input("start_date");
+        $months = intval($request->input("month"));
         $totalamount = $months * 200;
 
         $newTreadmill = new Treadmill([
@@ -375,4 +372,24 @@ class MemberController extends Controller
         return null; // Return null if there's no duplicate submission
     }
 
+    public function getRelationStartDate($memberId, $relation): JsonResponse
+    {
+        if (!in_array($relation, ['services', 'lockers', 'treadmills'])) {
+            return response()->json(['error' => 'Invalid relation type'], 400);
+        }
+
+        $member = Member::with([
+            $relation => function ($query) {
+                $query->orderBy('due_date', 'desc');
+            }
+        ])->findOrFail($memberId);
+
+        $latestRecord = $member->$relation->first();
+
+        $startDate = $latestRecord
+            ? Carbon::parse($latestRecord->due_date)->addDay()->format('Y-m-d')
+            : Carbon::now()->format('Y-m-d');
+
+        return response()->json(['start_date' => $startDate]);
+    }
 }

@@ -19,6 +19,9 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\CheckinController;
 
+Route::get('/members/{member}/start-date/{relation}', [MemberController::class, 'getRelationStartDate'])
+    ->name('members.get-relation-start-date')
+    ->where('relation', 'services|lockers|treadmills');
 
 Route::post('/members/{member}/generate-qrcode', [MemberController::class, 'generateQrCode'])->name('members.generate-qrcode');
 
