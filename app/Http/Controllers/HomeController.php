@@ -11,4 +11,10 @@ class HomeController extends Controller
     {
         return view('welcome');
     }
+
+    public function showmap()
+    {
+        return view('gym-map');
+    }
+
 }

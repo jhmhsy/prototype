@@ -21,6 +21,8 @@ use App\Http\Controllers\CheckinController;
 
 use App\Http\Controllers\BarcodeController;
 
+
+
 Route::get('/scan', [BarcodeController::class, 'index'])->name('scan.index');
 Route::post('/process-barcode', [BarcodeController::class, 'process'])->name('process.barcode');
 
@@ -56,6 +58,8 @@ Route::get('/cancel', [PaymentController::class, 'cancel']);
 
 //Welcome Page  
 Route::get('/', [HomeController::class, 'index'])->name('welcome');
+
+Route::get('/gym-map', [HomeController::class, 'showmap'])->name('gym-map');
 //⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎ 𝗣𝗨𝗕𝗟𝗜𝗖
 
 

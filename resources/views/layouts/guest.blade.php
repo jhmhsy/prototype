@@ -17,6 +17,10 @@
     <link href='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.css' rel='stylesheet' />
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js' defer></script>
 
+    <!-- Google map -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+
     <!-- Loaders -->
     <link href="{{ asset('css/loaders/blue-spinner.css') }}" rel="stylesheet">
     <script src="{{ asset('js/global-loader.js') }}" defer></script>

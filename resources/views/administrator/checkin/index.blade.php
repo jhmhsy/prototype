@@ -28,13 +28,13 @@
             </form>
 
             {{--<form action="{{ route('checkin.index') }}" method="GET" class="mt-4">
-            <div class="flex">
-                <input type="text" name="search"
-                    class="flex-grow rounded-l-md border-gray-300 focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
-                    placeholder="Search by ID Number" value="{{ request('search') }}">
-                <button type="submit"
-                    class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-r-md transition duration-300">Search</button>
-            </div>
+                <div class="flex">
+                    <input type="text" name="search"
+                        class="flex-grow rounded-l-md border-gray-300 focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+                        placeholder="Search by ID Number" value="{{ request('search') }}">
+                    <button type="submit"
+                        class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-r-md transition duration-300">Search</button>
+                </div>
             </form>--}}
         </div>
 
@@ -55,252 +55,247 @@
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
                     @foreach ($members as $member)
-                    <tr x-data="{ open: false, showWarning: false }" :key="member . id">
-                        <td class="px-6 py-4 whitespace-nowrap">{{ $member->id_number }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap">{{ $member->name }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap">
-                            @php
-                            $alreadyCheckedIn = \App\Models\CheckinRecord::where('user_id', $member->id)
-                            ->whereDate('checkin_date', \Carbon\Carbon::now()->toDateString())
-                            ->exists();
-                            @endphp
+                                        <tr x-data="{ open: false, showWarning: false }" :key="member . id">
+                                            <td class="px-6 py-4 whitespace-nowrap">{{ $member->id_number }}</td>
+                                            <td class="px-6 py-4 whitespace-nowrap">{{ $member->name }}</td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                @php
+                                                    $alreadyCheckedIn = \App\Models\CheckinRecord::where('user_id', $member->id)
+                                                        ->whereDate('checkin_date', \Carbon\Carbon::now()->toDateString())
+                                                        ->exists();
+                                                @endphp
+
+                                                @if ($alreadyCheckedIn)
+                                                    <span
+                                                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+                                                        User has checked in
+                                                    </span>
+                                                @elseif (!$member->hasSubscriptions)
+                                                    <span
+                                                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-gray-100 text-gray-800">
+                                                        No subscriptions
+                                                    </span>
+                                                @else
+
+                                                                        @php
+                                                                            $buttonClass = '';
+
+                                                                            foreach ($member->services as $service) {
+                                                                                if ($service->status === "Overdue") {
+                                                                                    $buttonClass = "bg-red-500 hover:bg-red-600";
+                                                                                    break;
+                                                                                } elseif ($service->status === "Due") {
+                                                                                    $buttonClass = "bg-orange-500 hover:bg-orange-600";
+                                                                                }
+                                                                            }
 
 
+                                                                            if (!$buttonClass) {
+                                                                                $buttonClass = "bg-green-500 hover:bg-green-600"; // Class for active or default
+                                                                            }
+                                                                        @endphp
+
+                                                                        <button @click="open = true"
+                                                                            class="{{ $buttonClass }} text-white font-bold py-1 px-3 rounded text-sm transition duration-300">
+                                                                            Check-in
+                                                                        </button>
 
 
+                                                @endif
+                                            </td>
+                                            <td>
+                                                <!-- Warning Modal -->
+                                                <div x-show="showWarning" style="display: none;"
+                                                    class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
+                                                    <div class="bg-white p-6 rounded-lg shadow-xl max-w-md w-full mx-4"
+                                                        @click.away="showWarning = false">
+                                                        <h3 class="text-xl font-bold mb-4">Warning</h3>
+                                                        <p class="mb-4">This user has overdue subscriptions. Do you want to proceed with
+                                                            check-in?</p>
+                                                        <div class="flex justify-end space-x-4">
+                                                            <button @click="showWarning = false"
+                                                                class="px-4 py-2 bg-gray-300 text-gray-700 rounded hover:bg-gray-400">
+                                                                Cancel
+                                                            </button>
+                                                            <form action="{{ route('checkin.store', $member) }}" method="POST">
+                                                                @csrf
+                                                                <input type="hidden" name="force_checkin" value="1">
+                                                                <button type="submit"
+                                                                    onclick="this.disabled = true; this.innerText = 'Checking in. . .'; this.form.submit();"
+                                                                    class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600">
+                                                                    Proceed Anyway
+                                                                </button>
+
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Details Modal -->
+                                                <div style="display: none;" x-show="open"
+                                                    class="fixed inset-0 bg-black bg-opacity-50 z-40 select-none"></div>
+                                                <div style="display: none;" x-show="open" @click.away="open = false"
+                                                    class="modal fixed w-[90%] md:w-[60%] lg:w-[50%] xl:w-[55%] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 p-4 bg-white">
+                                                    <h3 class="text-lg leading-6 font-medium text-gray-900">{{ $member->name }}'s Details
+                                                    </h3>
+                                                    <div class="mt-2 px-7 py-3">
+                                                        <p class="text-sm text-gray-500">
+                                                            <strong>ID Number: {{ $member->id_number }}</strong><br>
+                                                            Email: {{ $member->email }}<br>
+                                                            Phone: {{ $member->phone }}<br>
+                                                            Facebook: {{ $member->fb ?? 'N/A' }}<br>
+                                                            User ID: {{ $member->user_identifier }}
+                                                        </p>
+                                                        <div class="flex justify-between items-center mb-4">
+                                                            <h2 class="text-2xl font-bold">Services List</h2>
+                                                            <div class="space-x-2">
+                                                                <select x-model="serviceFilter" class="border p-2 rounded">
+                                                                    <option value="all">All</option>
+                                                                    <option value="service">Service</option>
+                                                                    <option value="locker">Lockers</option>
+                                                                    <option value="treadmill">Treadmill</option>
+                                                                </select>
+                                                                <select x-model="statusFilter" class="border p-2 rounded">
+                                                                    <option value="current">Current</option>
+                                                                    <option value="expired">Expired</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="overflow-auto h-64">
+                                                            <table class="table-fixed w-full border-collapse">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th class="px-4 py-2">Service</th>
+                                                                        <th class="px-4 py-2">Amount</th>
+                                                                        <th class="px-4 py-2">Months</th>
+                                                                        <th class="px-4 py-2">Start Date</th>
+                                                                        <th class="px-4 py-2">Due Date</th>
+                                                                        <th class="px-4 py-2">Status</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    @foreach($member->services as $service)
+                                                                                                                <template
+                                                                                                                    x-if="(serviceFilter === 'all' || serviceFilter === 'service') && ((statusFilter === 'current' && ['Active', 'Inactive', 'Due', 'Overdue'].includes('{{ $service->status }}')) || (statusFilter === 'expired' && '{{ $service->status }}' === 'Expired'))">
+                                                                                                                    <tr>
+                                                                                                                        <td class="border px-4 py-2">{{ $service->service_type }}</td>
+                                                                                                                        <td class="border px-4 py-2">${{ $service->amount }}</td>
+                                                                                                                        <td class="border px-4 py-2">{{ $service->month }}</td>
+                                                                                                                        <td class="border px-4 py-2">
+                                                                                                                            {{ \Carbon\Carbon::parse($service->start_date)->format('M j, Y') }}
+                                                                                                                        </td>
+                                                                                                                        <td class="border px-4 py-2">
+                                                                                                                            {{ \Carbon\Carbon::parse($service->due_date)->format('M j, Y') }}
+                                                                                                                        </td>
+                                                                                                                        @php
+                                                                                                                            $statusClass = match ($service->status) {
+                                                                                                                                'Active' => 'text-green-600', 'Inactive' => 'text-blue-700',
+                                                                                                                                'Due'
+                                                                                                                                =>
+                                                                                                                                'text-orange-500', 'Overdue' => 'text-red-700', 'Expired' =>
+                                                                                                                                'text-gray-500',
+                                                                                                                                default => '',
+                                                                                                                        };@endphp
+                                                                                                                        <td class="border px-4 py-2 font-bold {{ $statusClass }}">
+                                                                                                                            {{ $service->status }}
+                                                                                                                        </td>
+
+                                                                                                                    </tr>
+                                                                                                                </template>
+                                                                    @endforeach
+                                                                    @foreach($member->lockers as $locker)
+                                                                                                                <template
+                                                                                                                    x-if="(serviceFilter === 'all' || serviceFilter === 'locker') && 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ((statusFilter === 'current' && ['Active', 'Inactive', 'Due', 'Overdue'].includes('{{ $locker->status }}')) || 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    (statusFilter === 'expired' && '{{ $locker->status }}' === 'Expired'))">
+                                                                                                                    <tr>
+                                                                                                                        <td class="border px-4 py-2">Locker #{{ $locker->locker_no }}
+                                                                                                                        </td>
+                                                                                                                        <td class="border px-4 py-2">₱{{ $locker->amount }}</td>
+                                                                                                                        <td class="border px-4 py-2">{{ $locker->month }}</td>
+                                                                                                                        <td class="border px-4 py-2">
+                                                                                                                            {{ \Carbon\Carbon::parse($locker->start_date)->format('M j, Y') }}
+                                                                                                                        </td>
+                                                                                                                        <td class="border px-4 py-2">
+                                                                                                                            {{ \Carbon\Carbon::parse($locker->due_date)->format('M j, Y') }}
+                                                                                                                        </td>
+                                                                                                                        @php
+                                                                                                                            $statusClass = match ($locker->status) {
+                                                                                                                                'Active' => 'text-green-600', 'Inactive' => 'text-blue-700',
+                                                                                                                                'Due'
+                                                                                                                                =>
+                                                                                                                                'text-orange-500', 'Overdue' => 'text-red-700', 'Expired' =>
+                                                                                                                                'text-gray-500',
+                                                                                                                                default => '',
+                                                                                                                        };@endphp
+                                                                                                                        <td class="border px-4 py-2 font-bold {{ $statusClass }}">
+                                                                                                                            {{ $locker->status }}
+                                                                                                                        </td>
+                                                                                                                    </tr>
+                                                                                                                </template>
+                                                                    @endforeach
+                                                                    @foreach($member->treadmills as $treadmill)
+                                                                                                                <template
+                                                                                                                    x-if="(serviceFilter === 'all' || serviceFilter === 'treadmill') && 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ((statusFilter === 'current' && ['Active', 'Inactive', 'Due', 'Overdue'].includes('{{ $treadmill->status }}')) || 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    (statusFilter === 'expired' && '{{ $treadmill->status }}' === 'Expired'))">
+                                                                                                                    <tr>
+                                                                                                                        <td class="border px-4 py-2">Treadmill</td>
+                                                                                                                        <td class="border px-4 py-2">₱{{ $treadmill->amount }}</td>
+                                                                                                                        <td class="border px-4 py-2">{{ $treadmill->month }}</td>
+                                                                                                                        <td class="border px-4 py-2">
+                                                                                                                            {{ \Carbon\Carbon::parse($treadmill->start_date)->format('M j, Y') }}
+                                                                                                                        </td>
+                                                                                                                        <td class="border px-4 py-2">
+                                                                                                                            {{ \Carbon\Carbon::parse($treadmill->due_date)->format('M j, Y') }}
+                                                                                                                        </td>
+                                                                                                                        @php
+                                                                                                                            $statusClass = match ($treadmill->status) {
+                                                                                                                                'Active' => 'text-green-600', 'Inactive' => 'text-blue-700',
+                                                                                                                                'Due'
+                                                                                                                                =>
+                                                                                                                                'text-orange-500', 'Overdue' => 'text-red-700', 'Expired' =>
+                                                                                                                                'text-gray-500',
+                                                                                                                                default => '',
+                                                                                                                        };@endphp
+                                                                                                                        <td class="border px-4 py-2 font-bold {{ $statusClass }}">
+                                                                                                                            {{ $treadmill->status }}
+                                                                                                                        </td>
+                                                                                                                    </tr>
+                                                                                                                </template>
+                                                                    @endforeach
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                    <div class="flex gap-3">
+                                                        @if (!$alreadyCheckedIn)
+                                                            @if ($member->hasOverdueSubscription)
+                                                                <button @click="open = false; showWarning = true"
+                                                                    class="mt-4 bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded transition duration-300">
+                                                                    Check-in (Warning)
+                                                                </button>
+                                                            @elseif ($member->hasValidSubscription)
+                                                                <form action="{{ route('checkin.store', $member) }}" method="POST">
+                                                                    @csrf
 
 
-                            @if ($alreadyCheckedIn)
-                            <span
-                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
-                                User has checked in
-                            </span>
-                            @elseif (!$member->hasSubscriptions)
-                            <span
-                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-gray-100 text-gray-800">
-                                No subscriptions
-                            </span>
-                            @else
-
-                            @php
-                            $buttonClass = ''; // Initialize the button class variable
-
-                            foreach ($member->services as $service) {
-                            if ($service->status === "Overdue") {
-                            $buttonClass = "bg-red-500 hover:bg-red-600"; // Set class for overdue
-                            break; // Exit loop on first "Overdue"
-                            } elseif ($service->status === "Due") {
-                            $buttonClass = "bg-orange-500 hover:bg-orange-600"; // Set class for due
-                            }
-                            }
-
-                            // If neither overdue nor due, set default class (optional)
-                            if (!$buttonClass) {
-                            $buttonClass = "bg-green-500 hover:bg-green-600"; // Class for active or default
-                            }
-                            @endphp
-
-                            <button @click="open = true"
-                                class="{{ $buttonClass }} text-white font-bold py-1 px-3 rounded text-sm transition duration-300">
-                                Check-in
-                            </button>
-
-
-                            @endif
-                        </td>
-                        <td>
-                            <!-- Warning Modal -->
-                            <div x-show="showWarning" style="display: none;"
-                                class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
-                                <div class="bg-white p-6 rounded-lg shadow-xl max-w-md w-full mx-4"
-                                    @click.away="showWarning = false">
-                                    <h3 class="text-xl font-bold mb-4">Warning</h3>
-                                    <p class="mb-4">This user has overdue subscriptions. Do you want to proceed with
-                                        check-in?</p>
-                                    <div class="flex justify-end space-x-4">
-                                        <button @click="showWarning = false"
-                                            class="px-4 py-2 bg-gray-300 text-gray-700 rounded hover:bg-gray-400">
-                                            Cancel
-                                        </button>
-                                        <form action="{{ route('checkin.store', $member) }}" method="POST">
-                                            @csrf
-                                            <input type="hidden" name="force_checkin" value="1">
-                                            <button type="submit"
-                                                onclick="this.disabled = true; this.innerText = 'Checking in. . .'; this.form.submit();"
-                                                class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600">
-                                                Proceed Anyway
-                                            </button>
-
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Details Modal -->
-                            <div style="display: none;" x-show="open"
-                                class="fixed inset-0 bg-black bg-opacity-50 z-40 select-none"></div>
-                            <div style="display: none;" x-show="open" @click.away="open = false"
-                                class="modal fixed w-[90%] md:w-[60%] lg:w-[50%] xl:w-[55%] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 p-4 bg-white">
-                                <h3 class="text-lg leading-6 font-medium text-gray-900">{{ $member->name }}'s Details
-                                </h3>
-                                <div class="mt-2 px-7 py-3">
-                                    <p class="text-sm text-gray-500">
-                                        <strong>ID Number: {{ $member->id_number }}</strong><br>
-                                        Email: {{ $member->email }}<br>
-                                        Phone: {{ $member->phone }}<br>
-                                        Facebook: {{ $member->fb ?? 'N/A' }}<br>
-                                        User ID: {{ $member->user_identifier }}
-                                    </p>
-                                    <div class="flex justify-between items-center mb-4">
-                                        <h2 class="text-2xl font-bold">Services List</h2>
-                                        <div class="space-x-2">
-                                            <select x-model="serviceFilter" class="border p-2 rounded">
-                                                <option value="all">All</option>
-                                                <option value="service">Service</option>
-                                                <option value="locker">Lockers</option>
-                                                <option value="treadmill">Treadmill</option>
-                                            </select>
-                                            <select x-model="statusFilter" class="border p-2 rounded">
-                                                <option value="current">Current</option>
-                                                <option value="expired">Expired</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="overflow-auto h-64">
-                                        <table class="table-fixed w-full border-collapse">
-                                            <thead>
-                                                <tr>
-                                                    <th class="px-4 py-2">Service</th>
-                                                    <th class="px-4 py-2">Amount</th>
-                                                    <th class="px-4 py-2">Months</th>
-                                                    <th class="px-4 py-2">Start Date</th>
-                                                    <th class="px-4 py-2">Due Date</th>
-                                                    <th class="px-4 py-2">Status</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @foreach($member->services as $service)
-                                                <template
-                                                    x-if="(serviceFilter === 'all' || serviceFilter === 'service') && ((statusFilter === 'current' && ['Active', 'Inactive', 'Due', 'Overdue'].includes('{{ $service->status }}')) || (statusFilter === 'expired' && '{{ $service->status }}' === 'Expired'))">
-                                                    <tr>
-                                                        <td class="border px-4 py-2">{{ $service->service_type }}</td>
-                                                        <td class="border px-4 py-2">${{ $service->amount }}</td>
-                                                        <td class="border px-4 py-2">{{ $service->month }}</td>
-                                                        <td class="border px-4 py-2">
-                                                            {{ \Carbon\Carbon::parse($service->start_date)->format('M j, Y') }}
-                                                        </td>
-                                                        <td class="border px-4 py-2">
-                                                            {{ \Carbon\Carbon::parse($service->due_date)->format('M j, Y') }}
-                                                        </td>
-                                                        @php
-                                                        $statusClass = match ($service->status) {
-                                                        'Active' => 'text-green-600', 'Inactive' => 'text-blue-700',
-                                                        'Due'
-                                                        =>
-                                                        'text-orange-500', 'Overdue' => 'text-red-700', 'Expired' =>
-                                                        'text-gray-500',
-                                                        default => '',
-                                                        };@endphp
-                                                        <td class="border px-4 py-2 font-bold {{ $statusClass }}">
-                                                            {{ $service->status }}
-                                                        </td>
-
-                                                    </tr>
-                                                </template>
-                                                @endforeach
-                                                @foreach($member->lockers as $locker)
-                                                <template
-                                                    x-if="(serviceFilter === 'all' || serviceFilter === 'locker') && 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ((statusFilter === 'current' && ['Active', 'Inactive', 'Due', 'Overdue'].includes('{{ $locker->status }}')) || 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    (statusFilter === 'expired' && '{{ $locker->status }}' === 'Expired'))">
-                                                    <tr>
-                                                        <td class="border px-4 py-2">Locker #{{ $locker->locker_no }}
-                                                        </td>
-                                                        <td class="border px-4 py-2">₱{{ $locker->amount }}</td>
-                                                        <td class="border px-4 py-2">{{ $locker->month }}</td>
-                                                        <td class="border px-4 py-2">
-                                                            {{ \Carbon\Carbon::parse($locker->start_date)->format('M j, Y') }}
-                                                        </td>
-                                                        <td class="border px-4 py-2">
-                                                            {{ \Carbon\Carbon::parse($locker->due_date)->format('M j, Y') }}
-                                                        </td>
-                                                        @php
-                                                        $statusClass = match ($locker->status) {
-                                                        'Active' => 'text-green-600', 'Inactive' => 'text-blue-700',
-                                                        'Due'
-                                                        =>
-                                                        'text-orange-500', 'Overdue' => 'text-red-700', 'Expired' =>
-                                                        'text-gray-500',
-                                                        default => '',
-                                                        };@endphp
-                                                        <td class="border px-4 py-2 font-bold {{ $statusClass }}">
-                                                            {{ $locker->status }}
-                                                        </td>
-                                                    </tr>
-                                                </template>
-                                                @endforeach
-                                                @foreach($member->treadmills as $treadmill)
-                                                <template
-                                                    x-if="(serviceFilter === 'all' || serviceFilter === 'treadmill') && 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ((statusFilter === 'current' && ['Active', 'Inactive', 'Due', 'Overdue'].includes('{{ $treadmill->status }}')) || 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    (statusFilter === 'expired' && '{{ $treadmill->status }}' === 'Expired'))">
-                                                    <tr>
-                                                        <td class="border px-4 py-2">Treadmill</td>
-                                                        <td class="border px-4 py-2">₱{{ $treadmill->amount }}</td>
-                                                        <td class="border px-4 py-2">{{ $treadmill->month }}</td>
-                                                        <td class="border px-4 py-2">
-                                                            {{ \Carbon\Carbon::parse($treadmill->start_date)->format('M j, Y') }}
-                                                        </td>
-                                                        <td class="border px-4 py-2">
-                                                            {{ \Carbon\Carbon::parse($treadmill->due_date)->format('M j, Y') }}
-                                                        </td>
-                                                        @php
-                                                        $statusClass = match ($treadmill->status) {
-                                                        'Active' => 'text-green-600', 'Inactive' => 'text-blue-700',
-                                                        'Due'
-                                                        =>
-                                                        'text-orange-500', 'Overdue' => 'text-red-700', 'Expired' =>
-                                                        'text-gray-500',
-                                                        default => '',
-                                                        };@endphp
-                                                        <td class="border px-4 py-2 font-bold {{ $statusClass }}">
-                                                            {{ $treadmill->status }}
-                                                        </td>
-                                                    </tr>
-                                                </template>
-                                                @endforeach
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                                <div class="flex gap-3">
-                                    @if (!$alreadyCheckedIn)
-                                    @if ($member->hasOverdueSubscription)
-                                    <button @click="open = false; showWarning = true"
-                                        class="mt-4 bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded transition duration-300">
-                                        Check-in (Warning)
-                                    </button>
-                                    @elseif ($member->hasValidSubscription)
-                                    <form action="{{ route('checkin.store', $member) }}" method="POST">
-                                        @csrf
-
-
-                                        <button type="submit"
-                                            onclick="this.disabled = true; this.innerText = 'Checking in...'; this.form.submit();"
-                                            class="mt-4 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded transition duration-300">
-                                            Check-in
-                                        </button>
-                                    </form>
-                                    @endif
-                                    @endif
-                                    <button @click="open = false"
-                                        class="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
-                                        Close
-                                    </button>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
+                                                                    <button type="submit"
+                                                                        onclick="this.disabled = true; this.innerText = 'Checking in...'; this.form.submit();"
+                                                                        class="mt-4 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded transition duration-300">
+                                                                        Check-in
+                                                                    </button>
+                                                                </form>
+                                                            @endif
+                                                        @endif
+                                                        <button @click="open = false"
+                                                            class="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                                                            Close
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
                     @endforeach
                 </tbody>
             </table>
@@ -314,203 +309,203 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jsqr/1.4.0/jsQR.js"></script>
 <script>
-const qrInput = document.getElementById("qrInput");
+    const qrInput = document.getElementById("qrInput");
 
-function handleImageUpload(event) {
-    const file = event.target.files[0];
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            processQRCode(e.target.result);
-        };
-        reader.readAsDataURL(file);
-    }
-}
-
-qrInput.addEventListener("change", handleImageUpload);
-
-function processQRCode(imageData) {
-    const img = new Image();
-    img.onload = function() {
-        const canvas = document.createElement("canvas");
-        const context = canvas.getContext("2d");
-        canvas.width = img.width;
-        canvas.height = img.height;
-        context.drawImage(img, 0, 0, img.width, img.height);
-        const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
-        const code = jsQR(imageData.data, imageData.width, imageData.height);
-
-        if (code) {
-            document.getElementById("qrOutput").value = code.data;
-            document.getElementById("searchForm").submit();
-        } else {
-            console.log("No QR code found.");
+    function handleImageUpload(event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                processQRCode(e.target.result);
+            };
+            reader.readAsDataURL(file);
         }
-    };
-    img.src = imageData;
-}
+    }
+
+    qrInput.addEventListener("change", handleImageUpload);
+
+    function processQRCode(imageData) {
+        const img = new Image();
+        img.onload = function () {
+            const canvas = document.createElement("canvas");
+            const context = canvas.getContext("2d");
+            canvas.width = img.width;
+            canvas.height = img.height;
+            context.drawImage(img, 0, 0, img.width, img.height);
+            const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+            const code = jsQR(imageData.data, imageData.width, imageData.height);
+
+            if (code) {
+                document.getElementById("qrOutput").value = code.data;
+                document.getElementById("searchForm").submit();
+            } else {
+                console.log("No QR code found.");
+            }
+        };
+        img.src = imageData;
+    }
 </script>
 
 <script>
-function barcodeScanner() {
-    return {
-        scannedValue: '',
-        buffer: '',
-        debugLog: '',
-        lastKeyTime: 0,
-        keyDelay: 50,
-        collecting: false,
-        keyCount: 0,
+    function barcodeScanner() {
+        return {
+            scannedValue: '',
+            buffer: '',
+            debugLog: '',
+            lastKeyTime: 0,
+            keyDelay: 50,
+            collecting: false,
+            keyCount: 0,
 
-        init() {
-            // Handle keydown events
-            document.addEventListener('keydown', (e) => {
-                const currentTime = new Date().getTime();
-                const timeDiff = currentTime - this.lastKeyTime;
+            init() {
+                // Handle keydown events
+                document.addEventListener('keydown', (e) => {
+                    const currentTime = new Date().getTime();
+                    const timeDiff = currentTime - this.lastKeyTime;
 
-                // Log every keypress for debugging
-                this.debugLog += `Key: ${e.key} | Code: ${e.keyCode} | Time: ${timeDiff}ms\n`;
+                    // Log every keypress for debugging
+                    this.debugLog += `Key: ${e.key} | Code: ${e.keyCode} | Time: ${timeDiff}ms\n`;
 
-                // Start new scan if sufficient time has passed
-                if (timeDiff > 500) {
-                    this.buffer = '';
-                    this.keyCount = 0;
-                    this.collecting = true;
-                }
-
-                // Only collect if we're in scanning mode
-                if (this.collecting) {
-                    // Handle special cases
-                    if (e.keyCode === 13) { // Enter key
-                        this.finalizeScan();
-                        e.preventDefault();
-                        return;
+                    // Start new scan if sufficient time has passed
+                    if (timeDiff > 500) {
+                        this.buffer = '';
+                        this.keyCount = 0;
+                        this.collecting = true;
                     }
 
-                    // Add to buffer based on keyCode rather than key value
-                    const char = this.mapKeyCodeToChar(e.keyCode, e.shiftKey);
-                    if (char) {
-                        this.buffer += char;
-                        this.keyCount++;
-                    }
-                }
-
-                this.lastKeyTime = currentTime;
-            });
-        },
-
-        mapKeyCodeToChar(keyCode, isShift) {
-            // Common URL characters mapping
-            const keyMap = {
-                190: '.', // Period
-                191: '/', // Forward slash
-                186: ':', // Colon
-                189: '-', // Hyphen
-                // Add numbers
-                48: '0',
-                49: '1',
-                50: '2',
-                51: '3',
-                52: '4',
-                53: '5',
-                54: '6',
-                55: '7',
-                56: '8',
-                57: '9',
-                // Add letters (lowercase)
-                65: 'a',
-                66: 'b',
-                67: 'c',
-                68: 'd',
-                69: 'e',
-                70: 'f',
-                71: 'g',
-                72: 'h',
-                73: 'i',
-                74: 'j',
-                75: 'k',
-                76: 'l',
-                77: 'm',
-                78: 'n',
-                79: 'o',
-                80: 'p',
-                81: 'q',
-                82: 'r',
-                83: 's',
-                84: 't',
-                85: 'u',
-                86: 'v',
-                87: 'w',
-                88: 'x',
-                89: 'y',
-                90: 'z'
-            };
-
-            let char = keyMap[keyCode];
-            if (char && isShift) {
-                // Handle shift modifications for special characters
-                if (char === '/') return '?';
-                if (char === '.') return '>';
-                // Convert to uppercase if it's a letter
-                return char.toUpperCase();
-            }
-            return char || '';
-        },
-
-        finalizeScan() {
-            if (this.buffer.length > 0) {
-                // Clean up common scanning artifacts
-                let cleaned = this.buffer
-                    .replace(/^[>:]+/, '') // Remove leading >: characters
-                    .replace(/[<>]+$/, '') // Remove trailing <> characters
-                    .trim();
-
-                // Add http:// if it looks like a URL without protocol
-                if (cleaned.match(/^[a-zA-Z0-9-]+\.[a-zA-Z]{2,}/)) {
-                    cleaned = 'http://' + cleaned;
-                }
-
-                this.scannedValue = cleaned;
-
-                // Get the search form and set the value
-                const form = document.getElementById('searchForm');
-                form.querySelector('input[name="search"]').value = cleaned;
-
-                // Submit form with fetch to avoid page reload
-                fetch(form.action + '?search=' + encodeURIComponent(cleaned))
-                    .then(response => response.text())
-                    .then(html => {
-                        // Create a temporary container
-                        const tempDiv = document.createElement('div');
-                        tempDiv.innerHTML = html;
-
-                        // Update only the table body content
-                        const currentTable = document.querySelector('.overflow-x-auto tbody');
-                        const newTable = tempDiv.querySelector('.overflow-x-auto tbody');
-                        if (currentTable && newTable) {
-                            currentTable.innerHTML = newTable.innerHTML;
-
-                            // Find the first row and initialize Alpine component
-                            const firstRow = currentTable.querySelector('tr');
-                            if (firstRow) {
-                                // Initialize Alpine data for the row
-                                if (!firstRow.__x) {
-                                    Alpine.initTree(firstRow);
-                                }
-
-                                // Set the open state to true
-                                firstRow.__x.$data.open = true;
-                            }
+                    // Only collect if we're in scanning mode
+                    if (this.collecting) {
+                        // Handle special cases
+                        if (e.keyCode === 13) { // Enter key
+                            this.finalizeScan();
+                            e.preventDefault();
+                            return;
                         }
-                    });
-            }
-            this.collecting = false;
-            this.buffer = '';
-        },
 
-        clearDebug() {
-            this.debugLog = '';
+                        // Add to buffer based on keyCode rather than key value
+                        const char = this.mapKeyCodeToChar(e.keyCode, e.shiftKey);
+                        if (char) {
+                            this.buffer += char;
+                            this.keyCount++;
+                        }
+                    }
+
+                    this.lastKeyTime = currentTime;
+                });
+            },
+
+            mapKeyCodeToChar(keyCode, isShift) {
+                // Common URL characters mapping
+                const keyMap = {
+                    190: '.', // Period
+                    191: '/', // Forward slash
+                    186: ':', // Colon
+                    189: '-', // Hyphen
+                    // Add numbers
+                    48: '0',
+                    49: '1',
+                    50: '2',
+                    51: '3',
+                    52: '4',
+                    53: '5',
+                    54: '6',
+                    55: '7',
+                    56: '8',
+                    57: '9',
+                    // Add letters (lowercase)
+                    65: 'a',
+                    66: 'b',
+                    67: 'c',
+                    68: 'd',
+                    69: 'e',
+                    70: 'f',
+                    71: 'g',
+                    72: 'h',
+                    73: 'i',
+                    74: 'j',
+                    75: 'k',
+                    76: 'l',
+                    77: 'm',
+                    78: 'n',
+                    79: 'o',
+                    80: 'p',
+                    81: 'q',
+                    82: 'r',
+                    83: 's',
+                    84: 't',
+                    85: 'u',
+                    86: 'v',
+                    87: 'w',
+                    88: 'x',
+                    89: 'y',
+                    90: 'z'
+                };
+
+                let char = keyMap[keyCode];
+                if (char && isShift) {
+                    // Handle shift modifications for special characters
+                    if (char === '/') return '?';
+                    if (char === '.') return '>';
+                    // Convert to uppercase if it's a letter
+                    return char.toUpperCase();
+                }
+                return char || '';
+            },
+
+            finalizeScan() {
+                if (this.buffer.length > 0) {
+                    // Clean up common scanning artifacts
+                    let cleaned = this.buffer
+                        .replace(/^[>:]+/, '') // Remove leading >: characters
+                        .replace(/[<>]+$/, '') // Remove trailing <> characters
+                        .trim();
+
+                    // Add http:// if it looks like a URL without protocol
+                    if (cleaned.match(/^[a-zA-Z0-9-]+\.[a-zA-Z]{2,}/)) {
+                        cleaned = 'http://' + cleaned;
+                    }
+
+                    this.scannedValue = cleaned;
+
+                    // Get the search form and set the value
+                    const form = document.getElementById('searchForm');
+                    form.querySelector('input[name="search"]').value = cleaned;
+
+                    // Submit form with fetch to avoid page reload
+                    fetch(form.action + '?search=' + encodeURIComponent(cleaned))
+                        .then(response => response.text())
+                        .then(html => {
+                            // Create a temporary container
+                            const tempDiv = document.createElement('div');
+                            tempDiv.innerHTML = html;
+
+                            // Update only the table body content
+                            const currentTable = document.querySelector('.overflow-x-auto tbody');
+                            const newTable = tempDiv.querySelector('.overflow-x-auto tbody');
+                            if (currentTable && newTable) {
+                                currentTable.innerHTML = newTable.innerHTML;
+
+                                // Find the first row and initialize Alpine component
+                                const firstRow = currentTable.querySelector('tr');
+                                if (firstRow) {
+                                    // Initialize Alpine data for the row
+                                    if (!firstRow.__x) {
+                                        Alpine.initTree(firstRow);
+                                    }
+
+                                    // Set the open state to true
+                                    firstRow.__x.$data.open = true;
+                                }
+                            }
+                        });
+                }
+                this.collecting = false;
+                this.buffer = '';
+            },
+
+            clearDebug() {
+                this.debugLog = '';
+            }
         }
     }
-}
 </script>

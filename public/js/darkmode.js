@@ -26,4 +26,3 @@ function updateDarkModeFromDropdown() {
         dropdown.value = darkModePreference;
     }
 }
-
