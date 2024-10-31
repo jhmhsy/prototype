@@ -19,6 +19,11 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\CheckinController;
 
+use App\Http\Controllers\BarcodeController;
+
+Route::get('/scan', [BarcodeController::class, 'index'])->name('scan.index');
+Route::post('/process-barcode', [BarcodeController::class, 'process'])->name('process.barcode');
+
 Route::get('/members/{member}/start-date/{relation}', [MemberController::class, 'getRelationStartDate'])
     ->name('members.get-relation-start-date')
     ->where('relation', 'services|lockers|treadmills');

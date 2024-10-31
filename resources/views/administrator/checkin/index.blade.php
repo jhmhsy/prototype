@@ -14,15 +14,28 @@
                     hover:file:bg-blue-100">
             </form>
 
+
+
             <form action="{{ route('checkin.index') }}" method="GET" class="mt-4">
-                <div class="flex">
-                    <input type="text" name="search"
+                <div class="flex" x-data="barcodeScanner()">
+                    <input type="text" id="barcodeInput" name="search" x-model="scannedValue" x-ref="barcodeInput"
+                        class="scan-input"
                         class="flex-grow rounded-l-md border-gray-300 focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
                         placeholder="Search by ID Number" value="{{ request('search') }}">
                     <button type="submit"
                         class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-r-md transition duration-300">Search</button>
                 </div>
             </form>
+
+            {{--<form action="{{ route('checkin.index') }}" method="GET" class="mt-4">
+            <div class="flex">
+                <input type="text" name="search"
+                    class="flex-grow rounded-l-md border-gray-300 focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+                    placeholder="Search by ID Number" value="{{ request('search') }}">
+                <button type="submit"
+                    class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-r-md transition duration-300">Search</button>
+            </div>
+            </form>--}}
         </div>
 
         <div class="overflow-x-auto bg-white shadow-md rounded-lg">
@@ -42,7 +55,7 @@
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
                     @foreach ($members as $member)
-                    <tr x-data="{ open: false, showWarning: false }">
+                    <tr x-data="{ open: false, showWarning: false }" :key="member . id">
                         <td class="px-6 py-4 whitespace-nowrap">{{ $member->id_number }}</td>
                         <td class="px-6 py-4 whitespace-nowrap">{{ $member->name }}</td>
                         <td class="px-6 py-4 whitespace-nowrap">
@@ -51,6 +64,11 @@
                             ->whereDate('checkin_date', \Carbon\Carbon::now()->toDateString())
                             ->exists();
                             @endphp
+
+
+
+
+
 
                             @if ($alreadyCheckedIn)
                             <span
@@ -63,10 +81,31 @@
                                 No subscriptions
                             </span>
                             @else
+
+                            @php
+                            $buttonClass = ''; // Initialize the button class variable
+
+                            foreach ($member->services as $service) {
+                            if ($service->status === "Overdue") {
+                            $buttonClass = "bg-red-500 hover:bg-red-600"; // Set class for overdue
+                            break; // Exit loop on first "Overdue"
+                            } elseif ($service->status === "Due") {
+                            $buttonClass = "bg-orange-500 hover:bg-orange-600"; // Set class for due
+                            }
+                            }
+
+                            // If neither overdue nor due, set default class (optional)
+                            if (!$buttonClass) {
+                            $buttonClass = "bg-green-500 hover:bg-green-600"; // Class for active or default
+                            }
+                            @endphp
+
                             <button @click="open = true"
-                                class="bg-green-500 hover:bg-green-600 text-white font-bold py-1 px-3 rounded text-sm transition duration-300">
+                                class="{{ $buttonClass }} text-white font-bold py-1 px-3 rounded text-sm transition duration-300">
                                 Check-in
                             </button>
+
+
                             @endif
                         </td>
                         <td>
@@ -172,8 +211,8 @@
                                                 @foreach($member->lockers as $locker)
                                                 <template
                                                     x-if="(serviceFilter === 'all' || serviceFilter === 'locker') && 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ((statusFilter === 'current' && ['Active', 'Inactive', 'Due', 'Overdue'].includes('{{ $locker->status }}')) || 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    (statusFilter === 'expired' && '{{ $locker->status }}' === 'Expired'))">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ((statusFilter === 'current' && ['Active', 'Inactive', 'Due', 'Overdue'].includes('{{ $locker->status }}')) || 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    (statusFilter === 'expired' && '{{ $locker->status }}' === 'Expired'))">
                                                     <tr>
                                                         <td class="border px-4 py-2">Locker #{{ $locker->locker_no }}
                                                         </td>
@@ -203,8 +242,8 @@
                                                 @foreach($member->treadmills as $treadmill)
                                                 <template
                                                     x-if="(serviceFilter === 'all' || serviceFilter === 'treadmill') && 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ((statusFilter === 'current' && ['Active', 'Inactive', 'Due', 'Overdue'].includes('{{ $treadmill->status }}')) || 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    (statusFilter === 'expired' && '{{ $treadmill->status }}' === 'Expired'))">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ((statusFilter === 'current' && ['Active', 'Inactive', 'Due', 'Overdue'].includes('{{ $treadmill->status }}')) || 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    (statusFilter === 'expired' && '{{ $treadmill->status }}' === 'Expired'))">
                                                     <tr>
                                                         <td class="border px-4 py-2">Treadmill</td>
                                                         <td class="border px-4 py-2">₱{{ $treadmill->amount }}</td>
@@ -309,5 +348,169 @@ function processQRCode(imageData) {
         }
     };
     img.src = imageData;
+}
+</script>
+
+<script>
+function barcodeScanner() {
+    return {
+        scannedValue: '',
+        buffer: '',
+        debugLog: '',
+        lastKeyTime: 0,
+        keyDelay: 50,
+        collecting: false,
+        keyCount: 0,
+
+        init() {
+            // Handle keydown events
+            document.addEventListener('keydown', (e) => {
+                const currentTime = new Date().getTime();
+                const timeDiff = currentTime - this.lastKeyTime;
+
+                // Log every keypress for debugging
+                this.debugLog += `Key: ${e.key} | Code: ${e.keyCode} | Time: ${timeDiff}ms\n`;
+
+                // Start new scan if sufficient time has passed
+                if (timeDiff > 500) {
+                    this.buffer = '';
+                    this.keyCount = 0;
+                    this.collecting = true;
+                }
+
+                // Only collect if we're in scanning mode
+                if (this.collecting) {
+                    // Handle special cases
+                    if (e.keyCode === 13) { // Enter key
+                        this.finalizeScan();
+                        e.preventDefault();
+                        return;
+                    }
+
+                    // Add to buffer based on keyCode rather than key value
+                    const char = this.mapKeyCodeToChar(e.keyCode, e.shiftKey);
+                    if (char) {
+                        this.buffer += char;
+                        this.keyCount++;
+                    }
+                }
+
+                this.lastKeyTime = currentTime;
+            });
+        },
+
+        mapKeyCodeToChar(keyCode, isShift) {
+            // Common URL characters mapping
+            const keyMap = {
+                190: '.', // Period
+                191: '/', // Forward slash
+                186: ':', // Colon
+                189: '-', // Hyphen
+                // Add numbers
+                48: '0',
+                49: '1',
+                50: '2',
+                51: '3',
+                52: '4',
+                53: '5',
+                54: '6',
+                55: '7',
+                56: '8',
+                57: '9',
+                // Add letters (lowercase)
+                65: 'a',
+                66: 'b',
+                67: 'c',
+                68: 'd',
+                69: 'e',
+                70: 'f',
+                71: 'g',
+                72: 'h',
+                73: 'i',
+                74: 'j',
+                75: 'k',
+                76: 'l',
+                77: 'm',
+                78: 'n',
+                79: 'o',
+                80: 'p',
+                81: 'q',
+                82: 'r',
+                83: 's',
+                84: 't',
+                85: 'u',
+                86: 'v',
+                87: 'w',
+                88: 'x',
+                89: 'y',
+                90: 'z'
+            };
+
+            let char = keyMap[keyCode];
+            if (char && isShift) {
+                // Handle shift modifications for special characters
+                if (char === '/') return '?';
+                if (char === '.') return '>';
+                // Convert to uppercase if it's a letter
+                return char.toUpperCase();
+            }
+            return char || '';
+        },
+
+        finalizeScan() {
+            if (this.buffer.length > 0) {
+                // Clean up common scanning artifacts
+                let cleaned = this.buffer
+                    .replace(/^[>:]+/, '') // Remove leading >: characters
+                    .replace(/[<>]+$/, '') // Remove trailing <> characters
+                    .trim();
+
+                // Add http:// if it looks like a URL without protocol
+                if (cleaned.match(/^[a-zA-Z0-9-]+\.[a-zA-Z]{2,}/)) {
+                    cleaned = 'http://' + cleaned;
+                }
+
+                this.scannedValue = cleaned;
+
+                // Get the search form and set the value
+                const form = document.getElementById('searchForm');
+                form.querySelector('input[name="search"]').value = cleaned;
+
+                // Submit form with fetch to avoid page reload
+                fetch(form.action + '?search=' + encodeURIComponent(cleaned))
+                    .then(response => response.text())
+                    .then(html => {
+                        // Create a temporary container
+                        const tempDiv = document.createElement('div');
+                        tempDiv.innerHTML = html;
+
+                        // Update only the table body content
+                        const currentTable = document.querySelector('.overflow-x-auto tbody');
+                        const newTable = tempDiv.querySelector('.overflow-x-auto tbody');
+                        if (currentTable && newTable) {
+                            currentTable.innerHTML = newTable.innerHTML;
+
+                            // Find the first row and initialize Alpine component
+                            const firstRow = currentTable.querySelector('tr');
+                            if (firstRow) {
+                                // Initialize Alpine data for the row
+                                if (!firstRow.__x) {
+                                    Alpine.initTree(firstRow);
+                                }
+
+                                // Set the open state to true
+                                firstRow.__x.$data.open = true;
+                            }
+                        }
+                    });
+            }
+            this.collecting = false;
+            this.buffer = '';
+        },
+
+        clearDebug() {
+            this.debugLog = '';
+        }
+    }
 }
 </script>
