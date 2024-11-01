@@ -12,7 +12,7 @@
             </x-custom.paragraph>
             <div class="items-center">
                 <div class="flex flex-col items-center gap-2 md:flex-row">
-                    <x-custom.secondary-button type="button" onclick="window.location.href = '{{ route('ticket.show') }}'" class="transition-transform duration-300 border hover:scale-105">
+                    <x-custom.secondary-button type="button" onclick="window.location.href = '{{ route('ticket.show') }}'" >
                         Book Now
                     </x-custom.secondary-button>
                     <x-custom.secondary-button type="button" onclick="window.location.href = '#equipment-section'" :active="request()->routeIs('reservation')" class="border">
