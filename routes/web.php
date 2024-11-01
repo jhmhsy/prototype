@@ -17,11 +17,13 @@ use App\Http\Controllers\Public\ReservationsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\MemberController;
+use App\Http\Controllers\ScannerController;
 use App\Http\Controllers\CheckinController;
 
 use App\Http\Controllers\BarcodeController;
 
-
+Route::get('/scanner', [ScannerController::class, 'index'])->name('scanner.index');
+Route::post('/api/scan', [ScannerController::class, 'process'])->name('scanner.process');
 
 Route::get('/scan', [BarcodeController::class, 'index'])->name('scan.index');
 Route::post('/process-barcode', [BarcodeController::class, 'process'])->name('process.barcode');

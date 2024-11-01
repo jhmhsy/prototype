@@ -26,6 +26,7 @@ class CheckinController extends Controller
 
         // Get paginated results
         $members = $query->paginate(10);
+        $membersCount = $members->count();
 
         // Process each member's subscription status
         foreach ($members as $member) {
@@ -59,7 +60,7 @@ class CheckinController extends Controller
             }
         }
 
-        return view('administrator.checkin.index', compact('members'));
+        return view('administrator.checkin.index', compact('members', 'membersCount'));
     }
 
     public function checkin(Request $request, Member $member)
