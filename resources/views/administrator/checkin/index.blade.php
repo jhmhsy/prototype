@@ -622,6 +622,14 @@ class QRScanner {
     }
 
     init() {
+        // Check if we're on HTTPS
+        if (window.location.protocol !== 'https:' && window.location.hostname !== 'localhost') {
+            this.startButton.addEventListener('click', () => {
+                alert('Camera access requires HTTPS. Please enable HTTPS on your server.');
+            });
+            return;
+        }
+
         this.html5QrCode = new Html5Qrcode("reader");
 
         // Add event listeners
@@ -635,6 +643,22 @@ class QRScanner {
         }
 
         try {
+            // First check if camera permissions are available
+            const permissionStatus = await navigator.permissions.query({
+                name: 'camera'
+            });
+            if (permissionStatus.state === 'denied') {
+                throw new Error('Camera permission denied. Please enable camera access in your browser settings.');
+            }
+
+            // Get available cameras
+            const devices = await Html5Qrcode.getCameras();
+            if (!devices || devices.length === 0) {
+                throw new Error(
+                    'No camera devices found. Please ensure your device has a camera and it\'s properly connected.'
+                );
+            }
+
             this.isScanning = true;
             this.reader.style.display = 'block';
             this.startButton.style.display = 'none';
@@ -643,37 +667,80 @@ class QRScanner {
             const config = {
                 fps: 10,
                 qrbox: {
-                    width: 400,
-                    height: 400
+                    width: 250, // Reduced size for better performance
+                    height: 250
                 },
                 aspectRatio: 1.0,
                 showTorchButtonIfSupported: true
             };
 
-            await this.html5QrCode.start({
-                    facingMode: "environment"
-                },
+            // Try to use the back camera first if available
+            const defaultCamera = devices.find(device =>
+                device.label.toLowerCase().includes('back') ||
+                device.label.toLowerCase().includes('rear')
+            ) || devices[0];
+
+            await this.html5QrCode.start(
+                defaultCamera.id,
                 config,
                 this.onScanSuccess,
                 this.onScanError
             );
+
+            // Add a visible success message
+            this.reader.classList.add('active');
+            this.showMessage('Camera started successfully', 'success');
+
         } catch (err) {
             console.error("Camera access error:", err);
             this.reader.classList.add('error');
+
+            // Show user-friendly error message
+            let errorMessage = 'Failed to start camera. ';
+            if (err.message.includes('Permission denied')) {
+                errorMessage += 'Please allow camera access in your browser settings.';
+            } else if (err.message.includes('Requested device not found')) {
+                errorMessage += 'No camera found. Please ensure your device has a working camera.';
+            } else {
+                errorMessage += 'Please ensure you\'re using HTTPS and have granted camera permissions.';
+            }
+
+            this.showMessage(errorMessage, 'error');
         }
+    }
+
+    showMessage(message, type) {
+        // Create or get message container
+        let messageDiv = document.getElementById('scanner-message');
+        if (!messageDiv) {
+            messageDiv = document.createElement('div');
+            messageDiv.id = 'scanner-message';
+            this.reader.parentNode.insertBefore(messageDiv, this.reader);
+        }
+
+        // Style the message
+        messageDiv.className =
+            `p-4 mb-4 rounded ${type === 'error' ? 'bg-red-100 text-red-700' : 'bg-green-100 text-green-700'}`;
+        messageDiv.textContent = message;
+
+        // Auto-hide after 5 seconds
+        setTimeout(() => {
+            messageDiv.style.display = 'none';
+        }, 5000);
     }
 
     async stopScanner() {
         if (this.html5QrCode && this.isScanning) {
             try {
                 await this.html5QrCode.stop();
-                this.reader.classList.remove('success', 'error');
+                this.reader.classList.remove('success', 'error', 'active');
                 this.isScanning = false;
                 this.reader.style.display = 'none';
                 this.startButton.style.display = 'block';
                 this.stopButton.style.display = 'none';
             } catch (err) {
                 console.error("Error stopping scanner:", err);
+                this.showMessage('Error stopping camera. Please refresh the page.', 'error');
             }
         }
     }
