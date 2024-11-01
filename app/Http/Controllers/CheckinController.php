@@ -11,6 +11,7 @@ class CheckinController extends Controller
 {
     public function index(Request $request)
     {
+
         $query = Member::query()->with(['services', 'lockers']);
 
         if ($request->has('search')) {
