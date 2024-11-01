@@ -36,7 +36,7 @@
 
     <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
     <link rel="icon" href="images\logo.png">
-    @vite(['resources/css/app.css', 'resources/css/app2.css', 'resources/js/app.js'])
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <body class="font-opensans antialiased min-w-screen bg-tint_1 dark:bg-peak_1     ">
