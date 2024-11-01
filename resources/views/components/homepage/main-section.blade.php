@@ -1,18 +1,18 @@
 <section
-    class="relative min-h-screen w-full dark:border-white/10 px-4 sm:px-10 stars flex items-center justify-center sm:justify-between">
+    class="relative flex items-center justify-center w-full min-h-screen px-4 dark:border-white/10 sm:px-10 stars sm:justify-between">
 
     <div
-        class="w-full mt-13 flex flex-col md:flex-row items-center justify-center px-4 sm:px-15 py-10 sm:py-0 space-y-3">
-        <div class="lg:text-shade_9 dark:md:text-tint_1 text-tint_1 md:text-left space-y-3 z-10">
-            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter">
+        class="flex flex-col items-center justify-center w-full px-4 py-10 space-y-3 mt-13 md:flex-row sm:px-15 sm:py-0">
+        <div class="z-10 space-y-3 lg:text-shade_9 dark:md:text-tint_1 text-tint_1 md:text-left">
+            <h1 class="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl animate-fade-in">
                 Elevate Your Fitness Journey
             </h1>
             <x-custom.paragraph :dark="true" class="lg:text-shade_9 dark:md:text-tint_1 text-tint_1 max-w-full sm:max-w-[900px] sm:text-xl md:text-lg lg:text-xl">
                 Our gym reservation system makes it easy to book your sessions, manage your membership, and stay on top of your fitness goals.
             </x-custom.paragraph>
             <div class="items-center">
-                <div class="flex flex-col md:flex-row items-center gap-2">
-                    <x-custom.secondary-button type="button" onclick="window.location.href = '{{ route('ticket.show') }}'" class="border">
+                <div class="flex flex-col items-center gap-2 md:flex-row">
+                    <x-custom.secondary-button type="button" onclick="window.location.href = '{{ route('ticket.show') }}'" class="transition-transform duration-300 border hover:scale-105">
                         Book Now
                     </x-custom.secondary-button>
                     <x-custom.secondary-button type="button" onclick="window.location.href = '#equipment-section'" :active="request()->routeIs('reservation')" class="border">
@@ -29,12 +29,12 @@
         <div class="container flex justify-center px-2 sm:px-4 md:px-6">
             <!-- responsiveness manual hahaha  -->
             <!-- shows on pc -->
-            <img class="rounded-xl hidden lg:block w-full z-10"
+            <img class="z-10 hidden w-full rounded-xl lg:block"
                 src="https://img.freepik.com/free-photo/low-angle-view-unrecognizable-muscular-build-man-preparing-lifting-barbell-health-club_637285-2497.jpg?t=st=1727743360~exp=1727746960~hmac=7e0bf7885ab8fcd6befaf8eea6232011cdfce301515c9d57d0ca7bd5c9ade0b1&w=740"
                 alt="man-with-barbel" />
 
             <!-- shows on mobile -->
-            <img alt="Background image" class="absolute lg:hidden inset-0 z-0 object-cover"
+            <img alt="Background image" class="absolute inset-0 z-0 object-cover lg:hidden"
                 src="https://img.freepik.com/free-photo/low-angle-view-unrecognizable-muscular-build-man-preparing-lifting-barbell-health-club_637285-2497.jpg?t=st=1727743360~exp=1727746960~hmac=7e0bf7885ab8fcd6befaf8eea6232011cdfce301515c9d57d0ca7bd5c9ade0b1&w=740"
                 style="width: 100vw; height: 100vh; min-width: 100%; min-height: 100%; left: 0; top: 0; object-fit: cover;" />
 

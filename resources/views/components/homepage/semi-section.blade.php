@@ -1,17 +1,17 @@
 <section x-data="{ currentImage: '/images/public/background-1.jpg', selectedButton: 1 }"
-    class="relative min-h-screen w-full flex flex-col md:flex-row items-center justify-center px-4 text-textblack dark:text-textwhite py-10 bg-black bg-opacity-50">
+    class="relative flex flex-col items-center justify-center w-full min-h-screen px-4 py-10 bg-black bg-opacity-50 md:flex-row text-textblack dark:text-textwhite">
     <!-- Content wrapper -->
-    <div class="relative w-full flex flex-col md:flex-row items-center justify-center">
+    <div class="relative flex flex-col items-center justify-center w-full md:flex-row">
         <div class="w-full md:w-2/5 xs:p-3">
-            <img :src="currentImage" alt="Gym" class="w-full h-auto rounded-md" />
+            <img :src="currentImage" alt="Gym" class="w-full h-auto transition-transform duration-300 rounded-md hover:scale-105" />
         </div>
-        <div class="w-full md:w-2/5 px-2 md:px-4 space-y-1 md:space-y-2">
+        <div class="w-full px-2 space-y-1 md:w-2/5 md:px-4 md:space-y-2">
             <button @mouseenter="currentImage = '/images/public/background-1.jpg'; selectedButton = 1"
                 @mouseleave="currentImage = '/images/public/background-1.jpg'"
                 :class="{ 'border-l-4 border-main': selectedButton === 1 }"
-                class="text-left w-full px-2 py-1 md:px-4 md:py-2 hover:translate-x-2 transition-transform duration-300">
+                class="w-full px-2 py-1 text-left transition-transform duration-300 md:px-4 md:py-2 hover:translate-x-2">
                 <div
-                    class="glass flex flex-col justify-start space-y-1 border-main px-6 py-5 rounded-2xl border-2 group transition-colors duration-300">
+                    class="flex flex-col justify-start px-6 py-5 space-y-1 transition-colors duration-300 border-2 glass border-main rounded-2xl group">
                     <div class="flex space-x-3">
                         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
                             viewBox="0 0 48 48" id="In-Home-Mode--Streamline-Outlined----Material-Symbols">
@@ -27,9 +27,9 @@
             <button @mouseenter="currentImage = '/images/public/background-2.jpg'; selectedButton = 2"
                 @mouseleave="currentImage = '/images/public/background-1.jpg'"
                 :class="{ 'border-l-4 border-main': selectedButton === 2 }"
-                class="text-left w-full px-2 py-1 md:px-4 md:py-2 hover:translate-x-2 transition-transform duration-300">
+                class="w-full px-2 py-1 text-left transition-transform duration-300 md:px-4 md:py-2 hover:translate-x-2">
                 <div
-                    class="glass flex flex-col justify-start space-y-1 border-main px-6 py-5 rounded-2xl border-2 group transition-colors duration-300">
+                    class="flex flex-col justify-start px-6 py-5 space-y-1 transition-colors duration-300 border-2 glass border-main rounded-2xl group">
                     <div class="flex space-x-3">
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                             class="bi bi-calendar-check" viewBox="0 0 16 16">
@@ -48,9 +48,9 @@
             <button @mouseenter="currentImage = '/images/public/background-3.jpg'; selectedButton = 3"
                 @mouseleave="currentImage = '/images/public/background-1.jpg'"
                 :class="{ 'border-l-4 border-main': selectedButton === 3 }"
-                class="text-left w-full px-2 py-1 md:px-4 md:py-2 hover:translate-x-2 transition-transform duration-300">
+                class="w-full px-2 py-1 text-left transition-transform duration-300 md:px-4 md:py-2 hover:translate-x-2">
                 <div
-                    class="glass flex flex-col justify-start space-y-1 border-main px-6 py-5 rounded-2xl border-2 group transition-colors duration-300">
+                    class="flex flex-col justify-start px-6 py-5 space-y-1 transition-colors duration-300 border-2 glass border-main rounded-2xl group">
                     <div class="flex space-x-3">
                         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
                             class="bi bi-people" viewBox="0 0 16 16">

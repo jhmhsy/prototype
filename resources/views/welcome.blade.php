@@ -36,4 +36,5 @@
             </footer>
         </div>
     </body>
+    
 </x-guest-layout>
