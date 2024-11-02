@@ -44,13 +44,13 @@
         <div class="w-full flex items-center justify-center">
             <!-- First Layer with Background Image -->
             <div class="w-[70%] h-[356px] border border-white overflow-visible"
-                style="background-image: url('images/public/person_1.jpg'); background-size: cover; background-position: center;">
+                style="background-image: url('{{ asset('images/public/person_1.jpg') }}'); background-size: cover; background-position: center;">
                 <!-- Second Layer with Background Image -->
                 <div class="relative w-[90%] h-[250px] top-[75%] left-[15%] border border-white"
-                    style="background-image: url('images/public/person_2.jpg'); background-size: cover; background-position: center;">
+                    style="background-image: url('{{ asset('images/public/person_2.jpg') }}'); background-size: cover; background-position: center;">
                     <!-- Third Layer with Background Image -->
                     <div class="relative w-[90%] h-[250px] bottom-[25%] right-[70%] border border-white"
-                        style="background-image: url('images/public/person_3.jpg'); background-size: cover; background-position: center;">
+                        style="background-image: url('{{ asset('images/public/person_3.jpg') }}'); background-size: cover; background-position: center;">
                         <!-- Content inside the third div, if needed -->
                     </div>
                 </div>
@@ -63,16 +63,16 @@
 </section>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const video = document.querySelector('video');
-        const source = document.querySelector('video source');
+document.addEventListener('DOMContentLoaded', function() {
+    const video = document.querySelector('video');
+    const source = document.querySelector('video source');
 
-        console.log('Video path:', source.src);
+    console.log('Video path:', source.src);
 
-        video.addEventListener('error', function (e) {
-            console.error('Error loading video:', e);
-            console.log('Video error code:', video.error.code);
-            console.log('Video error message:', video.error.message);
-        });
+    video.addEventListener('error', function(e) {
+        console.error('Error loading video:', e);
+        console.log('Video error code:', video.error.code);
+        console.log('Video error message:', video.error.message);
     });
+});
 </script>
