@@ -29,14 +29,11 @@
             </div>
             <div
                 class="bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl p-6 flex flex-col items-center text-center transition-all duration-300 ease-in-out transform hover:-translate-y-2">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                    class="w-12 h-12 mb-4 text-green-500" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="w-10 h-10 mb-4 group-hover:text-main text-shade_9 ">
-                    <line x1="10" x2="14" y1="2" y2="2"
-                        class=" transition-colors duration-300"></line>
-                    <line x1="12" x2="15" y1="14" y2="11"
-                        class=" transition-colors duration-300"></line>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="w-12 h-12 mb-4 text-green-500"
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" class="w-10 h-10 mb-4 group-hover:text-main text-shade_9 ">
+                    <line x1="10" x2="14" y1="2" y2="2" class=" transition-colors duration-300"></line>
+                    <line x1="12" x2="15" y1="14" y2="11" class=" transition-colors duration-300"></line>
                     <circle cx="12" cy="14" r="8" class=" transition-colors duration-300">
                     </circle>
                 </svg>
@@ -56,9 +53,9 @@
             </div>
             <div
                 class="bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl p-6 flex flex-col items-center text-center transition-all duration-300 ease-in-out transform hover:-translate-y-2">
-                <svg fill="currentColor" height="50" width="50" class="w-12 h-12 mb-4 text-red-500"
-                    version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-                    xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 297.001 297.001" xml:space="preserve">
+                <svg fill="currentColor" height="50" width="50" class="w-12 h-12 mb-4 text-red-500" version="1.1"
+                    id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                    viewBox="0 0 297.001 297.001" xml:space="preserve">
                     <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                     <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
                     <g id="SVGRepo_iconCarrier">
@@ -104,8 +101,8 @@
             </div>
             <div
                 class="bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl p-6 flex flex-col items-center text-center transition-all duration-300 ease-in-out transform hover:-translate-y-2">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                     class="w-12 h-12 mb-4 text-indigo-500" fill="none">
                     <path d="M21.66 17.67a1.08 1.08 0 0 1-.04 1.6A12 12 0 0 1 4.73 2.38a1.1 1.1 0 0 1 1.61-.04z"
                         class=" transition-colors duration-300"></path>

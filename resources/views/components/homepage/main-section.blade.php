@@ -22,6 +22,7 @@
 
             <video class="absolute top-0 left-0 w-full h-full object-cover bg-red-500" controls>
                 <source src="{{ asset('videos/promo-clip.mp4') }}" type="video/mp4">
+                <p>Debug Info: Video path is: {{ asset('videos/promo-clip.mp4') }}</p>
                 Your browser does not support the video tag.
             </video>
         </div>
@@ -60,3 +61,18 @@
 
     </div>
 </section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const video = document.querySelector('video');
+        const source = document.querySelector('video source');
+
+        console.log('Video path:', source.src);
+
+        video.addEventListener('error', function (e) {
+            console.error('Error loading video:', e);
+            console.log('Video error code:', video.error.code);
+            console.log('Video error message:', video.error.message);
+        });
+    });
+</script>
