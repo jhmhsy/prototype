@@ -17,7 +17,7 @@
         <div class=" h-[100%]"> </div>
     </div>
     <div class="w-full flex items-center justify-center mt-1 px-4 py-10">
-        <video class="w-[70%] max-h-[40vh]" controls>
+        <video class="w-[50%] max-h-[40vh]" controls>
             <source src="{{ asset('videos/promo-clip.mp4') }}" type="video/mp4">
             <p>Your browser does not support the video tag. Please try another browser.</p>
             <a href="{{ asset('videos/promo-clip.mp4') }}">Download the video</a>
@@ -58,16 +58,16 @@
 </section>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    const video = document.querySelector('video');
-    const source = document.querySelector('video source');
+    document.addEventListener('DOMContentLoaded', function () {
+        const video = document.querySelector('video');
+        const source = document.querySelector('video source');
 
-    console.log('Video path:', source.src);
+        console.log('Video path:', source.src);
 
-    video.addEventListener('error', function(e) {
-        console.error('Error loading video:', e);
-        console.log('Video error code:', video.error.code);
-        console.log('Video error message:', video.error.message);
+        video.addEventListener('error', function (e) {
+            console.error('Error loading video:', e);
+            console.log('Video error code:', video.error.code);
+            console.log('Video error message:', video.error.message);
+        });
     });
-});
 </script>
