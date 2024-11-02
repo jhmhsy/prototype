@@ -19,8 +19,8 @@
                 </div>
                 <div class=" h-[100%]"> </div>
             </div>
-            <div class="w-full flex items-center justify-center mt-1 px-4">
-                <video class="w-[70%] max-h-[40vh]" controls>
+            <div class="flex items-center justify-center mt-1 px-4">
+                <video class="w-[70%]" controls>
                     <source src="{{ asset('videos/promo-clip.mp4') }}" type="video/mp4">
                     <p>Your browser does not support the video tag. Please try another browser.</p>
                     <a href="{{ asset('videos/promo-clip.mp4') }}">Download the video</a>
