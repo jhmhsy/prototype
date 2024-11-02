@@ -22,7 +22,7 @@
 
 
                 <span class="text-sm text-gray-600 dark:text-gray-400" @if ($equipments->isEmpty()) style="display:
-                none;" @endif>
+                    none;" @endif>
                     Page {{ $equipments->currentPage() }} of {{ $equipments->lastPage() }}
                 </span>
 
@@ -104,74 +104,74 @@
 
                         <tbody class="text-gray-600 dark:text-gray-400">
                             @if ($equipments->isEmpty())
-                                <tr>
-                                    <td colspan="6" class="text-center py-4">
-                                        <span class="text-gray-600 dark:text-gray-400">No equipments yet.</span>
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td colspan="6" class="text-center py-4">
+                                    <span class="text-gray-600 dark:text-gray-400">No equipments yet.</span>
+                                </td>
+                            </tr>
                             @else
-                                    @foreach ($equipments as $equipment)
-                                        <tr
-                                            class=" transition-colors py-10 {{ $loop->iteration % 2 == 0 ? 'bg-gray-100 dark:bg-peak_2' : '' }}">
+                            @foreach ($equipments as $equipment)
+                            <tr
+                                class=" transition-colors py-10 {{ $loop->iteration % 2 == 0 ? 'bg-gray-100 dark:bg-peak_2' : '' }}">
 
-                                            <td class="px-4 align-middle  ">
-                                                {{ $equipment->id }}
-                                            </td>
-                                            <td class="px-4 align-middle  ">
-                                                {{ $equipment->name }}
-                                            </td>
-                                            <td class="px-4 align-middle ">{{ $equipment->type }}
-                                            </td>
+                                <td class="px-4 align-middle  ">
+                                    {{ $equipment->id }}
+                                </td>
+                                <td class="px-4 align-middle  ">
+                                    {{ $equipment->name }}
+                                </td>
+                                <td class="px-4 align-middle ">{{ $equipment->type }}
+                                </td>
 
-                                            <td class="px-4 align-middle ">
-                                                {{ \Illuminate\Support\Str::limit($equipment->details, 15) }}
-                                            </td>
+                                <td class="px-4 align-middle ">
+                                    {{ \Illuminate\Support\Str::limit($equipment->details, 15) }}
+                                </td>
 
-                                            <td class="px-4 align-middle ">
-                                                {{ \Illuminate\Support\Str::limit($equipment->extra_details, 20) }}
-                                            </td>
+                                <td class="px-4 align-middle ">
+                                    {{ \Illuminate\Support\Str::limit($equipment->extra_details, 20) }}
+                                </td>
 
-                                            <td class="px-4 flex flex-row gap-1 align-middle">
-                                                @foreach (($equipment->images) as $image)
-                                                    <img src="{{ asset('storage/' . $image) }}" alt="{{ $equipment->name }}"
-                                                        class="max-w-10 max-h-10">
-                                                @endforeach
-                                            </td>
-                                            <td class="px-4 align-middle">
-                                                <div class="flex items-center justify-center gap-2">
-                                                    <x-custom.anchor-link class="bg-main hover:bg-shade_2">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                            stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4">
-                                                            <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
-                                                            <circle cx="12" cy="12" r="3"></circle>
-                                                        </svg>
-                                                    </x-custom.anchor-link>
-                                                    <x-custom.anchor-link class="bg-main hover:bg-shade_2">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                            stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4">
-                                                            <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
-                                                            <circle cx="12" cy="12" r="3"></circle>
-                                                        </svg>
-                                                    </x-custom.anchor-link>
-                                                    <x-custom.anchor-link class="bg-red-500 hover:bg-red-600">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                            stroke-linecap="round" stroke-linejoin="round"
-                                                            class="  text-red-500h-4 w-4">
-                                                            <path d="M3 6h18"></path>
-                                                            <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
-                                                            <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
-                                                        </svg>
-                                                    </x-custom.anchor-link>
-
-                                                </div>
-                                            </td>
-                                        </tr>
+                                <td class="px-4 flex flex-row gap-1 align-middle">
+                                    @foreach (($equipment->images) as $image)
+                                    <img src="{{ asset('storage/' . $image) }}" alt="{{ $equipment->name }}"
+                                        class="max-w-10 max-h-10">
                                     @endforeach
-                                </tbody>
-                            @endif
+                                </td>
+                                <td class="px-4 align-middle">
+                                    <div class="flex items-center justify-center gap-2">
+                                        <x-custom.anchor-link class="bg-main hover:bg-shade_2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4">
+                                                <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
+                                                <circle cx="12" cy="12" r="3"></circle>
+                                            </svg>
+                                        </x-custom.anchor-link>
+                                        <x-custom.anchor-link class="bg-main hover:bg-shade_2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4">
+                                                <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
+                                                <circle cx="12" cy="12" r="3"></circle>
+                                            </svg>
+                                        </x-custom.anchor-link>
+                                        <x-custom.anchor-link class="bg-red-500 hover:bg-red-600">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                class="  text-red-500h-4 w-4">
+                                                <path d="M3 6h18"></path>
+                                                <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
+                                                <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+                                            </svg>
+                                        </x-custom.anchor-link>
+
+                                    </div>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                        @endif
                     </table>
                 </div>
 

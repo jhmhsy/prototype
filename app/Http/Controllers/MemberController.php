@@ -48,7 +48,7 @@ class MemberController extends Controller
     public function create()
     {
         $occupiedLockers = Locker::where('status', 'Active')->pluck('locker_no')->toArray();
-        session()->put('form_token', uniqid());
+
         return view('administrator.members.create', compact('occupiedLockers'));
     }
 

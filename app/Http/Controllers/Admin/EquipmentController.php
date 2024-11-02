@@ -71,5 +71,12 @@ class EquipmentController extends Controller
         return redirect()->route('equipment.index')->with('success', 'Equipment added successfully!');
     }
 
-
+    private function checkIfDuplicate(Request $request)
+    {
+        if ($request->input('form_token') !== session('form_token')) {
+            // If duplicate submission, just go back to the previous page
+            return redirect()->back()->with('error', 'Duplicate submission detected.');
+        }
+        return null; // Return null if there's no duplicate submission
+    }
 }
