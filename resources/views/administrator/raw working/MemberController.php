@@ -40,7 +40,7 @@ class MemberController extends Controller
 
 
         $occupiedLockers = Locker::where('status', 'Active')->pluck('locker_no')->toArray();
-
+        session()->put('form_token', uniqid());
         return view('administrator.members.index', compact('members', 'occupiedLockers'));
     }
 
@@ -48,7 +48,7 @@ class MemberController extends Controller
     public function create()
     {
         $occupiedLockers = Locker::where('status', 'Active')->pluck('locker_no')->toArray();
-
+        session()->put('form_token', uniqid());
         return view('administrator.members.create', compact('occupiedLockers'));
     }
 
@@ -62,6 +62,8 @@ class MemberController extends Controller
 
         $request->validate([
             'name' => 'required|string|max:255',
+            'phone' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
             // Service types must be present
             'service_type_1' => 'nullable|string|max:255',
             'service_type_2' => 'nullable|string|max:255',
@@ -239,32 +241,6 @@ class MemberController extends Controller
     }
 
 
-    public function extendLocker(Request $request, Member $member)
-    {
-        $validated = $request->validate([
-            'locker_no' => 'required|string',
-            'month' => 'required|integer|min:1', // Add validation for months
-        ]);
-
-        $locker = $member->lockers()
-            ->where('locker_no', $validated['locker_no'])
-            ->whereIn('status', ['active', 'overdue'])
-            ->firstOrFail();
-
-        $months = intval($request->input("month"));
-        $startDate = $request->input("start_date");
-
-        // Update the locker
-        $locker->update([
-
-            'due_date' => $this->calculateDueDate($startDate, 'Monthly', $months), // Pass months here
-            'status' => 'active', // Reset status to active if it was overdue
-            'month' => $locker->month + $validated['month'] // Add new months to existing duration
-        ]);
-
-        return redirect()->back()->with('success', 'Locker subscription extended successfully.');
-    }
-
     public function rentLocker(Request $request, $id)
     {
         //check for duplicate submission
@@ -300,22 +276,6 @@ class MemberController extends Controller
 
         return redirect()->back()->with('success', 'New locker rented successfully.');
     }
-
-    public function showLockers(Member $member)
-    {
-        $member->load('lockers'); // Eager load the lockers
-
-        // Debug information
-        \Log::info('Member lockers:', [
-            'member_id' => $member->id,
-            'locker_count' => $member->lockers->count(),
-            'locker_details' => $member->lockers->toArray()
-        ]);
-
-        return view('your-view-name', compact('member'));
-    }
-
-
 
 
     public function extendTreadmill(Request $request, $id)
@@ -408,6 +368,7 @@ class MemberController extends Controller
             // If duplicate submission, just go back to the previous page
             return redirect()->back()->with('error', 'Duplicate submission detected.');
         }
+
         return null; // Return null if there's no duplicate submission
     }
 

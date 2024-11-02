@@ -1,11 +1,10 @@
-<div style="display:none;" x-show="extendOpen" class="fixed select-none inset-0 bg-black opacity-50 z-40"
-    @click="extendOpen = false">
+<div style="display:none;" x-show="extendOpen" class="fixed select-none inset-0 bg-black opacity-50 z-40">
 </div>
 <!-- Member Details Modal -->
-<div style="display:none;" x-show="extendOpen" x-transition:enter="transition ease-out duration-300"
-    x-transition:enter-start="opacity-0 transform scale-90" x-transition:enter-end="opacity-100 transform scale-100"
-    x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100 transform scale-100"
-    x-transition:leave-end="opacity-0 transform scale-90"
+<div style="display:none;" x-show="extendOpen" @click.away="extendOpen = false"
+    x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform scale-90"
+    x-transition:enter-end="opacity-100 transform scale-100" x-transition:leave="transition ease-in duration-100"
+    x-transition:leave-start="opacity-100 transform scale-100" x-transition:leave-end="opacity-0 transform scale-90"
     class="modal fixed w-[90%] md:w-[60%] lg:w-[40%] xl:w-[35%] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 p-4 bg-white">
 
     <h3 class="text-lg leading-6 font-medium text-gray-900 mb-4">Extend Subscription</h3>

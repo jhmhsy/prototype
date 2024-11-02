@@ -23,15 +23,15 @@
 
 
 <!-- EXTEND CURRENT LOCKER MODAL ------------------------------------------------------------------>
-<div style="display:none;" x-show="extendLockerOpen" class="fixed select-none inset-0 bg-black opacity-50 z-40">
+<div style="display:none;" x-show="extendLockerOpen" class="fixed inset-0 bg-black opacity-50 z-40"
+    @click="extendLockerOpen = false">
 </div>
 <!-- Member Details Modal -->
-<div style="display:none;" x-show="extendLockerOpen" @click.away="extendLockerOpen = false"
-    x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform scale-90"
-    x-transition:enter-end="opacity-100 transform scale-100" x-transition:leave="transition ease-in duration-100"
-    x-transition:leave-start="opacity-100 transform scale-100" x-transition:leave-end="opacity-0 transform scale-90"
-    class="modal fixed w-[90%] md:w-[60%] lg:w-[40%] xl:w-[35%] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 p-4 bg-white"
-    @click.prevent>
+<div style="display:none;" x-show="extendLockerOpen" x-transition:enter="transition ease-out duration-300"
+    x-transition:enter-start="opacity-0 transform scale-90" x-transition:enter-end="opacity-100 transform scale-100"
+    x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100 transform scale-100"
+    x-transition:leave-end="opacity-0 transform scale-90"
+    class="modal fixed w-[90%] md:w-[60%] lg:w-[40%] xl:w-[35%] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 p-4 bg-white">
 
     <h3 class="text-lg leading-6 font-medium text-gray-900 mb-4"></h3>
     <form action="{{ route('members.rent-locker', $member->id) }}" method="POST" id="locker-form-{{ $member->id }}"
@@ -43,11 +43,17 @@
             <label for="locker_no" class="block text-sm font-medium text-gray-700">Locker
                 Number</label>
 
-            <select name="locker_no" id="locker_no" disabled
-                class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+            <select name="locker_no" id="locker_no"
+                class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                {{ !isset($locker) ? 'disabled' : '' }}>
+                @if (isset($locker))
                 <option value="{{ $locker->locker_no }}" selected>Locker No. {{ $locker->locker_no }}</option>
+                @else
+                <option value="" disabled selected>No Locker Assigned</option>
+                @endif
             </select>
-            <input type="hidden" name="locker_no" value="{{ $locker->locker_no }}">
+            <input type="hidden" name="locker_no" value="{{ isset($locker) ? $locker->locker_no : '' }}">
+
         </div>
 
         <div class="mb-4">
@@ -107,7 +113,8 @@
 
 
 <!-- RENT ANOTHER LOCKER MODAL -->
-<div style="display:none;" x-show="rentLockerOpen" class="fixed select-none inset-0 bg-black opacity-50 z-40">
+<div style="display:none;" x-show="rentLockerOpen" class="fixed select-none inset-0 bg-black opacity-50 z-40"
+    @click="extendLockerOpen = false">
 </div>
 <!-- Member Details Modal -->
 <div style="display:none;" x-show="rentLockerOpen" @click.away="rentLockerOpen = false"
