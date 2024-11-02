@@ -41,16 +41,33 @@
             <h1 class="text-3xl text-left">Ipsum Lorem</h1>
         </div>
 
+        <style>
+        .bg-person-1 {
+            background-image: url('/images/public/person_1.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .bg-person-2 {
+            background-image: url('/images/public/person_2.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .bg-person-3 {
+            background-image: url('/images/public/person_3.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+        </style>
+
         <div class="w-full flex items-center justify-center">
             <!-- First Layer with Background Image -->
-            <div class="w-[70%] h-[356px] border border-white overflow-visible"
-                style="background-image: url('{{ asset('images/public/person_1.jpg') }}'); background-size: cover; background-position: center;">
+            <div class="w-[70%] h-[356px] border border-white overflow-visible bg-person-1">
                 <!-- Second Layer with Background Image -->
-                <div class="relative w-[90%] h-[250px] top-[75%] left-[15%] border border-white"
-                    style="background-image: url('{{ asset('images/public/person_2.jpg') }}'); background-size: cover; background-position: center;">
+                <div class="relative w-[90%] h-[250px] top-[75%] left-[15%] border border-white bg-person-2">
                     <!-- Third Layer with Background Image -->
-                    <div class="relative w-[90%] h-[250px] bottom-[25%] right-[70%] border border-white"
-                        style="background-image: url('{{ asset('images/public/person_3.jpg') }}'); background-size: cover; background-position: center;">
+                    <div class="relative w-[90%] h-[250px] bottom-[25%] right-[70%] border border-white bg-person-3">
                         <!-- Content inside the third div, if needed -->
                     </div>
                 </div>
