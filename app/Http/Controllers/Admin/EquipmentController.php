@@ -21,6 +21,8 @@ class EquipmentController extends Controller
             ->orderBy($request->get('sortBy', 'created_at'), $request->get('sortDirection', 'asc'))
             ->paginate(10);
 
+        session()->put('form_token', uniqid());
+
         return view('administrator.equipment.index', [
             'equipments' => $equipments,
             'sortBy' => $request->get('sortBy', 'created_at'),
@@ -33,6 +35,12 @@ class EquipmentController extends Controller
 
     public function store(Request $request)
     {
+        $redirectResponse = $this->checkIfDuplicate($request);
+        if ($redirectResponse) {
+            return $redirectResponse;
+        }
+        session()->forget('form_token');
+
         // Validate inputs
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',

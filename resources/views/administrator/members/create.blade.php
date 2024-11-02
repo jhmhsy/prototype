@@ -19,7 +19,7 @@
             </div>
             <div>
                 <label for="phone">Phone:</label>
-                <input type="tel" id="phone" name="phone" required>
+                <input type="tel" id="phone" name="phone">
             </div>
             <div>
                 <label for="fb">Facebook (optional):</label>
@@ -27,7 +27,7 @@
             </div>
             <div>
                 <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
+                <input type="email" id="email" name="email">
             </div>
 
             <h2>Subscription Service</h2>

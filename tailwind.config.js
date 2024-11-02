@@ -72,11 +72,21 @@ export default {
                 secondary: "#000000",
                 complementary: "#fffd19",
 
+                lemon_1: "#fcffcc",
+                lemon_2: "#f6ff4d",
+                lemon_base: "#fffd19",
+                lemon_4: "#919900",
+                lemon_5: "#27290d",
+
                 peak_1: "#030c12",
                 peak_2: "#081522",
                 peak_3: "#050c17",
                 peak_4: "#03090f",
                 peak_5: "#020508",
+
+                night_1: "black",
+                night_2: "#0A0A0A",
+                night_3: "#0E0F10",
 
                 // custom color for default darkmode
                 darkmode_dark: "#18191a", //darkmode dark
@@ -116,7 +126,6 @@ export default {
             width: {
                 55: "13rem",
             },
-            
         },
     },
 

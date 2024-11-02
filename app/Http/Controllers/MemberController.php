@@ -62,8 +62,6 @@ class MemberController extends Controller
 
         $request->validate([
             'name' => 'required|string|max:255',
-            'phone' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
             // Service types must be present
             'service_type_1' => 'nullable|string|max:255',
             'service_type_2' => 'nullable|string|max:255',
@@ -277,6 +275,11 @@ class MemberController extends Controller
         return redirect()->back()->with('success', 'New locker rented successfully.');
     }
 
+    public function addmoreLocker(Request $request, $id)
+    {
+
+    }
+
 
     public function extendTreadmill(Request $request, $id)
     {
@@ -368,7 +371,6 @@ class MemberController extends Controller
             // If duplicate submission, just go back to the previous page
             return redirect()->back()->with('error', 'Duplicate submission detected.');
         }
-
         return null; // Return null if there's no duplicate submission
     }
 

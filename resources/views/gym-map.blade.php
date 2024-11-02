@@ -1,9 +1,7 @@
 <x-guest-layout>
     <link href="{{ asset('css/map.css') }}" rel="stylesheet" defer>
 
-    <body class="">
-        <h1>Our Gym Location</h1>
-
+    <body class="w-full">
         <div role="group" dir="ltr" class="darkmode" tabindex="0" style="outline: none;" hidden>
             <x-custom.darkmode />
         </div>

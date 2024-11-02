@@ -11,9 +11,9 @@ return new class extends Migration {
             $table->id();
             $table->integer('id_number');
             $table->string('name');
-            $table->string('phone');
+            $table->string('phone')->nullable();
             $table->string('fb')->nullable();
-            $table->string('email');
+            $table->string('email')->nullable();
             $table->timestamps();
             $table->string('user_identifier', 28)->unique();
         });
