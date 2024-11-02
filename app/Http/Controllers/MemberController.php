@@ -40,7 +40,7 @@ class MemberController extends Controller
 
 
         $occupiedLockers = Locker::where('status', 'Active')->pluck('locker_no')->toArray();
-        session()->put('form_token', uniqid());
+
         return view('administrator.members.index', compact('members', 'occupiedLockers'));
     }
 
