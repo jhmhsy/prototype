@@ -16,15 +16,14 @@
         </div>
         <div class=" h-[100%]"> </div>
     </div>
-    <div class="w-full mt-1 flex items-center justify-center px-4 sm:px-15 py-10 sm:py-0 space-y-3">
-        <div class="w-[70%] relative" style="padding-top: 40%; max-height: 40vh;">
-            <video class="absolute top-0 left-0 w-full h-full object-cover bg-red-500" controls>
-                <source src="{{ asset('videos/promo-clip.mp4') }}" type="video/mp4">
-                <p>Debug Info: Video path is: {{ asset('videos/promo-clip.mp4') }}</p>
-                Your browser does not support the video tag.
-            </video>
-        </div>
+    <div class="w-full flex items-center justify-center mt-1 px-4 py-10">
+        <video class="w-[70%] max-h-[40vh]" controls>
+            <source src="{{ asset('videos/promo-clip.mp4') }}" type="video/mp4">
+            <p>Your browser does not support the video tag. Please try another browser.</p>
+            <a href="{{ asset('videos/promo-clip.mp4') }}">Download the video</a>
+        </video>
     </div>
+
 
 
 
@@ -59,16 +58,16 @@
 </section>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const video = document.querySelector('video');
-        const source = document.querySelector('video source');
+document.addEventListener('DOMContentLoaded', function() {
+    const video = document.querySelector('video');
+    const source = document.querySelector('video source');
 
-        console.log('Video path:', source.src);
+    console.log('Video path:', source.src);
 
-        video.addEventListener('error', function (e) {
-            console.error('Error loading video:', e);
-            console.log('Video error code:', video.error.code);
-            console.log('Video error message:', video.error.message);
-        });
+    video.addEventListener('error', function(e) {
+        console.error('Error loading video:', e);
+        console.log('Video error code:', video.error.code);
+        console.log('Video error message:', video.error.message);
     });
+});
 </script>
