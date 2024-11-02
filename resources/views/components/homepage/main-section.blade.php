@@ -18,8 +18,6 @@
     </div>
     <div class="w-full mt-1 flex items-center justify-center px-4 sm:px-15 py-10 sm:py-0 space-y-3">
         <div class="w-[70%] relative" style="padding-top: 40%; max-height: 40vh;">
-
-
             <video class="absolute top-0 left-0 w-full h-full object-cover bg-red-500" controls>
                 <source src="{{ asset('videos/promo-clip.mp4') }}" type="video/mp4">
                 <p>Debug Info: Video path is: {{ asset('videos/promo-clip.mp4') }}</p>
@@ -27,6 +25,7 @@
             </video>
         </div>
     </div>
+
 
 
 </section>
@@ -49,14 +48,7 @@
                     <img src="/images/public/person_1.jpg" alt="Person 1" class="w-full h-full object-cover">
 
                     <!-- Second Layer -->
-                    <div class="relative w-[90%] h-[250px] top-[75%] left-[15%] border border-white">
-                        <img src="/images/public/person_2.jpg" alt="Person 2" class="w-full h-full object-cover">
 
-                        <!-- Third Layer -->
-                        <div class="relative w-[90%] h-[250px] bottom-[25%] right-[70%] border border-white">
-                            <img src="/images/public/person_3.jpg" alt="Person 3" class="w-full h-full object-cover">
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
