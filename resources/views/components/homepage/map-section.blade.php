@@ -1,4 +1,4 @@
-<div class="grid items-center justify-center w-full gap-4 px-4 text-center md:px-6 m-auto bg-black">
+<div class="grid items-center justify-center w-full gap-4 px-4 text-center md:px-6 m-auto dark:bg-black">
     <section class="min-w-[70vw]">
         <div class="flex flex-col p-6">
             <div class="text-center mt-12">
@@ -10,7 +10,7 @@
                     @include('gym-map')
                 </div>
             </div>
-            <div class="grid grid-cols-2 gap-3 w-[80%] h-[30%] bg-night_3 p-10 m-auto ">
+            <div class="grid grid-cols-2 gap-3 w-[80%] h-[30%] bg-white dark:bg-night_3 p-10 m-auto ">
                 <div class="flex items-center justify-center h-full content-start">
                     <button class="p-2 bg-blue-500 text-white rounded">Join Now</button>
                 </div>

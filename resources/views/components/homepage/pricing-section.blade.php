@@ -1,4 +1,4 @@
-<div class=" grid items-center justify-center gap-4 px-4 text-center md:px-6 m-auto bg-black">
+<div class=" grid items-center justify-center gap-4 px-4 text-center md:px-6 m-auto bg-white dark:bg-black">
     <section>
         <div class="bg-background p-6">
             <h1 class="text-5xl font-bold mb-4">PRICING & PLANS</h1>
