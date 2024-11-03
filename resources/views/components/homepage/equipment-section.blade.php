@@ -22,7 +22,7 @@
                                             <!-- Primary image (fixed height) -->
                                             <img src="{{ asset(Storage::url($equipment->images[0])) }}"
                                                 alt="{{ $equipment->name }}" loading="eager"
-                                                class="relative z-10 h-full mx-auto object-contain">
+                                                class="relative z-10 h-full m-auto object-contain">
 
                                             <div class="image-counter relative z-10">
                                                 {{ count($equipment->images) }}
