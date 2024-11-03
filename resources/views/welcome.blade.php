@@ -14,7 +14,7 @@
             </main>
 
             <!-- equipment sections-->
-            <div id="equipment-section">
+            <div id="equipment-section bg-white dark:bg-black">
                 @include ('components.homepage.equipment-section')
             </div>
             <!-- trainer sections-->
