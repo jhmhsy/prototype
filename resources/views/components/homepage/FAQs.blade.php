@@ -1,6 +1,6 @@
 <div class="bg-white dark:bg-black items-center w-full">
     <!-- Set parent to full width -->
-    <div class="bg-blue-400 container flex flex-col items-center justify-center gap-4 px-4 md:px-6 w-[70%] mx-auto">
+    <div class=" container flex flex-col items-center justify-center gap-4 px-4 md:px-6 w-[70%] mx-auto">
 
         <h2 class="text-2xl font-bold text-left">FAQs</h2>
         <div class="space-y-4 w-full">
