@@ -8,41 +8,37 @@
     class="modal fixed w-[90%] md:w-[60%] lg:w-[40%] xl:w-[35%] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 p-4 bg-white">
 
     @php
-    // Check if the member has any lockers with specific statuses
-    $activeLocker = $member->lockers()
-    ->whereIn('status', ['Active', 'Inactive', 'Due', 'Overdue', 'Expired'])
-    ->first();
-
-    $hasAnyLocker = !is_null($activeLocker); // User has at least one subscription locker
-    $hasActiveOrDueLocker = $activeLocker && in_array($activeLocker->status, ['Active', 'Due', 'Overdue', 'Inactive',
-    'Expired']);
+    // Check if the member has an active locker subscription
+    $hasLockerSubscription = $member->lockers() ->count() === 1;
     @endphp
 
-    <div class="flex gap-5 m-auto" x-data="{ 
-    hasAnyLocker: {{ json_encode($hasAnyLocker) }}, 
-    hasActiveOrDueLocker: {{ json_encode($hasActiveOrDueLocker) }}}">
-        <!-- Extend Current Locker Button -->
-        <button x-show="hasActiveOrDueLocker" @click="extendLockerOpen = true; lockerOption = false;"
+    <div class="flex gap-5 m-auto" x-data="{  hasLockerSubscription: {{ json_encode($hasLockerSubscription) }} }">
+        <button x-show="hasLockerSubscription" @click="extendLockerOpen = true; lockerOption = false;"
             onclick="refreshDate({{ $member->id }}, 'lockers', 'locker');"
             class="mt-4 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
-            Extend Locker #{{ $activeLocker ? $activeLocker->locker_number : '' }}
+            Extend Locker
         </button>
-        <button x-show="!hasActiveOrDueLocker" disabled
+        <button x-show="!hasLockerSubscription" disabled
             class="mt-4 bg-gray-400 text-white px-4 py-2 rounded cursor-not-allowed">
             Extend Locker
         </button>
 
-        <!-- Rent New Locker Button -->
-        <button x-show="!hasAnyLocker" @click="rentLockerOpen = true; lockerOption = false;"
+
+        <!-- show only if the user has NOT rented a locker -->
+        <button x-show="!hasLockerSubscription" @click="rentLockerOpen = true; lockerOption = false;"
             onclick="refreshDate({{ $member->id }}, 'treadmills', 'treadmill');"
             class="mt-4 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
             Rent Locker
         </button>
-        <button x-show="hasAnyLocker" disabled class="mt-4 bg-gray-400 text-white px-4 py-2 rounded cursor-not-allowed">
+        <button x-show="hasLockerSubscription" disabled
+            class="mt-4 bg-gray-400 text-white px-4 py-2 rounded cursor-not-allowed">
             Already Rented
         </button>
-    </div>
 
+
+
+
+    </div>
 
 </div>
 
@@ -60,7 +56,7 @@
 
     <h3 class="text-lg leading-6 font-medium text-gray-900 mb-4"></h3>
     <form action="{{ route('members.rent-locker', $member->id) }}" method="POST" id="locker-form-{{ $member->id }}"
-        class="locker-form" x-data="{ month: '', showError: false, }"
+        class="locker-form" x-data="{ month: '', showError: false }"
         @submit.prevent="showError = !month; if (!showError) $el.submit();">
         @csrf
         <input hidden name="form_token" value="{{ session('form_token') }}">
@@ -150,7 +146,7 @@
 
     <h3 class="text-lg leading-6 font-medium text-gray-900 mb-4">Rent More Locker</h3>
     <form action="{{ route('members.rent-locker', $member->id) }}" method="POST" id="locker-form-{{ $member->id }}"
-        class="locker-form" x-data="{ month: '', showError: false, loading: false }"
+        class="locker-form" x-data="{ month: '', showError: false }"
         @submit.prevent="showError = !month; if (!showError) $el.submit();">
         @csrf
         <input hidden name="form_token" value="{{ session('form_token') }}">
@@ -183,10 +179,12 @@
 
 
         <div class="mb-4">
+
+
             <label for="locker_start_date_{{ $member->id }}" class="block text-sm font-medium text-gray-700">
                 Start Date
             </label>
-            <div x-data="{ date: new Date().toISOString().split('T')[0] }" class="flex space-x-2">
+            <div x-data="{ date: new Date().toISOString().split('T')[0], loading: false }" class="flex space-x-2">
                 <input type="date" x-model="date" id="locker_start_date_{{ $member->id }}" name="start_date" required
                     class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                 <div class="relative inline-block">
@@ -205,6 +203,10 @@
                     </div>
                 </div>
             </div>
+
+
+
+
         </div>
 
         <!-- Month Selection -->
@@ -223,8 +225,7 @@
         </div>
 
         <!-- Submit Button -->
-        <button type="submit" :disabled="loading"
-            class="w-full bg-blue-500 teot-white po-4 py-2 rounded hover:bg-blue-600 disabled:opacity-50 disabled:cursor-not-allowed">
+        <button type="submit" class="w-full bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
             Confirm
         </button>
     </form>

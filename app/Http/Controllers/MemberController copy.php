@@ -155,7 +155,6 @@ class MemberController extends Controller
                 'amount' => $totalAmount,
                 'month' => $months,
                 'locker_no' => $request->input("locker_no"),
-
                 'status' => 'Active',
             ]);
         }
@@ -251,8 +250,7 @@ class MemberController extends Controller
 
             'due_date' => $this->calculateDueDate($startDate, 'Monthly', $months), // Pass months here
             'status' => 'active', // Reset status to active if it was overdue
-            'month' => $locker->month + $validated['month'], // Add new months to existing duration
-
+            'month' => $locker->month + $validated['month'] // Add new months to existing duration
         ]);
 
         return redirect()->back()->with('success', 'Locker subscription extended successfully.');
@@ -271,7 +269,6 @@ class MemberController extends Controller
             'locker_no' => 'required|string',
             'start_date' => 'required|date',
             'month' => 'required|numeric|min:1|max:12',
-
         ]);
 
         $member = Member::findOrFail($id);
@@ -285,7 +282,6 @@ class MemberController extends Controller
             'amount' => $totalamount,
             'month' => $months,
             'locker_no' => $request->locker_no,
-
             'status' => 'Active',
         ]);
 

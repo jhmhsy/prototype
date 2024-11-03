@@ -13,6 +13,10 @@
 
             </main>
 
+            <!-- equipment sections-->
+            <div id="equipment-section">
+                @include ('components.homepage.equipment-section')
+            </div>
             <!-- trainer sections-->
             <div id="trainer-section">
                 <x-homepage.trainer-section />
