@@ -8,32 +8,28 @@
 
     <title>LaraFitness</title>
 
-    <!-- Vite - Move to top for proper CSS loading -->
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <!-- Vite Assets (Load Early to Apply Styles First) -->
 
-    <!-- Fonts - Add display=swap for better performance -->
+    <!-- Fonts with Performance Optimization -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link rel="preload" href="https://fonts.bunny.net/css?family=open-sans:300,400,500,600,700&display=swap"
         as="style" />
     <link href="https://fonts.bunny.net/css?family=open-sans:300,400,500,600,700&display=swap" rel="stylesheet" />
 
-    <!-- Flowbite - Use CDN or correct local path -->
+    <!-- Third-Party CSS (Flowbite, Splidejs, FullCalendar, Leaflet) -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.css" rel="stylesheet">
-
-    <!-- Third-party CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@3.6.12/dist/css/splide.min.css">
     <link href='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.css' rel='stylesheet' />
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 
-    <!-- Custom CSS - After third-party CSS -->
+    <!-- Custom CSS (Load After Third-Party CSS) -->
     <link href="{{ asset('css/loaders/blue-spinner.css') }}" rel="stylesheet">
 
     <!-- Favicon -->
     <link rel="icon" href="{{ asset('images/logo colored.png') }}">
 
-    <!-- Scripts - Group all scripts together -->
+    <!-- Dark Mode FOUC Prevention -->
     <script>
-    // Add this to prevent FOUC (Flash of Unstyled Content)
     if (localStorage.getItem('dark-mode') === 'true' ||
         (!('dark-mode' in localStorage) &&
             window.matchMedia('(prefers-color-scheme: dark)').matches)) {
@@ -41,23 +37,27 @@
     }
     </script>
 
-    <!-- Third-party Scripts -->
+    <!-- Third-Party Scripts (Load Deferred) -->
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@3.6.12/dist/js/splide.min.js" defer></script>
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js' defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js" defer></script>
     <script src="//unpkg.com/alpinejs" defer></script>
 
-    <!-- Custom Scripts - After third-party scripts -->
+    <!-- Custom Scripts (Deferred) -->
     <script src="{{ asset('js/global-loader.js') }}" defer></script>
     <script src="{{ asset('js/darkmode.js') }}" defer></script>
     <script src="{{ asset('js/hrefScrollAnimation.js') }}" defer></script>
     <script src="{{ asset('js/progressBar.js') }}" defer></script>
     <script src="{{ asset('js/screensize.js') }}" defer></script>
 
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     @stack('head')
 </head>
 
 <body class="font-opensans antialiased min-w-[350px]" x-data="globalLoader()">
+    <!-- Loader Component -->
+
+    <!-- Header Section -->
     <div>
         @isset($header)
         <header>
