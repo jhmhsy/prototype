@@ -1,5 +1,5 @@
 <div class="w-full bg-white dark:bg-night_3 p-10">
-    <div class=" w-[70%] mx-auto">
+    <div class="container w-[70%] mx-auto">
         <h1 class="text-5xl text-center mb-16">Our Trainers</h1>
 
         <div class="flex flex-col md:flex-row items-center gap-8">
@@ -9,7 +9,7 @@
                     style="clip-path: polygon(0 -30%, 100% -30%, 80% 100%, 0% 100%)">
                     <div class="absolute sm:w-[100%] md:w-[80%] xl:w-[60%] h-[150%] top-[-30%] mx-auto">
 
-                        <img src="./images/public/trainer_1.png" alt="Trainer Image"
+                        <img src="/images/public/trainer_1.png" alt="Trainer Image"
                             class="object-cover w-full h-full" />
                     </div>
                 </div>
@@ -31,6 +31,15 @@
         </div>
     </div>
 </div>
+
+<!-- <div class="polygon-1-wrapper relative">
+                                <div class="polygon-1 bg-lemon_base absolute bottom-0">
+                                    <div class="absolute w-[60%] h-[150%] t-[-40%] z-50 inset-1">
+                                      
+                                    </div>
+
+                                </div>
+                            </div> -->
 
 <style>
     .polygon-1-wrapper {
