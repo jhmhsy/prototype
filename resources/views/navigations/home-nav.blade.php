@@ -23,11 +23,7 @@
         {{ __('Contacts') }}
     </x-forms.nav-link>
 
-    @if (!Auth::user())
-        <x-forms.nav-link :href="route('login')" :active="Request::is('login') || Request::is('forgot-password')">
-            {{ __('Login') }}
-        </x-forms.nav-link>
-    @endif
+
 @endif
 
 @if ($responsive ?? false)
@@ -58,5 +54,5 @@
             {{ __('Register') }}
         </x-forms.responsive-nav-link>
     @endif
-    
+
 @endif

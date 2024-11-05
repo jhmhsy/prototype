@@ -4,7 +4,7 @@
     <div
         class="flex flex-col items-center justify-center w-full px-4 py-10 space-y-3 mt-13 md:flex-row sm:px-15 sm:py-0">
         <div class="z-10 space-y-3 lg:text-shade_9 dark:md:text-tint_1 text-tint_1 md:text-left">
-            <h1 class="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl animate-fade-in">
+            <h1 class="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl">
                 Elevate Your Fitness Journey
             </h1>
             <x-custom.paragraph :dark="true" class="lg:text-shade_9 dark:md:text-tint_1 text-tint_1 max-w-full sm:max-w-[900px] sm:text-xl md:text-lg lg:text-xl">
@@ -12,7 +12,7 @@
             </x-custom.paragraph>
             <div class="items-center">
                 <div class="flex flex-col items-center gap-2 md:flex-row">
-                    <x-custom.secondary-button type="button" onclick="window.location.href = '{{ route('ticket.show') }}'" >
+                    <x-custom.secondary-button type="button" onclick="window.location.href = '{{ route('ticket.show') }}'" class="border">
                         Book Now
                     </x-custom.secondary-button>
                     <x-custom.secondary-button type="button" onclick="window.location.href = '#equipment-section'" :active="request()->routeIs('reservation')" class="border">
@@ -124,3 +124,18 @@
         </svg>
     </div>
 </section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const video = document.querySelector('video');
+        const source = document.querySelector('video source');
+
+        console.log('Video path:', source.src);
+
+        video.addEventListener('error', function (e) {
+            console.error('Error loading video:', e);
+            console.log('Video error code:', video.error.code);
+            console.log('Video error message:', video.error.message);
+        });
+    });
+</script>

@@ -32,17 +32,18 @@
     </div>
 </div>
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        function i() {
-            let i = window.location.pathname,
-                t = window.location.hash;
-            document.querySelectorAll(".nav-link").forEach(e => {
-                let n = e.getAttribute("href");
-                e.classList.remove("activeLink", "r-activeLink"), e.classList.add("inactiveLink",
-                    "r-inactiveLink"), (n === i || n === i + t) && (e.classList.add("activeLink",
-                        "r-activeLink"), e.classList.remove("inactiveLink", "r-inactiveLink"))
-            })
-        }
-        i(), window.addEventListener("popstate", i)
-    });
+//minified it
+document.addEventListener("DOMContentLoaded", function() {
+    function i() {
+        let i = window.location.pathname,
+            t = window.location.hash;
+        document.querySelectorAll(".nav-link").forEach(e => {
+            let n = e.getAttribute("href");
+            e.classList.remove("activeLink", "r-activeLink"), e.classList.add("inactiveLink",
+                "r-inactiveLink"), (n === i || n === i + t) && (e.classList.add("activeLink",
+                "r-activeLink"), e.classList.remove("inactiveLink", "r-inactiveLink"))
+        })
+    }
+    i(), window.addEventListener("popstate", i)
+});
 </script>

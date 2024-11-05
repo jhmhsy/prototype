@@ -1,10 +1,12 @@
 /* Set the height of the map */
 
 #map {
-    height: 100vh;
+    height: 500px;
     width: 100%;
-    background-color: #f0f0f0; /* Light mode background */
+    background-color: #f0f0f0;
     transition: background-color 0.3s ease;
+    z-index: 1; /* Lower z-index for map */
+    margin-top: 80px; /* Add margin to account for fixed header height */
 }
 
 /* Tailwind dark mode class */

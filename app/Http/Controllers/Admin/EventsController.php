@@ -25,6 +25,7 @@ class EventsController extends Controller
             ->orderBy($sortBy, $sortDirection)
             ->paginate(10);
 
+        session()->put('form_token', uniqid());
         return view('administrator.event.index', compact('events', 'sortBy', 'sortDirection', 'search'));
     }
 
@@ -32,6 +33,15 @@ class EventsController extends Controller
 
     public function store(Request $request)
     {
+
+        $redirectResponse = $this->checkIfDuplicate($request);
+        if ($redirectResponse) {
+            return $redirectResponse;
+        }
+
+
+        session()->forget('form_token');
+
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'location' => 'required|string|max:255',
@@ -42,5 +52,14 @@ class EventsController extends Controller
 
         Event::create($validatedData);
         return redirect()->route('events')->with('success', 'Event added successfully!');
+    }
+
+    private function checkIfDuplicate(Request $request)
+    {
+        if ($request->input('form_token') !== session('form_token')) {
+            // If duplicate submission, just go back to the previous page
+            return redirect()->back()->with('error', 'Duplicate submission detected.');
+        }
+        return null; // Return null if there's no duplicate submission
     }
 }
