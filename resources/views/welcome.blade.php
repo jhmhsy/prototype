@@ -1,18 +1,16 @@
 <x-guest-layout>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <body class="bg-tint_1 dark:bg-black">
         <div class="flex flex-col min-h-screen  min-w-[360px]">
             <!-- Header sections--->
-            <header id="header-section" class=" dark:bg-black transition-transform duration-150 ease-in-out">
+            <header id="header-section" class="transition-transform duration-150 ease-in-out dark:bg-black">
                 <x-homepage.header-section />
             </header>
             <!-- Main sections-->
-            <main id="main-section" class="bg-tint_3 dark:bg-black  ">
+            <main id="main-section" class="bg-tint_3 dark:bg-black ">
                 <x-homepage.main-section />
 
             </main>
-
             <!-- equipment sections-->
             <div id="equipment-section bg-white dark:bg-black">
                 @include ('components.homepage.equipment-section')

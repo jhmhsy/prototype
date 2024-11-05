@@ -3,13 +3,9 @@
         {{ __('Home') }}
     </x-forms.nav-link>
 
-    <x-forms.nav-link :href="route('reservation')" :active="request()->routeIs('reservation')">
+    {{-- <x-forms.nav-link :href="route('reservation')" :active="request()->routeIs('reservation')">
         {{ __('Reservation') }}
-    </x-forms.nav-link>
-
-    <x-forms.nav-link :href="route('calendar')" :active="request()->routeIs('calendar')">
-        {{ __('Calendar') }}
-    </x-forms.nav-link>
+    </x-forms.nav-link> --}}
 
     <x-forms.nav-link href="/#semi-section" class="nav-link">
         {{ __('Features') }}
@@ -22,8 +18,10 @@
     <x-forms.nav-link href="/#footer-section" class="nav-link">
         {{ __('Contacts') }}
     </x-forms.nav-link>
-
-
+    
+    <x-forms.nav-link :href="route('calendar')" :active="request()->routeIs('calendar')">
+        {{ __('Calendar') }}
+    </x-forms.nav-link>
 @endif
 
 @if ($responsive ?? false)
@@ -31,9 +29,9 @@
         {{ __('Home') }}
     </x-forms.responsive-nav-link>
 
-    <x-forms.responsive-nav-link :href="route('reservation')" :active="request()->routeIs('reservation')">
+    {{-- <x-forms.responsive-nav-link :href="route('reservation')" :active="request()->routeIs('reservation')">
         {{ __('Reservation') }}
-    </x-forms.responsive-nav-link>
+    </x-forms.responsive-nav-link> --}}
 
     <x-forms.responsive-nav-link href="/#semi-section">
         {{ __('Features') }}
@@ -47,7 +45,7 @@
         {{ __('Contacts') }}
     </x-forms.responsive-nav-link>
     @if (!Auth::user())
-        <x-forms.responsive-nav-link :href=" route('login')" :active="request()->is('login')">
+        <x-forms.responsive-nav-link :href="route('login')" :active="request()->is('login')">
             {{ __('Login') }}
         </x-forms.responsive-nav-link>
         <x-forms.responsive-nav-link :href="route('register')">

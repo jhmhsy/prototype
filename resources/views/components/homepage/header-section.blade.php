@@ -1,15 +1,15 @@
-<div class="flex-no-wrap fixed top-0 z-10 w-full  flex items-center justify-between px-6 py-4 uppercase">
+<div class="fixed top-0 z-10 flex flex-no-wrap items-center justify-between w-full px-6 py-4 uppercase">
     <div class="flex flex-row mr-13">
         <a href="{{ route('welcome') }}" class="logo">
-            <img src="{{ asset('images/logo colored.png') }}" width="50" height="50" alt="logo">
+            <img src="{{ asset('images/logo.png') }}" width="90"" alt="logo">
             {{-- <x-custom.application-logo /> --}}
         </a>
     </div>
 
     <div class="flex justify-center">
         <nav class="flex gap-4 sm:gap-6">
-            <div class="flex justify-evenly items-center text-center">
-                <div class="hidden xl:flex space-x-12">
+            <div class="flex items-center text-center justify-evenly">
+                <div class="hidden space-x-12 xl:flex">
                     @include('navigations.home-nav', ['default' => true])
                 </div>
             </div>
@@ -21,7 +21,7 @@
             <x-custom.darkmode />
         </div>
 
-        <div class="hidden sm:block items-center text-center">
+        <div class="items-center hidden text-center sm:block">
             @include('navigations.login-dropdown', ['row' => true])
         </div>
 

@@ -26,7 +26,7 @@
     <link href="{{ asset('css/loaders/blue-spinner.css') }}" rel="stylesheet">
 
     <!-- Favicon -->
-    <link rel="icon" href="{{ asset('images/logo colored.png') }}">
+    <link rel="icon" href="images\logo.png">
 
     <!-- Dark Mode FOUC Prevention -->
     <script>
@@ -61,7 +61,7 @@
     <div>
         @isset($header)
         <header>
-            <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+            <div class="px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
                 {{ $header }}
             </div>
         </header>
