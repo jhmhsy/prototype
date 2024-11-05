@@ -29,7 +29,7 @@ export default {
                 hanken: ["Hanken Grotesk", "sans-serif"],
                 roboto: ["Roboto", "sans-serif"],
                 opensans: ["Open Sans", "sans-serif"],
-                bebas: ["Bebas Neue", "sans-serif"],
+                raleway: ["Raleway", "sans-serif"],
                 nunito: ["Nunito Sans", "sans-serif"],
             },
             fontWeight: {

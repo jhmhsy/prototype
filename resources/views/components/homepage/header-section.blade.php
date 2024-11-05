@@ -1,4 +1,4 @@
-<div class="fixed top-0 z-10 flex flex-no-wrap items-center justify-between w-full px-6 py-4 uppercase text-primary bg-secondary">
+<div class="text-primary bg-secondary fixed top-0 z-10 flex flex-no-wrap items-center justify-between w-full px-6 py-4 uppercase ">
     <div class="flex flex-row mr-13">
         <a href="{{ route('welcome') }}" class="logo">
             <img src="{{ asset('images/logo.png') }}" width="100" alt="logo">
@@ -23,7 +23,7 @@
             @include('navigations.login-dropdown', ['row' => true])
         </div>
 
-        <div class="hidden sm:block">
+        <div class="hidden sm:block bg-">
             @include('navigations.settings-dropdown', ['dropdown' => true])
         </div>
 
