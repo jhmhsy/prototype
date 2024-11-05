@@ -180,7 +180,7 @@ class MemberController extends Controller
         $this->updateLockerStatus();
 
         return redirect()->back()->with([
-            'success' => 'Member registered successfully with services and lockers!',
+            'success' => 'Member registered successfully!',
             'qrCodeUrl' => Storage::url('qrcodes/' . $fileName)
         ]);
     }
@@ -255,7 +255,7 @@ class MemberController extends Controller
 
         ]);
 
-        return redirect()->back()->with('success', 'Locker subscription extended successfully.');
+        return redirect()->back()->with('success', 'Locker Subscription extended successfully.');
     }
 
     public function rentLocker(Request $request, $id)

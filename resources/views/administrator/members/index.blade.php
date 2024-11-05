@@ -1,4 +1,13 @@
 <x-dash-layout>
+    @if(session('success'))
+        <div id="notification" class="notification">
+            <button id="close-notification" class="close-btn">&times;</button>
+            <p class="notification-message">{{ session('success') }}</p>
+            <div id="time-bar" class="time-bar"></div>
+        </div>
+    @endif
+
+
     <div class="bg-gray-100" x-data="{ serviceFilter: 'all', statusFilter: 'current' }">
         <div class="container mx-auto p-4">
             <h1 class="text-2xl font-bold mb-4">Member List</h1>
@@ -127,16 +136,18 @@
                                                         <tbody>
 
                                                             @foreach($member->services as $service)
-                                                                    <tr x-show="(serviceFilter === 'all' || serviceFilter === 'service') && 
-                                                                ((statusFilter === 'current' && ['Active', 'Inactive', 'Due', 'Overdue'].includes('{{ $service->status }}')) || 
-                                                                (statusFilter === 'expired' && '{{ $service->status }}' === 'Expired'))">
-                                                                        <!-- ... service row content remains the same ... -->
-                                                                    </tr>
+                                                                <tr
+                                                                    x-show="(serviceFilter === 'all' || serviceFilter === 'service') && 
+                                                                                    ((statusFilter === 'current' && ['Active', 'Inactive', 'Due', 'Overdue'].includes('{{ $service->status }}')) || 
+                                                                                    (statusFilter === 'expired' && '{{ $service->status }}' === 'Expired'))">
+                                                                    <!-- ... service row content remains the same ... -->
+                                                                </tr>
                                                             @endforeach
                                                             @foreach($member->services as $service)
-                                                                                                <tr x-show="(serviceFilter === 'all' || serviceFilter === 'service') && 
-                                                                                            ((statusFilter === 'current' && ['Active', 'Inactive', 'Due', 'Overdue'].includes('{{ $service->status }}')) || 
-                                                                                            (statusFilter === 'expired' && '{{ $service->status }}' === 'Expired'))">
+                                                                                                <tr
+                                                                                                    x-show="(serviceFilter === 'all' || serviceFilter === 'service') && 
+                                                                                                                                                ((statusFilter === 'current' && ['Active', 'Inactive', 'Due', 'Overdue'].includes('{{ $service->status }}')) || 
+                                                                                                                                                (statusFilter === 'expired' && '{{ $service->status }}' === 'Expired'))">
                                                                                                     <td class="border px-4 py-2">{{ $service->service_type }}</td>
 
                                                                                                     <td class="border px-4 py-2">${{ $service->amount }}</td>

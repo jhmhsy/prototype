@@ -1,4 +1,11 @@
 <x-dash-layout>
+    @if(session('success'))
+    <div id="notification" class="notification">
+        <button id="close-notification" class="close-btn">&times;</button>
+        <p class="notification-message">{{ session('success') }}</p>
+        <div id="time-bar" class="time-bar"></div>
+    </div>
+    @endif
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.8/html5-qrcode.min.js"></script>
     <style>
     #reader {

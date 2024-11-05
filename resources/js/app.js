@@ -44,3 +44,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
     splide.mount();
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    const notification = document.getElementById("notification");
+    const closeBtn = document.getElementById("close-notification");
+
+    if (notification) {
+        // Auto-hide after 4 seconds
+        setTimeout(() => {
+            notification && notification.remove();
+        }, 4000);
+
+        // Close on button click
+        closeBtn.addEventListener("click", () => {
+            notification.remove();
+        });
+    }
+});

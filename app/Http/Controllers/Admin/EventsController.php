@@ -51,7 +51,7 @@ class EventsController extends Controller
         ]);
 
         Event::create($validatedData);
-        return redirect()->route('events')->with('success', 'Event added successfully!');
+        return redirect()->route('events')->with('success', 'asdasd oten ly!');
     }
 
     private function checkIfDuplicate(Request $request)

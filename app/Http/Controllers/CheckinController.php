@@ -136,7 +136,7 @@ class CheckinController extends Controller
             'checkin_date' => $now->toDateString(),
         ]);
 
-        return redirect()->back()->with('success', 'Check-in recorded successfully.');
+        return redirect()->back()->with('success', 'User Checked-in successfully.');
     }
 
 
