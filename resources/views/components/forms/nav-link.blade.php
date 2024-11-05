@@ -2,8 +2,8 @@
 
 @php
     $classes = $active
-        ? 'border-main text-main dark:text-tint_4 dark:border-main' // Active link styles
-        : 'border-transparent text-shade_8 hover:text-main dark:text-tint_2 dark:hover:text-tint_4'; // Inactive link styles
+        ? 'border-lemon-base text-lemon-base' // Active link styles
+        : 'border-transparent hover:text-lemon-base hover:border-lemon-base hover:transform hover:-translate-y-0.5'; // Inactive link styles
 
     $defaults =
         'border-b-2 transition duration-150 ease-in-out inline-flex leading-5 font-medium text-sm items-center px-1 pt-1';

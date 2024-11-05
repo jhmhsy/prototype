@@ -24,10 +24,10 @@ header > div {
     @apply text-lemon-base;
 }
 .activeLink {
-    @apply border-lemon-base text-secondary dark:text-lemon-base dark:border-lemon-base;
+    @apply border-lemon-base text-lemon-base ;
 }
 .inactiveLink {
-    @apply border-transparent dark:text-secondary dark:hover:text-lemon-base hover:text-primary; /* Apply inactive styles correctly */
+    @apply border-transparent text-primary hover:border-lemon-base hover:text-lemon-base;
 }
 /* Custom CSS */
 @keyframes fadeOut {

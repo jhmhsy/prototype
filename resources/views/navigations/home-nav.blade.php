@@ -1,15 +1,11 @@
 @if ($default ?? false)
-    <x-forms.nav-link href="/" :active="request()->is('/')">
+    <x-forms.nav-link href="/" class="nav-link">
         {{ __('Home') }}
     </x-forms.nav-link>
 
-    <x-forms.nav-link :href="route('reservation')" :active="request()->routeIs('reservation')">
+    {{--<x-forms.nav-link :href="route('reservation')" :active="request()->routeIs('reservation')">
         {{ __('Reservation') }}
-    </x-forms.nav-link>
-
-    <x-forms.nav-link :href="route('calendar')" :active="request()->routeIs('calendar')">
-        {{ __('Calendar') }}
-    </x-forms.nav-link>
+    </x-forms.nav-link>--}}
 
     <x-forms.nav-link href="/#semi-section" class="nav-link">
         {{ __('Features') }}
@@ -21,6 +17,10 @@
 
     <x-forms.nav-link href="/#footer-section" class="nav-link">
         {{ __('Contacts') }}
+    </x-forms.nav-link>
+
+    <x-forms.nav-link :href="route('calendar')" :active="request()->routeIs('calendar')">
+        {{ __('Calendar') }}
     </x-forms.nav-link>
 
 

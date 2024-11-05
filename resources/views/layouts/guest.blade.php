@@ -51,7 +51,6 @@
 
     <body class="font-opensans antialiased min-w-[350px]" x-data="globalLoader()">
         <!-- Loader Component -->
-
         <div>
             @isset($header)
                 <header>

@@ -1,7 +1,7 @@
-<div class="fixed top-0 z-10 flex flex-no-wrap items-center justify-between w-full px-6 py-4 uppercase">
+<div class="fixed top-0 z-10 flex flex-no-wrap items-center justify-between w-full px-6 py-4 uppercase text-primary bg-secondary">
     <div class="flex flex-row mr-13">
         <a href="{{ route('welcome') }}" class="logo">
-            <img src="{{ asset('images/logo.png') }}" width="50" height="50" alt="logo" class="transition-transform duration-300 hover:scale-110">
+            <img src="{{ asset('images/logo.png') }}" width="100" alt="logo">
         </a>
     </div>
 
@@ -16,10 +16,9 @@
     </div>
 
     <div class="flex items-center gap-2">
-        <div role="group" dir="ltr" class="darkmode" tabindex="0" style="outline: none;">
+        {{--<div role="group" dir="ltr" class="darkmode" tabindex="0" style="outline: none;">
             <x-custom.darkmode />
-        </div>
-
+        </div>--}}
         <div class="items-center hidden text-center sm:block">
             @include('navigations.login-dropdown', ['row' => true])
         </div>
