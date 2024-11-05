@@ -1,6 +1,5 @@
 <section
     class="relative flex items-center justify-center w-full min-h-screen px-4 dark:border-white/10 sm:px-10 stars sm:justify-between">
-
     <div
         class="flex flex-col items-center justify-center w-full px-4 py-10 space-y-3 mt-13 md:flex-row sm:px-15 sm:py-0">
         <div class="z-10 space-y-3 lg:text-shade_9 dark:md:text-tint_1 text-tint_1 md:text-left">

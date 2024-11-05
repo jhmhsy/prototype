@@ -1,73 +1,76 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>LaraFitness</title>
+        <title>LaraFitness</title>
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link rel="preload" href="https://fonts.bunny.net/css?family=open-sans:300,400,500,600,700" as="style" />
-    <link href="https://fonts.bunny.net/css?family=open-sans:300,400,500,600,700" rel="stylesheet" />
+        <!-- Fonts -->
+        <link rel="preconnect" href="https://fonts.bunny.net">
+        <link rel="preload" href="https://fonts.bunny.net/css?family=open-sans:300,400,500,600,700" as="style" />
+        <link href="https://fonts.bunny.net/css?family=open-sans:300,400,500,600,700" rel="stylesheet" />
 
-    <!-- FullCalendar -->
-    <link href='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.css' rel='stylesheet' />
-    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js' defer></script>
+        <!-- Extra Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap"
+            rel="stylesheet">
+        <!-- FullCalendar -->
+        <link href='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.css' rel='stylesheet' />
+        <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js' defer></script>
 
-    <!-- Google map -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+        <!-- Google map -->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 
+        <!-- Loaders -->
+        <link href="{{ asset('css/loaders/blue-spinner.css') }}" rel="stylesheet">
+        <script src="{{ asset('js/global-loader.js') }}" defer></script>
 
-    <!-- Loaders -->
-    <link href="{{ asset('css/loaders/blue-spinner.css') }}" rel="stylesheet">
-    <script src="{{ asset('js/global-loader.js') }}" defer></script>
+        <!-- Flowbite -->
+        <link href="{{ asset('path/to/flowbite/dist/flowbite.min.css') }}" rel="stylesheet">
+        <script src="{{ asset('path/to/flowbite/dist/flowbite.min.js') }}" defer></script>
 
-    <!-- Flowbite -->
-    <link href="{{ asset('path/to/flowbite/dist/flowbite.min.css') }}" rel="stylesheet">
-    <script src="{{ asset('path/to/flowbite/dist/flowbite.min.js') }}" defer></script>
+        <!-- Custom Scripts -->
+        <script src="{{ asset('js/darkmode.js') }}" defer></script>
+        <script src="{{ asset('js/hrefScrollAnimation.js') }}" defer></script>
+        <script src="{{ asset('js/progressBar.js') }}" defer></script>
+        <script src="//unpkg.com/alpinejs" defer></script>
+        <script src="screensize.js" defer></script>
 
-    <!-- Custom Scripts -->
-    <script src="{{ asset('js/darkmode.js') }}" defer></script>
-    <script src="{{ asset('js/hrefScrollAnimation.js') }}" defer></script>
-    <script src="{{ asset('js/progressBar.js') }}" defer></script>
-    <script src="//unpkg.com/alpinejs" defer></script>
-    <script src="screensize.js" defer></script>
+        <!-- Logo -->
+        <link rel="icon" href="{{ asset('images/logo.png') }}">
 
-    <!-- Favicon -->
-    <link rel="icon" href="{{ asset('images/logo colored.png') }}">
+        <!-- Vite -->
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @stack('head')
+    </head>
 
+    <body class="font-opensans antialiased min-w-[350px]" x-data="globalLoader()">
+        <!-- Loader Component -->
 
-    <!-- Vite -->
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-    @stack('head')
-</head>
+        <div>
+            @isset($header)
+                <header>
+                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                        {{ $header }}
+                    </div>
+                </header>
+            @endisset
 
-<body class="font-opensans antialiased min-w-[350px]" x-data="globalLoader()">
-    <!-- Loader Component -->
+            <!-- Main Content -->
+            <div class="dark:bg-shade_9 dark:text-tint_1 bg-tint_1">
 
-    <div>
-        @isset($header)
-            <header>
-                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                    {{ $header }}
-                </div>
-            </header>
-        @endisset
-
-        <!-- Main Content -->
-        <div class="dark:bg-shade_9 dark:text-tint_1 bg-tint_1">
-
-            {{ $slot }}
+                {{ $slot }}
+            </div>
         </div>
-    </div>
 
-    <div style="display:none;">
-        <x-custom.darkmode />
-    </div>
-</body>
-
+        <div style="display:none;">
+            <x-custom.darkmode />
+        </div>
+    </body>
 
 </html>
