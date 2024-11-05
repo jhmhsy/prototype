@@ -21,12 +21,27 @@
         }
     }
 
+    @keyframes fadeInTop {
+        from {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
     .animate-fade-in-right {
         animation: fadeInRight 1s ease-out forwards;
     }
 
     .animate-fade-out-left {
         animation: fadeOutLeft 0.5s ease-out forwards;
+    }
+
+    .animate-fade-in-top {
+        animation: fadeInTop 1s ease-out forwards;
     }
 </style>
 
@@ -37,8 +52,8 @@
     <div
         class="flex flex-col w-1/2 items-center px-4 py-10 space-y-3 justify-evenly mt-13 md:flex-row sm:px-15 sm:py-0 relative z-10">
         <div class="text-primary z-10 space-y-3">
-            <div class="flex justify-start space-x-1">
-                <h1 class="font-raleway tracking-widest text-6xl font-bold">
+            <div class="flex justify-start space-x-2">
+                <h1 class="font-raleway tracking-wider text-6xl font-bold">
                     GYM ONE
                 </h1>
                 <div class="flex flex-col items-center">
@@ -66,10 +81,8 @@
                 </div>
             </div>
             <p class="max-w-full sm:max-w-[900px] sm:text-xl md:text-lg lg:text-xl">
-                Our gym reservation system makes it easy to book your sessions, manage your membership, and stay on top
-                of your fitness goals.
+                Top-notch Equipments Combined with Affordable Prices
             </p>
-
             <div class="flex gap-2 md:flex-row">
                 <x-custom.secondary-button type="button" onclick="window.location.href = '{{ route('ticket.show') }}'"
                     class="border text-bold">
@@ -77,14 +90,7 @@
                 </x-custom.secondary-button>
                 <x-custom.secondary-button type="button" onclick="window.location.href = '#equipment-section'"
                     :active="request()->routeIs('reservation')" class="border">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="15"  fill="currentColor"
-                        class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd"
-                            d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5" />
-                        <path fill-rule="evenodd"
-                            d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0z" />
-                    </svg>
-                    <p>Learn More</p>
+                    Learn More
                 </x-custom.secondary-button>
             </div>
         </div>
@@ -102,10 +108,10 @@
         const observerCallback = (entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('animate-fade-in-right');
+                    entry.target.classList.add('animate-fade-in-top');
                     entry.target.classList.remove('animate-fade-out-left');
                 } else {
-                    entry.target.classList.remove('animate-fade-in-right');
+                    entry.target.classList.remove('animate-fade-in-top');
                     entry.target.classList.add('animate-fade-out-left');
                 }
             });
@@ -113,8 +119,9 @@
 
         const observer = new IntersectionObserver(observerCallback, observerOptions);
 
-        // Select all elements within .text-primary
-        const elementsToAnimate = document.querySelectorAll('.text-primary *');
+        // Select all elements within the specific section
+        const section = document.querySelector('section.bg-peak-4');
+        const elementsToAnimate = section.querySelectorAll('.text-primary *');
         elementsToAnimate.forEach(element => observer.observe(element));
     });
 </script>
