@@ -20,6 +20,10 @@ class PriceSeeder extends Seeder
                 'price' => 100,
             ],
             [
+                'service_type' => '1monthstudent',
+                'price' => 110,
+            ],
+            [
                 'service_type' => '3month',
                 'price' => 300,
             ],

@@ -130,6 +130,7 @@ class MemberController extends Controller
 
         $serviceTypeToMonths = [
             '1month' => 1,
+            '1monthstudent' => 1,
             '3month' => 3,
             '6month' => 6,
             '12month' => 12,
@@ -147,7 +148,13 @@ class MemberController extends Controller
                 $startDate = $request->input("start_date_{$i}");
 
 
+                if ($serviceType == '1month' && $request->membership_type == 'Student') {
+                    $serviceType = '1monthstudent';
+                }
+
                 $totalAmount = $priceList[$serviceType] ?? null;
+
+
 
                 if (is_null($totalAmount)) {
                     return response()->json(['error' => "Price for {$serviceType} not found."], 404);
