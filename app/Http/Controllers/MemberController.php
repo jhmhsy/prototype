@@ -122,8 +122,7 @@ class MemberController extends Controller
 
         // STORE SUBSCRIPTIONS
         for ($i = 1; $i <= 4; $i++) {
-            if ($request->filled("service_type_{$i}") && $request->filled("start_date_{$i}")) {
-
+            if ($request->filled("service_type_{$i}") && $request->filled("start_date_{$i}") && $request->filled("month_{$i}")) {
                 $months = intval($request->input("month_{$i}"));
                 $startDate = $request->input("start_date_{$i}");
 
@@ -144,7 +143,8 @@ class MemberController extends Controller
 
         // STORE LOCKERS
         // Only create a locker if the start date is filled
-        if ($request->filled("locker_start_date")) {
+        if ($request->filled('locker_start_date') && $request->filled('locker_no') && $request->filled('locker_month')) {
+
             $months = intval($request->input("locker_month"));
             $startDate = $request->input("locker_start_date");
 
@@ -162,7 +162,7 @@ class MemberController extends Controller
 
 
         // STORE TREADMILLS
-        if ($request->filled("treadmill_start_date")) {
+        if ($request->filled('treadmill_start_date') && $request->filled('treadmill_months')) {
             $months = intval($request->input("treadmill_months"));
             $startDate = $request->input("treadmill_start_date");
 
@@ -180,7 +180,7 @@ class MemberController extends Controller
         $this->updateLockerStatus();
 
         return redirect()->back()->with([
-            'success' => 'Member registered successfully with services and lockers!',
+            'success' => 'Member registered successfully!',
             'qrCodeUrl' => Storage::url('qrcodes/' . $fileName)
         ]);
     }
@@ -255,7 +255,7 @@ class MemberController extends Controller
 
         ]);
 
-        return redirect()->back()->with('success', 'Locker subscription extended successfully.');
+        return redirect()->back()->with('success', 'Locker Subscription extended successfully.');
     }
 
     public function rentLocker(Request $request, $id)

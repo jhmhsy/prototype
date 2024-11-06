@@ -1,4 +1,14 @@
 <x-dash-layout>
+
+    @if(session('success'))
+    <div id="notification" class="notification">
+        <button id="close-notification" class="close-btn">&times;</button>
+        <p class="notification-message">{{ session('success') }}</p>
+        <div id="time-bar" class="time-bar"></div>
+    </div>
+    @endif
+
+
     <div class="container">
         <h2>Register New Member</h2>
 
@@ -79,7 +89,7 @@
             <div x-data="{ includeLocker: false, lockerStartDate: '' }">
                 <div>
                     <label>
-                        <input type="checkbox" x-model="includeLocker"
+                        <input type="checkbox" x-model="includeLocker" name="includeLocker"
                             @change="lockerStartDate = includeLocker ? new Date().toISOString().slice(0, 10) : ''">
                         Include Locker
                     </label>

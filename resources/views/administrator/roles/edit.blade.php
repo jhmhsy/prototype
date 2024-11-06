@@ -8,25 +8,26 @@
     x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform scale-90"
     x-transition:enter-end="opacity-100 transform scale-100" x-transition:leave="transition ease-in duration-100"
     x-transition:leave-start="opacity-100 transform scale-100" x-transition:leave-end="opacity-0 transform scale-90">
-    <div @click.stop class="bg-white rounded shadow-lg w-full max-w-2xl max-h-[90vh] overflow-y-auto" @click.stop>
-        <div class="bg-white rounded shadow-lg w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+    <div @click.stop class="bg-white dark:bg-peak_2 rounded shadow-lg w-full max-w-2xl max-h-[90vh] overflow-y-auto"
+        @click.stop>
+        <div class="rounded shadow-lg w-full max-w-2xl max-h-[90vh] overflow-y-auto">
             <div class="container mx-auto max-w-2xl px-4 py-8">
                 <form method="POST" action="{{ route('roles.update', $role->id) }}">
                     @csrf
                     @method('PUT')
 
-                    <div class="space-y-4">
-                        <h1 class="text-2xl font-bold">Edit Roles</h1>
-                        <p class="text-muted-foreground">Current role: {{ $role->name }}</p><br>
+                    <div class="space-y-4 text-black dark:text-white">
+                        <h1 class="text-2xl font-bold dark:text-white">Edit Roles</h1>
+                        <p class="text-gray-500 text-lg">Current role: <span
+                                class="text-black dark:text-white">{{ $role->name }}</span>
+                        </p><br>
                         <div class="space-y-4">
                             <div class="space-y-2">
-                                <label
-                                    class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                                    for="role-name">
+                                <label class="text-sm font-medium text-gray-500" for="role-name">
                                     Role Name
                                 </label>
                                 <input type="text" name="name" placeholder="Name"
-                                    class="flex h-10 w-full text-black rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                                    class="dark:bg-peak_1 dark:text-white flex h-10 w-full text-black rounded-md border dark:border-none px-3 py-2 text-sm"
                                     value="{{ $role->name }}">
 
 
@@ -34,13 +35,13 @@
 
                             </div>
                             <div class="space-y-4">
-                                <h3 class="text-lg font-medium">Permissions</h3>
+                                <h3 class="text-lg font-medium text-gray-500">Permissions</h3>
                                 <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
                                     @foreach($permissions as $permission)
                                     <div class="flex items-center space-x-2">
                                         <div class="flex items-center gap-3">
                                             <label
-                                                class="select-none flex items-center text-sm font-medium leading-none cursor-pointer ">
+                                                class="select-none flex items-center text-sm font-medium  cursor-pointer ">
                                                 <input type="checkbox" name="permission[{{ $permission->id }}]"
                                                     value="{{ $permission->id }}" class="name"
                                                     {{ $role->hasPermissionTo($permission->name) ? 'checked' : '' }}>

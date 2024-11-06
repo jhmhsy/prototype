@@ -82,8 +82,6 @@ Route::get('/reservation', function () {
 Route::get('/users', [UserController::class, 'index'])->name('admin.users.index');
 Route::get('/settings', [UserController::class, 'settings'])->name('admin.settings');
 
-Route::post('/equipment/store', [EquipmentController::class, 'store'])->name('equipment.store');
-Route::post('/events/store', [EventsController::class, 'store'])->name('events.store');
 
 Route::prefix('ticket')->group(function () {
     Route::get('/selection', [TicketController::class, 'show'])->name('ticket.show');
@@ -91,6 +89,7 @@ Route::prefix('ticket')->group(function () {
     Route::get('/index', [TicketController::class, 'index'])->name('ticket.index');
     Route::post('/success', [TicketController::class, 'store'])->name('ticket.store');
 });
+
 
 //⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎ 𝗔𝗗𝗠𝗜𝗡
 
@@ -116,7 +115,16 @@ Route::group(['middleware' => ['auth', 'isAdmin']], function () {
         });
 
         Route::get('/equipments', [EquipmentController::class, 'index'])->name('administrator.equipments');
+        Route::post('/equipment/store', [EquipmentController::class, 'store'])->name('equipments.store');
+        Route::put('/equipment/{id}', [EquipmentController::class, 'update'])->name('equipments.update');
+        Route::delete('/equipment/{id}', [EquipmentController::class, 'destroy'])->name('equipments.destroy');
+
         Route::get('/events', [EventsController::class, 'index'])->name('administrator.events');
+        Route::post('/events/store', [EventsController::class, 'store'])->name('events.store');
+        Route::put('/events/{id}', [EventsController::class, 'update'])->name('events.update');
+        Route::delete('/events/{id}', [EventsController::class, 'destroy'])->name('events.destroy');
+
+
         Route::get('/tickets', [TicketController::class, 'index'])->name('administrator.tickets');
         Route::get('/users', [UserController::class, 'index'])->name('administrator.users');
         Route::get('/roles', [RoleController::class, 'index'])->name('administrator.roles');

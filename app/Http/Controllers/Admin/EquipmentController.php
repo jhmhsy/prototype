@@ -79,4 +79,37 @@ class EquipmentController extends Controller
         }
         return null; // Return null if there's no duplicate submission
     }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'type' => 'required|string|max:255',
+            'details' => 'required|string|max:500',
+            'extra_details' => 'required|string|max:500',
+
+        ]);
+
+
+
+        $equipment = Equipment::findOrFail($id);
+        $equipment->update([
+            'name' => $request->input('name'),
+            'type' => $request->input('type'),
+            'details' => $request->input('details'),
+            'extra_details' => $request->input('extra_details'),
+
+        ]);
+
+        return redirect()->back()->with('success', 'equipment updated successfully.');
+    }
+
+
+    public function destroy($id)
+    {
+        $equipment = Equipment::findOrFail($id);
+
+        $equipment->delete();
+        return redirect()->back()->with('success', 'equipment Successfully Deleted.');
+    }
 }

@@ -12,56 +12,59 @@
         x-transition:leave-start="opacity-100 transform scale-100"
         x-transition:leave-end="opacity-0 transform scale-90">
 
-        <div @click.stop class="bg-white rounded shadow-lg w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+        <div @click.stop
+            class="bg-white dark:bg-peak_2 rounded shadow-lg w-full max-w-2xl max-h-[90vh] overflow-y-auto">
             <div class="mt-50 p-4">
                 <div class="flex flex-col space-y-1.5 px-6 text-center">
-                    <h3 class="whitespace-nowrap tracking-tight text-2xl font-bold">Create New User</h3>
+                    <h3 class="dark:text-white text-2xl font-bold">Create New User</h3>
                 </div>
 
                 @if (count($errors) != 0)
-                    <div class="alert alert-danger">
-                        <strong>Whoops!</strong> There were some problems with your input.<br><br>
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
+                <div class="alert alert-danger">
+                    <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
                 @endif
 
-                <div class="px-3 py-2">
+                <div class="px-3 py-2 dark:text-white">
                     <form method="POST" action="{{ route('users.store') }}">
                         @csrf
                         <div class="grid grid-cols-1 gap-2">
                             <div class="grid grid-cols-2 gap-4">
                                 <div class="space-y-2">
-                                    <label class="text-sm font-medium leading-none">Name</label>
+                                    <label class="text-sm font-medium leading-none text-gray-500">Name</label>
                                     <input type="text" name="name" placeholder="Name" required
-                                        class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background">
+                                        class="dark:bg-peak_1 flex h-10 w-full rounded-md border border-input  px-3 py-2 text-sm ">
                                 </div>
                                 <div class="space-y-2">
-                                    <label class="text-sm font-medium leading-none">Email</label>
+                                    <label class="text-sm font-medium leading-none text-gray-500">Email</label>
                                     <input type="email" name="email" placeholder="Enter Your Email" required
-                                        class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background">
+                                        class="dark:bg-peak_1 flex h-10 w-full rounded-md border border-input  px-3 py-2 text-sm ">
                                 </div>
                             </div>
                             <div class="flex flex-col gap-4">
                                 <div class="space-y-2">
-                                    <label class="text-sm font-medium leading-none">Password</label>
+                                    <label class="text-sm font-medium leading-none text-gray-500">Password</label>
                                     <input type="password" name="password" placeholder="••••••••"
-                                        class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background">
+                                        class="dark:bg-peak_1 flex h-10 w-full rounded-md border border-input  px-3 py-2 text-sm ">
                                 </div>
                                 <div class="space-y-2">
-                                    <label class="text-sm font-medium leading-none">Confirm Password</label>
+                                    <label class="text-sm font-medium leading-none text-gray-500">Confirm
+                                        Password</label>
                                     <input type="password" name="confirm-password" placeholder="Confirm Password"
-                                        class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background">
+                                        class="dark:bg-peak_1 flex h-10 w-full rounded-md border border-input  px-3 py-2 text-sm ">
                                 </div>
                                 <div class="space-y-2 mb-3">
-                                    <label class="text-sm font-medium leading-none">Choose a Role for this User</label>
+                                    <label class="text-sm font-medium leading-none text-gray-500">Choose a Role for this
+                                        User</label>
                                     <select name="roles[]"
-                                        class="flex h-10 w-full rounded-md border border-input bg-white px-3 py-2 text-sm text-shade_9 dark:placeholder-shade_9/50">
+                                        class="dark:bg-peak_1 flex h-10 w-full rounded-md border border-input  px-3 py-2 text-sm ">
                                         @foreach ($roles as $value => $label)
-                                            <option value="{{ $value }}">{{ $label }}</option>
+                                        <option value="{{ $value }}">{{ $label }}</option>
                                         @endforeach
                                     </select>
                                 </div>
