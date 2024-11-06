@@ -122,7 +122,8 @@ class MemberController extends Controller
 
         // STORE SUBSCRIPTIONS
         for ($i = 1; $i <= 4; $i++) {
-            if ($request->filled("service_type_{$i}") && $request->filled("start_date_{$i}") && $request->filled("month_{$i}")) {
+            if ($request->filled("service_type_{$i}") && $request->filled("start_date_{$i}")) {
+
                 $months = intval($request->input("month_{$i}"));
                 $startDate = $request->input("start_date_{$i}");
 
@@ -143,8 +144,7 @@ class MemberController extends Controller
 
         // STORE LOCKERS
         // Only create a locker if the start date is filled
-        if ($request->filled('locker_start_date') && $request->filled('locker_no') && $request->filled('locker_month')) {
-
+        if ($request->filled("locker_start_date")) {
             $months = intval($request->input("locker_month"));
             $startDate = $request->input("locker_start_date");
 
@@ -155,14 +155,13 @@ class MemberController extends Controller
                 'amount' => $totalAmount,
                 'month' => $months,
                 'locker_no' => $request->input("locker_no"),
-
                 'status' => 'Active',
             ]);
         }
 
 
         // STORE TREADMILLS
-        if ($request->filled('treadmill_start_date') && $request->filled('treadmill_months')) {
+        if ($request->filled("treadmill_start_date")) {
             $months = intval($request->input("treadmill_months"));
             $startDate = $request->input("treadmill_start_date");
 
@@ -180,7 +179,7 @@ class MemberController extends Controller
         $this->updateLockerStatus();
 
         return redirect()->back()->with([
-            'success' => 'Member registered successfully!',
+            'success' => 'Member registered successfully with services and lockers!',
             'qrCodeUrl' => Storage::url('qrcodes/' . $fileName)
         ]);
     }
@@ -251,11 +250,10 @@ class MemberController extends Controller
 
             'due_date' => $this->calculateDueDate($startDate, 'Monthly', $months), // Pass months here
             'status' => 'active', // Reset status to active if it was overdue
-            'month' => $locker->month + $validated['month'], // Add new months to existing duration
-
+            'month' => $locker->month + $validated['month'] // Add new months to existing duration
         ]);
 
-        return redirect()->back()->with('success', 'Locker Subscription extended successfully.');
+        return redirect()->back()->with('success', 'Locker subscription extended successfully.');
     }
 
     public function rentLocker(Request $request, $id)
@@ -271,7 +269,6 @@ class MemberController extends Controller
             'locker_no' => 'required|string',
             'start_date' => 'required|date',
             'month' => 'required|numeric|min:1|max:12',
-
         ]);
 
         $member = Member::findOrFail($id);
@@ -285,7 +282,6 @@ class MemberController extends Controller
             'amount' => $totalamount,
             'month' => $months,
             'locker_no' => $request->locker_no,
-
             'status' => 'Active',
         ]);
 

@@ -40,7 +40,7 @@ class MemberController extends Controller
 
 
         $occupiedLockers = Locker::where('status', 'Active')->pluck('locker_no')->toArray();
-
+        session()->put('form_token', uniqid());
         return view('administrator.members.index', compact('members', 'occupiedLockers'));
     }
 
@@ -48,7 +48,7 @@ class MemberController extends Controller
     public function create()
     {
         $occupiedLockers = Locker::where('status', 'Active')->pluck('locker_no')->toArray();
-
+        session()->put('form_token', uniqid());
         return view('administrator.members.create', compact('occupiedLockers'));
     }
 
@@ -62,6 +62,8 @@ class MemberController extends Controller
 
         $request->validate([
             'name' => 'required|string|max:255',
+            'phone' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
             // Service types must be present
             'service_type_1' => 'nullable|string|max:255',
             'service_type_2' => 'nullable|string|max:255',
@@ -71,17 +73,24 @@ class MemberController extends Controller
             'start_date_2' => 'nullable|date',
             'start_date_3' => 'nullable|date',
             'start_date_4' => 'nullable|date',
-            'month_1' => 'nullable|numeric|min:1|max:12',
-            'month_2' => 'nullable|numeric|min:1|max:12',
-            'month_3' => 'nullable|numeric|min:1|max:12',
-            'month_4' => 'nullable|numeric|min:1|max:12',
-
-
+            'month_1' => 'nullable|numeric|min:1',
+            'month_2' => 'nullable|numeric|min:1',
+            'month_3' => 'nullable|numeric|min:1',
+            'month_4' => 'nullable|numeric|min:1',
 
             // Locker fields can be nullable
-            'locker_start_date' => 'nullable|date',
-            'locker_no' => 'nullable|integer',
-            'locker_month' => 'nullable|numeric|min:1|max:12',
+            'locker_start_date_1' => 'nullable|date',
+            'locker_start_date_2' => 'nullable|date',
+            'locker_start_date_3' => 'nullable|date',
+            'locker_start_date_4' => 'nullable|date',
+            'locker_no_1' => 'nullable|integer',
+            'locker_no_2' => 'nullable|integer',
+            'locker_no_3' => 'nullable|integer',
+            'locker_no_4' => 'nullable|integer',
+            'locker_month_1' => 'nullable|numeric|min:1',
+            'locker_month_2' => 'nullable|numeric|min:1',
+            'locker_month_3' => 'nullable|numeric|min:1',
+            'locker_month_4' => 'nullable|numeric|min:1',
 
             //Treadmill
             'treadmill_start_date' => 'nullable|date',
@@ -122,7 +131,8 @@ class MemberController extends Controller
 
         // STORE SUBSCRIPTIONS
         for ($i = 1; $i <= 4; $i++) {
-            if ($request->filled("service_type_{$i}") && $request->filled("start_date_{$i}") && $request->filled("month_{$i}")) {
+            if ($request->filled("service_type_{$i}") && $request->filled("start_date_{$i}")) {
+
                 $months = intval($request->input("month_{$i}"));
                 $startDate = $request->input("start_date_{$i}");
 
@@ -142,27 +152,27 @@ class MemberController extends Controller
         }
 
         // STORE LOCKERS
-        // Only create a locker if the start date is filled
-        if ($request->filled('locker_start_date') && $request->filled('locker_no') && $request->filled('locker_month')) {
+        for ($i = 1; $i <= 4; $i++) {
+            // Only create a locker if the start date is filled
+            if ($request->filled("locker_start_date_{$i}")) {
 
-            $months = intval($request->input("locker_month"));
-            $startDate = $request->input("locker_start_date");
+                $months = intval($request->input("locker_month_{$i}"));
+                $startDate = $request->input("locker_start_date_{$i}");
 
-            $totalAmount = $months * 100;
-            $member->lockers()->create([
-                'start_date' => $startDate,
-                'due_date' => $this->calculateDueDate($startDate, 'Monthly', $months), // Pass months here
-                'amount' => $totalAmount,
-                'month' => $months,
-                'locker_no' => $request->input("locker_no"),
-
-                'status' => 'Active',
-            ]);
+                $totalAmount = $months * 100;
+                $member->lockers()->create([
+                    'start_date' => $startDate,
+                    'due_date' => $this->calculateDueDate($startDate, 'Monthly', $months), // Pass months here
+                    'amount' => $totalAmount,
+                    'month' => $months,
+                    'locker_no' => $request->input("locker_no_{$i}"),
+                    'status' => 'Active',
+                ]);
+            }
         }
 
-
         // STORE TREADMILLS
-        if ($request->filled('treadmill_start_date') && $request->filled('treadmill_months')) {
+        if ($request->filled("treadmill_start_date")) {
             $months = intval($request->input("treadmill_months"));
             $startDate = $request->input("treadmill_start_date");
 
@@ -180,7 +190,7 @@ class MemberController extends Controller
         $this->updateLockerStatus();
 
         return redirect()->back()->with([
-            'success' => 'Member registered successfully!',
+            'success' => 'Member registered successfully with services and lockers!',
             'qrCodeUrl' => Storage::url('qrcodes/' . $fileName)
         ]);
     }
@@ -231,33 +241,6 @@ class MemberController extends Controller
     }
 
 
-    public function extendLocker(Request $request, Member $member)
-    {
-        $validated = $request->validate([
-            'locker_no' => 'required|string',
-            'month' => 'required|integer|min:1', // Add validation for months
-        ]);
-
-        $locker = $member->lockers()
-            ->where('locker_no', $validated['locker_no'])
-            ->whereIn('status', ['active', 'overdue'])
-            ->firstOrFail();
-
-        $months = intval($request->input("month"));
-        $startDate = $request->input("start_date");
-
-        // Update the locker
-        $locker->update([
-
-            'due_date' => $this->calculateDueDate($startDate, 'Monthly', $months), // Pass months here
-            'status' => 'active', // Reset status to active if it was overdue
-            'month' => $locker->month + $validated['month'], // Add new months to existing duration
-
-        ]);
-
-        return redirect()->back()->with('success', 'Locker Subscription extended successfully.');
-    }
-
     public function rentLocker(Request $request, $id)
     {
         //check for duplicate submission
@@ -271,7 +254,6 @@ class MemberController extends Controller
             'locker_no' => 'required|string',
             'start_date' => 'required|date',
             'month' => 'required|numeric|min:1|max:12',
-
         ]);
 
         $member = Member::findOrFail($id);
@@ -285,7 +267,6 @@ class MemberController extends Controller
             'amount' => $totalamount,
             'month' => $months,
             'locker_no' => $request->locker_no,
-
             'status' => 'Active',
         ]);
 
@@ -295,9 +276,6 @@ class MemberController extends Controller
 
         return redirect()->back()->with('success', 'New locker rented successfully.');
     }
-
-
-
 
 
     public function extendTreadmill(Request $request, $id)
@@ -390,6 +368,7 @@ class MemberController extends Controller
             // If duplicate submission, just go back to the previous page
             return redirect()->back()->with('error', 'Duplicate submission detected.');
         }
+
         return null; // Return null if there's no duplicate submission
     }
 

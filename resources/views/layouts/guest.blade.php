@@ -8,10 +8,13 @@
 
         <title>LaraFitness</title>
 
-        <!-- Fonts -->
+    <!-- Vite Assets (Load Early to Apply Styles First) -->
+
+        <!-- Fonts with Performance Optimization -->
         <link rel="preconnect" href="https://fonts.bunny.net">
-        <link rel="preload" href="https://fonts.bunny.net/css?family=open-sans:300,400,500,600,700" as="style" />
-        <link href="https://fonts.bunny.net/css?family=open-sans:300,400,500,600,700" rel="stylesheet" />
+        <link rel="preload" href="https://fonts.bunny.net/css?family=open-sans:300,400,500,600,700&display=swap"
+        as="style" />
+        <link href="https://fonts.bunny.net/css?family=open-sans:300,400,500,600,700&display=swap" rel="stylesheet" />
 
         <!-- Extra Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -52,18 +55,18 @@
 
     <body class="font-opensans antialiased min-w-[350px]" x-data="globalLoader()">
         <!-- Loader Component -->
-        <div>
+        <!-- Header Section -->
+    <div>
             @isset($header)
-                <header>
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
+            <header>
+                <div class="px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
+                    {{ $header }}
+                </div>
+            </header>
             @endisset
 
             <!-- Main Content -->
             <div class="dark:bg-shade_9 dark:text-tint_1 bg-tint_1">
-
                 {{ $slot }}
             </div>
         </div>
@@ -72,5 +75,4 @@
             <x-custom.darkmode />
         </div>
     </body>
-
 </html>

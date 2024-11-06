@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+@import "swiper/css";
+@import "swiper/css/navigation";
+@import "swiper/css/pagination";
+
 html {
     scroll-behavior: smooth;
 }
@@ -137,5 +141,114 @@ header > div {
         ::-webkit-scrollbar-thumb:hover {
             background: #555; /* Dark mode thumb hover */
         }
+    }
+}
+
+/* store success flash notification that popsup if the store is a success */ /* Notification styles */
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 300px;
+    padding: 15px 20px;
+    background-color: #ffffff;
+    color: #333333;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+
+    font-size: 14px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-right: 4px solid #4caf50;
+    animation: slide-in 0.3s ease-out;
+}
+
+.notification-message {
+    margin: 0;
+    padding-right: 20px;
+}
+
+.close-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: none;
+    border: none;
+    color: #666;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 4px;
+    line-height: 1;
+    transition: color 0.2s;
+}
+
+.close-btn:hover {
+    color: #333;
+}
+
+.time-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(to right, #4caf50, #ffd700, #ff4444);
+    background-size: 200% 100%;
+    border-radius: 0 0 8px 8px;
+    animation: slide-gradient 4s linear forwards, slide-width 4s linear forwards;
+}
+
+@keyframes slide-in {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slide-width {
+    from {
+        width: 100%;
+    }
+    to {
+        width: 0%;
+    }
+}
+
+@keyframes slide-gradient {
+    from {
+        background-position: 0% 50%;
+    }
+    to {
+        background-position: 100% 50%;
+    }
+}
+
+/* Admin tabular action field name; 3 dot button css */
+.action-dropdown-menu {
+    display: none;
+    position: fixed;
+    z-index: 50;
+    max-height: calc(100vh - 20px);
+    overflow-y: auto;
+    transition: all 0.2s ease-out;
+    transform: scale(0.95);
+    opacity: 0;
+}
+
+.action-dropdown-menu.show {
+    display: block;
+    opacity: 1;
+}
+
+@media (max-width: 768px) {
+    .action-dropdown-menu button {
+        padding: 0.75rem 1rem;
     }
 }

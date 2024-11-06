@@ -13,55 +13,56 @@
         x-transition:leave-start="opacity-100 transform scale-100"
         x-transition:leave-end="opacity-0 transform scale-90">
 
-        <div @click.stop class="bg-white rounded shadow-lg w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+        <div @click.stop
+            class="bg-white dark:bg-peak_2 rounded shadow-lg w-full max-w-2xl max-h-[90vh] overflow-y-auto">
             <div class="mt-50 p-4">
                 <div class="flex flex-col space-y-1.5 px-6">
                     <h3 class="whitespace-nowrap tracking-tight text-2xl font-bold">Create New Role</h3>
                 </div>
 
                 @if (count($errors) > 0)
-                <div class="alert alert-danger">
-                    <strong>Whoops!</strong> There were some problems with your input.<br><br>
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
+                    <div class="alert alert-danger">
+                        <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
                 @endif
 
 
-                <div class="p-6">
+                <div class="p-6 dark:text-white">
                     <form method="POST" action="{{ route('roles.store') }}">
                         @csrf
                         <div class="grid grid-cols-1 gap-2">
                             <div class="grid grid-cols-1 gap-4">
                                 <div class="space-y-2">
-                                    <label class="text-sm font-medium leading-none">Role Name</label>
+                                    <label class="text-lg font-medium  text-gray-500">Role Name</label>
                                     <input type="text" name="name" placeholder="Name"
-                                        class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background">
+                                        class="dark:bg-peak_1 flex h-10 w-full rounded-md border-none  px-3 py-2 text-sm ">
                                 </div>
                             </div>
 
                             <div class="flex flex-col gap-4">
-                                <h3 class="text-lg font-medium">Permissions</h3>
+                                <h3 class="text-lg font-medium text-gray-500">Permissions</h3>
                                 <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
                                     @foreach($permissioncreate as $value)
-                                    <div class="flex items-center space-x-2">
-                                        <div class="flex items-center gap-3">
+                                        <div class="flex items-center space-x-2">
+                                            <div class="flex items-center gap-3">
 
-                                            <label
-                                                class="select-none flex items-center text-sm font-medium leading-none cursor-pointer">
+                                                <label
+                                                    class="select-none flex items-center text-sm font-medium  cursor-pointer">
 
-                                                <input type="checkbox" name="permission[{{$value->id}}]"
-                                                    value="{{$value->id}}" class="name">
-                                                <span class="ml-2"> {{ $value->name }}</span>
+                                                    <input type="checkbox" name="permission[{{$value->id}}]"
+                                                        value="{{$value->id}}" class="name">
+                                                    <span class="ml-2"> {{ $value->name }}</span>
 
-                                            </label>
+                                                </label>
 
 
+                                            </div>
                                         </div>
-                                    </div>
                                     @endforeach
 
                                 </div>

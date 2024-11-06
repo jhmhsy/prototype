@@ -28,14 +28,15 @@
         <!-- Scripts -->
         <script src="{{ asset('js/tooltip.js') }}"></script>
         <script src="{{ asset('js/darkmode.js') }}" defer></script>
-        <script src="//unpkg.com/alpinejs" defer></script>
         <script src="{{ asset('js/dashboardnavigator.js') }}" defer></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jsqr/1.4.0/jsQR.js"></script>
         <script src="{{ asset('js/jsqr.js') }}" defer></script>
 
+
         <!-- screen size indicator TEMPORARY), just copy the below VV-->
         {{-- <div id="breakpoint" class="fixed bg-black text-white w-50 h-50 z-50 text-lg px-5 py-2">Loading...</div> --}}
-        <script src="{{ asset('js/screensize.js') }}" defer></script>
+        {{--
+    <script src="{{ asset('js/screensize.js') }}" defer></script>--}}
 
         <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
         <link rel="icon" href="images\logo.png">

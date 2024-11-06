@@ -71,5 +71,45 @@ class EquipmentController extends Controller
         return redirect()->route('equipment.index')->with('success', 'Equipment added successfully!');
     }
 
+    private function checkIfDuplicate(Request $request)
+    {
+        if ($request->input('form_token') !== session('form_token')) {
+            // If duplicate submission, just go back to the previous page
+            return redirect()->back()->with('error', 'Duplicate submission detected.');
+        }
+        return null; // Return null if there's no duplicate submission
+    }
 
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'type' => 'required|string|max:255',
+            'details' => 'required|string|max:500',
+            'extra_details' => 'required|string|max:500',
+
+        ]);
+
+
+
+        $equipment = Equipment::findOrFail($id);
+        $equipment->update([
+            'name' => $request->input('name'),
+            'type' => $request->input('type'),
+            'details' => $request->input('details'),
+            'extra_details' => $request->input('extra_details'),
+
+        ]);
+
+        return redirect()->back()->with('success', 'equipment updated successfully.');
+    }
+
+
+    public function destroy($id)
+    {
+        $equipment = Equipment::findOrFail($id);
+
+        $equipment->delete();
+        return redirect()->back()->with('success', 'equipment Successfully Deleted.');
+    }
 }
