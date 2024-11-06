@@ -61,3 +61,61 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 });
+
+/* Admin tabular action field name; 3 dot button js */
+document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll(".action-dropdown").forEach((dropdown) => {
+        const button = dropdown.querySelector(".dropdown-button");
+        const menu = dropdown.querySelector(".action-dropdown-menu");
+
+        // Handle button click
+        button.addEventListener("click", (e) => {
+            e.stopPropagation();
+
+            // Close other dropdowns
+            document
+                .querySelectorAll(".action-dropdown-menu.show")
+                .forEach((m) => m !== menu && m.classList.remove("show"));
+
+            // Toggle current dropdown
+            menu.classList.toggle("show");
+
+            if (menu.classList.contains("show")) {
+                // Position the dropdown
+                const rect = button.getBoundingClientRect();
+                const menuRect = menu.getBoundingClientRect();
+                const spaceRight = window.innerWidth - rect.right - 10;
+
+                menu.style.top = `${rect.top}px`;
+                menu.style.left =
+                    spaceRight > menuRect.width
+                        ? `${rect.right}px`
+                        : `${rect.left - menuRect.width}px`;
+
+                // Keep in viewport
+                const bounds = menu.getBoundingClientRect();
+                if (bounds.right > window.innerWidth - 10) {
+                    menu.style.left = `${
+                        window.innerWidth - menuRect.width - 10
+                    }px`;
+                }
+                if (bounds.bottom > window.innerHeight - 10) {
+                    menu.style.top = `${
+                        window.innerHeight - menuRect.height - 10
+                    }px`;
+                }
+            }
+        });
+
+        // Close on outside click or scroll/resize
+        ["click", "scroll", "resize"].forEach((event) => {
+            (event === "scroll" ? document : window).addEventListener(
+                event,
+                () => {
+                    menu.classList.remove("show");
+                },
+                event === "scroll"
+            );
+        });
+    });
+});

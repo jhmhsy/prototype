@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Event;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\DataTables;
 
@@ -51,7 +52,7 @@ class EventsController extends Controller
         ]);
 
         Event::create($validatedData);
-        return redirect()->route('events')->with('success', 'asdasd oten ly!');
+        return redirect()->route('events')->with('success', 'Event Successfuly Added!');
     }
 
     private function checkIfDuplicate(Request $request)
@@ -61,5 +62,36 @@ class EventsController extends Controller
             return redirect()->back()->with('error', 'Duplicate submission detected.');
         }
         return null; // Return null if there's no duplicate submission
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'location' => 'required|string|max:255',
+            'details' => 'required|string|max:500',
+            'date' => 'required|date',
+            'time' => 'required|date_format:H:i',
+        ]);
+
+        $event = Event::findOrFail($id);
+        $event->update([
+            'name' => $request->input('name'),
+            'location' => $request->input('location'),
+            'details' => $request->input('details'),
+            'date' => $request->input('date'),
+            'time' => $request->input('time'),
+        ]);
+
+        return redirect()->back()->with('success', 'Event updated successfully.');
+    }
+
+
+    public function destroy($id)
+    {
+        $event = Event::findOrFail($id);
+
+        $event->delete();
+        return redirect()->back()->with('success', 'Event Successfully Deleted.');
     }
 }

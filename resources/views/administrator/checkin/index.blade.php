@@ -71,11 +71,14 @@
     </style>
 
     <div class="container mx-auto px-4 py-8" x-data="{ serviceFilter: 'all', statusFilter: 'current' }">
-        <h1 class="text-3xl font-bold mb-6">Member Check-in</h1>
+        <h1 class="text-3xl font-bold mb-6 dark:text-white">Member Check-in</h1>
 
-        <div class="mb-8 bg-white p-6 rounded-lg shadow-md">
+        <div class="mb-8 bg-white dark:bg-peak_2 p-6 rounded-lg shadow-md">
 
             <div class="flex gap-5">
+
+
+                <!-- Realtime scanner -->
                 <div class="scanner-container">
                     <div class="scanner-controls">
                         <button id="startButton"
@@ -91,6 +94,8 @@
                         <strong>Last Scan:</strong> <span id="lastResultText"></span>
                     </div>
                 </div>
+
+                <!-- upload qrcode -->
                 <form id="searchForm" action="{{ route('checkin.index') }}" method="GET" class="mb-4">
                     <input id="qrOutput" name="search" type="hidden">
                     <label for="qrInput" class="block text-sm font-medium text-gray-700 mb-2">Upload QR Code</label>
@@ -104,33 +109,35 @@
             </div>
 
 
-
-            <form action="{{ route('checkin.index') }}" method="GET" class="mt-4">
-                <div class="flex" x-data="barcodeScanner()">
-                    <input type="text" id="barcodeInput" name="search" x-model="scannedValue" x-ref="barcodeInput"
-                        class="scan-input"
-                        class="flex-grow rounded-l-md border-gray-300 focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
-                        placeholder="Search by ID Number" value="{{ request('search') }}">
+            <!-- manual search  -->
+            <form id="searchForm" action="{{ route('checkin.index') }}" method="GET" class="mt-4">
+                <div class="relative">
                     <button type="submit"
-                        class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-r-md transition duration-300">Search</button>
+                        class="absolute inset-y-0 left-0 flex items-center p-2 text-gray-500 dark:text-gray-400">
+                        <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 20 20">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                        </svg>
+                        <span class="sr-only">Search</span> <!-- For accessibility -->
+                    </button>
+                    <input type="text" name="search" id="searchInput" placeholder="Search by ID Number"
+                        value="{{ request('search') }}"
+                        class="block w-full py-2 pl-10 pr-4 text-sm border border-gray-300 rounded-md dark:border-gray-800 dark:bg-peak_2 dark:text-white" />
+
                 </div>
             </form>
 
-
-            {{--<form action="{{ route('checkin.index') }}" method="GET" class="mt-4">
-            <div class="flex">
-                <input type="text" name="search"
-                    class="flex-grow rounded-l-md border-gray-300 focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
-                    placeholder="Search by ID Number" value="{{ request('search') }}">
-                <button type="submit"
-                    class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-r-md transition duration-300">Search</button>
+            <!-- Barcode scanner input -->
+            <div class="hidden" x-data="barcodeScanner()">
+                <input type="text" id="barcodeInput" name="search" x-model="scannedValue" x-ref="barcodeInput"
+                    class="scan-input" placeholder="Barcode Input">
             </div>
-            </form>--}}
         </div>
 
-        <div class="overflow-x-auto bg-white shadow-md rounded-lg">
-            <table class="min-w-full divide-y divide-gray-200">
-                <thead class="bg-gray-50">
+        <div class="overflow-x-auto shadow-md rounded-lg">
+            <table class="min-w-full ">
+                <thead class="bg-gray-50 dark:bg-peak_2">
                     <tr>
                         <th scope="col"
                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID
@@ -143,12 +150,12 @@
                             Action</th>
                     </tr>
                 </thead>
-                <tbody class="bg-white divide-y divide-gray-200">
+                <tbody class="bg-white dark:bg-peak_1">
                     @if($membersCount === 0)
                     <p class="text-gray-500 mt-4">No results found</p>
                     @else
                     @foreach ($members as $member)
-                    <tr x-data="{ open: false, showWarning: false }" :key="member . id">
+                    <tr x-data="{ open: false, showWarning: false }" :key="member . id" class="dark:text-white">
                         <td class="px-6 py-4 whitespace-nowrap">{{ $member->id_number }}</td>
                         <td class="px-6 py-4 whitespace-nowrap">{{ $member->name }}</td>
                         <td class="px-6 py-4 whitespace-nowrap">
@@ -165,7 +172,7 @@
                             </span>
                             @elseif (!$member->hasSubscriptions)
                             <span
-                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-gray-100 text-gray-800">
+                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-200">
                                 No subscriptions
                             </span>
                             @else
@@ -299,8 +306,8 @@
                                                 @foreach($member->lockers as $locker)
                                                 <template
                                                     x-if="(serviceFilter === 'all' || serviceFilter === 'locker') && 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ((statusFilter === 'current' && ['Active', 'Inactive', 'Due', 'Overdue'].includes('{{ $locker->status }}')) || 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    (statusFilter === 'expired' && '{{ $locker->status }}' === 'Expired'))">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ((statusFilter === 'current' && ['Active', 'Inactive', 'Due', 'Overdue'].includes('{{ $locker->status }}')) || 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            (statusFilter === 'expired' && '{{ $locker->status }}' === 'Expired'))">
                                                     <tr>
                                                         <td class="border px-4 py-2">Locker #{{ $locker->locker_no }}
                                                         </td>
@@ -330,8 +337,8 @@
                                                 @foreach($member->treadmills as $treadmill)
                                                 <template
                                                     x-if="(serviceFilter === 'all' || serviceFilter === 'treadmill') && 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ((statusFilter === 'current' && ['Active', 'Inactive', 'Due', 'Overdue'].includes('{{ $treadmill->status }}')) || 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    (statusFilter === 'expired' && '{{ $treadmill->status }}' === 'Expired'))">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ((statusFilter === 'current' && ['Active', 'Inactive', 'Due', 'Overdue'].includes('{{ $treadmill->status }}')) || 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            (statusFilter === 'expired' && '{{ $treadmill->status }}' === 'Expired'))">
                                                     <tr>
                                                         <td class="border px-4 py-2">Treadmill</td>
                                                         <td class="border px-4 py-2">₱{{ $treadmill->amount }}</td>
@@ -452,19 +459,32 @@ function barcodeScanner() {
         keyCount: 0,
 
         init() {
+            // Track when user starts typing manually
+            document.getElementById('searchInput').addEventListener('focus', () => {
+                this.isTypingManually = true;
+            });
+
+            document.getElementById('searchInput').addEventListener('blur', () => {
+                this.isTypingManually = false;
+            });
+
             // Handle keydown events
             document.addEventListener('keydown', (e) => {
                 const currentTime = new Date().getTime();
                 const timeDiff = currentTime - this.lastKeyTime;
 
-                // Log every keypress for debugging
-                this.debugLog += `Key: ${e.key} | Code: ${e.keyCode} | Time: ${timeDiff}ms\n`;
-
-                // Start new scan if sufficient time has passed
-                if (timeDiff > 500) {
-                    this.buffer = '';
-                    this.keyCount = 0;
+                // If it's rapid typing (like from a scanner) and not manual typing
+                if (timeDiff < this.keyDelay && !this.isTypingManually) {
                     this.collecting = true;
+                }
+                // Start new scan if sufficient time has passed
+                else if (timeDiff > 500) {
+                    // Only start collecting if it's not manual typing
+                    if (!this.isTypingManually) {
+                        this.buffer = '';
+                        this.keyCount = 0;
+                        this.collecting = true;
+                    }
                 }
 
                 // Only collect if we're in scanning mode
@@ -481,6 +501,7 @@ function barcodeScanner() {
                     if (char) {
                         this.buffer += char;
                         this.keyCount++;
+                        e.preventDefault(); // Prevent key from being typed into input
                     }
                 }
 
@@ -550,8 +571,8 @@ function barcodeScanner() {
             if (this.buffer.length > 0) {
                 // Clean up common scanning artifacts
                 let cleaned = this.buffer
-                    .replace(/^[>:]+/, '') // Remove leading >: characters
-                    .replace(/[<>]+$/, '') // Remove trailing <> characters
+                    .replace(/^[>:]+/, '')
+                    .replace(/[<>]+$/, '')
                     .trim();
 
                 // Add http:// if it looks like a URL without protocol
@@ -563,7 +584,10 @@ function barcodeScanner() {
 
                 // Get the search form and set the value
                 const form = document.getElementById('searchForm');
-                form.querySelector('input[name="search"]').value = cleaned;
+                const searchInput = form.querySelector('input[name="search"]');
+                if (searchInput) {
+                    searchInput.value = cleaned;
+                }
 
                 // Submit form with fetch to avoid page reload
                 fetch(form.action + '?search=' + encodeURIComponent(cleaned))
@@ -591,6 +615,9 @@ function barcodeScanner() {
                                 firstRow.__x.$data.open = true;
                             }
                         }
+                    })
+                    .catch(error => {
+                        console.error('Error during fetch:', error);
                     });
             }
             this.collecting = false;

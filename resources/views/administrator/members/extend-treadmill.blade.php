@@ -8,10 +8,10 @@
     x-transition:enter-start="opacity-0 transform scale-90" x-transition:enter-end="opacity-100 transform scale-100"
     x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100 transform scale-100"
     x-transition:leave-end="opacity-0 transform scale-90"
-    class="modal fixed w-[90%] md:w-[60%] lg:w-[40%] xl:w-[35%] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 p-4 bg-white"
+    class="modal fixed w-[90%] md:w-[60%] lg:w-[40%] xl:w-[35%] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 p-4 bg-white dark:bg-peak_2"
     @click.stop>
     <div class="modal-content">
-        <h3 class="text-lg leading-6 font-medium text-gray-900 mb-4">Extend Treadmill Duration</h3>
+        <h3 class="text-lg leading-6 font-medium text-gray-900 mb-4 dark:text-white">Extend Treadmill Duration</h3>
         <form action="{{ route('members.extendTreadmill', $member->id) }}" method="POST"
             id="treadmill-form-{{ $member->id }}" class="treadmill-form" x-data="{ month: '', showError: false }"
             @submit.prevent="showError = !month; if (!showError) $el.submit();">
@@ -19,12 +19,12 @@
             <input hidden name="form_token" value="{{ session('form_token') }}">
             <!-- Start Date with Refresh Button -->
             <div class="mb-4">
-                <label for="treadmill_start_date_{{ $member->id }}" class="block text-sm font-medium text-gray-700">
+                <label for="treadmill_start_date_{{ $member->id }}" class="block text-sm font-medium text-gray-500">
                     Starting Date
                 </label>
                 <div class="flex space-x-2">
                     <input type="date" id="treadmill_start_date_{{ $member->id }}" name="start_date" required
-                        class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                        class="dark:bg-peak_1 dark:text-white mt-1 block w-full py-2 px-3 border border-gray-300 dark:border-none bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                     <div class="flex space-x-2">
                         <button type="button" onclick="refreshDate({{ $member->id }}, 'treadmills', 'treadmill')"
                             class="mt-2 inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 tooltip-button">
@@ -43,12 +43,12 @@
             </div>
             <!-- Month Selection -->
             <div class="mb-4">
-                <label for="month_{{ $member->id }}" class="block text-sm font-medium text-gray-700">
+                <label for="month_{{ $member->id }}" class="block text-sm font-medium text-gray-500">
                     How many Months (max 12)
                 </label>
                 <input x-model="month" type="number" id="month_{{ $member->id }}" name="month" placeholder="1" min="1"
                     max="12"
-                    class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                    class="dark:bg-peak_1 dark:text-white mt-1 block w-full py-2 px-3 border border-gray-300 dark:border-none bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                 <!-- Error Message -->
                 <p x-show="showError" x-cloak class="error text-xs text-red-500">
                     Months quantity is needed.

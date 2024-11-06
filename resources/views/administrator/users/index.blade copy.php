@@ -82,8 +82,9 @@
                                     Roles
 
                                 </th>
-                                <th class="h-12 text-center align-middle font-medium">Actions</th>
-
+                                <th class="h-12 px-4 text-left align-middle">
+                                    Actions
+                                </th>
                             </tr>
                         </thead>
 
@@ -106,81 +107,68 @@
                                     </p>
                                     @endif
                                 </td>
+                                <td class="align-middle">
+                                    <div class="flex items-center gap-2">
+                                        <x-custom.anchor-link
+                                            @click.prevent="openshowmodal = openshowmodal === {{ $user->id }} ? null : {{ $user->id }}"
+                                            class="bg-main hover:bg-shade_2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4">
+                                                <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
+                                                <circle cx="12" cy="12" r="3"></circle>
+                                            </svg>
+                                        </x-custom.anchor-link>
+                                        @include ('administrator.users.show')
 
-                                <td class="px-4 align-middle">
-                                    <div class="action-dropdown flex items-center justify-center">
+                                        @can('role-edit')
+                                        @if ($user->hasRole('SuperAdmin') && $user->id == 1)
                                         <button
-                                            class="dropdown-button p-1 rounded-md hover:bg-gray-100 dark:hover:bg-peak_3 transition-colors relative">
-                                            <svg class="w-6 h-6 text-gray-800 dark:text-white font-bold"
-                                                aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
-                                                height="24" fill="none" viewBox="0 0 24 24">
-                                                <path stroke="currentColor" stroke-linecap="round" stroke-width="2"
-                                                    d="M6 12h.01m6 0h.01m5.99 0h.01" />
+                                            class="bg-gray-400 text-white uppercase inline-flex items-center justify-center text-xs font-medium h-9 rounded-md px-2"
+                                            disabled>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-ban" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M15 8a6.97 6.97 0 0 0-1.71-4.584l-9.874 9.875A7 7 0 0 0 15 8M2.71 12.584l9.874-9.875a7 7 0 0 0-9.874 9.874ZM16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0" />
                                             </svg>
                                         </button>
+                                        @else
+                                        <x-custom.anchor-link
+                                            @click.prevent="openUserId = openUserId === {{ $user->id }} ? null : {{ $user->id }}"
+                                            class=" bg-green-500 hover:bg-green-600">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
+                                                <path
+                                                    d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001m-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708z" />
+                                            </svg>
+                                        </x-custom.anchor-link>
+                                        @endif
+                                        @endcan
 
-                                        <div
-                                            class="action-dropdown-menu fixed bg-white dark:bg-peak_2 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 z-50 w-48 hidden">
-                                            <div class="py-1">
-                                                <button
-                                                    @click.prevent="openshowmodal = openshowmodal === {{ $user->id }} ? null : {{ $user->id }}"
-                                                    class="w-full group flex items-center px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-peak_3">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                        viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                        class="w-4 h-4 mr-3">
-                                                        <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" />
-                                                        <circle cx="12" cy="12" r="3" />
-                                                    </svg>
-                                                    View
-                                                </button>
+                                        @include ('administrator.users.edit')
+                                        @can('role-delete')
+                                        @php
+                                        // Generate a unique form ID based on the user ID
+                                        $uniqueFormId = 'delete-user-' . $user->id;
+                                        @endphp
 
-                                                @can('role-edit')
-                                                @if ($user->hasRole('SuperAdmin') && $user->id == 1)
-                                                @else
-                                                <button
-                                                    @click.prevent="openUserId = openUserId === {{ $user->id }} ? null : {{ $user->id }}"
-                                                    class="w-full group flex items-center px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-peak_3">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                        fill="currentColor" class="w-4 h-4 mr-3" viewBox="0 0 16 16">
-                                                        <path
-                                                            d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001z" />
-                                                    </svg>
-                                                    Edit
-                                                </button>
-                                                @endif
-                                                @endcan
+                                        @if ($user->hasRole('SuperAdmin') && $user->id == 1)
+                                        <x-custom.pop-up :disabled="true" :normal="false" :name="'user'"
+                                            :formId="$uniqueFormId">
+                                        </x-custom.pop-up>
+                                        @else
+                                        <x-custom.pop-up :normal="false" :name="'user'" :formId="$uniqueFormId">
+                                        </x-custom.pop-up>
+                                        @endif
 
-                                                @can('role-delete')
-                                                <form method="POST" action="{{ route('users.destroy', $user->id) }}"
-                                                    style="display:inline" class="hidden">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button
-                                                        class="w-full group flex items-center px-4 py-2 text-sm text-red-600 hover:bg-gray-100 dark:hover:bg-peak_3">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                            viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                            stroke-width="2" stroke-linecap="round"
-                                                            stroke-linejoin="round" class="w-4 h-4 mr-3">
-                                                            <path d="M3 6h18"></path>
-                                                            <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
-                                                            <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
-                                                        </svg>
-                                                        Delete
-                                                    </button>
-                                                </form>
-                                                @endcan
-                                            </div>
-                                        </div>
+                                        <form method="POST" action="{{ route('users.destroy', $user->id) }}"
+                                            style="display:inline" id="{{ $uniqueFormId }}" class="hidden">
+                                            @csrf
+                                            @method('DELETE')
+                                        </form>
+                                        @endcan
                                     </div>
                                 </td>
-
-                                @include ('administrator.users.show')
-
-                                @can('role-edit')
-                                @include ('administrator.users.edit')
-                                @endcan
-
                             </tr>
                             @endforeach
                         </tbody>

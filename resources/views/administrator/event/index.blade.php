@@ -1,24 +1,22 @@
 <x-dash-layout>
     <!-- Event Success Notification -->
     @if(session('success'))
-    <div id="notification" class="notification">
-        <button id="close-notification" class="close-btn">&times;</button>
-        <p class="notification-message">{{ session('success') }}</p>
-        <div id="time-bar" class="time-bar"></div>
-    </div>
+        <div id="notification" class="notification">
+            <button id="close-notification" class="close-btn">&times;</button>
+            <p class="notification-message">{{ session('success') }}</p>
+            <div id="time-bar" class="time-bar"></div>
+        </div>
     @endif
 
 
-
-    <section x-data="{ isOpen: false }">
-        <div class="rounded-lg border bg-card text-card-foreground shadow-sm p-6 border-shade_6/50 dark:border-white/5"
-            data-v0-t="card">
+    <section x-data="{ createmodal: false ,viewmodal:false, Editmodal:false}">
+        <div class="rounded-lg shadow-sm p-6  bg-white dark:bg-peak_1">
 
             <div class="flex flex-col gap-2">
                 <div class="flex justify-between">
                     <h1 class="text-xl font-bold dark:text-white">Manage your Events</h1>
                     <div class="ml-auto flex items-center gap-2 ">
-                        <button @click="isOpen = true"
+                        <button @click="createmodal = true"
                             class="hover:bg-green-400 focus:bg-green-500 inline-flex items-center justify-center text-sm font-medium  border rounded-md px-3 h-8 gap-1">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -33,7 +31,7 @@
 
 
                 <span class="text-sm text-gray-600 dark:text-gray-400" @if ($events->isEmpty()) style="display:
-                    none;" @endif>
+                none;" @endif>
                     Page {{ $events->currentPage() }} of {{ $events->lastPage() }}
                 </span>
 
@@ -70,7 +68,7 @@
             <div class="relative w-full overflow-auto pr-20">
                 <table class="w-full table-fixed caption-bottom text-sm mb-3">
                     <thead>
-                        <tr class="transition-colors hover:bg-muted/50 text-gray-500">
+                        <tr class="transition-colors hover:bg-muted/50 text-gray-500 dark:bg-peak_2">
                             <th class="h-12 px-4 text-left align-middle font-medium">
                                 <a href="{{ route('administrator.events', ['sortBy' => 'name', 'sortDirection' => $sortBy === 'name' && $sortDirection === 'asc' ? 'desc' : 'asc', 'search' => request('search')]) }}"
                                     class="{{ $sortBy === 'name' ? 'text-black dark:text-white' : 'text-gray-500' }}">
@@ -101,80 +99,115 @@
                                     Time
                                 </a>
                             </th>
-                            <th class="h-12 px-4 text-center align-middle font-medium">Actions</th>
+                            <th class="h-12 text-center align-middle font-medium">Actions</th>
                         </tr>
 
                     </thead>
 
                     <tbody class="text-gray-600 dark:text-gray-400">
                         @if ($events->isEmpty())
-                        <tr>
-                            <td colspan="6" class="text-center py-4">
-                                <span class="text-gray-600 dark:text-gray-400">No events yet.</span>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td colspan="6" class="text-center py-4">
+                                    <span class="text-gray-600 dark:text-gray-400">No events yet.</span>
+                                </td>
+                            </tr>
                         @else
-                        @foreach ($events as $event)
-                        <tr
-                            class=" transition-colors py-10 {{ $loop->iteration % 2 == 0 ? 'bg-gray-100 dark:bg-peak_2' : '' }}">
+                                        @foreach ($events as $event)
+                                            <tr
+                                                class=" transition-colors py-10 {{ $loop->iteration % 2 == 0 ? 'bg-gray-100 dark:bg-peak_2' : '' }}">
 
-                            <td class="px-4 align-middle  font-medium">
-                                {{ $event->name }}
-                            </td>
-                            <td class="px-4 align-middle ">
-                                {{ $event->location }}
-                            </td>
+                                                <td class="px-4 align-middle  font-medium">
+                                                    {{ $event->name }}
+                                                </td>
+                                                <td class="px-4 align-middle ">
+                                                    {{ $event->location }}
+                                                </td>
 
-                            <td class="px-4 align-middle ">
-                                {{ \Illuminate\Support\Str::limit($event->details, 15) }}
-                            </td>
+                                                <td class="px-4 align-middle ">
+                                                    {{ \Illuminate\Support\Str::limit($event->details, 15) }}
+                                                </td>
 
-                            <td class="px-4 align-middle ">{{ $event->date }}
-                            </td>
-                            <td class="px-4 align-middle ">{{ $event->time }}
-                            </td>
+                                                <td class="px-4 align-middle ">{{ $event->date }}
+                                                </td>
+                                                <td class="px-4 align-middle ">{{ $event->time }}
+                                                </td>
+                                                <td class="px-4 align-middle">
+                                                    <div class="action-dropdown flex items-center justify-center">
+                                                        <button
+                                                            class="dropdown-button p-1 rounded-md hover:bg-gray-100 dark:hover:bg-peak_3 transition-colors relative">
+                                                            <svg class="w-6 h-6 text-gray-800 dark:text-white font-bold" aria-hidden="true"
+                                                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                                                                viewBox="0 0 24 24">
+                                                                <path stroke="currentColor" stroke-linecap="round" stroke-width="2"
+                                                                    d="M6 12h.01m6 0h.01m5.99 0h.01" />
+                                                            </svg>
+                                                        </button>
 
-                            <td class="px-4 align-middle ">
-                                <div class="flex items-center justify-center gap-2">
-                                    <x-custom.anchor-link class="bg-main hover:bg-shade_2">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4">
-                                            <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
-                                            <circle cx="12" cy="12" r="3"></circle>
-                                        </svg>
-                                    </x-custom.anchor-link>
-                                    <x-custom.anchor-link class="bg-green-500 hover:bg-green-600">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                            fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
-                                            <path
-                                                d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001m-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708z" />
-                                        </svg>
-                                    </x-custom.anchor-link>
-                                    <x-custom.anchor-link class="bg-red-500 hover:bg-red-600">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round"
-                                            class="  text-red-500h-4 w-4">
-                                            <path d="M3 6h18"></path>
-                                            <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
-                                            <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
-                                        </svg>
-                                    </x-custom.anchor-link>
+                                                        <div
+                                                            class="action-dropdown-menu fixed bg-white dark:bg-peak_2 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 z-50 w-48 hidden">
+                                                            <div class="py-1">
+                                                                <button @click="viewmodal = true"
+                                                                    class="w-full group flex items-center px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-peak_3">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                                        viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                                        class="w-4 h-4 mr-3">
+                                                                        <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" />
+                                                                        <circle cx="12" cy="12" r="3" />
+                                                                    </svg>
+                                                                    View
+                                                                </button>
 
-                                </div>
-                            </td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
-            @endif
+                                                                <button @click="Editmodal = true"
+                                                                    class="w-full group flex items-center px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-peak_3">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                                        fill="currentColor" class="w-4 h-4 mr-3" viewBox="0 0 16 16">
+                                                                        <path
+                                                                            d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001z" />
+                                                                    </svg>
+                                                                    Edit
+                                                                </button>
 
-            <!-- Modal -->
+
+                                                                <form method="POST" action="{{ route('events.destroy', $event->id) }}"
+                                                                    style="display:inline" class="hidden">
+                                                                    @csrf
+                                                                    @method('DELETE')
+                                                                    <button
+                                                                        class="w-full group flex items-center px-4 py-2 text-sm text-red-600 hover:bg-gray-100 dark:hover:bg-peak_3">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                                            viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                                            class="w-4 h-4 mr-3">
+                                                                            <path d="M3 6h18"></path>
+                                                                            <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
+                                                                            <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+                                                                        </svg>
+                                                                        Delete
+                                                                    </button>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+
+                                            <!-- Actions Modal -->
+                                            @include ('administrator.event.show')
+                                            @include ('administrator.event.edit')
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        @endif
+
+            <!-- Create Modal -->
             @include ('administrator.event.add-event')
+
+
         </div>
-        </div>
+
     </section>
 
 </x-dash-layout>

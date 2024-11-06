@@ -16,23 +16,23 @@
             <div @click="if ($event.target === $el) openshowmodal = null"
                 class="grid md:grid-cols-2 gap-6 lg:gap-12 items-start max-w-6xl px-4 mx-auto py-6">
 
-                <div class="bg-white rounded-lg p-6 grid gap-6">
+                <div class="bg-white dark:bg-peak_2 rounded-lg p-6 grid gap-6">
                     <div class="bg-card rounded-lg p-6">
                         <div class="flex items-center gap-4">
                             <span class="relative flex shrink-0 overflow-hidden rounded-full h-16 w-16">
                                 <img class="aspect-square h-full w-full" alt="@shadcn" src="/placeholder-user.jpg" />
                             </span>
                             <div class="grid gap-1">
-                                <div class="text-xl font-bold">{{ $user->name }}</div>
-                                <div class="text-sm text-muted-foreground">{{ $user->email }}</div>
+                                <div class="text-xl font-bold dark:text-white">{{ $user->name }}</div>
+                                <div class="text-sm text-gray-500">{{ $user->email }}</div>
                             </div>
                         </div>
                     </div>
                     <div class="grid gap-4">
                         <div class="bg-card rounded-lg p-6">
                             <div class="grid gap-2">
-                                <h3 class="text-lg font-semibold">About Me</h3>
-                                <p class="text-muted-foreground">
+                                <h3 class="text-lg font-semibold text-gray-500">About Me</h3>
+                                <p class=" dark:text-white">
                                     ----------------- ----------------- ----------------- -----------------
                                     ----------------- ----------------- -----------------
 
@@ -41,8 +41,8 @@
                         </div>
                         <div class="bg-card rounded-lg p-6 shadow-sm">
                             <div class="grid gap-2">
-                                <h3 class="text-lg font-semibold">Additional Details</h3>
-                                <p class="text-muted-foreground">
+                                <h3 class="text-lg font-semibold text-gray-500">Additional Details</h3>
+                                <p class="dark:text-white">
                                     ----------------- ----------------- ----------------- -----------------
                                     -----------------
                                 </p>
@@ -53,53 +53,53 @@
 
                 <div @click="if ($event.target === $el) openshowmodal = null" class="grid gap-6">
 
-                    <div class="bg-white rounded-lg p-6 shadow-sm">
+                    <div class="bg-white dark:bg-peak_2 rounded-lg p-6 shadow-sm">
                         <div class="grid gap-4">
-                            <h3 class="text-lg font-semibold">Personal Information</h3>
+                            <h3 class="text-lg font-semibold dark:text-white">Personal Information</h3>
                             <div class="grid sm:grid-cols-2 gap-4">
                                 <div class="grid gap-1">
-                                    <div class="text-sm font-medium text-muted-foreground">Age</div>
-                                    <div>--</div>
+                                    <div class="text-sm font-medium text-gray-500">Age</div>
+                                    <div class="dark:text-white">--</div>
                                 </div>
                                 <div class="grid gap-1">
-                                    <div class="text-sm font-medium text-muted-foreground">Phone</div>
-                                    <div>+63 --- --- ----</div>
+                                    <div class="text-sm font-medium text-gray-500">Phone</div>
+                                    <div class="dark:text-white">+63 --- --- ----</div>
                                 </div>
                                 <div class="grid gap-1">
-                                    <div class="text-sm font-medium text-muted-foreground">Roles</div>
-                                    <div>@if (count($user->getRoleNames()) > 0)
+                                    <div class="text-sm font-medium text-gray-500">Roles</div>
+                                    <div class="dark:text-white">@if (count($user->getRoleNames()) > 0)
                                         @foreach ($user->getRoleNames() as $v)
-                                        <x-forms.input-label class="badge badge-success text-black">
-                                            {{ $v }}
-                                        </x-forms.input-label>
+                                            <x-forms.input-label class="badge">
+                                                {{ $v }}
+                                            </x-forms.input-label>
                                         @endforeach
-                                        @else
-                                        <x-forms.input-label class="badge badge-secondary text-gray-500">
+                                    @else
+                                        <x-forms.input-label class="badge">
                                             User
                                         </x-forms.input-label>
-                                        @endif
+                                    @endif
                                     </div>
                                 </div>
                                 <div class="grid gap-1">
-                                    <div class="text-sm font-medium text-muted-foreground">Availability
+                                    <div class="text-sm font-medium text-gray-500">Availability
                                     </div>
-                                    <div>-- ---- ------ ----</div>
+                                    <div class="dark:text-white">-- ---- ------ ----</div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="bg-white rounded-lg p-6 shadow-sm">
+                    <div class="bg-white dark:bg-peak_2 rounded-lg p-6 shadow-sm">
                         <div class="grid gap-4">
-                            <h3 class="text-lg font-semibold">Subscription Details</h3>
+                            <h3 class="text-lg font-semibold dark:text-white">Subscription Details</h3>
                             <div class="grid sm:grid-cols-2 gap-4">
                                 <div class="grid gap-1">
-                                    <div class="text-sm font-medium text-muted-foreground">Subscription Type
+                                    <div class="text-sm font-medium text-gray-500">Subscription Type
                                     </div>
-                                    <div>------</div>
+                                    <div class="dark:text-white">------</div>
                                 </div>
                                 <div class="grid gap-1">
-                                    <div class="text-sm font-medium text-muted-foreground">Start Date</div>
-                                    <div>---------- --, -----</div>
+                                    <div class="text-sm font-medium text-gray-500">Start Date</div>
+                                    <div class="dark:text-white">---------- --, -----</div>
                                 </div>
                             </div>
                         </div>

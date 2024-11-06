@@ -89,7 +89,7 @@
             <div x-data="{ includeLocker: false, lockerStartDate: '' }">
                 <div>
                     <label>
-                        <input type="checkbox" x-model="includeLocker"
+                        <input type="checkbox" x-model="includeLocker" name="includeLocker"
                             @change="lockerStartDate = includeLocker ? new Date().toISOString().slice(0, 10) : ''">
                         Include Locker
                     </label>

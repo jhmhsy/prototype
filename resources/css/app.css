@@ -229,3 +229,26 @@ header > div {
         background-position: 100% 50%;
     }
 }
+
+/* Admin tabular action field name; 3 dot button css */
+.action-dropdown-menu {
+    display: none;
+    position: fixed;
+    z-index: 50;
+    max-height: calc(100vh - 20px);
+    overflow-y: auto;
+    transition: all 0.2s ease-out;
+    transform: scale(0.95);
+    opacity: 0;
+}
+
+.action-dropdown-menu.show {
+    display: block;
+    opacity: 1;
+}
+
+@media (max-width: 768px) {
+    .action-dropdown-menu button {
+        padding: 0.75rem 1rem;
+    }
+}
