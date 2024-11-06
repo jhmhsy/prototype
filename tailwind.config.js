@@ -29,6 +29,8 @@ export default {
                 hanken: ["Hanken Grotesk", "sans-serif"],
                 roboto: ["Roboto", "sans-serif"],
                 opensans: ["Open Sans", "sans-serif"],
+                raleway: ["Raleway", "sans-serif"],
+                nunito: ["Nunito Sans", "sans-serif"],
             },
             fontWeight: {
                 thin: 100,
@@ -48,35 +50,14 @@ export default {
                 20: "80px",
             },
             colors: {
-                //custom green color shades
-                main: "#1c7e95",
-                tint_1: "#e8f2f4",
-                tint_2: "#d2e5ea",
-                tint_3: "#bbd8df",
-                tint_4: "#a4cbd5",
-                tint_5: "#8ebfca",
-                tint_6: "#77b2bf",
-                tint_7: "#60a5b5",
-                tint_8: "#4998aa",
-                tint_9: "#338ba0",
-                shade_1: "#197186",
-                shade_2: "#166577",
-                shade_3: "#145868",
-                shade_4: "#114c59",
-                shade_5: "#0e3f4b",
-                shade_6: "#0b323c",
-                shade_7: "#08262d",
-                shade_8: "#06191e",
-                shade_9: "#030d0f",
                 primary: "#ffffff",
                 secondary: "#000000",
-                complementary: "#fffd19",
 
-                lemon_1: "#fcffcc",
-                lemon_2: "#f6ff4d",
-                lemon_base: "#fffd19",
-                lemon_4: "#919900",
-                lemon_5: "#27290d",
+                "lemon-1": "#fcffcc",
+                "lemon-2": "#f6ff4d",
+                "lemon-base": "#fffd19",
+                "lemon-4": "#919900",
+                "lemon-5": "#27290d",
 
                 peak_1: "#030c12",
                 peak_2: "#081522",
@@ -84,8 +65,9 @@ export default {
                 peak_4: "#03090f",
                 peak_5: "#020508",
 
-                night_1: "black",
-                night_2: "#0A0A0A",
+                night_0: "#000000",
+                night_1: "#0A0A0A",
+                night_2: "#0E0F10",
                 night_3: "#0E0F10",
 
                 // custom color for default darkmode
@@ -104,8 +86,6 @@ export default {
                 charcoalgray: "#555555",
                 darkgray: "#1c1c1c",
                 darkestgray: "#060606",
-
-                textblack: "#000000",
 
                 coolblue: "#2563eb",
             },

@@ -2,7 +2,7 @@
 
 @php
     $defaults = 'text-xs text-red-600 dark:text-red-400 space-y-1';
-    $classes = $attributes->get('class') ? $attributes->get('class').' '. $defaults : $defaults;
+    $classes = $attributes->get('class') ? $attributes->get('class') . ' ' . $defaults : $defaults;
 @endphp
 @if ($errors)
     <ul {{ $attributes->merge(['class' => $classes]) }}>

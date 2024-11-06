@@ -19,19 +19,19 @@ header > div {
 .collapsed {
     height: 50px; /* Adjust height for collapsed state */
     padding: 5px 10px; /* Adjust padding */
-    @apply bg-tint_1 dark:bg-shade_4;
+    @apply bg-primary dark:bg-secondary;
 }
 .collapsed .text,
 .collapsed .logo,
 .collapsed .darkmode {
     font-size: 0.8em; /* Minimize text size */
-    @apply text-main;
+    @apply text-lemon-base;
 }
 .activeLink {
-    @apply border-main text-main dark:text-tint_4 dark:border-main;
+    @apply border-lemon-base text-lemon-base ;
 }
 .inactiveLink {
-    @apply border-transparent dark:border-transparent dark:text-tint_1 dark:hover:text-tint_4 hover:text-main; /* Apply inactive styles correctly */
+    @apply border-transparent text-primary hover:border-lemon-base hover:text-lemon-base;
 }
 /* Custom CSS */
 @keyframes fadeOut {
@@ -50,7 +50,7 @@ header > div {
         opacity: 1;
     }
 }
-/* purgecss end ignore */
+
 .dark-overlay {
     position: absolute; /* Position the overlay absolutely within the main section */
     top: 0; /* Align to the top */

@@ -10,7 +10,7 @@ return new class extends Migration {
         Schema::create('services', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('members');
-            $table->enum('service_type', ['Monthly', 'Yearly']);
+            $table->enum('service_type', ['1month', '3month', '6month', '12month']);
             $table->date('start_date');
             $table->date('due_date');
             $table->decimal('amount', 8, 2);

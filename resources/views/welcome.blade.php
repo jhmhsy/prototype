@@ -1,16 +1,15 @@
 <x-guest-layout>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <body class="bg-tint_1 dark:bg-black">
-        <div class="flex flex-col min-h-screen  min-w-[360px]">
+    <body class="bg-tint_1 dark:bg-shade_7">
+        <div class="flex flex-col min-h-screen dark:bg-shade_7 min-w-[360px]">
             <!-- Header sections--->
-            <header id="header-section" class=" dark:bg-black transition-transform duration-150 ease-in-out">
+            <header id="header-section" class="transition-transform duration-150 ease-in-out ">
                 <x-homepage.header-section />
             </header>
             <!-- Main sections-->
-            <main id="main-section" class="bg-tint_3 dark:bg-black  ">
+            <main id="main-section" class="transition-transform duration-150 ease-in-out ">
                 <x-homepage.main-section />
-
             </main>
 
             <!-- equipment sections-->
@@ -40,4 +39,5 @@
             </footer>
         </div>
     </body>
+
 </x-guest-layout>

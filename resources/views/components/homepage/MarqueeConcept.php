@@ -1,4 +1,4 @@
-<div
+><div
     class="w-full sm:px-4 md:px-6 lg:px-8 py-8 md:py-10 lg:py-10 bg-gradient-to-bl from-tint_1 via-tint_5 to-main dark:from-shade_5 dark:via-shade_8 dark:to-main ">
     <section class="px-5 sm:px-6 md:px-8 overflow-hidden ">
         <div class="flex items-center justify-between mb-6 md:mb-8">

@@ -1,20 +1,20 @@
 <x-guest-layout>
     <x-custom.loader2 />
     <x-custom.alert-success>Reservation Success!</x-custom.alert-success>
-    <div class="flex h-screen flex-col bg-tint_1 dark:bg-shade_7 text-shade_9  dark:text-tint_1">
+    <div class="flex flex-col h-screen bg-tint_1 dark:bg-shade_7 text-shade_9 dark:text-tint_1">
         <header>
             <x-homepage.header-section />
         </header>
-        <main class="dark:bg-shade_7 justify-center pt-15 flex h-full">
+        <main class="flex justify-center h-full dark:bg-shade_7 pt-15">
             <div class="flex flex-col min-h-full min-w-[600px] p-0 m-0">
-                <div class="flex-1 grid min-h-full lg:grid-cols-10 gap-8 px-2 pb-0 sm:px-6 sm:py-3">
+                <div class="grid flex-1 min-h-full gap-8 px-2 pb-0 lg:grid-cols-10 sm:px-6 sm:py-3">
                     {{-- Calendar --}}
-                    <div class="bg-muted lg:col-span-7 sm:col-span-10 rounded-md">
+                    <div class="rounded-md bg-muted lg:col-span-7 sm:col-span-10">
                         <div class="max-h-[85vh]" id="calendar"></div>
                     </div>
 
                     {{-- Hours --}}
-                    <div class="bg-muted lg:col-span-3 sm:col-span-10 rounded-md">
+                    <div class="rounded-md bg-muted lg:col-span-3 sm:col-span-10">
                         <div class="grid gap-2">
                             <div class="flex items-center justify-between">
                                 <div class="font-medium">Available Hours</div>
@@ -52,7 +52,7 @@
 
                                         <x-forms.field :value="__('Time')" :errors="$errors->get('time')" :for="'time'">
                                             <select id="time" name="time"
-                                                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-main dark:bg-tint_3 dark:text-shade_9 mb-4"
+                                                class="w-full px-3 py-2 mb-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-main dark:bg-tint_3 dark:text-shade_9"
                                                 required>
                                                 <option value="" disabled {{ old('time') ? '' : 'selected' }}>
                                                     Select an hour</option>
@@ -66,7 +66,7 @@
                                         </x-forms.field>
 
                                         <button type="submit"
-                                            class="w-full bg-main text-white py-2 px-4 rounded-md hover:bg-shade_3 dark:hover:bg-shade_5 dark:bg-shade_3 transition duration-300 ease-in-out">
+                                            class="w-full px-4 py-2 text-white transition duration-300 ease-in-out rounded-md bg-main hover:bg-shade_3 dark:hover:bg-shade_5 dark:bg-shade_3">
                                             Reserve
                                         </button>
                                     </form>
@@ -260,9 +260,23 @@
             @apply text-tint_1 dark:text-shade_9;
         }
 
+
         .fc-dayGridMonth-view .fc-view .fc-daygrid,
         table {
-            @apply dark:border-white/50 !important;
+            @apply dark:border-gray-600 !important;
+        }
+
+        .fc-day-today {
+            background-color: #85ccc7 !important;
+            position: relative;
+            border: 2px solid #0a998f;
+            /* Inner border using main color */
+            border-radius: 4px;
+        }
+
+        .fc .fc-col-header-cell,
+        .fc .fc-daygrid-day {
+            @apply dark:border-gray-600;
         }
 
         .selected-date,
@@ -277,17 +291,6 @@
 
         .fc-day {
             cursor: pointer;
-        }
-
-        .fc-day-today {
-            background-color: #85ccc7 !important;
-            /* Use tint_5 for today's date */
-            position: relative;
-            /* Set position relative for absolute positioning of inner border */
-            border: 2px solid #0a998f;
-            /* Inner border using main color */
-            border-radius: 4px;
-            /* Optional: to soften the corners */
         }
 
         .fc-day:hover {
@@ -309,9 +312,5 @@
             background-color: violet;
         }
 
-        .fc .fc-col-header-cell,
-        .fc .fc-daygrid-day {
-            @apply dark: border-white/50
-        }
     </style>
 </x-guest-layout>

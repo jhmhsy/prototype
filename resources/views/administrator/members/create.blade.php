@@ -9,8 +9,8 @@
     @endif
 
 
-    <div class="container">
-        <h2>Register New Member</h2>
+    <div class="container dark:text-gray-600">
+        <h2 class="dark:text-white">Register New Member</h2>
 
         @if(session('success'))
         <div class="alert alert-success">
@@ -22,6 +22,11 @@
             @csrf
             <input hidden name="form_token" value="{{ session('form_token') }}">
 
+
+            <select name="membership_type" id="membership_type">
+                <option value="Regular">Regular</option>
+                <option value="Student">Student</option>
+            </select>
             <h2>Member Details</h2>
             <div>
                 <label for="name">Name:</label>
@@ -57,19 +62,16 @@
                             <div>
                                 <label :for="'service_type_' + i">Service Type:</label>
                                 <select :name="'service_type_' + i">
-                                    <option value="Monthly">Monthly</option>
-                                    <option value="Yearly">Yearly</option>
+                                    <option value="1month">1 Month</option>
+                                    <option value="3month">3 Months</option>
+                                    <option value="6month">6 Months</option>
+                                    <option value="12month">12 Months</option>
                                 </select>
                             </div>
 
                             <div>
                                 <label :for="'start_date_' + i">Subscription Start Date:</label>
                                 <input type="date" :name="'start_date_' + i" :value="serviceStartDate">
-                            </div>
-
-                            <div>
-                                <label :for="'month_' + i">Total Months:</label>
-                                <input type="number" :name="'month_' + i" step="0.01">
                             </div>
 
                             <button type="button" @click="subscriptions > 1 ? subscriptions-- : null"

@@ -1,9 +1,16 @@
 // Checks localStorage for dark mode preference and apply it
 function applyDarkModePreference() {
     const darkModePreference = localStorage.getItem("darkMode");
-    const isDarkMode = darkModePreference === "enabled";
+    let isDarkMode;
+    if (darkModePreference === null) {
+        // No preference set, use default dark mode
+        isDarkMode = true;
+        localStorage.setItem("darkMode", "enabled");
+    } else {
+        isDarkMode = darkModePreference === "enabled";
+    }
     document.documentElement.classList.toggle("dark", isDarkMode);
-    updateButtonVisibility(isDarkMode); // Updates button visibility on page load
+    updateButtonVisibility(isDarkMode);
 }
 
 // Function to update the dark mode based on dropdown selection
