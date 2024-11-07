@@ -1,4 +1,4 @@
-<div class="dark:bg-night_3">
+<div class="bg-peak-4 pt-4">
     <div class="text-center py-4">
         <h1 class="text-5xl font-bold font-raleway">TOP NOTCH EQUIPMENTS</h1>
     </div>
@@ -31,7 +31,7 @@
         <div class="flex snap-x snap-mandatory gap-4" style="width: max-content;">
             <template x-for="card in cards" :key="card.id">
                 <div class="flex-none w-64 snap-center">
-                    <div class="bg-peak-3 border-1 border border-peak-1 rounded-lg overflow-hidden mb-4">
+                    <div class="bg-black border-1 border border-peak-1 rounded-lg overflow-hidden mb-4">
                         <img :src="card.image" alt="" class="w-full h-40 object-cover">
                         <div class="p-4">
                             <h3 class="text-lg leading-6 font-bold text-lemon-base" x-text="card.title"></h3>

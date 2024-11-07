@@ -1,19 +1,17 @@
-<div class=" grid items-center justify-center gap-4 px-4 text-center md:px-6 m-auto bg-white dark:bg-black">
+<div class=" grid items-center justify-center gap-4 px-4 text-center md:px-6 m-auto bg-peak-4 text-primary">
     <section>
-        <div class="bg-background p-6">
-            <h1 class="text-5xl font-bold mb-4">PRICING & PLANS</h1>
-            <p class="text-muted-foreground mb-6">For as low as</p>
+        <div class="p-6">
+            <h1 class="text-5xl font-bold mb-4 font-raleway">PRICING & PLANS</h1>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="flex flex-col bg-night_3 p-4 py-10 pr-10 rounded-lg shadow-lg text-left gap-4">
-                    <div>
+                <div class="flex flex-col bg-peak-3 p-4 py-10 pr-10 rounded-lg shadow-lg text-left gap-4 backdrop-blur-md shadow-white/5">
+                    <div>   
                         <h3 class="text-xl  text-white">Regular</h3>
                         <h4 class="text-sm text-gray-400">Perfect Plan for Stronger Adults</h4>
                     </div>
                     <div>
-                        <p class="text-4xl font-bold  text-white">₱999</p>
+                        <p class="text-4xl font-bold text-lemon-base">₱999</p>
                         <p class="text-gray-400">Monthly</p>
                     </div>
-
                     <ul class="mt-2 gap-3 flex flex-col">
                         <li class="flex items-center ">
                             <svg width="25px" height="25px" viewBox="0 0 24 24" fill="none"
@@ -43,13 +41,13 @@
                         </li>
                     </ul>
                 </div>
-                <div class="flex flex-col bg-night_3 p-4 py-10 pr-10 rounded-lg shadow-lg text-left gap-4">
+                <div class="flex flex-col bg-peak-3 p-4 py-10 pr-10 rounded-lg shadow-lg text-left gap-4 backdrop-blur-md shadow-white/5">
                     <div>
                         <h3 class="text-xl  text-white">Student</h3>
                         <h4 class="text-sm text-gray-400">Student? We got you covered</h4>
                     </div>
                     <div>
-                        <p class="text-4xl font-bold  text-white">₱850</p>
+                        <p class="text-4xl font-bold  text-lemon-base">₱850</p>
                         <p class="text-gray-400">Monthly</p>
                     </div>
 
@@ -82,13 +80,13 @@
                         </li>
                     </ul>
                 </div>
-                <div class="flex flex-col bg-night_3 p-4 py-10 pr-10 rounded-lg shadow-lg text-left gap-4">
+                <div class="flex flex-col bg-peak-3 p-4 py-10 pr-10 rounded-lg shadow-lg text-left gap-4 backdrop-blur-md shadow-white/5">
                     <div>
                         <h3 class="text-xl  text-white">Couple Monthly</h3>
                         <h4 class="text-sm text-gray-400">Couple? We got special plan for you</h4>
                     </div>
                     <div>
-                        <p class="text-4xl font-bold  text-white">₱1,899</p>
+                        <p class="text-4xl font-bold  text-lemon-base">₱1,899</p>
                         <p class="text-gray-400">Monthly</p>
                     </div>
 
@@ -121,13 +119,13 @@
                         </li>
                     </ul>
                 </div>
-                <div class="flex flex-col bg-night_3 p-4 py-10 pr-10 rounded-lg shadow-lg text-left gap-4">
+                <div class="flex flex-col bg-peak-3 p-4 py-10 pr-10 rounded-lg shadow-lg text-left gap-4 backdrop-blur-md shadow-white/5">
                     <div>
                         <h3 class="text-xl  text-white">Balanced Plan</h3>
                         <h4 class="text-sm text-gray-400">Balanced Plan for Normal Adults</h4>
                     </div>
                     <div>
-                        <p class="text-4xl font-bold  text-white">₱2,799</p>
+                        <p class="text-4xl font-bold  text-lemon-base">₱2,799</p>
                         <p class="text-gray-400">3 / Months</p>
                     </div>
 
@@ -160,13 +158,13 @@
                         </li>
                     </ul>
                 </div>
-                <div class="flex flex-col bg-night_3 p-4 py-10 pr-10 rounded-lg shadow-lg text-left gap-4">
+                <div class="flex flex-col bg-peak-3 p-4 py-10 pr-10 rounded-lg shadow-lg text-left gap-4 backdrop-blur-md shadow-white/5">
                     <div>
                         <h3 class="text-xl  text-white">Super Regular</h3>
                         <h4 class="text-sm text-gray-400">Super Plan for Muscle-Addicted Adults</h4>
                     </div>
                     <div>
-                        <p class="text-4xl font-bold  text-white">₱5,400</p>
+                        <p class="text-4xl font-bold  text-lemon-base">₱5,400</p>
                         <p class="text-gray-400">6 / Months</p>
                     </div>
 
@@ -199,13 +197,13 @@
                         </li>
                     </ul>
                 </div>
-                <div class="flex flex-col bg-night_3 p-4 py-10 pr-10 rounded-lg shadow-lg text-left gap-4">
+                <div class="flex flex-col bg-peak-3 p-4 py-10 pr-10 rounded-lg shadow-lg text-left gap-4 backdrop-blur-md shadow-white/5">
                     <div>
                         <h3 class="text-xl  text-white">Ultima Maximus Plan</h3>
                         <h4 class="text-sm text-gray-400">Ultimate Plan for Muscle Maniac Adults</h4>
                     </div>
                     <div>
-                        <p class="text-4xl font-bold  text-white">₱9,999</p>
+                        <p class="text-4xl font-bold  text-lemon-base">₱9,999</p>
                         <p class="text-gray-400">12 / Months</p>
                     </div>
 

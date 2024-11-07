@@ -1,11 +1,16 @@
 <x-guest-layout>
+    <style>
+        #map {
+            height: 300px;
+            /* Adjust this value as needed */
+        }
+    </style>
     <link href="{{ asset('css/map.css') }}" rel="stylesheet" defer>
 
     <body class="w-full">
         <div role="group" dir="ltr" class="darkmode" tabindex="0" style="outline: none;" hidden>
             <x-custom.darkmode />
         </div>
-
         <div id="map"></div>
 
         <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
@@ -21,6 +26,15 @@
                 zoomAnimation: true, // Enable zoom animation
             });
 
+            // Adjust map container height using Leaflet
+            map.whenReady(function() {
+                const mapElement = document.getElementById('map');
+                if (mapElement) {
+                    mapElement.style.height = '300px'; // Adjusted height
+                    mapElement.style.marginTop = '2vh'; // Adjusted margin top
+                    map.invalidateSize(); // Ensure the map is properly resized
+                }
+            });
 
             const lightTileLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
                 maxZoom: 19,
@@ -50,7 +64,7 @@
                 }
             }
 
-            document.getElementById("toggleDarkLightMode").addEventListener("change", function () {
+            document.getElementById("toggleDarkLightMode").addEventListener("change", function() {
                 if (this.checked) {
                     document.documentElement.classList.add("dark");
                     localStorage.setItem("dark-mode", !0);
@@ -67,7 +81,7 @@
             applyDarkModePreference();
 
             // Smooth zoom handling
-            map.on('zoomend', function () {
+            map.on('zoomend', function() {
                 const currentZoom = map.getZoom();
                 console.log("Current Zoom Level:", currentZoom);
             });

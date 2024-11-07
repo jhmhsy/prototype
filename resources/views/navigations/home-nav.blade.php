@@ -18,10 +18,6 @@
     <x-forms.nav-link href="/#footer-section" class="nav-link">
         {{ __('Contacts') }}
     </x-forms.nav-link>
-    
-    <x-forms.nav-link :href="route('calendar')" :active="request()->routeIs('calendar')">
-        {{ __('Calendar') }}
-    </x-forms.nav-link>
 
     <x-forms.nav-link :href="route('calendar')" :active="request()->routeIs('calendar')">
         {{ __('Calendar') }}

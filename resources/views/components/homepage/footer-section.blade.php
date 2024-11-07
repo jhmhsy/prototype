@@ -1,33 +1,34 @@
-<footer class="bg-white ">
-    <div class="relative items-center w-full py-12 text-center top-footer md:py-24 lg:py-32">
+<footer class="">
+    <div class="relative items-center w-full py-12 text-center bg-peak-4 text-primary md:py-24 lg:py-32">
         <div class="container grid items-center justify-center gap-4 px-4 m-auto text-center md:px-6">
-            <div class="space-y-3 text-shade_8 ">
-                <h2 class="text-3xl font-bold tracking-tighter text-tint_1 md:text-4xl/tight">
+            <div class="space-y-3 text-lemon-base">
+                <h2 class="text-3xl font-bold tracking-tighter text-lemon-base md:text-4xl/tight">
                     Join Our Vibrant Community
                 </h2>
-                <x-custom.paragraph
-                    class="mx-auto max-w-[600px] md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed text-shade_9 ">
+                <p
+                    class="mx-auto max-w-[600px] md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed text-primary">
                     Connect with like-minded individuals, attend exclusive
                     events, and take your fitness to new heights.
-                </x-custom.paragraph>
+                </p>
             </div>
             <div class="max-w-sm mx-auto space-y-2">
                 <form class="flex flex-col gap-2 sm:flex-row">
                     <x-forms.text-input
-                        class="items-center flex-1 w-full h-10 px-3 py-2 text-sm rounded-md sm:w-auto text-tint_1"
+                        class="items-center flex-1 w-full h-10 px-3 py-2 text-sm rounded-md sm:w-auto text-primary"
                         placeholder="Enter your email" type="email" />
                     <div>
                         <x-custom.primary-button
+                            class="bg-lemon-base text-secondary"
                             type="submit">
                             Join Us
                         </x-custom.primary-button>
                     </div>
                 </form>
             </div>
-            <x-custom.paragraph class="text-xs text-shade_8 ">
+            <p class="text-xs text-primary">
                 Sign up to get notified about our latest updates and
                 promotions.
-            </x-custom.paragraph>
+            </p>
         </div>
     </div>
     <div class="container max-w-full px-4 pt-3 pb-4 mx-auto text-sm dark:bg-black dark:text-gray-300 sm:pt-5 md:pt-7">
