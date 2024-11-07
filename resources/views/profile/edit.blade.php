@@ -1,4 +1,4 @@
-<x-dash-layout>
+<x-app-layout>
     <x-slot name="header">
         <div class="items-center flex  space-x-3">
             <x-forms.nav-link href="{{ route('welcome') }}" class="text-sm font-medium ">
@@ -89,4 +89,4 @@
         </div>
     </div>
 
-</x-dash-layout>
+</x-app-layout>

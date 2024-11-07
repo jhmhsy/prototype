@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
             CreateSuperAdminUserSeeder::class,
             CreateAdminUserSeeder::class,
             CreateUserSeeder::class,
+            PriceSeeder::class,
         ]);
     }
 }

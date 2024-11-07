@@ -9,7 +9,7 @@ border-shade_6/50 dark:border-white/5" data-v0-t="card">
 
 
             <span class="text-sm text-gray-600 dark:text-gray-400" @if ($rejectedBookings->isEmpty()) style="display:
-                none;" @endif>
+            none;" @endif>
                 Page {{ $rejectedBookings->currentPage() }} of {{ $rejectedBookings->lastPage() }}
             </span>
 
@@ -34,7 +34,8 @@ border-shade_6/50 dark:border-white/5" data-v0-t="card">
                             </svg>
                             <span class="sr-only">Search</span> <!-- For accessibility -->
                         </button>
-                        <input type="text" name="search" value="{{ request('search') }}" placeholder="Search events..."
+                        <input type="text" name="search" value="{{ request('search') }}" maxlength="250"
+                            placeholder="Search events..."
                             class="block w-full py-2 pl-10 pr-4 text-sm border border-gray-300 rounded-md dark:border-gray-800 dark:bg-peak_2 dark:text-white" />
                     </div>
                 </form>
@@ -79,48 +80,48 @@ border-shade_6/50 dark:border-white/5" data-v0-t="card">
 
                 <tbody class="text-gray-600 dark:text-gray-400">
                     @if ($rejectedBookings->isEmpty())
-                    <tr>
-                        <td colspan="6" class="text-center py-4">
-                            <span class="text-gray-600 dark:text-gray-400">No Active Bookings yet.</span>
-                        </td>
-                    </tr>
+                        <tr>
+                            <td colspan="6" class="text-center py-4">
+                                <span class="text-gray-600 dark:text-gray-400">No Active Bookings yet.</span>
+                            </td>
+                        </tr>
                     @else
-                    @foreach ($rejectedBookings as $booking)
-                    <tr
-                        class="transition-colors py-10 {{ $loop->iteration % 2 == 0 ? 'bg-gray-100 dark:bg-peak_2' : '' }}">
-                        <td class="px-4  py-3 align-middle [&amp;:has([role=checkbox])]:pr-0">
-                            {{ $booking->name }}
-                        </td>
-                        <td class="px-4  py-3 align-middle [&amp;:has([role=checkbox])]:pr-0 font-medium">
-                            {{ $booking->email }}
-                        </td>
+                        @foreach ($rejectedBookings as $booking)
+                            <tr
+                                class="transition-colors py-10 {{ $loop->iteration % 2 == 0 ? 'bg-gray-100 dark:bg-peak_2' : '' }}">
+                                <td class="px-4  py-3 align-middle [&amp;:has([role=checkbox])]:pr-0">
+                                    {{ $booking->name }}
+                                </td>
+                                <td class="px-4  py-3 align-middle [&amp;:has([role=checkbox])]:pr-0 font-medium">
+                                    {{ $booking->email }}
+                                </td>
 
-                        <td class="px-4  py-3 align-middle [&amp;:has([role=checkbox])]:pr-0">
-                            {{ $booking->date }}
-                        </td>
-                        <td class="px-4  py-3 align-middle [&amp;:has([role=checkbox])]:pr-0">
-                            {{ $booking->time }}
-                        </td>
+                                <td class="px-4  py-3 align-middle [&amp;:has([role=checkbox])]:pr-0">
+                                    {{ $booking->date }}
+                                </td>
+                                <td class="px-4  py-3 align-middle [&amp;:has([role=checkbox])]:pr-0">
+                                    {{ $booking->time }}
+                                </td>
 
-                        <td class="px-4  py-3 align-middle [&amp;:has([role=checkbox])]:pr-0">
-                            <div class="flex items-center justify-center gap-2">
+                                <td class="px-4  py-3 align-middle [&amp;:has([role=checkbox])]:pr-0">
+                                    <div class="flex items-center justify-center gap-2">
 
-                                <form action="{{ route('reservations.restore', $booking->id) }}" method="POST"
-                                    style="display:inline;">
-                                    @csrf
-                                    <button type="submit"
-                                        class="bg-green-500 text-white px-2 py-1 rounded">Restore</button>
-                                </form>
-                                <form action="{{ route('reservations.delete', $booking->id) }}" method="POST"
-                                    style="display:inline;">
-                                    @csrf
-                                    <button type="submit"
-                                        class="bg-red-500 text-white px-2 py-1 rounded">Delete</button>
-                                </form>
-                            </div>
-                        </td>
-                    </tr>
-                    @endforeach
+                                        <form action="{{ route('reservations.restore', $booking->id) }}" method="POST"
+                                            style="display:inline;">
+                                            @csrf
+                                            <button type="submit"
+                                                class="bg-green-500 text-white px-2 py-1 rounded">Restore</button>
+                                        </form>
+                                        <form action="{{ route('reservations.delete', $booking->id) }}" method="POST"
+                                            style="display:inline;">
+                                            @csrf
+                                            <button type="submit"
+                                                class="bg-red-500 text-white px-2 py-1 rounded">Delete</button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
                     @endif
                 </tbody>
 

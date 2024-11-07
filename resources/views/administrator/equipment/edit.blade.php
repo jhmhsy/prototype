@@ -22,28 +22,30 @@
                     <div class="mb-4">
                         <label for="name" class="block text-sm font-medium text-gray-500  ">Equipment Name</label>
                         <input type="text" id="name" name="name" value="{{ old('name', $equipment->name) }}"
-                            class="dark:bg-peak_1  w-full px-4 py-2 mt-1 border dark:border-none rounded-md " required>
+                            class="dark:bg-peak_1  w-full px-4 py-2 mt-1 border dark:border-none rounded-md " required
+                            maxlength="50">
                     </div>
 
                     <div class="mb-4">
                         <label for="type" class="block text-sm font-medium text-gray-500 ">Type</label>
                         <input type="text" id="type" name="type" value="{{ old('type', $equipment->type) }}"
-                            class="dark:bg-peak_1  w-full px-4 py-2 mt-1 border dark:border-none rounded-md " required>
+                            class="dark:bg-peak_1  w-full px-4 py-2 mt-1 border dark:border-none rounded-md " required
+                            maxlength="50">
                     </div>
 
                     <div class="mb-4">
                         <label for="details" class="block text-sm font-medium text-gray-500 ">Details</label>
                         <textarea id="details" name="details" rows="4"
-                            class="dark:bg-peak_1  w-full px-4 py-2 mt-1 border dark:border-none rounded-md "
-                            required>{{ old('details', $equipment->details) }}</textarea>
+                            class="dark:bg-peak_1  w-full px-4 py-2 mt-1 border dark:border-none rounded-md " required
+                            maxlength="300">{{ old('details', $equipment->details) }}</textarea>
                     </div>
 
                     <div class="mb-4">
                         <label for="extra_details" class="block text-sm font-medium text-gray-500 ">Extra
                             Details</label>
-                        <input type="text" id="extra_details" name="extra_details"
-                            value="{{ old('extra_details', $equipment->extra_details) }}"
-                            class="dark:bg-peak_1  w-full px-4 py-2 mt-1 border dark:border-none rounded-md " required>
+                        <textarea id="extra_details" name="extra_details"
+                            class="dark:bg-peak_1  w-full px-4 py-2 mt-1 border dark:border-none rounded-md "
+                            maxlength="300">{{ old('extra_details', $equipment->extra_details) }}</textarea>
                     </div>
 
                     <button type="submit"

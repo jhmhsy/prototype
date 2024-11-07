@@ -8,6 +8,8 @@ use App\Models\Member;
 use App\Models\Service;
 use App\Models\Locker;
 use App\Models\Treadmill;
+use App\Models\MembershipDuration;
+use App\Models\Prices;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Http\JsonResponse;
@@ -24,7 +26,8 @@ class MemberController extends Controller
 
     public function index(Request $request)
     {
-        $query = Member::with(['services', 'lockers', 'treadmills', 'qrcode']);
+
+        $query = Member::with(['services', 'lockers', 'treadmills', 'qrcode', 'membershipDuration']);
 
         if ($request->has('search')) {
             $searchTerm = $request->search;
@@ -52,6 +55,13 @@ class MemberController extends Controller
         return view('administrator.members.create', compact('occupiedLockers'));
     }
 
+    protected function getPriceList()
+    {
+        // Fetch all prices and create an associative array: 'service_type' => 'price'
+        return Prices::query()
+            ->pluck('price', 'service_type') //creates array of Price table datas
+            ->toArray();
+    }
     public function store(Request $request)
     {
         $redirectResponse = $this->checkIfDuplicate($request);
@@ -60,8 +70,15 @@ class MemberController extends Controller
         }
         session()->forget('form_token');
 
+        $priceList = $this->getPriceList();
+
         $request->validate([
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:50',
+            'phone' => ['nullable', 'string', 'regex:/^\+?[0-9\s\-()]{10,20}$/',],
+            'fb' => 'nullable|string|max:50',
+            'email' => 'nullable|email|max:100',
+            'membership_type' => 'required|in:Regular,Student',
+
             // Service types must be present
             'service_type_1' => 'nullable|string|max:255',
             'service_type_2' => 'nullable|string|max:255',
@@ -71,12 +88,6 @@ class MemberController extends Controller
             'start_date_2' => 'nullable|date',
             'start_date_3' => 'nullable|date',
             'start_date_4' => 'nullable|date',
-            'month_1' => 'nullable|numeric|min:1|max:12',
-            'month_2' => 'nullable|numeric|min:1|max:12',
-            'month_3' => 'nullable|numeric|min:1|max:12',
-            'month_4' => 'nullable|numeric|min:1|max:12',
-
-
 
             // Locker fields can be nullable
             'locker_start_date' => 'nullable|date',
@@ -94,8 +105,12 @@ class MemberController extends Controller
             'phone' => $request->phone,
             'fb' => $request->fb,
             'email' => $request->email,
+            'membership_type' => $request->membership_type,
             'user_identifier' => Str::random(28),
         ]);
+
+
+
 
         // Generate QR Code
         $qrData = $member->id_number; // Using member's ID number as QR data
@@ -120,19 +135,55 @@ class MemberController extends Controller
         ]);
 
 
+        $serviceTypeToMonths = [
+            '1month' => 1,
+            '1monthstudent' => 1,
+            '3month' => 3,
+            '6month' => 6,
+            '12month' => 12,
+            'locker' => 1,
+            'treadmill' => 1,
+        ];
+
+
+        // STORE MEMBERSHIP DURATION
+        $startDate = now();
+        $dueDate = now()->addYear(); // Adjust this based on your membership duration policy
+
+        MembershipDuration::create([
+            'member_id' => $member->id,
+            'start_date' => $startDate,
+            'due_date' => $dueDate,
+            'status' => 'Active'
+        ]);
+
+
         // STORE SUBSCRIPTIONS
         for ($i = 1; $i <= 4; $i++) {
-            if ($request->filled("service_type_{$i}") && $request->filled("start_date_{$i}") && $request->filled("month_{$i}")) {
-                $months = intval($request->input("month_{$i}"));
+            if ($request->filled("service_type_{$i}") && $request->filled("start_date_{$i}")) {
+
+                $serviceType = $request->input("service_type_{$i}");
+                $months = $serviceTypeToMonths[$serviceType] ?? 1;
                 $startDate = $request->input("start_date_{$i}");
 
-                $totalamount = $months * 999;
+
+                if ($serviceType == '1month' && $request->membership_type == 'Student') {
+                    $serviceType = '1monthstudent';
+                }
+
+                $totalAmount = $priceList[$serviceType] ?? null;
+
+
+
+                if (is_null($totalAmount)) {
+                    return response()->json(['error' => "Price for {$serviceType} not found."], 404);
+                }
 
                 $service = new Service([
-                    'service_type' => $request->input("service_type_{$i}"),
+                    'service_type' => $serviceType,
                     'start_date' => $startDate,
-                    'due_date' => $this->calculateDueDate($startDate, 'Monthly', $months), // Pass months here
-                    'amount' => $totalamount,
+                    'due_date' => $this->calculateDueDate($startDate, 'Monthly', $months),
+                    'amount' => $totalAmount,
                     'month' => $months,
                     'status' => 'Active',
                     'service_id' => 'SRV-' . Str::random(10),
@@ -145,10 +196,18 @@ class MemberController extends Controller
         // Only create a locker if the start date is filled
         if ($request->filled('locker_start_date') && $request->filled('locker_no') && $request->filled('locker_month')) {
 
+
+
+
             $months = intval($request->input("locker_month"));
             $startDate = $request->input("locker_start_date");
 
-            $totalAmount = $months * 100;
+            $customservice_type = 'locker'; // 200
+            $serviceType = $customservice_type; // 200
+            $totalAmount = $priceList[$serviceType] ?? null; // 200
+
+            $totalAmount = ($totalAmount * $months); // 200 *
+
             $member->lockers()->create([
                 'start_date' => $startDate,
                 'due_date' => $this->calculateDueDate($startDate, 'Monthly', $months), // Pass months here
@@ -166,12 +225,18 @@ class MemberController extends Controller
             $months = intval($request->input("treadmill_months"));
             $startDate = $request->input("treadmill_start_date");
 
-            $totalamount = $months * 200;
+            $customservice_type = 'treadmill'; //set custom locker type to be compared
+            $serviceType = $customservice_type; // reset its name
+            $totalAmount = $priceList[$serviceType] ?? null; //find/compare the custom to the Price table and sets corresponding price to totalamount
+
+            $totalAmount = ($totalAmount * $months); // multiply the total amount to month quantity chosen
+
+
             $member->treadmills()->create([
                 'start_date' => $startDate,
                 'due_date' => $this->calculateDueDate($startDate, 'Monthly', $months), // Pass months here
                 'month' => $months,
-                'amount' => $totalamount,
+                'amount' => $totalAmount,
                 'status' => 'Active',
             ]);
         }
@@ -202,24 +267,35 @@ class MemberController extends Controller
         }
         session()->forget('form_token');
 
+        $priceList = $this->getPriceList();
         $request->validate([
-            'service_type' => 'required|in:Monthly,Yearly',
+            'service_type' => 'required|in:1month,3month,6month,12month',
             'start_date' => 'required|date',
-            'month' => 'required|numeric|min:1|max:12',
         ]);
         $member = Member::findOrFail($id);
 
-        $service_type = $request->service_type;
+        $serviceTypeToMonths = [
+            '1month' => 1,
+            '3month' => 3,
+            '6month' => 6,
+            '12month' => 12,
+        ];
+
+        $serviceType = $request->input("service_type");
         $startDate = $request->start_date;
-        $months = intval($request->input("month"));
+        $months = $serviceTypeToMonths[$serviceType] ?? 1;
 
 
-        $totalamount = $months * 999;
+        $totalAmount = $priceList[$serviceType] ?? null;
+        if (is_null($totalAmount)) {
+            return response()->json(['error' => "Price for {$serviceType} not found."], 404);
+        }
+
         $newService = new Service([
-            'service_type' => $service_type,
+            'service_type' => $serviceType,
             'start_date' => $startDate,
-            'due_date' => $this->calculateDueDate($startDate, $service_type, $months), // Pass months here
-            'amount' => $totalamount,
+            'due_date' => $this->calculateDueDate($startDate, 'Monthly', $months), // Pass months here
+            'amount' => $totalAmount,
             'month' => $months,
             'status' => 'Active',
             'service_id' => 'SRV-' . \Illuminate\Support\Str::random(10),
@@ -228,34 +304,6 @@ class MemberController extends Controller
 
         $this->updateServiceStatus();
         return redirect()->back()->with('success', 'Subscription extended successfully.');
-    }
-
-
-    public function extendLocker(Request $request, Member $member)
-    {
-        $validated = $request->validate([
-            'locker_no' => 'required|string',
-            'month' => 'required|integer|min:1', // Add validation for months
-        ]);
-
-        $locker = $member->lockers()
-            ->where('locker_no', $validated['locker_no'])
-            ->whereIn('status', ['active', 'overdue'])
-            ->firstOrFail();
-
-        $months = intval($request->input("month"));
-        $startDate = $request->input("start_date");
-
-        // Update the locker
-        $locker->update([
-
-            'due_date' => $this->calculateDueDate($startDate, 'Monthly', $months), // Pass months here
-            'status' => 'active', // Reset status to active if it was overdue
-            'month' => $locker->month + $validated['month'], // Add new months to existing duration
-
-        ]);
-
-        return redirect()->back()->with('success', 'Locker Subscription extended successfully.');
     }
 
     public function rentLocker(Request $request, $id)
@@ -267,6 +315,9 @@ class MemberController extends Controller
         }
         session()->forget('form_token');
 
+        //reirive the price of the locker from price table
+        $priceList = $this->getPriceList();
+
         $request->validate([
             'locker_no' => 'required|string',
             'start_date' => 'required|date',
@@ -274,20 +325,31 @@ class MemberController extends Controller
 
         ]);
 
+
+        //convert locker price to each month
+        $serviceTypeToMonths = [
+            'locker' => 1,
+        ];
+
         $member = Member::findOrFail($id);
         $months = intval($request->input("month"));
         $startDate = $request->input("start_date");
 
-        $totalamount = $months * 100;
+        $customservice_type = 'locker'; //set custom locker type to be compared
+        $serviceType = $customservice_type; // reset its name
+        $totalAmount = $priceList[$serviceType] ?? null; //find/compare the custom to the Price table and sets corresponding price to totalamount
+
+        $totalAmount = ($totalAmount * $months); // multiply the total amount to month quantity chosen
+
         $newLocker = new Locker([
             'start_date' => $startDate,
             'due_date' => $this->calculateDueDate($startDate, 'Monthly', $months), // Pass months here
-            'amount' => $totalamount,
+            'amount' => $totalAmount,
             'month' => $months,
             'locker_no' => $request->locker_no,
-
             'status' => 'Active',
         ]);
+
 
         $member->lockers()->save($newLocker);
 
@@ -310,21 +372,33 @@ class MemberController extends Controller
         }
         session()->forget('form_token');
 
+        //reirive the price of the locker from price table
+        $priceList = $this->getPriceList();
         $request->validate([
             'start_date' => 'nullable|date',
             'month' => 'nullable|integer|min:1|max:12', // Assuming 12 is the max
         ]);
 
+        $serviceTypeToMonths = [
+            'treadmill' => 1,
+        ];
+
         $member = Member::findOrFail($id);
         $startDate = $request->input("start_date");
         $months = intval($request->input("month"));
-        $totalamount = $months * 200;
+
+        $customservice_type = 'treadmill'; //set custom locker type to be compared
+        $serviceType = $customservice_type; // reset its name
+        $totalAmount = $priceList[$serviceType] ?? null; //find/compare the custom to the Price table and sets corresponding price to totalamount
+
+        $totalAmount = ($totalAmount * $months); // multiply the total amount to month quantity chosen
+
 
         $newTreadmill = new Treadmill([
             'start_date' => $startDate,
             'due_date' => $this->calculateDueDate($startDate, 'Monthly', $months), // Pass months here
             'month' => $months,
-            'amount' => $totalamount,
+            'amount' => $totalAmount,
             'status' => 'Active',
         ]);
 
@@ -367,6 +441,24 @@ class MemberController extends Controller
         ]);
 
         return redirect()->back()->with('success', 'QR Code generated successfully!');
+    }
+
+    public function renew(Member $member)
+    {
+        $startDate = now();
+        $dueDate = now()->addYear();
+
+        if ($member->membershipDuration) {
+            $member->membershipDuration->update([
+                'start_date' => $startDate,
+                'due_date' => $dueDate,
+                'status' => 'Active'
+            ]);
+
+            return redirect()->back()->with('success', 'Membership renewed successfully');
+        }
+
+        return redirect()->back()->with('error', 'No membership found to renew');
     }
 
 

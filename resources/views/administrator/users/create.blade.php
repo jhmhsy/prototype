@@ -37,25 +37,27 @@
                             <div class="grid grid-cols-2 gap-4">
                                 <div class="space-y-2">
                                     <label class="text-sm font-medium leading-none text-gray-500">Name</label>
-                                    <input type="text" name="name" placeholder="Name" required
+                                    <input type="text" name="name" placeholder="Name" required maxlength="50"
                                         class="dark:bg-peak_1 flex h-10 w-full rounded-md border border-input  px-3 py-2 text-sm ">
                                 </div>
                                 <div class="space-y-2">
                                     <label class="text-sm font-medium leading-none text-gray-500">Email</label>
                                     <input type="email" name="email" placeholder="Enter Your Email" required
+                                        maxlength="98"
                                         class="dark:bg-peak_1 flex h-10 w-full rounded-md border border-input  px-3 py-2 text-sm ">
                                 </div>
                             </div>
                             <div class="flex flex-col gap-4">
                                 <div class="space-y-2">
                                     <label class="text-sm font-medium leading-none text-gray-500">Password</label>
-                                    <input type="password" name="password" placeholder="••••••••"
+                                    <input type="password" name="password" placeholder="••••••••" maxlength="64"
                                         class="dark:bg-peak_1 flex h-10 w-full rounded-md border border-input  px-3 py-2 text-sm ">
                                 </div>
                                 <div class="space-y-2">
                                     <label class="text-sm font-medium leading-none text-gray-500">Confirm
                                         Password</label>
                                     <input type="password" name="confirm-password" placeholder="Confirm Password"
+                                        maxlength="64"
                                         class="dark:bg-peak_1 flex h-10 w-full rounded-md border border-input  px-3 py-2 text-sm ">
                                 </div>
                                 <div class="space-y-2 mb-3">

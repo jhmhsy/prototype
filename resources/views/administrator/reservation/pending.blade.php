@@ -34,7 +34,8 @@ border-shade_6/50 dark:border-white/5" data-v0-t="card">
                             </svg>
                             <span class="sr-only">Search</span> <!-- For accessibility -->
                         </button>
-                        <input type="text" name="search" value="{{ request('search') }}" placeholder="Search events..."
+                        <input type="text" name="search" value="{{ request('search') }}" maxlength="250"
+                            placeholder="Search events..."
                             class="block w-full py-2 pl-10 pr-4 text-sm border border-gray-300 rounded-md dark:border-gray-800 dark:bg-peak_2 dark:text-white" />
                     </div>
                 </form>

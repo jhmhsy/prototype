@@ -21,6 +21,7 @@ class RegisteredUserController extends Controller
      */
     public function create(): View
     {
+        session()->put('form_token', uniqid());
         return view('auth.register');
     }
 
@@ -33,7 +34,7 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
@@ -45,7 +46,7 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
         $user->assignRole('User');
-        Auth::login($user); 
+        Auth::login($user);
         Mail::to($user->email)->send(new AccountCreated($user));
         return redirect(route('welcome', absolute: false));
     }
