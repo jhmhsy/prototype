@@ -65,10 +65,20 @@ export default {
                 peak_4: "#03090f",
                 peak_5: "#020508",
 
+                "peak-1": "#030c12",
+                "peak-2": "#081522",
+                "peak-3": "#050c17",
+                "peak-4": "#03090f",
+                "peak-5": "#020508",
+
                 night_0: "#000000",
                 night_1: "#0A0A0A",
                 night_2: "#0E0F10",
                 night_3: "#0E0F10",
+
+                night: "#000000",
+                "night-1": "#0A0A0A",
+                "night-2": "#0E0F10",
 
                 // custom color for default darkmode
                 darkmode_dark: "#18191a", //darkmode dark
