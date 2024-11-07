@@ -1,10 +1,10 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 @import "swiper/css";
 @import "swiper/css/navigation";
 @import "swiper/css/pagination";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 html {
     scroll-behavior: smooth;
@@ -28,7 +28,7 @@ header > div {
     @apply text-lemon-base;
 }
 .activeLink {
-    @apply border-lemon-base text-lemon-base ;
+    @apply border-lemon-base text-lemon-base;
 }
 .inactiveLink {
     @apply border-transparent text-primary hover:border-lemon-base hover:text-lemon-base;

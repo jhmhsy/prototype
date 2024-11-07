@@ -34,6 +34,8 @@ class Kernel extends ConsoleKernel
         $schedule->command('service:update-status')->everyMinute();
 
         $schedule->command('treadmill:update-status')->everyMinute();
+
+        $schedule->command('membership:update-status')->everyMinute();
     }
 
 

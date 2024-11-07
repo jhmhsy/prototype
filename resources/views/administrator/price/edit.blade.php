@@ -10,20 +10,20 @@
     <div class="bg-white dark:bg-peak_2 rounded shadow-lg w-full max-w-2xl max-h-[90vh] overflow-y-auto">
 
         <div class="bg-white dark:bg-peak_1 rounded-lg shadow overflow-hidden p-6 w-full ">
-            <h2 class="text-2xl font-bold mb-4 dark:text-white">Edit Price</h2>
+            <h2 class="text-2xl font-semibold  mb-4 dark:text-white">Edit Price</h2>
             <form method="POST" action="{{ route('prices.update', $price->id) }}">
                 @csrf
                 @method('PUT')
                 <div class="mb-4">
-                    <label for="service_type" class="block font-bold mb-2 dark:text-white">Service Type</label>
-                    <input type="text" id="service_type" name="service_type" x-model="serviceType"
-                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline dark:bg-peak_2 dark:text-white"
-                        required>
+                    <label for="service_type" class="block font-bold mb-2 text-sm text-gray-500">Service Type</label>
+                    <label for="service_type"
+                        class="block font-bold mb-2 dark:text-white">{{ $price->service_type }}</label>
+
                 </div>
                 <div class="mb-4">
-                    <label for="price" class="block font-bold mb-2 dark:text-white">Price</label>
+                    <label for="price" class="block font-bold mb-2 text-sm text-gray-500">Price</label>
                     <input type="number" id="price" name="price" x-model="priceValue"
-                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline dark:bg-peak_2 dark:text-white"
+                        class="shadow appearance-none border dark:border-none rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline dark:bg-peak_2 dark:text-white"
                         required>
                 </div>
                 <div class="flex justify-end">

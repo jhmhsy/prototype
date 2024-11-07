@@ -24,6 +24,8 @@ use App\Http\Controllers\PricesController;
 use App\Http\Controllers\BarcodeController;
 
 
+Route::post('/members/{member}/renew', [MemberController::class, 'renew'])->name('members.renew');
+
 
 Auth::routes(['verify' => true]);
 

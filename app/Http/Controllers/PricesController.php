@@ -13,22 +13,12 @@ class PricesController extends Controller
         return view('administrator.price.index', compact('prices'));
     }
 
-    public function store(Request $request)
-    {
-        $validated = $request->validate([
-            'service_type' => 'required|string|max:255',
-            'price' => 'required|numeric|min:0'
-        ]);
 
-        Prices::create($validated);
-
-        return redirect()->route('prices.index')->with('success', 'Price added successfully');
-    }
 
     public function update(Request $request, $id)
     {
         $validated = $request->validate([
-            'service_type' => 'required|string|max:255',
+
             'price' => 'required|numeric|min:0'
         ]);
 

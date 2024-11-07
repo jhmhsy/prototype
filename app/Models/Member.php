@@ -43,4 +43,9 @@ class Member extends Model
     {
         return $this->hasOne(MemberQrcode::class);
     }
+
+    public function membershipDuration()
+    {
+        return $this->hasOne(MembershipDuration::class);
+    }
 }

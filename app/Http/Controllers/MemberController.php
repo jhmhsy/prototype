@@ -8,6 +8,7 @@ use App\Models\Member;
 use App\Models\Service;
 use App\Models\Locker;
 use App\Models\Treadmill;
+use App\Models\MembershipDuration;
 use App\Models\Prices;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -26,7 +27,7 @@ class MemberController extends Controller
     public function index(Request $request)
     {
 
-        $query = Member::with(['services', 'lockers', 'treadmills', 'qrcode']);
+        $query = Member::with(['services', 'lockers', 'treadmills', 'qrcode', 'membershipDuration']);
 
         if ($request->has('search')) {
             $searchTerm = $request->search;
@@ -105,6 +106,9 @@ class MemberController extends Controller
             'user_identifier' => Str::random(28),
         ]);
 
+
+
+
         // Generate QR Code
         $qrData = $member->id_number; // Using member's ID number as QR data
         $qrCode = new QrCode(data: $qrData);
@@ -137,6 +141,18 @@ class MemberController extends Controller
             'locker' => 1,
             'treadmill' => 1,
         ];
+
+
+        // STORE MEMBERSHIP DURATION
+        $startDate = now();
+        $dueDate = now()->addYear(); // Adjust this based on your membership duration policy
+
+        MembershipDuration::create([
+            'member_id' => $member->id,
+            'start_date' => $startDate,
+            'due_date' => $dueDate,
+            'status' => 'Active'
+        ]);
 
 
         // STORE SUBSCRIPTIONS
@@ -422,6 +438,24 @@ class MemberController extends Controller
         ]);
 
         return redirect()->back()->with('success', 'QR Code generated successfully!');
+    }
+
+    public function renew(Member $member)
+    {
+        $startDate = now();
+        $dueDate = now()->addYear();
+
+        if ($member->membershipDuration) {
+            $member->membershipDuration->update([
+                'start_date' => $startDate,
+                'due_date' => $dueDate,
+                'status' => 'Active'
+            ]);
+
+            return redirect()->back()->with('success', 'Membership renewed successfully');
+        }
+
+        return redirect()->back()->with('error', 'No membership found to renew');
     }
 
 
