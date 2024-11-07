@@ -1,10 +1,8 @@
-<div class="items-center w-full py-12 md:py-24 lg:py-32 relative bg-red-400 dark:bg-night_3">
+<div class="items-center w-full py-15 md:py-10 lg:py-20 relative bg-">
     <div class="container w-[70%] bg-blue-500 p-5 m-auto">
         <div>
             <h1 class="text-5xl">Our Trainers</h1>
         </div>
-
-
         <div class="grid grid-cols-1 md:grid-cols-2 justify-around p-5  bg-violet-500 ">
             <div class="polygon-1-wrapper relative">
                 <div class="polygon-1 bg-lemon_base absolute bottom-0">

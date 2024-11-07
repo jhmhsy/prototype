@@ -2,8 +2,6 @@ import "./bootstrap";
 import "../css/app.css";
 import Alpine from "alpinejs";
 
-import Splide from "@splidejs/splide";
-import "@splidejs/splide/css";
 
 window.Alpine = Alpine;
 

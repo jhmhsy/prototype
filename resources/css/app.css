@@ -5,7 +5,9 @@
 @import "swiper/css";
 @import "swiper/css/navigation";
 @import "swiper/css/pagination";
-
+/**{
+    border: 1px dotted red;
+}*/
 html {
     scroll-behavior: smooth;
 }
@@ -19,7 +21,6 @@ header > div {
 .collapsed {
     height: 50px; /* Adjust height for collapsed state */
     padding: 5px 10px; /* Adjust padding */
-    @apply bg-primary dark:bg-secondary;
 }
 .collapsed .text,
 .collapsed .logo,

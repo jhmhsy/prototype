@@ -7,7 +7,7 @@
         {{ __('Reservation') }}
     </x-forms.nav-link>--}}
 
-    <x-forms.nav-link href="/#semi-section" class="nav-link">
+    <x-forms.nav-link href="/#equipment-section" class="nav-link">
         {{ __('Features') }}
     </x-forms.nav-link>
 
