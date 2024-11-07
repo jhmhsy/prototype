@@ -12,7 +12,7 @@
             </main>
             <!-- equipment sections-->
             <div id="equipment-section" class="bg-peak-5 text-primary">
-                @include ('components.homepage.equipment-section')
+                <x-homepage.equipment-section/>
             </div>
             <!-- trainer sections-->
             <div id="trainer-section">
