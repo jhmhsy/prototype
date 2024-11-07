@@ -1,6 +1,6 @@
 <div class="bg-peak-5 text-primary dark:bg-night_3">
     <div class="text-center py-4">
-        <h1 class="text-5xl font-bold">TOP NOTCH EQUIPMENTS</h1>
+        <h1 class="text-5xl font-bold font-raleway">TOP NOTCH EQUIPMENTS</h1>
     </div>
     <div x-data="swipeCards()" x-init="let isDown = false;
     let startX;
