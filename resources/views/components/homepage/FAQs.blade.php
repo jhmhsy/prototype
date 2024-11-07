@@ -7,18 +7,18 @@
         <div class="space-y-4 w-full">
             <details class="border border-border rounded-md p-4 w-full">
                 <summary class="cursor-pointer">Where is the Gym Located?</summary>
-                <p class="text-sm italic">Gym One Danao is conveniently located near Juan Luna Road in Danao City, Cebu.</p>
+                <p class="text-sm italic pl-4">Gym One Danao is conveniently located near Juan Luna Road in Danao City, Cebu.</p>
                 @include('gym-map')
             </details>
             </details>
             <details class="border border-border rounded-md p-4 w-full">
                 <summary class="cursor-pointer">When are the Opening and Closing Times?</summary>
-                <p class="text-sm italic">We are open on Mondays through Saturdays from 8:30 AM to 12 noon</p>
-                <p class="text-sm italic">And on Sundays from 2 PM to 8 PM</p>
+                <p class="text-sm italic pl-4">We are open on Mondays through Saturdays from 8:30 AM to 12 noon</p>
+                <p class="text-sm italic pl-4">And on Sundays from 2 PM to 8 PM</p>
             </details>
             <details class="border border-border rounded-md p-4 w-full">
                 <summary class="cursor-pointer">Is it Affordable?</summary>
-                <p>Information about pricing and affordability.</p>
+                <p class="text-sm italic pl-4">Information about pricing and affordability.</p>
             </details>
         </div>
         <div class="mt-2 contents-left flex items-center gap-2">
