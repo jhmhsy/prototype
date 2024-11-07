@@ -13,11 +13,6 @@ class PricesController extends Controller
         return view('administrator.price.index', compact('prices'));
     }
 
-    public function create()
-    {
-        return view('prices.create');
-    }
-
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -28,12 +23,6 @@ class PricesController extends Controller
         Prices::create($validated);
 
         return redirect()->route('prices.index')->with('success', 'Price added successfully');
-    }
-
-    public function edit($id)
-    {
-        $price = Prices::findOrFail($id);
-        return view('prices.edit', compact('price'));
     }
 
     public function update(Request $request, $id)
