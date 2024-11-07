@@ -1,4 +1,4 @@
-<div class=" grid items-center justify-center gap-4 px-4 text-center md:px-6 m-auto bg-peak-4 text-primary">
+<div class="grid items-center justify-center gap-4 p-4 text-center md:px-6 m-auto bg-peak-4 text-primary">
     <section>
         <div class="p-6">
             <h1 class="text-5xl font-bold mb-4 font-raleway">PRICING & PLANS</h1>

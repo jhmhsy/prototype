@@ -19,9 +19,9 @@
         {{ __('Contacts') }}
     </x-forms.nav-link>
 
-    <x-forms.nav-link :href="route('calendar')" :active="request()->routeIs('calendar')">
+    {{--<x-forms.nav-link :href="route('calendar')" :active="request()->routeIs('calendar')">
         {{ __('Calendar') }}
-    </x-forms.nav-link>
+    </x-forms.nav-link>--}}
 @endif
 
 @if ($responsive ?? false)
