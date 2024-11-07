@@ -43,11 +43,12 @@ class EquipmentController extends Controller
 
         // Validate inputs
         $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-            'type' => 'required|string|max:255',
-            'details' => 'required',
-            'extra_details' => 'nullable',
-            'images' => 'required|array|max:3',
+            'name' => 'required|string|max:50',
+            'type' => 'required|string|max:50',
+            'details' => 'required|string|max:300',
+            'extra_details' => 'nullable|string|max:300',
+
+            'images' => 'required|array|max:1',
             'images.*' => 'image|mimes:jpeg,png,jpg,gif', // size limit gone
 
         ]);
@@ -83,10 +84,10 @@ class EquipmentController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
-            'type' => 'required|string|max:255',
-            'details' => 'required|string|max:500',
-            'extra_details' => 'required|string|max:500',
+            'name' => 'required|string|max:50',
+            'type' => 'required|string|max:50',
+            'details' => 'required|string|max:300',
+            'extra_details' => 'nullable|string|max:300',
 
         ]);
 

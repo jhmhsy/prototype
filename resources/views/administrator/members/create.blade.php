@@ -30,19 +30,19 @@
             <h2>Member Details</h2>
             <div>
                 <label for="name">Name:</label>
-                <input type="text" id="name" name="name" required>
+                <input type="text" id="name" name="name" required maxlength="50">
             </div>
             <div>
                 <label for="phone">Phone:</label>
-                <input type="tel" id="phone" name="phone">
+                <input type="tel" id="phone" name="phone" maxlength="20">
             </div>
             <div>
                 <label for="fb">Facebook (optional):</label>
-                <input type="text" id="fb" name="fb">
+                <input type="text" id="fb" name="fb" maxlength="50">
             </div>
             <div>
                 <label for="email">Email:</label>
-                <input type="email" id="email" name="email">
+                <input type="email" id="email" name="email" maxlength="100">
             </div>
 
             <h2>Subscription Service</h2>
@@ -119,7 +119,7 @@
                         </div>
                         <div>
                             <label for="locker_month">Locker months: 100/month</label>
-                            <input type="number" name="locker_month" step="0.01">
+                            <input type="number" name="locker_month" step="0.01" oninput="monthInputLimit(this)">
                         </div>
                     </div>
                 </div>
@@ -145,7 +145,7 @@
                     </div>
                     <div>
                         <label for="treadmill_months">How many months?</label>
-                        <input type="number" name="treadmill_months" min="1" max="12">
+                        <input type="number" name="treadmill_months" oninput="monthInputLimit(this)">
                     </div>
                 </div>
             </div>

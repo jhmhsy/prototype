@@ -44,9 +44,9 @@ class EventsController extends Controller
         session()->forget('form_token');
 
         $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-            'location' => 'required|string|max:255',
-            'details' => 'required',
+            'name' => 'required|string|max:50',
+            'location' => 'required|string|max:50',
+            'details' => 'required|string|max:300',
             'date' => 'required|date',
             'time' => 'required|date_format:H:i',
         ]);
@@ -67,9 +67,9 @@ class EventsController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
-            'location' => 'required|string|max:255',
-            'details' => 'required|string|max:500',
+            'name' => 'required|string|max:50',
+            'location' => 'required|string|max:50',
+            'details' => 'required|string|max:300',
             'date' => 'required|date',
             'time' => 'required|date_format:H:i',
         ]);

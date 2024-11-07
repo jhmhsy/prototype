@@ -24,7 +24,7 @@
                     <label for="price" class="block font-bold mb-2 text-sm text-gray-500">Price</label>
                     <input type="number" id="price" name="price" x-model="priceValue"
                         class="shadow appearance-none border dark:border-none rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline dark:bg-peak_2 dark:text-white"
-                        required>
+                        oninput="priceInputLimit(this)">
                 </div>
                 <div class="flex justify-end">
                     <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">

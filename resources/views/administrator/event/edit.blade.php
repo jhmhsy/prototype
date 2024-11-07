@@ -21,20 +21,22 @@
                     <div class="mb-4">
                         <label for="name" class="block text-sm font-medium text-gray-500 ">Event Name</label>
                         <input type="text" id="name" name="name" value="{{ old('name', $event->name) }}"
-                            class="dark:bg-peak_1 w-full px-4 py-2 mt-1 border dark:border-none rounded-md " required>
+                            class="dark:bg-peak_1 w-full px-4 py-2 mt-1 border dark:border-none rounded-md " required
+                            maxlength="50">
                     </div>
 
                     <div class="mb-4">
                         <label for="location" class="block text-sm font-medium text-gray-500 ">Location</label>
                         <input type="text" id="location" name="location" value="{{ old('location', $event->location) }}"
-                            class="dark:bg-peak_1 w-full px-4 py-2 mt-1 border dark:border-none rounded-md " required>
+                            class="dark:bg-peak_1 w-full px-4 py-2 mt-1 border dark:border-none rounded-md " required
+                            maxlength="50">
                     </div>
 
                     <div class="mb-4">
                         <label for="details" class="block text-sm font-medium text-gray-500 ">Details</label>
                         <textarea id="details" name="details" rows="4"
-                            class="dark:bg-peak_1 w-full px-4 py-2 mt-1 border dark:border-none rounded-md "
-                            required>{{ old('details', $event->details) }}</textarea>
+                            class="dark:bg-peak_1 w-full px-4 py-2 mt-1 border dark:border-none rounded-md " required
+                            maxlength="300">{{ old('details', $event->details) }}</textarea>
                     </div>
 
                     <div class="mb-4">

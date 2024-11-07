@@ -24,6 +24,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/tooltip.js') }}"></script>
+    <script src="{{ asset('js/inputLimit.js') }}"></script>
     <script src="{{ asset('js/darkmode.js') }}" defer></script>
     <script src="{{ asset('js/dashboardnavigator.js') }}" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jsqr/1.4.0/jsQR.js"></script>

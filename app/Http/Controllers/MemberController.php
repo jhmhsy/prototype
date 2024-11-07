@@ -73,7 +73,10 @@ class MemberController extends Controller
         $priceList = $this->getPriceList();
 
         $request->validate([
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:50',
+            'phone' => ['nullable', 'string', 'regex:/^\+?[0-9\s\-()]{10,20}$/',],
+            'fb' => 'nullable|string|max:50',
+            'email' => 'nullable|email|max:100',
             'membership_type' => 'required|in:Regular,Student',
 
             // Service types must be present
