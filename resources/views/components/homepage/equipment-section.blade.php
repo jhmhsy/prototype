@@ -1,4 +1,4 @@
-<div class="bg-peak-5 text-primary dark:bg-night_3">
+<div class="dark:bg-night_3">
     <div class="text-center py-4">
         <h1 class="text-5xl font-bold font-raleway">TOP NOTCH EQUIPMENTS</h1>
     </div>
@@ -25,7 +25,7 @@
     });
     setInterval(() => {
         $el.scrollLeft += 1;
-    }, 50);" class="overflow-x-scroll scrollbar-hide mb-4 relative px-0.5"
+    }, 50);" class="overflow-x-scroll scrollbar-hide relative px-0.5"
         style="overflow-y: hidden;">
 
         <div class="flex snap-x snap-mandatory gap-4" style="width: max-content;">
