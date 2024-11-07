@@ -26,7 +26,7 @@
                                 <label class="text-sm font-medium text-gray-500" for="role-name">
                                     Role Name
                                 </label>
-                                <input type="text" name="name" placeholder="Name"
+                                <input type="text" name="name" maxlength="30" placeholder="Name"
                                     class="dark:bg-peak_1 dark:text-white flex h-10 w-full text-black rounded-md border dark:border-none px-3 py-2 text-sm"
                                     value="{{ $role->name }}">
 

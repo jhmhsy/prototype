@@ -12,7 +12,7 @@ class Service extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'user_id',
+        'member_id',
         'service_type',
         'start_date',
         'due_date',

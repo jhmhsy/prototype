@@ -2,33 +2,33 @@
 <div x-data="{ open: false }" x-cloak>
     <!-- Modal trigger button -->
     @if ($disabled)
-    <button
-        class="bg-gray-400 text-white uppercase inline-flex items-center justify-center text-xs font-medium h-9 rounded-md px-2"
-        disabled>
-        @if ($normal)
-        Delete
-        @else
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-ban"
-            viewBox="0 0 16 16">
-            <path
-                d="M15 8a6.97 6.97 0 0 0-1.71-4.584l-9.874 9.875A7 7 0 0 0 15 8M2.71 12.584l9.874-9.875a7 7 0 0 0-9.874 9.874ZM16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0" />
-        </svg>
-        @endif
-    </button>
+        <button
+            class="bg-gray-400 text-white uppercase inline-flex items-center justify-center text-xs font-medium h-9 rounded-md px-2"
+            disabled>
+            @if ($normal)
+                Delete
+            @else
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-ban"
+                    viewBox="0 0 16 16">
+                    <path
+                        d="M15 8a6.97 6.97 0 0 0-1.71-4.584l-9.874 9.875A7 7 0 0 0 15 8M2.71 12.584l9.874-9.875a7 7 0 0 0-9.874 9.874ZM16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0" />
+                </svg>
+            @endif
+        </button>
     @else
-    <button @click="open = true"
-        class="bg-red-500 hover:bg-red-600 text-white uppercase inline-flex items-center justify-center text-xs font-medium h-9 rounded-md px-2">
-        @if ($normal)
-        Delete
-        @else
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4">
-            <path d="M3 6h18"></path>
-            <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
-            <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
-        </svg>
-        @endif
-    </button>
+        <button @click="open = true"
+            class="bg-red-500 hover:bg-red-600 text-white uppercase inline-flex items-center justify-center text-xs font-medium h-9 rounded-md px-2">
+            @if ($normal)
+                Delete
+            @else
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4">
+                    <path d="M3 6h18"></path>
+                    <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
+                    <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+                </svg>
+            @endif
+        </button>
     @endif
 
     <!-- Modal backdrop -->
@@ -55,7 +55,8 @@
                     {{ $slot }}
                 </div>
                 <h3 class="mb-5 text-lg font-normal text-gray-500">Are you sure you want to delete this
-                    {{ $name }}?</h3>
+                    {{ $name }}?
+                </h3>
                 <button @click="document.getElementById('{{ $formId }}').submit();" type="button"
                     class="text-white bg-red-600 hover:bg-red-800 focus:ring-1 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 ms-3 text-center">
                     Delete

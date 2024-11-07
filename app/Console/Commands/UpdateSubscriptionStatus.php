@@ -105,7 +105,7 @@ class UpdateSubscriptionStatus extends Command
         }
 
         \Log::info('service:update-status command executed at ' . now());
-        $this->info('Service subscription statuses updated successfully.');
+        $this->info('Periodic updates to subscription statuses - 100%.');
     }
 
     /**

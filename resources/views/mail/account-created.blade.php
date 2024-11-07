@@ -18,7 +18,7 @@
                         <td style="padding: 20px;">
                             <h2 style="font-size: 20px; color: #333333;">Dear {{ $user->name }},</h2>
                             <p style="font-size: 16px; line-height: 1.5; color: #666666;">We're excited to support you
-                                on your fitness journey! At <b>{{ config('app.name') }}</b>, we offer the best
+                                on your fitness journey! At <b>Gym One</b>, we offer the best
                                 environment and resources to help you achieve your goals.</p>
                             <h3 style="font-size: 22px; color: #8a2be2; margin-top: 20px;">What Awaits You:</h3>
                             <table border="0" cellpadding="0" cellspacing="0" width="100%">

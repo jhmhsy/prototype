@@ -30,14 +30,15 @@
                                             Name
                                         </label>
                                         <input class="dark:bg-peak_1 flex h-10 w-full rounded-md border border-input  "
-                                            type="text" name="name" value="{{ $user->name }}" required />
+                                            type="text" name="name" value="{{ $user->name }}" required maxlength="50" />
                                     </div>
                                     <div class="space-y-2">
                                         <label class="text-gray-500 text-sm font-medium " for="name">
                                             Email
                                         </label>
                                         <input class="dark:bg-peak_1 flex h-10 w-full rounded-md border border-input  "
-                                            type="email" name="email" value="{{ $user->email }}" required />
+                                            type="email" name="email" value="{{ $user->email }}" required
+                                            maxlength="98" />
                                     </div>
                                 </div>
                                 <div class="flex flex-col gap-4">
@@ -46,14 +47,16 @@
                                             Password
                                         </label>
                                         <input class="dark:bg-peak_1 flex h-10 w-full rounded-md border border-input  "
-                                            type="password" name="confirm-password" placeholder="••••••••" />
+                                            type="password" name="confirm-password" placeholder="••••••••"
+                                            maxlength="64" />
                                     </div>
                                     <div class="space-y-2">
                                         <label class="text-gray-500 text-sm font-medium " for="name">
                                             Confirm Password
                                         </label>
                                         <input class="dark:bg-peak_1 flex h-10 w-full rounded-md border border-input  "
-                                            type="password" name="confirm-password" placeholder="Confirm Password" />
+                                            type="password" name="confirm-password" placeholder="Confirm Password"
+                                            maxlength="64" />
                                     </div>
                                     <div class="space-y-2" class="form-group">
                                         <label class="text-gray-500 text-sm font-medium " for="type">

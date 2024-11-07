@@ -59,16 +59,22 @@
                     GYM ONE
                 </h1>   
                 <div class="flex flex-col items-center">
+<<<<<<< HEAD
                     <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30" viewBox="0 0 48 48">
                         <linearGradient id="IMoH7gpu5un5Dx2vID39Ra_pIPl8tqh3igN_gr1" x1="9.858" x2="38.142"
                             y1="9.858" y2="38.142" gradientUnits="userSpaceOnUse">
+=======
+                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" viewBox="0 0 48 48">
+                        <linearGradient id="IMoH7gpu5un5Dx2vID39Ra_pIPl8tqh3igN_gr1" x1="9.858" x2="38.142" y1="9.858"
+                            y2="38.142" gradientUnits="userSpaceOnUse">
+>>>>>>> jasonbranch
                             <stop offset="0" stop-color="#9dffce"></stop>
                             <stop offset="1" stop-color="#50d18d"></stop>
                         </linearGradient>
                         <path fill="url(#IMoH7gpu5un5Dx2vID39Ra_pIPl8tqh3igN_gr1)"
                             d="M44,24c0,11.045-8.955,20-20,20S4,35.045,4,24S12.955,4,24,4S44,12.955,44,24z"></path>
-                        <linearGradient id="IMoH7gpu5un5Dx2vID39Rb_pIPl8tqh3igN_gr2" x1="13" x2="36"
-                            y1="24.793" y2="24.793" gradientUnits="userSpaceOnUse">
+                        <linearGradient id="IMoH7gpu5un5Dx2vID39Rb_pIPl8tqh3igN_gr2" x1="13" x2="36" y1="24.793"
+                            y2="24.793" gradientUnits="userSpaceOnUse">
                             <stop offset=".824" stop-color="#135d36"></stop>
                             <stop offset=".931" stop-color="#125933"></stop>
                             <stop offset="1" stop-color="#11522f"></stop>
@@ -103,7 +109,7 @@
 </section>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         const observerOptions = {
             root: null,
             rootMargin: '0px',
@@ -129,4 +135,8 @@
         const elementsToAnimate = section.querySelectorAll('.text-primary *');
         elementsToAnimate.forEach(element => observer.observe(element));
     });
+<<<<<<< HEAD
 </script>
+=======
+</script>
+>>>>>>> jasonbranch

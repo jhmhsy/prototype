@@ -1,10 +1,10 @@
 @php
-    $defaults = 'px-4 py-2 rounded-md transition duration-300 ease-in-out relative overflow-hidden w-full sm:w-auto rainbow-border';
-    $classes = $attributes->get('class') ? $attributes->get('class').' '. $defaults : $defaults;
+    $defaults = 'px-4 py-2 rounded-md transition duration-300 ease-in-out relative overflow-hidden w-full sm:w-auto
+    rainbow-border';
+    $classes = $attributes->get('class') ? $attributes->get('class') . ' ' . $defaults : $defaults;
 @endphp
 
-<button
-    {{ $attributes->merge(['class' => $classes])}}>
+<button {{ $attributes->merge(['class' => $classes])}}>
     <span class="text relative animated-text">{{ $slot }}</span>
 </button>
 <style>
@@ -25,30 +25,39 @@
         initial-value: 0deg;
         syntax: "<angle>";
     }
+
     .rainbow-border:hover {
-        transform: scale(1.05); /* Scale on hover */
+        transform: scale(1.05);
+        /* Scale on hover */
     }
+
     @keyframes spin {
         to {
             --bg-angle: 360deg;
         }
     }
+
     @keyframes textColorChange {
         0% {
             color: oklch(1 0.37 0);
         }
+
         20% {
             color: oklch(0.8 0.5 0.2);
         }
+
         40% {
             color: oklch(0.6 0.6 0.4);
         }
+
         60% {
             color: oklch(0.4 0.7 0.6);
         }
+
         80% {
             color: oklch(0.2 0.8 0.8);
         }
+
         100% {
             color: oklch(1 0.37 0);
         }

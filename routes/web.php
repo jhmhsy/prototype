@@ -19,8 +19,19 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\ScannerController;
 use App\Http\Controllers\CheckinController;
+use App\Http\Controllers\PricesController;
 
 use App\Http\Controllers\BarcodeController;
+
+
+Route::post('/members/{member}/renew', [MemberController::class, 'renew'])->name('members.renew');
+
+
+Auth::routes(['verify' => true]);
+
+Route::get('/prices', [PricesController::class, 'index'])->name('price.index');
+Route::put('/prices/{id}', [PricesController::class, 'update'])->name('prices.update');
+
 
 Route::get('/scanner', [ScannerController::class, 'index'])->name('scanner.index');
 Route::post('/api/scan', [ScannerController::class, 'process'])->name('scanner.process');
@@ -46,7 +57,6 @@ Route::post('/members', [MemberController::class, 'store'])->name('members.store
 Route::get('/members/index', [MemberController::class, 'index'])->name('members.index');
 Route::post('/members/{id}/extend', [MemberController::class, 'extend'])->name('members.extend');
 
-Route::post('/members/{id}/extend-locker', [MemberController::class, 'extendLocker'])->name('members.extend-locker');
 Route::post('/members/{id}/rent-locker', [MemberController::class, 'rentLocker'])->name('members.rent-locker');
 Route::post('/members/{id}/extendTreadmill', [MemberController::class, 'extendTreadmill'])->name('members.extendTreadmill');
 
@@ -61,7 +71,11 @@ Route::get('/cancel', [PaymentController::class, 'cancel']);
 
 
 //Welcome Page  
+
 Route::get('/', [HomeController::class, 'index'])->name('welcome');
+
+//use to verify account first from email to login - use later dont delete
+// Route::get('/', [HomeController::class, 'index'])->name('welcome')->middleware('verified');
 
 Route::get('/gym-map', [HomeController::class, 'showmap'])->name('gym-map');
 //⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎ 𝗣𝗨𝗕𝗟𝗜𝗖

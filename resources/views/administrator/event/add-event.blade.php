@@ -1,6 +1,7 @@
 <div style="display: none;" x-show="createmodal" class="fixed select-none inset-0 bg-black opacity-25 z-40">
 </div>
 
+
 <div style="display: none;"
     class="modal fixed w-[90%] md:w-[60%] lg:w-[40%] xl:w-[35%] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 p-4"
     x-show="createmodal" @click.away="createmodal = false" x-transition:enter="transition ease-out duration-300"
@@ -24,14 +25,17 @@
                             </label>
                             <input
                                 class="dark:bg-peak_1 flex h-10 w-full rounded-md border dark:border-none px-3 py-2 text-sm"
-                                type="text" name="name" id="name" required placeholder="e.g International party" />
+                                type="text" name="name" id="name" required maxlength="50"
+                                placeholder="e.g International party" />
+
+
                         </div>
                         <div class="space-y-2">
                             <label class="text-sm font-medium leading-none text-gray-500" for="type">
                                 Location
                             </label>
                             <div class="relative">
-                                <select id="location" name="location" required
+                                <select id="location" name="location" required maxlength="50"
                                     class="dark:bg-peak_1 flex h-10 w-full items-center justify-between rounded-md border dark:border-none px-3 py-2 text-sm">
                                     <option value="" disabled>Select Location</option>
                                     <option value="backdoor">Backdoor</option>
@@ -47,7 +51,8 @@
                         </label>
                         <textarea
                             class="dark:bg-peak_1 flex min-h-[80px] w-full rounded-md border dark:border-none px-3 py-2 text-sm"
-                            name="details" id="details" required placeholder="We do party beitch" rows="4"></textarea>
+                            name="details" id="details" required maxlength="300" placeholder="We do party beitch"
+                            rows="4"></textarea>
                     </div>
 
                     <div class="mb-4">
