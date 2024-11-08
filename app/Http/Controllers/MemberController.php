@@ -20,9 +20,18 @@ use Endroid\QrCode\Writer\PngWriter;
 
 use Endroid\QrCode\ErrorCorrectionLevel;
 
+// export member table to excel
+use App\Exports\MembersExport;
+use App\Exports\ServicesExport;
+use App\Exports\LockersExport;
+use App\Exports\TreadmillsExport;
+use Maatwebsite\Excel\Facades\Excel;
+
 
 class MemberController extends Controller
 {
+
+
 
     public function index(Request $request)
     {
@@ -44,6 +53,7 @@ class MemberController extends Controller
 
         $occupiedLockers = Locker::where('status', 'Active')->pluck('locker_no')->toArray();
 
+        session()->put('form_token', uniqid());
         return view('administrator.members.index', compact('members', 'occupiedLockers'));
     }
 
@@ -52,6 +62,7 @@ class MemberController extends Controller
     {
         $occupiedLockers = Locker::where('status', 'Active')->pluck('locker_no')->toArray();
 
+        session()->put('form_token', uniqid());
         return view('administrator.members.create', compact('occupiedLockers'));
     }
 
@@ -274,6 +285,8 @@ class MemberController extends Controller
         ]);
         $member = Member::findOrFail($id);
 
+
+
         $serviceTypeToMonths = [
             '1month' => 1,
             '3month' => 3,
@@ -286,7 +299,15 @@ class MemberController extends Controller
         $months = $serviceTypeToMonths[$serviceType] ?? 1;
 
 
+        //check if the member is student then the member gets to use student price
+        if ($serviceType == '1month' && $member->membership_type == 'Student') {
+            $serviceType = '1monthstudent';
+        }
+
+
         $totalAmount = $priceList[$serviceType] ?? null;
+
+
         if (is_null($totalAmount)) {
             return response()->json(['error' => "Price for {$serviceType} not found."], 404);
         }
@@ -505,4 +526,23 @@ class MemberController extends Controller
 
         return response()->json(['start_date' => $startDate]);
     }
+
+    public function exportMembers()
+    {
+        return Excel::download(new MembersExport, 'members.xlsx');
+    }
+    public function exportServices()
+    {
+        return Excel::download(new ServicesExport, 'services.xlsx');
+    }
+
+    public function exportLockers()
+    {
+        return Excel::download(new LockersExport, 'lockers.xlsx');
+    }
+    public function exportTreadmills()
+    {
+        return Excel::download(new TreadmillsExport, 'treadmills.xlsx');
+    }
+
 }

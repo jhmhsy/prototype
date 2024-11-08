@@ -11,7 +11,8 @@
                     <div class="space-y-2 text-center dark:text-tint_1">
                         <h1 class="text-3xl font-bold text-primary-foreground ">
                             Register for Gym Reservations</h1>
-                        <p class="text-primary-foreground/80 text-sm">Easily book your gym sessions with our user-friendly
+                        <p class="text-primary-foreground/80 text-sm">Easily book your gym sessions with our
+                            user-friendly
                             platform.
                         </p>
                     </div>

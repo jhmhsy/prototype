@@ -41,13 +41,7 @@
 </head>
 
 <body class="font-opensans antialiased min-w-screen bg-tint_1 dark:bg-peak_1     ">
-    @if(session('success'))
-        <div id="notification" class="notification">
-            <button id="close-notification" class="close-btn">&times;</button>
-            <p class="notification-message">{{ session('success') }}</p>
-            <div id="time-bar" class="time-bar"></div>
-        </div>
-    @endif
+    @include ('alerts.alert')
 
     <div x-data="layout()" x-init="init()" class="flex h-screen">
         <!-- SIDE NAVBAR -->

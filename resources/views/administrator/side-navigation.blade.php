@@ -146,6 +146,23 @@ dark:hover:bg-gray-700 dark:hover:text-white
 
                     </ul>
                 </li>
+                <!--︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼ PRICE ︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼  -->
+                <li>
+                    <a href="{{ route('price.index') }}" class="flex items-center p-2 rounded-lg group text-gray-500 dark:text-gray-500 
+          hover:bg-gray-300 hover:text-black dark:hover:bg-gray-700 dark:hover:text-white 
+          {{ request()->routeIs('price.index') ? 'bg-gray-300 text-textblack dark:bg-gray-700 dark:text-white' : '' }}
+          transition-colors duration-300">
+                        <!-- Added transition classes -->
+
+                        <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
+                            height="24" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M7 8v8a5 5 0 1 0 10 0V6.5a3.5 3.5 0 1 0-7 0V15a2 2 0 0 0 4 0V8" />
+                        </svg>
+                        <span class="flex-1 ms-3 whitespace-nowrap text-sm">Price</span>
+                    </a>
+
+                </li>
                 <!--︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼ RESERVATION ︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼  -->
                 <li x-data="{ open: {{ request()->routeIs('administrator.unifiedview')
     || request()->routeIs('administrator.active')

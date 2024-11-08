@@ -13,7 +13,8 @@
                             Welcome to
                             Gym
                             Reservations</h1>
-                        <p class="text-primary-foreground/80 text-sm">Easily book your gym sessions with our user-friendly
+                        <p class="text-primary-foreground/80 text-sm">Easily book your gym sessions with our
+                            user-friendly
                             platform.
                         </p>
                     </div>
@@ -43,10 +44,10 @@
                                     <span>Remember me</span>
                                 </label>
                                 @if (Route::has('password.request'))
-                                <a class="text-red-500 text-sm font-medium underline hover:text-red-600"
-                                    href="{{ route('password.request') }}">
-                                    {{ __('Forgot your password?') }}
-                                </a>
+                                    <a class="text-red-500 text-sm font-medium underline hover:text-red-600"
+                                        href="{{ route('password.request') }}">
+                                        {{ __('Forgot your password?') }}
+                                    </a>
                                 @endif
                             </div>
                         </div>

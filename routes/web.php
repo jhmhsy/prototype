@@ -23,6 +23,15 @@ use App\Http\Controllers\PricesController;
 
 use App\Http\Controllers\BarcodeController;
 
+Route::view('/export', 'export');
+Route::get('/export-members', [MemberController::class, 'exportMembers'])->name('export.members');
+Route::get('/export-lockers', [MemberController::class, 'exportLockers'])->name('export.lockers');
+Route::get('/export-services', [MemberController::class, 'exportServices'])->name('export.services');
+Route::get('/export-treadmills', [MemberController::class, 'exportTreadmills'])->name('export.treadmills');
+
+
+
+
 
 Route::post('/members/{member}/renew', [MemberController::class, 'renew'])->name('members.renew');
 
@@ -72,10 +81,10 @@ Route::get('/cancel', [PaymentController::class, 'cancel']);
 
 //Welcome Page  
 
-Route::get('/', [HomeController::class, 'index'])->name('welcome');
+// Route::get('/', [HomeController::class, 'index'])->name('welcome');
 
-//use to verify account first from email to login - use later dont delete
-// Route::get('/', [HomeController::class, 'index'])->name('welcome')->middleware('verified');
+// use to verify account first from email to login - use later dont delete
+Route::get('/', [HomeController::class, 'index'])->name('welcome')->middleware('verified');
 
 Route::get('/gym-map', [HomeController::class, 'showmap'])->name('gym-map');
 //⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎ 𝗣𝗨𝗕𝗟𝗜𝗖

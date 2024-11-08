@@ -12,7 +12,8 @@
     <form action="{{ route('members.extend', $member->id) }}" method="POST" id="service-form-{{ $member->id }}"
         class="service-form" x-data="{ showError: false }">
         @csrf
-        <input type="hidden" name="form_token" value="{{ session('form_token') }}">
+        <input hidden name="form_token" value="{{ session('form_token') }}">
+
 
         <!-- Service Type Selection -->
         <div class="mb-4">
