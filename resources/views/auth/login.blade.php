@@ -44,10 +44,10 @@
                                     <span>Remember me</span>
                                 </label>
                                 @if (Route::has('password.request'))
-                                    <a class="text-red-500 text-sm font-medium underline hover:text-red-600"
-                                        href="{{ route('password.request') }}">
-                                        {{ __('Forgot your password?') }}
-                                    </a>
+                                <a class="text-red-500 text-sm font-medium underline hover:text-red-600"
+                                    href="{{ route('password.request') }}">
+                                    {{ __('Forgot your password?') }}
+                                </a>
                                 @endif
                             </div>
                         </div>
@@ -68,13 +68,13 @@
 
                 {{--<!-- TEMPORARY AUTHENTICATION FOR USER/ADMIN cause im lazey typing -->
                 <form method="POST" action="{{ route('login') }}">
-                    @csrf
-                    <input hidden type="email" name="email" value="admin@gmail.com">
-                    <input hidden type="password" name="password" value="asdasdasd">
-                    <x-custom.primary-button
-                        class="w-full inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background disabled:pointer-events-none disabled:opacity-50 px-6 py-2">
-                        {{ __('Sign in as Admin') }}
-                    </x-custom.primary-button>
+                @csrf
+                <input hidden type="email" name="email" value="admin@gmail.com">
+                <input hidden type="password" name="password" value="asdasdasd">
+                <x-custom.primary-button
+                    class="w-full inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background disabled:pointer-events-none disabled:opacity-50 px-6 py-2">
+                    {{ __('Sign in as Admin') }}
+                </x-custom.primary-button>
                 </form>
 
                 <form method="POST" action="{{ route('login') }}">
