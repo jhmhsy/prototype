@@ -78,17 +78,16 @@
                             <div class="mt-2 px-7 py-3">
                                 <div class="flex gap-5 w-full">
                                     @if($member->qrcode)
-                                    <div class="qr-code-container relative group w-24 h-24">
+                                    <div class="qr-code-container relative group w-24 h-24 rounded-lg transition-all">
                                         @if($member->qrcode)
                                         <img src="{{ Storage::url('qrcodes/' . $member->qrcode->qr_image_path) }}"
-                                            alt=" QR Code for {{ $member->name }}" class="w-24 h-24">
+                                            alt="QR Code for {{ $member->name }}" class="w-24 h-24">
                                         <!-- Download Icon Overlay -->
                                         <div
-                                            class="absolute inset-0 flex items-center justify-center blur-0  bg-black bg-opacity-20 opacity-0 group-hover:opacity-100">
-
+                                            class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out">
                                             <button
                                                 onclick="downloadQrCode('{{ Storage::url('qrcodes/' . $member->qrcode->qr_image_path) }}', '{{ $member->id_number }}')"
-                                                class=" text-white font-bold">
+                                                class="absolute inset-0 w-full h-full text-white font-bold flex items-center justify-center transition-all">
                                                 <!-- SVG for Download Icon -->
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"
                                                     fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
@@ -103,6 +102,7 @@
                                         <p>No QR Code Available</p>
                                         @endif
                                     </div>
+
                                     @else
                                     <div class="flex flex-col gap-2">
                                         <div class="text-red-500">No QR code generated</div>
@@ -152,8 +152,8 @@
                             </div>
 
                             <div class="flex justify-between items-center mb-4">
-                                <h2 class="text-2xl font-bold text-black dark:text-white">Services List</h2>
-                                <div class="space-x-2">
+                                <h2 class="text-xl font-bold text-black dark:text-white">Services List</h2>
+                                <div class="space-x-2 text-sm">
                                     <select x-model="serviceFilter"
                                         class="border p-2 rounded dark:bg-peak_2 dark:text-white">
                                         <option value="all">All</option>
@@ -169,8 +169,8 @@
                                 </div>
                             </div>
 
-                            <div class="overflow-auto h-64">
-                                <table class="table-fixed w-full border-collapse">
+                            <div class="overflow-x-auto h-64 sm:h-80">
+                                <table class="table-fixed md:w-full border-collapse text-sm">
                                     <thead>
                                         <tr class="text-gray-500">
                                             <th class="px-4 py-2">Service</th>
@@ -185,56 +185,59 @@
 
                                         @foreach($member->services as $service)
                                         <tr
-                                            x-show="(serviceFilter === 'all' || serviceFilter === 'service') && 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ((statusFilter === 'current' && ['Active', 'Inactive', 'Due', 'Overdue'].includes('{{ $service->status }}')) || 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            (statusFilter === 'expired' && '{{ $service->status }}' === 'Expired'))">
+                                            x-show="(serviceFilter === 'all' || serviceFilter === 'service') && ((statusFilter === 'current' && ['Active', 'Inactive', 'Due', 'Overdue'].includes('{{ $service->status }}')) || (statusFilter === 'expired' && '{{ $service->status }}' === 'Expired'))">
                                             <!-- ... service row content remains the same ... -->
                                         </tr>
                                         @endforeach
                                         @foreach($member->services as $service)
                                         <tr class="dark:text-white"
-                                            x-show="(serviceFilter === 'all' || serviceFilter === 'service') && 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ((statusFilter === 'current' && ['Active', 'Inactive', 'Due', 'Overdue'].includes('{{ $service->status }}')) || 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                (statusFilter === 'expired' && '{{ $service->status }}' === 'Expired'))">
-                                            <td class="border px-4 py-2">{{ $service->service_type }}</td>
-
-                                            <td class="border px-4 py-2">${{ $service->amount }}</td>
-
-                                            <td class="border px-4 py-2">{{ $service->month }}</td>
-                                            <td class="border px-4 py-2">
+                                            x-show="(serviceFilter === 'all' || serviceFilter === 'service') && ((statusFilter === 'current' && ['Active', 'Inactive', 'Due', 'Overdue'].includes('{{ $service->status }}')) || (statusFilter === 'expired' && '{{ $service->status }}' === 'Expired'))">
+                                            <td class="border-b dark:border-gray-500 border-r px-4 py-2">
+                                                {{ $service->service_type }}
+                                            </td>
+                                            <td class="border-b dark:border-gray-500 px-4 py-2">
+                                                ${{ $service->amount }}
+                                            </td>
+                                            <td class="border-b dark:border-gray-500 px-4 py-2">
+                                                {{ $service->month }}
+                                            </td>
+                                            <td class="border-b dark:border-gray-500 px-4 py-2">
                                                 {{ \Carbon\Carbon::parse($service->start_date)->format('M j, Y') }}
                                             </td>
-                                            <td class="border px-4 py-2">
+                                            <td class="border-b dark:border-gray-500 px-4 py-2">
                                                 {{ \Carbon\Carbon::parse($service->due_date)->format('M j, Y') }}
                                             </td>
                                             @php
                                             $statusClass = match ($service->status) {
                                             'Active' => 'text-green-600', 'Inactive' => 'text-blue-700', 'Due'
-                                            =>
-                                            'text-orange-500', 'Overdue' => 'text-red-700', 'Expired' =>
-                                            'text-gray-500',
-                                            default => '',
-                                            };@endphp
-                                            <td class="border px-4 py-2 font-bold {{ $statusClass }}">
+                                            => 'text-orange-500', 'Overdue' => 'text-red-700', 'Expired' =>
+                                            'text-gray-500', default => '',
+                                            };
+                                            @endphp
+                                            <td
+                                                class="border-b dark:border-gray-500 px-4 py-2 font-bold {{ $statusClass }}">
                                                 {{ $service->status }}
                                             </td>
-
                                         </tr>
-
                                         @endforeach
                                         @foreach($member->lockers as $locker)
                                         <tr class="dark:text-white"
                                             x-show="(serviceFilter === 'all' || serviceFilter === 'locker') && ((statusFilter === 'current' && ['Active', 'Inactive', 'Due', 'Overdue'].includes('{{ $locker->status }}')) || (statusFilter === 'expired' && '{{ $locker->status }}' === 'Expired'))">
-                                            <td class="border px-4 py-2">Locker #{{ $locker->locker_no }}</td>
-                                            <td class="border px-4 py-2">₱{{ $locker->amount }}</td>
-                                            <td class="border px-4 py-2">{{ $locker->month }}</td>
-                                            <td class="border px-4 py-2">
+                                            <td class="border-b dark:border-gray-500 border-r px-4 py-2">Locker
+                                                #{{ $locker->locker_no }}
+                                            </td>
+                                            <td class="border-b dark:border-gray-500 px-4 py-2">
+                                                ₱{{ $locker->amount }}
+                                            </td>
+                                            <td class="border-b dark:border-gray-500 px-4 py-2">{{ $locker->month }}
+                                            </td>
+                                            <td class="border-b dark:border-gray-500 px-4 py-2">
                                                 {{ \Carbon\Carbon::parse($locker->start_date)->format('M j, Y') }}
                                             </td>
-                                            <td class="border px-4 py-2">
+                                            <td class="border-b dark:border-gray-500 px-4 py-2">
                                                 {{ \Carbon\Carbon::parse($locker->due_date)->format('M j, Y') }}
                                             </td>
-                                            <td class="border px-4 py-2 font-bold {{ match ($locker->status) {
+                                            <td class="border-b dark:border-gray-500 px-4 py-2 font-bold {{ match ($locker->status) {
                                                                             'Active' => 'text-green-600',
                                                                             'Inactive' => 'text-blue-700',
                                                                             'Due' => 'text-orange-500',
@@ -249,15 +252,19 @@
                                         @foreach($member->treadmills as $treadmill)
                                         <tr class="dark:text-white"
                                             x-show="(serviceFilter === 'all' || serviceFilter === 'treadmill') && ((statusFilter === 'current' && ['Active', 'Inactive', 'Due', 'Overdue'].includes('{{ $treadmill->status }}')) || (statusFilter === 'expired' && '{{ $treadmill->status }}' === 'Expired'))">
-                                            <td class="border px-4 py-2">Treadmill</td>
+                                            <td class="border-b dark:border-gray-500 border-r px-4 py-2">Treadmill
+                                            </td>
 
-                                            <td class="border px-4 py-2">₱{{ $treadmill->amount }}</td>
-                                            <td class="border px-4 py-2">{{ $treadmill->month }}</td>
-                                            <td class="border px-4 py-2">
+                                            <td class="border-b dark:border-gray-500 px-4 py-2">
+                                                ₱{{ $treadmill->amount }}</td>
+                                            <td class="border-b dark:border-gray-500 px-4 py-2">
+                                                {{ $treadmill->month }}
+                                            </td>
+                                            <td class="border-b dark:border-gray-500 px-4 py-2">
                                                 {{ \Carbon\Carbon::parse($treadmill->start_date)->format('M j, Y') }}
                                             </td>
 
-                                            <td class="border px-4 py-2">
+                                            <td class="border-b dark:border-gray-500 px-4 py-2">
                                                 {{ \Carbon\Carbon::parse($treadmill->due_date)->format('M j, Y') }}
                                             </td>
                                             @php
@@ -269,7 +276,8 @@
                                             'text-gray-500',
                                             default => '',
                                             };@endphp
-                                            <td class="border px-4 py-2 font-bold {{ $statusClass }}">
+                                            <td
+                                                class="border-b dark:border-gray-500 px-4 py-2 font-bold {{ $statusClass }}">
                                                 {{ $treadmill->status }}
                                             </td>
                                         </tr>
@@ -279,28 +287,30 @@
                             </div>
                         </div>
 
-                        <button @click="extendOpen = true; open = false;"
-                            onclick="refreshDate({{ $member->id }}, 'services', 'service')"
-                            class="mt-4 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
-                            Extend Subscription
-                        </button>
-                        <button @click="lockerOption = true; open = false"
-                            onclick="refreshDate({{ $member->id }}, 'lockers', 'locker')"
-                            class="mt-4 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
-                            Extend Locker
-                        </button>
-                        <button @click="extendTreadmill = true; open = false"
-                            onclick="refreshDate({{ $member->id }}, 'treadmills', 'treadmill')"
-                            class="mt-4 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
-                            Extend Treadmill
-                        </button>
+
                     </div>
-                    <div class="items-center px-4 py-3">
-                        <button @click="open = false"
-                            class="px-4 py-2 bg-blue-500 text-white text-base font-medium rounded-md w-full shadow-sm hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300">
-                            Close
-                        </button>
+
+
+                    <div class="p-6">
+
+                        <div class="grid grid-cols-1 md:flex gap-5 justify-between items-center">
+                            <div class="grid grid-cols-3 space-x-2 text-md sm:text-sm">
+                                <button @click="extendOpen = true; open = false;"
+                                    onclick="refreshDate({{ $member->id }}, 'services', 'service')"
+                                    class="bg-blue-500 text-white hover:bg-blue-600 active:bg-blue-700 px-4 py-2 rounded-lg">Subscription</button>
+                                <button @click="lockerOption = true; open = false"
+                                    onclick="refreshDate({{ $member->id }}, 'lockers', 'locker')"
+                                    class="bg-blue-500 text-white hover:bg-blue-600 active:bg-blue-700 px-4 py-2 rounded-lg">Locker</button>
+                                <button @click="extendTreadmill = true; open = false"
+                                    onclick="refreshDate({{ $member->id }}, 'treadmills', 'treadmill')"
+                                    class="bg-blue-500 text-white hover:bg-blue-600 active:bg-blue-700 px-4 py-2 rounded-lg">Treadmill</button>
+                            </div>
+                            <button @click="open = false"
+                                class="border border-gray-500 text-gray-500 hover:text-black hover:border-black dark:hover:text-white dark:hover:border-white px-4 py-2 rounded-lg">
+                                Close</button>
+                        </div>
                     </div>
+
                 </div>
 
 

@@ -1,5 +1,5 @@
 <x-guest-layout>
-    <div class="flex h-screen flex-col pb-5 bg-tint_1 dark:bg-shade_7 text-shade_9">
+    <div class="flex h-screen flex-col pb-5 bg-tint_1 text-shade_9">
         <header>
             <x-homepage.header-section />
         </header>
@@ -8,7 +8,7 @@
             <div class="w-full max-w-md space-y-6 text-shade_9">
                 <form method="POST" action="{{ route('register') }}">
                     @csrf
-                    <div class="space-y-2 text-center dark:text-tint_1">
+                    <div class="space-y-2 text-center">
                         <h1 class="text-3xl font-bold text-primary-foreground ">
                             Register for Gym Reservations</h1>
                         <p class="text-primary-foreground/80 text-sm">Easily book your gym sessions with our
@@ -17,7 +17,7 @@
                         </p>
                     </div>
                     <div class=" flex items-center justify-center ">
-                        <div class="w-full mt-5 rounded-lg border bg-card text-card-foreground shadow-sm dark:border-white/10 bg-tint_3 dark:bg-tint_7"
+                        <div class="w-full mt-5 rounded-lg border bg-card text-card-foreground shadow-sm"
                             data-v0-t="card">
                             <div class="flex flex-col space-y-1.5 px-6 pt-4 pb-1">
                                 <h3 class="whitespace-nowrap font-semibold tracking-tight text-2xl mx-auto">Register an
@@ -57,7 +57,7 @@
                                 </x-custom.secondary-button>
                                 <div class="text-center text-sm">
                                     Already have an account? <a
-                                        class="text-blue-500 font-medium underline hover:text-blue-300 dark:hover:text-blue-500"
+                                        class="text-blue-500 font-medium underline hover:text-blue-300"
                                         href="{{ route('login') }}">Login</a>
                                 </div>
                             </div>

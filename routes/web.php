@@ -81,10 +81,10 @@ Route::get('/cancel', [PaymentController::class, 'cancel']);
 
 //Welcome Page  
 
-// Route::get('/', [HomeController::class, 'index'])->name('welcome');
+Route::get('/', [HomeController::class, 'index'])->name('welcome');
 
 // use to verify account first from email to login - use later dont delete
-Route::get('/', [HomeController::class, 'index'])->name('welcome')->middleware('verified');
+// Route::get('/', [HomeController::class, 'index'])->name('welcome')->middleware('verified');
 
 Route::get('/gym-map', [HomeController::class, 'showmap'])->name('gym-map');
 //⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎ 𝗣𝗨𝗕𝗟𝗜𝗖
