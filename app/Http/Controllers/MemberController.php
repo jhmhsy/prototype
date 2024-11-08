@@ -470,6 +470,7 @@ class MemberController extends Controller
         $dueDate = now()->addYear();
 
         if ($member->membershipDuration) {
+            // Update existing membership duration
             $member->membershipDuration->update([
                 'start_date' => $startDate,
                 'due_date' => $dueDate,
@@ -477,10 +478,18 @@ class MemberController extends Controller
             ]);
 
             return redirect()->back()->with('success', 'Membership renewed successfully');
-        }
+        } else {
+            // Create a new membership duration if none exists
+            $member->membershipDuration()->create([
+                'start_date' => $startDate,
+                'due_date' => $dueDate,
+                'status' => 'Active'
+            ]);
 
-        return redirect()->back()->with('error', 'No membership found to renew');
+            return redirect()->back()->with('success', 'New membership created and activated successfully');
+        }
     }
+
 
 
 
