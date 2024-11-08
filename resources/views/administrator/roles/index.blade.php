@@ -1,11 +1,5 @@
 <x-dash-layout>
-    @if(session('success'))
-    <div id="notification" class="notification">
-        <button id="close-notification" class="close-btn">&times;</button>
-        <p class="notification-message">{{ session('success') }}</p>
-        <div id="time-bar" class="time-bar"></div>
-    </div>
-    @endif
+
     <div class="container mx-auto py-8 px-4 sm:px-6 lg:px-8 text:black dark:text-gray-300"
         x-data="{ openeditmodal: null, openshowmodal: null, opencreatemodal: null }">
         <div class="flex flex-row">
@@ -26,64 +20,64 @@
             </div>
         </div>
         @session('success')
-        <div class="alert alert-success" role="alert">
-            {{ $value }}
-        </div>
+            <div class="alert alert-success" role="alert">
+                {{ $value }}
+            </div>
         @endsession
 
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 ">
             @foreach ($roles as $key => $role)
-            <div class="bg-tint_4 dark:bg-shade_3 rounded-lg shadow-md px-4 py-5 ">
-                <div class="flex items-center justify-between mb-4">
-                    <div class="flex">
-                        <h2 class="text-lg font-semibold">{{ $role->name }}</h2>
+                <div class="bg-tint_4 dark:bg-shade_3 rounded-lg shadow-md px-4 py-5 ">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex">
+                            <h2 class="text-lg font-semibold">{{ $role->name }}</h2>
+                        </div>
+                    </div>
+                    <div class="w-full grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 md:grid-cols-2 gap-2 text-xs">
+                        @can('role-edit')
+                            <x-custom.anchor-link
+                                @click.prevent="openshowmodal = openshowmodal === {{ $role->id }} ? null : {{ $role->id }}"
+                                class="bg-main hover:bg-shade_2">
+                                View
+                            </x-custom.anchor-link>
+                            @include ('administrator.roles.show')
+                        @endcan
+
+                        @can('role-edit')
+                            @if ($role->name == 'SuperAdmin' && $role->id == 1)
+                                <button
+                                    class="bg-gray-400 text-white uppercase inline-flex items-center justify-center text-xs font-medium h-9 rounded-md px-2"
+                                    disabled>
+                                    EDIT
+                                </button>
+                            @else
+                                <x-custom.anchor-link
+                                    @click.prevent="openeditmodal = openeditmodal === {{ $role->id }} ? null : {{ $role->id }}"
+                                    class="bg-blue-500 hover:bg-blue-600">
+                                    Edit
+                                </x-custom.anchor-link>
+                            @endif
+                            @include ('administrator.roles.edit')
+                        @endcan
+
+                        @can('role-delete')
+                            @if ($role->name == 'SuperAdmin' && $role->id == 1)
+                                <x-custom.pop-up :disabled="true" :name="'role'" :formId="'delete-' . $role->id">
+                                </x-custom.pop-up>
+                            @else
+                                <x-custom.pop-up :name="'role'" :formId="'delete-' . $role->id">
+                                </x-custom.pop-up>
+                            @endif
+
+                            <form method="POST" action="{{ route('roles.destroy', $role->id) }}" style="display:inline"
+                                id="delete-{{ $role->id }}" class="hidden">
+                                @csrf
+                                @method('DELETE')
+                            </form>
+                        @endcan
+
                     </div>
                 </div>
-                <div class="w-full grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 md:grid-cols-2 gap-2 text-xs">
-                    @can('role-edit')
-                    <x-custom.anchor-link
-                        @click.prevent="openshowmodal = openshowmodal === {{ $role->id }} ? null : {{ $role->id }}"
-                        class="bg-main hover:bg-shade_2">
-                        View
-                    </x-custom.anchor-link>
-                    @include ('administrator.roles.show')
-                    @endcan
-
-                    @can('role-edit')
-                    @if ($role->name == 'SuperAdmin' && $role->id == 1)
-                    <button
-                        class="bg-gray-400 text-white uppercase inline-flex items-center justify-center text-xs font-medium h-9 rounded-md px-2"
-                        disabled>
-                        EDIT
-                    </button>
-                    @else
-                    <x-custom.anchor-link
-                        @click.prevent="openeditmodal = openeditmodal === {{ $role->id }} ? null : {{ $role->id }}"
-                        class="bg-blue-500 hover:bg-blue-600">
-                        Edit
-                    </x-custom.anchor-link>
-                    @endif
-                    @include ('administrator.roles.edit')
-                    @endcan
-
-                    @can('role-delete')
-                    @if ($role->name == 'SuperAdmin' && $role->id == 1)
-                    <x-custom.pop-up :disabled="true" :name="'role'" :formId="'delete-' . $role->id">
-                    </x-custom.pop-up>
-                    @else
-                    <x-custom.pop-up :name="'role'" :formId="'delete-' . $role->id">
-                    </x-custom.pop-up>
-                    @endif
-
-                    <form method="POST" action="{{ route('roles.destroy', $role->id) }}" style="display:inline"
-                        id="delete-{{ $role->id }}" class="hidden">
-                        @csrf
-                        @method('DELETE')
-                    </form>
-                    @endcan
-
-                </div>
-            </div>
             @endforeach
         </div>
 

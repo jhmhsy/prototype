@@ -1,11 +1,5 @@
 <x-dash-layout>
-    @if(session('success'))
-    <div id="notification" class="notification">
-        <button id="close-notification" class="close-btn">&times;</button>
-        <p class="notification-message">{{ session('success') }}</p>
-        <div id="time-bar" class="time-bar"></div>
-    </div>
-    @endif
+
 
     <body class="bg-gray-100 dark:bg-peak_3">
         <div class="container mx-auto px-4 py-8">
@@ -28,19 +22,19 @@
                     </thead>
                     <tbody class="bg-white dark:bg-peak_1 dark:text-white">
                         @foreach($prices as $price)
-                        <tr>
-                            <td class="px-6 py-4 whitespace-nowrap">{{ $price->service_type }}</td>
-                            <td class="px-6 py-4 whitespace-nowrap">${{ number_format($price->price, 2) }}</td>
-                            <td class="px-6 py-4 whitespace-nowrap"
-                                x-data="{ Editmodal: false, serviceType: '{{ $price->service_type }}', priceValue: '{{ $price->price }}' }">
-                                <button @click="Editmodal = true"
-                                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                                    Edit
-                                </button>
-                                @include('administrator.price.edit')
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap">{{ $price->service_type }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap">${{ number_format($price->price, 2) }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap"
+                                    x-data="{ Editmodal: false, serviceType: '{{ $price->service_type }}', priceValue: '{{ $price->price }}' }">
+                                    <button @click="Editmodal = true"
+                                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                        Edit
+                                    </button>
+                                    @include('administrator.price.edit')
 
-                            </td>
-                        </tr>
+                                </td>
+                            </tr>
                         @endforeach
                     </tbody>
 

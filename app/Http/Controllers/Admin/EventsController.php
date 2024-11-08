@@ -71,17 +71,11 @@ class EventsController extends Controller
             'location' => 'required|string|max:50',
             'details' => 'required|string|max:300',
             'date' => 'required|date',
-            'time' => 'required|date_format:H:i',
+            'time' => 'required',
         ]);
 
         $event = Event::findOrFail($id);
-        $event->update([
-            'name' => $request->input('name'),
-            'location' => $request->input('location'),
-            'details' => $request->input('details'),
-            'date' => $request->input('date'),
-            'time' => $request->input('time'),
-        ]);
+        $event->update($request->all());
 
         return redirect()->back()->with('success', 'Event updated successfully.');
     }

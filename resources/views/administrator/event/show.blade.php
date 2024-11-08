@@ -3,10 +3,11 @@
 
 <div style="display: none;"
     class="modal fixed w-[90%] md:w-[60%] lg:w-[40%] xl:w-[35%] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 p-4"
-    x-show="viewmodal" @click.away="viewmodal = false" x-transition:enter="transition ease-out duration-300"
-    x-transition:enter-start="opacity-0 transform scale-90" x-transition:enter-end="opacity-100 transform scale-100"
-    x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100 transform scale-100"
-    x-transition:leave-end="opacity-0 transform scale-90" @click.stop>
+    x-show="viewmodal === {{ $event->id}}" @click.away="viewmodal = false"
+    x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform scale-90"
+    x-transition:enter-end="opacity-100 transform scale-100" x-transition:leave="transition ease-in duration-100"
+    x-transition:leave-start="opacity-100 transform scale-100" x-transition:leave-end="opacity-0 transform scale-90"
+    @click.stop>
 
     <div class="bg-white dark:bg-peak_1 rounded shadow-lg w-full max-w-2xl max-h-[90vh] overflow-y-auto">
         <div class="mt-50 p-4">

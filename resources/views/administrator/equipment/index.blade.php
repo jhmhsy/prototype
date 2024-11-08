@@ -1,14 +1,4 @@
 <x-dash-layout>
-
-    @if(session('success'))
-    <div id="notification" class="notification">
-        <button id="close-notification" class="close-btn">&times;</button>
-        <p class="notification-message">{{ session('success') }}</p>
-        <div id="time-bar" class="time-bar"></div>
-    </div>
-    @endif
-
-
     <x-custom.loader2 />
     <section x-data="{ createmodal: false ,viewmodal:false, Editmodal:false}">
         <div class="rounded-lg  shadow-sm p-6  text-shade_9  
@@ -165,7 +155,7 @@
                                         <div
                                             class="action-dropdown-menu fixed bg-white dark:bg-peak_2 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 z-50 w-48 hidden">
                                             <div class="py-1">
-                                                <button @click="viewmodal = true"
+                                                <button @click="viewmodal = {{ $equipment->id}}"
                                                     class="w-full group flex items-center px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-peak_3">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                         viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -177,7 +167,7 @@
                                                     View
                                                 </button>
 
-                                                <button @click="Editmodal = true"
+                                                <button @click="Editmodal = {{$equipment->id}}"
                                                     class="w-full group flex items-center px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-peak_3">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                         fill="currentColor" class="w-4 h-4 mr-3" viewBox="0 0 16 16">

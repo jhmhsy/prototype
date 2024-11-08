@@ -41,6 +41,14 @@
 </head>
 
 <body class="font-opensans antialiased min-w-screen bg-tint_1 dark:bg-peak_1     ">
+    @if(session('success'))
+        <div id="notification" class="notification">
+            <button id="close-notification" class="close-btn">&times;</button>
+            <p class="notification-message">{{ session('success') }}</p>
+            <div id="time-bar" class="time-bar"></div>
+        </div>
+    @endif
+
     <div x-data="layout()" x-init="init()" class="flex h-screen">
         <!-- SIDE NAVBAR -->
         @include ('administrator.side-navigation')
@@ -57,27 +65,27 @@
         </div>
     </div>
     <script>
-    //minified it
-    function layout() {
-        return {
-            sidebarOpen: !1,
-            init() {
-                this.sidebarOpen = "true" === localStorage.getItem("sidebarOpen"), this.$watch("sidebarOpen", e => {
-                    localStorage.setItem("sidebarOpen", e)
-                }), this.checkScreenSize(), window.addEventListener("resize", () => this.checkScreenSize())
-            },
-            toggleSidebar() {
-                this.sidebarOpen = !this.sidebarOpen
-            },
-            closeSidebar() {
-                window.innerWidth < 1024 && (this.sidebarOpen = !1)
-            },
-            checkScreenSize() {
-                window.innerWidth >= 1024 ? this.sidebarOpen = "true" === localStorage.getItem("sidebarOpen") : this
-                    .sidebarOpen = !1
+        //minified it
+        function layout() {
+            return {
+                sidebarOpen: !1,
+                init() {
+                    this.sidebarOpen = "true" === localStorage.getItem("sidebarOpen"), this.$watch("sidebarOpen", e => {
+                        localStorage.setItem("sidebarOpen", e)
+                    }), this.checkScreenSize(), window.addEventListener("resize", () => this.checkScreenSize())
+                },
+                toggleSidebar() {
+                    this.sidebarOpen = !this.sidebarOpen
+                },
+                closeSidebar() {
+                    window.innerWidth < 1024 && (this.sidebarOpen = !1)
+                },
+                checkScreenSize() {
+                    window.innerWidth >= 1024 ? this.sidebarOpen = "true" === localStorage.getItem("sidebarOpen") : this
+                        .sidebarOpen = !1
+                }
             }
         }
-    }
     </script>
 
 

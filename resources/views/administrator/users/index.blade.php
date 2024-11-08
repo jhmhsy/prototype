@@ -1,11 +1,5 @@
 <x-dash-layout>
-    @if(session('success'))
-        <div id="notification" class="notification">
-            <button id="close-notification" class="close-btn">&times;</button>
-            <p class="notification-message">{{ session('success') }}</p>
-            <div id="time-bar" class="time-bar"></div>
-        </div>
-    @endif
+
 
     <div class="flex flex-col gap-4 rounded-lg border shadow-sm p-6  text-shade_9  
         border-shade_6/50 dark:border-white/5"
