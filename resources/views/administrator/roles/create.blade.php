@@ -39,7 +39,7 @@
                             <div class="grid grid-cols-1 gap-4">
                                 <div class="space-y-2">
                                     <label class="text-lg font-medium  text-gray-500">Role Name</label>
-                                    <input type="text" name="name" placeholder="Name"
+                                    <input type="text" name="name" maxlength="30" placeholder="Name"
                                         class="dark:bg-peak_1 flex h-10 w-full rounded-md border-none  px-3 py-2 text-sm ">
                                 </div>
                             </div>

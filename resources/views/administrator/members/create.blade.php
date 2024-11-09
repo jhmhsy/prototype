@@ -9,8 +9,8 @@
     @endif
 
 
-    <div class="container">
-        <h2>Register New Member</h2>
+    <div class="container dark:text-gray-600">
+        <h2 class="dark:text-white">Register New Member</h2>
 
         @if(session('success'))
         <div class="alert alert-success">
@@ -22,22 +22,27 @@
             @csrf
             <input hidden name="form_token" value="{{ session('form_token') }}">
 
+
+            <select name="membership_type" id="membership_type">
+                <option value="Regular">Regular</option>
+                <option value="Student">Student</option>
+            </select>
             <h2>Member Details</h2>
             <div>
                 <label for="name">Name:</label>
-                <input type="text" id="name" name="name" required>
+                <input type="text" id="name" name="name" required maxlength="50">
             </div>
             <div>
                 <label for="phone">Phone:</label>
-                <input type="tel" id="phone" name="phone">
+                <input type="tel" id="phone" name="phone" maxlength="20">
             </div>
             <div>
                 <label for="fb">Facebook (optional):</label>
-                <input type="text" id="fb" name="fb">
+                <input type="text" id="fb" name="fb" maxlength="50">
             </div>
             <div>
                 <label for="email">Email:</label>
-                <input type="email" id="email" name="email">
+                <input type="email" id="email" name="email" maxlength="100">
             </div>
 
             <h2>Subscription Service</h2>
@@ -57,19 +62,16 @@
                             <div>
                                 <label :for="'service_type_' + i">Service Type:</label>
                                 <select :name="'service_type_' + i">
-                                    <option value="Monthly">Monthly</option>
-                                    <option value="Yearly">Yearly</option>
+                                    <option value="1month">1 Month</option>
+                                    <option value="3month">3 Months</option>
+                                    <option value="6month">6 Months</option>
+                                    <option value="12month">12 Months</option>
                                 </select>
                             </div>
 
                             <div>
                                 <label :for="'start_date_' + i">Subscription Start Date:</label>
                                 <input type="date" :name="'start_date_' + i" :value="serviceStartDate">
-                            </div>
-
-                            <div>
-                                <label :for="'month_' + i">Total Months:</label>
-                                <input type="number" :name="'month_' + i" step="0.01">
                             </div>
 
                             <button type="button" @click="subscriptions > 1 ? subscriptions-- : null"
@@ -117,7 +119,7 @@
                         </div>
                         <div>
                             <label for="locker_month">Locker months: 100/month</label>
-                            <input type="number" name="locker_month" step="0.01">
+                            <input type="number" name="locker_month" step="0.01" oninput="monthInputLimit(this)">
                         </div>
                     </div>
                 </div>
@@ -143,7 +145,7 @@
                     </div>
                     <div>
                         <label for="treadmill_months">How many months?</label>
-                        <input type="number" name="treadmill_months" min="1" max="12">
+                        <input type="number" name="treadmill_months" oninput="monthInputLimit(this)">
                     </div>
                 </div>
             </div>

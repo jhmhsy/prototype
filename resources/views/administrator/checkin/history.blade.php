@@ -3,7 +3,7 @@
         <h1 class="text-2xl font-bold mb-4">Check-in History</h1>
 
         <form action="{{ route('checkin.history') }}" method="GET" class="mb-4 flex items-center">
-            <input type="text" name="search"
+            <input type="text" name="search" maxlength="255"
                 class="form-control border-2 border-gray-300 bg-white h-10 px-5 pr-16 text-sm focus:outline-none"
                 placeholder="Search by Name or ID Number" value="{{ request('search') }}">
             <button type="submit"
@@ -52,23 +52,23 @@
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
                     @foreach ($checkins as $checkin)
-                    <tr>
-                        <td class="px-6 py-4 whitespace-nowrap">
-                            {{ $checkin->member->id_number }}
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap">
-                            {{ $checkin->member->name }}
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap">
-                            {{ \Carbon\Carbon::parse($checkin->checkin_date)->format('M j') }}
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap">
-                            {{ \Carbon\Carbon::parse($checkin->checkin_time)->format('g:ia') }}
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap">
-                            {{ $checkin->type }}
-                        </td>
-                    </tr>
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                {{ $checkin->member->id_number }}
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                {{ $checkin->member->name }}
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                {{ \Carbon\Carbon::parse($checkin->checkin_date)->format('M j') }}
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                {{ \Carbon\Carbon::parse($checkin->checkin_time)->format('g:ia') }}
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                {{ $checkin->type }}
+                            </td>
+                        </tr>
                     @endforeach
                 </tbody>
             </table>

@@ -30,14 +30,15 @@
                             </label>
                             <input
                                 class="dark:bg-peak_1 flex h-10 w-full rounded-md border dark:border-none  px-3 py-2 text-sm"
-                                type="text" name="name" id="name" required placeholder="Enter equipment name" />
+                                type="text" name="name" id="name" required maxlength="50"
+                                placeholder="Enter equipment name" />
                         </div>
                         <div class="space-y-2">
                             <label class="text-sm font-medium text-gray-500" for="type">
                                 Equipment Type
                             </label>
                             <div class="relative">
-                                <select id="type" name="type" required
+                                <select id="type" name="type" required maxlength="50"
                                     class="dark:bg-peak_1 flex h-10 w-full items-center justify-between rounded-md border dark:border-none  px-3 py-2 text-sm">
                                     <option value="" disabled>Select equipment Type</option>
 
@@ -60,7 +61,7 @@
                         </label>
                         <textarea
                             class="dark:bg-peak_1 flex min-h-[80px] w-full rounded-md border dark:border-none  px-3 py-2 text-sm"
-                            name="details" id="details" required placeholder="Enter equipment details"
+                            name="details" id="details" required maxlength="300" placeholder="Enter equipment details"
                             rows="4"></textarea>
                     </div>
                     <div class="space-y-2">
@@ -69,8 +70,8 @@
                         </label>
                         <textarea
                             class="dark:bg-peak_1 flex min-h-[80px] w-full rounded-md border dark:border-none  px-3 py-2 text-sm"
-                            name="extra_details" id="extra_details" placeholder="Enter any additional details"
-                            rows="4"></textarea>
+                            name="extra_details" id="extra_details" maxlength="300"
+                            placeholder="Enter any additional details" rows="4"></textarea>
                     </div>
 
                     <div class="mb-4">
@@ -89,4 +90,5 @@
             </div>
         </div>
     </div>
+
 </div>

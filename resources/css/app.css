@@ -1,17 +1,16 @@
+@import "swiper/css";
+@import "swiper/css/navigation";
+@import "swiper/css/pagination";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import "swiper/css";
-@import "swiper/css/navigation";
-@import "swiper/css/pagination";
-/**{
-    border: 1px dotted red;
-}*/
 html {
     scroll-behavior: smooth;
 }
-#equipment-section, #pricing-section {
+#equipment-section,
+#pricing-section {
     scroll-margin-top: 80px; /* Adjust value to desired spacing */
 }
 /* purgecss start ignore */
@@ -32,7 +31,7 @@ header > div {
     @apply text-lemon-base;
 }
 .activeLink {
-    @apply border-lemon-base text-lemon-base ;
+    @apply border-lemon-base text-lemon-base;
 }
 .inactiveLink {
     @apply border-transparent text-primary hover:border-lemon-base hover:text-lemon-base;

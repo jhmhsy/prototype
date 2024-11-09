@@ -34,7 +34,7 @@ class RoleController extends Controller
     public function index(Request $request): View
     {
         // Get roles with their corresponding permissions
-        $roles = Role::with('permissions')->orderBy('id', 'asc')->paginate(5);
+        $roles = Role::with('permissions')->orderBy('id', 'asc')->paginate(50);
         // Get all permissions
         $permissions = Permission::all(); // Retrieves all records 
         $permissioncreate = Permission::get(); //get all permisisons in database table to create roles

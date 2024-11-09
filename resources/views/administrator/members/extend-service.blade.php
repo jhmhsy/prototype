@@ -10,8 +10,7 @@
 
     <h3 class="text-lg leading-6 font-medium text-gray-900 mb-4 dark:text-white">Extend Subscription</h3>
     <form action="{{ route('members.extend', $member->id) }}" method="POST" id="service-form-{{ $member->id }}"
-        class="service-form" x-data="{ month: '', showError: false }"
-        @submit.prevent="showError = !month; if (!showError) $el.submit();">
+        class="service-form" x-data="{ showError: false }">
         @csrf
         <input type="hidden" name="form_token" value="{{ session('form_token') }}">
 
@@ -21,8 +20,10 @@
                 Type</label>
             <select id="service_type_{{ $member->id }}" name="service_type"
                 class="dark:bg-peak_1 dark:text-white mt-1 block w-full py-2 px-3 border border-gray-300 dark:border-none bg-white rounded-md shadow-sm  sm:text-sm">
-                <option value="Monthly">Monthly</option>
-                <option value="Yearly">Yearly</option>
+                <option value="1month">1 Month</option>
+                <option value="3month">3 Months</option>
+                <option value="6month">6 Months</option>
+                <option value="12month">12 Months</option>
             </select>
         </div>
 
@@ -53,20 +54,7 @@
             </div>
         </div>
 
-        <!-- Month Selection -->
-        <div class="mb-4">
-            <label for="month_{{ $member->id }}" class="block text-sm font-medium text-gray-500">
-                How many Months (max 12)
-            </label>
-            <input x-model="month" type="number" id="month_{{ $member->id }}" name="month" placeholder="###" min="1"
-                max="12"
-                class="dark:bg-peak_1 dark:text-white mt-1 block w-full py-2 px-3 border border-gray-300 dark:border-none bg-white rounded-md shadow-sm  sm:text-sm">
 
-            <!-- Error Message -->
-            <p x-show="showError" x-cloak class="error text-xs text-red-500">
-                Months quantity is needed.
-            </p>
-        </div>
 
         <!-- Submit Button -->
         <button type="submit" class="w-full bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
@@ -77,5 +65,4 @@
         class="mt-4 w-full bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400">
         Cancel
     </button>
-
 </div>

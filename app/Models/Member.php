@@ -15,6 +15,7 @@ class Member extends Model
         'phone',
         'fb',
         'email',
+        'membership_type',
         'user_identifier',
     ];
 
@@ -41,5 +42,10 @@ class Member extends Model
     public function qrcode()
     {
         return $this->hasOne(MemberQrcode::class);
+    }
+
+    public function membershipDuration()
+    {
+        return $this->hasOne(MembershipDuration::class);
     }
 }

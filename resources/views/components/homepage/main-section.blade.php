@@ -5,6 +5,7 @@
             transform: translateX(20px);
         }
 
+
         to {
             opacity: 1;
             transform: translateX(0);
@@ -17,6 +18,7 @@
             transform: translateX(0);
         }
 
+
         to {
             opacity: 0;
             transform: translateX(-20px);
@@ -28,6 +30,7 @@
             opacity: 0;
             transform: translateY(-20px);
         }
+
 
         to {
             opacity: 1;
@@ -48,7 +51,8 @@
     }
 </style>
 
-<section class="bg-peak-4 relative flex items-center justify-center w-full min-h-screen px-4 md:px-10 md:justify-between"
+<section
+    class="bg-peak-4 relative flex items-center justify-center w-full min-h-screen px-4 md:px-10 md:justify-between"
     style="background: url('images/public/background-4.webp') right 2.3rem / cover no-repeat;">
     <div class="absolute inset-0 bg-black opacity-50"></div>
     <div
@@ -57,18 +61,18 @@
             <div class="flex flex-col md:flex-row justify-start gap-2">
                 <h1 class="font-raleway tracking-wider text-4xl md:text-6xl font-bold items-center">
                     GYM ONE
-                </h1>   
+                </h1>
                 <div class="flex flex-col items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30" viewBox="0 0 48 48">
-                        <linearGradient id="IMoH7gpu5un5Dx2vID39Ra_pIPl8tqh3igN_gr1" x1="9.858" x2="38.142"
-                            y1="9.858" y2="38.142" gradientUnits="userSpaceOnUse">
+                        <linearGradient id="IMoH7gpu5un5Dx2vID39Ra_pIPl8tqh3igN_gr1" x1="9.858" x2="38.142" y1="9.858"
+                            y2="38.142" gradientUnits="userSpaceOnUse">
                             <stop offset="0" stop-color="#9dffce"></stop>
                             <stop offset="1" stop-color="#50d18d"></stop>
                         </linearGradient>
                         <path fill="url(#IMoH7gpu5un5Dx2vID39Ra_pIPl8tqh3igN_gr1)"
                             d="M44,24c0,11.045-8.955,20-20,20S4,35.045,4,24S12.955,4,24,4S44,12.955,44,24z"></path>
-                        <linearGradient id="IMoH7gpu5un5Dx2vID39Rb_pIPl8tqh3igN_gr2" x1="13" x2="36"
-                            y1="24.793" y2="24.793" gradientUnits="userSpaceOnUse">
+                        <linearGradient id="IMoH7gpu5un5Dx2vID39Rb_pIPl8tqh3igN_gr2" x1="13" x2="36" y1="24.793"
+                            y2="24.793" gradientUnits="userSpaceOnUse">
                             <stop offset=".824" stop-color="#135d36"></stop>
                             <stop offset=".931" stop-color="#125933"></stop>
                             <stop offset="1" stop-color="#11522f"></stop>
@@ -82,7 +86,7 @@
                     </p>
                 </div>
             </div>
-            
+
             <p class="max-w-full text-base sm:text-xl md:max-w-[900px] md:text-lg lg:text-xl">
                 Top-notch Equipments Combined with Affordable Prices
             </p>
@@ -99,11 +103,11 @@
 
         </div>
     </div>
-    
+
 </section>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         const observerOptions = {
             root: null,
             rootMargin: '0px',

@@ -14,6 +14,7 @@ return new class extends Migration {
             $table->string('phone')->nullable();
             $table->string('fb')->nullable();
             $table->string('email')->nullable();
+            $table->enum('membership_type', ['Regular', 'Student']);
             $table->timestamps();
             $table->string('user_identifier', 28)->unique();
         });
