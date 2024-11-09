@@ -50,8 +50,8 @@ class MemberController extends Controller
         }
         $members = $query->get();
 
+        $occupiedLockers = Locker::whereIn('status', ['Active', 'Due', 'Overdue'])->pluck('locker_no')->toArray();
 
-        $occupiedLockers = Locker::where('status', 'Active')->pluck('locker_no')->toArray();
 
         session()->put('form_token', uniqid());
         return view('administrator.members.index', compact('members', 'occupiedLockers'));
@@ -266,6 +266,31 @@ class MemberController extends Controller
         $start = \Carbon\Carbon::parse($startDate);
 
         return $serviceType === 'Monthly' ? $start->addMonths($months) : $start->addYears($months);
+    }
+
+    public function endService(Service $service)
+    {
+        // Update status to "Ended"
+        $service->update(['status' => 'Ended']);
+
+        // Redirect back with a success message
+        return redirect()->back()->with('success', 'Subscription Ended.');
+    }
+    public function endLocker(Locker $locker)
+    {
+        // Update status to "Ended"
+        $locker->update(['status' => 'Ended']);
+
+        // Redirect back with a success message
+        return redirect()->back()->with('success', 'Subscription Ended.');
+    }
+    public function endTreadmill(Treadmill $treadmill)
+    {
+        // Update status to "Ended"
+        $treadmill->update(['status' => 'Ended']);
+
+        // Redirect back with a success message
+        return redirect()->back()->with('success', 'Subscription Ended.');
     }
 
 
@@ -521,20 +546,29 @@ class MemberController extends Controller
             return response()->json(['error' => 'Invalid relation type'], 400);
         }
 
+        // Define the valid statuses that are not 'Ended'
+        $validStatuses = ['Active', 'Inactive', 'Due', 'Overdue', 'Expired'];
+
+        // Find the member and load the related model
         $member = Member::with([
-            $relation => function ($query) {
-                $query->orderBy('due_date', 'desc');
+            $relation => function ($query) use ($validStatuses) {
+                // Filter records by valid statuses and order by due_date descending
+                $query->whereIn('status', $validStatuses)
+                    ->orderBy('due_date', 'desc');
             }
         ])->findOrFail($memberId);
 
+        // Get the first valid record from the filtered results
         $latestRecord = $member->$relation->first();
 
+        // Calculate the start date based on the latest valid record
         $startDate = $latestRecord
             ? Carbon::parse($latestRecord->due_date)->addDay()->format('Y-m-d')
             : Carbon::now()->format('Y-m-d');
 
         return response()->json(['start_date' => $startDate]);
     }
+
 
     public function exportMembers()
     {

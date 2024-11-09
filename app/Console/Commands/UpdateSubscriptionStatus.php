@@ -20,85 +20,93 @@ class UpdateSubscriptionStatus extends Command
         $users = Service::select('user_id')->distinct()->get();
 
         foreach ($users as $user) {
-            // Get all subscriptions for the user ordered by start_date
-            $userServices = Service::where('user_id', $user->user_id)
+            // Get all non-ended subscriptions for the user ordered by start_date
+            $services = Service::where('user_id', $user->user_id)
+                ->where('status', '!=', 'Ended')
                 ->orderBy('start_date', 'asc')
                 ->get();
 
-            if ($userServices->isEmpty()) {
+            if ($services->isEmpty()) {
                 continue;
             }
 
-            // Reset all future statuses first to ensure proper processing
-            foreach ($userServices as $service) {
+            // Get the latest service
+            $latestService = $services->sortByDesc('start_date')->first();
+
+            // First pass: Reset all future statuses to Inactive
+            foreach ($services as $service) {
+                $startDate = Carbon::parse($service->start_date);
+
+                // Set future services to Inactive
+                if ($startDate->gt($today)) {
+                    $service->status = 'Inactive';
+                    $service->save();
+                }
+            }
+
+            // Second pass: Process Active, Due and Expired services
+            $activeServices = collect();
+            foreach ($services as $service) {
                 $startDate = Carbon::parse($service->start_date);
                 $dueDate = Carbon::parse($service->due_date);
 
-                // Skip if already expired
-                if ($service->status === 'Expired') {
+                // Skip if it's a future service (already set to Inactive)
+                if ($startDate->gt($today)) {
                     continue;
                 }
 
-                // Reset status for non-expired services
-                $service->status = 'Inactive';
-                $service->save();
-            }
-
-            // Process current and future subscriptions
-            $hasActiveSubscription = false;
-
-            foreach ($userServices as $service) {
-                $startDate = Carbon::parse($service->start_date);
-                $dueDate = Carbon::parse($service->due_date);
-
-                // Debug information
-                $this->info("Processing service {$service->service_id}:");
-                $this->info("Type: {$service->service_type}");
-                $this->info("Start Date: {$startDate->toDateString()}");
-                $this->info("Due Date: {$dueDate->toDateString()}");
-                $this->info("Current Status: {$service->status}");
-
-                // Handle expired subscriptions
+                // If service is past due date, mark as Expired
                 if ($dueDate->lt($today)) {
                     $service->status = 'Expired';
                     $service->save();
                     continue;
                 }
 
-                // Handle current period subscription
-                if ($startDate->lte($today) && $dueDate->gte($today)) {
-                    if ($dueDate->isSameDay($today)) {
-                        $service->status = 'Due';
-                    } else {
-                        $service->status = 'Active';
-                    }
-                    $hasActiveSubscription = true;
+                // If today is the due date, mark as Due
+                if ($dueDate->isSameDay($today)) {
+                    $service->status = 'Due';
                     $service->save();
-
-                    // If this is a monthly subscription, check if renewal reminder is needed
-                    if ($service->service_type === 'Monthly' && $dueDate->diffInDays($today) <= 7) {
-                        $this->sendRenewalReminder($service);
-                    }
+                    $activeServices->push($service);
+                    continue;
                 }
-                // Future subscriptions remain 'Inactive'
+
+                // If service started and hasn't reached due date, set to Active
+                if ($startDate->lte($today) && $dueDate->gt($today)) {
+                    $service->status = 'Active';
+                    $service->save();
+                    $activeServices->push($service);
+                }
             }
 
-            // Handle overdue status
-            if (!$hasActiveSubscription) {
-                $latestExpired = $userServices
-                    ->where('status', 'Expired')
-                    ->sortByDesc('due_date')
-                    ->first();
+            // Third pass: Handle Overdue status for latest service
+            if ($latestService) {
+                $latestDueDate = Carbon::parse($latestService->due_date);
 
-                if ($latestExpired) {
-                    $nextSubscription = $userServices
-                        ->where('start_date', '>', $latestExpired->due_date)
-                        ->where('status', '!=', 'Expired')
-                        ->first();
+                // Check if latest service is past due and there are no future services
+                if ($latestDueDate->lt($today)) {
+                    $hasFutureServices = $services->contains(function ($service) use ($today) {
+                        return Carbon::parse($service->start_date)->gt($today);
+                    });
 
-                    if (!$nextSubscription) {
-                        $latestExpired->status = 'Overdue';
-                        $latestExpired->save();
+                    if (!$hasFutureServices) {
+                        $latestService->status = 'Overdue';
+                        $latestService->save();
+                    }
+                }
+            }
+
+            // Fourth pass: Set past expired services to Ended
+            if ($latestService && ($latestService->status === 'Active' || $latestService->status === 'Due' || $latestService->status === 'Overdue')) {
+                $activeOrOverdueStartDate = Carbon::parse($latestService->start_date);
+
+                foreach ($services as $service) {
+                    $serviceStartDate = Carbon::parse($service->start_date);
+                    $serviceDueDate = Carbon::parse($service->due_date);
+
+                    // Set to Ended if: service is expired and before the active/overdue service
+                    if ($serviceDueDate->lt($today) && $serviceStartDate->lt($activeOrOverdueStartDate)) {
+                        $service->status = 'Ended';
+                        $service->save();
                     }
                 }
             }
@@ -106,65 +114,5 @@ class UpdateSubscriptionStatus extends Command
 
         \Log::info('service:update-status command executed at ' . now());
         $this->info('Periodic updates to subscription statuses - 100%.');
-    }
-
-    /**
-     * Handle subscription extension/renewal
-     */
-    public function handleRenewal(int $userId, Service $newSubscription)
-    {
-        $today = Carbon::now()->startOfDay();
-
-        // Get current subscription
-        $currentSubscription = Service::where('user_id', $userId)
-            ->where(function ($query) use ($today) {
-                $query->where('status', 'Active')
-                    ->orWhere('status', 'Overdue');
-            })
-            ->orderBy('due_date', 'desc')
-            ->first();
-
-        if ($currentSubscription) {
-            if ($currentSubscription->status === 'Overdue') {
-                // If current subscription is overdue, expire it and set new one to active
-                $currentSubscription->status = 'Expired';
-                $currentSubscription->save();
-
-                $newStartDate = Carbon::parse($newSubscription->start_date);
-                if ($newStartDate->lte($today)) {
-                    $newSubscription->status = 'Active';
-                } else {
-                    $newSubscription->status = 'Inactive';
-                }
-            } else if ($currentSubscription->status === 'Active') {
-                // If current subscription is active, set new one to inactive
-                $newStartDate = Carbon::parse($newSubscription->start_date);
-                if ($newStartDate->gt($today)) {
-                    $newSubscription->status = 'Inactive';
-                }
-            }
-        } else {
-            // No current subscription, set new one based on dates
-            $newStartDate = Carbon::parse($newSubscription->start_date);
-            $newDueDate = Carbon::parse($newSubscription->due_date);
-
-            if ($newStartDate->lte($today) && $newDueDate->gt($today)) {
-                $newSubscription->status = 'Active';
-            } else if ($newStartDate->gt($today)) {
-                $newSubscription->status = 'Inactive';
-            }
-        }
-
-        $newSubscription->save();
-    }
-
-    /**
-     * Send renewal reminder notification
-     */
-    private function sendRenewalReminder(Service $service)
-    {
-        // Implement notification logic here
-        // This could integrate with your notification system
-        \Log::info("Renewal reminder needed for service {$service->service_id}");
     }
 }

@@ -179,19 +179,26 @@
                                             <th class="px-4 py-2">Start Date</th>
                                             <th class="px-4 py-2">Due Date</th>
                                             <th class="px-4 py-2">Status</th>
+                                            <th class="px-4 py-2">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
 
                                         @foreach($member->services as $service)
                                         <tr
-                                            x-show="(serviceFilter === 'all' || serviceFilter === 'service') && ((statusFilter === 'current' && ['Active', 'Inactive', 'Due', 'Overdue'].includes('{{ $service->status }}')) || (statusFilter === 'expired' && '{{ $service->status }}' === 'Expired'))">
+                                            x-show="(serviceFilter === 'all' || serviceFilter === 'service') && 
+                                                                                                                                                                                                                    ((statusFilter === 'current' && ['Active', 'Inactive', 'Due', 'Overdue'].includes('{{ $service->status }}')) || 
+                                                                                                                                                                                                                     (statusFilter === 'expired' && ['Expired', 'Ended'].includes('{{ $service->status }}')))">
+
                                             <!-- ... service row content remains the same ... -->
                                         </tr>
                                         @endforeach
                                         @foreach($member->services as $service)
                                         <tr class="dark:text-white"
-                                            x-show="(serviceFilter === 'all' || serviceFilter === 'service') && ((statusFilter === 'current' && ['Active', 'Inactive', 'Due', 'Overdue'].includes('{{ $service->status }}')) || (statusFilter === 'expired' && '{{ $service->status }}' === 'Expired'))">
+                                            x-show="(serviceFilter === 'all' || serviceFilter === 'service') && 
+                                                                                                                                                                                                                                                                                                                                                                                    ((statusFilter === 'current' && ['Active', 'Inactive', 'Due', 'Overdue'].includes('{{ $service->status }}')) || 
+                                                                                                                                                                                                                                                                                                                                                                                     (statusFilter === 'expired' && ['Expired', 'Ended'].includes('{{ $service->status }}')))">
+
                                             <td class="border-b dark:border-gray-500 border-r px-4 py-2">
                                                 {{ $service->service_type }}
                                             </td>
@@ -218,11 +225,20 @@
                                                 class="border-b dark:border-gray-500 px-4 py-2 font-bold {{ $statusClass }}">
                                                 {{ $service->status }}
                                             </td>
+                                            <td class="border-b dark:border-gray-500 px-4 py-2">
+                                                @if($service->status !== 'Ended')
+                                                <form action="{{ route('services.end', $service->id) }}" method="POST">
+                                                    @csrf
+                                                    <button type="submit"
+                                                        class="px-2 py-1 bg-gray-800 text-white rounded">End</button>
+                                                </form>
+                                                @endif
+                                            </td>
                                         </tr>
                                         @endforeach
                                         @foreach($member->lockers as $locker)
                                         <tr class="dark:text-white"
-                                            x-show="(serviceFilter === 'all' || serviceFilter === 'locker') && ((statusFilter === 'current' && ['Active', 'Inactive', 'Due', 'Overdue'].includes('{{ $locker->status }}')) || (statusFilter === 'expired' && '{{ $locker->status }}' === 'Expired'))">
+                                            x-show="(serviceFilter === 'all' || serviceFilter === 'locker') && ((statusFilter === 'current' && ['Active', 'Inactive', 'Due', 'Overdue'].includes('{{ $locker->status }}')) || (statusFilter === 'expired' && ['Expired', 'Ended'].includes('{{ $locker->status }}')))">
                                             <td class="border-b dark:border-gray-500 border-r px-4 py-2">Locker
                                                 #{{ $locker->locker_no }}
                                             </td>
@@ -247,11 +263,20 @@
                                                                         } }}">
                                                 {{ $locker->status }}
                                             </td>
+                                            <td class="border-b dark:border-gray-500 px-4 py-2">
+                                                @if($locker->status !== 'Ended')
+                                                <form action="{{ route('locker.end', $locker->id) }}" method="POST">
+                                                    @csrf
+                                                    <button type="submit"
+                                                        class="px-2 py-1 bg-gray-800 text-white rounded">End</button>
+                                                </form>
+                                                @endif
+                                            </td>
                                         </tr>
                                         @endforeach
                                         @foreach($member->treadmills as $treadmill)
                                         <tr class="dark:text-white"
-                                            x-show="(serviceFilter === 'all' || serviceFilter === 'treadmill') && ((statusFilter === 'current' && ['Active', 'Inactive', 'Due', 'Overdue'].includes('{{ $treadmill->status }}')) || (statusFilter === 'expired' && '{{ $treadmill->status }}' === 'Expired'))">
+                                            x-show="(serviceFilter === 'all' || serviceFilter === 'treadmill') && ((statusFilter === 'current' && ['Active', 'Inactive', 'Due', 'Overdue'].includes('{{ $treadmill->status }}')) || (statusFilter === 'expired' && ['Expired', 'Ended'].includes('{{ $treadmill->status }}')))">
                                             <td class="border-b dark:border-gray-500 border-r px-4 py-2">Treadmill
                                             </td>
 
@@ -279,6 +304,16 @@
                                             <td
                                                 class="border-b dark:border-gray-500 px-4 py-2 font-bold {{ $statusClass }}">
                                                 {{ $treadmill->status }}
+                                            </td>
+                                            <td class="border-b dark:border-gray-500 px-4 py-2">
+                                                @if($treadmill->status !== 'Ended')
+                                                <form action="{{ route('treadmill.end', $treadmill->id) }}"
+                                                    method="POST">
+                                                    @csrf
+                                                    <button type="submit"
+                                                        class="px-2 py-1 bg-gray-800 text-white rounded">End</button>
+                                                </form>
+                                                @endif
                                             </td>
                                         </tr>
                                         @endforeach

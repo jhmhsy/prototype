@@ -14,143 +14,105 @@ class UpdateTreadmillStatus extends Command
     public function handle()
     {
         $today = Carbon::now()->startOfDay();
-        $this->info("Processing status updates for date: " . $today->toDateString());
+        $this->info("Processing treadmill subscription status updates for date: " . $today->toDateString());
 
         // Get all users who have treadmill subscriptions
         $users = Treadmill::select('user_id')->distinct()->get();
 
         foreach ($users as $user) {
-            // Get all treadmill subscriptions for the user ordered by start_date
-            $userTreadmills = Treadmill::where('user_id', $user->user_id)
+            // Get all non-ended treadmill subscriptions for the user ordered by start_date
+            $treadmills = Treadmill::where('user_id', $user->user_id)
+                ->where('status', '!=', 'Ended')
                 ->orderBy('start_date', 'asc')
                 ->get();
 
-            if ($userTreadmills->isEmpty()) {
+            if ($treadmills->isEmpty()) {
                 continue;
             }
 
-            // Reset all future statuses first to ensure proper processing
-            foreach ($userTreadmills as $treadmill) {
+            // Get the latest treadmill subscription
+            $latestTreadmill = $treadmills->sortByDesc('start_date')->first();
+
+            // First pass: Reset all future statuses to Inactive
+            foreach ($treadmills as $treadmill) {
+                $startDate = Carbon::parse($treadmill->start_date);
+
+                // Set future treadmill subscriptions to Inactive
+                if ($startDate->gt($today)) {
+                    $treadmill->status = 'Inactive';
+                    $treadmill->save();
+                }
+            }
+
+            // Second pass: Process Active, Due and Expired treadmill subscriptions
+            $activeTreadmills = collect();
+            foreach ($treadmills as $treadmill) {
                 $startDate = Carbon::parse($treadmill->start_date);
                 $dueDate = Carbon::parse($treadmill->due_date);
 
-                // Skip if already expired
-                if ($treadmill->status === 'Expired') {
+                // Skip if it's a future treadmill subscription (already set to Inactive)
+                if ($startDate->gt($today)) {
                     continue;
                 }
 
-                // Reset status for non-expired treadmills
-                $treadmill->status = 'Inactive';
-                $treadmill->save();
-            }
-
-            // Process current and future subscriptions
-            $hasActiveSubscription = false;
-
-            foreach ($userTreadmills as $treadmill) {
-                $startDate = Carbon::parse($treadmill->start_date);
-                $dueDate = Carbon::parse($treadmill->due_date);
-
-                // Debug information
-                $this->info("Processing treadmill subscription for user {$treadmill->user_id}:");
-                $this->info("Start Date: {$startDate->toDateString()}");
-                $this->info("Due Date: {$dueDate->toDateString()}");
-                $this->info("Current Status: {$treadmill->status}");
-                $this->info("Month: {$treadmill->month}");
-                $this->info("Amount: {$treadmill->amount}");
-
-                // Handle expired subscriptions
+                // If treadmill subscription is past due date, mark as Expired
                 if ($dueDate->lt($today)) {
                     $treadmill->status = 'Expired';
                     $treadmill->save();
                     continue;
                 }
 
-                // Handle current period subscription
-                if ($startDate->lte($today) && $dueDate->gte($today)) {
-                    if ($dueDate->isSameDay($today)) {
-                        $treadmill->status = 'Due';
-                    } else {
-                        $treadmill->status = 'Active';
-                    }
-                    $hasActiveSubscription = true;
+                // If today is the due date, mark as Due
+                if ($dueDate->isSameDay($today)) {
+                    $treadmill->status = 'Due';
                     $treadmill->save();
+                    $activeTreadmills->push($treadmill);
+                    continue;
                 }
-                // Future subscriptions remain 'Inactive'
+
+                // If treadmill subscription started and hasn't reached due date, set to Active
+                if ($startDate->lte($today) && $dueDate->gt($today)) {
+                    $treadmill->status = 'Active';
+                    $treadmill->save();
+                    $activeTreadmills->push($treadmill);
+                }
             }
 
-            // Handle overdue status
-            if (!$hasActiveSubscription) {
-                $latestExpired = $userTreadmills
-                    ->where('status', 'Expired')
-                    ->sortByDesc('due_date')
-                    ->first();
+            // Third pass: Handle Overdue status for latest treadmill subscription
+            if ($latestTreadmill) {
+                $latestDueDate = Carbon::parse($latestTreadmill->due_date);
 
-                if ($latestExpired) {
-                    $nextSubscription = $userTreadmills
-                        ->where('start_date', '>', $latestExpired->due_date)
-                        ->where('status', '!=', 'Expired')
-                        ->first();
+                // Check if latest treadmill subscription is past due and there are no future subscriptions
+                if ($latestDueDate->lt($today)) {
+                    $hasFutureTreadmills = $treadmills->contains(function ($treadmill) use ($today) {
+                        return Carbon::parse($treadmill->start_date)->gt($today);
+                    });
 
-                    if (!$nextSubscription) {
-                        $latestExpired->status = 'Overdue';
-                        $latestExpired->save();
+                    if (!$hasFutureTreadmills) {
+                        $latestTreadmill->status = 'Overdue';
+                        $latestTreadmill->save();
+                    }
+                }
+            }
+
+            // Fourth pass: Set past expired treadmill subscriptions to Ended
+            if ($latestTreadmill && ($latestTreadmill->status === 'Active' || $latestTreadmill->status === 'Due' || $latestTreadmill->status === 'Overdue')) {
+                $activeOrOverdueStartDate = Carbon::parse($latestTreadmill->start_date);
+
+                foreach ($treadmills as $treadmill) {
+                    $treadmillStartDate = Carbon::parse($treadmill->start_date);
+                    $treadmillDueDate = Carbon::parse($treadmill->due_date);
+
+                    // Set to Ended if: treadmill subscription is expired and before the active/overdue subscription
+                    if ($treadmillDueDate->lt($today) && $treadmillStartDate->lt($activeOrOverdueStartDate)) {
+                        $treadmill->status = 'Ended';
+                        $treadmill->save();
                     }
                 }
             }
         }
 
         \Log::info('treadmill:update-status command executed at ' . now());
-        $this->info('Treadmill subscription statuses updated successfully.');
-    }
-
-    /**
-     * Handle subscription renewal
-     */
-    public function handleRenewal(int $userId, Treadmill $newSubscription)
-    {
-        $today = Carbon::now()->startOfDay();
-
-        // Get current subscription
-        $currentSubscription = Treadmill::where('user_id', $userId)
-            ->where(function ($query) use ($today) {
-                $query->where('status', 'Active')
-                    ->orWhere('status', 'Overdue');
-            })
-            ->orderBy('due_date', 'desc')
-            ->first();
-
-        if ($currentSubscription) {
-            if ($currentSubscription->status === 'Overdue') {
-                // If current subscription is overdue, expire it and set new one to active
-                $currentSubscription->status = 'Expired';
-                $currentSubscription->save();
-
-                $newStartDate = Carbon::parse($newSubscription->start_date);
-                if ($newStartDate->lte($today)) {
-                    $newSubscription->status = 'Active';
-                } else {
-                    $newSubscription->status = 'Inactive';
-                }
-            } else if ($currentSubscription->status === 'Active') {
-                // If current subscription is active, set new one to inactive
-                $newStartDate = Carbon::parse($newSubscription->start_date);
-                if ($newStartDate->gt($today)) {
-                    $newSubscription->status = 'Inactive';
-                }
-            }
-        } else {
-            // No current subscription, set new one based on dates
-            $newStartDate = Carbon::parse($newSubscription->start_date);
-            $newDueDate = Carbon::parse($newSubscription->due_date);
-
-            if ($newStartDate->lte($today) && $newDueDate->gt($today)) {
-                $newSubscription->status = 'Active';
-            } else if ($newStartDate->gt($today)) {
-                $newSubscription->status = 'Inactive';
-            }
-        }
-
-        $newSubscription->save();
+        $this->info('Periodic updates to treadmill subscription statuses - 100%.');
     }
 }

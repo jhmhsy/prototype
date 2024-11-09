@@ -13,6 +13,15 @@
                 <x-homepage.main-section />
             </main>
 
+            <!-- Event section-->
+            <main id="event-section" class="transition-transform duration-150 ease-in-out ">
+
+                <x-homepage.event-section :events="$events" />
+
+            </main>
+
+
+
             <!-- equipment sections-->
             <div id="equipment-section" class="bg-peak-5 text-primary">
                 <x-homepage.equipment-section />

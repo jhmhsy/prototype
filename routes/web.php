@@ -31,9 +31,12 @@ Route::get('/export-treadmills', [MemberController::class, 'exportTreadmills'])-
 
 
 
+Route::post('/services/{service}/end', [MemberController::class, 'endService'])->name('services.end');
+Route::post('/lockers/{locker}/end', [MemberController::class, 'endLocker'])->name('locker.end');
+Route::post('/treadmills/{treadmill}/end', [MemberController::class, 'endTreadmill'])->name('treadmill.end');
 
 
-Route::post('/members/{member}/renew', [MemberController::class, 'renew'])->name('members.renew');
+Route::post('/members/{member}/renew', action: [MemberController::class, 'renew'])->name('members.renew');
 
 
 Auth::routes(['verify' => true]);
