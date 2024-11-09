@@ -8,12 +8,12 @@
 
         <title>LaraFitness</title>
 
-    <!-- Vite Assets (Load Early to Apply Styles First) -->
+        <!-- Vite Assets (Load Early to Apply Styles First) -->
 
         <!-- Fonts with Performance Optimization -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link rel="preload" href="https://fonts.bunny.net/css?family=open-sans:300,400,500,600,700&display=swap"
-        as="style" />
+            as="style" />
         <link href="https://fonts.bunny.net/css?family=open-sans:300,400,500,600,700&display=swap" rel="stylesheet" />
 
         <!-- Extra Fonts -->
@@ -44,6 +44,7 @@
         <script src="{{ asset('js/progressBar.js') }}" defer></script>
         <script src="//unpkg.com/alpinejs" defer></script>
         <script src="screensize.js" defer></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 
         <!-- Logo -->
         <link rel="icon" href="{{ asset('images/logo.png') }}">
@@ -56,13 +57,13 @@
     <body class="font-opensans antialiased min-w-[350px]" x-data="globalLoader()">
         <!-- Loader Component -->
         <!-- Header Section -->
-    <div>
+        <div>
             @isset($header)
-            <header>
-                <div class="px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
-                    {{ $header }}
-                </div>
-            </header>
+                <header>
+                    <div class="px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
+                        {{ $header }}
+                    </div>
+                </header>
             @endisset
 
             <!-- Main Content -->
@@ -75,4 +76,5 @@
             <x-custom.darkmode />
         </div>
     </body>
+
 </html>

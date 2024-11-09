@@ -80,9 +80,6 @@ header > div {
     position: relative;
     z-index: 1;
 }
-.price {
-    font-size: 30px;
-}
 .animateee {
     position: absolute; /* Keep the absolute positioning */
     bottom: 0; /* Change from top: 0 to bottom: 0 */
