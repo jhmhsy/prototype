@@ -13,6 +13,12 @@ class EventsController extends Controller
 {
     public function index(Request $request)
     {
+
+        if (!auth()->user()->canany(['event-list', 'event-view', 'event-create', 'event-edit', 'event-delete'])) {
+            abort(404); // forbidden / not found
+        }
+
+
         $search = $request->input('search');
         $sortBy = $request->get('sortBy', 'created_at');
         $sortDirection = $request->get('sortDirection', 'asc');

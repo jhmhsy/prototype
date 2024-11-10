@@ -18,11 +18,11 @@ class Kernel extends HttpKernel
     /**
      * The application's route middleware.
      *
-     * @var array
+     * @var array   
      */
     protected $routeMiddleware = [
         // Other middleware...
-        'admin' => \App\Http\Middleware\isAdmin::class,
+
     ];
 
     protected function schedule(Schedule $schedule)

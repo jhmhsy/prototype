@@ -16,6 +16,11 @@ class OverviewController extends Controller
 {
     public function index()
     {
+
+        if (!auth()->user()->canany(['overview-list'])) {
+            abort(404); // forbidden / not found
+        }
+
         try {
             $members = Member::count();
             $subscription = Service::count();

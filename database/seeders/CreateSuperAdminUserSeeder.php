@@ -15,20 +15,33 @@ class CreateSuperAdminUserSeeder extends Seeder
     public function run(): void
     {
 
-        $superAdmin = User::firstOrCreate(
-            ['email' => 'admin@gmail.com'],
+        $superAdmins = [
+            // for developer 
             [
-                'name' => 'Super Admin',
+                'name' => 'Super Admin 1',
+                'email' => 'admin@gmail.com',
                 'password' => bcrypt('asdasdasd'),
                 'email_verified_at' => now(),
-            ]
-        );
+            ],
+            // for gym owner
+            [
+                'name' => 'Super Admin 2',
+                'email' => 'admin2@gmail.com',
+                'password' => bcrypt('gym-owners password here'),
+                'email_verified_at' => now(),
+            ],
+        ];
 
         $superAdminRole = Role::firstOrCreate(['name' => 'SuperAdmin']);
 
         $permissions = Permission::pluck('id', 'id')->all();
         $superAdminRole->syncPermissions($permissions);
 
-        $superAdmin->assignRole($superAdminRole);
+        foreach ($superAdmins as $adminData) {
+            $superAdmin = User::firstOrCreate(['email' => $adminData['email']], $adminData);
+            $superAdmin->assignRole($superAdminRole);
+        }
+
+
     }
 }

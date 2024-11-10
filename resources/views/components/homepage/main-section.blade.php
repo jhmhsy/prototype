@@ -1,54 +1,54 @@
 <style>
-    @keyframes fadeInRight {
-        from {
-            opacity: 0;
-            transform: translateX(20px);
-        }
-
-
-        to {
-            opacity: 1;
-            transform: translateX(0);
-        }
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
     }
 
-    @keyframes fadeOutLeft {
-        from {
-            opacity: 1;
-            transform: translateX(0);
-        }
 
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
 
-        to {
-            opacity: 0;
-            transform: translateX(-20px);
-        }
+@keyframes fadeOutLeft {
+    from {
+        opacity: 1;
+        transform: translateX(0);
     }
 
-    @keyframes fadeInTop {
-        from {
-            opacity: 0;
-            transform: translateY(-20px);
-        }
 
+    to {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+}
 
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
+@keyframes fadeInTop {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
     }
 
-    .animate-fade-in-right {
-        animation: fadeInRight 1s ease-out forwards;
-    }
 
-    .animate-fade-out-left {
-        animation: fadeOutLeft 0.5s ease-out forwards;
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
+}
 
-    .animate-fade-in-top {
-        animation: fadeInTop 1s ease-out forwards;
-    }
+.animate-fade-in-right {
+    animation: fadeInRight 1s ease-out forwards;
+}
+
+.animate-fade-out-left {
+    animation: fadeOutLeft 0.5s ease-out forwards;
+}
+
+.animate-fade-in-top {
+    animation: fadeInTop 1s ease-out forwards;
+}
 </style>
 
 <section
@@ -107,30 +107,30 @@
 </section>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.1
-        };
+document.addEventListener('DOMContentLoaded', function() {
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+    };
 
-        const observerCallback = (entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate-fade-in-top');
-                    entry.target.classList.remove('animate-fade-out-left');
-                } else {
-                    entry.target.classList.remove('animate-fade-in-top');
-                    entry.target.classList.add('animate-fade-out-left');
-                }
-            });
-        };
+    const observerCallback = (entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate-fade-in-top');
+                entry.target.classList.remove('animate-fade-out-left');
+            } else {
+                entry.target.classList.remove('animate-fade-in-top');
+                entry.target.classList.add('animate-fade-out-left');
+            }
+        });
+    };
 
-        const observer = new IntersectionObserver(observerCallback, observerOptions);
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
 
-        // Select all elements within the specific section
-        const section = document.querySelector('section.bg-peak-4');
-        const elementsToAnimate = section.querySelectorAll('.text-primary *');
-        elementsToAnimate.forEach(element => observer.observe(element));
-    });
+    // Select all elements within the specific section
+    const section = document.querySelector('section.bg-peak-4');
+    const elementsToAnimate = section.querySelectorAll('.text-primary *');
+    elementsToAnimate.forEach(element => observer.observe(element));
+});
 </script>

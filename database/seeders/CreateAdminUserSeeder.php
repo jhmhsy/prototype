@@ -31,10 +31,7 @@ class CreateAdminUserSeeder extends Seeder
         $permissions = [
             'is-admin',
             'is-user',
-            'role-list',
-            'role-create',
-            'role-edit',
-            'role-delete',
+            'overview-list'
         ];
         $adminRole->syncPermissions($permissions);
 

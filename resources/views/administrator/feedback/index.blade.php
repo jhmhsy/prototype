@@ -1,6 +1,7 @@
+@canany(['feedback-list'])
 <x-dash-layout>
     <div class="rounded-lg border shadow-sm p-6  text-shade_9  
-border-shade_6/50 dark:border-white/5" data-v0-t="card">
+    border-shade_6/50 dark:border-white/5" data-v0-t="card">
         <h1 class="text-lg font-bold mb-6 dark:text-white">Equipment Management</h1>
 
         <section class="flex flex-col">
@@ -66,3 +67,4 @@ border-shade_6/50 dark:border-white/5" data-v0-t="card">
 
     </div>
 </x-dash-layout>
+@endcanany

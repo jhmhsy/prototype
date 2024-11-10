@@ -1,8 +1,5 @@
+@canany(['member-create', 'subscription-create', 'locker-create', 'treadmill-create'])
 <x-dash-layout>
-
-
-
-
     <div class="container dark:text-gray-600">
         <h2 class="dark:text-white">Register New Member</h2>
 
@@ -39,6 +36,7 @@
                 <input type="email" id="email" name="email" maxlength="100">
             </div>
 
+            @can(['subscription-create'])
             <h2>Subscription Service</h2>
             <div x-data="{ includeService: false, subscriptions: 1, serviceStartDate: '' }">
                 <div>
@@ -79,8 +77,9 @@
                     </button>
                 </div>
             </div>
+            @endcan
 
-
+            @canany(['locker-create'])
             <h2>Locker</h2>
             <div x-data="{ includeLocker: false, lockerStartDate: '' }">
                 <div>
@@ -118,10 +117,10 @@
                     </div>
                 </div>
             </div>
+            @endcan
 
 
-
-
+            @canany(['treadmill-create'])
             <h2>Treadmill</h2>
             <div x-data="{ includeTreadmill: false, treadmillStartDate: '' }"
                 x-init="treadmillStartDate = includeTreadmill ? new Date().toISOString().slice(0, 10) : ''">
@@ -143,6 +142,7 @@
                     </div>
                 </div>
             </div>
+            @endcan
 
 
 
@@ -151,3 +151,4 @@
         </form>
     </div>
 </x-dash-layout>
+@endcanany

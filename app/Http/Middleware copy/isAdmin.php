@@ -20,7 +20,7 @@ class isAdmin
         $userRoles = Auth::user()->roles->pluck('name')->toArray();
 
         if (!array_intersect($userRoles, ['Admin', 'SuperAdmin'])) {
-            abort(403); // Forbidden
+            abort(404); // Forbidden
         }
 
         return $next($request);

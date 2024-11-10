@@ -12,6 +12,10 @@ class EquipmentController extends Controller
 
     public function index(Request $request)
     {
+        if (!auth()->user()->canany(['equipment-list', 'equipment-view', 'equipment-create', 'equipment-edit', 'equipment-delete'])) {
+            abort(404); // forbidden / not found
+        }
+
         $equipments = Equipment::when($request->input('search'), function ($query, $search) {
             $query->where('name', 'like', "%{$search}%")
                 ->orWhere('type', 'like', "%{$search}%")

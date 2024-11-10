@@ -16,7 +16,7 @@ class isSuper
      */
     public function handle(Request $request, Closure $next): Response
     {
-        abort_if(Auth::user()->roles[0]->name !== 'SuperAdmin', 403);
+        abort_if(Auth::user()->roles[0]->name !== 'SuperAdmin', 404);
         return $next($request);
     }
 }

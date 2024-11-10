@@ -36,6 +36,26 @@ class MemberController extends Controller
     public function index(Request $request)
     {
 
+        if (
+            !auth()->user()->canany([
+                'member-list',
+                'member-edit',
+                'member-membership-renew',
+                'subscription-create',
+                'subscription-extend',
+                'subscription-end',
+                'locker-create',
+                'locker-extend',
+                'locker-end',
+                'treadmill-create',
+                'treadmill-extend',
+                'treadmill-end'
+            ])
+        ) {
+            abort(404); // forbidden / not found
+        }
+
+
         $query = Member::with(['services', 'lockers', 'treadmills', 'qrcode', 'membershipDuration']);
 
         if ($request->has('search')) {
@@ -60,6 +80,11 @@ class MemberController extends Controller
 
     public function create()
     {
+
+        if (!auth()->user()->canany(['member-create', 'subscription-create', 'locker-create', 'treadmill-create',])) {
+            abort(404); // forbidden / not found
+        }
+
         $occupiedLockers = Locker::where('status', 'Active')->pluck('locker_no')->toArray();
 
         session()->put('form_token', uniqid());
@@ -85,7 +110,7 @@ class MemberController extends Controller
 
         $request->validate([
             'name' => 'required|string|max:50',
-            'phone' => ['nullable', 'string', 'regex:/^\+?[0-9\s\-()]{10,20}$/',],
+            'phone' => ['nullable', 'string', 'max:20', 'regex:/^\+?[0-9\s\-()]*$/'],
             'fb' => 'nullable|string|max:50',
             'email' => 'nullable|email|max:100',
             'membership_type' => 'required|in:Regular,Student',
@@ -404,10 +429,6 @@ class MemberController extends Controller
         return redirect()->back()->with('success', 'New locker rented successfully.');
     }
 
-
-
-
-
     public function extendTreadmill(Request $request, $id)
     {
 
@@ -515,9 +536,6 @@ class MemberController extends Controller
         }
     }
 
-
-
-
     public function UpdateServiceStatus()
     {
         Artisan::call('service:update-status');
@@ -568,7 +586,6 @@ class MemberController extends Controller
 
         return response()->json(['start_date' => $startDate]);
     }
-
 
     public function exportMembers()
     {
