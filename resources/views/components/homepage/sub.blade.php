@@ -11,7 +11,7 @@
             </x-custom.paragraph>
             <a class="inline-flex h-10 items-center justify-center rounded-md bg-blue-500 px-8 text-md font-medium text-white shadow transition-colors hover:bg-blue-600 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-blue-300 disabled:pointer-events-none disabled:opacity-50 mt-6"
                 href="#">
-                Reserve a Spot
+                Reserve a Spota
             </a>
         </div>
     </section>
