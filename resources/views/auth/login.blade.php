@@ -9,10 +9,10 @@
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
                     
-                    <div class="rounded-lg bg-peak-3 text-primary shadow-lg mt-5"
+                    <div class="rounded-lg bg-peak-3 text-primary shadow-lg mt-5 py-5"
                         data-v0-t="card">
-                        <div class="flex flex-col space-y-1.5 px-6 py-4 text-lemon-base uppercase font-raleway font-bold ">
-                            <h3 class="whitespace-nowrap font-semibold text-2xl mx-auto tracking-widest">Login</h3>
+                        <div class="flex flex-col space-y-1.5 px-6 py-4 text-lemon-base uppercase font-raleway font-bold">
+                            <h3 class="font-bold whitespace-nowrap text-3xl mx-auto tracking-widest">Login</h3>
                         </div>
                         <div class="px-6 py-1 space-y-4">
                             <x-forms.field :float="true" class="space-y-2" :errors="$errors->get('email')"
