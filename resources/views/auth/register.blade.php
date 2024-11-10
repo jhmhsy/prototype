@@ -12,7 +12,7 @@
                         <div class="w-full mt-5 rounded-lg bg-peak-3 text-primary shadow-lg"
                             data-v0-t="card">
                             <div class="flex flex-col space-y-1.5 px-6 pt-4 pb-1">
-                                <h3 class="whitespace-nowrap font-semibold tracking-tight text-2xl mx-auto">Register an
+                                <h3 class="whitespace-nowrap font-semibold text-2xl mx-auto font-raleway uppercase tracking-wider text-lemon-base bold">Register an
                                     Account
                                 </h3>
                             </div>
