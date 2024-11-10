@@ -21,6 +21,11 @@ class UserController extends Controller
      */
     public function index(Request $request): View
     {
+
+        if (!auth()->user()->canany(['user-list', 'user-view', 'user-create', 'user-edit', 'user-delete'])) {
+            abort(404); // forbidden / not found
+        }
+
         $search = $request->input('search');
         $sortBy = $request->get('sortBy', 'id');
         $sortDirection = $request->get('sortDirection', 'asc');
@@ -100,13 +105,6 @@ class UserController extends Controller
         $roles = Role::pluck('name', 'name')->all();
 
         return view('administrator.users.create', compact('roles'));
-    }
-
-    public function show($id): View
-    {
-        $user = User::find($id);
-
-        return view('administrator.users.show', compact('user'));
     }
 
     /**

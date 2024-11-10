@@ -66,10 +66,10 @@
                                             <select name="roles[]"
                                                 class="dark:bg-peak_1 flex h-10 w-full items-center justify-between rounded-md border border-input  px-3 py-2 text-sm">
                                                 @foreach ($roles as $value => $label)
-                                                                                            <option value="{{ $value }}" {{ $user->
+                                                <option value="{{ $value }}" {{ $user->
                                                     hasRole($value) ? 'selected' : '' }}>
-                                                                                                {{ $label }}
-                                                                                            </option>
+                                                    {{ $label }}
+                                                </option>
                                                 @endforeach
                                             </select>
                                         </div>

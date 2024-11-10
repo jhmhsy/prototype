@@ -12,6 +12,10 @@ class CheckinController extends Controller
     public function index(Request $request)
     {
 
+        if (!auth()->user()->canany(['checkin-list', 'checkin-edit'])) {
+            abort(404); // forbidden / not found
+        }
+
         $query = Member::query()->with(['services', 'lockers']);
 
         if ($request->has('search')) {
@@ -142,6 +146,11 @@ class CheckinController extends Controller
 
     public function history(Request $request)
     {
+
+        if (!auth()->user()->canany(['checkin-log-list'])) {
+            abort(404); // forbidden / not found
+        }
+
         $query = CheckinRecord::query()->with('member');
 
         if ($request->has('search')) {

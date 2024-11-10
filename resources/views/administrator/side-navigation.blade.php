@@ -36,6 +36,7 @@
                 </li>
 
                 <!--︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼ OVERVIEW ︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼  -->
+<<<<<<< HEAD
                 <li>
                     <a href="{{ route('administrator.overview') }}"
                         class="flex items-center p-2 rounded-lg group text-gray-500 dark:text-gray-500 hover:bg-gray-300 hover:text-black dark:hover:bg-gray-700 dark:hover:text-white {{ request()->routeIs('administrator.overview') ? 'bg-gray-300 text-textblack dark:bg-gray-700 dark:text-white' : '' }} transition-colors duration-300">
@@ -182,8 +183,253 @@
                         </li>
                     </ul>
                 </li>
+=======
+                @canany(['overview-list'])
+                    <li>
+                        <a href="{{ route('administrator.overview') }}" class="flex items-center p-2 rounded-lg group 
+                                                                           text-gray-500 dark:text-gray-500 
+                                                                           hover:bg-gray-300 hover:text-black 
+                                                                           dark:hover:bg-gray-700 dark:hover:text-white 
+                                                                           {{ request()->routeIs('administrator.overview') ? 'bg-gray-300 text-textblack dark:bg-gray-700 dark:text-white' : '' }}
+                                                                                  transition-colors duration-300">
+                            <svg class="flex-shrink-0 w-4 h-4 transition duration-75 " aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
+                                <path
+                                    d="M6.143 0H1.857A1.857 1.857 0 0 0 0 1.857v4.286C0 7.169.831 8 1.857 8h4.286A1.857 1.857 0 0 0 8 6.143V1.857A1.857 1.857 0 0 0 6.143 0Zm10 0h-4.286A1.857 1.857 0 0 0 10 1.857v4.286C10 7.169 10.831 8 11.857 8h4.286A1.857 1.857 0 0 0 18 6.143V1.857A1.857 1.857 0 0 0 16.143 0Zm-10 10H1.857A1.857 1.857 0 0 0 0 11.857v4.286C0 17.169.831 18 1.857 18h4.286A1.857 1.857 0 0 0 8 16.143v-4.286A1.857 1.857 0 0 0 6.143 10Zm10 0h-4.286A1.857 1.857 0 0 0 10 11.857v4.286c0 1.026.831 1.857 1.857 1.857h4.286A1.857 1.857 0 0 0 18 16.143v-4.286A1.857 1.857 0 0 0 16.143 10Z" />
+                            </svg>
+                            <span class="ms-3 text-sm">Overview</span>
+                        </a>
+                    </li>
+                @endcanany
+
+                <!--︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼ CHECK-IN ︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼  -->
+                @canany(['checkin-list', 'checkin-edit', 'checkin-log-list'])
+                    <li
+                        x-data="{ open: {{ request()->routeIs('checkin.index') || request()->routeIs('checkin.history') ? 'true' : 'false' }} }">
+                        <button type="button"
+                            class="flex items-center w-full p-2 text-base 
+                                                    text-gray-500 dark:text-gray-500 
+                                                    hover:bg-gray-300 hover:text-black 
+                                                    dark:hover:bg-gray-700 dark:hover:text-white transition-colors duration-300 rounded-lg group"
+                            @click="open = !open" aria-controls="dropdown-example">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                class="w-4 h-4">
+                                <path
+                                    d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z">
+                                </path>
+                                <path d="M13 5v2"></path>
+                                <path d="M13 17v2"></path>
+                                <path d="M13 11v2"></path>
+                            </svg>
+                            <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap text-sm">
+                                Daily Check-in's</span>
+                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                viewBox="0 0 10 6">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="m1 1 4 4 4-4" />
+                            </svg>
+                        </button>
+
+
+                        <ul style="display:none;" x-show="open" x-transition class="py-2 space-y-2">
+                            @canany(['checkin-list', 'checkin-edit'])
+                                <li>
+                                    <a href="{{ route('checkin.index') }}"
+                                        class="flex items-center w-full p-2 text-gray-500 dark:text-gray-500 hover:bg-gray-300 hover:text-black 
+                                                                                dark:hover:bg-gray-700 dark:hover:text-white 
+                                                                                {{ request()->routeIs('checkin.index') ? 'bg-gray-300 text-textblack dark:bg-gray-700 dark:text-white text-sm' : 'text-sm' }} pl-11 transition-colors duration-300 rounded-lg group">
+                                        Manage Check-in</a>
+                                </li>
+                            @endcanany
+                            @canany(['checkin-log-list'])
+                                <li>
+                                    <a href="{{ route('checkin.history') }}"
+                                        class="flex items-center w-full p-2 text-gray-500 dark:text-gray-500 hover:bg-gray-300 hover:text-black 
+                                                                                dark:hover:bg-gray-700 dark:hover:text-white 
+                                                                                {{ request()->routeIs('checkin.history') ? 'bg-gray-300 text-textblack dark:bg-gray-700 dark:text-white text-sm' : 'text-sm' }} pl-11 transition-colors duration-300 rounded-lg group">
+                                        Checkin Log</a>
+                                </li>
+                            @endcanany
+
+                        </ul>
+                    </li>
+                @endcanany
+
+                <!--︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼ MEMBER CONTROL ︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼  -->
+                @canany([
+                        'member-create',
+                        'member-list',
+                        'member-edit',
+                        'member-membership-renew',
+                        'subscription-create',
+                        'subscription-extend',
+                        'subscription-end',
+                        'locker-create',
+                        'locker-extend',
+                        'locker-end',
+                        'treadmill-create',
+                        'treadmill-extend',
+                        'treadmill-end'
+                    ])
+
+                                <li
+                                    x-data="{ open: {{ request()->routeIs('members.create') || request()->routeIs('members.index') ? 'true' : 'false' }} }">
+                                    <button type="button"
+                                        class="flex items-center w-full p-2 text-base 
+                                                                                                                            text-gray-500 dark:text-gray-500 
+                                                                                                                            hover:bg-gray-300 hover:text-black 
+                                                                                                                            dark:hover:bg-gray-700 dark:hover:text-white transition-colors duration-300 rounded-lg group"
+                                        @click="open = !open" aria-controls="dropdown-example">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                            class="w-4 h-4">
+                                            <path
+                                                d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z">
+                                            </path>
+                                            <path d="M13 5v2"></path>
+                                            <path d="M13 17v2"></path>
+                                            <path d="M13 11v2"></path>
+                                        </svg>
+                                        <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap text-sm">
+                                            Member Controls</span>
+                                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                            viewBox="0 0 10 6">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="m1 1 4 4 4-4" />
+                                        </svg>
+                                    </button>
+
+                                    <ul style="display:none;" x-show="open" x-transition class="py-2 space-y-2">
+                                        @canany(['member-create', 'subscription-create', 'locker-create', 'treadmill-create'])
+                                            <li>
+                                                <a href="{{ route('members.index') }}"
+                                                    class="flex items-center w-full p-2 text-gray-500 dark:text-gray-500 hover:bg-gray-300 hover:text-black 
+                                                                                                                                                    dark:hover:bg-gray-700 dark:hover:text-white 
+                                                                                                                                                    {{ request()->routeIs('members.index') ? 'bg-gray-300 text-textblack dark:bg-gray-700 dark:text-white text-sm' : 'text-sm' }} pl-11 transition-colors duration-300 rounded-lg group">
+                                                    Member Overview</a>
+                                            </li>
+                                        @endcanany
+
+                                        @canany([
+                                                'member-list',
+                                                'member-edit',
+                                                'member-membership-renew',
+                                                'subscription-extend',
+                                                'subscription-end',
+                                                'locker-extend',
+                                                'locker-end',
+                                                'treadmill-extend',
+                                                'treadmill-end'
+                                            ])
+                                                            <li>
+                                                                <a href="{{ route('members.create') }}"
+                                                                    class="flex items-center w-full p-2 text-gray-500 dark:text-gray-500 hover:bg-gray-300 hover:text-blackdark:hover:bg-gray-700 dark:hover:text-white --{{ request()->routeIs('members.create') ? 'bg-gray-300 text-textblack dark:bg-gray-700 dark:text-white text-sm' : 'text-sm' }} pl-11 transition-colors duration-300 rounded-lg group">
+                                                                    Add Member</a>
+                                                            </li>
+                                        @endcanany
+
+
+                                    </ul>
+                                </li>
+                @endcanany
+
+                <!--︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼ PRICE ︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼  -->
+                @canany(['price-view', 'price-edit'])
+                    <li>
+                        <a href="{{ route('price.index') }}"
+                            class="flex items-center p-2 rounded-lg group text-gray-500 dark:text-gray-500 
+                                                                                                              hover:bg-gray-300 hover:text-black dark:hover:bg-gray-700 dark:hover:text-white 
+                                                                                                              {{ request()->routeIs('price.index') ? 'bg-gray-300 text-textblack dark:bg-gray-700 dark:text-white' : '' }}
+                                                                                                              transition-colors duration-300">
+                            <!-- Added transition classes -->
+
+                            <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
+                                height="24" fill="none" viewBox="0 0 24 24">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M7 8v8a5 5 0 1 0 10 0V6.5a3.5 3.5 0 1 0-7 0V15a2 2 0 0 0 4 0V8" />
+                            </svg>
+                            <span class="flex-1 ms-3 whitespace-nowrap text-sm">Price</span>
+                        </a>
+
+                    </li>
+                @endcanany
+                <!--︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼ RESERVATION ︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼  -->
+                @canany(['reservation-list'])
+                            <li x-data="{ open: {{ request()->routeIs('administrator.unifiedview')
+                    || request()->routeIs('administrator.active')
+                    || request()->routeIs('administrator.pending')
+                    || request()->routeIs('administrator.suspended')
+                    || request()->routeIs('administrator.history') ? 'true' : 'false' }} }">
+                                <button type="button"
+                                    class="flex items-center w-full p-2 text-base 
+                                                                                                                                                                                                                                                                                                                                text-gray-500 dark:text-gray-500 
+                                                                                                                                                                                                                                                                                                                                hover:bg-gray-300 hover:text-black 
+                                                                                                                                                                                                                                                                                                                                dark:hover:bg-gray-700 dark:hover:text-white transition-colors duration-300 rounded-lg group"
+                                    @click="open = !open" aria-controls="dropdown-example">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                        class="w-4 h-4">
+                                        <path
+                                            d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z">
+                                        </path>
+                                        <path d="M13 5v2"></path>
+                                        <path d="M13 17v2"></path>
+                                        <path d="M13 11v2"></path>
+                                    </svg>
+                                    <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap text-sm">Reservation</span>
+                                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                        viewBox="0 0 10 6">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="m1 1 4 4 4-4" />
+                                    </svg>
+                                </button>
+
+                                <ul style="display:none;" x-show="open" x-transition class="py-2 space-y-2">
+                                    <li>
+                                        <a href="{{ route('administrator.unifiedview') }}"
+                                            class="flex items-center w-full p-2 text-gray-500 dark:text-gray-500 hover:bg-gray-300 hover:text-black 
+                                                                                                                                                                                                                                                                                                                                dark:hover:bg-gray-700 dark:hover:text-white 
+                                                                                                                                                                                                                                                                                                                                {{ request()->routeIs('administrator.unifiedview') ? 'bg-gray-300 text-textblack dark:bg-gray-700 dark:text-white text-sm' : 'text-sm' }} pl-11 transition-colors duration-300 rounded-lg group">
+                                            Unified View</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="{{ route('administrator.active') }}"
+                                            class="flex items-center w-full p-2 text-gray-500 dark:text-gray-500 hover:bg-gray-300 hover:text-black 
+                                                                                                                                                                                                                                                                                                                                dark:hover:bg-gray-700 dark:hover:text-white 
+                                                                                                                                                                                                                                                                                                                                {{ request()->routeIs('administrator.active') ? 'bg-gray-300 text-textblack dark:bg-gray-700 dark:text-white text-sm' : 'text-sm' }} pl-11 transition-colors duration-300 rounded-lg group">
+                                            Active Reservation</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="{{ route('administrator.pending') }}"
+                                            class="flex items-center w-full p-2 text-gray-500 dark:text-gray-500 hover:bg-gray-300 hover:text-black 
+                                                                                                                                                                                                                                                                                                                                dark:hover:bg-gray-700 dark:hover:text-white 
+                                                                                                                                                                                                                                                                                                                                {{ request()->routeIs('administrator.pending') ? 'bg-gray-300 text-textblack dark:bg-gray-700 dark:text-white text-sm' : 'text-sm' }} pl-11 transition-colors duration-300 rounded-lg group">
+                                            Awaiting Confirmation</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('administrator.suspended') }}"
+                                            class="flex items-center w-full p-2 text-gray-500 dark:text-gray-500 hover:bg-gray-300 hover:text-black 
+                                                                                                                                                                                                                                                                                                                                dark:hover:bg-gray-700 dark:hover:text-white 
+                                                                                                                                                                                                                                                                                                                                {{ request()->routeIs('administrator.suspended') ? 'bg-gray-300 text-textblack dark:bg-gray-700 dark:text-white text-sm' : 'text-sm' }} pl-11 transition-colors duration-300 rounded-lg group">
+                                            Suspended Canceled</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('administrator.history') }}"
+                                            class="flex items-center w-full p-2 text-gray-500 dark:text-gray-500 hover:bg-gray-300 hover:text-black 
+                                                                                                                                                                                                                                                                                                                                dark:hover:bg-gray-700 dark:hover:text-white 
+                                                                                                                                                                                                                                                                                                                                {{ request()->routeIs('administrator.history') ? 'bg-gray-300 text-textblack dark:bg-gray-700 dark:text-white text-sm' : 'text-sm' }} pl-11 transition duration-75 rounded-lg group">
+                                            Reservation History </a>
+                                    </li>
+                                </ul>
+                            </li>
+                @endcanany
+>>>>>>> 29a4e95c4972173aedb72540c8402f7a5b0bceed
 
                 <!--︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼ EQUIPMENTS ︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼  -->
+<<<<<<< HEAD
                 <li>
                     <a href="{{ route('administrator.equipments') }}"
                         class="flex items-center p-2 rounded-lg group text-gray-500 dark:text-gray-500 hover:bg-gray-300 hover:text-black dark:hover:bg-gray-700 dark:hover:text-white {{ request()->routeIs('administrator.equipments') ? 'bg-gray-300 text-textblack dark:bg-gray-700 dark:text-white' : '' }}transition-colors duration-300">
@@ -200,9 +446,34 @@
                             </path>
                             <path d="M8.5 4.5L16 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                 stroke-linejoin="round"></path>
+=======
+                @canany(['equipment-list', 'equipment-view', 'equipment-create', 'equipment-edit', 'equipment-delete'])
+                    <li>
+                        <a href="{{ route('administrator.equipments') }}"
+                            class="flex items-center p-2 rounded-lg group 
+                                                                                                                                                   text-gray-500 dark:text-gray-500 
+                                                                                                                                                   hover:bg-gray-300 hover:text-black 
+                                                                                                                                                   dark:hover:bg-gray-700 dark:hover:text-white 
+                                                                                                                                                   {{ request()->routeIs('administrator.equipments') ? 'bg-gray-300 text-textblack dark:bg-gray-700 dark:text-white' : '' }}
+                                                                                                                                                          transition-colors duration-300">
 
-                        </svg>
+                            <svg class="w-4 h-4 " viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                                transform="rotate(0)">
+                                <path d="M20.3873 7.1575L11.9999 12L3.60913 7.14978" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round"></path>
+                                <path d="M12 12V21" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round"></path>
+                                <path
+                                    d="M11 2.57735C11.6188 2.22008 12.3812 2.22008 13 2.57735L19.6603 6.42265C20.2791 6.77992 20.6603 7.44017 20.6603 8.1547V15.8453C20.6603 16.5598 20.2791 17.2201 19.6603 17.5774L13 21.4226C12.3812 21.7799 11.6188 21.7799 11 21.4226L4.33975 17.5774C3.72094 17.2201 3.33975 16.5598 3.33975 15.8453V8.1547C3.33975 7.44017 3.72094 6.77992 4.33975 6.42265L11 2.57735Z"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                </path>
+                                <path d="M8.5 4.5L16 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round"></path>
+>>>>>>> 29a4e95c4972173aedb72540c8402f7a5b0bceed
 
+                            </svg>
+
+<<<<<<< HEAD
                         <span class="flex-1 ms-3 whitespace-nowrap text-sm">Equipments</span>
                     </a>
                 </li>
@@ -223,6 +494,37 @@
                         <span class="flex-1 ms-3 whitespace-nowrap text-sm">Events</span>
                     </a>
                 </li>
+=======
+
+                            <span class="flex-1 ms-3 whitespace-nowrap text-sm">Equipments</span>
+                        </a>
+                    </li>
+                @endcanany
+
+                <!--︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼ EVENTS ︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼  -->
+                @canany(['event-list', 'event-view', 'event-create', 'event-edit', 'event-delete'])
+                    <li>
+                        <a href="{{ route('administrator.events') }}"
+                            class="flex items-center p-2 rounded-lg group 
+                                                                                                                               text-gray-500 dark:text-gray-500 
+                                                                                                                               hover:bg-gray-300 hover:text-black 
+                                                                                                                               dark:hover:bg-gray-700 dark:hover:text-white 
+                                                                                                                               {{ request()->routeIs('administrator.events') ? 'bg-gray-300 text-textblack dark:bg-gray-700 dark:text-white' : '' }}
+                                                                                                                                      transition-colors duration-300">
+
+                            <svg xmlns="http://www.w3.org/2000/svg" width="4" height="4" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                class="w-4 h-4">
+                                <path d="M8 2v4"></path>
+                                <path d="M16 2v4"></path>
+                                <rect width="18" height="18" x="3" y="4" rx="2"></rect>
+                                <path d="M3 10h18"></path>
+                            </svg>
+                            <span class="flex-1 ms-3 whitespace-nowrap text-sm">Events</span>
+                        </a>
+                    </li>
+                @endcanany
+>>>>>>> 29a4e95c4972173aedb72540c8402f7a5b0bceed
 
                 <!--︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼ TICKETS ︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼  -->
                 <li x-data="{ open: {{ request()->routeIs('administrator.tickets') || request()->routeIs('ticket.scan') || request()->routeIs('ticket.transaction') || request()->routeIs('ticket.scanticket') ? 'true' : 'false' }} }">
@@ -264,6 +566,7 @@
                 </li>
 
                 <!--︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼ USERS ︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼  -->
+<<<<<<< HEAD
                 <li>
                     <a href="{{ route('administrator.users') }}"
                         class="flex items-center p-2 rounded-lg group text-gray-500 dark:text-gray-500 hover:bg-gray-300 hover:text-black dark:hover:bg-gray-700 dark:hover:text-white {{ request()->routeIs('administrator.users') ? 'bg-gray-300 text-textblack dark:bg-gray-700 dark:text-white' : '' }} transition-colors duration-300">
@@ -290,10 +593,52 @@
                         {{-- <span
                             class="inline-flex items-center text-green-500 hover:text-green-700 justify-center px-2 ms-3 text-xs font-medium  rounded-full">
                             Super Admin</span> --}}
+=======
+                @canany(['user-list', 'user-view', 'user-create', 'user-edit', 'user-delete'])
+                    <li>
+                        <a href="{{ route('administrator.users') }}"
+                            class="flex items-center p-2 rounded-lg group 
+                                                                                                       text-gray-500 dark:text-gray-500 
+                                                                                                       hover:bg-gray-300 hover:text-black 
+                                                                                                       dark:hover:bg-gray-700 dark:hover:text-white 
+                                                                                                       {{ request()->routeIs('administrator.users') ? 'bg-gray-300 text-textblack dark:bg-gray-700 dark:text-white' : '' }}
+                                                                                                              transition-colors duration-300">
+                            <svg class="flex-shrink-0 w-4 h-4 transition duration-75 " aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
+                                <path
+                                    d="M14 2a3.963 3.963 0 0 0-1.4.267 6.439 6.439 0 0 1-1.331 6.638A4 4 0 1 0 14 2Zm1 9h-1.264A6.957 6.957 0 0 1 15 15v2a2.97 2.97 0 0 1-.184 1H19a1 1 0 0 0 1-1v-1a5.006 5.006 0 0 0-5-5ZM6.5 9a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9ZM8 10H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5Z" />
+                            </svg>
+                            <span class="flex-1 ms-3 whitespace-nowrap text-sm">Users</span>
+                        </a>
+                    </li>
+                @endcanany
+                <!--︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼ ROLES ︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼  -->
 
-                    </a>
-                </li>
+                @canany(['role-list', 'role-view', 'role-create', 'role-edit', 'role-delete'])
+                    <li>
+                        <a href="{{ route('administrator.roles') }}" class="flex items-center p-2 rounded-lg group 
+                                                                                   text-gray-500 dark:text-gray-500 
+                                                                                   hover:bg-gray-300 hover:text-black 
+                                                                                   dark:hover:bg-gray-700 dark:hover:text-white 
+                                                                                   {{ request()->routeIs('administrator.roles') ? 'bg-gray-300 text-textblack dark:bg-gray-700 dark:text-white' : '' }}
+                                                                                          transition-colors duration-300">
+                            <svg class="w-4 h-4 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
+                                height="24" fill="none" viewBox="0 0 24 24">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M8 8v8m0-8h8M8 8H6a2 2 0 1 1 2-2v2Zm0 8h8m-8 0H6a2 2 0 1 0 2 2v-2Zm8 0V8m0 8h2a2 2 0 1 1-2 2v-2Zm0-8h2a2 2 0 1 0-2-2v2Z" />
+                            </svg>
+>>>>>>> 29a4e95c4972173aedb72540c8402f7a5b0bceed
+
+                            <span class="flex-1 ms-3 whitespace-nowrap text-sm">Roles</span>
+                            {{--<span
+                                class="inline-flex items-center text-green-500 hover:text-green-700 justify-center px-2 ms-3 text-xs font-medium  rounded-full">
+                                Super Admin</span>--}}
+
+                        </a>
+                    </li>
+                @endcanany
                 <!--︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼ FEEDBACK ︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼  -->
+<<<<<<< HEAD
                 <li>
                     <a href="{{ route('administrator.feedback') }}"
                         class="flex items-center p-2 rounded-lg group text-gray-500 dark:text-gray-500 hover:bg-gray-300 hover:text-black dark:hover:bg-gray-700 dark:hover:text-white {{ request()->routeIs('administrator.feedback') ? 'bg-gray-300 text-textblack dark:bg-gray-700 dark:text-white' : '' }}transition-colors duration-300">
@@ -306,23 +651,56 @@
                         </svg>
                         <span class="flex-1 ms-3 whitespace-nowrap text-sm">Feedback</span>
                     </a>
+=======
+                @canany(['feedback-list'])
+                    <li>
+                        <a href="{{ route('administrator.feedback') }}"
+                            class="flex items-center p-2 rounded-lg group text-gray-500 dark:text-gray-500 
+                                                                                              hover:bg-gray-300 hover:text-black dark:hover:bg-gray-700 dark:hover:text-white 
+                                                                                              {{ request()->routeIs('administrator.feedback') ? 'bg-gray-300 text-textblack dark:bg-gray-700 dark:text-white' : '' }}
+                                                                                              transition-colors duration-300">
+                            <!-- Added transition classes -->
 
-                </li>
+                            <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
+                                height="24" fill="none" viewBox="0 0 24 24">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M7 8v8a5 5 0 1 0 10 0V6.5a3.5 3.5 0 1 0-7 0V15a2 2 0 0 0 4 0V8" />
+                            </svg>
+                            <span class="flex-1 ms-3 whitespace-nowrap text-sm">Feedback</span>
+                        </a>
+>>>>>>> 29a4e95c4972173aedb72540c8402f7a5b0bceed
+
+                    </li>
+                @endcanany
 
                 <!--︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼ HELP ︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼  -->
+<<<<<<< HEAD
                 <li>
                     <a href="{{ route('administrator.help') }}"
                         class="flex items-center p-2 rounded-lg group text-gray-500 dark:text-gray-500 hover:bg-gray-300 hover:text-black dark:hover:bg-gray-700 dark:hover:text-white {{ request()->routeIs('administrator.help') ? 'bg-gray-300 text-textblack dark:bg-gray-700 dark:text-white' : '' }}transition-colors duration-300">
+=======
+                @canany(['help-list'])
+                    <li>
+                        <a href="{{ route('administrator.help') }}"
+                            class="flex items-center p-2 rounded-lg group 
+                                                                                       text-gray-500 dark:text-gray-500 
+                                                                                       hover:bg-gray-300 hover:text-black 
+                                                                                       dark:hover:bg-gray-700 dark:hover:text-white 
+                                                                                       {{ request()->routeIs('administrator.help') ? 'bg-gray-300 text-textblack dark:bg-gray-700 dark:text-white' : '' }}
+                                                                                              transition-colors duration-300">
 
-                        <svg class="w-4 h-4 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
-                            height="24" fill="currentColor" viewBox="0 0 24 24">
-                            <path fill-rule="evenodd"
-                                d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm9.008-3.018a1.502 1.502 0 0 1 2.522 1.159v.024a1.44 1.44 0 0 1-1.493 1.418 1 1 0 0 0-1.037.999V14a1 1 0 1 0 2 0v-.539a3.44 3.44 0 0 0 2.529-3.256 3.502 3.502 0 0 0-7-.255 1 1 0 0 0 2 .076c.014-.398.187-.774.48-1.044Zm.982 7.026a1 1 0 1 0 0 2H12a1 1 0 1 0 0-2h-.01Z"
-                                clip-rule="evenodd" />
-                        </svg>
-                        <span class="flex-1 ms-3 whitespace-nowrap text-sm">Help</span>
-                    </a>
-                </li>
+>>>>>>> 29a4e95c4972173aedb72540c8402f7a5b0bceed
+
+                            <svg class="w-4 h-4 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
+                                height="24" fill="currentColor" viewBox="0 0 24 24">
+                                <path fill-rule="evenodd"
+                                    d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm9.008-3.018a1.502 1.502 0 0 1 2.522 1.159v.024a1.44 1.44 0 0 1-1.493 1.418 1 1 0 0 0-1.037.999V14a1 1 0 1 0 2 0v-.539a3.44 3.44 0 0 0 2.529-3.256 3.502 3.502 0 0 0-7-.255 1 1 0 0 0 2 .076c.014-.398.187-.774.48-1.044Zm.982 7.026a1 1 0 1 0 0 2H12a1 1 0 1 0 0-2h-.01Z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            <span class="flex-1 ms-3 whitespace-nowrap text-sm">Help</span>
+                        </a>
+                    </li>
+                @endcanany
             </ul>
             <!--︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼ SETTINGS ︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼  -->
             <ul class="pt-4 mt-4 space-y-2 font-medium border-t border-gray-300  dark:border-gray-700">

@@ -20,9 +20,87 @@ class RoleController extends Controller
     public function __construct()
     {
         $this->middleware('permission:role-list|role-create|role-edit|role-delete', ['only' => ['index', 'store']]);
+        $this->middleware('permission:role-view');
         $this->middleware('permission:role-create', ['only' => ['create', 'store']]);
         $this->middleware('permission:role-edit', ['only' => ['edit', 'update']]);
         $this->middleware('permission:role-delete', ['only' => ['destroy']]);
+
+
+
+        // Overview and Checkin Management
+        $this->middleware('permission:overview-list', ['only' => ['index']]);
+
+        $this->middleware('permission:checkin-list', ['only' => ['index']]);
+        $this->middleware('permission:checkin-edit', ['only' => ['checkin']]);
+        $this->middleware('permission:checkin-log-list', ['only' => ['history']]);
+
+        // Member Management
+        $this->middleware('permission:member-create', ['only' => ['memberCreate', 'storeMember']]);
+        $this->middleware('permission:member-list', ['only' => ['memberIndex']]);
+        $this->middleware('permission:member-edit', ['only' => ['memberEdit', 'updateMember']]);
+        $this->middleware('permission:member-membership-renew', ['only' => ['renewMembership']]);
+
+
+
+        // Subscription Management
+        $this->middleware('permission:subscription-create', ['only' => ['subscriptionCreate', 'storeSubscription']]);
+        $this->middleware('permission:subscription-extend', ['only' => ['extendSubscription']]);
+        $this->middleware('permission:subscription-end', ['only' => ['endSubscription']]);
+
+
+
+        // Locker Management
+        $this->middleware('permission:locker-create', ['only' => ['createLocker', 'storeLocker']]);
+        $this->middleware('permission:locker-extend', ['only' => ['extendLocker']]);
+        $this->middleware('permission:locker-end', ['only' => ['endLocker']]);
+
+
+        // Treadmill Management
+        $this->middleware('permission:treadmill-create', ['only' => ['createTreadmill', 'storeTreadmill']]);
+        $this->middleware('permission:treadmill-extend', ['only' => ['extendTreadmill']]);
+        $this->middleware('permission:treadmill-end', ['only' => ['endTreadmill']]);
+
+
+
+
+
+
+
+
+
+
+
+        // Price Management
+        $this->middleware('permission:price-view|price-edit', ['only' => ['index']]);
+        $this->middleware('permission:price-edit', ['only' => ['update']]);
+
+        // Reservation 
+        $this->middleware('permission:reservation-list', ['only' => ['index']]);
+
+        //Equipment Management
+        $this->middleware('permission:equipment-list|equipment-view|equipment-create|equipment-edit|equipment-delete', ['only' => ['index']]);
+        $this->middleware('permission:equipment-view');
+        $this->middleware('permission:equipment-create', ['only' => ['store']]);
+        $this->middleware('permission:equipment-edit', ['only' => ['update']]);
+        $this->middleware('permission:equipment-delete', ['only' => ['destroy']]);
+
+        // Event Management
+        $this->middleware('permission:event-list|event-view|event-create|event-edit|event-delete', ['only' => ['index']]);
+        $this->middleware('permission:event-view');
+        $this->middleware('permission:event-create', ['only' => ['store']]);
+        $this->middleware('permission:event-edit', ['only' => ['update']]);
+        $this->middleware('permission:event-delete', ['only' => ['destroy']]);
+
+        // User Management
+        $this->middleware('permission:user-list|user-view|user-create|user-edit|user-delete', ['only' => ['index']]);
+        $this->middleware('permission:user-view');
+        $this->middleware('permission:user-create', ['only' => ['store', 'create']]);
+        $this->middleware('permission:user-edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:user-delete', ['only' => ['destroy']]);
+
+        // Feedback and Help
+        $this->middleware('permission:feedback-list', ['only' => ['feedbackIndex']]);
+        $this->middleware('permission:help-list', ['only' => ['helpIndex']]);
     }
 
     /**
@@ -33,14 +111,27 @@ class RoleController extends Controller
 
     public function index(Request $request): View
     {
-        // Get roles with their corresponding permissions
-        $roles = Role::with('permissions')->orderBy('id', 'asc')->paginate(50);
-        // Get all permissions
-        $permissions = Permission::all(); // Retrieves all records 
-        $permissioncreate = Permission::get(); //get all permisisons in database table to create roles
 
-        //sends all datas to administrator.roles.index to be used to create/edit/show 
-        return view('administrator.roles.index', compact('roles', 'permissions', 'permissioncreate')) // Pass the permissions variable
+        // if (!auth()->user()->canany(['role-list', 'role-view', 'role-create', 'role-edit', 'role-delete'])) {
+        //     abort(404); // forbidden / not found
+        // }
+
+        // Filter out specific roles and their permissions
+        $roles = Role::with([
+            'permissions' => function ($query) {
+                $query->whereNotIn('name', ['role-list', 'role-edit', 'role-create', 'role-view', 'role-delete']);
+            }
+        ])
+            ->whereNotIn('name', ['role-list', 'role-edit', 'role-create', 'role-view', 'role-delete'])
+            ->orderBy('id', 'asc')
+            ->paginate(50);
+
+        // Get all permissions excluding specific roles
+        $permissions = Permission::whereNotIn('name', ['role-list', 'role-edit', 'role-create', 'role-view', 'role-delete'])->get();
+        $permissioncreate = $permissions; // Reuse the filtered permissions list for creating roles
+
+        // Pass data to the view
+        return view('administrator.roles.index', compact('roles', 'permissions', 'permissioncreate'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
 

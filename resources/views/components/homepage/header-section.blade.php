@@ -32,6 +32,7 @@
     </div>
 </div>
 <script>
+<<<<<<< HEAD
 document.addEventListener("DOMContentLoaded", function() {
     function updateActiveLink() {
         const currentPath = window.location.pathname;
@@ -53,4 +54,20 @@ document.addEventListener("DOMContentLoaded", function() {
     updateActiveLink();
     window.addEventListener("popstate", updateActiveLink);
 });
+=======
+    //minified it
+    document.addEventListener("DOMContentLoaded", function () {
+        function i() {
+            let i = window.location.pathname,
+                t = window.location.hash;
+            document.querySelectorAll(".nav-link").forEach(e => {
+                let n = e.getAttribute("href");
+                e.classList.remove("activeLink", "r-activeLink"), e.classList.add("inactiveLink",
+                    "r-inactiveLink"), (n === i || n === i + t) && (e.classList.add("activeLink",
+                        "r-activeLink"), e.classList.remove("inactiveLink", "r-inactiveLink"))
+            })
+        }
+        i(), window.addEventListener("popstate", i)
+    });
+>>>>>>> 29a4e95c4972173aedb72540c8402f7a5b0bceed
 </script>

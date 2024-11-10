@@ -20,12 +20,41 @@ use Endroid\QrCode\Writer\PngWriter;
 
 use Endroid\QrCode\ErrorCorrectionLevel;
 
+// export member table to excel
+use App\Exports\MembersExport;
+use App\Exports\ServicesExport;
+use App\Exports\LockersExport;
+use App\Exports\TreadmillsExport;
+use Maatwebsite\Excel\Facades\Excel;
+
 
 class MemberController extends Controller
 {
 
+
+
     public function index(Request $request)
     {
+
+        if (
+            !auth()->user()->canany([
+                'member-list',
+                'member-edit',
+                'member-membership-renew',
+                'subscription-create',
+                'subscription-extend',
+                'subscription-end',
+                'locker-create',
+                'locker-extend',
+                'locker-end',
+                'treadmill-create',
+                'treadmill-extend',
+                'treadmill-end'
+            ])
+        ) {
+            abort(404); // forbidden / not found
+        }
+
 
         $query = Member::with(['services', 'lockers', 'treadmills', 'qrcode', 'membershipDuration']);
 
@@ -41,17 +70,24 @@ class MemberController extends Controller
         }
         $members = $query->get();
 
+        $occupiedLockers = Locker::whereIn('status', ['Active', 'Due', 'Overdue'])->pluck('locker_no')->toArray();
 
-        $occupiedLockers = Locker::where('status', 'Active')->pluck('locker_no')->toArray();
 
+        session()->put('form_token', uniqid());
         return view('administrator.members.index', compact('members', 'occupiedLockers'));
     }
 
 
     public function create()
     {
+
+        if (!auth()->user()->canany(['member-create', 'subscription-create', 'locker-create', 'treadmill-create',])) {
+            abort(404); // forbidden / not found
+        }
+
         $occupiedLockers = Locker::where('status', 'Active')->pluck('locker_no')->toArray();
 
+        session()->put('form_token', uniqid());
         return view('administrator.members.create', compact('occupiedLockers'));
     }
 
@@ -74,7 +110,7 @@ class MemberController extends Controller
 
         $request->validate([
             'name' => 'required|string|max:50',
-            'phone' => ['nullable', 'string', 'regex:/^\+?[0-9\s\-()]{10,20}$/',],
+            'phone' => ['nullable', 'string', 'max:20', 'regex:/^\+?[0-9\s\-()]*$/'],
             'fb' => 'nullable|string|max:50',
             'email' => 'nullable|email|max:100',
             'membership_type' => 'required|in:Regular,Student',
@@ -257,6 +293,31 @@ class MemberController extends Controller
         return $serviceType === 'Monthly' ? $start->addMonths($months) : $start->addYears($months);
     }
 
+    public function endService(Service $service)
+    {
+        // Update status to "Ended"
+        $service->update(['status' => 'Ended']);
+
+        // Redirect back with a success message
+        return redirect()->back()->with('success', 'Subscription Ended.');
+    }
+    public function endLocker(Locker $locker)
+    {
+        // Update status to "Ended"
+        $locker->update(['status' => 'Ended']);
+
+        // Redirect back with a success message
+        return redirect()->back()->with('success', 'Subscription Ended.');
+    }
+    public function endTreadmill(Treadmill $treadmill)
+    {
+        // Update status to "Ended"
+        $treadmill->update(['status' => 'Ended']);
+
+        // Redirect back with a success message
+        return redirect()->back()->with('success', 'Subscription Ended.');
+    }
+
 
     public function extend(Request $request, $id)
     {
@@ -274,6 +335,8 @@ class MemberController extends Controller
         ]);
         $member = Member::findOrFail($id);
 
+
+
         $serviceTypeToMonths = [
             '1month' => 1,
             '3month' => 3,
@@ -286,7 +349,15 @@ class MemberController extends Controller
         $months = $serviceTypeToMonths[$serviceType] ?? 1;
 
 
+        //check if the member is student then the member gets to use student price
+        if ($serviceType == '1month' && $member->membership_type == 'Student') {
+            $serviceType = '1monthstudent';
+        }
+
+
         $totalAmount = $priceList[$serviceType] ?? null;
+
+
         if (is_null($totalAmount)) {
             return response()->json(['error' => "Price for {$serviceType} not found."], 404);
         }
@@ -357,10 +428,6 @@ class MemberController extends Controller
 
         return redirect()->back()->with('success', 'New locker rented successfully.');
     }
-
-
-
-
 
     public function extendTreadmill(Request $request, $id)
     {
@@ -449,6 +516,7 @@ class MemberController extends Controller
         $dueDate = now()->addYear();
 
         if ($member->membershipDuration) {
+            // Update existing membership duration
             $member->membershipDuration->update([
                 'start_date' => $startDate,
                 'due_date' => $dueDate,
@@ -456,12 +524,17 @@ class MemberController extends Controller
             ]);
 
             return redirect()->back()->with('success', 'Membership renewed successfully');
+        } else {
+            // Create a new membership duration if none exists
+            $member->membershipDuration()->create([
+                'start_date' => $startDate,
+                'due_date' => $dueDate,
+                'status' => 'Active'
+            ]);
+
+            return redirect()->back()->with('success', 'New membership created and activated successfully');
         }
-
-        return redirect()->back()->with('error', 'No membership found to renew');
     }
-
-
 
     public function UpdateServiceStatus()
     {
@@ -491,18 +564,45 @@ class MemberController extends Controller
             return response()->json(['error' => 'Invalid relation type'], 400);
         }
 
+        // Define the valid statuses that are not 'Ended'
+        $validStatuses = ['Active', 'Inactive', 'Due', 'Overdue', 'Expired'];
+
+        // Find the member and load the related model
         $member = Member::with([
-            $relation => function ($query) {
-                $query->orderBy('due_date', 'desc');
+            $relation => function ($query) use ($validStatuses) {
+                // Filter records by valid statuses and order by due_date descending
+                $query->whereIn('status', $validStatuses)
+                    ->orderBy('due_date', 'desc');
             }
         ])->findOrFail($memberId);
 
+        // Get the first valid record from the filtered results
         $latestRecord = $member->$relation->first();
 
+        // Calculate the start date based on the latest valid record
         $startDate = $latestRecord
             ? Carbon::parse($latestRecord->due_date)->addDay()->format('Y-m-d')
             : Carbon::now()->format('Y-m-d');
 
         return response()->json(['start_date' => $startDate]);
     }
+
+    public function exportMembers()
+    {
+        return Excel::download(new MembersExport, 'members.xlsx');
+    }
+    public function exportServices()
+    {
+        return Excel::download(new ServicesExport, 'services.xlsx');
+    }
+
+    public function exportLockers()
+    {
+        return Excel::download(new LockersExport, 'lockers.xlsx');
+    }
+    public function exportTreadmills()
+    {
+        return Excel::download(new TreadmillsExport, 'treadmills.xlsx');
+    }
+
 }

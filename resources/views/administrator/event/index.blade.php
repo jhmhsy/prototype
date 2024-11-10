@@ -1,14 +1,5 @@
+@canany(['event-list','event-view', 'event-create', 'event-edit', 'event-delete'])
 <x-dash-layout>
-    <!-- Event Success Notification -->
-    @if(session('success'))
-    <div id="notification" class="notification">
-        <button id="close-notification" class="close-btn">&times;</button>
-        <p class="notification-message">{{ session('success') }}</p>
-        <div id="time-bar" class="time-bar"></div>
-    </div>
-    @endif
-
-
     <section x-data="{ createmodal: false ,viewmodal:false, Editmodal:false}">
         <div class="rounded-lg shadow-sm p-6  bg-white dark:bg-peak_1">
 
@@ -16,6 +7,7 @@
                 <div class="flex justify-between">
                     <h1 class="text-xl font-bold dark:text-white">Manage your Events</h1>
                     <div class="ml-auto flex items-center gap-2 ">
+                        @can('event-create')
                         <button @click="createmodal = true"
                             class="hover:bg-green-400 focus:bg-green-500 inline-flex items-center justify-center text-sm font-medium  border rounded-md px-3 h-8 gap-1">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -26,6 +18,7 @@
                             </svg>
                             <span class="sr-only sm:not-sr-only dark:text-white">New Event</span>
                         </button>
+                        @endcan
                     </div>
                 </div>
 
@@ -99,7 +92,9 @@
                                     Time
                                 </a>
                             </th>
+                            @canany(['event-view', 'event-edit', 'event-delete'])
                             <th class="h-12 text-center align-middle font-medium">Actions</th>
+                            @endcanany
                         </tr>
 
                     </thead>
@@ -116,7 +111,7 @@
                         <tr
                             class=" transition-colors py-10 {{ $loop->iteration % 2 == 0 ? 'bg-gray-100 dark:bg-peak_2' : '' }}">
 
-                            <td class="px-4 align-middle  font-medium">
+                            <td class=" px-4 align-middle font-medium">
                                 {{ $event->name }}
                             </td>
                             <td class="px-4 align-middle ">
@@ -131,7 +126,9 @@
                             </td>
                             <td class="px-4 align-middle ">{{ $event->time }}
                             </td>
+                            @canany(['event-view', 'event-edit', 'event-delete'])
                             <td class="px-4 align-middle">
+
                                 <div class="action-dropdown flex items-center justify-center">
                                     <button
                                         class="dropdown-button p-1 rounded-md hover:bg-gray-100 dark:hover:bg-peak_3 transition-colors relative">
@@ -146,7 +143,8 @@
                                     <div
                                         class="action-dropdown-menu fixed bg-white dark:bg-peak_2 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 z-50 w-48 hidden">
                                         <div class="py-1">
-                                            <button @click="viewmodal = true"
+                                            @can('event-view')
+                                            <button @click="viewmodal = {{$event->id}}"
                                                 class="w-full group flex items-center px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-peak_3">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -157,8 +155,10 @@
                                                 </svg>
                                                 View
                                             </button>
+                                            @endcan
 
-                                            <button @click="Editmodal = true"
+                                            @can('event-edit')
+                                            <button @click="Editmodal = {{$event->id}}"
                                                 class="w-full group flex items-center px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-peak_3">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                     fill="currentColor" class="w-4 h-4 mr-3" viewBox="0 0 16 16">
@@ -167,10 +167,13 @@
                                                 </svg>
                                                 Edit
                                             </button>
+                                            @endcan
 
 
+
+                                            @can('event-delete')
                                             <form method="POST" action="{{ route('events.destroy', $event->id) }}"
-                                                style="display:inline" class="hidden">
+                                                style=" display:inline" class="hidden">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button
@@ -186,10 +189,13 @@
                                                     Delete
                                                 </button>
                                             </form>
+                                            @endcan
                                         </div>
                                     </div>
                                 </div>
+
                             </td>
+                            @endcanany
                         </tr>
 
 
@@ -211,3 +217,4 @@
     </section>
 
 </x-dash-layout>
+@endcan

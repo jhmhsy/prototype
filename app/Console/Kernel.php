@@ -24,7 +24,7 @@ class Kernel extends ConsoleKernel
      */
     protected $routeMiddleware = [
         // Other middleware...
-        'admin' => \App\Http\Middleware\isAdmin::class,
+
     ];
 
     protected function schedule(Schedule $schedule): void

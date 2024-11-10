@@ -12,27 +12,33 @@ class FeedbackController extends Controller
 {
     public function index()
     {
-        try{
-          
+        if (!auth()->user()->canany(['feedback-list'])) {
+            abort(404); // forbidden / not found
+        }
+
+
+        try {
+
             $negativeTotal = Feedback::whereBetween('rating', [1, 2])->count();
             $positiveTotal = Feedback::whereBetween('rating', [3, 5])->count();
             $totalFeedback = Feedback::count();
-            
+
             $monthlyTotal = Feedback::whereMonth('created_at', date('m')) // Filter for the current month
-            ->whereYear('created_at', date('Y')) // Filter for the current year
-            ->count();
+                ->whereYear('created_at', date('Y')) // Filter for the current year
+                ->count();
 
             $yearlyTotal = Feedback::whereYear('created_at', date('Y')) // Filter for the current year
-            ->count(); // Count feedback entries directly
-        
-        }catch(\Exception $e){
-           
+                ->count(); // Count feedback entries directly
+
+        } catch (\Exception $e) {
+
             $positiveTotal = 0;
             $negativeTotal = 0;
             $totalFeedback = 0;
-            $monthlyTotal =0;
-            $yearlyTotal =0;
-        };
+            $monthlyTotal = 0;
+            $yearlyTotal = 0;
+        }
+        ;
         return view('administrator.feedback.index', compact('totalFeedback', 'positiveTotal', 'negativeTotal', 'monthlyTotal', 'yearlyTotal'));
     }
 
@@ -54,5 +60,5 @@ class FeedbackController extends Controller
         return redirect()->back()->with('success', 'Feedback submitted successfully.');
     }
 
-    
+
 }

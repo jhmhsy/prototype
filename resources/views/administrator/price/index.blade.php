@@ -1,11 +1,6 @@
+@canany(['price-view', 'price-edit'])
 <x-dash-layout>
-    @if(session('success'))
-    <div id="notification" class="notification">
-        <button id="close-notification" class="close-btn">&times;</button>
-        <p class="notification-message">{{ session('success') }}</p>
-        <div id="time-bar" class="time-bar"></div>
-    </div>
-    @endif
+
 
     <body class="bg-gray-100 dark:bg-peak_3">
         <div class="container mx-auto px-4 py-8">
@@ -21,9 +16,11 @@
                             <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 Price
                             </th>
+                            @can('price-edit')
                             <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 Actions
                             </th>
+                            @endcan
                         </tr>
                     </thead>
                     <tbody class="bg-white dark:bg-peak_1 dark:text-white">
@@ -31,15 +28,20 @@
                         <tr>
                             <td class="px-6 py-4 whitespace-nowrap">{{ $price->service_type }}</td>
                             <td class="px-6 py-4 whitespace-nowrap">${{ number_format($price->price, 2) }}</td>
+                            @can('price-edit')
                             <td class="px-6 py-4 whitespace-nowrap"
                                 x-data="{ Editmodal: false, serviceType: '{{ $price->service_type }}', priceValue: '{{ $price->price }}' }">
+
+
                                 <button @click="Editmodal = true"
                                     class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                                     Edit
                                 </button>
                                 @include('administrator.price.edit')
 
+
                             </td>
+                            @endcan
                         </tr>
                         @endforeach
                     </tbody>
@@ -49,3 +51,4 @@
         </div>
     </body>
 </x-dash-layout>
+@endcanany

@@ -1,6 +1,6 @@
 <!-- Burger Design for Admin Page sidenavbar-->
 @if ($showburgerAdmin ?? false)
-<div x-data="{ sidebarOpen: false }" class="sm:hidden ">
+<div x-data="{ sidebarOpen: false }">
     <!-- Sidebar toggle button -->
     <x-forms.nav-link @click="sidebarOpen = true" class=" rounded-md sm:hidden">
         <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 " fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -13,8 +13,8 @@
     <div style="display: none;" x-show="sidebarOpen" x-transition:enter="transition ease-out duration-300 sm:hidden"
         x-transition:enter-start="-translate-x-full" x-transition:enter-end="translate-x-0"
         x-transition:leave="transition ease-in duration-300" x-transition:leave-start="translate-x-0"
-        x-transition:leave-end="-translate-x-full" @click.away="sidebarOpen = false"
-        class="fixed inset-y-0 left-0 z-30 w-64 bg-primary dark:bg-darkmode_dark shadow-lg transform">
+        x-transition:leave-end="-translate-x-full"
+        class="fixed inset-y-0 left-0 z-50 w-64 bg-primary dark:bg-darkmode_dark shadow-lg transform">
 
         <div class="flex flex-col h-full">
             <!-- Close button -->

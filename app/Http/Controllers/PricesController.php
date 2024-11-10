@@ -9,6 +9,10 @@ class PricesController extends Controller
 {
     public function index()
     {
+        if (!auth()->user()->canany(['price-view', 'price-edit'])) {
+            abort(404); // forbidden / not found
+        }
+
         $prices = Prices::all();
         return view('administrator.price.index', compact('prices'));
     }

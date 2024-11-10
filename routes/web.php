@@ -23,8 +23,23 @@ use App\Http\Controllers\PricesController;
 
 use App\Http\Controllers\BarcodeController;
 
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
-Route::post('/members/{member}/renew', [MemberController::class, 'renew'])->name('members.renew');
+Route::view('/export', 'export');
+Route::get('/export-members', [MemberController::class, 'exportMembers'])->name('export.members');
+Route::get('/export-lockers', [MemberController::class, 'exportLockers'])->name('export.lockers');
+Route::get('/export-services', [MemberController::class, 'exportServices'])->name('export.services');
+Route::get('/export-treadmills', [MemberController::class, 'exportTreadmills'])->name('export.treadmills');
+
+
+
+Route::post('/services/{service}/end', [MemberController::class, 'endService'])->name('services.end');
+Route::post('/lockers/{locker}/end', [MemberController::class, 'endLocker'])->name('locker.end');
+Route::post('/treadmills/{treadmill}/end', [MemberController::class, 'endTreadmill'])->name('treadmill.end');
+
+
+Route::post('/members/{member}/renew', action: [MemberController::class, 'renew'])->name('members.renew');
 
 
 Auth::routes(['verify' => true]);
@@ -74,7 +89,7 @@ Route::get('/cancel', [PaymentController::class, 'cancel']);
 
 Route::get('/', [HomeController::class, 'index'])->name('welcome');
 
-//use to verify account first from email to login - use later dont delete
+// use to verify account first from email to login - use later dont delete
 // Route::get('/', [HomeController::class, 'index'])->name('welcome')->middleware('verified');
 
 Route::get('/gym-map', [HomeController::class, 'showmap'])->name('gym-map');
@@ -107,66 +122,71 @@ Route::prefix('ticket')->group(function () {
 
 //⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎ 𝗔𝗗𝗠𝗜𝗡
 
-Route::group(['middleware' => ['auth', 'isAdmin']], function () {
-    Route::prefix('admin')->group(function () {
-        Route::get('/overview', [OverviewController::class, 'index'])->name('administrator.overview');
 
-        Route::prefix('reservations')->group(function () {
-            //Navigation
-            Route::get('/unifiedview', [ReservationsController::class, 'index'])->name('administrator.unifiedview');
-            Route::get('/active', [ReservationsController::class, 'active'])->name('administrator.active');
-            Route::get('/pending', [ReservationsController::class, 'pending'])->name('administrator.pending');
-            Route::get('/suspended', [ReservationsController::class, 'suspended'])->name('administrator.suspended');
-            Route::get('/history', [ReservationsController::class, 'history'])->name('administrator.history');
+Route::middleware(['auth'])->group(function () {
+    // Checks if the auth user has role "is-admin / is-super", if doesnt then abort
+    Route::group([
+        'middleware' => function ($request, $next) {
+            if (Gate::any(['is-admin', 'is-super'])) {
+                return $next($request);
+            }
+            abort(404);
+        }
+    ], function () {
+        Route::prefix('admin')->group(function () {
+            Route::get('/overview', [OverviewController::class, 'index'])->name('administrator.overview');
 
-            //button Configuration
-            Route::post('/', [ReservationsController::class, 'store'])->name('reservations.store');
-            Route::post('/accept/{id}', [ReservationsController::class, 'accept'])->name('reservations.accept');
-            Route::post('/reject/{id}', [ReservationsController::class, 'reject'])->name('reservations.reject');
-            Route::post('/restore/{id}', [ReservationsController::class, 'restore'])->name('reservations.restore');
-            Route::post('/cancel/{id}', [ReservationsController::class, 'cancel'])->name('reservations.cancel');
-            Route::post('/delete/{id}', [ReservationsController::class, 'delete'])->name('reservations.delete');
+            Route::prefix('reservations')->group(function () {
+                //Navigation
+                Route::get('/unifiedview', [ReservationsController::class, 'index'])->name('administrator.unifiedview');
+                Route::get('/active', [ReservationsController::class, 'active'])->name('administrator.active');
+                Route::get('/pending', [ReservationsController::class, 'pending'])->name('administrator.pending');
+                Route::get('/suspended', [ReservationsController::class, 'suspended'])->name('administrator.suspended');
+                Route::get('/history', [ReservationsController::class, 'history'])->name('administrator.history');
+
+                //button Configuration
+                Route::get('/reservations', [ReservationsController::class, 'index'])->name('reservations');
+                Route::post('/', [ReservationsController::class, 'store'])->name('reservations.store');
+                Route::post('/accept/{id}', [ReservationsController::class, 'accept'])->name('reservations.accept');
+                Route::post('/reject/{id}', [ReservationsController::class, 'reject'])->name('reservations.reject');
+                Route::post('/restore/{id}', [ReservationsController::class, 'restore'])->name('reservations.restore');
+                Route::post('/cancel/{id}', [ReservationsController::class, 'cancel'])->name('reservations.cancel');
+                Route::post('/delete/{id}', [ReservationsController::class, 'delete'])->name('reservations.delete');
+            });
+
+            Route::get('/equipments', [EquipmentController::class, 'index'])->name('administrator.equipments');
+            Route::post('/equipment/store', [EquipmentController::class, 'store'])->name('equipments.store');
+            Route::put('/equipment/{id}', [EquipmentController::class, 'update'])->name('equipments.update');
+            Route::delete('/equipment/{id}', [EquipmentController::class, 'destroy'])->name('equipments.destroy');
+
+            Route::get('/events', [EventsController::class, 'index'])->name('administrator.events');
+            Route::post('/events/store', [EventsController::class, 'store'])->name('events.store');
+            Route::put('/events/{id}', [EventsController::class, 'update'])->name('events.update');
+            Route::delete('/events/{id}', [EventsController::class, 'destroy'])->name('events.destroy');
+
+
+            Route::get('/tickets', [TicketController::class, 'index'])->name('administrator.tickets');
+            Route::get('/users', [UserController::class, 'index'])->name('administrator.users');
+            Route::get('/roles', [RoleController::class, 'index'])->name('administrator.roles');
+            Route::get('/feedback', [FeedbackController::class, 'index'])->name('administrator.feedback');
+            Route::get('/help', [HelpController::class, 'index'])->name('administrator.help');
+
+
+            Route::prefix('ticket')->group(function () {
+                Route::get('/scan', [TicketController::class, 'showScanPage'])->name('ticket.scan');
+                Route::get('/transaction', [TicketController::class, 'transaction'])->name('ticket.transaction');
+                Route::post('/scan', [TicketController::class, 'scanTicket'])->name('ticket.scanticket');
+                Route::post('/scan/claim', [TicketController::class, 'claimTicket'])->name('ticket.claim');
+            });
+
         });
-
-        Route::get('/equipments', [EquipmentController::class, 'index'])->name('administrator.equipments');
-        Route::post('/equipment/store', [EquipmentController::class, 'store'])->name('equipments.store');
-        Route::put('/equipment/{id}', [EquipmentController::class, 'update'])->name('equipments.update');
-        Route::delete('/equipment/{id}', [EquipmentController::class, 'destroy'])->name('equipments.destroy');
-
-        Route::get('/events', [EventsController::class, 'index'])->name('administrator.events');
-        Route::post('/events/store', [EventsController::class, 'store'])->name('events.store');
-        Route::put('/events/{id}', [EventsController::class, 'update'])->name('events.update');
-        Route::delete('/events/{id}', [EventsController::class, 'destroy'])->name('events.destroy');
-
-
-        Route::get('/tickets', [TicketController::class, 'index'])->name('administrator.tickets');
-        Route::get('/users', [UserController::class, 'index'])->name('administrator.users');
-        Route::get('/roles', [RoleController::class, 'index'])->name('administrator.roles');
-        Route::get('/feedback', [FeedbackController::class, 'index'])->name('administrator.feedback');
-        Route::get('/help', [HelpController::class, 'index'])->name('administrator.help');
-
-
-        Route::prefix('ticket')->group(function () {
-            Route::get('/scan', [TicketController::class, 'showScanPage'])->name('ticket.scan');
-            Route::get('/transaction', [TicketController::class, 'transaction'])->name('ticket.transaction');
-            Route::post('/scan', [TicketController::class, 'scanTicket'])->name('ticket.scanticket');
-            Route::post('/scan/claim', [TicketController::class, 'claimTicket'])->name('ticket.claim');
-        });
-
-
+        Route::resource('roles', RoleController::class);
+        Route::resource('users', UserController::class);
     });
-
 });
 
-Route::group(['middleware' => ['auth', 'isSuper']], function () {
-    Route::resource('roles', RoleController::class);
-});
 
-Route::group(['middleware' => ['auth', 'isAdmin']], routes: function () {
-    Route::resource('users', UserController::class);
-    Route::get('/reservations', [ReservationsController::class, 'index'])->name('reservations');
 
-});
 
 //⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎ 𝗣𝗨𝗕𝗟𝗜𝗖 / 𝗔𝗨𝗧𝗛
 

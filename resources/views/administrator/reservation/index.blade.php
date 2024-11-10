@@ -1,3 +1,4 @@
+@canany(['reservation-list'])
 <x-dash-layout>
     <div class="flex flex-col gap-4 border-shade_6/50 dark:border-white/5"
         x-data="{ currentTab: 'Pending', titles: { pending: 'Pending Reservations', accepted: 'Accepted Reservations', rejected: 'Rejected Reservations' } }">
@@ -8,9 +9,9 @@
         </div>
 
         @if (session('success'))
-            <div class="bg-green-500 text-white p-2 -mt-2 rounded">
-                {{ session('success') }}
-            </div>
+        <div class="bg-green-500 text-white p-2 -mt-2 rounded">
+            {{ session('success') }}
+        </div>
         @endif
 
         <div dir="ltr" data-orientation="horizontal">
@@ -70,41 +71,41 @@
 
                             <tbody class="border-0">
                                 @foreach ($pendingBookings as $booking)
-                                    <tr class="border-t dark:border-white/30 transition-colors hover:bg-muted/50 py-20">
-                                        <td class="px-4  py-3 align-middle [&amp;:has([role=checkbox])]:pr-0">
-                                            {{ $booking->name }}
-                                        </td>
-                                        <td class="px-4  py-3 align-middle [&amp;:has([role=checkbox])]:pr-0 font-medium">
-                                            {{ $booking->email }}
-                                        </td>
-                                        <td class="px-4  py-3 align-middle [&amp;:has([role=checkbox])]:pr-0">
-                                            {{ $booking->room }}
-                                        </td>
+                                <tr class="border-t dark:border-white/30 transition-colors hover:bg-muted/50 py-20">
+                                    <td class="px-4  py-3 align-middle [&amp;:has([role=checkbox])]:pr-0">
+                                        {{ $booking->name }}
+                                    </td>
+                                    <td class="px-4  py-3 align-middle [&amp;:has([role=checkbox])]:pr-0 font-medium">
+                                        {{ $booking->email }}
+                                    </td>
+                                    <td class="px-4  py-3 align-middle [&amp;:has([role=checkbox])]:pr-0">
+                                        {{ $booking->room }}
+                                    </td>
 
-                                        <td class="px-4  py-3 align-middle [&amp;:has([role=checkbox])]:pr-0">
-                                            {{ $booking->date }}
-                                        </td>
-                                        <td class="px-4  py-3 align-middle [&amp;:has([role=checkbox])]:pr-0">
-                                            {{ $booking->time }}
-                                        </td>
+                                    <td class="px-4  py-3 align-middle [&amp;:has([role=checkbox])]:pr-0">
+                                        {{ $booking->date }}
+                                    </td>
+                                    <td class="px-4  py-3 align-middle [&amp;:has([role=checkbox])]:pr-0">
+                                        {{ $booking->time }}
+                                    </td>
 
-                                        <td class="px-4 py-3 align-middle [&amp;:has([role=checkbox])]:pr-0">
-                                            <div class="flex items-center justify-center gap-2">
-                                                <form action="{{ route('reservations.accept', $booking->id) }}"
-                                                    method="POST" style="display:inline;">
-                                                    @csrf
-                                                    <button type="submit"
-                                                        class="bg-green-500 text-white px-2 py-1 rounded">Accept</button>
-                                                </form>
-                                                <form action="{{ route('reservations.reject', $booking->id) }}"
-                                                    method="POST" style="display:inline;">
-                                                    @csrf
-                                                    <button type="submit"
-                                                        class="bg-red-500 text-white px-2 py-1 rounded">Reject</button>
-                                                </form>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                    <td class="px-4 py-3 align-middle [&amp;:has([role=checkbox])]:pr-0">
+                                        <div class="flex items-center justify-center gap-2">
+                                            <form action="{{ route('reservations.accept', $booking->id) }}"
+                                                method="POST" style="display:inline;">
+                                                @csrf
+                                                <button type="submit"
+                                                    class="bg-green-500 text-white px-2 py-1 rounded">Accept</button>
+                                            </form>
+                                            <form action="{{ route('reservations.reject', $booking->id) }}"
+                                                method="POST" style="display:inline;">
+                                                @csrf
+                                                <button type="submit"
+                                                    class="bg-red-500 text-white px-2 py-1 rounded">Reject</button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
                                 @endforeach
                             </tbody>
 
@@ -139,42 +140,42 @@
 
                             <tbody class="border-0">
                                 @foreach ($acceptedBookings as $booking)
-                                    <tr class="border-t dark:border-white/30 transition-colors hover:bg-muted/50 py-20">
-                                        <td class="px-4  py-3 align-middle [&amp;:has([role=checkbox])]:pr-0">
-                                            {{ $booking->name }}
-                                        </td>
-                                        <td class="px-4  py-3 align-middle [&amp;:has([role=checkbox])]:pr-0 font-medium">
-                                            {{ $booking->email }}
-                                        </td>
-                                        <td class="px-4  py-3 align-middle [&amp;:has([role=checkbox])]:pr-0">
-                                            {{ $booking->room }}
-                                        </td>
+                                <tr class="border-t dark:border-white/30 transition-colors hover:bg-muted/50 py-20">
+                                    <td class="px-4  py-3 align-middle [&amp;:has([role=checkbox])]:pr-0">
+                                        {{ $booking->name }}
+                                    </td>
+                                    <td class="px-4  py-3 align-middle [&amp;:has([role=checkbox])]:pr-0 font-medium">
+                                        {{ $booking->email }}
+                                    </td>
+                                    <td class="px-4  py-3 align-middle [&amp;:has([role=checkbox])]:pr-0">
+                                        {{ $booking->room }}
+                                    </td>
 
-                                        <td class="px-4  py-3 align-middle [&amp;:has([role=checkbox])]:pr-0">
-                                            {{ $booking->date }}
-                                        </td>
-                                        <td class="px-4  py-3 align-middle [&amp;:has([role=checkbox])]:pr-0">
-                                            {{ $booking->time }}
-                                        </td>
+                                    <td class="px-4  py-3 align-middle [&amp;:has([role=checkbox])]:pr-0">
+                                        {{ $booking->date }}
+                                    </td>
+                                    <td class="px-4  py-3 align-middle [&amp;:has([role=checkbox])]:pr-0">
+                                        {{ $booking->time }}
+                                    </td>
 
-                                        <td class="px-4  py-3 align-middle [&amp;:has([role=checkbox])]:pr-0">
-                                            <div class="flex items-center justify-center gap-2">
-                                                <form action="{{ route('reservations.accept', $booking->id) }}"
-                                                    method="POST" style="display:inline;">
-                                                    @csrf
-                                                    <button type="submit"
-                                                        class="bg-green-500 text-white px-2 py-1 rounded">Details</button>
-                                                </form>
+                                    <td class="px-4  py-3 align-middle [&amp;:has([role=checkbox])]:pr-0">
+                                        <div class="flex items-center justify-center gap-2">
+                                            <form action="{{ route('reservations.accept', $booking->id) }}"
+                                                method="POST" style="display:inline;">
+                                                @csrf
+                                                <button type="submit"
+                                                    class="bg-green-500 text-white px-2 py-1 rounded">Details</button>
+                                            </form>
 
-                                                <form action="{{ route('reservations.cancel', $booking->id) }}"
-                                                    method="POST" style="display:inline;">
-                                                    @csrf
-                                                    <button type="submit"
-                                                        class="bg-red-500 text-white px-2 py-1 rounded">Cancel</button>
-                                                </form>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                            <form action="{{ route('reservations.cancel', $booking->id) }}"
+                                                method="POST" style="display:inline;">
+                                                @csrf
+                                                <button type="submit"
+                                                    class="bg-red-500 text-white px-2 py-1 rounded">Cancel</button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
                                 @endforeach
                             </tbody>
 
@@ -209,42 +210,42 @@
 
                             <tbody class="border-0">
                                 @foreach ($rejectedBookings as $booking)
-                                    <tr class="border-t dark:border-white/30 transition-colors hover:bg-muted/50 py-20">
-                                        <td class="px-4  py-3 align-middle [&amp;:has([role=checkbox])]:pr-0">
-                                            {{ $booking->name }}
-                                        </td>
-                                        <td class="px-4  py-3 align-middle [&amp;:has([role=checkbox])]:pr-0 font-medium">
-                                            {{ $booking->email }}
-                                        </td>
-                                        <td class="px-4  py-3 align-middle [&amp;:has([role=checkbox])]:pr-0">
-                                            {{ $booking->room }}
-                                        </td>
+                                <tr class="border-t dark:border-white/30 transition-colors hover:bg-muted/50 py-20">
+                                    <td class="px-4  py-3 align-middle [&amp;:has([role=checkbox])]:pr-0">
+                                        {{ $booking->name }}
+                                    </td>
+                                    <td class="px-4  py-3 align-middle [&amp;:has([role=checkbox])]:pr-0 font-medium">
+                                        {{ $booking->email }}
+                                    </td>
+                                    <td class="px-4  py-3 align-middle [&amp;:has([role=checkbox])]:pr-0">
+                                        {{ $booking->room }}
+                                    </td>
 
-                                        <td class="px-4  py-3 align-middle [&amp;:has([role=checkbox])]:pr-0">
-                                            {{ $booking->date }}
-                                        </td>
-                                        <td class="px-4  py-3 align-middle [&amp;:has([role=checkbox])]:pr-0">
-                                            {{ $booking->time }}
-                                        </td>
+                                    <td class="px-4  py-3 align-middle [&amp;:has([role=checkbox])]:pr-0">
+                                        {{ $booking->date }}
+                                    </td>
+                                    <td class="px-4  py-3 align-middle [&amp;:has([role=checkbox])]:pr-0">
+                                        {{ $booking->time }}
+                                    </td>
 
-                                        <td class="px-4  py-3 align-middle [&amp;:has([role=checkbox])]:pr-0">
-                                            <div class="flex items-center justify-center gap-2">
+                                    <td class="px-4  py-3 align-middle [&amp;:has([role=checkbox])]:pr-0">
+                                        <div class="flex items-center justify-center gap-2">
 
-                                                <form action="{{ route('reservations.restore', $booking->id) }}"
-                                                    method="POST" style="display:inline;">
-                                                    @csrf
-                                                    <button type="submit"
-                                                        class="bg-green-500 text-white px-2 py-1 rounded">Restore</button>
-                                                </form>
-                                                <form action="{{ route('reservations.delete', $booking->id) }}"
-                                                    method="POST" style="display:inline;">
-                                                    @csrf
-                                                    <button type="submit"
-                                                        class="bg-red-500 text-white px-2 py-1 rounded">Delete</button>
-                                                </form>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                            <form action="{{ route('reservations.restore', $booking->id) }}"
+                                                method="POST" style="display:inline;">
+                                                @csrf
+                                                <button type="submit"
+                                                    class="bg-green-500 text-white px-2 py-1 rounded">Restore</button>
+                                            </form>
+                                            <form action="{{ route('reservations.delete', $booking->id) }}"
+                                                method="POST" style="display:inline;">
+                                                @csrf
+                                                <button type="submit"
+                                                    class="bg-red-500 text-white px-2 py-1 rounded">Delete</button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
                                 @endforeach
                             </tbody>
 
@@ -256,3 +257,4 @@
         </div>
     </div>
 </x-dash-layout>
+@endcanany

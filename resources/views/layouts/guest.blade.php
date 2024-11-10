@@ -55,6 +55,7 @@
 </head>
 
 <body class="font-opensans antialiased min-w-[350px]" x-data="globalLoader()">
+    @include ('alerts.alert')
     <!-- Loader Component -->
     <!-- Header Section -->
         <div>

@@ -18,10 +18,10 @@ class AuthenticatedSessionController extends Controller
 
     public function create(): View
     {
-            return view('auth.login');
-            
+        return view('auth.login');
+
     }
-    
+
     /**
      * Handle an incoming authentication request.
      */
@@ -38,13 +38,14 @@ class AuthenticatedSessionController extends Controller
             ->where('role_id', [1, 2])
             ->exists();
 
-            
+
         if ($hasRole) {
-            return redirect()->intended(route('administrator.overview', absolute: false));
+            return redirect()->intended(route('administrator.overview', absolute: false))->with('success', 'Login successfully!');
         } else {
-            return redirect()->intended(route('welcome', absolute: false));
+            return redirect()->intended(route('welcome', absolute: false))->with('success', 'Login successfully!');
+
         }
-        
+
     }
 
     /**

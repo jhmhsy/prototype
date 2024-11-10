@@ -8,10 +8,10 @@
             <div class="max-w-md w-full space-y-6">
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
-                    
-                    <div class="rounded-lg bg-peak-3 text-primary shadow-lg mt-5 py-5"
-                        data-v0-t="card">
-                        <div class="flex flex-col space-y-1.5 px-6 py-4 text-lemon-base uppercase font-raleway font-bold">
+
+                    <div class="rounded-lg bg-peak-3 text-primary shadow-lg mt-5 py-5" data-v0-t="card">
+                        <div
+                            class="flex flex-col space-y-1.5 px-6 py-4 text-lemon-base uppercase font-raleway font-bold">
                             <h3 class="font-bold whitespace-nowrap text-3xl mx-auto tracking-widest">Login</h3>
                         </div>
                         <div class="px-6 py-1 space-y-4">
@@ -24,6 +24,7 @@
                                 :errors="$errors->get('password')" :for="'password'">
                                 <x-custom.floating-input class="block w-full" id="password" type="password"
                                     name="password" placeholder=" " required autocomplete="current-password" />
+                                name="password" placeholder=" " required autocomplete="current-password" />
                             </x-forms.field>
                             <div class="flex items-center justify-between">
                                 <label
@@ -35,10 +36,10 @@
                                     <span>Remember me</span>
                                 </label>
                                 @if (Route::has('password.request'))
-                                <a class="text-red-500 text-sm font-medium underline hover:text-red-600"
-                                    href="{{ route('password.request') }}">
-                                    {{ __('Forgot your password?') }}
-                                </a>
+                                    <a class="text-red-500 text-sm font-medium underline hover:text-red-600"
+                                        href="{{ route('password.request') }}">
+                                        {{ __('Forgot your password?') }}
+                                    </a>
                                 @endif
                             </div>
                         </div>
@@ -50,6 +51,7 @@
 
                             <div class="text-center text-sm">
                                 Don't have an account? <a
+                                    class="text-blue-500 font-medium underline hover:text-blue-600"
                                     class="text-blue-500 font-medium underline hover:text-blue-600"
                                     href="{{ route('register') }}">Register</a>
                             </div>

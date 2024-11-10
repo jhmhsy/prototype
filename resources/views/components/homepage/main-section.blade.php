@@ -1,5 +1,58 @@
 <style>
+<<<<<<< HEAD
     /* Removed keyframes and animation classes */
+=======
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeOutLeft {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+
+    to {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+}
+
+@keyframes fadeInTop {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in-right {
+    animation: fadeInRight 1s ease-out forwards;
+}
+
+.animate-fade-out-left {
+    animation: fadeOutLeft 0.5s ease-out forwards;
+}
+
+.animate-fade-in-top {
+    animation: fadeInTop 1s ease-out forwards;
+}
+>>>>>>> 29a4e95c4972173aedb72540c8402f7a5b0bceed
 </style>
 
 <section class="bg-peak-4 relative flex items-center justify-center w-full min-h-screen px-4 md:px-10 md:justify-between"
@@ -56,6 +109,7 @@
         document.addEventListener("DOMContentLoaded", function() {
             const animateOnScrollElements = document.querySelectorAll('.animate-fade-in-down');
 
+<<<<<<< HEAD
             const observer = new IntersectionObserver(entries => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -76,3 +130,35 @@
         });
     </script>
 </section>
+=======
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+    };
+
+    const observerCallback = (entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate-fade-in-top');
+                entry.target.classList.remove('animate-fade-out-left');
+            } else {
+                entry.target.classList.remove('animate-fade-in-top');
+                entry.target.classList.add('animate-fade-out-left');
+            }
+        });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+    // Select all elements within the specific section
+    const section = document.querySelector('section.bg-peak-4');
+    const elementsToAnimate = section.querySelectorAll('.text-primary *');
+    elementsToAnimate.forEach(element => observer.observe(element));
+});
+</script>
+>>>>>>> 29a4e95c4972173aedb72540c8402f7a5b0bceed
