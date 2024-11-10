@@ -63,9 +63,13 @@
             const observer = new IntersectionObserver(entries => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        entry.target.classList.add("animate__fadeInDown");
+                        setTimeout(() => {
+                            entry.target.classList.add("animate__fadeInDown");
+                        }, 50); // 200 milliseconds delay
                     } else {
-                        entry.target.classList.remove("animate__fadeInDown");
+                        setTimeout(() => {
+                            entry.target.classList.remove("animate__fadeInDown");
+                        }, 200); // 200 milliseconds delay
                     }
                 });
             });
