@@ -39,17 +39,13 @@
             </div>
 
             <p
-                class="max-w-full text-base sm:text-xl md:max-w-[900px] md:text-lg lg:text-xl animate-fade-in-down animate__animated animate__fadeInDown">
+                class="max-w-full text-base sm:text-xl md:max-w-[900px] md:text-lg lg:text-xl text-center md:text-left animate-fade-in-down animate__animated animate__fadeInDown">
                 Top-notch Equipments Combined with Affordable Prices
             </p>
-            <div class="flex flex-col sm:flex-row gap-2 sm:justify-center md:justify-start">
-                <x-custom.secondary-button type="button" onclick="window.location.href = '{{ route('ticket.show') }}'"
-                    class="border text-bold w-auto animate-fade-in-down animate__animated animate__fadeInDown">
-                    Book Now
-                </x-custom.secondary-button>
-                <x-custom.secondary-button type="button" onclick="window.location.href = '#equipment-section'"
-                    :active="request()->routeIs('reservation')" class="border w-auto animate-fade-in-down animate__animated animate__fadeInDown">
-                    Learn More
+            <div class="gap-2 text-center md:text-left">
+                <x-custom.secondary-button type="button" onclick="window.location.href = '{{ route('register') }}'"
+                    class="border font-bold animate-fade-in-down animate__animated animate__fadeInDown">
+                    Register Now
                 </x-custom.secondary-button>
             </div>
 

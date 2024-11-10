@@ -9,7 +9,7 @@
             </svg>
         </button>
 
-        <!-- Responsive Sidebar -->
+        <!-- Responsive  Sidebar -->
         <div x-show="sidebarOpen" x-transition:enter="transition ease-out duration-300 xl:hidden"
             x-transition:enter-start="translate-x-full" x-transition:enter-end="translate-x-0"
             x-transition:leave="transition ease-in duration-300" x-transition:leave-start="translate-x-0"
