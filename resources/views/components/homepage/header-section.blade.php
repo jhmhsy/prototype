@@ -32,18 +32,25 @@
     </div>
 </div>
 <script>
-//minified it
 document.addEventListener("DOMContentLoaded", function() {
-    function i() {
-        let i = window.location.pathname,
-            t = window.location.hash;
-        document.querySelectorAll(".nav-link").forEach(e => {
-            let n = e.getAttribute("href");
-            e.classList.remove("activeLink", "r-activeLink"), e.classList.add("inactiveLink",
-                "r-inactiveLink"), (n === i || n === i + t) && (e.classList.add("activeLink",
-                "r-activeLink"), e.classList.remove("inactiveLink", "r-inactiveLink"))
-        })
+    function updateActiveLink() {
+        const currentPath = window.location.pathname;
+        const currentHash = window.location.hash;
+        
+        document.querySelectorAll(".nav-link").forEach(link => {
+            const linkHref = link.getAttribute("href");
+            const linkPath = new URL(linkHref, window.location.origin).pathname;
+            const linkHash = new URL(linkHref, window.location.origin).hash;
+            
+            const isActive = (linkPath === currentPath && linkHash === currentHash) || 
+                             (linkPath === currentPath && !linkHash && !currentHash);
+            
+            link.classList.toggle("activeLink", isActive);
+            link.classList.toggle("inactiveLink", !isActive);
+        });
     }
-    i(), window.addEventListener("popstate", i)
+    
+    updateActiveLink();
+    window.addEventListener("popstate", updateActiveLink);
 });
 </script>
