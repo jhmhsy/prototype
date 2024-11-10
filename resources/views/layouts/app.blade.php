@@ -20,6 +20,7 @@
         <!-- Scripts -->
         <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
         <script src="{{ asset('js/darkmode.js') }}" defer></script>
         <script src="{{ asset('js/dashboardnavigator.js') }}" defer></script>
         <script src="//unpkg.com/alpinejs" defer></script>

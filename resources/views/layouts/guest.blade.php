@@ -44,6 +44,7 @@
     <script src="{{ asset('js/progressBar.js') }}" defer></script>
     <script src="//unpkg.com/alpinejs" defer></script>
     <script src="screensize.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/nimate.min.css" />
 
     <!-- Logo -->
     <link rel="icon" href="{{ asset('images/logo.png') }}">

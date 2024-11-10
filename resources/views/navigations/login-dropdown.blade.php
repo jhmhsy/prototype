@@ -9,7 +9,7 @@
             @endif
 
             @if (Route::has('register'))
-                <x-custom.primary-button windows.href="{{ route('register') }}" class="bg-peak-3">Register</x-custom.primary-button>
+                <x-custom.primary-button onclick="window.location.href = '{{ route('register') }}'" class="bg-peak-3">Register</x-custom.primary-button>
             @endif
         @endif
     @endauth

@@ -1,13 +1,14 @@
+@import 'animate.css';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import 'animate.css';
+
 
 html {
     scroll-behavior: smooth;
 }
 #equipment-section,
-#pricing-section {
+#pricing-section, #footer-section {
     scroll-margin-top: 80px; /* Adjust value to desired spacing */
 }
 /* purgecss start ignore */
