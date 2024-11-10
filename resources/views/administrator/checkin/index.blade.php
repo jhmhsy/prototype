@@ -89,7 +89,6 @@
                     </div>
 
                     <div class="fixed m-auto" id="reader"></div>
-
                     <div id="lastResult" class="last-result">
                         <strong>Last Scan:</strong> <span id="lastResultText"></span>
                     </div>
@@ -99,12 +98,15 @@
                 <form id="searchForm" action="{{ route('checkin.index') }}" method="GET" class="mb-4">
                     <input id="qrOutput" name="search" type="hidden">
                     <label for="qrInput" class="block text-sm font-medium text-gray-700 mb-2">Upload QR Code</label>
-                    <input type="file" id="qrInput" accept="image/*" class="block w-full text-sm text-gray-500
-                    file:mr-4 file:py-2 file:px-4
-                    file:rounded-full file:border-0
-                    file:text-sm file:font-semibold
-                    file:bg-blue-50 file:text-blue-700
-                    hover:file:bg-blue-100">
+                    <input type="file" id="qrInput" accept="image/*" aria-label="Upload QR Code"
+                        class="block w-full text-sm text-gray-500
+                        file:mr-4 file:py-2 file:px-4
+                        file:rounded-lg file:border-0
+                        file:text-sm file:font-semibold
+                        file:bg-blue-50 file:text-blue-700
+                        hover:file:bg-blue-100 border border-gray-300
+                        focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500
+                        transition duration-150 ease-in-out">
                 </form>
             </div>
 
@@ -152,7 +154,7 @@
                 </thead>
                 <tbody class="bg-white dark:bg-peak_1">
                     @if($membersCount === 0)
-                    <p class="text-gray-500 mt-4">No results found</p>
+                    <p class="text-red-500 mt-4 mx-auto text-center">No results found</p>
                     @else
                     @foreach ($members as $member)
                     <tr x-data="{ open: false, showWarning: false }" :key="member . id" class="dark:text-white">

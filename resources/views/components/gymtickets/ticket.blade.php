@@ -57,7 +57,7 @@ return re.test(String(email).toLowerCase());
                         <div>
                             <h1 class="text-3xl font-bold">Payment Method</h1>
                             <p class="text-gray-500">
-                                Choose e mathod of your payment below.
+                                Choose a method of your payment below.
                             </p>
                         </div>
                         <div role="radiogroup" aria-required="false" dir="ltr" class="grid gap-4" tabindex="0"
