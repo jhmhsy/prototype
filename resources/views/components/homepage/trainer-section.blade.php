@@ -11,8 +11,8 @@
                     </div>
                 </div>
             </div>
-            <div class="polygon-2 flex flex-col p-10 gap-5 bg-green-500 pr-10">
-                <div class="ml-5 space-y-1">
+            <div class="polygon-2 flex flex-col p-10 md:pr-5 gap-5 bg-green-500 pl-12 sm:pl-24 md:pl-16 lg:pl-20">
+                <div class="space-y-1">
                     <div>
                         <h2 class="text-sm md:text-lg">Don't know here to start? Worry no more</h2>
                         <h1 class="text-2xl md:text-1xl text-left font-bold">Book a Session with a Private Trainer</h1>
