@@ -27,7 +27,7 @@
             });
 
             // Adjust map container height using Leaflet
-            map.whenReady(function() {
+            map.whenReady(function () {
                 const mapElement = document.getElementById('map');
                 if (mapElement) {
                     mapElement.style.height = '300px'; // Adjusted height
@@ -64,7 +64,7 @@
                 }
             }
 
-            document.getElementById("toggleDarkLightMode").addEventListener("change", function() {
+            document.getElementById("toggleDarkLightMode").addEventListener("change", function () {
                 if (this.checked) {
                     document.documentElement.classList.add("dark");
                     localStorage.setItem("dark-mode", !0);
@@ -81,7 +81,7 @@
             applyDarkModePreference();
 
             // Smooth zoom handling
-            map.on('zoomend', function() {
+            map.on('zoomend', function () {
                 const currentZoom = map.getZoom();
                 console.log("Current Zoom Level:", currentZoom);
             });

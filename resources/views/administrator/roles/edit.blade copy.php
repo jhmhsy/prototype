@@ -18,8 +18,8 @@
 
                     <div class="space-y-4 text-black dark:text-white">
                         <h1 class="text-2xl font-bold dark:text-white">Edit Roles</h1>
-                        <p class="text-gray-500 text-lg">Current role: <span
-                                class="text-black dark:text-white">{{ $role->name }}</span>
+                        <p class="text-gray-500 text-lg">Current role: <span class="text-black dark:text-white">{{
+                                $role->name }}</span>
                         </p><br>
                         <div class="space-y-4">
                             <div class="space-y-2">
@@ -43,8 +43,8 @@
                                             <label
                                                 class="select-none flex items-center text-sm font-medium  cursor-pointer ">
                                                 <input type="checkbox" name="permission[{{ $permission->id }}]"
-                                                    value="{{ $permission->id }}" class="name"
-                                                    {{ $role->hasPermissionTo($permission->name) ? 'checked' : '' }}>
+                                                    value="{{ $permission->id }}" class="name" {{
+                                                    $role->hasPermissionTo($permission->name) ? 'checked' : '' }}>
                                                 <span class="ml-2">{{ $permission->name }}</span>
                                                 <!-- Add spacing for the label -->
                                             </label>
