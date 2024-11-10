@@ -13,7 +13,7 @@
             </details>
             <details class="border border-border rounded-md p-4 w-full">
                 <summary class="cursor-pointer">When are the Opening and Closing Times?</summary>
-                <p class="text-sm italic pl-4">We are open on Mondays through Saturdays from 8:30 AM to 12 noon</p>
+                <p class="text-sm italic pl-4">We are open on Mondays through Saturdays from 8:30 AM to 12 PM, 2 PM to 8 PM</p>
                 <p class="text-sm italic pl-4">And on Sundays from 2 PM to 8 PM</p>
             </details>
             <details class="border border-border rounded-md p-4 w-full">
