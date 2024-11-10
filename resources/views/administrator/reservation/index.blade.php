@@ -15,7 +15,7 @@
         @endif
 
         <div dir="ltr" data-orientation="horizontal">
-            <div class="flex items-center space-x-3">
+            <div class="flex items-center">
                 <div role="tablist" aria-orientation="horizontal"
                     class="inline-flex h-9 items-center justify-center rounded-lg bg-muted p-1 text-muted-foreground"
                     tabindex="0" data-orientation="horizontal" style="outline: none;">
