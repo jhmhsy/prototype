@@ -1,7 +1,7 @@
 <x-dash-layout>
     <div class="text-night dark:text-white flex flex-col space-y-3 overflow-auto">
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 dark:text-white">
-            <div class="bg-white dark:bg-peak-2 rounded-lg px-4 py-5 flex space-x-2 items-center">
+            <div class="bg-white dark:bg-peak-2 rounded-lg px-4 py-5 flex space-x-2 items-center border border-black/40 dark:border-white/40">
                 <svg width="50" height="50" xmlns="http://www.w3.org/2000/svg"
                     class="text-green-500  dark:text-green-500" fill="currentColor" viewBox="0 0 640 512">
                     <path
@@ -12,7 +12,7 @@
                     <p class="text-2xl font-bold">{{ $members }}</p>
                 </div>
             </div>
-            <div class="bg-white dark:bg-peak-2  rounded-lg px-4 py-5 flex space-x-2 items-center">
+            <div class="bg-white dark:bg-peak-2 rounded-lg px-4 py-5 flex space-x-2 items-center border border-black/40 dark:border-white/40">
                 <svg width="40" height="40" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
                     class="text-yellow-300  dark:text-yellow-300 " fill="currentColor">
                     <path
@@ -23,7 +23,7 @@
                     <p class="text-xl font-bold">{{$subscription}}</p>
                 </div>
             </div>
-            <div class="bg-white dark:bg-peak-2 rounded-lg px-4 py-5 flex space-x-2 items-center">
+            <div class="bg-white dark:bg-peak-2 rounded-lg px-4 py-5 flex space-x-2 items-center border border-black/40 dark:border-white/40">
                 <svg width="40" height="40" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"
                     class="text-blue-500 dark:text-blue-500" fill="currentColor">
                     <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
@@ -35,7 +35,7 @@
                     <p class="text-xl font-bold">{{ $totalBooking }}</p>
                 </div>
             </div>
-            <div class="bg-white dark:bg-peak-2 rounded-lg px-4 py-5 flex space-x-2 items-center">
+            <div class="bg-white dark:bg-peak-2 rounded-lg px-4 py-5 flex space-x-2 items-center border border-black/40 dark:border-white/40">
                 <svg width="40" height="40" xmlns="http://www.w3.org/2000/svg"
                     class="text-orange-500 dark:text-orange-500" fill="currentColor" viewBox="0 0 512 512">
                     <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->

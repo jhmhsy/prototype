@@ -13,7 +13,7 @@
             </form>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 @if($members->isEmpty())
-                <p>No members yet.</p>
+                <p class="text-center text-red-600">No members yet.</p>
                 @else
                 @foreach($members as $member)
                 <div class="bg-white p-4 rounded shadow"
