@@ -24,7 +24,7 @@
                                 :errors="$errors->get('password')" :for="'password'">
                                 <x-custom.floating-input class="block w-full" id="password" type="password"
                                     name="password" placeholder=" " required autocomplete="current-password" />
-                                name="password" placeholder=" " required autocomplete="current-password" />
+
                             </x-forms.field>
                             <div class="flex items-center justify-between">
                                 <label
