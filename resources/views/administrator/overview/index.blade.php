@@ -55,7 +55,7 @@
         <div class="grid md:grid-cols-1 lg:grid-cols-2 gap-6">
             <div class="rounded-lg  bg-white dark:bg-peak-2  shadow-sm">
                 <div class="p-6">
-                    <h3 class=" text-2xl font-semibold dark:text-white">Monthly User Check-ins</h3>
+                    <h3 class="pb-3 text-2xl font-semibold dark:text-white">Monthly User Check-ins</h3>
                     <canvas class="w-full h-full" id="users" width="400" height="300" aria-label="Bar"
                         role="img">
                     </canvas>
@@ -63,12 +63,12 @@
             </div>
             <div class="rounded-lg  bg-white dark:bg-peak-2 bg-card  shadow-sm">
                 <div class="p-6">
-                    <h3 class=" text-2xl font-semibold text-black dark:text-white">Sales</h3>
+                    <h3 class="pb-3 text-2xl font-semibold text-black dark:text-white">Total Subscriptions</h3>
                     <canvas class="w-full h-full" id="sales-line" width="400" height="300" aria-label="Line"
                         role="img"></canvas>
                 </div>
             </div>
-            <div class="rounded-lg  bg-white  dark:bg-peak-2 bg-card  shadow-sm">
+            {{--<div class="rounded-lg  bg-white  dark:bg-peak-2 bg-card  shadow-sm">
                 <div class=" flex flex-col space-y-1.5 p-6">
                     <h3 class=" text-2xl font-semibold dark:text-white">Upcoming
                         Events</h3>
@@ -78,13 +78,13 @@
                         role="img">
                     </canvas>
                 </div>
-            </div>
+            </div>--}}
             <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
             <script>
                 document.addEventListener('DOMContentLoaded', function() {
                     const ctx1 = document.getElementById('users').getContext('2d');
                     const ctx2 = document.getElementById('sales-line').getContext('2d');
-                    const ctx3 = document.getElementById('sales-pie').getContext('2d');
+                    //const ctx3 = document.getElementById('sales-pie').getContext('2d');
 
                     function sixMonths() {
                         const months = [];
@@ -106,7 +106,7 @@
                     const monthlyData = {
                         labels: monthLabel,
                         datasets: [{
-                            label: 'Monthly Gym Reservations',
+                            label: 'Monthly Gym Check-ins',
                             data: getReserveData(),
                             backgroundColor: 'rgba(54, 162, 235, 0.6)', // Blue for bars
                             borderColor: 'rgba(54, 162, 235, 1)', // Blue for bar borders
@@ -135,29 +135,11 @@
                                             family: 'Inter, sans-serif'
                                         }
                                     },
-                                    title: {
-                                        display: true,
-                                        text: 'Number of reservations',
-                                        color: '#6e6e6e', // Medium gray for visibility in both modes
-                                        font: {
-                                            size: 16,
-                                            family: 'Inter, sans-serif'
-                                        }
-                                    },
                                     grid: {
                                         color: 'rgba(110, 110, 110, 0.2)' // Subtle grid lines
                                     }
                                 },
                                 x: {
-                                    title: {
-                                        display: true,
-                                        text: 'Month',
-                                        color: '#6e6e6e', // Medium gray for visibility in both modes
-                                        font: {
-                                            size: 16,
-                                            family: 'Inter, sans-serif'
-                                        }
-                                    },
                                     grid: {
                                         color: 'rgba(110, 110, 110, 0.2)' // Subtle grid lines
                                     }
@@ -178,24 +160,26 @@
                             }
                         }
                     });
-                    const salesData = {
+                    const subscriptionData = {
                         labels: monthLabel,
                         datasets: [{
-                            label: 'Monthly Sales',
+                            label: 'Total Subscriptions',
                             data: [5000, 6000, 2200, 7800, 4200, 6800],
                             fill: false,
                             backgroundColor: 'rgba(54, 162, 235, 0.6)', // Blue for points
                             borderColor: 'rgba(54, 162, 235, 1)', // Blue for line
                             borderWidth: 2,
-                            pointBackgroundColor: 'rgba(54, 162, 235, 1)', // Blue for points
-                            pointBorderColor: '#fff',
-                            pointBorderWidth: 1,
+                            pointBackgroundColor: '#fff', // White for hollow effect
+                            pointBorderColor: 'rgba(54, 162, 235, 1)', // Blue for point borders
+                            pointBorderWidth: 2,
+                            pointRadius: 3, // Increase point size
+                            pointStyle: 'circle', // Ensure points are circular
                             tension: 0.4 // Curved line
                         }]
                     };
                     new Chart(ctx2, {
                         type: "line",
-                        data: salesData,
+                        data: subscriptionData,
                         options: {
                             responsive: true,
                             scales: {
@@ -203,7 +187,6 @@
                                     beginAtZero: true,
                                     title: {
                                         display: true,
-                                        text: 'Sales ($)',
                                         color: '#6e6e6e', // Medium gray for visibility
                                         font: {
                                             size: 16,
@@ -215,15 +198,6 @@
                                     }
                                 },
                                 x: {
-                                    title: {
-                                        display: true,
-                                        text: 'Month',
-                                        color: '#6e6e6e', // Medium gray for visibility
-                                        font: {
-                                            size: 16,
-                                            family: 'Inter, sans-serif'
-                                        }
-                                    },
                                     grid: {
                                         color: 'rgba(110, 110, 110, 0.2)' // Subtle grid lines
                                     }
@@ -244,53 +218,53 @@
                             }
                         }
                     });
-                    // Pie chart
-                    const xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
-                    const yValues = [55, 49, 44, 24, 15];
-                    const pieColors = [
-                        'rgba(54, 162, 235, 0.6)', // Light blue
-                        'rgba(54, 162, 235, 0.8)', // Medium light blue
-                        'rgba(54, 162, 235, 1)',   // Medium blue
-                        'rgba(30, 144, 255, 0.6)', // Dodger blue
-                        'rgba(0, 0, 255, 0.6)'     // Blue
-                    ];
-                    new Chart(ctx3, {
-                        type: "pie",
-                        data: {
-                            labels: xValues,
-                            datasets: [{
-                                backgroundColor: pieColors,
-                                borderColor: 'rgba(54, 162, 235, 1)', // Blue for slice borders
-                                borderWidth: 1,
-                                data: yValues
-                            }]
-                        },
-                        options: {
-                            responsive: true,
-                            plugins: {
-                                title: {
-                                    display: true,
-                                    text: "World Wide Wine Production",
-                                    font: {
-                                        size: 16,
-                                        family: 'Inter, sans-serif'
-                                    },
-                                    color: '#6e6e6e' // Medium gray for visibility
-                                },
-                                legend: {
-                                    display: true,
-                                    position: 'bottom',
-                                    labels: {
-                                        font: {
-                                            size: 14,
-                                            family: 'Inter, sans-serif'
-                                        },
-                                        color: '#6e6e6e' // Medium gray for visibility
-                                    }
-                                }
-                            }
-                        }
-                    });
+                    //// Pie chart
+                    //const xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
+                    //const yValues = [55, 49, 44, 24, 15];
+                    //const pieColors = [
+                    //    'rgba(54, 162, 235, 0.6)', // Light blue
+                    //    'rgba(54, 162, 235, 0.8)', // Medium light blue
+                    //    'rgba(54, 162, 235, 1)', // Medium blue
+                    //    'rgba(30, 144, 255, 0.6)', // Dodger blue
+                    //    'rgba(0, 0, 255, 0.6)' // Blue
+                    //];
+                    //new Chart(ctx3, {
+                    //    type: "pie",
+                    //    data: {
+                    //        labels: xValues,
+                    //        datasets: [{
+                    //            backgroundColor: pieColors,
+                    //            borderColor: 'rgba(54, 162, 235, 1)', // Blue for slice borders
+                    //            borderWidth: 1,
+                    //            data: yValues
+                    //        }]
+                    //    },
+                    //    options: {
+                    //        responsive: true,
+                    //        plugins: {
+                    //            title: {
+                    //                display: true,
+                    //                text: "World Wide Wine Production",
+                    //                font: {
+                    //                    size: 16,
+                    //                    family: 'Inter, sans-serif'
+                    //                },
+                    //                color: '#6e6e6e' // Medium gray for visibility
+                    //            },
+                    //            legend: {
+                    //                display: true,
+                    //                position: 'bottom',
+                    //                labels: {
+                    //                    font: {
+                    //                        size: 14,
+                    //                        family: 'Inter, sans-serif'
+                    //                    },
+                    //                    color: '#6e6e6e' // Medium gray for visibility
+                    //                }
+                    //            }
+                    //        }
+                    //    }
+                    //});
                 });
             </script>
         </div>
