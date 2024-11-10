@@ -24,7 +24,7 @@
             @include('navigations.login-dropdown', ['row' => true])
         </div>
 
-        <div class="hidden sm:block bg-">
+        <div class="hidden sm:block bg-secondary">
             @include('navigations.settings-dropdown', ['dropdown' => true])
         </div>
 

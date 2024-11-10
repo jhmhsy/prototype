@@ -1,7 +1,7 @@
 @if (Route::has('login'))
     @auth
         @if ($column ?? false)
-            <div class="flex flex-col select-none">
+            <div class="flex flex-col select-none text-white">
                 <x-forms.responsive-nav-link :href="route('profile.edit')" class="hover:bg-blue-400 ">
                     {{ __('Profile') }}
                 </x-forms.responsive-nav-link>
@@ -30,9 +30,8 @@
             <div class=" sm:flex sm:items-center select-none cursor-pointer ">
                 <x-custom.dropdown align="right" width="56">
                     <x-slot name="trigger">
-                        <x-forms.nav-link class="flex items-center">
+                        <x-forms.nav-link custom="{{ request()->is('admin/*') }}" class="flex items-center">
                             <div>{{ Auth::user()->name }}</div>
-
                             <div class="ms-1">
                                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd"
@@ -45,7 +44,7 @@
 
                     <x-slot name="content" transparent>
                         <div
-                            class="bg-secondary dark:bg-shade_9 dark:text-tint_1 text-shade_9 shadow-lg border-white/10 border border-t-0 p-1">
+                            class="bg-secondary text-white text-shade_9 shadow-lg border-white/10 border border-t-0 p-1">
                             <x-forms.dropdown-link :href="route('profile.edit')"
                                 class="hover:bg-blue-600 hover:text-white px-4 py-2 w-full">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -58,7 +57,7 @@
                             </x-forms.dropdown-link>
 
                             <!-- Permission to access dashboard -->
-                            @can('is-admin')
+                            @can('is-admin') 
                                 <x-forms.dropdown-link :href="route('administrator.overview')"
                                     class="hover:bg-green-600 hover:text-white px-3 py-2 w-full">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
