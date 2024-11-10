@@ -92,11 +92,11 @@
             </p>
             <div class="flex flex-col sm:flex-row gap-2 sm:justify-center md:justify-start">
                 <x-custom.secondary-button type="button" onclick="window.location.href = '{{ route('ticket.show') }}'"
-                    class="border text-bold">
+                    class="border text-bold animate-fade-in-top w-auto">
                     Book Now
                 </x-custom.secondary-button>
                 <x-custom.secondary-button type="button" onclick="window.location.href = '#equipment-section'"
-                    :active="request()->routeIs('reservation')" class="border">
+                    :active="request()->routeIs('reservation')" class="border animate-fade-in-top w-auto">
                     Learn More
                 </x-custom.secondary-button>
             </div>

@@ -17,10 +17,10 @@
     </div>
 
     <div class="flex items-center gap-2">
-        <div role="group" dir="ltr" class="darkmode" tabindex="0" style="outline: none;">
+        {{--<div role="group" dir="ltr" class="darkmode" tabindex="0" style="outline: none;">
             <x-custom.darkmode />
-        </div>
-        <div class="items-center hidden text-center sm:block">
+        </div>--}}
+        <div class="items-center hidden text-center sm:block space-x-3">
             @include('navigations.login-dropdown', ['row' => true])
         </div>
 

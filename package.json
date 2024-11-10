@@ -19,10 +19,10 @@
     "dependencies": {
         "@fullcalendar/react": "^6.1.15",
         "@splidejs/splide": "^4.1.4",
+        "animate.css": "^4.1.1",
         "chart.js": "^4.4.4",
         "flowbite": "^2.5.1",
         "fullcalendar": "^6.1.15",
-        "html5-qrcode": "^2.3.8",
-        "swiper": "^11.1.14"
+        "html5-qrcode": "^2.3.8"
     }
 }

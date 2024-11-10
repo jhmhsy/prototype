@@ -9,9 +9,7 @@
             @endif
 
             @if (Route::has('register'))
-                <x-forms.nav-link href="{{ route('register') }}" :active="false">
-                    <x-custom.primary-button class="bg-peak-3">Register</x-custom.primary-button>
-                </x-forms.nav-link>
+                <x-custom.primary-button windows.href="{{ route('register') }}" class="bg-peak-3">Register</x-custom.primary-button>
             @endif
         @endif
     @endauth

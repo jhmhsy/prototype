@@ -29,7 +29,6 @@
     <script src="{{ asset('js/dashboardnavigator.js') }}" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jsqr/1.4.0/jsQR.js"></script>
     <script src="{{ asset('js/jsqr.js') }}" defer></script>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 
 
     <!-- screen size indicator TEMPORARY), just copy the below VV-->
