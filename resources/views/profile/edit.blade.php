@@ -1,14 +1,14 @@
 <x-app-layout>
     <x-slot name="header">
         <div class="items-center flex  space-x-3">
-            <x-forms.nav-link href="{{ route('welcome') }}" class="text-sm font-medium ">
+            <button onclick="window.location.href='{{ route('welcome') }}'" class="text-sm font-medium ">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                     class="h-6 w-6 ">
                     <path d="m12 19-7-7 7-7"></path>
                     <path d="M19 12H5"></path>
                 </svg>
-            </x-forms.nav-link>
+            </button>
 
             <h2 class="inline-block font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
                 {{ __('Profile') }}
@@ -45,7 +45,7 @@
                     Security
                 </a>
 
-                <a class="nav-link flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-tertiary hover:text-accent-foreground dark:hover:bg-darkmode_lighter"
+                {{--<a class="nav-link flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-tertiary hover:text-accent-foreground dark:hover:bg-darkmode_lighter"
                     href="#" data-section="display" onclick="showSection('display')">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -55,7 +55,7 @@
                         <line x1="12" x2="12" y1="17" y2="21"></line>
                     </svg>
                     Display
-                </a>
+                </a>--}}
 
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
@@ -68,7 +68,7 @@
                             <polyline points="16 17 21 12 16 7"></polyline>
                             <line x1="21" x2="9" y1="12" y2="12"></line>
                         </svg>
-                        {{ __('Log Out') }}
+                        <button>{{ __('Log Out') }}</button>
                     </a>
                 </form>
             </nav>
