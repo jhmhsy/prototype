@@ -1,3 +1,13 @@
+<style>
+.modal {
+    max-height: 90vh;
+    /* Limit height to 90% of the viewport */
+    overflow-y: auto;
+    /* Enable vertical scrolling if content overflows */
+    overflow-x: hidden;
+    /* Prevent horizontal overflow */
+}
+</style>
 <div style="display: none;" x-show="openeditmodal === {{ $role->id }}"
     @click="if ($event.target === $el) openeditmodal = null" class="fixed inset-0 bg-black opacity-50 z-40 select-none">
 </div>
@@ -12,7 +22,8 @@
         @click.stop>
         <div class="rounded shadow-lg w-full max-w-2xl max-h-[90vh] overflow-y-auto">
             <div class="container mx-auto max-w-2xl px-4 py-8">
-                <form action="{{ route('roles.update', $role->id) }}" method="POST" class=" rounded-lg shadow-sm">
+                <form action="{{ route('roles.update', $role->id) }}" method="POST"
+                    class="flex flex-col max-h-[90vh] rounded-lg shadow-sm">
                     @csrf
                     @method('PUT')
 
