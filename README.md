@@ -1,7 +1,7 @@
 # Gym One Application
 
 <p align="center">
-  <a href="gymonedanao.com" class="logo">
+  <a href="https://gymonedanao.com" class="logo">
     <img src="https://gymonedanao.com/images/logo.png" width="100" alt="logo">
   </a>
 </p>
