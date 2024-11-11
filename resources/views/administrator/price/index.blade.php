@@ -27,7 +27,7 @@
                             @foreach($prices as $price)
                                 <tr>
                                     <td class="px-6 py-4 whitespace-nowrap">{{ $price->service_type }}</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">${{ number_format($price->price, 2) }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">₱{{ number_format($price->price, 2) }}</td>
                                     @can('price-edit')
                                         <td class="px-6 py-4 whitespace-nowrap"
                                             x-data="{ Editmodal: false, serviceType: '{{ $price->service_type }}', priceValue: '{{ $price->price }}' }">

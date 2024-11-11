@@ -22,7 +22,7 @@
                         {{ $service->service_type }}
                     </td>
                     <td class="border-b dark:border-gray-500 px-4 py-2">
-                        ${{ $service->amount }}
+                        ₱{{ $service->amount }}
                     </td>
                     <td class="border-b dark:border-gray-500 px-4 py-2">
                         {{ $service->month }}
