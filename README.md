@@ -1,8 +1,8 @@
 # Gym One Application
 
 <p align="center">
-  <a href="{{ route('welcome') }}" class="logo">
-    <img src="{{ asset('images/logo.png') }}" width="100" alt="logo">
+  <a href="gymonedanao.com" class="logo">
+    <img src="https://gymonedanao.com/images/logo.png" width="100" alt="logo">
   </a>
 </p>
 
