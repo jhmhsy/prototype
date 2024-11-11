@@ -39,9 +39,9 @@ class OverviewController extends Controller
             $totalFeedbackRating = 0;
         }
 
-        $currentYear = Carbon::now()->year;
 
-        // Get checkins for all months of current year
+        // MONTHLY CHECKIN TIMESTAMP TO CHART
+        $currentYear = Carbon::now()->year;
         $monthlyCheckins = CheckinRecord::select(
             DB::raw('MONTH(created_at) as month'),
             DB::raw('COUNT(*) as total_checkins')
@@ -51,13 +51,10 @@ class OverviewController extends Controller
             ->orderBy('month')
             ->get();
 
-        // Initialize array for all 12 months
         $yearlyData = [];
         for ($i = 1; $i <= 12; $i++) {
             $yearlyData[$i] = 0;
         }
-
-        // Fill in actual data
         foreach ($monthlyCheckins as $record) {
             $yearlyData[$record->month] = $record->total_checkins;
         }

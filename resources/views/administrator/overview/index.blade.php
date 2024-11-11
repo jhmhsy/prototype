@@ -203,7 +203,7 @@
                                     },
                                     title: {
                                         display: true,
-                                        text: `${currentYear} Monthly Sales`
+                                        text: `${currentYear} Monthly Membership`
                                     }
                                 }
                             }
