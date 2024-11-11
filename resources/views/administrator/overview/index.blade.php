@@ -90,28 +90,33 @@
                         const ctx2 = document.getElementById('sales-line').getContext('2d');
                         const ctx3 = document.getElementById('sales-pie').getContext('2d');
 
-                        function sixMonths() {
+                        const currentYear = @json($currentYear);
+
+                        function getAllMonths() {
                             const months = [];
-                            const now = new Date();
-                            for (let i = 5; i >= 0; i--) {
-                                const month = new Date(now.getFullYear(), now.getMonth() - i);
-                                months.push(month.toLocaleString('default', {
+                            for (let i = 0; i < 12; i++) {
+                                const date = new Date(currentYear, i, 1);
+                                months.push(date.toLocaleString('default', {
                                     month: 'short'
                                 }));
                             }
                             return months;
                         }
 
-                        function getReserveData() {
-                            //replace with actual data for the last 6 months
-                            return [150, 180, 210, 240, 270, 300];
-                        }
-                        const monthLabel = sixMonths();
+                        const monthLabel = getAllMonths();
+                        const checkinData = @json($yearlyData);
+
+                        // Convert the checkinData object to an array in the correct order
+                        const checkinValues = monthLabel.map((month, index) => {
+                            return checkinData[index + 1] || 0;
+                        });
+
+                        // Update the first chart (Monthly Gym Reservations) with checkin data
                         const monthlyData = {
                             labels: monthLabel,
                             datasets: [{
-                                label: 'Monthly Gym Reservations',
-                                data: getReserveData(),
+                                label: `${currentYear} Gym Check-ins`,
+                                data: checkinValues,
                                 backgroundColor: 'rgba(75, 192, 192, 0.6)',
                                 borderColor: 'rgba(75, 192, 192, 1)',
                                 borderWidth: 1
@@ -126,8 +131,6 @@
                                 scales: {
                                     y: {
                                         beginAtZero: true,
-                                        min: 0,
-                                        max: 500,
                                         ticks: {
                                             callback: function (value) {
                                                 return value.toString();
@@ -135,7 +138,7 @@
                                         },
                                         title: {
                                             display: true,
-                                            text: 'Number of reservations'
+                                            text: 'Number of Check-ins'
                                         }
                                     },
                                     x: {
@@ -152,22 +155,27 @@
                                     },
                                     title: {
                                         display: true,
-                                        text: 'Monthly Gym Reservations'
+                                        text: `${currentYear} Monthly Gym Check-ins`
                                     }
                                 }
                             }
                         });
+
+                        // Your existing sales line chart code (updated with current year)
                         const salesData = {
                             labels: monthLabel,
                             datasets: [{
-                                label: 'Monthly Sales',
-                                data: [5000, 6000, 2200, 7800, 4200, 6800],
+                                label: `${currentYear} Monthly Sales`,
+                                data: [5000, 6000, 2200, 7800, 4200, 6800, 7100, 8200, 6400, 5900, 7300,
+                                    8500
+                                ],
                                 fill: false,
                                 backgroundColor: 'rgba(75, 192, 192, 0.6)',
                                 borderColor: 'rgba(75, 192, 192, 1)',
                                 borderWidth: 1
                             }]
                         };
+
                         new Chart(ctx2, {
                             type: "line",
                             data: salesData,
@@ -195,15 +203,17 @@
                                     },
                                     title: {
                                         display: true,
-                                        text: 'Monthly Sales'
+                                        text: `${currentYear} Monthly Sales`
                                     }
                                 }
                             }
                         });
-                        // Pie chart
+
+                        // Pie chart (rest of your existing code)
                         const xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
                         const yValues = [55, 49, 44, 24, 15];
                         const barColors = ["#b91d47", "#00aba9", "#2b5797", "#e8c3b9", "#1e7145"];
+
                         new Chart(ctx3, {
                             type: "pie",
                             data: {
@@ -218,7 +228,7 @@
                                 plugins: {
                                     title: {
                                         display: true,
-                                        text: "World Wide Wine Production"
+                                        text: `${currentYear} World Wide Wine Production`
                                     },
                                     legend: {
                                         display: true,
