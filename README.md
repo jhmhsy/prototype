@@ -2,7 +2,7 @@
 
 <p align="center">
   <a href="https://gymonedanao.com" class="logo">
-    <img src="https://gymonedanao.com/images/logo.png" width="100" alt="logo">
+    [![logo](https://gymonedanao.com/images/logo.png)](https://gymonedanao.com)
   </a>
 </p>
 
