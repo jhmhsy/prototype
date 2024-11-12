@@ -1,9 +1,7 @@
-/* Set the height of the map */
-
 #map {
     height: 500px;
     width: 100%;
-    background-color: #f0f0f0;
+    background-color: #121212;
     transition: background-color 0.3s ease;
     z-index: 1; /* Lower z-index for map */
     margin-top: 80px; /* Add margin to account for fixed header height */
@@ -12,13 +10,6 @@
 /* Tailwind dark mode class */
 .dark #map {
     background-color: #1a1a1a; /* Dark mode background */
-}
-
-/* Silver light mode styles */
-body {
-    background-color: #cccccc;
-    /* Light silver */
-    color: black;
 }
 
 /* Dark mode styles */
@@ -44,7 +35,7 @@ h1 {
     appearance: none;
     width: 50px;
     height: 25px;
-    background-color: #ddd;
+    background-color: #121212;
     border-radius: 25px;
     position: relative;
     cursor: pointer;
@@ -57,7 +48,7 @@ h1 {
     width: 21px;
     height: 21px;
     border-radius: 50%;
-    background-color: white;
+    background-color: #121212;
     top: 2px;
     left: 2px;
     transition: transform 0.3s;
