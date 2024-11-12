@@ -111,13 +111,13 @@ Route::get('/reservation', function () {
 Route::get('/users', [UserController::class, 'index'])->name('admin.users.index');
 Route::get('/settings', [UserController::class, 'settings'])->name('admin.settings');
 
-
-Route::prefix('ticket')->group(function () {
-    Route::get('/selection', [TicketController::class, 'show'])->name('ticket.show');
-    Route::get('/success', [TicketController::class, 'success'])->name('ticket.success');
-    Route::get('/index', [TicketController::class, 'index'])->name('ticket.index');
-    Route::post('/success', [TicketController::class, 'store'])->name('ticket.store');
-});
+// TEMPORARY HIDDEN BECAUSE GYM DONT USE THIS
+// Route::prefix('ticket')->group(function () {
+//     Route::get('/selection', [TicketController::class, 'show'])->name('ticket.show');
+//     Route::get('/success', [TicketController::class, 'success'])->name('ticket.success');
+//     Route::get('/index', [TicketController::class, 'index'])->name('ticket.index');
+//     Route::post('/success', [TicketController::class, 'store'])->name('ticket.store');
+// });
 
 
 //⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎ 𝗔𝗗𝗠𝗜𝗡
@@ -172,12 +172,13 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/help', [HelpController::class, 'index'])->name('administrator.help');
 
 
-            Route::prefix('ticket')->group(function () {
-                Route::get('/scan', [TicketController::class, 'showScanPage'])->name('ticket.scan');
-                Route::get('/transaction', [TicketController::class, 'transaction'])->name('ticket.transaction');
-                Route::post('/scan', [TicketController::class, 'scanTicket'])->name('ticket.scanticket');
-                Route::post('/scan/claim', [TicketController::class, 'claimTicket'])->name('ticket.claim');
-            });
+            // TEMPORARY HIDDEN BECAUSE GYM DONT USE THIS
+            // Route::prefix('ticket')->group(function () {
+            //     Route::get('/scan', [TicketController::class, 'showScanPage'])->name('ticket.scan');
+            //     Route::get('/transaction', [TicketController::class, 'transaction'])->name('ticket.transaction');
+            //     Route::post('/scan', [TicketController::class, 'scanTicket'])->name('ticket.scanticket');
+            //     Route::post('/scan/claim', [TicketController::class, 'claimTicket'])->name('ticket.claim');
+            // });
 
         });
         Route::resource('roles', RoleController::class);
@@ -197,28 +198,13 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('equipment', EquipmentController::class);
     Route::get('/events', [EventsController::class, 'index'])->name('events');
-    Route::get('/ticket', [TicketController::class, 'index'])->name('ticket');
+    // TEMPORARY HIDDEN BECAUSE GYM DONT USE THIS
+    // Route::get('/ticket', [TicketController::class, 'index'])->name('ticket');
     Route::get('/feedback', [FeedbackController::class, 'index'])->name('feedback');
     Route::get('/help', [HelpController::class, 'index'])->name('help');
 });
 
 
-
-
-
-//------------------ TRASH
-
-//     Route::get('/scan', [TicketController::class, 'showScanPage'])->name('scan.show');
-// Route::post('/scan', [TicketController::class, 'scanTicket'])->name('scan.ticket');
-// Route::post('/scan/claim', [TicketController::class, 'claimTicket'])->name('scan.claim');
-//     Route::get('/', [HomeController::class, 'index'])->name('welcome');
-
-//Route::get('/admin', [DashController::class, 'show'])->name('dashboard');
-
-//Route::post('/equipment/index', [EquipmentController::class, 'index'])->name('equipment.index');
-//Route::get('/events/index', [EventsController::class, 'index'])->name('events.index');
-
-//Route::middleware(['auth', ])->group(function(){
 
 //});
 

@@ -8,12 +8,12 @@
 
     <title>LaraFitness</title>
 
-        <!-- Vite Assets (Load Early to Apply Styles First) -->
+    <!-- Vite Assets (Load Early to Apply Styles First) -->
 
     <!-- Fonts with Performance Optimization -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link rel="preload" href="https://fonts.bunny.net/css?family=open-sans:300,400,500,600,700&display=swap"
-            as="style" />
+        as="style" />
     <link href="https://fonts.bunny.net/css?family=open-sans:300,400,500,600,700&display=swap" rel="stylesheet" />
 
     <!-- Extra Fonts -->
@@ -58,13 +58,13 @@
     @include ('alerts.alert')
     <!-- Loader Component -->
     <!-- Header Section -->
-        <div>
+    <div>
         @isset($header)
-                <header>
-                    <div class="px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
+            <header>
+                <div class="px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
+                    {{ $header }}
+                </div>
+            </header>
         @endisset
 
         <!-- Main Content -->

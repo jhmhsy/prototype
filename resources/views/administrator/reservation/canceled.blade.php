@@ -1,7 +1,7 @@
 @canany(['reservation-list'])
     <x-dash-layout>
         <div class="rounded-lg border shadow-sm p-6  text-shade_9  
-            border-shade_6/50 dark:border-white/5" data-v0-t="card">
+                border-shade_6/50 dark:border-white/5" data-v0-t="card">
             <div class="flex flex-col gap-2">
                 <div class="flex justify-between">
                     <h1 class="text-xl font-bold dark:text-white">Active Reservation</h1>

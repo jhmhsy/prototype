@@ -26,7 +26,7 @@ class CalendarController extends Controller
             'date' => 'required|date',
             'time' => 'required|date_format:H:i',
         ]);
-        
+
         PendingBooking::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -42,7 +42,7 @@ class CalendarController extends Controller
         $request->validate(['date' => 'required|date']);
         $reservedHours = Booking::whereDate('date', Carbon::parse($request->query('date'))->toDateString())
             ->pluck('time')
-            ->map(fn ($time) => Carbon::parse($time)->format('g:i A'));
+            ->map(fn($time) => Carbon::parse($time)->format('g:i A'));
         return response()->json($reservedHours);
     }
 }

@@ -21,24 +21,24 @@
 
 
 <script>
-function applyDarkModePreference() {
-    let darkMode = localStorage.getItem("dark-mode");
-    let isDarkMode = darkMode === "true";
-    document.documentElement.classList.toggle("dark", isDarkMode);
-    document.getElementById("toggleDarkLightMode").checked = isDarkMode;
-    document.getElementById("darkmode-toggle").value = isDarkMode ? "enabled" : "disabled";
-}
-document.getElementById("toggleDarkLightMode").addEventListener("change", function() {
-    let isChecked = this.checked;
-    document.documentElement.classList.toggle("dark", isChecked);
-    localStorage.setItem("dark-mode", isChecked);
-    document.getElementById("darkmode-toggle").value = isChecked ? "enabled" : "disabled";
-});
-document.getElementById("darkmode-toggle").addEventListener("change", function() {
-    let isEnabled = this.value === "enabled";
-    document.documentElement.classList.toggle("dark", isEnabled);
-    localStorage.setItem("dark-mode", isEnabled);
-    document.getElementById("toggleDarkLightMode").checked = isEnabled;
-});
-applyDarkModePreference();
+    function applyDarkModePreference() {
+        let darkMode = localStorage.getItem("dark-mode");
+        let isDarkMode = darkMode === "true";
+        document.documentElement.classList.toggle("dark", isDarkMode);
+        document.getElementById("toggleDarkLightMode").checked = isDarkMode;
+        document.getElementById("darkmode-toggle").value = isDarkMode ? "enabled" : "disabled";
+    }
+    document.getElementById("toggleDarkLightMode").addEventListener("change", function () {
+        let isChecked = this.checked;
+        document.documentElement.classList.toggle("dark", isChecked);
+        localStorage.setItem("dark-mode", isChecked);
+        document.getElementById("darkmode-toggle").value = isChecked ? "enabled" : "disabled";
+    });
+    document.getElementById("darkmode-toggle").addEventListener("change", function () {
+        let isEnabled = this.value === "enabled";
+        document.documentElement.classList.toggle("dark", isEnabled);
+        localStorage.setItem("dark-mode", isEnabled);
+        document.getElementById("toggleDarkLightMode").checked = isEnabled;
+    });
+    applyDarkModePreference();
 </script>

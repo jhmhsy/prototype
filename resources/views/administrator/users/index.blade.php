@@ -3,16 +3,16 @@
 
 
     <div class="flex flex-col gap-4 rounded-lg border shadow-sm p-6  text-shade_9  
-                                border-shade_6/50 dark:border-white/5"
+                                    border-shade_6/50 dark:border-white/5"
         x-data="{ openUserId: null, openshowmodal: null, opencreatemodal: null }">
 
         <div class="flex flex-col gap-2">
             <div class="flex justify-between">
-                <h1 class="text-xl font-bold dark:text-white">Manage your Users</h1>
+                <h1 class="text-xl font-bold dark:text-white">Manage your Events</h1>
                 <div class="ml-auto flex items-center gap-2">
                     @can('user-create')
                     <button @click.prevent="opencreatemodal = !opencreatemodal"
-                        class="hover:bg-green-400 focus:bg-green-500 inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border-input bg-background hover:bg-accent hover:text-accent-foreground rounded-md px-3 h-8 gap-1 border-2 border-black/50 dark:border-white/50">
+                        class="hover:bg-green-400 focus:bg-green-500 inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground rounded-md px-3 h-8 gap-1 border-white/50">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                             class="h-3.5 w-3.5 dark:text-white">
@@ -222,7 +222,6 @@
                 </div>
             </div>
         </div>
-    </div>
 
 </x-dash-layout>
 @endcanany

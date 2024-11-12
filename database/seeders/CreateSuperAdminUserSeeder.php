@@ -18,16 +18,16 @@ class CreateSuperAdminUserSeeder extends Seeder
         $superAdmins = [
             // for developer 
             [
-                'name' => 'Super Admin 1',
+                'name' => 'Production Admin',
                 'email' => 'admin@gmail.com',
-                'password' => bcrypt('asdasdasd'),
+                'password' => bcrypt('gymoneadmin'),
                 'email_verified_at' => now(),
             ],
             // for gym owner
             [
-                'name' => 'Super Admin 2',
-                'email' => 'admin2@gmail.com',
-                'password' => bcrypt('gym-owners password here'),
+                'name' => 'Gym Admin',
+                'email' => 'gymadmin@gmail.com',
+                'password' => bcrypt('gymoneadmin'),
                 'email_verified_at' => now(),
             ],
         ];
