@@ -1,34 +1,6 @@
-@canany([
-'member-list',
-'member-edit',
-'member-membership-renew',
-'subscription-extend',
-'subscription-end',
-'locker-extend',
-'locker-end',
-'treadmill-extend',
-'treadmill-end'
-])
 <x-dash-layout>
-    <div class="container mx-auto" x-data="{ openLink: null, openshowmodal: false}" x-init="barcodeScanner().init()">
+    <div class="container mx-auto" x-data="{ openLink: null, openshowmodal: null}" x-init="barcodeScanner().init()">
         <h2 class="text-sm font-bold mb-4">Members List</h2>
-        <form action="{{ route('members.index') }}" method="GET" class="mt-4">
-            <div class="flex mb-5 relative">
-                <button type="submit"
-                    class="absolute inset-y-0 left-0 flex items-center p-2 text-gray-500 dark:text-gray-400">
-                    <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                        viewBox="0 0 20 20">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
-                    </svg>
-                    <span class="sr-only">Search</span> <!-- For accessibility -->
-                </button>
-
-                <input type="text" name="search" id="searchInput" maxlength="255" placeholder="Search by ID Number"
-                    value="{{ request('search') }}" value="{{ request('search') }}"
-                    class="block w-full py-2 pl-10 pr-4 text-sm border border-gray-300 rounded-md dark:border-gray-800 dark:bg-peak_2 dark:text-white" />
-            </div>
-        </form>
         <table class="min-w-full bg-white border border-gray-200 rounded-lg">
             <thead>
                 <tr class="border-b text-sm">
@@ -42,14 +14,10 @@
                     <th class="px-4 py-2 text-left">Action</th>
                 </tr>
             </thead>
-            <tbody x-data="{ serviceFilter: 'all', statusFilter: 'current' }">
-                @if($members->isEmpty())
-                <p class="dark:text-white">No members yet.</p>
-                @else
+            <tbody>
                 @foreach($members as $member)
 
-                <tr class="border-b hover:bg-gray-50 text-sm"
-                    x-data="{ membershipOption:false,renewConfirm: false, openservices: false, extendOpen: false, lockerOption: false ,extendLockerOpen:false,rentLockerOpen: false,  extendTreadmill: false }">
+                <tr class="border-b hover:bg-gray-50 text-sm">
                     <td class="px-4 py-2">
                         @if($member->id_number)
                         <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30"
@@ -141,14 +109,8 @@
                                     </button>
                                     @endcan
 
-
-                                    <button @click="openservices = true"
-                                        class="w-full group flex items-center px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-peak_3">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                            fill="currentColor" class="w-4 h-4 mr-3" viewBox="0 0 16 16">
-                                            <path
-                                                d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001z" />
-                                        </svg>
+                                    <button @click="open = true"
+                                        class="mt-2 bg-primary text-primary-foreground px-4 py-2 rounded hover:bg-primary/80 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50 w-full sm:w-auto">
                                         Services
                                     </button>
 
@@ -183,28 +145,20 @@
                                         </button>
                                     </form>
                                     @endcan
-
-
                                 </div>
                             </div>
                         </div>
-                        @include ('administrator.members.services')
 
                     </td>
                 </tr>
                 @include ('administrator.members.show')
 
                 <!-- Details modal -->
-
+                @include ('administrator.members.detail')
                 @endforeach
-                @endif
             </tbody>
         </table>
 
 
     </div>
 </x-dash-layout>
-@endcanany
-
-<!-- The javascript scripts -->
-@include ('administrator.members.script')

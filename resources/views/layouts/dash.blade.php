@@ -16,6 +16,8 @@
 
     <link href="{{ asset('css/tooltip.css') }}" rel="stylesheet">
 
+    <!-- sweet alert for alert animation-->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- Loaders -->
     <link href="{{ asset('css/loaders/blue-spinner.css') }}" rel="stylesheet" defer>

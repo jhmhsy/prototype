@@ -21,10 +21,19 @@ use App\Http\Controllers\ScannerController;
 use App\Http\Controllers\CheckinController;
 use App\Http\Controllers\PricesController;
 
+use App\Http\Controllers\LinkController;
+
 use App\Http\Controllers\BarcodeController;
 
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
+
+
+
+Route::get('/userlist', [LinkController::class, 'index'])->name('userlist');
+
+Route::get('/user/link/{id}', [LinkController::class, 'linkuser'])->name('linkuser');
+Route::post('/link/{member}', [LinkController::class, 'updateIdNumber'])->name('link.update');
 
 Route::view('/export', 'export');
 Route::get('/export-members', [MemberController::class, 'exportMembers'])->name('export.members');

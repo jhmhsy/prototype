@@ -9,7 +9,7 @@ return new class extends Migration {
     {
         Schema::create('members', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_number');
+            $table->string('id_number')->nullable();
             $table->string('name');
             $table->string('phone')->nullable();
             $table->string('fb')->nullable();
