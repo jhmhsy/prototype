@@ -9,7 +9,7 @@ return new class extends Migration {
     {
         Schema::create('lockers', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('members');
+            $table->foreignId('user_id')->constrained('members')->onDelete('cascade');
             $table->date('start_date');
             $table->date('due_date');
             $table->decimal('amount', 8, 2);

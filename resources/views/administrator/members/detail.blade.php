@@ -23,7 +23,7 @@
                                 <button
                                     onclick="downloadQrCode('{{ Storage::url('qrcodes/' . $member->qrcode->qr_image_path) }}', '{{ $member->id_number }}')"
                                     class=" absolute inset-0 w-full h-full text-white font-bold flex items-center
-                                                                    justify-center transition-all">
+                                                                            justify-center transition-all">
                                     <!-- SVG for Download Icon -->
                                     <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
                                         class="bi bi-download" viewBox="0 0 16 16">

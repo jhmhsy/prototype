@@ -9,7 +9,7 @@ return new class extends Migration {
     {
         Schema::create('services', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('members');
+            $table->foreignId('user_id')->constrained('members')->onDelete('cascade');
             $table->enum('service_type', ['1month', '1monthstudent', '3month', '6month', '12month']);
             $table->date('start_date');
             $table->date('due_date');

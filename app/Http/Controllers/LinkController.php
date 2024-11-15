@@ -8,16 +8,10 @@ use Illuminate\Http\Request;
 
 class LinkController extends Controller
 {
-    public function index()
-    {
-        $members = Member::all();
-        return view('userlist', compact(var_name: 'members'));
-    }
-
-    public function linkuser($id)
+    public function index($id)
     {
         $member = Member::findOrFail($id);
-        return view('link', compact('member'));
+        return view('administrator.members.link', compact('member'));
     }
 
 
@@ -48,7 +42,10 @@ class LinkController extends Controller
             'id_number' => $request->id_number
         ]);
 
-        return redirect('userlist')->with('success', 'Qrcode linked successfully');
+
+        return redirect()->route('members.index')
+            ->with('success', 'Qrcode linked successfully');
+
     }
 
 }

@@ -66,13 +66,46 @@ class MemberController extends Controller
                     ->orWhere('id', 'like', '%' . $searchTerm . '%')
                     ->orWhere('name', 'like', '%' . $searchTerm . '%')
                     ->orWhere('email', 'like', '%' . $searchTerm . '%')
-                    ->orWhere('fb', 'like', '%' . $searchTerm . '%');
-            });
+                    ->orWhere('fb', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('membership_type', 'like', '%' . $searchTerm . '%');
+
+
+            })
+                ->orWhereHas('membershipDuration', function ($subQuery) use ($searchTerm) {
+                    $subQuery->where('status', 'like', '%' . $searchTerm . '%')
+                        ->orWhere('start_date', 'like', '%' . $searchTerm . '%')
+                        ->orWhere('due_date', 'like', '%' . $searchTerm . '%');
+                });
+
+
         }
+
         $members = $query->get();
 
         $occupiedLockers = Locker::whereIn('status', ['Active', 'Due', 'Overdue'])->pluck('locker_no')->toArray();
 
+        // Process each member's subscription status
+        foreach ($members as $member) {
+            // Initialize subscription status flags
+            $member->hasSubscriptions = false;
+            $member->hasOverdueSubscription = false;
+            $member->hasValidSubscription = false;
+            $member->hasActiveSubscription = false;
+            // Check services
+            foreach ($member->services as $service) {
+                $member->hasSubscriptions = true; // Has at least one service
+
+                if ($service->status === 'Overdue') {
+                    $member->hasOverdueSubscription = true;
+                }
+                if (in_array($service->status, ['Due', 'Active', 'Inactive'])) {
+                    $member->hasValidSubscription = true;
+                }
+                if ($service->status === 'Active') {
+                    $member->hasActiveSubscription = true;
+                }
+            }
+        }
 
         session()->put('form_token', uniqid());
         return view('administrator.members.index', compact('members', 'occupiedLockers'));
@@ -552,5 +585,14 @@ class MemberController extends Controller
     {
         return Excel::download(new TreadmillsExport, 'treadmills.xlsx');
     }
+
+    public function destroy($id)
+    {
+        $member = Member::findOrFail($id);
+        $member->delete();  // This will delete the member and all related data due to cascading delete
+
+        return redirect()->route('members.index')->with('success', 'Member deleted successfully.');
+    }
+
 
 }

@@ -1,12 +1,10 @@
 <x-guest-layout>
-    <div class="container">
-
-
+    <div class="">
 
         <div
             class="flex flex-col items-center justify-center min-h-screen bg-blue-100 dark:bg-blue-900 text-blue-900 dark:text-blue-100">
 
-            @if(session('qrerror'))
+            @if(session('error'))
                 <div class="flex items-center p-4 mb-4 text-sm text-red-800 border border-red-300 rounded-lg  dark:text-red-400 dark:border-red-800"
                     role="alert">
                     <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
@@ -16,7 +14,7 @@
                     </svg>
                     <span class="sr-only ">Info</span>
                     <div>
-                        <span class=" font-medium">Alert</span> {{ session('qrerror') }}
+                        <span class=" font-medium">Alert</span> {{ session('error') }}
                     </div>
                 </div>
             @endif
@@ -39,7 +37,7 @@
 
                 <div class="flex items-center gap-3">
 
-                    @if(session('qrerror'))
+                    @if(session('error'))
                         <!-- Error Notification -->
                         <svg class="animate-spin h-5 w-5 text-red-600 dark:text-red-400" xmlns="http://www.w3.org/2000/svg"
                             fill="none" viewBox="0 0 24 24">
@@ -49,7 +47,7 @@
                                 d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
                             </path>
                         </svg>
-                        <span class="text-lg font-medium text-red-500">Please Scan Again...</span>
+                        <span class="text-lg text-red-800 font-medium">Please Scan Again ...</span>
 
 
                     @else
@@ -135,8 +133,4 @@
             });
         });
     </script>
-
-
-
-
 </x-guest-layout>

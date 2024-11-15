@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::create('treadmills', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('members');
+            $table->foreignId('user_id')->constrained('members')->onDelete('cascade');
             $table->date('start_date');
             $table->date('due_date');
             $table->integer('month');

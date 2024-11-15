@@ -23,6 +23,8 @@
     <link href="{{ asset('css/loaders/blue-spinner.css') }}" rel="stylesheet" defer>
     <script src="{{ asset('js/global-loader.js') }}"></script>
 
+    <!-- HTML5 QRCODE library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.8/html5-qrcode.min.js"></script>
 
     <!-- Scripts -->
     <script src="{{ asset('js/tooltip.js') }}"></script>

@@ -19,6 +19,19 @@ class Member extends Model
         'user_identifier',
     ];
 
+
+
+    // Cascading delete relationships
+    public static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($member) {
+            // Custom logic if needed before deleting (e.g., logging or cleanup)
+        });
+    }
+
+
     public function services()
     {
         return $this->hasMany(Service::class, 'user_id');

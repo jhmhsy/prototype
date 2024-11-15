@@ -62,7 +62,7 @@
             Confirm
         </button>
     </form>
-    <button @click="extendOpen = false, open = true"
+    <button @click="extendOpen = false, openservices = true"
         class="mt-4 w-full bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400">
         Cancel
     </button>

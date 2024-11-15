@@ -30,9 +30,8 @@ use Spatie\Permission\Models\Role;
 
 
 
-Route::get('/userlist', [LinkController::class, 'index'])->name('userlist');
 
-Route::get('/user/link/{id}', [LinkController::class, 'linkuser'])->name('linkuser');
+Route::get('/index/link/{id}', [LinkController::class, 'index'])->name('index.link');
 Route::post('/link/{member}', [LinkController::class, 'updateIdNumber'])->name('link.update');
 
 Route::view('/export', 'export');
@@ -79,6 +78,8 @@ Route::get('/checkin/history', [CheckinController::class, 'history'])->name('che
 Route::get('/members/create', [MemberController::class, 'create'])->name('members.create');
 Route::post('/members', [MemberController::class, 'store'])->name('members.store');
 Route::get('/members/index', [MemberController::class, 'index'])->name('members.index');
+Route::delete('/members/{id}', [MemberController::class, 'destroy'])->name('members.destroy');
+
 Route::post('/members/{id}/extend', [MemberController::class, 'extend'])->name('members.extend');
 
 Route::post('/members/{id}/rent-locker', [MemberController::class, 'rentLocker'])->name('members.rent-locker');
