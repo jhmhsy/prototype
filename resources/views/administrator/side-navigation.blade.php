@@ -29,8 +29,7 @@
                     </button>
                     <div class="flex flex-row mr-13 items-center">
                         <a href="{{ route('welcome') }}" class="logo">
-                            <img src="{{ asset('images/logo.png') }}" width="50" height="50"
-                                alt="logo">
+                            <img src="{{ asset('images/logo.png') }}" width="50" height="50" alt="logo">
 
                         </a>
                         <span class="block ml-3 text-xl font-bold dark:text-white">Dashboard</span>
@@ -77,7 +76,7 @@
                                 <path d="M13 11v2"></path>
                             </svg>
                             <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap text-sm">
-                                Daily Check-in's</span>
+                                Daily Check-ins</span>
                             <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                                 viewBox="0 0 10 6">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -101,7 +100,7 @@
                                         class="flex items-center w-full p-2 text-gray-500 dark:text-gray-500 hover:bg-gray-300 hover:text-black 
                                                                                                                                                                 dark:hover:bg-gray-700 dark:hover:text-white 
                                                                                                                                                                 {{ request()->routeIs('checkin.history') ? 'bg-gray-300 text-textblack dark:bg-gray-700 dark:text-white text-sm' : 'text-sm' }} pl-11 transition-colors duration-300 rounded-lg group">
-                                        Checkin Log</a>
+                                        Check-in Log</a>
                                 </li>
                             @endcanany
 

@@ -44,7 +44,7 @@
             </thead>
             <tbody x-data="{ serviceFilter: 'all', statusFilter: 'current' }">
                 @if($members->isEmpty())
-                <td colspan="8" class="text-center p-2 dark:text-white">No members yet.</td>
+                <td colspan="8" class="text-center p-2 text-gray-400">No members yet.</td>
                 @else
                 @foreach($members as $member)
 

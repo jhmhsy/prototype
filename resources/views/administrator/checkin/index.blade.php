@@ -93,7 +93,7 @@
                     <form id="searchForm" action="{{ route('checkin.index') }}" method="GET" class="mb-4">
                         <input id="qrOutput" name="search" type="hidden">
                         <label for="qrInput" class="block text-sm font-medium text-gray-700 mb-2">Upload QR Code</label>
-                        <input type="file" id="qrInput" accept="image/*" class="block w-full text-sm text-gray-500
+                        <input type="file" id="qrInput" accept="image/*" class="border block w-full text-sm text-gray-500
                                                             file:mr-4 file:py-2 file:px-4
                                                             file:rounded-full file:border-0
                                                             file:text-sm file:font-semibold
@@ -147,8 +147,8 @@
                         </tr>
                     </thead>
                     <tbody class="bg-white dark:bg-peak_1">
-                        @if($membersCount === 0)
-                            <p class="text-gray-500 mt-4">No results found</p>
+                        @if($members->isEmpty())
+                            <td colspan="8" class="text-center p-3 text-gray-500 mt-4">No results found</>
                         @else
                                 @foreach ($members as $member)
                                         <tr x-data="{ open: false, showWarning: false }" :key="member . id" class="dark:text-white">
