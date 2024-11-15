@@ -13,8 +13,10 @@ export default {
         "./resources/**/*.js",
         "./node_modules/flowbite/**/*.js",
     ],
-
     theme: {
+        transitionProperty: {
+            'bg': 'background-color', // Add this line to define a custom transition for background color
+        },
         screens: {
             xs: "360px", // Add this line for the xs breakpoint
             sm: "640px",
