@@ -33,7 +33,6 @@
 
                     <ul class="space-y-2">
                         <div>
-
                             @include('administrator.includes.sidenav')
                         </div>
                     </ul>

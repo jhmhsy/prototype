@@ -3,7 +3,9 @@
 @tailwind components;
 @tailwind utilities;
 
-
+*{
+    @apply transition-bg duration-150
+}
 html {
     scroll-behavior: smooth;
 }

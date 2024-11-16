@@ -1,6 +1,6 @@
 <header>
     <div
-        class=" bg-gray-50 dark:bg-peak_2  flex items-center justify-between px-6 py-4 border-b dark:border-white/30 dark:text-gray-300 z-60">
+        class=" bg-gray-50 dark:bg-peak_2  flex items-center justify-between px-6 py-4 border-b dark:border-white/30 dark:text-gray-300 z-60 transition-colors duration-150">
 
         <div class="flex flex-row mr-13 justify-between items-center">
             <button @click="toggleSidebar" class="mr-4 focus:outline-none">
