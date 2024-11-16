@@ -78,6 +78,7 @@ Route::get('/checkin/history', [CheckinController::class, 'history'])->name('che
 Route::get('/members/create', [MemberController::class, 'create'])->name('members.create');
 Route::post('/members', [MemberController::class, 'store'])->name('members.store');
 Route::get('/members/index', [MemberController::class, 'index'])->name('members.index');
+Route::put('/members/{id}', [MemberController::class, 'update'])->name('members.update');
 Route::delete('/members/{id}', [MemberController::class, 'destroy'])->name('members.destroy');
 
 Route::post('/members/{id}/extend', [MemberController::class, 'extend'])->name('members.extend');

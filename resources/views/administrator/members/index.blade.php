@@ -60,7 +60,7 @@
                                     @foreach($members as $member)
 
                                                 <tr class="border-b hover:bg-gray-50 text-sm "
-                                                    x-data="{ showWarning: false, opendelete: false, membershipOption:false,renewConfirm: false, openservices: false, extendOpen: false, lockerOption: false ,extendLockerOpen:false,rentLockerOpen: false,  extendTreadmill: false }">
+                                                    x-data="{ showWarning: false, opendelete: false, membershipOption:false,renewConfirm: false, openservices: false,openeditmodal:false, extendOpen: false, lockerOption: false ,extendLockerOpen:false,rentLockerOpen: false,  extendTreadmill: false }">
                                                     <td class="px-4 py-2">
                                                         @if($member->id_number)
                                                             <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30"
@@ -187,7 +187,7 @@
                                                                     </button>
 
                                                                     @can('member-edit')
-                                                                        <button @click="Editmodal = {{$member->id}}"
+                                                                        <button @click="openeditmodal = {{$member->id}}"
                                                                             class="w-full group flex items-center px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-peak_3">
                                                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                                                 fill="currentColor" class="w-4 h-4 mr-3" viewBox="0 0 16 16">
@@ -219,6 +219,7 @@
                                                         </div>
                                                         @include ('administrator.members.services')
                                                         @include ('administrator.members.show')
+                                                        @include ('administrator.members.edit')
                                                         @include ('administrator.members.delete')
 
                                                     </td>

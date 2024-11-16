@@ -8,7 +8,7 @@
     x-transition:enter-start="opacity-0 transform scale-90" x-transition:enter-end="opacity-100 transform scale-100"
     x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100 transform scale-100"
     x-transition:leave-end="opacity-0 transform scale-90"
-    class="modal fixed w-[90%] md:w-[60%] lg:w-[40%] xl:w-[35%] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 p-4 bg-white dark:bg-peak_2"
+    class="modal fixed w-[90%] md:w-[60%] lg:w-[40%] xl:w-[35%] top-1/2 left-1/2 rounded-lg transform -translate-x-1/2 -translate-y-1/2 z-50 p-4 bg-white dark:bg-peak_2"
     @click.stop>
     <div class="modal-content">
 
@@ -33,11 +33,11 @@
             <label class="block text-sm font-medium text-gray-500">Duration</label>
             <p class="dark:text-white">
                 @if ($member->membershipDuration)
-                {{ \Carbon\Carbon::parse($member->membershipDuration->start_date)->format('M j, Y') }}
-                -
-                {{ \Carbon\Carbon::parse($member->membershipDuration->due_date)->format('M j, Y') }}
+                    {{ \Carbon\Carbon::parse($member->membershipDuration->start_date)->format('M j, Y') }}
+                    -
+                    {{ \Carbon\Carbon::parse($member->membershipDuration->due_date)->format('M j, Y') }}
                 @else
-                <span class="text-gray-500">No membership duration available</span>
+                    <span class="text-gray-500">No membership duration available</span>
                 @endif
             </p>
         </div>
@@ -46,10 +46,10 @@
             <div class="flex items-center justify-between">
 
                 @can('member-membership-renew')
-                <button @click="renewConfirm = true; membershipOption = false"
-                    class="mt-4 w-full bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded ">
-                    Renew
-                </button>
+                    <button @click="renewConfirm = true; membershipOption = false"
+                        class="mt-4 w-full bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded ">
+                        Renew
+                    </button>
                 @endcan
 
             </div>
@@ -74,7 +74,7 @@
     x-transition:enter-start="opacity-0 transform scale-90" x-transition:enter-end="opacity-100 transform scale-100"
     x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100 transform scale-100"
     x-transition:leave-end="opacity-0 transform scale-90"
-    class="modal fixed  top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50  " @click.stop>
+    class="modal fixed  top-1/2 left-1/2 rounded-lg transform -translate-x-1/2 -translate-y-1/2 z-50  " @click.stop>
     <div class="bg-card bg-white dark:bg-peak_2 rounded-lg shadow-lg max-w-sm w-full mx-4 p-6">
         <div class="flex justify-between items-center mb-4">
             <h2 class="text-lg font-semibold dark:text-white">Confirmation</h2>

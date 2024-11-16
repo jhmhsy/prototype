@@ -534,7 +534,7 @@ class MemberController extends Controller
     {
         if ($request->input('form_token') !== session('form_token')) {
             // If duplicate submission, just go back to the previous page
-            return redirect()->back()->with('error', 'Duplicate submission detected.');
+            return redirect()->back()->with('duplicate', 'Duplicate submission detected.');
         }
         return null; // Return null if there's no duplicate submission
     }
@@ -592,6 +592,23 @@ class MemberController extends Controller
         $member->delete();  // This will delete the member and all related data due to cascading delete
 
         return redirect()->route('members.index')->with('success', 'Member deleted successfully.');
+    }
+
+    public function update(Request $request, $id)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:50',
+            'phone' => ['nullable', 'string', 'max:20', 'regex:/^\+?[0-9\s\-()]*$/'],
+            'fb' => 'nullable|string|max:50',
+            'email' => 'nullable|email|max:100',
+            'membership_type' => 'required|in:Regular,Student',
+        ]);
+
+        $member = Member::findOrFail($id);
+        $member->update($validated);
+
+        return redirect()->route('members.index')
+            ->with('success', 'Member updated successfully');
     }
 
 

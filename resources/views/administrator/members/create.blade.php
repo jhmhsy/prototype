@@ -14,7 +14,8 @@
         </div>
         @endif
 
-        <form action="{{ route('members.store') }}" method="POST" class="space-y-8">
+        <form action="{{ route('members.store') }}" method="POST" class="space-y-8" x-data="{ registering: false }"
+            @submit="registering = true">
             @csrf
             <input type="hidden" name="form_token" value="{{ session('form_token') }}">
 
@@ -233,9 +234,9 @@
             @endcan
 
             <div class="mt-6 flex justify-end">
-                <button type="submit"
+                <button type="submit" x-bind:disabled="registering"
                     class="inline-flex items-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-700 focus:outline-none focus:border-blue-700 focus:ring ring-blue-300 disabled:opacity-25 transition ease-in-out duration-150">
-                    Register Member
+                    <span x-text="registering ? 'Registering...' : 'Register Member'"></span>
                 </button>
             </div>
         </form>
