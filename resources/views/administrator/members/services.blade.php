@@ -49,7 +49,7 @@
 
         <!-- the tabular table -->
         <div class="overflow-x-auto h-64 sm:h-80">
-            @include ('administrator.members.table')
+            @include ('administrator.members.servicesIncludes.table')
         </div>
     </div>
 
@@ -141,13 +141,13 @@
 
 
 @can('subscription-extend')
-@include ('administrator.members.extend-service')
+@include ('administrator.members.servicesIncludes.extend-service')
 @endcan
 @can('locker-extend')
-@include ('administrator.members.extend-locker')
+@include ('administrator.members.servicesIncludes.extend-locker')
 @endcan
 @can('treadmill-extend')
-@include ('administrator.members.extend-treadmill')
+@include ('administrator.members.servicesIncludes.extend-treadmill')
 @endcan
 
 

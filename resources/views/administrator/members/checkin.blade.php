@@ -12,21 +12,21 @@
         </span>
     @else
         <!-- @php
-                    $buttonClass = '';
-                    foreach ($member->services as $service) {
-                        if ($service->status === "Overdue") {
-                            $buttonClass = "bg-red-500 hover:bg-red-600";
-                            break;
-                        } elseif ($service->status === "Due") {
-                            $buttonClass = "bg-orange-500 hover:bg-orange-600";
+                        $buttonClass = '';
+                        foreach ($member->services as $service) {
+                            if ($service->status === "Overdue") {
+                                $buttonClass = "bg-red-500 hover:bg-red-600";
+                                break;
+                            } elseif ($service->status === "Due") {
+                                $buttonClass = "bg-orange-500 hover:bg-orange-600";
+                            }
                         }
-                    }
 
 
-                    if (!$buttonClass) {
-                        $buttonClass = "bg-green-500 hover:bg-green-600"; // Class for active or default
-                    }
-                @endphp -->
+                        if (!$buttonClass) {
+                            $buttonClass = "bg-green-500 hover:bg-green-600"; // Class for active or default
+                        }
+                    @endphp -->
 
         <button @click="open = true"
             class="{{ $buttonClass }} text-white font-bold py-1 px-3 rounded text-sm transition duration-300">

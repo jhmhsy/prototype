@@ -40,6 +40,7 @@ class OverviewController extends Controller
         }
 
 
+
         // MONTHLY CHECKIN TIMESTAMP TO CHART
         $currentYear = Carbon::now()->year;
         $monthlyCheckins = CheckinRecord::select(
@@ -59,13 +60,41 @@ class OverviewController extends Controller
             $yearlyData[$record->month] = $record->total_checkins;
         }
 
+        // latest 3 checkins in the checkin records
+        $latestCheckins = CheckinRecord::with('member:id,name,email')
+            ->orderBy('checkin_date', 'desc')
+            ->orderBy('checkin_time', 'desc')
+            ->take(3)
+            ->get();
+
+        // Assign custom rank to latest = 1st
+        $latestCheckins = $latestCheckins->map(function ($checkin, $index) {
+            $checkin->rank = $index + 1;  // Rank starts from 1
+            return $checkin;
+        });
+
+        // latest 3 checkins in the Member added
+        $latestMembers = Member::select('id', 'name', 'membership_type', 'email', 'phone')
+            ->orderBy('created_at', 'desc')
+            ->take(3)
+            ->get();
+
+        // Assign custom rank to latest = 1st
+        $latestMembers = $latestMembers->map(function ($member, $index) {
+            $member->rank = $index + 1;  // Rank starts from 1
+            return $member;
+        });
+
+
         return view('administrator.overview.index', compact(
             'members',
             'subscription',
             'totalBooking',
             'totalFeedbackRating',
             'yearlyData',
-            'currentYear'
+            'currentYear',
+            'latestCheckins',
+            'latestMembers'
         ));
 
     }
