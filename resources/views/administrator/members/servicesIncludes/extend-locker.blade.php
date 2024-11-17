@@ -60,20 +60,20 @@
     x-transition:enter-start="opacity-0 transform scale-90" x-transition:enter-end="opacity-100 transform scale-100"
     x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100 transform scale-100"
     x-transition:leave-end="opacity-0 transform scale-90"
-    class="modal fixed w-[90%] md:w-[60%] lg:w-[40%] xl:w-[35%] top-1/2 left-1/2 rounded-lg transform -translate-x-1/2 -translate-y-1/2 z-50 p-4 bg-white">
+    class="modal fixed w-[90%] md:w-[60%] lg:w-[40%] xl:w-[35%] top-1/2 left-1/2 rounded-lg transform -translate-x-1/2 -translate-y-1/2 z-50 p-4 bg-white dark:bg-peak_2">
 
-    <h3 class="text-lg leading-6 font-medium text-gray-900 mb-4"></h3>
+    <h3 class="text-lg leading-6 font-medium text-gray-900 mb-4 dark:text-white">EXtend Locker</h3>
     <form action="{{ route('members.rent-locker', $member->id) }}" method="POST" id="locker-form-{{ $member->id }}"
         class="locker-form" x-data="{ month: '', showError: false, }"
         @submit.prevent="showError = !month; if (!showError) $el.submit();">
         @csrf
         <input hidden name="form_token" value="{{ session('form_token') }}">
         <div class="mb-4">
-            <label for="locker_no" class="block text-sm font-medium text-gray-700">Locker
+            <label for="locker_no" class="block text-sm font-medium text-gray-500">Locker
                 Number</label>
 
             <select name="locker_no" id="locker_no_{{ $member->id }}"
-                class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                class="mt-1 block w-full py-2 px-3 border dark:border-none border-gray-300 bg-white dark:bg-peak_1 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                 @if ($member->lockers->isNotEmpty())
                 @foreach ($member->lockers as $locker)
                 <option value="{{ $locker->locker_no }}" selected>
@@ -89,12 +89,12 @@
         </div>
 
         <div class="mb-4">
-            <label for="locker_start_date_{{ $member->id }}" class="block text-sm font-medium text-gray-700">
+            <label for="locker_start_date_{{ $member->id }}" class="block text-sm font-medium text-gray-500">
                 Start Date
             </label>
             <div class="flex space-x-2">
                 <input type="date" id="locker_start_date_{{ $member->id }}" name="start_date" required
-                    class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                    class="mt-1 block w-full py-2 px-3 border dark:border-none border-gray-300 bg-white dark:bg-peak_1 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                 <div class="relative inline-block">
                     <button type="button" onclick="refreshDate({{ $member->id }}, 'lockers', 'locker')"
                         class="mt-2 inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 tooltip-button">
@@ -113,12 +113,12 @@
 
         <!-- Month Selection -->
         <div class="mb-4">
-            <label for="month_{{ $member->id }}" class="block text-sm font-medium text-gray-700">
+            <label for="month_{{ $member->id }}" class="block text-sm font-medium text-gray-500">
                 How many Months (max 12)
             </label>
 
             <input x-model="month" type="number" id="month_{{ $member->id }}" name="month" placeholder="##"
-                class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                class="mt-1 block w-full py-2 px-3 border dark:border-none border-gray-300 bg-white dark:bg-peak_1 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                 oninput="monthInputLimit(this)">
 
             <!-- Error Message -->
@@ -154,19 +154,19 @@
     x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform scale-90"
     x-transition:enter-end="opacity-100 transform scale-100" x-transition:leave="transition ease-in duration-100"
     x-transition:leave-start="opacity-100 transform scale-100" x-transition:leave-end="opacity-0 transform scale-90"
-    class="modal fixed w-[90%] md:w-[60%] lg:w-[40%] xl:w-[35%] top-1/2 left-1/2 rounded-lg transform -translate-x-1/2 -translate-y-1/2 z-50 p-4 bg-white">
+    class="modal fixed w-[90%] md:w-[60%] lg:w-[40%] xl:w-[35%] top-1/2 left-1/2 rounded-lg transform -translate-x-1/2 -translate-y-1/2 z-50 p-4 bg-white dark:bg-peak_2">
 
-    <h3 class="text-lg leading-6 font-medium text-gray-900 mb-4">Rent More Locker</h3>
+    <h3 class="text-lg leading-6 font-medium text-gray-900 mb-4 dark:text-white">Rent Locker</h3>
     <form action="{{ route('members.rent-locker', $member->id) }}" method="POST" id="locker-form-{{ $member->id }}"
         class="locker-form" x-data="{ month: '', showError: false, loading: false }"
         @submit.prevent="showError = !month; if (!showError) $el.submit();">
         @csrf
         <input hidden name="form_token" value="{{ session('form_token') }}">
         <div class="mb-4">
-            <label for="locker_no" class="block text-sm font-medium text-gray-700">Locker
+            <label for="locker_no" class="block text-sm font-medium text-gray-500">Locker
                 Number (<span class="text-green-500">max 1</span>)</label>
             <select id="locker_no" name="locker_no" required
-                class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                class="mt-1 block w-full py-2 px-3 border dark:border-none border-gray-300 bg-white dark:bg-peak_1 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                 @php
                 $allOccupied = true;
                 $firstAvailable = null;
@@ -191,12 +191,12 @@
 
 
         <div class="mb-4">
-            <label for="locker_start_date_{{ $member->id }}" class="block text-sm font-medium text-gray-700">
+            <label for="locker_start_date_{{ $member->id }}" class="block text-sm font-medium text-gray-500">
                 Start Date
             </label>
             <div x-data="{ date: new Date().toISOString().split('T')[0] }" class="flex space-x-2">
                 <input type="date" x-model="date" id="locker_start_date_{{ $member->id }}" name="start_date" required
-                    class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                    class="mt-1 block w-full py-2 px-3 border dark:border-none border-gray-300 bg-white dark:bg-peak_1 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                 <div class="relative inline-block">
                     <button
                         @click="loading = true; date = new Date().toISOString().split('T')[0]; setTimeout(() => loading = false, 500)"
@@ -217,11 +217,11 @@
 
         <!-- Month Selection -->
         <div class="mb-4">
-            <label for="month_{{ $member->id }}" class="block text-sm font-medium text-gray-700">
+            <label for="month_{{ $member->id }}" class="block text-sm font-medium text-gray-500">
                 How many Months (max 12)
             </label>
             <input x-model="month" type="number" id="month_{{ $member->id }}" name="month" placeholder="##"
-                class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                class="mt-1 block w-full py-2 px-3  dark:border-none  border-gray-300 bg-white dark:bg-peak_1 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                 oninput="monthInputLimit(this)">
 
             <!-- Error Message -->

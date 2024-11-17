@@ -17,9 +17,8 @@
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
 
-                    <x-forms.responsive-nav-link :href="route('logout')" class="hover:bg-red-500 "
-                        onclick="event.preventDefault();
-                                                                                                                                                                        this.closest('form').submit();">
+                    <x-forms.responsive-nav-link :href="route('logout')" class="hover:bg-red-500 " onclick="event.preventDefault();
+                        this.closest('form').submit();">
                         {{ __('Log Out') }}
                     </x-forms.responsive-nav-link>
                 </form>
@@ -74,7 +73,7 @@
                                 @csrf
                                 <x-forms.dropdown-link :href="route('logout')"
                                     onclick="event.preventDefault();
-                                                                                                                                                                        this.closest('form').submit();"
+                                                                                                                                                                                                this.closest('form').submit();"
                                     class="hover:bg-red-600 hover:text-white px-3 py-2 w-full">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                         class="mr-2 bi bi-box-arrow-right" viewBox="0 0 16 16">
