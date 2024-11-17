@@ -17,8 +17,9 @@
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
 
-                    <x-forms.responsive-nav-link :href="route('logout')" class="hover:bg-red-500 " onclick="event.preventDefault();
-                                                            this.closest('form').submit();">
+                    <x-forms.responsive-nav-link :href="route('logout')" class="hover:bg-red-500 "
+                        onclick="event.preventDefault();
+                                                                                                                                                                        this.closest('form').submit();">
                         {{ __('Log Out') }}
                     </x-forms.responsive-nav-link>
                 </form>
@@ -26,7 +27,7 @@
         @endif
 
         @if ($dropdown ?? false)
-            <div class=" sm:flex sm:items-center select-none cursor-pointer ">
+            <div class=" sm:flex sm:items-center z-50 select-none cursor-pointer ">
                 <x-custom.dropdown align="right" width="56">
                     <x-slot name="trigger">
                         <x-forms.nav-link custom="{{ request()->is('admin/*') }}" class="flex items-center">
@@ -43,7 +44,7 @@
 
                     <x-slot name="content" transparent>
                         <div
-                            class="bg-secondary text-white text-shade_9 shadow-lg border-white/10 border border-t-0 p-1">
+                            class="bg-secondary text-white text-shade_9 shadow-lg border-white/10 border border-t-0 p-1 z-50 inset-1">
                             <x-forms.dropdown-link :href="route('profile.edit')"
                                 class="hover:bg-blue-600 hover:text-white px-4 py-2 w-full">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -56,7 +57,7 @@
                             </x-forms.dropdown-link>
 
                             <!-- Permission to access dashboard -->
-                            @can('is-admin') 
+                            @can('is-admin')
                                 <x-forms.dropdown-link :href="route('administrator.overview')"
                                     class="hover:bg-green-600 hover:text-white px-3 py-2 w-full">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -71,8 +72,9 @@
                             @endcan
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
-                                <x-forms.dropdown-link :href="route('logout')" onclick="event.preventDefault();
-                                                            this.closest('form').submit();"
+                                <x-forms.dropdown-link :href="route('logout')"
+                                    onclick="event.preventDefault();
+                                                                                                                                                                        this.closest('form').submit();"
                                     class="hover:bg-red-600 hover:text-white px-3 py-2 w-full">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                         class="mr-2 bi bi-box-arrow-right" viewBox="0 0 16 16">

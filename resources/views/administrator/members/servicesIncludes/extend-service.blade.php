@@ -63,7 +63,7 @@
         </button>
     </form>
     <button @click="extendOpen = false, openservices = true"
-        class="mt-4 w-full bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400">
+        class="mt-4 w-full border border-gray-500 text-gray-500 hover:text-black hover:border-black dark:hover:text-white dark:hover:border-white px-4 py-2 rounded">
         Cancel
     </button>
 </div>

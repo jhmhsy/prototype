@@ -3,8 +3,7 @@
     <div x-data="{ sidebarOpen: false }" class="xl:hidden">
         <!-- Sidebar toggle button -->
         <button @click="sidebarOpen = true" class="rounded-md xl:hidden">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24"
-                stroke="currentColor">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
         </button>
@@ -13,18 +12,12 @@
         <div x-show="sidebarOpen" x-transition:enter="transition ease-out duration-300 xl:hidden"
             x-transition:enter-start="translate-x-full" x-transition:enter-end="translate-x-0"
             x-transition:leave="transition ease-in duration-300" x-transition:leave-start="translate-x-0"
-            x-transition:leave-end="translate-x-full" @click.away="sidebarOpen = false"
-            class="fixed inset-y-0 right-0 z-50 w-64 bg-primary dark:bg-darkmode_dark shadow-lg transform">
+            x-transition:leave-end="translate-x-full"
+            class="fixed inset-y-0 right-0 z-50 w-64 bg-black shadow-lg transform">
 
             <div class="flex flex-col h-full">
                 <!-- Close button -->
-                <button @click="sidebarOpen = false" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                </button>
+
 
                 <!-- Sidebar content -->
                 <nav class="flex-1 px-4 py-6 overflow-y-auto">

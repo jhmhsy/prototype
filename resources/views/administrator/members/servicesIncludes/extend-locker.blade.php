@@ -5,8 +5,8 @@
     x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform scale-90"
     x-transition:enter-end="opacity-100 transform scale-100" x-transition:leave="transition ease-in duration-100"
     x-transition:leave-start="opacity-100 transform scale-100" x-transition:leave-end="opacity-0 transform scale-90"
-    class="modal fixed w-[90%] md:w-[60%] lg:w-[40%] xl:w-[35%] top-1/2 left-1/2 rounded-lg transform -translate-x-1/2 -translate-y-1/2 z-50 p-4 bg-white">
-
+    class="modal fixed w-[90%] md:w-[60%] lg:w-[40%] xl:w-[35%] top-1/2 left-1/2 rounded-lg transform -translate-x-1/2 -translate-y-1/2 z-50 p-4 bg-white dark:bg-peak_2">
+    <h3 class="text-lg leading-6 font-medium text-gray-900 mb-4 dark:text-white">Locker Options</h3>
     @php
     // Check if the member has any lockers with specific statuses
     $activeLocker = $member->lockers()
@@ -43,7 +43,7 @@
         </button>
     </div>
     <button @click="lockerOption = false, openservices = true"
-        class="mt-4 w-full bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400">
+        class="mt-4 w-full  border border-gray-500 text-gray-500 hover:text-black hover:border-black dark:hover:text-white dark:hover:border-white px-4 py-2 rounded ">
         Cancel
     </button>
 
@@ -130,7 +130,7 @@
         </button>
     </form>
     <button @click="extendLockerOpen = false, lockerOption = true"
-        class="mt-4 w-full bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400">
+        class="mt-4 w-full border border-gray-500 text-gray-500 hover:text-black hover:border-black dark:hover:text-white dark:hover:border-white px-4 py-2 rounded ">
         Cancel
     </button>
 </div>
@@ -234,7 +234,7 @@
         </button>
     </form>
     <button @click="rentLockerOpen = false, lockerOption = true"
-        class="mt-4 w-full bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400">
+        class="mt-4 w-full border border-gray-500 text-gray-500 hover:text-black hover:border-black dark:hover:text-white dark:hover:border-white px-4 py-2 rounded ">
         Cancel
     </button>
 </div>

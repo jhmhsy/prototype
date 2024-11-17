@@ -19,12 +19,12 @@ class LinkController extends Controller
     {
         // Check if the member already has an ID number assigned or is already linked
         if (!is_null($member->id_number)) {
-            return redirect('userlist')->with('error', 'User is already linked.');
+            return redirect()->back()->with('error', 'User is already linked.');
         }
 
         // Validate the incoming request
         $request->validate([
-            'id_number' => 'required|string|size:10'
+            'id_number' => 'required|string|min:5|max:15'
         ]);
 
         // Check if the ID number is already taken in qr_records table

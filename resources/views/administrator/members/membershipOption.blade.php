@@ -33,11 +33,11 @@
             <label class="block text-sm font-medium text-gray-500">Duration</label>
             <p class="dark:text-white">
                 @if ($member->membershipDuration)
-                    {{ \Carbon\Carbon::parse($member->membershipDuration->start_date)->format('M j, Y') }}
-                    -
-                    {{ \Carbon\Carbon::parse($member->membershipDuration->due_date)->format('M j, Y') }}
+                {{ \Carbon\Carbon::parse($member->membershipDuration->start_date)->format('M j, Y') }}
+                -
+                {{ \Carbon\Carbon::parse($member->membershipDuration->due_date)->format('M j, Y') }}
                 @else
-                    <span class="text-gray-500">No membership duration available</span>
+                <span class="text-gray-500">No membership duration available</span>
                 @endif
             </p>
         </div>
@@ -46,10 +46,10 @@
             <div class="flex items-center justify-between">
 
                 @can('member-membership-renew')
-                    <button @click="renewConfirm = true; membershipOption = false"
-                        class="mt-4 w-full bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded ">
-                        Renew
-                    </button>
+                <button @click="renewConfirm = true; membershipOption = false"
+                    class="mt-4 w-full bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded ">
+                    Renew
+                </button>
                 @endcan
 
             </div>
@@ -58,7 +58,7 @@
 
 
         <button @click="membershipOption = false"
-            class="mt-4 w-full bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400">
+            class="mt-4 w-full  border border-gray-500 text-gray-500 hover:text-black hover:border-black dark:hover:text-white dark:hover:border-white px-4 py-2 rounded">
             Close
         </button>
     </div>
@@ -83,11 +83,13 @@
         </p>
         </form>
         <div class="flex justify-end space-x-4">
-            <button
-                class="bg-black text-white hover:bg-black/80 px-4 py-2 rounded w-24 focus:outline-none focus:ring-2 focus:ring-offset-2"
-                @click="renewConfirm=false, membershipOption=true">
-                Cancel
-            </button>
+            <div>
+                <button
+                    class="bg-black text-white hover:bg-black/80 px-4 py-2 rounded w-24 focus:outline-none focus:ring-2 focus:ring-offset-2"
+                    @click="renewConfirm=false, membershipOption=true">
+                    Cancel
+                </button>
+            </div>
 
             <form action="{{ route('members.renew', $member) }}" method="POST" class="inline">
                 @csrf
