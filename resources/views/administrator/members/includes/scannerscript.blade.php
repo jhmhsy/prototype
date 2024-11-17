@@ -3,47 +3,47 @@
 
 <!-- SCAN QR DEVICE TO SEARCH -->
 <script>
-    function qrScanner() {
-        return {
-            buffer: '',
-            lastKeyTime: 0,
-            keyDelay: 50,
-            isManualTyping: false,
+function qrScanner() {
+    return {
+        buffer: '',
+        lastKeyTime: 0,
+        keyDelay: 50,
+        isManualTyping: false,
 
-            init() {
-                document.getElementById('searchInput').addEventListener('focus', () => {
-                    this.isManualTyping = true;
-                });
+        init() {
+            document.getElementById('searchInput').addEventListener('focus', () => {
+                this.isManualTyping = true;
+            });
 
-                document.getElementById('searchInput').addEventListener('blur', () => {
-                    this.isManualTyping = false;
-                });
+            document.getElementById('searchInput').addEventListener('blur', () => {
+                this.isManualTyping = false;
+            });
 
-                document.addEventListener('keydown', (e) => {
-                    if (this.isManualTyping) return;
+            document.addEventListener('keydown', (e) => {
+                if (this.isManualTyping) return;
 
-                    const currentTime = new Date().getTime();
-                    const timeDiff = currentTime - this.lastKeyTime;
+                const currentTime = new Date().getTime();
+                const timeDiff = currentTime - this.lastKeyTime;
 
-                    if (timeDiff < this.keyDelay) {
-                        // Only add the actual character, not the key name
-                        if (e.key.length === 1) { // This ensures we only get actual characters
-                            this.buffer += e.key;
-                        }
-                    } else {
-                        this.buffer = e.key.length === 1 ? e.key : '';
+                if (timeDiff < this.keyDelay) {
+                    // Only add the actual character, not the key name
+                    if (e.key.length === 1) { // This ensures we only get actual characters
+                        this.buffer += e.key;
                     }
+                } else {
+                    this.buffer = e.key.length === 1 ? e.key : '';
+                }
 
-                    if (e.keyCode === 13) {
-                        const searchInput = document.getElementById('searchInput');
-                        searchInput.value = this.buffer;
-                        document.querySelector('#searchForm button[type="submit"]').click();
-                        this.buffer = '';
-                    }
+                if (e.keyCode === 13) {
+                    const searchInput = document.getElementById('searchInput');
+                    searchInput.value = this.buffer;
+                    document.querySelector('#searchForm button[type="submit"]').click();
+                    this.buffer = '';
+                }
 
-                    this.lastKeyTime = currentTime;
-                });
-            }
+                this.lastKeyTime = currentTime;
+            });
         }
     }
+}
 </script>

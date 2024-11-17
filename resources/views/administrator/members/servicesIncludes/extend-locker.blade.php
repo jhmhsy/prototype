@@ -114,7 +114,7 @@
                 How many Months (max 12)
             </label>
 
-            <input x-model="month" type="number" id="month_{{ $member->id }}" name="month" placeholder="###"
+            <input x-model="month" type="number" id="month_{{ $member->id }}" name="month" placeholder="##"
                 class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                 oninput="monthInputLimit(this)">
 
@@ -217,7 +217,7 @@
             <label for="month_{{ $member->id }}" class="block text-sm font-medium text-gray-700">
                 How many Months (max 12)
             </label>
-            <input x-model="month" type="number" id="month_{{ $member->id }}" name="month" placeholder="###"
+            <input x-model="month" type="number" id="month_{{ $member->id }}" name="month" placeholder="##"
                 class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                 oninput="monthInputLimit(this)">
 

@@ -80,9 +80,12 @@ class MemberController extends Controller
 
         }
 
+
         $members = $query->get();
 
         $occupiedLockers = Locker::whereIn('status', ['Active', 'Due', 'Overdue'])->pluck('locker_no')->toArray();
+
+        $keynumber = '*****';
 
         // Process each member's subscription status
         foreach ($members as $member) {
@@ -101,14 +104,25 @@ class MemberController extends Controller
                 if (in_array($service->status, ['Due', 'Active', 'Inactive'])) {
                     $member->hasValidSubscription = true;
                 }
-                if ($service->status === 'Active') {
+                if (in_array($service->status, ['Active', 'Due'])) {
                     $member->hasActiveSubscription = true;
+                }
+
+            }
+
+            // find the id_number of the searched user
+            if ($member->id_number === $request->search) {
+                if ($member->hasActiveSubscription) {
+                    $keynumber = $request->search; // Set keynumber to search term if active subscription exists
+                } else {
+                    $keynumber = '*****'; // Set keynumber to empty if no active subscription
                 }
             }
         }
 
+
         session()->put('form_token', uniqid());
-        return view('administrator.members.index', compact('members', 'occupiedLockers'));
+        return view('administrator.members.index', compact('members', 'occupiedLockers', 'keynumber'));
     }
 
 
