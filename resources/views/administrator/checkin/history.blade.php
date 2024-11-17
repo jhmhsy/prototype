@@ -1,5 +1,5 @@
 @canany(['checkin-log-list'])
-    <x-dash-layout>
+    <x-dash-layout title="Checkin Logs">
         <div class="container">
             <h1 class="text-2xl font-bold mb-4 dark:text-white">Check-in History</h1>
 
@@ -69,7 +69,8 @@
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
                         @if ($checkins->isEmpty())
-                            <td colspan="8" class="text-center p-3 text-gray-500 mt-4">No check-in logs available at this time.</td>
+                            <td colspan="8" class="text-center p-3 text-gray-500 mt-4">No check-in logs available at this time.
+                            </td>
                         @else
                             @foreach ($checkins as $checkin)
                                 <tr>

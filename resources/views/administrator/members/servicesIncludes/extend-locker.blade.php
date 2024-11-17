@@ -72,16 +72,19 @@
             <label for="locker_no" class="block text-sm font-medium text-gray-700">Locker
                 Number</label>
 
-            <select name="locker_no" id="locker_no"
-                class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                {{ !isset($locker) ? 'disabled' : '' }}>
-                @if (isset($locker))
-                <option value="{{ $locker->locker_no }}" selected>Locker No. {{ $locker->locker_no }}</option>
+            <select name="locker_no" id="locker_no_{{ $member->id }}"
+                class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                @if ($member->lockers->isNotEmpty())
+                @foreach ($member->lockers as $locker)
+                <option value="{{ $locker->locker_no }}" selected>
+                    Locker No. {{ $locker->locker_no }}
+                </option>
+                @endforeach
                 @else
                 <option value="" disabled selected>No Locker Assigned</option>
                 @endif
             </select>
-            <input type="hidden" name="locker_no" value="{{ isset($locker) ? $locker->locker_no : '' }}">
+
 
         </div>
 

@@ -1,5 +1,5 @@
 @canany(['overview-list'])
-<x-dash-layout>
+<x-dash-layout title="Overview">
     <div class="text-night dark:text-white flex flex-col space-y-3 overflow-auto">
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 dark:text-white">
             <div
@@ -93,7 +93,7 @@
                             @forelse ($latestCheckins as $checkin)
                             <tr
                                 class=" transition-colors py-10 {{ $loop->iteration % 2 == 0 ? 'bg-gray-100 dark:bg-peak_2' : '' }}">
-               ec               <td class="p-2">{{ $checkin->rank }}</td>
+                                ec <td class="p-2">{{ $checkin->rank }}</td>
                                 <td class="p-2">{{ $checkin->member->name }}</td>
                                 <td class="p-2">{{ $checkin->member->email }}</td>
                                 <td class="p-2">{{ $checkin->type }}</td>

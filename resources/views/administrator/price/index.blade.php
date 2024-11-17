@@ -1,5 +1,5 @@
 @canany(['price-view', 'price-edit'])
-    <x-dash-layout>
+    <x-dash-layout title="Prices">
 
 
         <body class="bg-gray-100 dark:bg-peak_3">

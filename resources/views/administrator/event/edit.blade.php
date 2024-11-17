@@ -2,22 +2,21 @@
     class="fixed select-none inset-0 bg-black opacity-25 z-40">
 </div>
 
+
 <div style="display: none;"
-    class="modal fixed w-[90%] sm:w-[80%] md:w-[60%] lg:w-[40%] xl:w-[35%] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 p-2 sm:p-3 md:p-4"
+    class="modal fixed w-[90%] md:w-[60%] lg:w-[40%] xl:w-[35%] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 p-4"
     x-show="Editmodal === {{$event->id}}" @click.away="Editmodal = null"
     x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform scale-90"
     x-transition:enter-end="opacity-100 transform scale-100" x-transition:leave="transition ease-in duration-100"
     x-transition:leave-start="opacity-100 transform scale-100" x-transition:leave-end="opacity-0 transform scale-90">
-
     <div class="bg-white dark:bg-peak_2 rounded shadow-lg w-full max-w-2xl max-h-[90vh] overflow-y-auto" @click.stop>
-        <div class="mt-50 p-2 sm:p-3 md:p-4">
-            <div class="flex flex-col space-y-1.5 px-3 sm:px-4 md:px-6">
-                <h3 class="whitespace-nowrap tracking-tight text-xl sm:text-2xl font-bold dark:text-white">Edit Event
-                </h3>
-                <p class="text-sm text-gray-500">What is this new event?</p>
+        <div class=" mt-50 p-4">
+            <div class="flex flex-col space-y-1.5 px-6">
+                <h3 class="whitespace-nowrap tracking-tight text-2xl font-bold dark:text-white">Edit Event</h3>
+                <p class="text-sm text-gray-500 ">What is this new event? </p>
             </div>
+            <div class="p-6 text-black dark:text-white">
 
-            <div class="p-3 sm:p-4 md:p-6 text-black dark:text-white">
                 <form action="{{ route('events.update', $event->id) }}" method="POST">
                     @csrf
                     @method('PUT')
@@ -59,6 +58,7 @@
 
                     <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded">Update Event</button>
                 </form>
+
             </div>
         </div>
     </div>

@@ -1,5 +1,5 @@
 @canany(['event-list', 'event-view', 'event-create', 'event-edit', 'event-delete'])
-<x-dash-layout>
+<x-dash-layout title="Events">
     <section x-data="{ createmodal: false ,viewmodal:false, Editmodal:false}">
         <div class="rounded-lg shadow-sm p-6  bg-white dark:bg-peak_1">
 
@@ -58,35 +58,35 @@
 
                 </div>
             </div>
-            <div class="w-full overflow-x-auto">
+            <div class="relative w-full overflow-auto pr-20">
                 <table class="w-full table-fixed caption-bottom text-sm mb-3">
                     <thead>
                         <tr class="transition-colors hover:bg-muted/50 text-gray-500 dark:bg-peak_2">
-                            <th class="h-12 px-4 text-left align-middle font-medium w-[200px] truncate">
+                            <th class="h-12 px-4 text-left align-middle font-medium">
                                 <a href="{{ route('administrator.events', ['sortBy' => 'name', 'sortDirection' => $sortBy === 'name' && $sortDirection === 'asc' ? 'desc' : 'asc', 'search' => request('search')]) }}"
                                     class="{{ $sortBy === 'name' ? 'text-black dark:text-white' : 'text-gray-500' }}">
                                     Event
                                 </a>
                             </th>
-                            <th class="h-12 px-4 text-left align-middle font-medium w-[200px] truncate">
+                            <th class="h-12 px-4 text-left align-middle font-medium ">
                                 <a href="{{ route('administrator.events', ['sortBy' => 'location', 'sortDirection' => $sortBy === 'location' && $sortDirection === 'asc' ? 'desc' : 'asc', 'search' => request('search')]) }}"
                                     class="{{ $sortBy === 'location' ? 'text-black dark:text-white ' : 'text-gray-500' }}">
                                     Location
                                 </a>
                             </th>
-                            <th class="h-12 px-4 text-left align-middle font-medium w-[200px] truncate">
+                            <th class="h-12 px-4 text-left align-middle font-medium">
                                 <a href="{{ route('administrator.events', ['sortBy' => 'details', 'sortDirection' => $sortBy === 'details' && $sortDirection === 'asc' ? 'desc' : 'asc', 'search' => request('search')]) }}"
                                     class="{{ $sortBy === 'details' ? 'text-black dark:text-white' : 'text-gray-500' }}">
                                     Details
                                 </a>
                             </th>
-                            <th class="h-12 px-4 text-left align-middle font-medium w-[200px] truncate">
+                            <th class="h-12 px-4 text-left align-middle font-medium">
                                 <a href="{{ route('administrator.events', ['sortBy' => 'date', 'sortDirection' => $sortBy === 'date' && $sortDirection === 'asc' ? 'desc' : 'asc', 'search' => request('search')]) }}"
                                     class="{{ $sortBy === 'date' ? 'text-black dark:text-white' : 'text-gray-500' }}">
                                     Date
                                 </a>
                             </th>
-                            <th class="h-12 px-4 text-left align-middle font-medium truncate">
+                            <th class="h-12 px-4 text-left align-middle font-medium">
                                 <a href="{{ route('administrator.events', ['sortBy' => 'time', 'sortDirection' => $sortBy === 'time' && $sortDirection === 'asc' ? 'desc' : 'asc', 'search' => request('search')]) }}"
                                     class="{{ $sortBy === 'time' ? 'text-black dark:text-white' : 'text-gray-500' }}">
                                     Time
@@ -111,23 +111,23 @@
                                             <tr
                                                 class=" transition-colors py-10 {{ $loop->iteration % 2 == 0 ? 'bg-gray-100 dark:bg-peak_2' : '' }}">
 
-                                                <td class=" px-4 align-middle font-medium truncate">
+                                                <td class=" px-4 align-middle font-medium">
                                                     {{ $event->name }}
                                                 </td>
-                                                <td class="px-4 align-middle  truncate">
+                                                <td class="px-4 align-middle ">
                                                     {{ $event->location }}
                                                 </td>
 
-                                                <td class="px-4 align-middle  truncate">
+                                                <td class="px-4 align-middle ">
                                                     {{ \Illuminate\Support\Str::limit($event->details, 15) }}
                                                 </td>
 
-                                                <td class="px-4 align-middle  truncate">{{ $event->date }}
+                                                <td class="px-4 align-middle ">{{ $event->date }}
                                                 </td>
-                                                <td class="px-4 align-middle  truncate">{{ $event->time }}
+                                                <td class="px-4 align-middle ">{{ $event->time }}
                                                 </td>
                                                 @canany(['event-view', 'event-edit', 'event-delete'])
-                                                    <td class="px-4 align-middle ">
+                                                    <td class="px-4 align-middle">
 
                                                         <div class="action-dropdown flex items-center justify-center">
                                                             <button

@@ -7,7 +7,8 @@
             <div class="polygon-1-wrapper relative">
                 <div class="polygon-1 bg-lemon-base absolute flex justify-center bottom-0">
                     <div class="absolute w-full xl:w-[85%] h-[150%] t-[-40%] z-50 inset-0">
-                        <img src="/images/public/trainer_2.png" alt="Trainer Image" class="object-cover w-full h-full" />
+                        <img src="/images/public/trainer_2.png" alt="Trainer Image"
+                            class="object-cover w-full h-full" />
                     </div>
                 </div>
             </div>

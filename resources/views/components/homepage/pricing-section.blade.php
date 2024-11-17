@@ -3,8 +3,9 @@
         <div class="p-6">
             <h1 class="text-5xl font-bold mb-4 font-raleway">PRICING & PLANS</h1>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="flex flex-col bg-peak-3 p-4 py-10 pr-10 rounded-lg shadow-lg text-left gap-4 backdrop-blur-md shadow-white/5">
-                    <div>   
+                <div
+                    class="flex flex-col bg-peak-3 p-4 py-10 pr-10 rounded-lg shadow-lg text-left gap-4 backdrop-blur-md shadow-white/5">
+                    <div>
                         <h3 class="text-xl  text-white">Regular</h3>
                         <h4 class="text-sm text-gray-400">Perfect Plan for Stronger Adults</h4>
                     </div>
@@ -41,7 +42,8 @@
                         </li>
                     </ul>
                 </div>
-                <div class="flex flex-col bg-peak-3 p-4 py-10 pr-10 rounded-lg shadow-lg text-left gap-4 backdrop-blur-md shadow-white/5">
+                <div
+                    class="flex flex-col bg-peak-3 p-4 py-10 pr-10 rounded-lg shadow-lg text-left gap-4 backdrop-blur-md shadow-white/5">
                     <div>
                         <h3 class="text-xl  text-white">Student</h3>
                         <h4 class="text-sm text-gray-400">Student? We got you covered</h4>
@@ -80,7 +82,8 @@
                         </li>
                     </ul>
                 </div>
-                <div class="flex flex-col bg-peak-3 p-4 py-10 pr-10 rounded-lg shadow-lg text-left gap-4 backdrop-blur-md shadow-white/5">
+                <div
+                    class="flex flex-col bg-peak-3 p-4 py-10 pr-10 rounded-lg shadow-lg text-left gap-4 backdrop-blur-md shadow-white/5">
                     <div>
                         <h3 class="text-xl  text-white">Couple Monthly</h3>
                         <h4 class="text-sm text-gray-400">Couple? We got special plan for you</h4>
@@ -119,7 +122,8 @@
                         </li>
                     </ul>
                 </div>
-                <div class="flex flex-col bg-peak-3 p-4 py-10 pr-10 rounded-lg shadow-lg text-left gap-4 backdrop-blur-md shadow-white/5">
+                <div
+                    class="flex flex-col bg-peak-3 p-4 py-10 pr-10 rounded-lg shadow-lg text-left gap-4 backdrop-blur-md shadow-white/5">
                     <div>
                         <h3 class="text-xl  text-white">Balanced Plan</h3>
                         <h4 class="text-sm text-gray-400">Balanced Plan for Normal Adults</h4>
@@ -158,7 +162,8 @@
                         </li>
                     </ul>
                 </div>
-                <div class="flex flex-col bg-peak-3 p-4 py-10 pr-10 rounded-lg shadow-lg text-left gap-4 backdrop-blur-md shadow-white/5">
+                <div
+                    class="flex flex-col bg-peak-3 p-4 py-10 pr-10 rounded-lg shadow-lg text-left gap-4 backdrop-blur-md shadow-white/5">
                     <div>
                         <h3 class="text-xl  text-white">Super Regular</h3>
                         <h4 class="text-sm text-gray-400">Super Plan for Muscle-Addicted Adults</h4>
@@ -197,7 +202,8 @@
                         </li>
                     </ul>
                 </div>
-                <div class="flex flex-col bg-peak-3 p-4 py-10 pr-10 rounded-lg shadow-lg text-left gap-4 backdrop-blur-md shadow-white/5">
+                <div
+                    class="flex flex-col bg-peak-3 p-4 py-10 pr-10 rounded-lg shadow-lg text-left gap-4 backdrop-blur-md shadow-white/5">
                     <div>
                         <h3 class="text-xl  text-white">Ultima Maximus Plan</h3>
                         <h4 class="text-sm text-gray-400">Ultimate Plan for Muscle Maniac Adults</h4>
