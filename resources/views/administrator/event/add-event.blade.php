@@ -2,7 +2,7 @@
 </div>
 
 <div style="display:none;" x-show="createmodal" @click.away="createmodal = false"
-    class="fixed z-50 w-[90%] sm:w-[80%] md:w-[70%] lg:w-[50%] xl:w-[40%] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-4"
+    class="fixed z-50 w-[99%] sm:w-[80%] md:w-[70%] lg:w-[50%] xl:w-[40%] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-4"
     x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform scale-90"
     x-transition:enter-end="opacity-100 transform scale-100" x-transition:leave="transition ease-in duration-100"
     x-transition:leave-start="opacity-100 transform scale-100" x-transition:leave-end="opacity-0 transform scale-90">
@@ -28,7 +28,7 @@
                             type="text" name="name" id="name" required maxlength="50"
                             placeholder="e.g International party" value="{{ old('name') }}">
                         @error('name')
-                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                         @enderror
                     </div>
 
@@ -46,7 +46,7 @@
                             <option value="stage" {{ old('location') == 'stage' ? 'selected' : '' }}>Stage</option>
                         </select>
                         @error('location')
-                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                         @enderror
                     </div>
                 </div>
@@ -60,7 +60,7 @@
                         name="details" id="details" required maxlength="300" placeholder="We do party beitch"
                         rows="4">{{ old('details') }}</textarea>
                     @error('details')
-                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                     @enderror
                 </div>
 
@@ -72,7 +72,7 @@
                         <input type="date" id="date" name="date" required value="{{ old('date') }}"
                             class="w-full h-11 px-4 rounded-lg border dark:border-none dark:bg-peak_1 text-sm focus:ring-2 focus:ring-blue-500 @error('date') border-red-500 @enderror">
                         @error('date')
-                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                         @enderror
                     </div>
 
@@ -83,16 +83,16 @@
                         <select id="time" name="time" required
                             class="w-full h-11 px-4 rounded-lg border dark:border-none dark:bg-peak_1 text-sm focus:ring-2 focus:ring-blue-500 @error('time') border-red-500 @enderror">
                             <option value="" disabled {{ old('time') ? '' : 'selected' }}>Select an hour</option>
-                            @for ($i = 7; $i < 21; $i++) @php $timeValue=str_pad($i, 2, '0' , STR_PAD_LEFT) . ':00' ;
-                                $displayTime=($i> 12 ? $i - 12 : $i) . ' ' . ($i >= 12 ? 'pm' : 'am');
-                                @endphp
-                                <option value="{{ $timeValue }}" {{ old('time') == $timeValue ? 'selected' : '' }}>
-                                    {{ $displayTime }}
-                                </option>
-                                @endfor
+                            @for ($i = 7; $i < 21; $i++) @php    $timeValue = str_pad($i, 2, '0', STR_PAD_LEFT) . ':00';
+                                $displayTime = ($i > 12 ? $i - 12 : $i) . ' ' . ($i >= 12 ? 'pm' : 'am');
+                            @endphp
+                                                        <option value="{{ $timeValue }}" {{ old('time') == $timeValue ? 'selected' : '' }}>
+                                                            {{ $displayTime }}
+                                                        </option>
+                            @endfor
                         </select>
                         @error('time')
-                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                         @enderror
                     </div>
                 </div>
