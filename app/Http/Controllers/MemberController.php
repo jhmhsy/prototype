@@ -58,6 +58,7 @@ class MemberController extends Controller
 
 
         $query = Member::with(['services', 'lockers', 'treadmills', 'qrcode', 'membershipDuration']);
+        $keynumber = '*****';
 
         if ($request->has('search')) {
             $searchTerm = $request->search;
@@ -85,7 +86,7 @@ class MemberController extends Controller
 
         $occupiedLockers = Locker::whereIn('status', ['Active', 'Due', 'Overdue'])->pluck('locker_no')->toArray();
 
-        $keynumber = '*****';
+
 
         // Process each member's subscription status
         foreach ($members as $member) {
@@ -110,16 +111,17 @@ class MemberController extends Controller
 
             }
 
-            // find the id_number of the searched user
-            if ($member->id_number === $request->search) {
+            // to proceed should have using search, search is not just spaces and the id_number matches to searched data
+            if ($request->has('search') && trim($request->search) !== '' && $member->id_number === $request->search) {
+
                 if ($member->hasActiveSubscription) {
-                    $keynumber = $request->search; // Set keynumber to search term if active subscription exists
+                    $keynumber = $request->search;
                 } else {
-                    $keynumber = '*****'; // Set keynumber to empty if no active subscription
+                    $keynumber = '*****';
                 }
             }
-        }
 
+        }
 
         session()->put('form_token', uniqid());
         return view('administrator.members.index', compact('members', 'occupiedLockers', 'keynumber'));
