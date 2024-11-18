@@ -30,13 +30,10 @@ use Spatie\Permission\Models\Role;
 
 use App\Http\Controllers\UserServicesController;
 
-Route::get('/services', [UserServicesController::class, 'index'])->name('services.index');
-Route::post('/update-id-number', [UserServicesController::class, 'updateIdNumber'])
-    ->middleware('auth')
-    ->name('update.id_number');
-
-
-
+Route::middleware('auth')->group(function () {
+    Route::get('/services', [UserServicesController::class, 'index'])->name('services.index');
+    Route::post('/update-id-number', [UserServicesController::class, 'updateIdNumber'])->name('update.id_number');
+});
 
 
 Route::get('/index/link/{id}', [LinkController::class, 'index'])->name('index.link');

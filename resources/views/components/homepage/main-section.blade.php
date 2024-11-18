@@ -1,5 +1,5 @@
 <style>
-    /* Removed keyframes and animation classes */
+/* Removed keyframes and animation classes */
 </style>
 
 <section
@@ -53,27 +53,27 @@
         </div>
     </div>
     <script>
-        // JavaScript to observe elements and add 'animate__animated' class on scroll
-        document.addEventListener("DOMContentLoaded", function () {
-            const animateOnScrollElements = document.querySelectorAll('.animate-fade-in-down');
+    // JavaScript to observe elements and add 'animate__animated' class on scroll
+    document.addEventListener("DOMContentLoaded", function() {
+        const animateOnScrollElements = document.querySelectorAll('.animate-fade-in-down');
 
-            const observer = new IntersectionObserver(entries => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        setTimeout(() => {
-                            entry.target.classList.add("animate__fadeInDown");
-                        }, 50); // 200 milliseconds delay
-                    } else {
-                        setTimeout(() => {
-                            entry.target.classList.remove("animate__fadeInDown");
-                        }, 200); // 200 milliseconds delay
-                    }
-                });
-            });
-
-            animateOnScrollElements.forEach(element => {
-                observer.observe(element);
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add("animate__fadeInDown");
+                    }, 50); // 200 milliseconds delay
+                } else {
+                    setTimeout(() => {
+                        entry.target.classList.remove("animate__fadeInDown");
+                    }, 200); // 200 milliseconds delay
+                }
             });
         });
+
+        animateOnScrollElements.forEach(element => {
+            observer.observe(element);
+        });
+    });
     </script>
 </section>

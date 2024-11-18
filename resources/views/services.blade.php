@@ -1,398 +1,197 @@
-<!DOCTYPE html>
-<html>
+<x-guest-layout class="bg-black">
+    <header id="header-section" class="transition-transform duration-150 ease-in-out  dark:bg-black">
+        @include ('components.homepage.header-section')
+    </header>
 
-<head>
-    <title>QR Scanner</title>
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.8/html5-qrcode.min.js"></script>
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+    <main class=" pt-24 p-6 bg-black h-[100vh]">
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background-color: #f5f5f5;
-            min-height: 100vh;
-            padding: 1rem;
-        }
 
-        .container {
-            width: min(95%, 600px);
-            margin: 0 auto;
-            padding: clamp(10px, 3vw, 20px);
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
 
-        #reader-container {
-            height: 0;
-            opacity: 0;
-            overflow: hidden;
-            transition: all 0.5s ease-in-out;
-            margin: 0 auto;
-        }
+        @if ($member)
+        <h1 class="text-2xl font-bold mb-6 text-yellow-300 ">Member <span class="text-white">Services</span></h1>
 
-        #reader-container.active {
-            height: min(70vh, 400px);
-            opacity: 1;
-            margin: clamp(10px, 3vw, 20px) 0;
-        }
+        <body class="bg-background text-foreground min-h-screen flex items-start justify-center p-4 w-full">
+            <div class="flex flex-col md:flex-row w-full max-w-[95%] mx-auto space-y-4 md:space-y-0 md:space-x-4">
+                <!-- User Information Card -->
+                <div class="w-full md:w-[30%] p-6 bg-card text-card-foreground rounded-lg shadow-md">
 
-        #reader {
-            width: 100%;
-            height: 100%;
-            padding: clamp(5px, 2vw, 10px);
-            border: clamp(4px, 1.5vw, 8px) solid #666;
-            border-radius: clamp(5px, 2vw, 10px);
-            transition: all 0.3s ease-in-out;
-            background: white;
-            position: relative;
-        }
+                    <h2 class="text-2xl font-bold mb-4 text-white">User Information</h2>
+                    <div class="space-y-4 text-gray-500">
+                        <div>
+                            <label class="block text-sm font-medium text-muted-foreground">Name</label>
+                            <p class="text-white">{{ $member->name ?? 'N\A' }}</p>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-muted-foreground">Email</label>
+                            <p class="text-white">{{ $member->email ?? 'N\A' }}</p>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-muted-foreground">Facebook</label>
+                            <p class="text-white">{{ $member->fb ?? 'N\A' }}</p>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-muted-foreground">Membership</label>
+                            <p class="text-white">{{ $member->membership_type ?? 'N\A' }}</p>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-muted-foreground">Membership Duration</label>
+                            <p class="text-white">
+                                @if ($member->membershipDuration)
+                                {{ \Carbon\Carbon::parse($member->membershipDuration->start_date)->format('M j, Y') }}
+                                -
+                                {{ \Carbon\Carbon::parse($member->membershipDuration->due_date)->format('M j, Y') }}
+                                @else
+                            <p class="text-white">duration here</p>
+                            @endif
+                            </p>
 
-        /* Enhanced QR Scanner styles */
-        #reader video {
-            max-width: 100% !important;
-            height: auto !important;
-            border-radius: 8px;
-        }
 
-        #reader__scan_region {
-            max-width: 100% !important;
-            height: 100% !important;
-        }
+                        </div>
+                    </div>
+                </div>
 
-        #reader__scan_region>img {
-            /* QR Frame Image */
-            opacity: 0.7 !important;
-            border: 3px solid #4CAF50 !important;
-            box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.3) !important;
-        }
+                <!-- Service Details Card -->
+                <div class="w-full md:w-[70%] p-6 bg-card text-card-foreground rounded-lg shadow-md">
 
-        /* Custom QR scanning region overlay */
-        .qr-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            pointer-events: none;
-            z-index: 1;
-        }
 
-        /* Style for the corner markers */
-        #reader__scan_region::before,
-        #reader__scan_region::after {
-            content: '';
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            border: 3px solid #4CAF50;
-            z-index: 2;
-        }
+                    <h2 class="text-2xl font-bold mb-4 text-md text-white">Service Details</h2>
+                    <div class="overflow-x-auto relative">
+                        <div class="overflow-y-auto max-h-[500px]">
+                            <table class="w-full text-left border-collapse min-w-[800px]">
+                                <thead class="sticky top-0 bg-card z-10 text-sm">
+                                    <tr class="text-gray-500">
+                                        <th
+                                            class="border-b border-gray-500 py-3 px-4 text-sm font-medium text-muted-foreground">
+                                            Service Type
+                                        </th>
+                                        <th
+                                            class="border-b border-gray-500 py-3 px-4 text-sm font-medium text-muted-foreground">
+                                            Amount
+                                        </th>
+                                        <th
+                                            class="border-b border-gray-500 py-3 px-4 text-sm font-medium text-muted-foreground">
+                                            Months
+                                        </th>
+                                        <th
+                                            class="border-b border-gray-500 py-3 px-4 text-sm font-medium text-muted-foreground">
+                                            Start date
+                                        </th>
+                                        <th
+                                            class="border-b border-gray-500 py-3 px-4 text-sm font-medium text-muted-foreground">
+                                            Due date
+                                        </th>
+                                        <th
+                                            class="border-b border-gray-500 py-3 px-4 text-sm font-medium text-muted-foreground">
+                                            Status
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($member->services as $service)
+                                    <tr class="hover:bg-muted/50 transition-colors text-white">
+                                        <td class="border-b border-gray-500 py-3 px-4  text-sm">
+                                            {{ $service->service_type }}
+                                        </td>
+                                        <td class="border-b border-gray-500 py-3 px-4  text-sm">
+                                            ₱{{ $service->amount }}</td>
+                                        <td class="border-b border-gray-500 py-3 px-4  text-sm">
+                                            {{ $service->month }}
+                                        </td>
+                                        <td class="border-b border-gray-500 py-3 px-4  text-sm">
+                                            {{ \Carbon\Carbon::parse($service->start_date)->format('M j, Y') }}
+                                        </td>
+                                        <td class="border-b border-gray-500 py-3 px-4  text-sm">
+                                            {{ \Carbon\Carbon::parse($service->due_date)->format('M j, Y') }}
+                                        </td>
+                                        @php
+                                        $statusClass = match ($service->status) {
+                                        'Active' => 'text-green-600', 'Inactive' => 'text-blue-700', 'Due'
+                                        => 'text-orange-500', 'Overdue' => 'text-red-700', 'Expired' =>
+                                        'text-gray-500', default => '',
+                                        };
+                                        @endphp
+                                        <td class="border-b border-gray-500 py-3 px-4  text-sm {{ $statusClass }}">
+                                            {{ $service->status }}
+                                        </td>
+                                    </tr>
+                                    @endforeach
 
-        #reader__dashboard {
-            padding: 5px !important;
-            background: rgba(0, 0, 0, 0.05) !important;
-            border-radius: 4px !important;
-            margin-top: 10px !important;
-        }
+                                    @foreach($member->lockers as $locker)
+                                    <tr class="hover:bg-muted/50 transition-colors text-white">
+                                        <td class="border-b border-gray-500 py-3 px-4  text-sm">
+                                            Locker #{{ $locker->locker_no }}
+                                        </td>
+                                        <td class="border-b border-gray-500 py-3 px-4  text-sm">
+                                            ₱{{ $locker->amount }}</td>
+                                        <td class="border-b border-gray-500 py-3 px-4  text-sm">
+                                            {{ $locker->month }}
+                                        </td>
+                                        <td class="border-b border-gray-500 py-3 px-4  text-sm">
+                                            {{ \Carbon\Carbon::parse($locker->start_date)->format('M j, Y') }}
+                                        </td>
+                                        <td class="border-b border-gray-500 py-3 px-4  text-sm">
+                                            {{ \Carbon\Carbon::parse($locker->due_date)->format('M j, Y') }}
+                                        </td>
+                                        <td class="border-b border-gray-500 py-3 px-4  text-sm {{ match ($locker->status) {
+                                                'Active' => 'text-green-600',
+                                                'Inactive' => 'text-blue-700',
+                                                'Due' => 'text-orange-500',
+                                                'Overdue' => 'text-red-700',
+                                                'Expired' => 'text-gray-500',
+                                                default => '',
+                                            } }}">
+                                            {{ $locker->status }}
+                                        </td>
+                                    </tr>
+                                    @endforeach
 
-        #reader__dashboard_section_csr button {
-            background: #4CAF50 !important;
-            color: white !important;
-            border: none !important;
-            padding: 8px 15px !important;
-            border-radius: 4px !important;
-            cursor: pointer !important;
-        }
+                                    @foreach($member->treadmills as $treadmill)
+                                    <tr class="hover:bg-muted/50 transition-colors text-white">
+                                        <td class="border-b border-gray-500 py-3 px-4  text-sm">
+                                            Treadmill
+                                        </td>
+                                        <td class="border-b border-gray-500 py-3 px-4  text-sm">
+                                            {{ $treadmill->amount }}
+                                        </td>
+                                        <td class="border-b border-gray-500 py-3 px-4  text-sm">
+                                            {{ $treadmill->month }}
+                                        </td>
+                                        <td class="border-b border-gray-500 py-3 px-4  text-sm">
+                                            {{ \Carbon\Carbon::parse($treadmill->start_date)->format('M j, Y') }}
+                                        </td>
+                                        <td class="border-b border-gray-500 py-3 px-4  text-sm">
+                                            {{ \Carbon\Carbon::parse($treadmill->due_date)->format('M j, Y') }}
+                                        </td>
+                                        @php
+                                        $statusClass = match ($treadmill->status) {
+                                        'Active' => 'text-green-600', 'Inactive' => 'text-blue-700',
+                                        'Due'
+                                        =>
+                                        'text-orange-500', 'Overdue' => 'text-red-700', 'Expired' =>
+                                        'text-gray-500',
+                                        default => '',
+                                        };
+                                        @endphp
+                                        <td class="border-b border-gray-500 py-3 px-4  text-sm {{ $statusClass }}">
+                                            {{ $treadmill->status }}
+                                        </td>
+                                    </tr>
+                                    @endforeach
 
-        #result {
-            margin: clamp(10px, 3vw, 20px) auto;
-            transform: translateY(0);
-            opacity: 1;
-            transition: all 0.5s ease-in-out;
-            width: 100%;
-        }
-
-        #result.move-up {
-            transform: translateY(-10px);
-        }
-
-        .button-container {
-            text-align: center;
-            margin-bottom: clamp(10px, 3vw, 20px);
-        }
-
-        .button {
-            background-color: #4CAF50;
-            border: none;
-            color: white;
-            padding: clamp(10px, 3vw, 15px) clamp(20px, 5vw, 32px);
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: clamp(14px, 4vw, 16px);
-            margin: 4px 2px;
-            cursor: pointer;
-            border-radius: 4px;
-            transition: all 0.3s ease;
-            -webkit-tap-highlight-color: transparent;
-            touch-action: manipulation;
-        }
-
-        .button:hover {
-            opacity: 0.9;
-            transform: translateY(-2px);
-        }
-
-        .button:active {
-            transform: translateY(1px);
-        }
-
-        .stop-button {
-            background-color: #f44336;
-            display: none;
-        }
-
-        .scanning {
-            border-color: #ff4444 !important;
-            animation: pulse 2s infinite;
-        }
-
-        .success {
-            border-color: #4CAF50 !important;
-        }
-
-        #status-message {
-            text-align: center;
-            margin: clamp(5px, 2vw, 10px) 0;
-            padding: clamp(5px, 2vw, 10px);
-            border-radius: 4px;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            font-size: clamp(12px, 3.5vw, 14px);
-        }
-
-        .status-scanning {
-            color: #ff4444;
-        }
-
-        .status-success {
-            color: #4CAF50;
-        }
-
-        .input-field {
-            width: 100%;
-            padding: clamp(10px, 3vw, 12px) clamp(15px, 4vw, 20px);
-            margin: clamp(4px, 2vw, 8px) 0;
-            border-radius: 4px;
-            border: 2px solid #ddd;
-            transition: all 0.3s ease;
-            font-size: clamp(14px, 4vw, 16px);
-        }
-
-        .input-field:focus {
-            border-color: #4CAF50;
-            outline: none;
-        }
-
-        @keyframes pulse {
-            0% {
-                box-shadow: 0 0 0 0 rgba(255, 68, 68, 0.4);
-            }
-
-            70% {
-                box-shadow: 0 0 0 10px rgba(255, 68, 68, 0);
-            }
-
-            100% {
-                box-shadow: 0 0 0 0 rgba(255, 68, 68, 0);
-            }
-        }
-
-        /* Scanning animation for QR frame */
-        @keyframes scanAnimation {
-            0% {
-                border-color: rgba(76, 175, 80, 0.5);
-                box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.5);
-            }
-
-            50% {
-                border-color: rgba(76, 175, 80, 1);
-                box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.3);
-            }
-
-            100% {
-                border-color: rgba(76, 175, 80, 0.5);
-                box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.5);
-            }
-        }
-
-        /* Mobile optimizations */
-        @media (max-width: 480px) {
-            body {
-                padding: 0.5rem;
-            }
-
-            .container {
-                width: 100%;
-                padding: 10px;
-                border-radius: 8px;
-            }
-
-            #reader-container.active {
-                height: 60vh;
-            }
-
-            #reader__scan_region img {
-                max-width: 100% !important;
-                height: auto !important;
-            }
-        }
-
-        /* Handle notched phones */
-        @supports
-        (padding: env(safe - area - inset - top))
-            {
-            body {
-                padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
-            }
-        }
-
-        /* Prevent text size adjustment */
-        html {
-            -webkit-text-size-adjust: 100%;
-        }
-    </style>
-</head>
-
-<body>
-    <div class="container">
-        <div class="button-container">
-            <button class="button" id="startButton">Start Scanner</button>
-            <button class="button stop-button" id="stopButton">Stop Scanner</button>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </body>
+        @else
+        <div class="text-center mt-6">
+            <p class="text-white text-2xl mb-4">Not Links Yet.</p>
+            <p class="text-white mb-4">Link now by scanner your Provided QRCODE to view your services</p>
+            @include ('components.homepage.my-services.scanner')
         </div>
+        @endif
 
-        <div id="reader-container">
-            <div id="reader"></div>
-            <div id="status-message"></div>
-        </div>
-
-        <div id="result">
-            <input type="text" id="qrResult" class="input-field" placeholder="QR Code Result" readonly>
-        </div>
-    </div>
-
-    <script>
-        const html5QrCode = new Html5Qrcode("reader");
-        const startButton = document.getElementById('startButton');
-        const stopButton = document.getElementById('stopButton');
-        const reader = document.getElementById('reader');
-        const readerContainer = document.getElementById('reader-container');
-        const qrResult = document.getElementById('qrResult');
-        const statusMessage = document.getElementById('status-message');
-        const result = document.getElementById('result');
-        let isScanning = false;
-
-        function updateStatus(message, isSuccess = false) {
-            statusMessage.textContent = message;
-            statusMessage.className = isSuccess ? 'status-success' : 'status-scanning';
-        }
-
-        function startScanning() {
-            readerContainer.classList.add('active');
-            reader.classList.add('scanning');
-            startButton.style.display = 'none';
-            stopButton.style.display = 'inline-block';
-            isScanning = true;
-            result.classList.add('move-up');
-            updateStatus('Scanning for QR Code...');
-
-            const qrCodeSuccessCallback = (decodedText, decodedResult) => {
-                if (!isScanning) return;
-
-                reader.classList.remove('scanning');
-                reader.classList.add('success');
-                qrResult.value = decodedText;
-                updateStatus('QR Code detected successfully!', true);
-
-                setTimeout(() => {
-                    stopScanning(true);
-                }, 900);
-            };
-
-            const config = {
-                fps: 10,
-                qrbox: {
-                    width: 300,
-                    height: 300
-                }, // Increased size of QR box
-                aspectRatio: 1.0,
-                experimentalFeatures: {
-                    useBarCodeDetectorIfSupported: true
-                }
-            };
-
-            html5QrCode.start({
-                facingMode: "environment"
-            },
-                config,
-                qrCodeSuccessCallback,
-                (errorMessage) => {
-                    if (isScanning) {
-                        reader.classList.add('scanning');
-                        updateStatus('Searching for QR Code...');
-                    }
-                }
-            ).catch((err) => {
-                console.error(`Unable to start scanning`, err);
-                alert("Error starting camera: " + err);
-                stopScanning();
-            });
-        }
-
-        function stopScanning(wasSuccessful = false) {
-            isScanning = false;
-            html5QrCode.stop().then(() => {
-                reader.classList.remove('scanning', 'success');
-                readerContainer.classList.remove('active');
-                startButton.style.display = 'inline-block';
-                stopButton.style.display = 'none';
-                statusMessage.textContent = '';
-                if (wasSuccessful) {
-                    result.classList.remove('move-up');
-                    qrResult.style.borderColor = '#4CAF50';
-                    setTimeout(() => {
-                        qrResult.style.borderColor = '#ddd';
-                    }, 2000);
-                }
-            });
-        }
-
-        startButton.addEventListener('click', startScanning);
-        stopButton.addEventListener('click', () => stopScanning(false));
-
-        // Handle page visibility change
-        document.addEventListener('visibilitychange', () => {
-            if (document.hidden && isScanning) {
-                stopScanning(false);
-            }
-        });
-
-        // Prevent zooming on double-tap
-        document.addEventListener('touchstart', (event) => {
-            if (event.touches.length > 1) {
-                event.preventDefault();
-            }
-        }, {
-            passive: false
-        });
-    </script>
-</body>
-
-</html>
+    </main>
+</x-guest-layout>

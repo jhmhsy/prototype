@@ -33,6 +33,10 @@ class UserServicesController extends Controller
         $user->id_number = $request->id_number;
         $user->save();
 
-        return redirect()->back()->with('success', 'ID Number updated successfully.');
+        // Manually flash the success message for the session
+        session()->flash('status', 'ID Number updated successfully!');
+
+        return redirect()->back();
     }
+
 }
