@@ -54,61 +54,19 @@
             position: relative;
         }
 
-        /* Enhanced QR Scanner styles */
+        /* Hide default QR scanner elements that might cause overflow */
         #reader video {
             max-width: 100% !important;
             height: auto !important;
-            border-radius: 8px;
         }
 
         #reader__scan_region {
             max-width: 100% !important;
-            height: 100% !important;
-        }
-
-        #reader__scan_region>img {
-            /* QR Frame Image */
-            opacity: 0.7 !important;
-            border: 3px solid #4CAF50 !important;
-            box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.3) !important;
-        }
-
-        /* Custom QR scanning region overlay */
-        .qr-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        /* Style for the corner markers */
-        #reader__scan_region::before,
-        #reader__scan_region::after {
-            content: '';
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            border: 3px solid #4CAF50;
-            z-index: 2;
+            height: auto !important;
         }
 
         #reader__dashboard {
             padding: 5px !important;
-            background: rgba(0, 0, 0, 0.05) !important;
-            border-radius: 4px !important;
-            margin-top: 10px !important;
-        }
-
-        #reader__dashboard_section_csr button {
-            background: #4CAF50 !important;
-            color: white !important;
-            border: none !important;
-            padding: 8px 15px !important;
-            border-radius: 4px !important;
-            cursor: pointer !important;
         }
 
         #result {
@@ -156,7 +114,6 @@
 
         .stop-button {
             background-color: #f44336;
-            display: none;
         }
 
         .scanning {
@@ -215,25 +172,7 @@
             }
         }
 
-        /* Scanning animation for QR frame */
-        @keyframes scanAnimation {
-            0% {
-                border-color: rgba(76, 175, 80, 0.5);
-                box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.5);
-            }
-
-            50% {
-                border-color: rgba(76, 175, 80, 1);
-                box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.3);
-            }
-
-            100% {
-                border-color: rgba(76, 175, 80, 0.5);
-                box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.5);
-            }
-        }
-
-        /* Mobile optimizations */
+        /* Specific mobile optimizations */
         @media (max-width: 480px) {
             body {
                 padding: 0.5rem;
@@ -264,7 +203,7 @@
             }
         }
 
-        /* Prevent text size adjustment */
+        /* Prevent text size adjustment on orientation change */
         html {
             -webkit-text-size-adjust: 100%;
         }
@@ -275,7 +214,7 @@
     <div class="container">
         <div class="button-container">
             <button class="button" id="startButton">Start Scanner</button>
-            <button class="button stop-button" id="stopButton">Stop Scanner</button>
+            <button class="button stop-button" id="stopButton" hidden>Stop Scanner</button>
         </div>
 
         <div id="reader-container">
@@ -307,8 +246,8 @@
         function startScanning() {
             readerContainer.classList.add('active');
             reader.classList.add('scanning');
-            startButton.style.display = 'none';
-            stopButton.style.display = 'inline-block';
+            startButton.style.display = 'none'; // Hide start button
+            stopButton.style.display = 'inline-block'; // Show stop button
             isScanning = true;
             result.classList.add('move-up');
             updateStatus('Scanning for QR Code...');
@@ -329,9 +268,9 @@
             const config = {
                 fps: 10,
                 qrbox: {
-                    width: 300,
-                    height: 300
-                }, // Increased size of QR box
+                    width: 250,
+                    height: 250
+                },
                 aspectRatio: 1.0,
                 experimentalFeatures: {
                     useBarCodeDetectorIfSupported: true
@@ -361,8 +300,8 @@
             html5QrCode.stop().then(() => {
                 reader.classList.remove('scanning', 'success');
                 readerContainer.classList.remove('active');
-                startButton.style.display = 'inline-block';
-                stopButton.style.display = 'none';
+                startButton.style.display = 'inline-block'; // Show start button
+                stopButton.style.display = 'none'; // Hide stop button
                 statusMessage.textContent = '';
                 if (wasSuccessful) {
                     result.classList.remove('move-up');
