@@ -584,6 +584,12 @@ class MemberController extends Controller
         return response()->json(['start_date' => $startDate]);
     }
 
+
+    public function exportindex()
+    {
+        return view('administrator.export.index');
+
+    }
     public function exportMembers()
     {
         return Excel::download(new MembersExport, 'members.xlsx');

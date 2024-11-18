@@ -41,11 +41,11 @@
                     <li>
                         <a href="{{ route('administrator.overview') }}"
                             class="flex items-center p-2 rounded-lg group 
-                                                                                                                                                   text-gray-500 dark:text-gray-500 
-                                                                                                                                                   hover:bg-gray-300 hover:text-black 
-                                                                                                                                                   dark:hover:bg-gray-700 dark:hover:text-white 
-                                                                                                                                                   {{ request()->routeIs('administrator.overview') ? 'bg-gray-300 text-textblack dark:bg-gray-700 dark:text-white' : '' }}
-                                                                                                                                                          transition-colors duration-300">
+                                                                                                                                                                               text-gray-500 dark:text-gray-500 
+                                                                                                                                                                               hover:bg-gray-300 hover:text-black 
+                                                                                                                                                                               dark:hover:bg-gray-700 dark:hover:text-white 
+                                                                                                                                                                               {{ request()->routeIs('administrator.overview') ? 'bg-gray-300 text-textblack dark:bg-gray-700 dark:text-white' : '' }}
+                                                                                                                                                                                      transition-colors duration-300">
                             <svg class="flex-shrink-0 w-4 h-4 transition duration-75 " aria-hidden="true"
                                 xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
                                 <path
@@ -56,59 +56,7 @@
                     </li>
                 @endcanany
 
-                <!--︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼ CHECK-IN ︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼  -->
-                @canany(['checkin-list', 'checkin-edit', 'checkin-log-list'])
-                    <li
-                        x-data="{ open: {{ request()->routeIs('checkin.index') || request()->routeIs('checkin.history') ? 'true' : 'false' }} }">
-                        <button type="button"
-                            class="flex items-center w-full p-2 text-base 
-                                                                                                                            text-gray-500 dark:text-gray-500 
-                                                                                                                            hover:bg-gray-300 hover:text-black 
-                                                                                                                            dark:hover:bg-gray-700 dark:hover:text-white transition-colors duration-300 rounded-lg group"
-                            @click="open = !open" aria-controls="dropdown-example">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                class="w-4 h-4">
-                                <path
-                                    d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z">
-                                </path>
-                                <path d="M13 5v2"></path>
-                                <path d="M13 17v2"></path>
-                                <path d="M13 11v2"></path>
-                            </svg>
-                            <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap text-sm">
-                                Daily Check-in's</span>
-                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 10 6">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="m1 1 4 4 4-4" />
-                            </svg>
-                        </button>
 
-
-                        <ul style="display:none;" x-show="open" x-transition class="py-2 space-y-2">
-                            @canany(['checkin-list', 'checkin-edit'])
-                                <li>
-                                    <a href="{{ route('checkin.index') }}"
-                                        class="flex items-center w-full p-2 text-gray-500 dark:text-gray-500 hover:bg-gray-300 hover:text-black 
-                                                                                                                                                                                                                                dark:hover:bg-gray-700 dark:hover:text-white 
-                                                                                                                                                                                                                                {{ request()->routeIs('checkin.index') ? 'bg-gray-300 text-textblack dark:bg-gray-700 dark:text-white text-sm' : 'text-sm' }} pl-11 transition-colors duration-300 rounded-lg group">
-                                        Manage Check-in</a>
-                                </li>
-                            @endcanany
-                            @canany(['checkin-log-list'])
-                                <li>
-                                    <a href="{{ route('checkin.history') }}"
-                                        class="flex items-center w-full p-2 text-gray-500 dark:text-gray-500 hover:bg-gray-300 hover:text-black 
-                                                                                                                                                                                                                                dark:hover:bg-gray-700 dark:hover:text-white 
-                                                                                                                                                                                                                                {{ request()->routeIs('checkin.history') ? 'bg-gray-300 text-textblack dark:bg-gray-700 dark:text-white text-sm' : 'text-sm' }} pl-11 transition-colors duration-300 rounded-lg group">
-                                        Checkin Log</a>
-                                </li>
-                            @endcanany
-
-                        </ul>
-                    </li>
-                @endcanany
 
                 <!--︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼ MEMBER CONTROL ︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼  -->
                 @canany([
@@ -124,16 +72,20 @@
                         'locker-end',
                         'treadmill-create',
                         'treadmill-extend',
-                        'treadmill-end'
+                        'treadmill-end',
+                        'checkin-log-list'
                     ])
 
+
+
+
                                 <li
-                                    x-data="{ open: {{ request()->routeIs('members.create') || request()->routeIs('members.index') ? 'true' : 'false' }} }">
+                                    x-data="{ open: {{ request()->routeIs('members.create') || request()->routeIs('members.index') || request()->routeIs('checkin.history') ? 'true' : 'false' }} }">
                                     <button type="button"
                                         class="flex items-center w-full p-2 text-base 
-                                                                                                                                                                                                                                                                                                                                                                                                                            text-gray-500 dark:text-gray-500 
-                                                                                                                                                                                                                                                                                                                                                                                                                            hover:bg-gray-300 hover:text-black 
-                                                                                                                                                                                                                                                                                                                                                                                                                            dark:hover:bg-gray-700 dark:hover:text-white transition-colors duration-300 rounded-lg group"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            text-gray-500 dark:text-gray-500 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            hover:bg-gray-300 hover:text-black 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            dark:hover:bg-gray-700 dark:hover:text-white transition-colors duration-300 rounded-lg group"
                                         @click="open = !open" aria-controls="dropdown-example">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none"
                                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -186,6 +138,16 @@
                                             </li>
                                         @endcanany
 
+                                        @canany(['checkin-log-list'])
+                                            <li>
+                                                <a href="{{ route('checkin.history') }}"
+                                                    class="flex items-center w-full p-2 text-gray-500 dark:text-gray-500 hover:bg-gray-300 hover:text-black 
+                                                                                                                                                                                                                                                                                                                                        dark:hover:bg-gray-700 dark:hover:text-white 
+                                                                                                                                                                                                                                                                                                                                        {{ request()->routeIs('checkin.history') ? 'bg-gray-300 text-textblack dark:bg-gray-700 dark:text-white text-sm' : 'text-sm' }} pl-11 transition-colors duration-300 rounded-lg group">
+                                                    Checkin Log</a>
+                                            </li>
+                                        @endcanany
+
 
                                     </ul>
                                 </li>
@@ -196,9 +158,9 @@
                     <li>
                         <a href="{{ route('price.index') }}"
                             class="flex items-center p-2 rounded-lg group text-gray-500 dark:text-gray-500 
-                                                                                                                                                                                      hover:bg-gray-300 hover:text-black dark:hover:bg-gray-700 dark:hover:text-white 
-                                                                                                                                                                                      {{ request()->routeIs('price.index') ? 'bg-gray-300 text-textblack dark:bg-gray-700 dark:text-white' : '' }}
-                                                                                                                                                                                      transition-colors duration-300">
+                                                                                                                                                                                                                  hover:bg-gray-300 hover:text-black dark:hover:bg-gray-700 dark:hover:text-white 
+                                                                                                                                                                                                                  {{ request()->routeIs('price.index') ? 'bg-gray-300 text-textblack dark:bg-gray-700 dark:text-white' : '' }}
+                                                                                                                                                                                                                  transition-colors duration-300">
                             <!-- Added transition classes -->
 
                             <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
@@ -220,9 +182,9 @@
                     || request()->routeIs('administrator.history') ? 'true' : 'false' }} }">
                                 <button type="button"
                                     class="flex items-center w-full p-2 text-base 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        text-gray-500 dark:text-gray-500 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        hover:bg-gray-300 hover:text-black 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        dark:hover:bg-gray-700 dark:hover:text-white transition-colors duration-300 rounded-lg group"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            text-gray-500 dark:text-gray-500 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            hover:bg-gray-300 hover:text-black 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            dark:hover:bg-gray-700 dark:hover:text-white transition-colors duration-300 rounded-lg group"
                                     @click="open = !open" aria-controls="dropdown-example">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none"
                                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -246,38 +208,38 @@
                                     <li>
                                         <a href="{{ route('administrator.unifiedview') }}"
                                             class="flex items-center w-full p-2 text-gray-500 dark:text-gray-500 hover:bg-gray-300 hover:text-black 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        dark:hover:bg-gray-700 dark:hover:text-white 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        {{ request()->routeIs('administrator.unifiedview') ? 'bg-gray-300 text-textblack dark:bg-gray-700 dark:text-white text-sm' : 'text-sm' }} pl-11 transition-colors duration-300 rounded-lg group">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            dark:hover:bg-gray-700 dark:hover:text-white 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            {{ request()->routeIs('administrator.unifiedview') ? 'bg-gray-300 text-textblack dark:bg-gray-700 dark:text-white text-sm' : 'text-sm' }} pl-11 transition-colors duration-300 rounded-lg group">
                                             Unified View</a>
                                     </li>
 
                                     <li>
                                         <a href="{{ route('administrator.active') }}"
                                             class="flex items-center w-full p-2 text-gray-500 dark:text-gray-500 hover:bg-gray-300 hover:text-black 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        dark:hover:bg-gray-700 dark:hover:text-white 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        {{ request()->routeIs('administrator.active') ? 'bg-gray-300 text-textblack dark:bg-gray-700 dark:text-white text-sm' : 'text-sm' }} pl-11 transition-colors duration-300 rounded-lg group">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            dark:hover:bg-gray-700 dark:hover:text-white 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            {{ request()->routeIs('administrator.active') ? 'bg-gray-300 text-textblack dark:bg-gray-700 dark:text-white text-sm' : 'text-sm' }} pl-11 transition-colors duration-300 rounded-lg group">
                                             Active Reservation</a>
                                     </li>
 
                                     <li>
                                         <a href="{{ route('administrator.pending') }}"
                                             class="flex items-center w-full p-2 text-gray-500 dark:text-gray-500 hover:bg-gray-300 hover:text-black 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        dark:hover:bg-gray-700 dark:hover:text-white 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        {{ request()->routeIs('administrator.pending') ? 'bg-gray-300 text-textblack dark:bg-gray-700 dark:text-white text-sm' : 'text-sm' }} pl-11 transition-colors duration-300 rounded-lg group">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            dark:hover:bg-gray-700 dark:hover:text-white 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            {{ request()->routeIs('administrator.pending') ? 'bg-gray-300 text-textblack dark:bg-gray-700 dark:text-white text-sm' : 'text-sm' }} pl-11 transition-colors duration-300 rounded-lg group">
                                             Awaiting Confirmation</a>
                                     </li>
                                     <li>
                                         <a href="{{ route('administrator.suspended') }}"
                                             class="flex items-center w-full p-2 text-gray-500 dark:text-gray-500 hover:bg-gray-300 hover:text-black 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        dark:hover:bg-gray-700 dark:hover:text-white 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        {{ request()->routeIs('administrator.suspended') ? 'bg-gray-300 text-textblack dark:bg-gray-700 dark:text-white text-sm' : 'text-sm' }} pl-11 transition-colors duration-300 rounded-lg group">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            dark:hover:bg-gray-700 dark:hover:text-white 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            {{ request()->routeIs('administrator.suspended') ? 'bg-gray-300 text-textblack dark:bg-gray-700 dark:text-white text-sm' : 'text-sm' }} pl-11 transition-colors duration-300 rounded-lg group">
                                             Suspended Canceled</a>
                                     </li>
                                     <li>
                                         <a href="{{ route('administrator.history') }}"
                                             class="flex items-center w-full p-2 text-gray-500 dark:text-gray-500 hover:bg-gray-300 hover:text-black 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        dark:hover:bg-gray-700 dark:hover:text-white 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        {{ request()->routeIs('administrator.history') ? 'bg-gray-300 text-textblack dark:bg-gray-700 dark:text-white text-sm' : 'text-sm' }} pl-11 transition duration-75 rounded-lg group">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            dark:hover:bg-gray-700 dark:hover:text-white 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            {{ request()->routeIs('administrator.history') ? 'bg-gray-300 text-textblack dark:bg-gray-700 dark:text-white text-sm' : 'text-sm' }} pl-11 transition duration-75 rounded-lg group">
                                             Reservation History </a>
                                     </li>
                                 </ul>
@@ -289,11 +251,11 @@
                     <li>
                         <a href="{{ route('administrator.equipments') }}"
                             class="flex items-center p-2 rounded-lg group 
-                                                                                                                                                                                                                           text-gray-500 dark:text-gray-500 
-                                                                                                                                                                                                                           hover:bg-gray-300 hover:text-black 
-                                                                                                                                                                                                                           dark:hover:bg-gray-700 dark:hover:text-white 
-                                                                                                                                                                                                                           {{ request()->routeIs('administrator.equipments') ? 'bg-gray-300 text-textblack dark:bg-gray-700 dark:text-white' : '' }}
-                                                                                                                                                                                                                                  transition-colors duration-300">
+                                                                                                                                                                                                                                                       text-gray-500 dark:text-gray-500 
+                                                                                                                                                                                                                                                       hover:bg-gray-300 hover:text-black 
+                                                                                                                                                                                                                                                       dark:hover:bg-gray-700 dark:hover:text-white 
+                                                                                                                                                                                                                                                       {{ request()->routeIs('administrator.equipments') ? 'bg-gray-300 text-textblack dark:bg-gray-700 dark:text-white' : '' }}
+                                                                                                                                                                                                                                                              transition-colors duration-300">
 
                             <svg class="w-4 h-4 " viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
                                 transform="rotate(0)">
@@ -321,11 +283,11 @@
                     <li>
                         <a href="{{ route('administrator.events') }}"
                             class="flex items-center p-2 rounded-lg group 
-                                                                                                                                                                                                       text-gray-500 dark:text-gray-500 
-                                                                                                                                                                                                       hover:bg-gray-300 hover:text-black 
-                                                                                                                                                                                                       dark:hover:bg-gray-700 dark:hover:text-white 
-                                                                                                                                                                                                       {{ request()->routeIs('administrator.events') ? 'bg-gray-300 text-textblack dark:bg-gray-700 dark:text-white' : '' }}
-                                                                                                                                                                                                              transition-colors duration-300">
+                                                                                                                                                                                                                                   text-gray-500 dark:text-gray-500 
+                                                                                                                                                                                                                                   hover:bg-gray-300 hover:text-black 
+                                                                                                                                                                                                                                   dark:hover:bg-gray-700 dark:hover:text-white 
+                                                                                                                                                                                                                                   {{ request()->routeIs('administrator.events') ? 'bg-gray-300 text-textblack dark:bg-gray-700 dark:text-white' : '' }}
+                                                                                                                                                                                                                                          transition-colors duration-300">
 
                             <svg xmlns="http://www.w3.org/2000/svg" width="4" height="4" viewBox="0 0 24 24" fill="none"
                                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -395,11 +357,11 @@ dark:hover:bg-gray-700 dark:hover:text-white
                     <li>
                         <a href="{{ route('administrator.users') }}"
                             class="flex items-center p-2 rounded-lg group 
-                                                                                                                                                                               text-gray-500 dark:text-gray-500 
-                                                                                                                                                                               hover:bg-gray-300 hover:text-black 
-                                                                                                                                                                               dark:hover:bg-gray-700 dark:hover:text-white 
-                                                                                                                                                                               {{ request()->routeIs('administrator.users') ? 'bg-gray-300 text-textblack dark:bg-gray-700 dark:text-white' : '' }}
-                                                                                                                                                                                      transition-colors duration-300">
+                                                                                                                                                                                                           text-gray-500 dark:text-gray-500 
+                                                                                                                                                                                                           hover:bg-gray-300 hover:text-black 
+                                                                                                                                                                                                           dark:hover:bg-gray-700 dark:hover:text-white 
+                                                                                                                                                                                                           {{ request()->routeIs('administrator.users') ? 'bg-gray-300 text-textblack dark:bg-gray-700 dark:text-white' : '' }}
+                                                                                                                                                                                                                  transition-colors duration-300">
                             <svg class="flex-shrink-0 w-4 h-4 transition duration-75 " aria-hidden="true"
                                 xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
                                 <path
@@ -415,11 +377,11 @@ dark:hover:bg-gray-700 dark:hover:text-white
                     <li>
                         <a href="{{ route('administrator.roles') }}"
                             class="flex items-center p-2 rounded-lg group 
-                                                                                                                                                           text-gray-500 dark:text-gray-500 
-                                                                                                                                                           hover:bg-gray-300 hover:text-black 
-                                                                                                                                                           dark:hover:bg-gray-700 dark:hover:text-white 
-                                                                                                                                                           {{ request()->routeIs('administrator.roles') ? 'bg-gray-300 text-textblack dark:bg-gray-700 dark:text-white' : '' }}
-                                                                                                                                                                  transition-colors duration-300">
+                                                                                                                                                                                       text-gray-500 dark:text-gray-500 
+                                                                                                                                                                                       hover:bg-gray-300 hover:text-black 
+                                                                                                                                                                                       dark:hover:bg-gray-700 dark:hover:text-white 
+                                                                                                                                                                                       {{ request()->routeIs('administrator.roles') ? 'bg-gray-300 text-textblack dark:bg-gray-700 dark:text-white' : '' }}
+                                                                                                                                                                                              transition-colors duration-300">
                             <svg class="w-4 h-4 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
                                 height="24" fill="none" viewBox="0 0 24 24">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -439,9 +401,9 @@ dark:hover:bg-gray-700 dark:hover:text-white
                     <li>
                         <a href="{{ route('administrator.feedback') }}"
                             class="flex items-center p-2 rounded-lg group text-gray-500 dark:text-gray-500 
-                                                                                                                                                                      hover:bg-gray-300 hover:text-black dark:hover:bg-gray-700 dark:hover:text-white 
-                                                                                                                                                                      {{ request()->routeIs('administrator.feedback') ? 'bg-gray-300 text-textblack dark:bg-gray-700 dark:text-white' : '' }}
-                                                                                                                                                                      transition-colors duration-300">
+                                                                                                                                                                                                  hover:bg-gray-300 hover:text-black dark:hover:bg-gray-700 dark:hover:text-white 
+                                                                                                                                                                                                  {{ request()->routeIs('administrator.feedback') ? 'bg-gray-300 text-textblack dark:bg-gray-700 dark:text-white' : '' }}
+                                                                                                                                                                                                  transition-colors duration-300">
                             <!-- Added transition classes -->
 
                             <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
@@ -459,14 +421,7 @@ dark:hover:bg-gray-700 dark:hover:text-white
                 @canany(['help-list'])
                     <li>
                         <a href="{{ route('administrator.help') }}"
-                            class="flex items-center p-2 rounded-lg group 
-                                                                                                                                                               text-gray-500 dark:text-gray-500 
-                                                                                                                                                               hover:bg-gray-300 hover:text-black 
-                                                                                                                                                               dark:hover:bg-gray-700 dark:hover:text-white 
-                                                                                                                                                               {{ request()->routeIs('administrator.help') ? 'bg-gray-300 text-textblack dark:bg-gray-700 dark:text-white' : '' }}
-                                                                                                                                                                      transition-colors duration-300">
-
-
+                            class="flex items-center p-2 rounded-lg group text-gray-500 dark:text-gray-500 hover:bg-gray-300 hover:text-black dark:hover:bg-gray-700 dark:hover:text-white {{ request()->routeIs('administrator.help') ? 'bg-gray-300 text-textblack dark:bg-gray-700 dark:text-white' : '' }} transition-colors duration-300">
                             <svg class="w-4 h-4 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
                                 height="24" fill="currentColor" viewBox="0 0 24 24">
                                 <path fill-rule="evenodd"
@@ -477,7 +432,29 @@ dark:hover:bg-gray-700 dark:hover:text-white
                         </a>
                     </li>
                 @endcanany
+
+                <!--︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼ EXPORT ︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼  -->
+
+                <li>
+                    <a href="{{ route('export.index') }}"
+                        class="flex items-center p-2 rounded-lg group text-gray-500 dark:text-gray-500 hover:bg-gray-300 hover:text-black dark:hover:bg-gray-700 dark:hover:text-white {{ request()->routeIs('export.index') ? 'bg-gray-300 text-textblack dark:bg-gray-700 dark:text-white' : '' }} transition-colors duration-300">
+
+                        <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
+                            height="24" fill="currentColor" viewBox="0 0 24 24">
+                            <path fill-rule="evenodd"
+                                d="M13 11.15V4a1 1 0 1 0-2 0v7.15L8.78 8.374a1 1 0 1 0-1.56 1.25l4 5a1 1 0 0 0 1.56 0l4-5a1 1 0 1 0-1.56-1.25L13 11.15Z"
+                                clip-rule="evenodd" />
+                            <path fill-rule="evenodd"
+                                d="M9.657 15.874 7.358 13H5a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2h-2.358l-2.3 2.874a3 3 0 0 1-4.685 0ZM17 16a1 1 0 1 0 0 2h.01a1 1 0 1 0 0-2H17Z"
+                                clip-rule="evenodd" />
+                        </svg>
+
+                        <span class="flex-1 ms-3 whitespace-nowrap text-sm">Export</span>
+                    </a>
+                </li>
             </ul>
+
+
 
             <ul class="pt-4 mt-4 space-y-2 font-medium border-t border-gray-300  dark:border-gray-700">
                 <!--︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼ LOGOUT ︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼  -->

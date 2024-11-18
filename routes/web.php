@@ -39,7 +39,7 @@ Route::middleware('auth')->group(function () {
 Route::get('/index/link/{id}', [LinkController::class, 'index'])->name('index.link');
 Route::post('/link/{member}', [LinkController::class, 'updateIdNumber'])->name('link.update');
 
-Route::view('/export', 'export');
+Route::get('/exports', [MemberController::class, 'exportindex'])->name('export.index');
 Route::get('/export-members', [MemberController::class, 'exportMembers'])->name('export.members');
 Route::get('/export-lockers', [MemberController::class, 'exportLockers'])->name('export.lockers');
 Route::get('/export-services', [MemberController::class, 'exportServices'])->name('export.services');
