@@ -112,7 +112,7 @@ class UpdateTreadmillStatus extends Command
             }
         }
 
-        \Log::info('treadmill:update-status command executed at ' . now());
-        $this->info('Periodic updates to treadmill subscription statuses - 100%.');
+        // \Log::info('treadmill:update-status command executed at ' . now());
+        // $this->info('Periodic updates to treadmill subscription statuses - 100%.');
     }
 }

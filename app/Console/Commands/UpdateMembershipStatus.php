@@ -168,6 +168,7 @@ class UpdateMembershipStatus extends Command
     {
         // Implement notification logic here
         // This could integrate with your notification system
-        \Log::info("Renewal reminder needed for member {$duration->member_id}");
+        
+        // \Log::info("Renewal reminder needed for member {$duration->member_id}");
     }
 }

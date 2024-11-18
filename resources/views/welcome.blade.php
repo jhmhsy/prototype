@@ -33,7 +33,7 @@
 
             <!-- pricing sections-->
             <div id="pricing-section">
-                <x-homepage.pricing-section />
+                @include ('components.homepage.pricing-section')
             </div>
 
             <!-- map/feedback sections-->

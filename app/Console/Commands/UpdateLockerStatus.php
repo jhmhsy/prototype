@@ -112,7 +112,7 @@ class UpdateLockerStatus extends Command
             }
         }
 
-        \Log::info('locker:update-status command executed at ' . now());
-        $this->info('Periodic updates to locker statuses - 100%.');
+        // \Log::info('locker:update-status command executed at ' . now());
+        // $this->info('Periodic updates to locker statuses - 100%.');
     }
 }

@@ -112,7 +112,7 @@ class UpdateSubscriptionStatus extends Command
             }
         }
 
-        \Log::info('service:update-status command executed at ' . now());
-        $this->info('Periodic updates to subscription statuses - 100%.');
+        // \Log::info('service:update-status command executed at ' . now());
+        // $this->info('Periodic updates to subscription statuses - 100%.');
     }
 }
