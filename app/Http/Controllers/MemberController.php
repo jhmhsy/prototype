@@ -194,7 +194,7 @@ class MemberController extends Controller
             'fb' => $request->fb,
             'email' => $request->email,
             'membership_type' => $request->membership_type,
-            'user_identifier' => Str::random(28),
+
         ]);
 
 

@@ -37,25 +37,25 @@
     </div>
 </div>
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        function updateActiveLink() {
-            const currentPath = window.location.pathname;
-            const currentHash = window.location.hash;
+document.addEventListener("DOMContentLoaded", function() {
+    function updateActiveLink() {
+        const currentPath = window.location.pathname;
+        const currentHash = window.location.hash;
 
-            document.querySelectorAll(".nav-link").forEach(link => {
-                const linkHref = link.getAttribute("href");
-                const linkPath = new URL(linkHref, window.location.origin).pathname;
-                const linkHash = new URL(linkHref, window.location.origin).hash;
+        document.querySelectorAll(".nav-link").forEach(link => {
+            const linkHref = link.getAttribute("href");
+            const linkPath = new URL(linkHref, window.location.origin).pathname;
+            const linkHash = new URL(linkHref, window.location.origin).hash;
 
-                const isActive = (linkPath === currentPath && linkHash === currentHash) ||
-                    (linkPath === currentPath && !linkHash && !currentHash);
+            const isActive = (linkPath === currentPath && linkHash === currentHash) ||
+                (linkPath === currentPath && !linkHash && !currentHash);
 
-                link.classList.toggle("activeLink", isActive);
-                link.classList.toggle("inactiveLink", !isActive);
-            });
-        }
+            link.classList.toggle("activeLink", isActive);
+            link.classList.toggle("inactiveLink", !isActive);
+        });
+    }
 
-        updateActiveLink();
-        window.addEventListener("popstate", updateActiveLink);
-    });
+    updateActiveLink();
+    window.addEventListener("popstate", updateActiveLink);
+});
 </script>

@@ -18,7 +18,7 @@ class MembersExport implements FromCollection, WithHeadings, WithColumnWidths
             'fb',
             'email',
             'membership_type',
-            'user_identifier'
+
         ]);
     }
 
@@ -31,7 +31,7 @@ class MembersExport implements FromCollection, WithHeadings, WithColumnWidths
             'Facebook',
             'Email',
             'Membership Type',
-            'User Identifier'
+
         ];
     }
 
@@ -44,7 +44,7 @@ class MembersExport implements FromCollection, WithHeadings, WithColumnWidths
             'D' => 15,  // Facebook
             'E' => 20,  // Email
             'F' => 20,  // Membership Type
-            'G' => 40,  // User Identifier
+
         ];
     }
 }

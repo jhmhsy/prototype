@@ -28,6 +28,14 @@ use App\Http\Controllers\BarcodeController;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
+use App\Http\Controllers\UserServicesController;
+
+Route::get('/services', [UserServicesController::class, 'index'])->name('services.index');
+Route::post('/update-id-number', [UserServicesController::class, 'updateIdNumber'])
+    ->middleware('auth')
+    ->name('update.id_number');
+
+
 
 
 

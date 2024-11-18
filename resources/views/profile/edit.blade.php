@@ -11,17 +11,17 @@
             </button>
 
             <script>
-            function goBackOrRedirect() {
-                // Check if there's history to go back to
-                if (window.history.length > 1) {
-                    // Go back to the previous page
-                    window.history.back();
-                } else {
-                    // Redirect to the homepage if no history exists
-                    window.location.href = "{{ route('welcome') }}";
-                }
+                function goBackOrRedirect() {
+                    // Check if there's history to go back to
+                    if (window.history.length > 1) {
+                        // Go back to the previous page
+                        window.history.back();
+                    } else {
+                        // Redirect to the homepage if no history exists
+                        window.location.href = "{{ route('welcome') }}";
+                    }
 
-            }
+                }
             </script>
 
 

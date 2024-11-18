@@ -242,7 +242,7 @@
                                         Email: {{ $member->email }}<br>
                                         Phone: {{ $member->phone }}<br>
                                         Facebook: {{ $member->fb ?? 'N/A' }}<br>
-                                        User ID: {{ $member->user_identifier }}
+
                                     </p>
                                     <div class="flex justify-between items-center mb-4">
                                         <h2 class="text-2xl font-bold">Services List</h2>

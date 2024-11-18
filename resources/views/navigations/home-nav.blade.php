@@ -25,6 +25,12 @@
     {{ __('Contacts') }}
 </x-forms.nav-link>
 
+
+<x-forms.nav-link href="{{ route('services.index') }}" class="nav-link">
+    {{ __('My Services') }}
+</x-forms.nav-link>
+
+
 {{--<x-forms.nav-link :href="route('calendar')" :active="request()->routeIs('calendar')">
         {{ __('Calendar') }}
 </x-forms.nav-link>--}}
@@ -58,6 +64,12 @@
 <x-forms.responsive-nav-link href="/#footer-section">
     {{ __('Contacts') }}
 </x-forms.responsive-nav-link>
+
+<x-forms.responsive-nav-link href="{{ route('services.index') }}">
+    {{ __('My Services') }}
+</x-forms.responsive-nav-link>
+
+
 @if (!Auth::user())
 <x-forms.responsive-nav-link :href="route('login')" :active="request()->is('login')">
     {{ __('Login') }}
