@@ -3,7 +3,7 @@
 
 
         <div class="flex flex-col gap-4 rounded-lg border shadow-sm p-6  text-shade_9  
-                                            border-shade_6/50 dark:border-white/5"
+                                                border-shade_6/50 dark:border-white/5"
             x-data="{ openUserId: null, openshowmodal: null, opencreatemodal: null }">
 
             <div class="flex flex-col gap-2">
