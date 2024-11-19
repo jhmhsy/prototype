@@ -30,8 +30,12 @@ use Spatie\Permission\Models\Role;
 
 use App\Http\Controllers\UserServicesController;
 
+
+
+Route::get('/', [HomeController::class, 'index'])->name('welcome');
+
 Route::middleware('auth')->group(function () {
-    Route::get('/services', [UserServicesController::class, 'index'])->name('services.index');
+    Route::get('/services', [UserServicesController::class, 'index'])->name('services.index')->middleware('verified');
     Route::post('/update-id-number', [UserServicesController::class, 'updateIdNumber'])->name('update.id_number');
 });
 

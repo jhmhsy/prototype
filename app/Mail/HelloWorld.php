@@ -2,36 +2,29 @@
 
 namespace App\Mail;
 
-use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
-use Illuminate\Mail\Mailables\Address;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class AccountCreated extends Mailable
+class HelloWorld extends Mailable
 {
     use Queueable, SerializesModels;
 
     /**
      * Create a new message instance.
      */
-    public function __construct(public User $user, )
+    public function __construct()
     {
-        //
-        //$this->user = $user;
+
     }
 
-    /**
-     * Get the message envelope.
-     */
     public function envelope(): Envelope
     {
         return new Envelope(
-            from: new Address('onboarding@resend.dev', 'John'),
-            subject: 'Welcome to ' . config('app.name') . '!',
+            subject: 'Hello World!',
         );
     }
 
@@ -41,12 +34,10 @@ class AccountCreated extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'mail.account-created',
-            with: [
-                'user_name' => $this->user->name,
-            ],
+            markdown: 'mail.hello',
         );
     }
+
     /**
      * Get the attachments for the message.
      *

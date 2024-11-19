@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'default' => env('MAIL_MAILER', 'log'),
+    'default' => 'resend',
 
     /*
     |--------------------------------------------------------------------------
@@ -109,7 +109,7 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'larafitness@gmail.com'),
+        'address' => env('MAIL_FROM_ADDRESS', 'onboarding@resend.dev'),
         'name' => env('MAIL_FROM_NAME', 'John Doe'),
     ],
 
