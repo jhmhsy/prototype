@@ -30,7 +30,7 @@ class AccountCreated extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            from: new Address('onboarding@resend.dev', 'John'),
+            from: new Address('send@gymonedanao.com', 'John'),
             subject: 'Welcome to ' . config('app.name') . '!',
         );
     }

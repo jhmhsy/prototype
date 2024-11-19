@@ -108,9 +108,11 @@ return [
     |
     */
 
+
+
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'onboarding@resend.dev'),
-        'name' => env('MAIL_FROM_NAME', 'John Doe'),
+        'address' => 'send@gymonedanao.com',  // Change this from onboarding@resend.dev
+        'name' => 'Gym One',
     ],
 
 ];
