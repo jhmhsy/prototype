@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <div class="items-center flex  space-x-3 ">
+        <div class="items-center flex  space-x-3 text-gray-800 dark:text-gray-200">
             <button onclick="goBackOrRedirect()" class="text-sm font-medium">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -26,7 +26,7 @@
 
 
 
-            <h2 class="inline-block font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+            <h2 class="inline-block font-semibold text-xl  leading-tight">
                 {{ __('Profile') }}
             </h2>
         </div>

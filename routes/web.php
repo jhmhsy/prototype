@@ -152,23 +152,24 @@ Route::middleware(['auth'])->group(function () {
         Route::prefix('admin')->group(function () {
             Route::get('/overview', [OverviewController::class, 'index'])->name('administrator.overview');
 
-            Route::prefix('reservations')->group(function () {
-                //Navigation
-                Route::get('/unifiedview', [ReservationsController::class, 'index'])->name('administrator.unifiedview');
-                Route::get('/active', [ReservationsController::class, 'active'])->name('administrator.active');
-                Route::get('/pending', [ReservationsController::class, 'pending'])->name('administrator.pending');
-                Route::get('/suspended', [ReservationsController::class, 'suspended'])->name('administrator.suspended');
-                Route::get('/history', [ReservationsController::class, 'history'])->name('administrator.history');
+            // TEMPORARY THE GYM DONT USE THIS OR WE ARE TIRED IMPLEMENTING THIS
+            // Route::prefix('reservations')->group(function () {
+            //     //Navigation
+            //     Route::get('/unifiedview', [ReservationsController::class, 'index'])->name('administrator.unifiedview');
+            //     Route::get('/active', [ReservationsController::class, 'active'])->name('administrator.active');
+            //     Route::get('/pending', [ReservationsController::class, 'pending'])->name('administrator.pending');
+            //     Route::get('/suspended', [ReservationsController::class, 'suspended'])->name('administrator.suspended');
+            //     Route::get('/history', [ReservationsController::class, 'history'])->name('administrator.history');
 
-                //button Configuration
-                Route::get('/reservations', [ReservationsController::class, 'index'])->name('reservations');
-                Route::post('/', [ReservationsController::class, 'store'])->name('reservations.store');
-                Route::post('/accept/{id}', [ReservationsController::class, 'accept'])->name('reservations.accept');
-                Route::post('/reject/{id}', [ReservationsController::class, 'reject'])->name('reservations.reject');
-                Route::post('/restore/{id}', [ReservationsController::class, 'restore'])->name('reservations.restore');
-                Route::post('/cancel/{id}', [ReservationsController::class, 'cancel'])->name('reservations.cancel');
-                Route::post('/delete/{id}', [ReservationsController::class, 'delete'])->name('reservations.delete');
-            });
+            //     //button Configuration
+            //     Route::get('/reservations', [ReservationsController::class, 'index'])->name('reservations');
+            //     Route::post('/', [ReservationsController::class, 'store'])->name('reservations.store');
+            //     Route::post('/accept/{id}', [ReservationsController::class, 'accept'])->name('reservations.accept');
+            //     Route::post('/reject/{id}', [ReservationsController::class, 'reject'])->name('reservations.reject');
+            //     Route::post('/restore/{id}', [ReservationsController::class, 'restore'])->name('reservations.restore');
+            //     Route::post('/cancel/{id}', [ReservationsController::class, 'cancel'])->name('reservations.cancel');
+            //     Route::post('/delete/{id}', [ReservationsController::class, 'delete'])->name('reservations.delete');
+            // });
 
             Route::get('/equipments', [EquipmentController::class, 'index'])->name('administrator.equipments');
             Route::post('/equipment/store', [EquipmentController::class, 'store'])->name('equipments.store');

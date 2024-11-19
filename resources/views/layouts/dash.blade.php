@@ -65,27 +65,27 @@
         </div>
     </div>
     <script>
-        //minified it
-        function layout() {
-            return {
-                sidebarOpen: !1,
-                init() {
-                    this.sidebarOpen = "true" === localStorage.getItem("sidebarOpen"), this.$watch("sidebarOpen", e => {
-                        localStorage.setItem("sidebarOpen", e)
-                    }), this.checkScreenSize(), window.addEventListener("resize", () => this.checkScreenSize())
-                },
-                toggleSidebar() {
-                    this.sidebarOpen = !this.sidebarOpen
-                },
-                closeSidebar() {
-                    window.innerWidth < 1024 && (this.sidebarOpen = !1)
-                },
-                checkScreenSize() {
-                    window.innerWidth >= 1024 ? this.sidebarOpen = "true" === localStorage.getItem("sidebarOpen") : this
-                        .sidebarOpen = !1
-                }
+    //minified it
+    function layout() {
+        return {
+            sidebarOpen: !1,
+            init() {
+                this.sidebarOpen = "true" === localStorage.getItem("sidebarOpen"), this.$watch("sidebarOpen", e => {
+                    localStorage.setItem("sidebarOpen", e)
+                }), this.checkScreenSize(), window.addEventListener("resize", () => this.checkScreenSize())
+            },
+            toggleSidebar() {
+                this.sidebarOpen = !this.sidebarOpen
+            },
+            closeSidebar() {
+                window.innerWidth < 1024 && (this.sidebarOpen = !1)
+            },
+            checkScreenSize() {
+                window.innerWidth >= 1024 ? this.sidebarOpen = "true" === localStorage.getItem("sidebarOpen") : this
+                    .sidebarOpen = !1
             }
         }
+    }
     </script>
 
 
