@@ -9,8 +9,8 @@
         x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform scale-90"
         x-transition:enter-end="opacity-100 transform scale-100" x-transition:leave="transition ease-in duration-100"
         x-transition:leave-start="opacity-100 transform scale-100"
-        x-transition:leave-end="opacity-0 transform scale-90 overflow-y-auto">
-        <div class=" rounded w-full max-h-[90vh] overflow-y-auto">
+        x-transition:leave-end="opacity-0 transform scale-90 ">
+        <div class=" rounded w-full max-h-[90vh] ">
 
 
             <div @click="if ($event.target === $el) openshowmodal = null"
@@ -28,7 +28,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="grid gap-4">
+                    <div class="hidden sm:block gap-4">
                         <div class="bg-card rounded-lg p-6">
                             <div class="grid gap-2">
                                 <h3 class="text-lg font-semibold text-gray-500">About Me</h3>
