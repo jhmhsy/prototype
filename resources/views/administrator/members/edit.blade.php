@@ -2,7 +2,7 @@
 </div>
 
 <div style="display: none;"
-    class="admin-modal-container top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 p-4"
+    class="modal fixed admin-modal-container top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 p-4"
     x-show="openeditmodal === {{$member->id}}" @click.away="openeditmodal = false"
     x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform scale-90"
     x-transition:enter-end="opacity-100 transform scale-100" x-transition:leave="transition ease-in duration-100"
@@ -27,9 +27,9 @@
                                 name="name" value="{{ old('name', $member->name) }}" required>
 
                             @error('name')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
                             @enderror
                         </div>
                     </div>
@@ -43,9 +43,9 @@
                                 id="phone" type="text" class="form-control @error('phone') is-invalid @enderror"
                                 name="phone" value="{{ old('phone', $member->phone) }}">
                             @error('phone')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
                             @enderror
                         </div>
                     </div>
@@ -59,9 +59,9 @@
                                 id="fb" type="text" class="form-control @error('fb') is-invalid @enderror" name="fb"
                                 value="{{ old('fb', $member->fb) }}">
                             @error('fb')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
                             @enderror
                         </div>
                     </div>
@@ -75,9 +75,9 @@
                                 id="email" type="email" class="form-control @error('email') is-invalid @enderror"
                                 name="email" value="{{ old('email', $member->email) }}">
                             @error('email')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
                             @enderror
                         </div>
                     </div>
@@ -89,15 +89,17 @@
                         <div class="col-md-6">
                             <select name="membership_type" id="membership_type"
                                 class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md dark:bg-peak_1 dark:border-gray-600 dark:text-white @error('membership_type') is-invalid @enderror">
-                                <option value="Regular" {{ old('membership_type', $member->membership_type) == 'Regular' ? 'selected' : '' }}>
+                                <option value="Regular"
+                                    {{ old('membership_type', $member->membership_type) == 'Regular' ? 'selected' : '' }}>
                                     Regular</option>
-                                <option value="Student" {{ old('membership_type', $member->membership_type) == 'Student' ? 'selected' : '' }}>
+                                <option value="Student"
+                                    {{ old('membership_type', $member->membership_type) == 'Student' ? 'selected' : '' }}>
                                     Student</option>
                             </select>
                             @error('membership_type')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
                             @enderror
                         </div>
                     </div>

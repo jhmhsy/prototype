@@ -6,7 +6,7 @@
 
     <!-- Modal Structure -->
     <div style="display: none;"
-        class="admin-modal-container top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 p-4"
+        class="modal fixed admin-modal-container top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 p-4"
         x-show="opencreatemodal" @click="if ($event.target === $el) opencreatemodal = null"
         x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform scale-90"
         x-transition:enter-end="opacity-100 transform scale-100" x-transition:leave="transition ease-in duration-100"
@@ -21,14 +21,14 @@
                 </div>
 
                 @if (count($errors) > 0)
-                    <div class="alert alert-danger">
-                        <strong>Whoops!</strong> There were some problems with your input.<br><br>
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
+                <div class="alert alert-danger">
+                    <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
                 @endif
 
 
@@ -48,21 +48,21 @@
                                 <h3 class="text-lg font-medium text-gray-500">Permissions</h3>
                                 <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
                                     @foreach($permissioncreate as $value)
-                                        <div class="flex items-center space-x-2">
-                                            <div class="flex items-center gap-3">
+                                    <div class="flex items-center space-x-2">
+                                        <div class="flex items-center gap-3">
 
-                                                <label
-                                                    class="select-none flex items-center text-sm font-medium  cursor-pointer">
+                                            <label
+                                                class="select-none flex items-center text-sm font-medium  cursor-pointer">
 
-                                                    <input type="checkbox" name="permission[{{$value->id}}]"
-                                                        value="{{$value->id}}" class="name">
-                                                    <span class="ml-2"> {{ $value->name }}</span>
+                                                <input type="checkbox" name="permission[{{$value->id}}]"
+                                                    value="{{$value->id}}" class="name">
+                                                <span class="ml-2"> {{ $value->name }}</span>
 
-                                                </label>
+                                            </label>
 
 
-                                            </div>
                                         </div>
+                                    </div>
                                     @endforeach
 
                                 </div>

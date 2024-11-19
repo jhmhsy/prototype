@@ -5,7 +5,7 @@
     </div>
     <!-- Modal Structure -->
     <div style="display: none;"
-        class="admin-modal-container top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 p-4"
+        class="modal fixed admin-modal-container top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 p-4"
         x-show="opencreatemodal" @click="if ($event.target === $el) opencreatemodal = null"
         x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform scale-90"
         x-transition:enter-end="opacity-100 transform scale-100" x-transition:leave="transition ease-in duration-100"
@@ -20,14 +20,14 @@
                 </div>
 
                 @if (count($errors) != 0)
-                    <div class="alert alert-danger">
-                        <strong>Whoops!</strong> There were some problems with your input.<br><br>
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
+                <div class="alert alert-danger">
+                    <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
                 @endif
 
                 <div class="px-3 py-2 dark:text-white">
@@ -66,7 +66,7 @@
                                     <select name="roles[]"
                                         class="dark:bg-peak_1 flex h-10 w-full rounded-md border border-input  px-3 py-2 text-sm ">
                                         @foreach ($roles as $value => $label)
-                                            <option value="{{ $value }}">{{ $label }}</option>
+                                        <option value="{{ $value }}">{{ $label }}</option>
                                         @endforeach
                                     </select>
                                 </div>

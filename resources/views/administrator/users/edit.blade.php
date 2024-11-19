@@ -5,7 +5,7 @@
     </div>
 
     <div style="display: none;"
-        class="admin-modal-container top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 p-4"
+        class="modal fixed admin-modal-container top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 p-4"
         x-show="openUserId === {{ $user->id }}" @click="if ($event.target === $el) openUserId = null"
         x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform scale-90"
         x-transition:enter-end="opacity-100 transform scale-100" x-transition:leave="transition ease-in duration-100"
@@ -66,10 +66,10 @@
                                             <select name="roles[]"
                                                 class="dark:bg-peak_1 flex h-10 w-full items-center justify-between rounded-md border border-input  px-3 py-2 text-sm">
                                                 @foreach ($roles as $value => $label)
-                                                                                            <option value="{{ $value }}" {{ $user->
+                                                <option value="{{ $value }}" {{ $user->
                                                     hasRole($value) ? 'selected' : '' }}>
-                                                                                                {{ $label }}
-                                                                                            </option>
+                                                    {{ $label }}
+                                                </option>
                                                 @endforeach
                                             </select>
                                         </div>
