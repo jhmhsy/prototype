@@ -8,7 +8,7 @@
     x-transition:enter-start="opacity-0 transform scale-90" x-transition:enter-end="opacity-100 transform scale-100"
     x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100 transform scale-100"
     x-transition:leave-end="opacity-0 transform scale-90" @click.away="createmodal = false">
-    <div class="bg-white dark:bg-peak_2 rounded shadow-lg w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+    <div class="bg-white dark:bg-peak_2 rounded shadow-lg w-full max-h-[90vh] overflow-y-auto">
         <div class=" mt-50 p-4">
             <div class="flex flex-col space-y-1.5 px-6">
                 <h3 class="text-2xl font-bold dark:text-white">New Event</h3>
@@ -67,11 +67,10 @@
                             class="dark:bg-peak_1 w-full px-3 py-2 border dark:border-none rounded-md" required>
                             <option value="" disabled selected>Select an hour</option>
                             <!-- Loop through 7 to 20 for full hours -->
-                            @for ($i = 7; $i < 21; $i++)
-                                <option value="{{ str_pad($i, 2, '0', STR_PAD_LEFT) }}:00">
-                                    {{ $i > 12 ? $i - 12 : $i }} {{ $i >= 12 ? 'pm' : 'am' }}
+                            @for ($i = 7; $i < 21; $i++) <option value="{{ str_pad($i, 2, '0', STR_PAD_LEFT) }}:00">
+                                {{ $i > 12 ? $i - 12 : $i }} {{ $i >= 12 ? 'pm' : 'am' }}
                                 </option>
-                            @endfor
+                                @endfor
                         </select>
                     </div>
 

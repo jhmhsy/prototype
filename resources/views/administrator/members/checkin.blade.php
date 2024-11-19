@@ -17,7 +17,7 @@
     @if ($member->hasOverdueSubscription)
     <span
         class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-gray-100 dark:bg-gray-900 text-red-800 dark:text-red-400">
-        Overview Subscription
+        Overdue Subscription
     </span>
 
     <!-- if has active / good -->

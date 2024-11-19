@@ -32,10 +32,11 @@
         </div>
     </x-slot>
 
-    <div class="flex min-h-screen w-full bg-muted/40">
+    <div class="flex  min-h-screen w-full bg-muted/40">
 
         <!-- SIDE NAV BAR SETTINGS -->
-        <aside class="hidden w-60 flex-col bg-white dark:bg-peak_2 text-black dark:text-textwhite p-6 sm:flex">
+        <aside
+            class=" lg:w-60 md:w-40 flex-col bg-white dark:bg-peak_2 text-black dark:text-textwhite py-6 sm:px-2 md:px-4 lg:px-6 sm:flex">
             <nav class="grid gap-2">
                 <a class="nav-link flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-tertiary hover:text-accent-foreground dark:hover:bg-darkmode_lighter"
                     href="#" data-section="general" onclick="showSection('general')">
@@ -47,7 +48,7 @@
                         </path>
                         <circle cx="12" cy="12" r="3"></circle>
                     </svg>
-                    General
+                    <span class="hidden sm:flex"> General</span>
                 </a>
 
                 <a class="nav-link flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-tertiary hover:text-accent-foreground dark:hover:bg-darkmode_lighter"
@@ -58,7 +59,7 @@
                         <rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect>
                         <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
                     </svg>
-                    Security
+                    <span class="hidden sm:flex">Security</span>
                 </a>
 
                 <a class="nav-link flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-tertiary hover:text-accent-foreground dark:hover:bg-darkmode_lighter"
@@ -70,7 +71,7 @@
                         <line x1="8" x2="16" y1="21" y2="21"></line>
                         <line x1="12" x2="12" y1="17" y2="21"></line>
                     </svg>
-                    Display
+                    <span class="hidden sm:flex">Display</span>
                 </a>
 
                 <form method="POST" action="{{ route('logout') }}">
@@ -84,7 +85,7 @@
                             <polyline points="16 17 21 12 16 7"></polyline>
                             <line x1="21" x2="9" y1="12" y2="12"></line>
                         </svg>
-                        <button>{{ __('Log Out') }}</button>
+                        <button class="hidden sm:flex">{{ __('Log Out') }}</button>
                     </a>
                 </form>
             </nav>
@@ -92,7 +93,7 @@
         </aside>
 
         <!-- MAIN CONTENT -->
-        <div id="main-content" class="flex-1 dark:bg-peak_1">
+        <div id="main-content" class="m-2 flex-1 dark:bg-peak_1">
             <div id="general-section" class="section-content hidden">
                 @include('profile.settings.general')
             </div>
