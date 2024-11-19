@@ -3,7 +3,7 @@
 
 
 <div style="display: none;"
-    class="modal fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] md:w-[60%] lg:w-[40%] xl:w-[35%] z-50 p-4"
+    class="modal fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] md:w-[60%] lg:w-[40%] xl:w-[35%] z-50 p-4 bg-white rounded "
     x-show="createmodal" @click.away="createmodal = false" x-transition:enter="transition ease-out duration-300"
     x-transition:enter-start="opacity-0 transform scale-90" x-transition:enter-end="opacity-100 transform scale-100"
     x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100 transform scale-100"
