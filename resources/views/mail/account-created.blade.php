@@ -8,7 +8,7 @@
                     <tr>
                         <td align="center"
                             style="padding: 40px 20px; background: linear-gradient(to right, #ffc0cb, #d8bfd8, #b0c4de); border-top-left-radius: 8px; border-top-right-radius: 8px;">
-                            <h1 style="margin: 0; font-size: 24px; color: #000000;">Welcome to Our Fitness Family!</h1>
+                            <h1 style="margin: 0; font-size: 24px; color: #000000;">Welcome to Gym One</h1>
                             <p style="margin-top: 10px; font-size: 16px; color: #000000;">We're thrilled to have you on
                                 board.</p>
                         </td>
@@ -16,18 +16,18 @@
                     <!-- Content -->
                     <tr>
                         <td style="padding: 20px;">
-                            <h2 style="font-size: 20px; color: #333333;">Dear {{ $user->name }},</h2>
+                            <h2 style="font-size: 20px; color: #333333;">Hi {{ $user->name }},</h2>
                             <p style="font-size: 16px; line-height: 1.5; color: #666666;">We're excited to support you
                                 on your fitness journey! At <b>Gym One</b>, we offer the best
                                 environment and resources to help you achieve your goals.</p>
-                            <h3 style="font-size: 22px; color: #8a2be2; margin-top: 20px;">What Awaits You:</h3>
+                            <h3 style="font-size: 22px; color: #c9c80a; margin-top: 20px;">What Awaits You:</h3>
                             <table border="0" cellpadding="0" cellspacing="0" width="100%">
                                 <tr>
                                     <td style="padding: 5px 0;">
                                         <table border="0" cellpadding="0" cellspacing="0">
                                             <tr>
                                                 <td
-                                                    style="background-color: #8a2be2; color: #ffffff; font-size: 14px; font-weight: bold; padding: 5px 10px; border-radius: 50%;">
+                                                    style="background-color: #fafaf1; color: #ffffff; font-size: 14px; font-weight: bold; padding: 5px 10px; border-radius: 50%;">
                                                     🔥</td>
                                                 <td style="padding-left: 10px; font-size: 16px; color: #333333;">Dynamic
                                                     workout experiences</td>
@@ -40,10 +40,10 @@
                                         <table border="0" cellpadding="0" cellspacing="0">
                                             <tr>
                                                 <td
-                                                    style="background-color: #8a2be2; color: #ffffff; font-size: 14px; font-weight: bold; padding: 5px 10px; border-radius: 50%;">
+                                                    style="background-color: #fafaf1; color: #ffffff; font-size: 14px; font-weight: bold; padding: 5px 10px; border-radius: 50%;">
                                                     💪</td>
                                                 <td style="padding-left: 10px; font-size: 16px; color: #333333;">
-                                                    Personalized coaching that inspires!</td>
+                                                    Highest Quality of gym equipments!</td>
                                             </tr>
                                         </table>
                                     </td>
@@ -53,7 +53,7 @@
                                         <table border="0" cellpadding="0" cellspacing="0">
                                             <tr>
                                                 <td
-                                                    style="background-color: #8a2be2; color: #ffffff; font-size: 14px; font-weight: bold; padding: 5px 10px; border-radius: 50%;">
+                                                    style="background-color: #fafaf1; color: #ffffff; font-size: 14px; font-weight: bold; padding: 5px 10px; border-radius: 50%;">
                                                     🌟</td>
                                                 <td style="padding-left: 10px; font-size: 16px; color: #333333;">
                                                     Engaging community events full of fun!</td>
@@ -70,7 +70,7 @@
                     <tr>
                         <td align="center" style="padding: 30px; background-color: #f0f0f0;">
                             <a href="[Login URL]"
-                                style="background-color: #ff4500; color: #ffffff; text-decoration: none; padding: 12px 30px; border-radius: 5px; font-weight: bold; font-size: 16px; display: inline-block;">Join
+                                style="background-color: #e1e019; color: #000000; text-decoration: none; padding: 12px 30px; border-radius: 5px; font-weight: bold; font-size: 16px; display: inline-block;">Join
                                 the Fun!</a>
                         </td>
                     </tr>
@@ -80,7 +80,10 @@
                             <div class="bg-gray-100 p-6 text-center text-sm text-gray-600">
                                 <p>
                                     You're receiving this email because you recently created an account on
-                                    {{ config('app.name') }}.
+                                    <a href="https://gymonedanao.com"
+                                        style="color: #3342ff; text-decoration: none; font-weight: bold;">
+                                        gymonedanao.com
+                                    </a>.
                                     If you didn't create an account, please ignore this email.
                                 </p>
                                 <p class="mb-2">&copy; {{ date('Y') }} {{ config('app.name') }}. All rights reserved.
