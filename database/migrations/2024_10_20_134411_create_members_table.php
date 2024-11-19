@@ -11,9 +11,9 @@ return new class extends Migration {
             $table->id();
             $table->string('id_number')->nullable();
             $table->string('name');
-            $table->string('phone')->nullable();
+            $table->string('phone')->unique()->nullable();
             $table->string('fb')->nullable();
-            $table->string('email')->nullable();
+            $table->string('email')->unique()->nullable();
             $table->enum('membership_type', ['Regular', 'Student']);
             $table->timestamps();
 

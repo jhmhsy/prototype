@@ -162,9 +162,9 @@ class MemberController extends Controller
 
         $request->validate([
             'name' => 'required|string|max:50',
-            'phone' => ['nullable', 'string', 'max:20', 'regex:/^\+?[0-9\s\-()]*$/'],
+            'phone' => ['nullable', 'string', 'max:20', 'regex:/^\+?[0-9\s\-()]*$/', 'unique:' . Member::class],
             'fb' => 'nullable|string|max:50',
-            'email' => 'nullable|email|max:100',
+            'email' => ['nullable', 'string', 'lowercase', 'email', 'max:100', 'unique:' . Member::class],
             'membership_type' => 'required|in:Regular,Student',
 
             // Service types must be present

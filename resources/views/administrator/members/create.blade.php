@@ -47,7 +47,12 @@
                         </label>
                         <input type="tel" id="phone" name="phone" maxlength="20"
                             class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-peak_1 dark:border-gray-600 dark:text-white sm:text-sm">
+                        @error('phone')
+                        <span class="text-red-500 text-sm">{{ $message }}</span>
+                        @enderror
+
                     </div>
+
 
                     <div>
                         <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
@@ -55,7 +60,13 @@
                         </label>
                         <input type="email" id="email" name="email" maxlength="100"
                             class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-peak_1 dark:border-gray-600 dark:text-white sm:text-sm">
+
+                        <!-- Display error message if any -->
+                        @error('email')
+                        <span class="text-red-500 text-sm">{{ $message }}</span>
+                        @enderror
                     </div>
+
 
                     <div>
                         <label for="fb" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
