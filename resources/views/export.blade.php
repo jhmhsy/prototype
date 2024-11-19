@@ -7,7 +7,7 @@
                 <div class="export-card">
                     <a href="{{ route('export.members') }}"
                         class="block bg-green-400 hover:bg-green-500 active:bg-green-600 text-white font-bold py-3 px-4 rounded-lg transition-colors duration-400 text-center">
-                        Download Excel
+                        asdasdasdasdasd Excel
                     </a>
                     <p class="text-sm text-gray-500  mt-2 text-center">Export all member data to excel</p>
                 </div>

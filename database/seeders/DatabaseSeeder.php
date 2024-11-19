@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Role;
 
 class DatabaseSeeder extends Seeder
 {
@@ -12,13 +13,15 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
+
         $this->call([
             PermissionTableSeeder::class,
             CreateSuperAdminUserSeeder::class,
             CreateStaffUserSeeder::class,
-            CreateAdminUserSeeder::class,
-            CreateUserSeeder::class,
             PriceSeeder::class,
         ]);
+
+        // Create User role
+        $userRole = Role::firstOrCreate(['name' => 'User']);
     }
 }

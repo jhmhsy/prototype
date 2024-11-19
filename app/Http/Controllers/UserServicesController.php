@@ -11,6 +11,7 @@ class UserServicesController extends Controller
     public function index()
     {
         $userIdNumber = Auth::user()->id_number;
+        $userEmail = Auth::user()->email;
 
         // Fetch only the member with the matching id_number and its relationships
         $member = Member::with(['services', 'lockers', 'treadmills', 'qrcode', 'membershipDuration'])
@@ -18,7 +19,7 @@ class UserServicesController extends Controller
             ->first();
 
         // Return the view with the specific member's data
-        return view('services', compact('member'));
+        return view('components.homepage.services', compact('member'));
     }
 
 
