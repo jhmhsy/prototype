@@ -59,7 +59,7 @@
                 </div>
             </div>
             <div class="relative w-full overflow-auto pr-20">
-                <table class="w-full table-fixed caption-bottom text-sm mb-3">
+                <table class="w-full caption-bottom text-sm ">
                     <thead>
                         <tr class="transition-colors hover:bg-muted/50 text-gray-500 dark:bg-peak_2">
                             <th class="h-12 px-4 text-left align-middle font-medium">
