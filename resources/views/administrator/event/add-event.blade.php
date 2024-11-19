@@ -2,8 +2,8 @@
 </div>
 
 
-<div style="display: none;"
-    class="modal fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] md:w-[60%] lg:w-[40%] xl:w-[35%] z-50 p-4 bg-white rounded "
+<div style="display: none; width:430px;"
+    class="modal fixed w-[90%] md:w-[60%] lg:w-[40%] xl:w-[35%] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 p-4"
     x-show="createmodal" @click.away="createmodal = false" x-transition:enter="transition ease-out duration-300"
     x-transition:enter-start="opacity-0 transform scale-90" x-transition:enter-end="opacity-100 transform scale-100"
     x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100 transform scale-100"
@@ -67,11 +67,10 @@
                             class="dark:bg-peak_1 w-full px-3 py-2 border dark:border-none rounded-md" required>
                             <option value="" disabled selected>Select an hour</option>
                             <!-- Loop through 7 to 20 for full hours -->
-                            @for ($i = 7; $i < 21; $i++)
-                                <option value="{{ str_pad($i, 2, '0', STR_PAD_LEFT) }}:00">
-                                    {{ $i > 12 ? $i - 12 : $i }} {{ $i >= 12 ? 'pm' : 'am' }}
+                            @for ($i = 7; $i < 21; $i++) <option value="{{ str_pad($i, 2, '0', STR_PAD_LEFT) }}:00">
+                                {{ $i > 12 ? $i - 12 : $i }} {{ $i >= 12 ? 'pm' : 'am' }}
                                 </option>
-                            @endfor
+                                @endfor
                         </select>
                     </div>
 
