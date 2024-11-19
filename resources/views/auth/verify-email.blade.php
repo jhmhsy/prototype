@@ -9,9 +9,9 @@
             </p>
 
             @if (session('status') == 'verification-link-sent')
-                <div class="mb-4 font-medium text-sm text-green-600 dark:text-green-400">
-                    {{ __('A new verification link has been sent to your email address.') }}
-                </div>
+            <div class="mb-4 font-medium text-sm text-green-600 dark:text-green-400">
+                {{ __('A new verification link has been sent to your email address.') }}
+            </div>
             @endif
 
             <div class="flex flex-col sm:flex-row sm:space-x-4 mt-4 space-y-2 sm:space-y-0">

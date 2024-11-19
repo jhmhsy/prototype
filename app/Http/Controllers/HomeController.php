@@ -14,7 +14,7 @@ class HomeController extends Controller
     public function index()
     {
 
-
+        // checks if the auth user has verified or not, id not then proceed to verification and if verified=works normally
         if (Auth::check() && !Auth::user()->hasVerifiedEmail()) {
             return redirect()->route('verification.notice');
         }
