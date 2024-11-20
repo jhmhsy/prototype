@@ -1,4 +1,4 @@
-<!-- Rent More Treadmill Modal -->
+<!-- Rent More Treadmill Modal s-->
 <div style="display:none;" x-show="membershipOption" class="fixed inset-0 bg-black opacity-50 z-40"
     @click="membershipOption = false">
 </div>
@@ -37,18 +37,18 @@
             <label class="block text-sm font-medium text-gray-500">Duration</label>
             <p class="dark:text-white">
                 @if ($member->membershipDuration)
-                @if ($member->membership_type === 'Walkin')
-                Limited 1/day up until
-                {{ \Carbon\Carbon::parse($member->membershipDuration->due_date)->format('M j, Y') }}
-                @else
-                {{ \Carbon\Carbon::parse($member->membershipDuration->start_date)->format('M j, Y') }}
-                -
-                {{ \Carbon\Carbon::parse($member->membershipDuration->due_date)->format('M j, Y') }}
-                @endif
+                    @if ($member->membership_type === 'Walkin')
+                        Limited 1/day up until
+                        {{ \Carbon\Carbon::parse($member->membershipDuration->due_date)->format('M j, Y') }}
+                    @else
+                        {{ \Carbon\Carbon::parse($member->membershipDuration->start_date)->format('M j, Y') }}
+                        -
+                        {{ \Carbon\Carbon::parse($member->membershipDuration->due_date)->format('M j, Y') }}
+                    @endif
 
 
                 @else
-                <span class="text-gray-500">No membership duration available</span>
+                    <span class="text-gray-500">No membership duration available</span>
                 @endif
             </p>
         </div>
@@ -57,10 +57,10 @@
             <div class="flex items-center justify-between">
 
                 @can('member-membership-renew')
-                <button @click="renewConfirm = true; membershipOption = false"
-                    class="mt-4 w-full bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded ">
-                    Renew
-                </button>
+                    <button @click="renewConfirm = true; membershipOption = false"
+                        class="mt-4 w-full bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded ">
+                        Renew
+                    </button>
                 @endcan
 
             </div>
@@ -69,14 +69,14 @@
 
         <div class="flex gap-5">
             @if ($member->membership_type == 'Walkin')
-            <button @click="changeMembershipConfirm = true; membershipOption = false"
-                class="mt-4 w-full border border-blue-500 text-blue-500 hover:bg-blue-700 hover:text-white px-4 py-2 rounded">
-                Change Membership
-            </button>
+                <button @click="changeMembershipConfirm = true; membershipOption = false"
+                    class="mt-4 w-full border border-blue-500 text-blue-500 hover:bg-blue-700 hover:text-white px-4 py-2 rounded">
+                    Change Membership
+                </button>
             @else
-            <button disabled class=" mt-4 w-full border border-blue-500 text-blue-500   px-4 py-2 rounded line-through">
-                Change Membership <span class="text-xs text-red-800 decoration-none">Unavailable</span>
-            </button>
+                <button disabled class=" mt-4 w-full border border-blue-500 text-blue-500   px-4 py-2 rounded line-through">
+                    Change Membership <span class="text-xs text-red-800 decoration-none">Unavailable</span>
+                </button>
             @endif
             <button @click="membershipOption = false"
                 class="mt-4 w-full  border border-gray-500 text-gray-500 hover:text-black hover:border-black dark:hover:text-white dark:hover:border-white px-4 py-2 rounded">
