@@ -13,7 +13,32 @@ class PricesController extends Controller
             abort(404); // forbidden / not found
         }
 
-        $prices = Prices::all();
+        // $prices = Prices::all(); temporary 
+
+        $prices = Prices::all()->map(function ($price) {
+            switch ($price->service_type) {
+                case '1month':
+                    $price->service_type = '1 Month / Regular';
+                    break;
+                case '1monthstudent':
+                    $price->service_type = '1 Month / Student';
+                    break;
+                case '3month':
+                    $price->service_type = '3 Months';
+                    break;
+                case '6month':
+                    $price->service_type = '6 Months';
+                    break;
+                case '12month':
+                    $price->service_type = '12 Months';
+                    break;
+                default:
+                    $price->service_type = ucfirst($price->service_type); // Capitalize if unknown
+                    break;
+            }
+            return $price;
+        });
+
         return view('administrator.price.index', compact('prices'));
     }
 
