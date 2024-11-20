@@ -35,12 +35,12 @@ class UpdateMembershipStatus extends Command
                 $startDate = Carbon::parse($duration->start_date);
                 $dueDate = Carbon::parse($duration->due_date);
 
-                // Skip if already Expired
-                if ($duration->status === 'Expired') {
+                // Skip if already Expired or Ended
+                if (in_array($duration->status, ['Expired', 'Ended'])) {
                     continue;
                 }
 
-                // Reset status for non-Expired memberships
+                // Reset status for non-Expired/non-Ended memberships
                 $duration->status = 'Inactive';
                 $duration->save();
             }
@@ -60,9 +60,14 @@ class UpdateMembershipStatus extends Command
                 $this->info("Current Status: {$duration->status}");
                 $this->info("Membership Type: {$member->membership_type}");
 
-                // Handle Expired memberships
+                // Handle past due memberships
                 if ($dueDate->lt($today)) {
-                    $duration->status = 'Expired';
+                    // For Walkin memberships, mark as Ended instead of Expired
+                    if ($member->membership_type === 'Walkin') {
+                        $duration->status = 'Ended';
+                    } else {
+                        $duration->status = 'Expired';
+                    }
                     $duration->save();
                     continue;
                 }
@@ -85,13 +90,12 @@ class UpdateMembershipStatus extends Command
                 // Future memberships remain 'Inactive'
             }
 
-            // Handle Overdue status
-            if (!$hasActiveMembership) {
+            // Handle Overdue status - skip for Walkin memberships
+            if (!$hasActiveMembership && $member->membership_type !== 'Walkin') {
                 $latestExpired = $membershipDurations
                     ->where('status', 'Expired')
                     ->sortByDesc('due_date')
                     ->first();
-
 
                 if ($latestExpired) {
                     $nextMembership = $membershipDurations
@@ -168,7 +172,7 @@ class UpdateMembershipStatus extends Command
     {
         // Implement notification logic here
         // This could integrate with your notification system
-        
+
         // \Log::info("Renewal reminder needed for member {$duration->member_id}");
     }
 }

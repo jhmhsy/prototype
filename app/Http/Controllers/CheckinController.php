@@ -135,7 +135,7 @@ class CheckinController extends Controller
         // Proceed with check-in
         CheckinRecord::create([
             'user_id' => $member->id,
-            'type' => 'walking',
+            'type' => $member->membership_type,
             'checkin_time' => $now->toTimeString(),
             'checkin_date' => $now->toDateString(),
         ]);

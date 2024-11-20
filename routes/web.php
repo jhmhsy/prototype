@@ -56,6 +56,7 @@ Route::post('/treadmills/{treadmill}/end', [MemberController::class, 'endTreadmi
 
 
 Route::post('/members/{member}/renew', action: [MemberController::class, 'renew'])->name('members.renew');
+Route::post('/members/{member}/changemembership', action: [MemberController::class, 'changemembership'])->name('members.changemembership');
 
 
 Auth::routes(['verify' => true]);

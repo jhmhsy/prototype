@@ -165,7 +165,7 @@ class MemberController extends Controller
             'phone' => ['nullable', 'string', 'max:20', 'regex:/^\+?[0-9\s\-()]*$/', 'unique:' . Member::class],
             'fb' => 'nullable|string|max:50',
             'email' => ['nullable', 'string', 'lowercase', 'email', 'max:100', 'unique:' . Member::class],
-            'membership_type' => 'required|in:Regular,Student',
+            'membership_type' => 'required|in:Regular,Student,Walkin',
 
             // Service types must be present
             'service_type_1' => 'nullable|string|max:255',
@@ -197,12 +197,6 @@ class MemberController extends Controller
 
         ]);
 
-
-
-
-
-
-
         $serviceTypeToMonths = [
             '1month' => 1,
             '1monthstudent' => 1,
@@ -216,7 +210,11 @@ class MemberController extends Controller
 
         // STORE MEMBERSHIP DURATION
         $startDate = now();
-        $dueDate = now()->addYear(); // Adjust this based on your membership duration policy
+        if ($request->membership_type === 'Walkin') {
+            $dueDate = $startDate->copy()->endOfDay(); // if Walkin - set due to today
+        } else {
+            $dueDate = $startDate->copy()->addYear(); // Default duration of 1 year
+        }
 
         MembershipDuration::create([
             'member_id' => $member->id,
@@ -510,7 +508,13 @@ class MemberController extends Controller
     public function renew(Member $member)
     {
         $startDate = now();
-        $dueDate = now()->addYear();
+        if ($member->membership_type === 'Walkin') {
+            $dueDate = $startDate->copy()->endOfDay(); // if Walkin - set due to today
+        } else {
+            $dueDate = now()->addYear();
+        }
+
+
 
         if ($member->membershipDuration) {
             // Update existing membership duration
@@ -522,7 +526,7 @@ class MemberController extends Controller
 
             return redirect()->back()->with('success', 'Membership renewed successfully');
         } else {
-            // Create a new membership duration if none exists
+
             $member->membershipDuration()->create([
                 'start_date' => $startDate,
                 'due_date' => $dueDate,
@@ -532,6 +536,20 @@ class MemberController extends Controller
             return redirect()->back()->with('success', 'New membership created and activated successfully');
         }
     }
+
+    public function changemembership(Request $request, Member $member)
+    {
+        $validated = $request->validate([
+            'membership_type' => 'required|in:Regular,Student',
+        ]);
+
+
+        $member->membership_type = $validated['membership_type'];
+        $member->save();
+
+        return redirect()->back()->with('success', 'Membership type updated successfully');
+    }
+
 
     public function UpdateServiceStatus()
     {
@@ -561,22 +579,20 @@ class MemberController extends Controller
             return response()->json(['error' => 'Invalid relation type'], 400);
         }
 
-        // Define the valid statuses that are not 'Ended'
+
         $validStatuses = ['Active', 'Inactive', 'Due', 'Overdue', 'Expired'];
 
-        // Find the member and load the related model
+
         $member = Member::with([
             $relation => function ($query) use ($validStatuses) {
-                // Filter records by valid statuses and order by due_date descending
+
                 $query->whereIn('status', $validStatuses)
                     ->orderBy('due_date', 'desc');
             }
         ])->findOrFail($memberId);
 
-        // Get the first valid record from the filtered results
         $latestRecord = $member->$relation->first();
 
-        // Calculate the start date based on the latest valid record
         $startDate = $latestRecord
             ? Carbon::parse($latestRecord->due_date)->addDay()->format('Y-m-d')
             : Carbon::now()->format('Y-m-d');
