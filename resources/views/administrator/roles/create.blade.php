@@ -40,7 +40,7 @@
                                 <div class="space-y-2">
                                     <label class="text-lg font-medium  text-gray-500">Role Name</label>
                                     <input type="text" name="name" maxlength="30" placeholder="Name"
-                                        class="dark:bg-peak_1 flex h-10 w-full rounded-md border-none  px-3 py-2 text-sm ">
+                                        class="dark:bg-peak_1 flex h-10 w-full rounded-md border border-gray-500 dark:border-none  px-3 py-2 text-sm ">
                                 </div>
                             </div>
 
@@ -52,10 +52,10 @@
                                         <div class="flex items-center gap-3">
 
                                             <label
-                                                class="select-none flex items-center text-sm font-medium  cursor-pointer">
+                                                class="select-none flex items-center text-sm font-medium  cursor-pointer ">
 
                                                 <input type="checkbox" name="permission[{{$value->id}}]"
-                                                    value="{{$value->id}}" class="name">
+                                                    value="{{$value->id}}" class="name ">
                                                 <span class="ml-2"> {{ $value->name }}</span>
 
                                             </label>
