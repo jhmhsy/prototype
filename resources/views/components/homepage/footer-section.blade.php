@@ -5,8 +5,7 @@
                 <h2 class="text-3xl font-bold tracking-tighter text-lemon-base md:text-4xl/tight">
                     Join Our Vibrant Community
                 </h2>
-                <p
-                    class="mx-auto max-w-[600px] md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed text-primary">
+                <p class="mx-auto max-w-[600px] md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed text-primary">
                     Connect with like-minded individuals, attend exclusive
                     events, and take your fitness to new heights.
                 </p>
@@ -17,7 +16,8 @@
                         class="items-center flex-1 w-full h-10 px-3 py-2 text-sm rounded-md sm:w-auto text-primary"
                         placeholder="Enter your email" type="email" />
                     <div>
-                        <x-custom.primary-button class="bg-lemon-base text-secondary" type="submit">
+                        <x-custom.primary-button class="bg-lemon-base text-secondary" type="button"
+                            onclick="window.location.href = '{{ route('register') }}'">
                             Join Us
                         </x-custom.primary-button>
                     </div>
@@ -34,19 +34,19 @@
 
             <!-- Danao Gym Section -->
             <div class="space-y-4 text-center lg:text-left mx-auto">
-                <a href="#" class="inline-flex items-center">
-                    <span class="text-lg font-bold dark:text-white">Danao Gym</span>
-                </a>
+                <span class="text-lg font-bold dark:text-white">Danao Gym</span>
+
                 <p class="text-gray-400">
                     Join today and take the first step towards achieving your fitness goals.
                 </p>
                 <form class="flex justify-center lg:justify-start">
-                    <x-custom.primary-button type="button">
+                    <x-custom.primary-button onclick="window.location.href = '{{ route('register') }}'" type="button">
                         Join Now
                     </x-custom.primary-button>
                 </form>
                 <p class="text-xs text-gray-400">
-                    By joining, you agree to our <a class="underline dark:text-tint_4" href="#">Privacy Policy</a>.
+                    By joining, you agree to our <a class="underline dark:text-tint_4" href="#">Privacy
+                        Policy</a>.
                 </p>
             </div>
 
@@ -56,7 +56,8 @@
 
                 <!-- Social Media Links -->
                 <div class="flex flex-col space-y-2 lg:space-y-4 items-center lg:items-start">
-                    <a href="#" class="flex items-center group text-gray-400 hover:text-gray-100">
+                    <a href="https://www.facebook.com/profile.php?id=61567209182726" target="_blank"
+                        class="flex items-center group text-gray-400 hover:text-gray-100">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-facebook" viewBox="0 0 16 16">
                             <path
@@ -64,8 +65,15 @@
                         </svg>
                         <span class="ml-2">Facebook</span>
                     </a>
+                    <a class="flex items-center group text-gray-400 hover:text-gray-100">
+                        <svg data-name="1-Email" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+                            <path
+                                d="M29 4H3a3 3 0 0 0-3 3v18a3 3 0 0 0 3 3h26a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3zm-.72 2L16 14.77 3.72 6zM30 25a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V7.23l13.42 9.58a1 1 0 0 0 1.16 0L30 7.23z" />
+                        </svg>
+                        <span class="ml-2">gymoneadmin@gmail.com</span>
+                    </a>
 
-                    <a href="#" class="flex items-center group text-gray-400 hover:text-gray-100">
+                    {{-- <a href="#" class="flex items-center group text-gray-400 hover:text-gray-100">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-instagram" viewBox="0 0 16 16">
                             <path
@@ -81,7 +89,7 @@
                                 d="M5.026 15c6.038 0 9.341-5 9.341-9.334v-.424A6.67 6.67 0 0 0 16 3.542a6.533 6.533 0 0 1-1.889.518 3.3 3.3 0 0 0 1.447-1.816 6.533 6.533 0 0 1-2.084.797A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.286 3.286 0 0 0 1.017 4.382 3.323 3.323 0 0 1-1.487-.409v.041a3.288 3.288 0 0 0 2.633 3.218 3.203 3.203 0 0 1-.865.115c-.211 0-.417-.021-.616-.061a3.287 3.287 0 0 0 3.066 2.277A6.588 6.588 0 0 1 .781 13.58a9.29 9.29 0 0 0 5.025 1.473" />
                         </svg>
                         <span class="ml-2">Twitter</span>
-                    </a>
+                    </a> --}}
                 </div>
             </div>
 
