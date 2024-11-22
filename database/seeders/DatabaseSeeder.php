@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             CreateSuperAdminUserSeeder::class,
             CreateStaffUserSeeder::class,
             PriceSeeder::class,
+            QuestionSeeder::class,
         ]);
 
         // Create User role

@@ -93,7 +93,7 @@
                                 @forelse ($latestCheckins as $checkin)
                                     <tr
                                         class=" transition-colors py-10 {{ $loop->iteration % 2 == 0 ? 'bg-gray-100 dark:bg-peak_2' : '' }}">
-                                        ec <td class="p-2">{{ $checkin->rank }}</td>
+                                        <td class="p-2">{{ $checkin->rank }}</td>
                                         <td class="p-2">{{ $checkin->member->name }}</td>
                                         <td class="p-2">{{ $checkin->member->email }}</td>
                                         <td class="p-2">{{ $checkin->type }}</td>

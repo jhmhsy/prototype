@@ -28,7 +28,7 @@
                                     Price
                                 </span>
                                 <span class="font-medium dark:text-white">
-                                    ₱{{ number_format($price->price, 2) }}
+                                    ₱{{$price->price}}
                                 </span>
                             </div>
                         </div>
@@ -75,7 +75,7 @@
                                     {{ $price->service_type }}
                                 </td>
                                 <td class="px-4 lg:px-6 py-4 whitespace-nowrap text-sm">
-                                    ₱{{ number_format($price->price, 2) }}
+                                    ₱{{ $price->price }}
                                 </td>
                                 @can('price-edit')
                                 <td class="px-4 lg:px-6 py-4 whitespace-nowrap text-sm"

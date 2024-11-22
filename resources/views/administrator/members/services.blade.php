@@ -6,7 +6,7 @@
     x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform scale-90"
     x-transition:enter-end="opacity-100 transform scale-100" x-transition:leave="transition ease-in duration-100"
     x-transition:leave-start="opacity-100 transform scale-100" x-transition:leave-end="opacity-0 transform scale-90"
-    class="modal fixed w-[90%] md:w-[60%] lg:w-[50%] xl:w-[55%] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 p-4 rounded-lg bg-white dark:bg-peak_2">
+    class="modal fixed w-[95%] md:w-[85%] lg:w-[75%] xl:w-[60%] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 p-4 rounded-lg bg-white dark:bg-peak_2">
 
     <div class="mt-3 text-center">
 
@@ -31,16 +31,16 @@
 
             <div class="flex justify-between items-center mb-4">
                 <h2 class="text-xl font-bold text-black dark:text-white">{{ $member->name }}'s Services List</h2>
-                <div class="space-x-2 text-sm">
+                <div class="text-sm grid grid-cols-1 lg:grid-cols-2 gap-5">
                     <select x-model="serviceFilter"
-                        class="text-left text-sm border p-2 pr-10 rounded dark:bg-peak_2 dark:text-white">
+                        class="w-full text-left text-sm border p-2 pr-10 rounded dark:bg-peak_2 dark:text-white">
                         <option value="all">All</option>
                         <option value="service">Service</option>
                         <option value="locker">Lockers</option>
                         <option value="treadmill">Treadmill</option>
                     </select>
                     <select x-model="statusFilter"
-                        class="text-left  text-sm border p-2 pr-10 rounded dark:bg-peak_2 dark:text-white">
+                        class="w-full text-left  text-sm border p-2 pr-10 rounded dark:bg-peak_2 dark:text-white">
                         <option value="current">Current</option>
                         <option value="expired">Expired</option>
                     </select>
@@ -59,8 +59,8 @@
 
     <div class="p-6">
 
-        <div class="grid grid-cols-1 md:flex gap-5 justify-between items-center">
-            <div class="grid grid-cols-3 space-x-2 text-md sm:text-sm">
+        <div class="grid grid-cols-1 lg:grid-cols-2 lg:flex gap-5 justify-between items-center">
+            <div class=" grid grid-cols-1 lg:grid-cols-3 gap-4  text-md sm:text-sm">
 
                 @can('subscription-extend')
                     <button @click="extendOpen = true; openservices = false;"
@@ -84,16 +84,13 @@
                 @endcan
             </div>
 
-            <div class="flex gap-2">
+            <div class=" grid grid-cols-1 lg:grid-cols-2 justify-end gap-4  text-md sm:text-sm">
 
                 @if (!$member->hasSubscriptions)
-
                     <button disabled for="has no active subscription"
-                        class="mt-4 bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded transition duration-300">
+                        class=" bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded transition duration-300">
                         No Subscription
                     </button>
-
-
                 @elseif ($member->hasSubscriptions)
 
                     <!-- not yet checked in -->
@@ -102,7 +99,8 @@
                         <!-- if is overdue -->
                         @if ($member->hasOverdueSubscription)
                             <button @click="openservices = false; showWarning = true;" for="with overdue subscription"
-                                class="mt-4 bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded transition duration-300">
+                                class=" bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded transition duration-300">
+
                                 Check-in (Warning)
                             </button>
 
@@ -112,7 +110,7 @@
                                 @csrf
                                 <button type="submit" for="hasnt checked in yet"
                                     onclick="this.disabled = true; this.innerText = 'Checking in...'; this.form.submit();"
-                                    class="mt-4 {{ $buttonClass }} text-white px-4 py-2 rounded transition duration-300">
+                                    class=" {{ $buttonClass }} text-white px-4 py-2 rounded transition duration-300">
                                     Check-in
                                 </button>
 
@@ -123,7 +121,7 @@
                             <!-- if has no active subscription -->
                         @elseif (!$member->hasActiveSubscription)
                             <button disabled for="has no active subscription"
-                                class="mt-4 bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded transition duration-300">
+                                class=" bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded transition duration-300">
                                 No Active Subscription
                             </button>
                         @endif
@@ -132,7 +130,7 @@
                     @elseif ($alreadyCheckedIn)
 
                         <button disabled for="already checked in"
-                            class="mt-4 bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded transition duration-300">
+                            class=" bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded transition duration-300">
                             Checked In
                         </button>
 
@@ -141,12 +139,12 @@
                 @endif
 
 
-                <div>
-                    <button @click="openservices = false"
-                        class="mt-4 border border-gray-500 text-gray-500 hover:text-black hover:border-black dark:hover:text-white dark:hover:border-white px-4 py-2 rounded-lg">
-                        Close
-                    </button>
-                </div>
+                <button @click="openservices = false"
+                    class=" border border-gray-500 text-gray-500 hover:text-black hover:border-black dark:hover:text-white dark:hover:border-white px-4 py-2 rounded-lg">
+
+                    Close
+                </button>
+
             </div>
 
         </div>

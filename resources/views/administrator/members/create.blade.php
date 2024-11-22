@@ -14,7 +14,7 @@
         </div>
         @endif
 
-        <form action="{{ route('members.store') }}" method="POST" class="space-y-8"
+        <form id="registrationForm" action="{{ route('members.store') }}" method="POST" class="space-y-8"
             x-data="{ registering: false, membershipType: '' }" @submit="registering = true">
             @csrf
             <input type="hidden" name="form_token" value="{{ session('form_token') }}">
@@ -262,6 +262,42 @@
         if (input.value < 0) input.value = 0;
         if (input.value > 12) input.value = 12;
     }
+    </script>
+
+    <script>
+    // Function to load data from localStorage
+    document.addEventListener("DOMContentLoaded", function() {
+
+        if (localStorage.getItem("name")) {
+            document.getElementById("name").value = localStorage.getItem("name");
+        }
+        if (localStorage.getItem("phone")) {
+            document.getElementById("phone").value = localStorage.getItem("phone");
+        }
+        if (localStorage.getItem("email")) {
+            document.getElementById("email").value = localStorage.getItem("email");
+        }
+        if (localStorage.getItem("fb")) {
+            document.getElementById("fb").value = localStorage.getItem("fb");
+        }
+    });
+
+    // Function to save form data to localStorage on change
+    document.getElementById("registrationForm").addEventListener("input", function(event) {
+
+        if (event.target.name === "name") {
+            localStorage.setItem("name", event.target.value);
+        }
+        if (event.target.name === "phone") {
+            localStorage.setItem("phone", event.target.value);
+        }
+        if (event.target.name === "email") {
+            localStorage.setItem("email", event.target.value);
+        }
+        if (event.target.name === "fb") {
+            localStorage.setItem("fb", event.target.value);
+        }
+    });
     </script>
 </x-dash-layout>
 @endcanany

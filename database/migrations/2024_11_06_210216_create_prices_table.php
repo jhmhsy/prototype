@@ -13,7 +13,7 @@ return new class extends Migration {
         Schema::create('prices', function (Blueprint $table) {
             $table->id();
             $table->string('service_type');
-            $table->decimal('price', 10, 2);
+            $table->integer('price'); // Changed to integer
             $table->timestamps();
         });
     }

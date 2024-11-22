@@ -12,10 +12,10 @@ return new class extends Migration {
     {
         Schema::create('questions', function (Blueprint $table) {
             $table->id();
-            $table->text('question'); // Field for the question text
-            $table->text('answer');   // Field for the answer
-            $table->text('extra_answer')->nullable(); // Field for extra answer
-            $table->timestamps(); // Timestamp fields
+            $table->text('question');
+            $table->text('answer');
+            $table->text('extra_answer')->nullable();
+            $table->timestamps();
         });
     }
 

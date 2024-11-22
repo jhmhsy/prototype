@@ -2,7 +2,7 @@
 
 return [
 
-    'name' => env('APP_NAME', 'LaraFitness'),
+    'name' => env('APP_NAME', 'Gym One'),
 
     'env' => env('APP_ENV', 'production'),
 

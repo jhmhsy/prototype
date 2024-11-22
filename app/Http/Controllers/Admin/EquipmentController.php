@@ -53,7 +53,7 @@ class EquipmentController extends Controller
             'extra_details' => 'nullable|string|max:300',
 
             'images' => 'required|array|max:1',
-            'images.*' => 'image|mimes:jpeg,png,jpg,gif', // size limit gone
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:40960',
 
         ]);
 
