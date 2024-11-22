@@ -82,7 +82,8 @@ class MemberController extends Controller
         }
 
 
-        $members = $query->get();
+
+        $members = $query->paginate(10)->withQueryString();
 
         $occupiedLockers = Locker::whereIn('status', ['Active', 'Due', 'Overdue'])->pluck('locker_no')->toArray();
 

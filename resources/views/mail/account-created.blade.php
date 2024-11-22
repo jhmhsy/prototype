@@ -69,7 +69,7 @@
                     <!-- CTA Button -->
                     <tr>
                         <td align="center" style="padding: 30px; background-color: #f0f0f0;">
-                            <a href="[Login URL]"
+                            <a href="https://gymonedanao.com"
                                 style="background-color: #e1e019; color: #000000; text-decoration: none; padding: 12px 30px; border-radius: 5px; font-weight: bold; font-size: 16px; display: inline-block;">Join
                                 the Fun!</a>
                         </td>
@@ -81,7 +81,7 @@
                                 <p>
                                     You're receiving this email because you recently created an account on
                                     <a href="https://gymonedanao.com"
-                                        style="color: #3342ff; text-decoration: none; font-weight: bold;">
+                                        style="color: #000000; text-decoration: none; font-weight: bold;">
                                         gymonedanao.com
                                     </a>.
                                     If you didn't create an account, please ignore this email.

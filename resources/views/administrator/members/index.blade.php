@@ -17,32 +17,45 @@ const keynumber = "{{ $keynumber }}"; // Safe to use if sanitized by Blade
 <x-dash-layout title="Members">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.8/html5-qrcode.min.js"></script>
     <div class="container mx-auto" x-data="{ openLink: null, openshowmodal: false}" x-init="barcodeScanner().init()">
-        <h2 class="text-sm font-bold mb-4 dark:text-white">Members List</h2>
-        <!-- manual search  -->
-        <form id="searchForm" action="{{ route('members.index') }}" method="GET" class="mt-4">
-            <div class="relative z-[5]">
-                <button type="submit"
-                    class="absolute inset-y-0 left-0 flex items-center p-2 text-gray-500 dark:text-gray-400">
-                    <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                        viewBox="0 0 20 20">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
-                    </svg>
-                    <span class="sr-only">Search</span> <!-- For accessibility -->
-                </button>
-                <input type="text" name="search" id="searchInput" maxlength="255" placeholder="Search by ID Number"
-                    value="{{ request('search') }}"
-                    class="block w-full py-2 pl-10 pr-4 text-sm border border-gray-300 rounded-md dark:border-gray-800 dark:bg-peak_2 dark:text-white" />
+        <h2 class="text-sm font-bold px-4 mb-4 dark:text-white">Members List</h2>
 
+        @if (!$members->isEmpty())
+        <span class="text-sm text-gray-600 dark:text-gray-400 px-4">
+            Page {{ $members->currentPage() }} of {{ $members->lastPage() }}
+        </span>
+        @endif
+
+        <div class="flex w-full gap-5 mt-4">
+            <div class="mt4">
+                {{ $members->links('vendor.pagination.custom-pagination') }}
             </div>
-        </form>
+
+            <!-- manual search  -->
+            <form id="searchForm" action="{{ route('members.index') }}" method="GET" class="w-full ">
+                <div class="relative z-[5]">
+                    <button type="submit"
+                        class="absolute inset-y-0 left-0 flex items-center p-2 text-gray-500 dark:text-gray-400">
+                        <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 20 20">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                        </svg>
+                        <span class="sr-only">Search</span> <!-- For accessibility -->
+                    </button>
+                    <input type="text" name="search" id="searchInput" maxlength="255" placeholder="Search by ID Number"
+                        value="{{ request('search') }}"
+                        class="block w-full py-2 pl-10 pr-4 text-sm border border-gray-300 rounded-md dark:border-gray-800 dark:bg-peak_2 dark:text-white" />
+
+                </div>
+            </form>
+        </div>
 
         <div class="hidden" x-data="qrScanner()">
             <input type="text" id="barcodeInput" name="search" x-model="scannedValue" x-ref="barcodeInput"
                 class="scan-input" placeholder="Barcode Input">
         </div>
 
-        <div class="max-w-full overflow-x-auto p-4 border dark:border-none rounded-lg shadow-md mt-5">
+        <div class="max-w-full overflow-x-auto p-4 border dark:border-none rounded-lg shadow-md">
             <table class="min-w-full divide-y divide-border dark:border-none bg-white dark:bg-peak_1  rounded-lg ">
                 <thead>
                     <tr class="border-b dark:border-none text-sm text-gray-500 dark:bg-peak_2">
