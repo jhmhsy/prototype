@@ -67,7 +67,7 @@ const keynumber = "{{ $keynumber }}"; // Safe to use if sanitized by Blade
                     <tr class="border-b dark:border-none hover:bg-gray-50 dark:hover:bg-gray-800 text-sm dark:text-white transition-colors py-10 {{ $loop->iteration % 2 == 0 ? 'bg-gray-100 dark:bg-peak_2' : '' }}"
                         :id="'member-' + '{{ $member->id_number }}'" x-init="checkAndOpen()"
                         x-data="{ showWarning: false, opendelete: false, membershipOption:false,renewConfirm: false, changeMembershipConfirm: false, openservices: false, opensmembershipswitch:false, openeditmodal:false, extendOpen: false, lockerOption: false ,extendLockerOpen:false,rentLockerOpen: false,  extendTreadmill: false, checkAndOpen() { if (keynumber === '{{ $member->id_number }}') { this.openservices = true; } }}">
-                        <td class="px-4 py-2">
+                        <td class="whitespace-nowrap px-4 py-2">
                             @if($member->id_number)
                             <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30"
                                 viewBox="0 0 48 48">
@@ -97,10 +97,10 @@ const keynumber = "{{ $keynumber }}"; // Safe to use if sanitized by Blade
                             @endif
                         </td>
 
-                        <td class="px-4 py-2">{{ $member->id }}</td>
-                        <td class="px-4 py-2">{{ $member->name }}</td>
-                        <td class="px-4 py-2">{{ $member->email ?? 'N/A' }}</td>
-                        <td class="px-4 py-2">{{ $member->membership_type }}</td>
+                        <td class="whitespace-nowrap px-4 py-2">{{ $member->id }}</td>
+                        <td class="whitespace-nowrap px-4 py-2">{{ $member->name }}</td>
+                        <td class="whitespace-nowrap px-4 py-2">{{ $member->email ?? 'N/A' }}</td>
+                        <td class="whitespace-nowrap px-4 py-2">{{ $member->membership_type }}</td>
 
                         @php
                         $statusColors = [
@@ -133,14 +133,14 @@ const keynumber = "{{ $keynumber }}"; // Safe to use if sanitized by Blade
                         }
                         @endphp
 
-                        <td class="px-4 py-2">
+                        <td class="whitespace-nowrap px-4 py-2">
                             <button @click="membershipOption = true"
                                 class=" top-2 right-2 w-3 h-3 {{ $bgColor }} rounded-full"
                                 aria-label="{{ $status }} status" title="{{ $status }}" type="button">
                             </button> {{ $member->membershipDuration->status }}
                         </td>
 
-                        <td class="px-4 py-2">
+                        <td class="whitespace-nowrap px-4 py-2">
                             @if ($member->membership_type === 'Walkin')
                             Limited Duration
                             @else
