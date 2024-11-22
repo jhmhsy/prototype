@@ -12,15 +12,16 @@
                 @include('gym-map')
             </details>
             </details>
-
-            @foreach ($questions as $question)
-                <details class="border border-border rounded-md p-4 w-full">
-                    <summary class="cursor-pointer">{{ $question->question }}</summary>
-                    <p class="text-sm italic pl-4">{{ $question->answer }}</p>
-                    <p class="text-sm italic pl-4">{{ $question->extra_answer ? $question->extra_answer : 'N/A' }}</p>
-                </details>
-            @endforeach
-
+            <details class="border border-border rounded-md p-4 w-full">
+                <summary class="cursor-pointer">When are the Opening and Closing Times?</summary>
+                <p class="text-sm italic pl-4">We are open on Mondays through Saturdays from 8:30 AM to 12 PM, 2 PM to 8
+                    PM</p>
+                <p class="text-sm italic pl-4">And on Sundays from 2 PM to 8 PM</p>
+            </details>
+            <details class="border border-border rounded-md p-4 w-full">
+                <summary class="cursor-pointer">Is it Affordable?</summary>
+                <p class="text-sm italic pl-4">Information about pricing and affordability.</p>
+            </details>
         </div>
         <div class="mt-2 contents-left flex items-center gap-2">
             <p>Still have questions?</p>

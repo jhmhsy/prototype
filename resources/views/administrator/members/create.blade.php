@@ -188,7 +188,7 @@
                                 <select id="locker_no" name="locker_no"
                                     class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-peak_1 dark:border-gray-600 dark:text-white sm:text-sm">
                                     <option value="" disabled selected>Select a locker</option>
-                                    @for ($j = 1; $j <= 27; $j++) <option value="{{ $j }}"
+                                    @for ($j = 1; $j <= 40; $j++) <option value="{{ $j }}"
                                         {{ in_array($j, $occupiedLockers) ? 'disabled' : '' }}>
                                         Locker No. {{ $j }} {{ in_array($j, $occupiedLockers) ? '(Unavailable)' : '' }}
                                         </option>

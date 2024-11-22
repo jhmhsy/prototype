@@ -38,7 +38,8 @@
 
             <!-- map/feedback sections-->
             <div id="faq-section" class="bg-peak-5 text-primary">
-                <x-homepage.FAQs />
+
+                @include ('components.homepage.FAQs')
             </div>
 
             <!-- Footer sections-->

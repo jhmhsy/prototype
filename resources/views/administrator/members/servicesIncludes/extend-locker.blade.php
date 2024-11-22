@@ -172,14 +172,14 @@
                 $firstAvailable = null;
 
                 // Find first available locker
-                for ($i = 1; $i <= 21; $i++) { if (!in_array($i, $occupiedLockers)) { $firstAvailable=$i;
+                for ($i = 1; $i <= 40; $i++) { if (!in_array($i, $occupiedLockers)) { $firstAvailable=$i;
                     $allOccupied=false; break; } } @endphp @if ($allOccupied) <option value="" disabled selected>All
                     lockers are occupied</option>
                     @else
                     <option value="" disabled>Select a locker</option>
                     @endif
 
-                    @for ($i = 1; $i <= 21; $i++) <option value="{{ $i }}"
+                    @for ($i = 1; $i <= 40; $i++) <option value="{{ $i }}"
                         {{ in_array($i, $occupiedLockers) ? 'disabled' : '' }}
                         {{ $i === $firstAvailable ? 'selected' : '' }}>
                         Locker No. {{ $i }}

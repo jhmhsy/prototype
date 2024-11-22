@@ -87,19 +87,18 @@
                                                                     </svg>
                                                                     View
                                                                 </button>
-
                                                             @endcan
 
                                                             @can('role-edit')
                                                                 @if ($role->name == 'SuperAdmin' && $role->id == 1)
                                                                     <button disabled
-                                                                        class="line-through  w-full group flex items-center px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-peak_3">
+                                                                        class="text-gray-400 cursor-not-allowed  w-full group flex items-center px-4 py-2 text-sm">
                                                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                                             fill="currentColor" class="w-4 h-4 mr-3" viewBox="0 0 16 16">
                                                                             <path
                                                                                 d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001z" />
                                                                         </svg>
-                                                                        Edit
+                                                                        Edit &nbsp; <span class="text-xs text-red-600"> Unavailable</span>
                                                                     </button>
                                                                 @else
                                                                     <button
@@ -119,7 +118,7 @@
                                                             @can('role-delete')
                                                                 @if ($role->name == 'SuperAdmin' && $role->id == 1)
                                                                     <button disabled
-                                                                        class=" line-through w-full group flex items-center px-4 py-2 text-sm text-red-600 hover:bg-gray-100 dark:hover:bg-peak_3">
+                                                                        class="text-gray-400 cursor-not-allowed  w-full group flex items-center px-4 py-2 text-sm">
                                                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                                             viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                                                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -128,7 +127,7 @@
                                                                             <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
                                                                             <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
                                                                         </svg>
-                                                                        Delete
+                                                                        Delete &nbsp; <span class="text-xs text-red-600"> Unavailable</span>
                                                                     </button>
                                                                 @else
                                                                     <form method="POST" action="{{ route('roles.destroy', $role->id) }}"

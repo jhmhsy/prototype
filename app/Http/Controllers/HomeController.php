@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Equipment;
 use App\Models\Event;
 use App\Models\Prices;
-
+use App\Models\Question;
 class HomeController extends Controller
 {
     //
@@ -24,7 +24,8 @@ class HomeController extends Controller
         $prices = Prices::all();
 
         $equipments = Equipment::all();
-        return view('welcome', compact('equipments', 'events', 'prices'));
+        $questions = Question::all();
+        return view('welcome', compact('equipments', 'events', 'prices', 'questions'));
 
 
 

@@ -29,8 +29,12 @@ use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
 use App\Http\Controllers\UserServicesController;
+use App\Http\Controllers\QuestionController;
 
-
+Route::get('/FAQs', [QuestionController::class, 'index'])->name('administrator.FAQs');
+Route::post('/questions/store', [QuestionController::class, 'store'])->name('questions.store');
+Route::put('/questions/{id}', [QuestionController::class, 'update'])->name('questions.update');
+Route::delete('/questions/{id}', [QuestionController::class, 'destroy'])->name('questions.destroy');
 
 
 Route::middleware('auth')->group(function () {

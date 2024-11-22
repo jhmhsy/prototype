@@ -1,4 +1,3 @@
-@canany(['role-list', 'role-view', 'role-create', 'role-edit', 'role-delete'])
 <x-dash-layout title="Roles">
     <div class="container mx-auto py-8 px-4 sm:px-6 lg:px-8 text:black dark:text-gray-300"
         x-data="{ openeditmodal: null, openshowmodal: null, opencreatemodal: null }">
@@ -85,4 +84,3 @@
 
     </div>
 </x-dash-layout>
-@endcanany
