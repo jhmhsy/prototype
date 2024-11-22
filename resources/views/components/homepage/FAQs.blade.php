@@ -24,7 +24,7 @@
         </div>
         <div class="mt-2 contents-left flex items-center gap-2">
             <p>Still have questions?</p>
-            <x-custom.secondary-button>Contact us</x-custom.secondary-button>
+            <x-custom.secondary-button onclick="window.location.href = 'https://www.facebook.com/profile.php?id=61567209182726'">Contact us</x-custom.secondary-button>
         </div>
     </div>
 

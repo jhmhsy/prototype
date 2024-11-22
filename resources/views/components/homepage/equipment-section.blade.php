@@ -103,18 +103,22 @@
 
                     // Maintain a constant scroll speed
                     const constantScrollSpeed = 1; // Normal speed
-                    const reversalSpeed = 1; // Speed during reversal
+                    const reversalSpeed = 2; // Speed during reversal
 
                     // Reverse direction when reaching the end or start
                     if (el.scrollLeft >= maxScroll) {
-                        this.scrollDirection = -1;
+                        this.scrollDirection = -1; // Start scrolling left
                     } else if (el.scrollLeft <= 0) {
-                        this.scrollDirection = 1;
+                        this.scrollDirection = 1; // Start scrolling right
                     }
 
-                    // Apply scrolling with normal speed
-                    el.scrollLeft += this.scrollDirection * (this.scrollDirection === 1 ? constantScrollSpeed : reversalSpeed);
-                }, 100);
+                    // Apply scrolling based on the current direction
+                    if (this.scrollDirection === 1) {
+                        el.scrollLeft += constantScrollSpeed; // Scroll right
+                    } else if (this.scrollDirection === -1) {
+                        el.scrollLeft -= constantScrollSpeed; // Scroll left
+                    }
+                }, 50);
             },
             addToCart(product) {
                 console.log('Adding to cart:', product);
