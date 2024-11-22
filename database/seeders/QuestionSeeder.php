@@ -18,5 +18,10 @@ class QuestionSeeder extends Seeder
             'answer' => 'We are open on Mondays through Saturdays from 8:30 AM to 12 PM, 2 PM to 8 PM',
             'extra_answer' => 'And on Sundays from 2 PM to 8 PM'
         ]);
+
+        Question::firstOrCreate([
+            'question' => 'Is it affordable?',
+            'answer' => 'Absolutely, from student plans to muscle maniac plans, we have plans for every budget.',
+        ]);
     }
 }

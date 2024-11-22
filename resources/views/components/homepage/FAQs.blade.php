@@ -14,11 +14,11 @@
             </details>
 
             @foreach ($questions as $question)
-                <details class="border border-border rounded-md p-4 w-full">
-                    <summary class="cursor-pointer">{{ $question->question }}</summary>
-                    <p class="text-sm italic pl-4">{{ $question->answer }}</p>
-                    <p class="text-sm italic pl-4">{{ $question->extra_answer ? $question->extra_answer : 'N/A' }}</p>
-                </details>
+            <details class="border border-border rounded-md p-4 w-full">
+                <summary class="cursor-pointer">{{ $question->question }}</summary>
+                <p class="text-sm italic pl-4">{{ $question->answer }}</p>
+                <p class="text-sm italic pl-4">{{ $question->extra_answer ? $question->extra_answer : '' }}</p>
+            </details>
             @endforeach
 
         </div>
