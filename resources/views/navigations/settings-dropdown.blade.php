@@ -90,6 +90,5 @@
                 </x-custom.dropdown>
             </div>
         @endif
-
     @endauth
 @endif

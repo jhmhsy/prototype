@@ -20,8 +20,7 @@
                         <p class="text-xs md:text-base">#Zero2Hero</p>
                     </div>
                     <div>
-                        <x-custom.primary-button class="animate__animated animate__pulse animate__infinite">Schedule
-                            Now</x-custom.primary-button>
+                        <button class="inline-flex items-center px-4 py-2 border border-white/70 rounded-md font-semibold text-sm uppercase  shadow-md "><strike>Unavailable</strike></button>
                     </div>
                 </div>
             </div>

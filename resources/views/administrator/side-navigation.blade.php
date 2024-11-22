@@ -29,7 +29,7 @@
                     </button>
                     <div class="flex flex-row mr-13 items-center">
                         <a href="{{ route('welcome') }}" class="logo">
-                            <img src="{{ asset('images/logo.png') }}" width="50" height="50" alt="logo">
+                            <img src="{{ asset('images/logo.png') }}" width="85" height="85" alt="logo">
 
                         </a>
                         <span class="block ml-3 text-xl font-bold dark:text-white">Dashboard</span>
