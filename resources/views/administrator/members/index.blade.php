@@ -118,13 +118,14 @@ const keynumber = "{{ $keynumber }}"; // Safe to use if sanitized by Blade
                         @php
                         $statusColors = [
                         'Active' => ['bg-green-500', 'text-green-500'],
-                        'Inactive' => ['bg-blue-500', 'text-blue-500'],
-                        'Due' => ['bg-yellow-500', 'text-yellow-500'],
+                        'Pre-paid' => ['bg-blue-500', 'text-blue-500'],
+                        'Impending' => ['bg-yellow-500', 'text-yellow-500'],
+                        'Due' => ['bg-orange-500', 'text-orange-500'],
                         'Overdue' => ['bg-red-500', 'text-red-500'],
                         'Expired' => ['bg-gray-500', 'text-gray-500']
                         ];
 
-                        $status = $member->membershipDuration ? $member->membershipDuration->status : 'Inactive';
+                        $status = $member->membershipDuration ? $member->membershipDuration->status : 'Pre-paid';
                         [$bgColor, $textColor] = $statusColors[$status] ?? ['bg-gray-500', 'text-white'];
 
                         $alreadyCheckedIn = \App\Models\CheckinRecord::where('user_id', $member->id)
@@ -144,7 +145,13 @@ const keynumber = "{{ $keynumber }}"; // Safe to use if sanitized by Blade
                         break;
                         } elseif ($item['status'] === "Due") {
                         $buttonClass = "bg-orange-500 hover:bg-orange-600";
+                        break;
+                        }elseif ($item['status'] === "Impending") {
+                        $buttonClass = "bg-yellow-500 hover:bg-yellow-600";
+
                         }
+
+
                         }
 
                         // Default class for active or no overdue status

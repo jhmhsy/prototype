@@ -33,13 +33,13 @@ class UpdateSubscriptionStatus extends Command
             // Get the latest service
             $latestService = $services->sortByDesc('start_date')->first();
 
-            // First pass: Reset all future statuses to Inactive
+            // First pass: Reset all future statuses to Pre-paid
             foreach ($services as $service) {
                 $startDate = Carbon::parse($service->start_date);
 
-                // Set future services to Inactive
+                // Set future services to Pre-paid
                 if ($startDate->gt($today)) {
-                    $service->status = 'Inactive';
+                    $service->status = 'Pre-paid';
                     $service->save();
                 }
             }
@@ -50,7 +50,7 @@ class UpdateSubscriptionStatus extends Command
                 $startDate = Carbon::parse($service->start_date);
                 $dueDate = Carbon::parse($service->due_date);
 
-                // Skip if it's a future service (already set to Inactive)
+                // Skip if it's a future service (already set to Pre-paid)
                 if ($startDate->gt($today)) {
                     continue;
                 }
@@ -61,6 +61,16 @@ class UpdateSubscriptionStatus extends Command
                     $service->save();
                     continue;
                 }
+
+                // Check Impending (3 days before due date)
+                $impendingDate = $dueDate->copy()->subDays(3);
+                if ($impendingDate->lte($today) && $dueDate->gt($today)) {
+                    $service->status = 'Impending';
+                    $service->save();
+                    $activeServices->push($service);
+                    continue;
+                }
+
 
                 // If today is the due date, mark as Due
                 if ($dueDate->isSameDay($today)) {

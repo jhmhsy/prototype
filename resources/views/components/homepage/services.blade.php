@@ -111,7 +111,7 @@
                                                                             </td>
                                                                             @php
                                                                                 $statusClass = match ($service->status) {
-                                                                                    'Active' => 'text-green-600', 'Inactive' => 'text-blue-700', 'Due'
+                                                                                    'Active' => 'text-green-600', 'Pre-paid' => 'text-blue-700', 'Due'
                                                                                     => 'text-orange-500', 'Overdue' => 'text-red-700', 'Expired' =>
                                                                                     'text-gray-500', default => '',
                                                                                 };
@@ -140,7 +140,7 @@
                                                                             </td>
                                                                             <td class="border-b border-gray-500 py-3 px-4  text-sm {{ match ($locker->status) {
                                                     'Active' => 'text-green-600',
-                                                    'Inactive' => 'text-blue-700',
+                                                    'Pre-paid' => 'text-blue-700',
                                                     'Due' => 'text-orange-500',
                                                     'Overdue' => 'text-red-700',
                                                     'Expired' => 'text-gray-500',
@@ -170,7 +170,7 @@
                                                                             </td>
                                                                             @php
                                                                                 $statusClass = match ($treadmill->status) {
-                                                                                    'Active' => 'text-green-600', 'Inactive' => 'text-blue-700',
+                                                                                    'Active' => 'text-green-600', 'Pre-paid' => 'text-blue-700',
                                                                                     'Due'
                                                                                     =>
                                                                                     'text-orange-500', 'Overdue' => 'text-red-700', 'Expired' =>

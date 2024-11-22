@@ -15,7 +15,7 @@ return new class extends Migration {
             $table->foreignId('member_id')->constrained()->onDelete('cascade');
             $table->date('start_date');
             $table->date('due_date');
-            $table->enum('status', ['Active', 'Inactive', 'Expired', 'Due', 'Overdue', 'Ended']);
+            $table->enum('status', ['Active', 'Pre-paid', 'Expired', 'Due', 'Overdue', 'Ended', 'Impending']);
             $table->timestamps();
         });
     }

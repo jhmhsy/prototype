@@ -33,13 +33,13 @@ class UpdateTreadmillStatus extends Command
             // Get the latest treadmill subscription
             $latestTreadmill = $treadmills->sortByDesc('start_date')->first();
 
-            // First pass: Reset all future statuses to Inactive
+            // First pass: Reset all future statuses to Pre-paid
             foreach ($treadmills as $treadmill) {
                 $startDate = Carbon::parse($treadmill->start_date);
 
-                // Set future treadmill subscriptions to Inactive
+                // Set future treadmill subscriptions to Pre-paid
                 if ($startDate->gt($today)) {
-                    $treadmill->status = 'Inactive';
+                    $treadmill->status = 'Pre-paid';
                     $treadmill->save();
                 }
             }
@@ -50,7 +50,7 @@ class UpdateTreadmillStatus extends Command
                 $startDate = Carbon::parse($treadmill->start_date);
                 $dueDate = Carbon::parse($treadmill->due_date);
 
-                // Skip if it's a future treadmill subscription (already set to Inactive)
+                // Skip if it's a future treadmill subscription (already set to Pre-paid)
                 if ($startDate->gt($today)) {
                     continue;
                 }
@@ -61,6 +61,17 @@ class UpdateTreadmillStatus extends Command
                     $treadmill->save();
                     continue;
                 }
+
+                // Check Impending (3 days before due date)
+                $impendingDate = $dueDate->copy()->subDays(3);
+                if ($impendingDate->lte($today) && $dueDate->gt($today)) {
+                    $treadmill->status = 'Impending';
+                    $treadmill->save();
+                    $activeTreadmills->push($treadmill);
+                    continue;
+                }
+
+
 
                 // If today is the due date, mark as Due
                 if ($dueDate->isSameDay($today)) {

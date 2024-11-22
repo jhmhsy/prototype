@@ -104,10 +104,10 @@ class MemberController extends Controller
                 if ($service->status === 'Overdue') {
                     $member->hasOverdueSubscription = true;
                 }
-                if (in_array($service->status, ['Due', 'Active', 'Inactive'])) {
+                if (in_array($service->status, ['Due', 'Impending', 'Active', 'Pre-paid'])) {
                     $member->hasValidSubscription = true;
                 }
-                if (in_array($service->status, ['Active', 'Due'])) {
+                if (in_array($service->status, ['Active', 'Impending', 'Due'])) {
                     $member->hasActiveSubscription = true;
                 }
             }
@@ -119,10 +119,10 @@ class MemberController extends Controller
                 if ($locker->status === 'Overdue') {
                     $member->hasOverdueLocker = true;
                 }
-                if (in_array($locker->status, ['Due', 'Active', 'Inactive'])) {
+                if (in_array($locker->status, ['Due', 'Impending', 'Active', 'Pre-paid'])) {
                     $member->hasValidLocker = true;
                 }
-                if (in_array($locker->status, ['Active', 'Due'])) {
+                if (in_array($locker->status, ['Active', 'Impending', 'Due'])) {
                     $member->hasActiveLocker = true;
                 }
             }
@@ -134,10 +134,10 @@ class MemberController extends Controller
                 if ($treadmill->status === 'Overdue') {
                     $member->hasOverdueTreadmill = true;
                 }
-                if (in_array($treadmill->status, ['Due', 'Active', 'Inactive'])) {
+                if (in_array($treadmill->status, ['Due', 'Impending', 'Active', 'Pre-paid'])) {
                     $member->hasValidTreadmill = true;
                 }
-                if (in_array($treadmill->status, ['Active', 'Due'])) {
+                if (in_array($treadmill->status, ['Active', 'Impending', 'Due'])) {
                     $member->hasActiveTreadmill = true;
                 }
             }
@@ -613,7 +613,7 @@ class MemberController extends Controller
         }
 
 
-        $validStatuses = ['Active', 'Inactive', 'Due', 'Overdue', 'Expired'];
+        $validStatuses = ['Active', 'Pre-paid', 'Due', 'Overdue', 'Expired'];
 
 
         $member = Member::with([

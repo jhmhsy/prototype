@@ -10,11 +10,11 @@
     @php
     // Check if the member has any lockers with specific statuses
     $activeLocker = $member->lockers()
-    ->whereIn('status', ['Active', 'Inactive', 'Due', 'Overdue', 'Expired'])
+    ->whereIn('status', ['Active', 'Pre-paid', 'Due', 'Overdue', 'Expired'])
     ->first();
 
     $hasAnyLocker = !is_null($activeLocker); // User has at least one subscription locker
-    $hasActiveOrDueLocker = $activeLocker && in_array($activeLocker->status, ['Active', 'Due', 'Overdue', 'Inactive',
+    $hasActiveOrDueLocker = $activeLocker && in_array($activeLocker->status, ['Active', 'Due', 'Overdue', 'Pre-paid',
     'Expired']);
     @endphp
 

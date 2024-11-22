@@ -47,7 +47,7 @@ class CheckinController extends Controller
                 if ($service->status === 'Overdue') {
                     $member->hasOverdueSubscription = true;
                 }
-                if (in_array($service->status, ['Due', 'Active', 'Inactive'])) {
+                if (in_array($service->status, ['Due', 'Active', 'Pre-paid'])) {
                     $member->hasValidSubscription = true;
                 }
             }
@@ -59,7 +59,7 @@ class CheckinController extends Controller
                 if ($locker->status === 'Overdue') {
                     $member->hasOverdueSubscription = true;
                 }
-                if (in_array($locker->status, ['Due', 'Active', 'Inactive'])) {
+                if (in_array($locker->status, ['Due', 'Active', 'Pre-paid'])) {
                     $member->hasValidSubscription = true;
                 }
             }
@@ -100,7 +100,7 @@ class CheckinController extends Controller
 
         // Check services
         foreach ($member->services as $service) {
-            if (in_array($service->status, ['Due', 'Active', 'Inactive'])) {
+            if (in_array($service->status, ['Due','Impending', 'Active', 'Pre-paid'])) {
                 $hasValidSubscription = true;
             }
             if ($service->status === 'Overdue') {
@@ -110,7 +110,7 @@ class CheckinController extends Controller
 
         // Check lockers
         foreach ($member->lockers as $locker) {
-            if (in_array($locker->status, ['Due', 'Active', 'Inactive'])) {
+            if (in_array($locker->status, ['Due','Impending', 'Active', 'Pre-paid'])) {
                 $hasValidSubscription = true;
             }
             if ($locker->status === 'Overdue') {

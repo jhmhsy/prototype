@@ -16,7 +16,7 @@
     <tbody>
         @foreach($member->services as $service)
                 <tr class="dark:text-white"
-                    x-show="(serviceFilter === 'all' || serviceFilter === 'service') && ((statusFilter === 'current' && ['Active', 'Inactive', 'Due', 'Overdue'].includes('{{ $service->status }}')) || (statusFilter === 'expired' && ['Expired', 'Ended'].includes('{{ $service->status }}')))">
+                    x-show="(serviceFilter === 'all' || serviceFilter === 'service') && ((statusFilter === 'current' && ['Active', 'Pre-paid', 'Impending', 'Due', 'Overdue'].includes('{{ $service->status }}')) || (statusFilter === 'expired' && ['Expired', 'Ended'].includes('{{ $service->status }}')))">
 
                     <td class="whitespace-nowrap border-b dark:border-gray-500 border-r px-4 py-2">
                         {{ $service->service_type }}
@@ -35,9 +35,12 @@
                     </td>
                     @php
                         $statusClass = match ($service->status) {
-                            'Active' => 'text-green-600', 'Inactive' => 'text-blue-700', 'Due'
-                            => 'text-orange-500', 'Overdue' => 'text-red-700', 'Expired' =>
-                            'text-gray-500', default => '',
+                            'Active' => 'text-green-600',
+                            'Pre-paid' => 'text-blue-700',
+                            'Impending' => 'text-yellow-500',
+                            'Due' => 'text-orange-500',
+                            'Overdue' => 'text-red-700',
+                            'Expired' => 'text-gray-500', default => '',
                         };
                     @endphp
                     <td class="whitespace-nowrap border-b dark:border-gray-500 px-4 py-2 font-bold {{ $statusClass }}">
@@ -68,7 +71,7 @@
         @endforeach
         @foreach($member->lockers as $locker)
                 <tr class="dark:text-white"
-                    x-show="(serviceFilter === 'all' || serviceFilter === 'locker') && ((statusFilter === 'current' && ['Active', 'Inactive', 'Due', 'Overdue'].includes('{{ $locker->status }}')) || (statusFilter === 'expired' && ['Expired', 'Ended'].includes('{{ $locker->status }}')))">
+                    x-show="(serviceFilter === 'all' || serviceFilter === 'locker') && ((statusFilter === 'current' && ['Active', 'Pre-paid','Impending', 'Due', 'Overdue'].includes('{{ $locker->status }}')) || (statusFilter === 'expired' && ['Expired', 'Ended'].includes('{{ $locker->status }}')))">
                     <td class="whitespace-nowrap border-b dark:border-gray-500 border-r px-4 py-2">Locker
                         #{{ $locker->locker_no }}
                     </td>
@@ -85,7 +88,8 @@
                     </td>
                     <td class="whitespace-nowrap border-b dark:border-gray-500 px-4 py-2 font-bold {{ match ($locker->status) {
                 'Active' => 'text-green-600',
-                'Inactive' => 'text-blue-700',
+                'Pre-paid' => 'text-blue-700',
+                'Impending' => 'text-yellow-500',
                 'Due' => 'text-orange-500',
                 'Overdue' => 'text-red-700',
                 'Expired' => 'text-gray-500',
@@ -119,7 +123,7 @@
         @endforeach
         @foreach($member->treadmills as $treadmill)
                 <tr class="dark:text-white"
-                    x-show="(serviceFilter === 'all' || serviceFilter === 'treadmill') && ((statusFilter === 'current' && ['Active', 'Inactive', 'Due', 'Overdue'].includes('{{ $treadmill->status }}')) || (statusFilter === 'expired' && ['Expired', 'Ended'].includes('{{ $treadmill->status }}')))">
+                    x-show="(serviceFilter === 'all' || serviceFilter === 'treadmill') && ((statusFilter === 'current' && ['Active', 'Pre-paid', 'Impending', 'Due', 'Overdue'].includes('{{ $treadmill->status }}')) || (statusFilter === 'expired' && ['Expired', 'Ended'].includes('{{ $treadmill->status }}')))">
                     <td class="whitespace-nowrap border-b dark:border-gray-500 border-r px-4 py-2">Treadmill
                     </td>
 
@@ -137,11 +141,12 @@
                     </td>
                     @php
                         $statusClass = match ($treadmill->status) {
-                            'Active' => 'text-green-600', 'Inactive' => 'text-blue-700',
-                            'Due'
-                            =>
-                            'text-orange-500', 'Overdue' => 'text-red-700', 'Expired' =>
-                            'text-gray-500',
+                            'Active' => 'text-green-600',
+                            'Pre-paid' => 'text-blue-700',
+                            'Impending' => 'text-yellow-500',
+                            'Due' => 'text-orange-500',
+                            'Overdue' => 'text-red-700',
+                            'Expired' => 'text-gray-500',
                             default => '',
                         };
                     @endphp
