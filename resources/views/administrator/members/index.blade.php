@@ -132,15 +132,22 @@ const keynumber = "{{ $keynumber }}"; // Safe to use if sanitized by Blade
                         ->exists();
 
                         $buttonClass = '';
-                        foreach ($member->services as $service) {
-                        if ($service->status === "Overdue") {
+
+                        // Merge services, lockers, and treadmills into one collection
+                        $allItems = collect(array_merge($member->services->toArray(), $member->lockers->toArray(),
+                        $member->treadmills->toArray()));
+
+                        // Loop through the merged collection
+                        foreach ($allItems as $item) {
+                        if ($item['status'] === "Overdue") {
                         $buttonClass = "bg-red-500 hover:bg-red-600";
                         break;
-                        } elseif ($service->status === "Due") {
+                        } elseif ($item['status'] === "Due") {
                         $buttonClass = "bg-orange-500 hover:bg-orange-600";
                         }
                         }
 
+                        // Default class for active or no overdue status
                         if (!$buttonClass) {
                         $buttonClass = "bg-green-500 hover:bg-green-600"; // Class for active or default
                         }

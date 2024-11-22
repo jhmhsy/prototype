@@ -96,6 +96,7 @@ class MemberController extends Controller
             $member->hasOverdueSubscription = false;
             $member->hasValidSubscription = false;
             $member->hasActiveSubscription = false;
+
             // Check services
             foreach ($member->services as $service) {
                 $member->hasSubscriptions = true; // Has at least one service
@@ -109,8 +110,39 @@ class MemberController extends Controller
                 if (in_array($service->status, ['Active', 'Due'])) {
                     $member->hasActiveSubscription = true;
                 }
-
             }
+
+            // Check lockers
+            foreach ($member->lockers as $locker) {
+                $member->hasLockers = true;
+
+                if ($locker->status === 'Overdue') {
+                    $member->hasOverdueLocker = true;
+                }
+                if (in_array($locker->status, ['Due', 'Active', 'Inactive'])) {
+                    $member->hasValidLocker = true;
+                }
+                if (in_array($locker->status, ['Active', 'Due'])) {
+                    $member->hasActiveLocker = true;
+                }
+            }
+
+            // Check treadmills
+            foreach ($member->treadmills as $treadmill) {
+                $member->hasTreadmill = true;
+
+                if ($treadmill->status === 'Overdue') {
+                    $member->hasOverdueTreadmill = true;
+                }
+                if (in_array($treadmill->status, ['Due', 'Active', 'Inactive'])) {
+                    $member->hasValidTreadmill = true;
+                }
+                if (in_array($treadmill->status, ['Active', 'Due'])) {
+                    $member->hasActiveTreadmill = true;
+                }
+            }
+
+
 
             // to proceed should have using search, search is not just spaces and the id_number matches to searched data
             if ($request->has('search') && trim($request->search) !== '' && $member->id_number === $request->search) {
