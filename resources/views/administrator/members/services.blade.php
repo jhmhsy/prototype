@@ -6,7 +6,7 @@
     x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform scale-90"
     x-transition:enter-end="opacity-100 transform scale-100" x-transition:leave="transition ease-in duration-100"
     x-transition:leave-start="opacity-100 transform scale-100" x-transition:leave-end="opacity-0 transform scale-90"
-    class="modal fixed w-[95%] md:w-[85%] lg:w-[75%] xl:w-[60%] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 p-4 rounded-lg bg-white dark:bg-peak_2">
+    class="modal fixed h-[90vh] w-[100%] md:w-[80%] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 p-4 rounded-lg bg-white dark:bg-peak_2">
 
     <div class="mt-3 text-center">
 
@@ -101,21 +101,19 @@
                             <button @click="openservices = false; showWarning = true;" for="with overdue subscription"
                                 class=" bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded transition duration-300">
 
+
                                 Check-in (Warning)
                             </button>
 
                             <!-- if has active / good -->
                         @elseif ($member->hasActiveSubscription)
-                            <form action="{{ route('checkin.store', $member) }}" method="POST">
+                            <form action="{{ route('checkin.store', $member) }}" method="POST" class="w-full ">
                                 @csrf
                                 <button type="submit" for="hasnt checked in yet"
                                     onclick="this.disabled = true; this.innerText = 'Checking in...'; this.form.submit();"
-                                    class=" {{ $buttonClass }} text-white px-4 py-2 rounded transition duration-300">
+                                    class=" {{ $buttonClass }} w-full text-white px-4 py-2 rounded transition duration-300">
                                     Check-in
                                 </button>
-
-
-
                             </form>
 
                             <!-- if has no active subscription -->
