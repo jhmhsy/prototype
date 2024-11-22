@@ -6,20 +6,15 @@
     x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform scale-90"
     x-transition:enter-end="opacity-100 transform scale-100" x-transition:leave="transition ease-in duration-100"
     x-transition:leave-start="opacity-100 transform scale-100" x-transition:leave-end="opacity-0 transform scale-90"
-    class="modal fixed w-full h-full top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 p-4 rounded-lg bg-white dark:bg-peak_2">
+    class="modal fixed w-full lg:w-[80%] h-full lg:h-[80%] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 p-4 rounded-lg bg-white dark:bg-peak_2 overflow-y-auto">
 
     <div class="mt-3 text-center">
 
         <div class="mt-2 px-7 py-3">
             <div class="flex gap-5 w-full">
-
                 <div class="text-sm text-left text-gray-500 flex flex-col">
 
                     <div class="flex gap-5">
-                        {{-- <div class="absolute top-2 right-2 w-3 h-3 {{ $statusColor }}
-                        rounded-full" aria-label="{{ $status }} status" title="{{ $status }}">
-                        </div>--}}
-
                         <button @click="membershipOption = true, openservices = false"
                             class="absolute top-2 right-2 w-3 h-3 {{ $bgColor }} rounded-full"
                             aria-label="{{ $status }} status" title="{{ $status }}" type=" button">
@@ -29,7 +24,7 @@
 
             </div>
 
-            <div class="flex justify-between items-center mb-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5 items-center mb-4">
                 <h2 class="text-xl font-bold text-black dark:text-white">{{ $member->name }}'s Services List</h2>
                 <div class="text-sm grid grid-cols-1 lg:grid-cols-2 gap-5">
                     <select x-model="serviceFilter"
@@ -58,8 +53,7 @@
 
 
     <div class="p-6">
-
-        <div class="grid grid-cols-1 lg:grid-cols-2 lg:flex gap-5 justify-between items-center">
+        <div class="grid grid-cols-1 lg:grid-cols-2 lg:flex gap-5 justify-between items-center overflow-y-auto">
             <div class=" grid grid-cols-1 lg:grid-cols-3 gap-4  text-md sm:text-sm">
 
                 @can('subscription-extend')
