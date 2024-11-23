@@ -30,11 +30,13 @@
                             class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-peak_1 dark:border-gray-600 dark:text-white sm:text-sm">
                             <option value="" selected disabled class="disabled">Choose an option
                             </option>
-                            <option value="1month">1 Month</option>
-                            <option value="1monthstudent">1 Month / Student</option>
-                            <option value="3month">3 Months</option>
-                            <option value="6month">6 Months</option>
-                            <option value="12month">12 Months</option>
+
+                            <option value="1month">1 Month - ₱{{ $prices['1month'] ?? 'N/A' }}</option>
+                            <option value="1monthstudent">1 Month / Student - ₱{{ $prices['1monthstudent'] ?? 'N/A' }}
+                            </option>
+                            <option value="3month">3 Months - ₱{{ $prices['3month'] ?? 'N/A' }}</option>
+                            <option value="6month">6 Months - ₱{{ $prices['6month'] ?? 'N/A' }}</option>
+                            <option value="12month">12 Months - ₱{{ $prices['12month'] ?? 'N/A' }}</option>
                         </select>
                     </div>
 
@@ -77,3 +79,6 @@
         </button>
     </div>
 </div>
+
+<template x-if="membershipType === 'Regular'">
+</template>

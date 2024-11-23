@@ -62,10 +62,10 @@ const keynumber = "{{ $keynumber }}"; // Safe to use if sanitized by Blade
                         <th class="px-4 py-2 text-left">QRID</th>
                         <th class="px-4 py-2 text-left">Id</th>
                         <th class="px-4 py-2 text-left">Name</th>
-                        <th class="px-4 py-2 text-left">Email</th>
+                        <th class="px-4 py-2 text-left">Subscription</th>
                         <th class="px-4 py-2 text-left">Type</th>
-                        <th class="px-4 py-2 text-left">MemberState</th>
-                        <th class="px-4 py-2 text-left">Duration</th>
+                        <th class="px-4 py-2 text-left">Yearly Status</th>
+                        <th class="px-4 py-2 text-left">Yearly Duration</th>
                         <th class="px-4 py-2 text-left">Checkin</th>
                         <th class="px-4 py-2 text-left">Action</th>
                     </tr>
@@ -112,8 +112,32 @@ const keynumber = "{{ $keynumber }}"; // Safe to use if sanitized by Blade
 
                         <td class="whitespace-nowrap px-4 py-2">{{ $member->id }}</td>
                         <td class="whitespace-nowrap px-4 py-2">{{ $member->name }}</td>
-                        <td class="whitespace-nowrap px-4 py-2">{{ $member->email ?? 'N/A' }}</td>
-                        <td class="whitespace-nowrap px-4 py-2">{{ $member->membership_type }}</td>
+
+                        <td class="whitespace-nowrap px-4 py-2">
+                            @php
+                            $activeService = $member->services->whereIn('status', ['Active', 'Due', 'Overdue',
+                            'Impending'])->first();
+
+                            @endphp
+
+                            @if ($activeService)
+                            {{ $activeService->service_type }}
+                            <!-- Assuming 'service_type' is a column in the Service model -->
+                            @else
+                            N/A
+                            @endif
+                        </td>
+
+
+                        <td class="whitespace-nowrap px-4 py-2">
+                            @if ($member->membership_type == 'Regular')
+                            {{ $member->membership_type }} - {{ $prices['Regular'] ?? '' }}
+                            @elseif ($member->membership_type == 'Walkin')
+                            {{ $member->membership_type }} - {{ $prices['Walk-in'] ?? '' }}
+                            @else
+                            {{ $member->membership_type }}
+                            @endif
+                        </td>
 
                         @php
                         $statusColors = [

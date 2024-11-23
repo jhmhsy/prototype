@@ -15,6 +15,7 @@ class PriceSeeder extends Seeder
     public function run()
     {
         $prices = [
+            // Services prices
             [
                 'service_type' => '1month',
                 'price' => 999,
@@ -46,6 +47,16 @@ class PriceSeeder extends Seeder
             [
                 'service_type' => 'treadmill',
                 'price' => 200,
+            ],
+
+            // Registration Type Prices
+            [
+                'service_type' => 'Regular',
+                'price' => 350,
+            ],
+            [
+                'service_type' => 'Walk-in',
+                'price' => 100,
             ],
         ];
 
