@@ -63,7 +63,7 @@
                             d="M12 13V8m0 8h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                     </svg>
                 </button>
-                @include ('administrator.members.servicesincludes.service-end-warning')
+                @include('administrator.members.servicesIncludes.service-end-warning', ['service' => $service])
 
                 @endif
             </td>
@@ -109,7 +109,7 @@
                             d="M12 13V8m0 8h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                     </svg>
                 </button>
-                @include ('administrator.members.servicesincludes.locker-end-warning')
+                @include ('administrator.members.servicesIncludes.locker-end-warning')
                 @endif
             </td>
             @endcan
@@ -159,7 +159,7 @@
                             d="M12 13V8m0 8h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                     </svg>
                 </button>
-                @include ('administrator.members.servicesincludes.treadmill-end-warning')
+                @include ('administrator.members.servicesIncludes.treadmill-end-warning')
 
                 @endif
             </td>
