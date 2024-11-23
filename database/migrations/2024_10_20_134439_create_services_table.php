@@ -10,7 +10,8 @@ return new class extends Migration {
         Schema::create('services', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('members')->onDelete('cascade');
-            $table->enum('service_type', ['1month', '1monthstudent', '3month', '6month', '12month']);
+            $table->string('service_type'); // Changed from enum to string
+            // $table->enum('service_type', ['1month', '1monthstudent', '3month', '6month', '12month']);
             $table->date('start_date');
             $table->date('due_date');
             $table->decimal('amount', 8, 2);

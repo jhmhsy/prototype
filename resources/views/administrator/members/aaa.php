@@ -28,7 +28,7 @@
                     <select name="membership_type" id="membership_type" x-model="membershipType"
                         class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md dark:bg-peak_1 dark:border-gray-600 dark:text-white">
 
-                        <option value="Regular">Regular</option>
+                        <option value="Regular" selected>Regular</option>
                         <option value="Walkin">Walkin</option>
                         <option value="Manual">Manual</option>
                     </select>
@@ -113,9 +113,7 @@
                                         <template x-if="membershipType === 'Regular'">
                                             <select :name="'service_type_' + i"
                                                 class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-peak_1 dark:border-gray-600 dark:text-white sm:text-sm">
-                                                <option value="" selected disabled class="disabled">Choose an option
-                                                </option>
-                                                <option value="1month">1 Month</option>
+                                                <option value="1month" selected>1 Month</option>
                                                 <option value="1monthstudent">1 Month / Student</option>
                                                 <option value="3month">3 Months</option>
                                                 <option value="6month">6 Months</option>
@@ -128,7 +126,7 @@
                                         <template x-if="membershipType === 'Walkin'">
                                             <select :name="'service_type_' + i"
                                                 class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-peak_1 dark:border-gray-600 dark:text-white sm:text-sm">
-                                                <option value="Walkin">Walkin</option>
+                                                <option value="Walkin" selected>Walkin</option>
                                             </select>
                                         </template>
 
@@ -136,8 +134,7 @@
                                         <template x-if="membershipType === 'Manual'">
                                             <select :name="'service_type_' + i"
                                                 class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-peak_1 dark:border-gray-600 dark:text-white sm:text-sm">
-                                                <option value="" selected disabled class="disabled">Choose an option
-                                                <option value="1">1 Month</option>
+                                                <option value="1" selected>1 Month</option>
                                                 <option value="2">2 Month</option>
                                                 <option value="3">3 Month</option>
                                                 <option value="4">4 Month</option>

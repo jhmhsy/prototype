@@ -215,21 +215,20 @@ const keynumber = "{{ $keynumber }}"; // Safe to use if sanitized by Blade
 
 
                                         <!-- disable if membershiptype = walkin else enable -->
-                                        <div x-data="{membershipType: '{{ $member->membership_type }}'}">
-                                            <button @click="openservices = true" :disabled="membershipType === 'Walkin'"
-                                                class="w-full group flex items-center px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-peak_3"
-                                                :class="{ 'cursor-not-allowed opacity-50': membershipType === 'Walkin' }">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                    fill="currentColor" class="w-4 h-4 mr-3" viewBox="0 0 16 16">
-                                                    <path
-                                                        d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001z" />
-                                                </svg>
-                                                Services
 
-                                                <span x-show="membershipType === 'Walkin'"
-                                                    class="text-red-800 ml-2">Unavailable</span>
-                                            </button>
-                                        </div>
+                                        <button @click="openservices = true"
+                                            class="w-full group flex items-center px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-peak_3"
+                                            :class="{ 'cursor-not-allowed opacity-50': membershipType === 'Walkin' }">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="w-4 h-4 mr-3" viewBox="0 0 16 16">
+                                                <path
+                                                    d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001z" />
+                                            </svg>
+                                            Services
+
+
+                                        </button>
+
 
                                         @can('member-edit')
                                         <button @click="openeditmodal = {{$member->id}}"

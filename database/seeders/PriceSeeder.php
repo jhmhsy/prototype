@@ -36,6 +36,10 @@ class PriceSeeder extends Seeder
                 'price' => 9999,
             ],
             [
+                'service_type' => 'Walkin',
+                'price' => 150,
+            ],
+            [
                 'service_type' => 'locker',
                 'price' => 100,
             ],

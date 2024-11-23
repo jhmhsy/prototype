@@ -36,10 +36,10 @@
                                     <span>Remember me</span>
                                 </label>
                                 @if (Route::has('password.request'))
-                                    <a class="text-red-500 text-sm font-medium underline hover:text-red-600"
-                                        href="{{ route('password.request') }}">
-                                        {{ __('Forgot your password?') }}
-                                    </a>
+                                <a class="text-red-500 text-sm font-medium underline hover:text-red-600"
+                                    href="{{ route('password.request') }}">
+                                    {{ __('Forgot your password?') }}
+                                </a>
                                 @endif
                             </div>
                         </div>
@@ -55,9 +55,31 @@
                                     class="text-blue-500 font-medium underline hover:text-blue-600"
                                     href="{{ route('register') }}">Register</a>
                             </div>
+
+
                         </div>
                     </div>
                 </form>
+
+                <form method="POST" action="{{ route('login') }}">
+                    @csrf
+
+                    <div hidden class="rounded-lg bg-black text-primary shadow-lg mt-5 py-5" data-v0-t="card">
+                        <x-custom.floating-input class="block w-full" id="email" type="email" name="email"
+                            value="admin@gmail.com" placeholder=" " required autofocus autocomplete="username" />
+
+                        <x-custom.floating-input class="block w-full" id="password" type="password" name="password"
+                            value="gymoneadmin" placeholder=" " required autocomplete="current-password" />
+                    </div>
+                    <div class="px-6 pb-5 pt-3 space-y-2">
+                        <x-custom.secondary-button
+                            class="w-full inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background disabled:pointer-events-none disabled:opacity-50 px-6 py-2">
+                            {{ __('Sign in as admin') }}
+                        </x-custom.secondary-button>
+                    </div>
+
+                </form>
+
             </div>
         </main>
     </div>

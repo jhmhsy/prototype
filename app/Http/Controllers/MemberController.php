@@ -198,7 +198,7 @@ class MemberController extends Controller
             'phone' => ['nullable', 'string', 'max:20', 'regex:/^\+?[0-9\s\-()]*$/', 'unique:' . Member::class],
             'fb' => 'nullable|string|max:50',
             'email' => ['nullable', 'string', 'lowercase', 'email', 'max:100', 'unique:' . Member::class],
-            'membership_type' => 'required|in:Regular,Student,Walkin',
+            'membership_type' => 'required|in:Regular,Manual,Walkin',
 
             // Service types must be present
             'service_type_1' => 'nullable|string|max:255',
@@ -209,6 +209,13 @@ class MemberController extends Controller
             'start_date_2' => 'nullable|date',
             'start_date_3' => 'nullable|date',
             'start_date_4' => 'nullable|date',
+
+            'amount_1' => 'nullable|numeric',
+            'amount_2' => 'nullable|numeric',
+            'amount_3' => 'nullable|numeric',
+            'amount_4' => 'nullable|numeric',
+
+
 
             // Locker fields can be nullable
             'locker_start_date' => 'nullable|date',
@@ -221,7 +228,6 @@ class MemberController extends Controller
         ]);
         // Create member
         $member = Member::create([
-
             'name' => $request->name,
             'phone' => $request->phone,
             'fb' => $request->fb,
@@ -236,18 +242,26 @@ class MemberController extends Controller
             '3month' => 3,
             '6month' => 6,
             '12month' => 12,
+            'Walkin' => 1,
             'locker' => 1,
             'treadmill' => 1,
+            '1' => 1,
+            '2' => 2,
+            '3' => 3,
+            '4' => 4,
+            '5' => 5,
+            '6' => 6,
+            '7' => 7,
+            '8' => 8,
+            '9' => 9,
+            '10' => 10,
         ];
 
 
         // STORE MEMBERSHIP DURATION
         $startDate = now();
-        if ($request->membership_type === 'Walkin') {
-            $dueDate = $startDate->copy()->endOfDay(); // if Walkin - set due to today
-        } else {
-            $dueDate = $startDate->copy()->addYear(); // Default duration of 1 year
-        }
+        $dueDate = $startDate->copy()->addYear(); // Default duration of 1 year
+
 
         MembershipDuration::create([
             'member_id' => $member->id,
@@ -265,38 +279,45 @@ class MemberController extends Controller
                 $months = $serviceTypeToMonths[$serviceType] ?? 1;
                 $startDate = $request->input("start_date_{$i}");
 
-
-                if ($serviceType == '1month' && $request->membership_type == 'Student') {
-                    $serviceType = '1monthstudent';
+                // If service type is manual, use the amount input from the form instead else normal
+                if ($request->membership_type === 'Manual') {
+                    $totalAmount = $request->input("amount_{$i}");
+                } else {
+                    $totalAmount = $priceList[$serviceType] ?? null;
                 }
 
-                $totalAmount = $priceList[$serviceType] ?? null;
-
-
-
+                // If the totalAmount is still not found or invalid, return an error response
                 if (is_null($totalAmount)) {
                     return response()->json(['error' => "Price for {$serviceType} not found."], 404);
+                }
+
+                if ($request->membership_type === 'Walkin') {
+                    // Set due date to 1 day only for Walkin
+                    $dueDate = now()->addDay(); // Adds 1 day from the current date
+                } else {
+                    // Calculate due date normally for other services
+                    $dueDate = $this->calculateDueDate($startDate, 'Monthly', $months);
                 }
 
                 $service = new Service([
                     'service_type' => $serviceType,
                     'start_date' => $startDate,
-                    'due_date' => $this->calculateDueDate($startDate, 'Monthly', $months),
+                    'due_date' => $dueDate,
                     'amount' => $totalAmount,
                     'month' => $months,
                     'status' => 'Active',
                     'service_id' => 'SRV-' . Str::random(10),
                 ]);
+
                 $member->services()->save($service);
             }
         }
 
+
+
         // STORE LOCKERS
         // Only create a locker if the start date is filled
         if ($request->filled('locker_start_date') && $request->filled('locker_no') && $request->filled('locker_month')) {
-
-
-
 
             $months = intval($request->input("locker_month"));
             $startDate = $request->input("locker_start_date");
