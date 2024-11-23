@@ -226,6 +226,9 @@ class MemberController extends Controller
             'treadmill_start_date' => 'nullable|date',
             'treadmill_months' => 'nullable|integer|min:1|max:12', // Assuming 12 is the max
         ]);
+
+
+
         // Create member
         $member = Member::create([
             'name' => $request->name,
@@ -363,6 +366,8 @@ class MemberController extends Controller
 
         $this->updateServiceStatus();
         $this->updateLockerStatus();
+
+
 
         return redirect()->back()->with('success', 'Member registered successfully!');
     }

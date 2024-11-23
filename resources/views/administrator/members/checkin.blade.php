@@ -1,13 +1,6 @@
 <td class="px-6 py-4 whitespace-nowrap ">
 
-    <!-- For Walkin Members -->
-    @if ($member->membership_type == 'Walkin')
-    <span
-        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-200">
-        Unavailable
-    </span>
-    @else
-    <!-- For Student or Regular members -->
+
 
     @if (!$member->hasSubscriptions && !$member->hasLockers && !$member->hasTreadmills)
 
@@ -57,7 +50,7 @@
     @endif
     @endif
 
-    @endif
+
 
 
 </td>
