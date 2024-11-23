@@ -80,18 +80,19 @@
 
             <div class=" grid grid-cols-1 lg:grid-cols-2 justify-end gap-4  text-md sm:text-sm">
 
-                @if (!$member->hasSubscriptions)
+                @if (!$member->hasSubscriptions && !$member->hasLockers && !$member->hasTreadmills)
+
                 <button disabled for="has no active subscription"
                     class=" bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded transition duration-300">
                     No Subscription
                 </button>
-                @elseif ($member->hasSubscriptions)
+                @elseif ($member->hasSubscriptions || $member->hasLockers || $member->hasTreadmill)
 
                 <!-- not yet checked in -->
                 @if (!$alreadyCheckedIn)
 
                 <!-- if is overdue -->
-                @if ($member->hasOverdueSubscription)
+                @if ($member->hasOverdueSubscription || $member->hasOverdueLocker || $member->hasOverdueTreadmill)
                 <button @click="openservices = false; showWarning = true;" for="with overdue subscription"
                     class=" bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded transition duration-300">
 
@@ -100,7 +101,7 @@
                 </button>
 
                 <!-- if has active / good -->
-                @elseif ($member->hasActiveSubscription)
+                @elseif ($member->hasActiveSubscription || $member->hasActiveLocker || $member->hasActiveTreadmill)
                 <form action="{{ route('checkin.store', $member) }}" method="POST" class="w-full ">
                     @csrf
                     <button type="submit" for="hasnt checked in yet"
@@ -111,7 +112,7 @@
                 </form>
 
                 <!-- if has no active subscription -->
-                @elseif (!$member->hasActiveSubscription)
+                @elseif (!$member->hasActiveSubscription && !$member->hasActiveLocker && !$member->hasActiveTreadmill)
                 <button disabled for="has no active subscription"
                     class=" bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded transition duration-300">
                     No Active Subscription

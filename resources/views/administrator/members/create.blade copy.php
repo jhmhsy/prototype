@@ -21,16 +21,15 @@
 
             <!-- Basic Information Card -->
             <div class="bg-white dark:bg-peak_2 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-6">
-                <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Membership Registration</h2>
                 <div class="mb-6">
                     <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                         Membership Type
                     </label>
                     <select name="membership_type" id="membership_type" x-model="membershipType"
-                        class="mt-1 block w-full pl-3 pr-10 py-2 text-gray-500 border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:text-black dark:focus:text-white sm:text-sm rounded-md dark:bg-peak_1 dark:border-gray-600 ">
+                        class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md dark:bg-peak_1 dark:border-gray-600 dark:text-white">
 
-                        <option value="Regular"> Regular - ₱{{ $prices['Regular'] ?? 'N/A' }}</option>
-                        <option value="Walkin">Walkin - ₱{{ $prices['Walk-in'] ?? 'N/A' }}</option>
+                        <option value="Regular">Regular</option>
+                        <option value="Walkin">Walkin</option>
                         <option value="Manual">Manual</option>
                     </select>
                 </div>
@@ -84,8 +83,6 @@
             <div class="space-y-8">
                 <!-- Subscription Section -->
                 @can(['subscription-create'])
-
-
                 <div class="bg-white dark:bg-peak_2 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-6"
                     x-data="{ includeService: false, subscriptions: 1, serviceStartDate: '' }">
                     <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Subscription Service</h2>
@@ -113,35 +110,30 @@
                                             Service Type
                                         </label>
                                         <!-- Regular membership options -->
-
                                         <template x-if="membershipType === 'Regular'">
                                             <select :name="'service_type_' + i"
                                                 class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-peak_1 dark:border-gray-600 dark:text-white sm:text-sm">
                                                 <option value="" selected disabled class="disabled">Choose an option
                                                 </option>
-
-                                                <option value="1month">1 Month - ₱{{ $prices['1month'] ?? 'N/A' }}
-                                                </option>
-                                                <option value="1monthstudent">1 Month / Student -
-                                                    ₱{{ $prices['1monthstudent'] ?? 'N/A' }}
-                                                </option>
-                                                <option value="3month">3 Months - ₱{{ $prices['3month'] ?? 'N/A' }}
-                                                </option>
-                                                <option value="6month">6 Months - ₱{{ $prices['6month'] ?? 'N/A' }}
-                                                </option>
-                                                <option value="12month">12 Months - ₱{{ $prices['12month'] ?? 'N/A' }}
-                                                </option>
+                                                <option value="1month">1 Month</option>
+                                                <option value="1monthstudent">1 Month / Student</option>
+                                                <option value="3month">3 Months</option>
+                                                <option value="6month">6 Months</option>
+                                                <option value="12month">12 Months</option>
                                             </select>
                                         </template>
+
+
+                                        <!-- Walkin membership options -->
                                         <template x-if="membershipType === 'Walkin'">
                                             <select :name="'service_type_' + i"
                                                 class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-peak_1 dark:border-gray-600 dark:text-white sm:text-sm">
-                                                <option value="Walkin">Walkin - ₱{{ $prices['Walkin'] ?? 'N/A' }}
-                                                </option>
+                                                <option value="Walkin">Walkin</option>
                                             </select>
                                         </template>
+
+                                        <!-- Manual membership options -->
                                         <template x-if="membershipType === 'Manual'">
-                                            <!-- Manual membership options -->
                                             <select :name="'service_type_' + i"
                                                 class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-peak_1 dark:border-gray-600 dark:text-white sm:text-sm">
                                                 <option value="" selected disabled class="disabled">Choose an option
@@ -156,11 +148,7 @@
                                                 <option value="9">9 Month</option>
                                                 <option value="10">10 Month</option>
                                             </select>
-
                                         </template>
-
-
-
                                     </div>
 
                                     <div>
@@ -183,7 +171,6 @@
                                                 class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-peak_1 dark:border-gray-600 dark:text-white sm:text-sm">
                                         </div>
                                     </template>
-
 
 
 
@@ -216,7 +203,6 @@
                         </button>
                     </div>
                 </div>
-
                 @endcan
 
                 <!-- Locker Section -->
@@ -253,8 +239,8 @@
                                 <select id="locker_no" name="locker_no"
                                     class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-peak_1 dark:border-gray-600 dark:text-white sm:text-sm">
                                     <option value="" disabled selected>Select a locker</option>
-                                    @for ($j = 1; $j <= 40; $j++) <option value="{{ $j }}"
-                                        {{ in_array($j, $occupiedLockers) ? 'disabled' : '' }}>
+                                    @for ($j = 1; $j <= 40; $j++) <option value="{{ $j }}" {{ in_array($j,
+                                        $occupiedLockers) ? 'disabled' : '' }}>
                                         Locker No. {{ $j }} {{ in_array($j, $occupiedLockers) ? '(Unavailable)' : '' }}
                                         </option>
                                         @endfor
@@ -323,10 +309,10 @@
 
     <!-- Month Input Limit Script -->
     <script>
-    function monthInputLimit(input) {
-        if (input.value < 0) input.value = 0;
-        if (input.value > 12) input.value = 12;
-    }
+        function monthInputLimit(input) {
+            if (input.value < 0) input.value = 0;
+            if (input.value > 12) input.value = 12;
+        }
     </script>
 
 

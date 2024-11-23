@@ -62,10 +62,10 @@ const keynumber = "{{ $keynumber }}"; // Safe to use if sanitized by Blade
                         <th class="px-4 py-2 text-left">QRID</th>
                         <th class="px-4 py-2 text-left">Id</th>
                         <th class="px-4 py-2 text-left">Name</th>
-                        <th class="px-4 py-2 text-left">Email</th>
+                        <th class="px-4 py-2 text-left">Subscription</th>
                         <th class="px-4 py-2 text-left">Type</th>
-                        <th class="px-4 py-2 text-left">MemberState</th>
-                        <th class="px-4 py-2 text-left">Duration</th>
+                        <th class="px-4 py-2 text-left">Yearly Status</th>
+                        <th class="px-4 py-2 text-left">Yearly Duration</th>
                         <th class="px-4 py-2 text-left">Checkin</th>
                         <th class="px-4 py-2 text-left">Action</th>
                     </tr>
@@ -79,7 +79,55 @@ const keynumber = "{{ $keynumber }}"; // Safe to use if sanitized by Blade
 
                     <tr class="border-b dark:border-none hover:bg-gray-50 dark:hover:bg-gray-800 text-sm dark:text-white transition-colors py-10 {{ $loop->iteration % 2 == 0 ? 'bg-gray-100 dark:bg-peak_2' : '' }}"
                         :id="'member-' + '{{ $member->id_number }}'" x-init="checkAndOpen()"
-                        x-data="{ showWarning: false, opendelete: false, membershipOption:false,renewConfirm: false, changeMembershipConfirm: false, openservices: false, opensmembershipswitch:false, openeditmodal:false, extendOpen: false, lockerOption: false ,extendLockerOpen:false,rentLockerOpen: false,  extendTreadmill: false, checkAndOpen() { if (keynumber === '{{ $member->id_number }}') { this.openservices = true; } }}">
+                        x-data="{ showWarning: false, serviceendWarning: false, lockerendWarning: false, treadmillendWaring: false, opendelete: false, membershipOption:false,renewConfirm: false, changeMembershipConfirm: false, openservices: false, opensmembershipswitch:false, openeditmodal:false, extendOpen: false, lockerOption: false ,extendLockerOpen:false,rentLockerOpen: false,  extendTreadmill: false, checkAndOpen() { if (keynumber === '{{ $member->id_number }}') { this.openservices = true; } }}">
+
+
+                        @php
+                        $statusColors = [
+                        'Active' => ['bg-green-500', 'text-green-500'],
+                        'Pre-paid' => ['bg-blue-500', 'text-blue-500'],
+                        'Impending' => ['bg-yellow-500', 'text-yellow-500'],
+                        'Due' => ['bg-orange-500', 'text-orange-500'],
+                        'Overdue' => ['bg-red-500', 'text-red-500'],
+                        'Expired' => ['bg-gray-500', 'text-gray-500']
+                        ];
+
+                        $status = $member->membershipDuration ? $member->membershipDuration->status : 'Pre-paid';
+                        [$bgColor, $textColor] = $statusColors[$status] ?? ['bg-gray-500', 'text-white'];
+
+                        $alreadyCheckedIn = \App\Models\CheckinRecord::where('user_id', $member->id)
+                        ->whereDate('checkin_date', \Carbon\Carbon::now()->toDateString())
+                        ->exists();
+
+                        $buttonClass = '';
+
+                        // Merge services, lockers, and treadmills into one collection
+                        $allItems = collect(array_merge($member->services->toArray(), $member->lockers->toArray(),
+                        $member->treadmills->toArray()));
+
+                        // Loop through the merged collection
+                        foreach ($allItems as $item) {
+                        if ($item['status'] === "Overdue") {
+                        $buttonClass = "bg-red-500 hover:bg-red-600";
+                        break;
+                        } elseif ($item['status'] === "Due") {
+                        $buttonClass = "bg-orange-500 hover:bg-orange-600";
+                        break;
+                        }elseif ($item['status'] === "Impending") {
+                        $buttonClass = "bg-yellow-500 hover:bg-yellow-600";
+
+                        }
+
+
+                        }
+
+                        // Default class for active or no overdue status
+                        if (!$buttonClass) {
+                        $buttonClass = "bg-green-500 hover:bg-green-600"; // Class for active or default
+                        }
+                        @endphp
+
+
                         <td class="whitespace-nowrap px-4 py-2">
                             @if($member->id_number)
                             <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30"
@@ -112,39 +160,50 @@ const keynumber = "{{ $keynumber }}"; // Safe to use if sanitized by Blade
 
                         <td class="whitespace-nowrap px-4 py-2">{{ $member->id }}</td>
                         <td class="whitespace-nowrap px-4 py-2">{{ $member->name }}</td>
-                        <td class="whitespace-nowrap px-4 py-2">{{ $member->email ?? 'N/A' }}</td>
-                        <td class="whitespace-nowrap px-4 py-2">{{ $member->membership_type }}</td>
 
-                        @php
-                        $statusColors = [
-                        'Active' => ['bg-green-500', 'text-green-500'],
-                        'Inactive' => ['bg-blue-500', 'text-blue-500'],
-                        'Due' => ['bg-yellow-500', 'text-yellow-500'],
-                        'Overdue' => ['bg-red-500', 'text-red-500'],
-                        'Expired' => ['bg-gray-500', 'text-gray-500']
-                        ];
+                        <td class="whitespace-nowrap px-4 py-2">
+                            @php
+                            $activeService = $member->services->whereIn('status', ['Active', 'Due', 'Overdue',
+                            'Impending'])->first();
+                            $statusColor = match ($activeService->status ?? 'N/A') {
+                            'Active' => 'bg-green-500',
+                            'Due' => 'bg-orange-500',
+                            'Impending' => 'bg-yellow-500',
+                            'Overdue' => 'bg-red-500',
+                            default => 'bg-gray-300',
+                            };
+                            @endphp
 
-                        $status = $member->membershipDuration ? $member->membershipDuration->status : 'Inactive';
-                        [$bgColor, $textColor] = $statusColors[$status] ?? ['bg-gray-500', 'text-white'];
+                            <!-- Status Indicator -->
+                            <button @click="openservices = true"
+                                class="top-2 right-2 w-3 h-3 rounded-full {{ $statusColor }}"
+                                aria-label="{{ $activeService->status ?? 'No status' }} status" type="button">
+                            </button>
 
-                        $alreadyCheckedIn = \App\Models\CheckinRecord::where('user_id', $member->id)
-                        ->whereDate('checkin_date', \Carbon\Carbon::now()->toDateString())
-                        ->exists();
+                            <!-- Service Type -->
+                            @if ($activeService)
+                            {{ $activeService->service_type }}
+                            @if($member->membership_type == 'Manual')
+                            Month
+                            @endif
+                            @else
+                            N/A
+                            @endif
+                        </td>
 
-                        $buttonClass = '';
-                        foreach ($member->services as $service) {
-                        if ($service->status === "Overdue") {
-                        $buttonClass = "bg-red-500 hover:bg-red-600";
-                        break;
-                        } elseif ($service->status === "Due") {
-                        $buttonClass = "bg-orange-500 hover:bg-orange-600";
-                        }
-                        }
 
-                        if (!$buttonClass) {
-                        $buttonClass = "bg-green-500 hover:bg-green-600"; // Class for active or default
-                        }
-                        @endphp
+
+                        <td class="whitespace-nowrap px-4 py-2">
+                            @if ($member->membership_type == 'Regular')
+                            {{ $member->membership_type }} - {{ $prices['Regular'] ?? '' }}
+                            @elseif ($member->membership_type == 'Walkin')
+                            {{ $member->membership_type }} - {{ $prices['Walk-in'] ?? '' }}
+                            @else
+                            {{ $member->membership_type }}
+                            @endif
+                        </td>
+
+
 
                         <td class="whitespace-nowrap px-4 py-2">
                             <button @click="membershipOption = true"
@@ -201,21 +260,35 @@ const keynumber = "{{ $keynumber }}"; // Safe to use if sanitized by Blade
 
 
                                         <!-- disable if membershiptype = walkin else enable -->
-                                        <div x-data="{membershipType: '{{ $member->membership_type }}'}">
-                                            <button @click="openservices = true" :disabled="membershipType === 'Walkin'"
-                                                class="w-full group flex items-center px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-peak_3"
-                                                :class="{ 'cursor-not-allowed opacity-50': membershipType === 'Walkin' }">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                    fill="currentColor" class="w-4 h-4 mr-3" viewBox="0 0 16 16">
-                                                    <path
-                                                        d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001z" />
-                                                </svg>
-                                                Services
 
-                                                <span x-show="membershipType === 'Walkin'"
-                                                    class="text-red-800 ml-2">Unavailable</span>
-                                            </button>
-                                        </div>
+                                        <button @click="openservices = true"
+                                            class="w-full group flex items-center px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-peak_3"
+                                            :class="{ 'cursor-not-allowed opacity-50': membershipType === 'Walkin' }">
+
+                                            <svg class="w-4 h-4 mr-3" aria-hidden="true"
+                                                xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                fill="currentColor" viewBox="0 0 24 24">
+                                                <path
+                                                    d="M7.833 2c-.507 0-.98.216-1.318.576A1.92 1.92 0 0 0 6 3.89V21a1 1 0 0 0 1.625.78L12 18.28l4.375 3.5A1 1 0 0 0 18 21V3.889c0-.481-.178-.954-.515-1.313A1.808 1.808 0 0 0 16.167 2H7.833Z" />
+                                            </svg>
+
+                                            Services
+                                        </button>
+
+                                        <button @click="membershipOption = true"
+                                            class="w-full group flex items-center px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-peak_3"
+                                            :class="{ 'cursor-not-allowed opacity-50': membershipType === 'Walkin' }">
+
+                                            <svg class="w-4 h-4 mr-3" aria-hidden="true"
+                                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                                                viewBox="0 0 24 24">
+                                                <path stroke="currentColor" stroke-linecap="square"
+                                                    stroke-linejoin="round" stroke-width="2"
+                                                    d="M10 19H5a1 1 0 0 1-1-1v-1a3 3 0 0 1 3-3h2m10 1a3 3 0 0 1-3 3m3-3a3 3 0 0 0-3-3m3 3h1m-4 3a3 3 0 0 1-3-3m3 3v1m-3-4a3 3 0 0 1 3-3m-3 3h-1m4-3v-1m-2.121 1.879-.707-.707m5.656 5.656-.707-.707m-4.242 0-.707.707m5.656-5.656-.707.707M12 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                                            </svg>
+                                            Membership
+                                        </button>
+
 
                                         @can('member-edit')
                                         <button @click="openeditmodal = {{$member->id}}"

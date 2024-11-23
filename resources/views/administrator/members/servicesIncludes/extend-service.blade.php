@@ -8,7 +8,9 @@
     x-transition:leave-end="opacity-0 transform scale-90"
     class="modal fixed w-full md:w-[60%] lg:w-[35%] top-1/2 left-1/2 rounded-lg transform -translate-x-1/2 -translate-y-1/2 z-50 p-4 bg-white dark:bg-peak_2">
 
-    <h3 class="text-lg leading-6 font-medium text-gray-900 mb-4 dark:text-white">Extend Subscription</h3>
+    <h3 class="text-lg leading-6 font-medium text-gray-900 mb-4 dark:text-white">Extend Subscription -
+        {{$member->membership_type}}
+    </h3>
     <form action="{{ route('members.extend', $member->id) }}" method="POST" id="service-form-{{ $member->id }}"
         class="service-form" x-data="{ showError: false }">
         @csrf
@@ -19,13 +21,37 @@
         <div class="mb-4">
             <label for="service_type_{{ $member->id }}" class="block text-sm font-medium text-gray-500">Service
                 Type</label>
-            <select id="service_type_{{ $member->id }}" name="service_type"
-                class="dark:bg-peak_1 dark:text-white mt-1 block w-full py-2 px-3 border border-gray-300 dark:border-none bg-white rounded-md shadow-sm  sm:text-sm">
-                <option value="1month">1 Month</option>
-                <option value="3month">3 Months</option>
-                <option value="6month">6 Months</option>
-                <option value="12month">12 Months</option>
-            </select>
+
+            @if($member->membership_type == 'Regular')
+                <select id="service_type_{{ $member->id }}" name="service_type"
+                    class="dark:bg-peak_1 dark:text-white mt-1 block w-full py-2 px-3 border border-gray-300 dark:border-none bg-white rounded-md shadow-sm  sm:text-sm">
+                    <option value="1month">1 Month</option>
+                    <option value="1monthstudent">1 Month / Student</option>
+                    <option value="3month">3 Months</option>
+                    <option value="6month">6 Months</option>
+                    <option value="12month">12 Months</option>
+                </select>
+            @elseif($member->membership_type == 'Walkin')
+                <select id="service_type_{{ $member->id }}" name="service_type"
+                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-peak_1 dark:border-gray-600 dark:text-white sm:text-sm">
+                    <option value="Walkin">Walkin</option>
+                </select>
+            @elseif($member->membership_type == 'Manual')
+                <select id="service_type_{{ $member->id }}" name="service_type"
+                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-peak_1 dark:border-gray-600 dark:text-white sm:text-sm">
+                    <option value="" selected disabled class="disabled">Choose an option
+                    <option value="1">1 Month</option>
+                    <option value="2">2 Month</option>
+                    <option value="3">3 Month</option>
+                    <option value="4">4 Month</option>
+                    <option value="5">5 Month</option>
+                    <option value="6">6 Month</option>
+                    <option value="7">7 Month</option>
+                    <option value="8">8 Month</option>
+                    <option value="9">9 Month</option>
+                    <option value="10">10 Month</option>
+                </select>
+            @endif
         </div>
 
         <!-- Start Date with Refresh Button -->
@@ -54,11 +80,21 @@
                 </div>
             </div>
         </div>
+        @if($member->membership_type == 'Manual')
+            <div>
+                <label for="amount" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    Manual Price
+                </label>
+                <input type="number" name="amount"
+                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-peak_1 dark:border-gray-600 dark:text-white sm:text-sm">
+            </div>
+        @endif
+
 
 
 
         <!-- Submit Button -->
-        <button type="submit" class="w-full bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+        <button type="submit" class="mt-5 w-full bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
             Confirm
         </button>
     </form>

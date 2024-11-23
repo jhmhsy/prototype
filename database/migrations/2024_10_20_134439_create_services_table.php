@@ -10,12 +10,13 @@ return new class extends Migration {
         Schema::create('services', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('members')->onDelete('cascade');
-            $table->enum('service_type', ['1month', '1monthstudent', '3month', '6month', '12month']);
+            $table->string('service_type'); // Changed from enum to string
+            // $table->enum('service_type', ['1month', '1monthstudent', '3month', '6month', '12month']);
             $table->date('start_date');
             $table->date('due_date');
             $table->decimal('amount', 8, 2);
             $table->integer('month');
-            $table->enum('status', ['Active', 'Inactive', 'Expired', 'Due', 'Overdue', 'Ended']);
+            $table->enum('status', ['Active', 'Pre-paid', 'Expired', 'Due', 'Overdue', 'Ended', 'Impending']);
             $table->string('service_id')->unique();
         });
     }

@@ -41,7 +41,7 @@ class UpdateMembershipStatus extends Command
                 }
 
                 // Reset status for non-Expired/non-Ended memberships
-                $duration->status = 'Inactive';
+                $duration->status = 'Pre-paid';
                 $duration->save();
             }
 
@@ -72,6 +72,21 @@ class UpdateMembershipStatus extends Command
                     continue;
                 }
 
+                // Check Impending (3 days before due date)
+                $impendingDate = $dueDate->copy()->subDays(7);
+                if ($impendingDate->lte($today) && $dueDate->gt($today)) {
+                    $duration->status = 'Impending';
+                    $duration->save();
+                    $hasActiveMembership = true;
+
+                    // Add renewal reminder check
+                    if ($dueDate->diffInDays($today) <= 7) {
+                        $this->sendRenewalReminder($duration);
+                    }
+                    continue;
+                }
+
+
                 // Handle current period membership
                 if ($startDate->lte($today) && $dueDate->gte($today)) {
                     if ($dueDate->isSameDay($today)) {
@@ -87,7 +102,7 @@ class UpdateMembershipStatus extends Command
                         $this->sendRenewalReminder($duration);
                     }
                 }
-                // Future memberships remain 'Inactive'
+                // Future memberships remain 'Pre-paid'
             }
 
             // Handle Overdue status - skip for Walkin memberships
@@ -141,13 +156,13 @@ class UpdateMembershipStatus extends Command
                 if ($newStartDate->lte($today)) {
                     $newDuration->status = 'Active';
                 } else {
-                    $newDuration->status = 'Inactive';
+                    $newDuration->status = 'Pre-paid';
                 }
             } else if ($currentMembership->status === 'Active') {
-                // If current membership is Active, set new one to Inactive
+                // If current membership is Active, set new one to Pre-paid
                 $newStartDate = Carbon::parse($newDuration->start_date);
                 if ($newStartDate->gt($today)) {
-                    $newDuration->status = 'Inactive';
+                    $newDuration->status = 'Pre-paid';
                 }
             }
         } else {
@@ -158,7 +173,7 @@ class UpdateMembershipStatus extends Command
             if ($newStartDate->lte($today) && $newDueDate->gt($today)) {
                 $newDuration->status = 'Active';
             } else if ($newStartDate->gt($today)) {
-                $newDuration->status = 'Inactive';
+                $newDuration->status = 'Pre-paid';
             }
         }
 

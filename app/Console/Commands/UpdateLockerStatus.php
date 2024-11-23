@@ -33,13 +33,13 @@ class UpdateLockerStatus extends Command
             // Get the latest locker
             $latestLocker = $lockers->sortByDesc('start_date')->first();
 
-            // First pass: Reset all future statuses to Inactive
+            // First pass: Reset all future statuses to Pre-paid
             foreach ($lockers as $locker) {
                 $startDate = Carbon::parse($locker->start_date);
 
-                // Set future lockers to Inactive
+                // Set future lockers to Pre-paid
                 if ($startDate->gt($today)) {
-                    $locker->status = 'Inactive';
+                    $locker->status = 'Pre-paid';
                     $locker->save();
                 }
             }
@@ -50,7 +50,7 @@ class UpdateLockerStatus extends Command
                 $startDate = Carbon::parse($locker->start_date);
                 $dueDate = Carbon::parse($locker->due_date);
 
-                // Skip if it's a future locker (already set to Inactive)
+                // Skip if it's a future locker (already set to Pre-paid)
                 if ($startDate->gt($today)) {
                     continue;
                 }
@@ -61,6 +61,16 @@ class UpdateLockerStatus extends Command
                     $locker->save();
                     continue;
                 }
+
+                // Check Impending (3 days before due date)
+                $impendingDate = $dueDate->copy()->subDays(3);
+                if ($impendingDate->lte($today) && $dueDate->gt($today)) {
+                    $locker->status = 'Impending';
+                    $locker->save();
+                    $activeLockers->push($locker);
+                    continue;
+                }
+
 
                 // If today is the due date, mark as Due
                 if ($dueDate->isSameDay($today)) {
