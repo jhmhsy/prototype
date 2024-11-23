@@ -9,10 +9,10 @@
                 <form method="POST" action="{{ route('register') }}">
                     @csrf
                     <div class="flex items-center justify-center">
-                        <div class="w-full mt-5 rounded-lg bg-peak-3 text-primary shadow-lg py-5" data-v0-t="card">
+                        <div class="w-full mt-5 rounded-lg  text-primary shadow-lg py-5" data-v0-t="card">
                             <div class="flex flex-col space-y-1.5 px-6 pt-4 pb-1">
                                 <h3
-                                    class="whitespace-nowrap font-bold text-3xl mb-5 mx-auto font-raleway uppercase tracking-wider text-lemon-base bold">
+                                    class="text-center font-bold text-3xl mb-5 mx-auto font-raleway uppercase tracking-wider text-lemon-base bold">
                                     Register an
                                     Account
                                 </h3>

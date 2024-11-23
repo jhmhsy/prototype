@@ -71,7 +71,7 @@
         @endisset
 
         <!-- Main Content -->
-        <div class="dark:bg-shade_9 dark:text-tint_1 bg-tint_1">
+        <div class=" bg-peak_5">
             {{ $slot }}
         </div>
     </div>
