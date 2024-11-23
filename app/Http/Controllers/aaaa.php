@@ -430,13 +430,12 @@ class MemberController extends Controller
         session()->forget('form_token');
 
         $priceList = $this->getPriceList();
-
         $request->validate([
-            'service_type' => 'required|string',
+            'service_type' => 'required|in:1month,3month,6month,12month',
             'start_date' => 'required|date',
-
         ]);
         $member = Member::findOrFail($id);
+
 
 
         $serviceTypeToMonths = [
@@ -460,41 +459,35 @@ class MemberController extends Controller
             '10' => 10,
         ];
 
+
+
         $serviceType = $request->input("service_type");
-        $startDate = Carbon::parse($request->start_date);
+        $startDate = $request->start_date;
         $months = $serviceTypeToMonths[$serviceType] ?? 1;
 
 
-        if ($member->membership_type === 'Manual') {
-            $totalAmount = $request->input("amount");
-
-        } else {
-            $totalAmount = $priceList[$serviceType] ?? null;
+        //check if the member is student then the member gets to use student price
+        if ($serviceType == '1month' && $member->membership_type == 'Student') {
+            $serviceType = '1monthstudent';
         }
+
+
+        $totalAmount = $priceList[$serviceType] ?? null;
+
 
         if (is_null($totalAmount)) {
             return response()->json(['error' => "Price for {$serviceType} not found."], 404);
         }
 
-        if ($member->membership_type === 'Walkin') {
-            // Set due date to 1 day only for Walkin
-            $dueDate = $startDate->addDay();
-        } else {
-            // Calculate due date normally for other services
-            $dueDate = $this->calculateDueDate($startDate, 'Monthly', $months);
-        }
-
         $newService = new Service([
             'service_type' => $serviceType,
             'start_date' => $startDate,
-            'due_date' => $dueDate,
+            'due_date' => $this->calculateDueDate($startDate, 'Monthly', $months), // Pass months here
             'amount' => $totalAmount,
             'month' => $months,
             'status' => 'Active',
             'service_id' => 'SRV-' . \Illuminate\Support\Str::random(10),
         ]);
-
-
         $member->services()->save($newService);
 
         $this->updateServiceStatus();
