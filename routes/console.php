@@ -30,18 +30,18 @@ Schedule::command('membership:update-status')
 
 
 Schedule::command('app:service-due-reminder')
-    ->everyTwoSeconds()
+    ->everyThirtyMinutes()
     ->appendOutputTo(storage_path('logs/scheduler.log'))
     ->emailOutputOnFailure('your-email@example.com');
 
 
 Schedule::command('app:locker-treadmill-reminder')
-    ->everyTwoSeconds()
+    ->everyThirtyMinutes()
     ->appendOutputTo(storage_path('logs/scheduler.log'))
     ->emailOutputOnFailure('your-email@example.com');
 
 
 Schedule::command('app:membership-reminder')
-    ->everyTwoSeconds()
+    ->everyThirtyMinutes()
     ->appendOutputTo(storage_path('logs/scheduler.log'))
     ->emailOutputOnFailure('your-email@example.com');

@@ -37,13 +37,16 @@ class Kernel extends ConsoleKernel
 
         $schedule->command('membership:update-status')->everyMinute();
 
-        $schedule->command('app:service-due-reminder')->everyTwoSeconds();
+        $schedule->command('app:service-due-reminder')->everyThirtyMinutes();
 
-        $schedule->command(' app:locker-treadmill-reminder')->everyTwoSeconds();
+        $schedule->command(' app:locker-treadmill-reminder')->everyThirtyMinutes();
 
-        $schedule->command(' app:membership-reminder')->everyTwoSeconds();
+        $schedule->command(' app:membership-reminder')->everyThirtyMinutes();
     }
 
+    protected $commands = [
+        \App\Console\Commands\ClearLogs::class,
+    ];
 
 
 
