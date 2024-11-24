@@ -86,7 +86,7 @@ class ConfirmationController extends Controller
         // Update treadmill status to "Ended"
         $treadmill->update([
             'action_status' => 'Suspended',
-            'status' => 'Inactive',
+            'status' => 'Ended',
         ]);
 
         // Redirect to the confirmation page with success message
