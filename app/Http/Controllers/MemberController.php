@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\CancelLockerMail;
+use App\Mail\CancelServiceMail;
+use App\Mail\CancelTreadmillMail;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
@@ -16,6 +19,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Http\JsonResponse;
 use Carbon\Carbon;
+
+
+use Illuminate\Support\Facades\Mail;
 
 use Endroid\QrCode\QrCode;
 use Endroid\QrCode\Writer\PngWriter;
@@ -401,7 +407,7 @@ class MemberController extends Controller
     {
         // Change status to "Pending"
         $service->update(['action_status' => 'Pending']);
-
+        Mail::to(config('app.superadminemail'))->send(new CancelServiceMail($service));
         // Redirect back with a success message
         return redirect()->back()->with('success', 'Service marked as Pending for admin approval.');
     }
@@ -410,6 +416,8 @@ class MemberController extends Controller
         // Update status to "Ended"
         $locker->update(['action_status' => 'Pending']);
 
+        Mail::to(config('app.superadminemail'))->send(new CancelLockerMail($locker)); // Ensure CancelLockerMail accepts Locker
+
         // Redirect back with a success message
         return redirect()->back()->with('success', 'Locker marked as Pending for admin approval.');
     }
@@ -417,6 +425,8 @@ class MemberController extends Controller
     {
         // Update status to "Ended"
         $treadmill->update(['action_status' => 'Pending']);
+
+        Mail::to(config('app.superadminemail'))->send(new CancelTreadmillMail($treadmill));
 
         // Redirect back with a success message
         return redirect()->back()->with('success', 'Treadmill marked as Pending for admin approval.');

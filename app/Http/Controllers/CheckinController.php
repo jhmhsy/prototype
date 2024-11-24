@@ -3,9 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Member;
+
+use App\Mail\CheckinOverdueMail;
 use App\Models\CheckinRecord;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+
+use Illuminate\Support\Facades\Mail;
 
 class CheckinController extends Controller
 {
@@ -82,10 +86,10 @@ class CheckinController extends Controller
         }
 
         // Load relationships if not already loaded
-        $member->load(['services', 'lockers']);
+        $member->load(['services', 'lockers', 'treadmills']); // Added 'treadmills'
 
         // Check if user has any subscriptions
-        $hasSubscriptions = $member->services->count() > 0 || $member->lockers->count() > 0;
+        $hasSubscriptions = $member->services->count() > 0 || $member->lockers->count() > 0 || $member->treadmills->count() > 0;
 
         if (!$hasSubscriptions) {
             return redirect()->back()->with('error', 'Cannot check in: No active subscriptions found.');
@@ -94,30 +98,22 @@ class CheckinController extends Controller
         // Check if this is a forced check-in for overdue subscription
         $forceCheckin = $request->input('force_checkin', false);
 
-        // Check subscription statuses
-        $hasValidSubscription = false;
-        $hasOverdueSubscription = false;
+        // Check for overdue subscriptions
+        $hasOverdueSubscription = $member->services->contains(fn($service) => $service->status === 'Overdue') ||
+            $member->lockers->contains(fn($locker) => $locker->status === 'Overdue') ||
+            $member->treadmills->contains(fn($treadmill) => $treadmill->status === 'Overdue');
 
-        // Check services
-        foreach ($member->services as $service) {
-            if (in_array($service->status, ['Due','Impending', 'Active', 'Pre-paid'])) {
-                $hasValidSubscription = true;
-            }
-            if ($service->status === 'Overdue') {
-                $hasOverdueSubscription = true;
-            }
+        // Handle overdue subscription logic
+        if ($hasOverdueSubscription) {
+            // Pass all relevant overdue details (lockers, services, treadmills) to the email
+            $overdueLockers = $member->lockers->where('status', 'Overdue');
+            $overdueServices = $member->services->where('status', 'Overdue');
+            $overdueTreadmills = $member->treadmills->where('status', 'Overdue');
+
+
+            // Send the overdue email with all necessary data
+            Mail::to(config('app.superadminemail'))->send(new CheckinOverdueMail($member, $overdueLockers, $overdueServices, $overdueTreadmills));
         }
-
-        // Check lockers
-        foreach ($member->lockers as $locker) {
-            if (in_array($locker->status, ['Due','Impending', 'Active', 'Pre-paid'])) {
-                $hasValidSubscription = true;
-            }
-            if ($locker->status === 'Overdue') {
-                $hasOverdueSubscription = true;
-            }
-        }
-
         // If has overdue subscription and not forcing check-in, return with warning
         if ($hasOverdueSubscription && !$forceCheckin) {
             return redirect()->back()->with([
@@ -125,6 +121,30 @@ class CheckinController extends Controller
                 'member_id' => $member->id,
                 'message' => 'Warning: User has overdue subscriptions.'
             ]);
+        }
+
+        // Check subscription statuses
+        $hasValidSubscription = false;
+
+        // Check services
+        foreach ($member->services as $service) {
+            if (in_array($service->status, ['Due', 'Impending', 'Active', 'Pre-paid'])) {
+                $hasValidSubscription = true;
+            }
+        }
+
+        // Check lockers
+        foreach ($member->lockers as $locker) {
+            if (in_array($locker->status, ['Due', 'Impending', 'Active', 'Pre-paid'])) {
+                $hasValidSubscription = true;
+            }
+        }
+
+        // Check treadmills
+        foreach ($member->treadmills as $treadmill) {
+            if (in_array($treadmill->status, ['Due', 'Impending', 'Active', 'Pre-paid'])) {
+                $hasValidSubscription = true;
+            }
         }
 
         // If no valid subscription and no force check-in, prevent check-in
@@ -142,6 +162,7 @@ class CheckinController extends Controller
 
         return redirect()->back()->with('success', 'User Checked-in successfully.');
     }
+
 
 
     public function history(Request $request)

@@ -12,10 +12,20 @@ class ConfirmationController extends Controller
 {
     public function index()
     {
-        // Get all services with status 'Pending'
-        $pendingServices = Service::where('action_status', 'Pending')->get();
-        $pendingLockers = Locker::where('action_status', 'Pending')->get();
-        $pendingTreadmills = Treadmill::where('action_status', 'Pending')->get();
+
+        $pendingServices = Service::where('action_status', 'Pending')
+            ->with('member') // Eager load the related member
+            ->get();
+
+        $pendingLockers = Locker::where('action_status', 'Pending')
+            ->with('member')
+            ->get();
+
+        // Fetch pending treadmills with their related members
+        $pendingTreadmills = Treadmill::where('action_status', 'Pending')
+            ->with('member')
+            ->get();
+
 
         // Pass the list to the view
         return view('administrator.confirmation.index', compact('pendingServices', 'pendingLockers', 'pendingTreadmills'));
@@ -24,7 +34,11 @@ class ConfirmationController extends Controller
     public function approveServiceEnd(Service $service)
     {
         // Update service status to "Ended"
-        $service->update(['action_status' => 'Suspended']);
+        $service->update([
+            'action_status' => 'Suspended',
+            'status' => 'Ended',
+        ]);
+
 
         // Redirect to the confirmation page with success message
         return back()->with('success', 'Service has been approved and ended.');
@@ -46,8 +60,10 @@ class ConfirmationController extends Controller
     {
 
         // Update locker status to "Ended"
-        $locker->update(['action_status' => 'Suspended']);
-
+        $locker->update([
+            'action_status' => 'Suspended',
+            'status' => 'Ended',
+        ]);
         // Redirect to the confirmation page with success message
         return back()->with('success', 'Locker has been approved and ended.');
     }
@@ -69,7 +85,10 @@ class ConfirmationController extends Controller
     public function approveTreadmillEnd(Treadmill $treadmill)
     {
         // Update treadmill status to "Ended"
-        $treadmill->update(['action_status' => 'Suspended']);
+        $treadmill->update([
+            'action_status' => 'Suspended',
+            'status' => 'Inactive',
+        ]);
 
         // Redirect to the confirmation page with success message
         return back()->with('success', 'Treadmill has been approved and ended.');

@@ -6,6 +6,10 @@ return [
 
     'env' => env('APP_ENV', 'production'),
 
+    'superadminemail' => 'sirjone100@gmail.com', // the emai where notifications are send, put gym owners email here @
+
+
+
     'debug' => (bool) env('APP_DEBUG', false),
 
     'url' => env('APP_URL', 'http://localhost'),
