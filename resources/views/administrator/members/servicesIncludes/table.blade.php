@@ -50,21 +50,26 @@
                         };
                     @endphp
                     <td class="whitespace-nowrap border-b dark:border-gray-500 px-4 py-2 font-bold {{ $statusClass }}">
+
                         {{ $service->status }}
+
+
                     </td>
                     @can('subscription-end')
                         <td class="border-b dark:border-gray-500 px-4 py-2">
                             @if($service->status !== 'Ended')
-
-                                <button @click="serviceendWarning = true">
-                                    <svg class="w-6 h-6 text-red-600 hover:text-red-500" aria-hidden="true"
-                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M12 13V8m0 8h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                                    </svg>
-                                </button>
-                                @include('administrator.members.servicesIncludes.service-end-warning', ['service' => $service])
-
+                                @if($service->action_status !== 'Pending')
+                                    <button @click="serviceendWarning = true">
+                                        <svg class="w-6 h-6 text-red-600 hover:text-red-500" aria-hidden="true"
+                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M12 13V8m0 8h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                        </svg>
+                                    </button>
+                                    @include('administrator.members.servicesIncludes.service-end-warning', ['service' => $service])
+                                @else
+                                    <span class="text-amber-500 "> Pending Deletion</span>
+                                @endif
                             @endif
                         </td>
                     @endcan
@@ -102,14 +107,18 @@
                     @can('locker-end')
                         <td class="border-b dark:border-gray-500 px-4 py-2">
                             @if($locker->status !== 'Ended')
-                                <button @click="lockerendWarning = true">
-                                    <svg class="w-6 h-6 text-red-600 hover:text-red-500" aria-hidden="true"
-                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M12 13V8m0 8h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                                    </svg>
-                                </button>
-                                @include ('administrator.members.servicesIncludes.locker-end-warning')
+                                @if($locker->action_status !== 'Pending')
+                                    <button @click="lockerendWarning = true">
+                                        <svg class="w-6 h-6 text-red-600 hover:text-red-500" aria-hidden="true"
+                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M12 13V8m0 8h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                        </svg>
+                                    </button>
+                                    @include ('administrator.members.servicesIncludes.locker-end-warning')
+                                @else
+                                    <span class="text-amber-500 "> Pending Deletion</span>
+                                @endif
                             @endif
                         </td>
                     @endcan
@@ -152,15 +161,18 @@
                     @can('treadmill-end')
                         <td class="border-b dark:border-gray-500 px-4 py-2">
                             @if($treadmill->status !== 'Ended')
-                                <button @click="treadmillendWaring = true">
-                                    <svg class="w-6 h-6 text-red-600 hover:text-red-500" aria-hidden="true"
-                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M12 13V8m0 8h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                                    </svg>
-                                </button>
-                                @include ('administrator.members.servicesIncludes.treadmill-end-warning')
-
+                                @if($treadmill->action_status !== 'Pending')
+                                    <button @click="treadmillendWaring = true">
+                                        <svg class="w-6 h-6 text-red-600 hover:text-red-500" aria-hidden="true"
+                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M12 13V8m0 8h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                        </svg>
+                                    </button>
+                                    @include ('administrator.members.servicesIncludes.treadmill-end-warning')
+                                @else
+                                    <span class="text-amber-500 "> Pending Deletion</span>
+                                @endif
                             @endif
                         </td>
 

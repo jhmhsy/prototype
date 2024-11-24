@@ -22,7 +22,7 @@ class UpdateLockerStatus extends Command
         foreach ($users as $user) {
             // Get all non-ended lockers for the user ordered by start_date
             $lockers = Locker::where('user_id', $user->user_id)
-                ->where('status', '!=', 'Ended')
+                ->whereNotIn('status', ['Ended', 'Pending'])
                 ->orderBy('start_date', 'asc')
                 ->get();
 

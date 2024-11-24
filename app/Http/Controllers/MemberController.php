@@ -266,7 +266,7 @@ class MemberController extends Controller
                 '3month' => 3,
                 '6month' => 6,
                 '12month' => 12,
-                'Walkin' => 1,
+                'WalkinService' => 1,
                 'locker' => 1,
                 'treadmill' => 1,
                 '1' => 1,
@@ -393,29 +393,33 @@ class MemberController extends Controller
         return $serviceType === 'Monthly' ? $start->addMonths($months) : $start->addYears($months);
     }
 
+
+
+
+
     public function endService(Service $service)
     {
-        // Update status to "Ended"
-        $service->update(['status' => 'Ended']);
+        // Change status to "Pending"
+        $service->update(['action_status' => 'Pending']);
 
         // Redirect back with a success message
-        return redirect()->back()->with('success', 'Subscription Ended.');
+        return redirect()->back()->with('success', 'Service marked as Pending for admin approval.');
     }
     public function endLocker(Locker $locker)
     {
         // Update status to "Ended"
-        $locker->update(['status' => 'Ended']);
+        $locker->update(['action_status' => 'Pending']);
 
         // Redirect back with a success message
-        return redirect()->back()->with('success', 'Subscription Ended.');
+        return redirect()->back()->with('success', 'Locker marked as Pending for admin approval.');
     }
     public function endTreadmill(Treadmill $treadmill)
     {
         // Update status to "Ended"
-        $treadmill->update(['status' => 'Ended']);
+        $treadmill->update(['action_status' => 'Pending']);
 
         // Redirect back with a success message
-        return redirect()->back()->with('success', 'Subscription Ended.');
+        return redirect()->back()->with('success', 'Treadmill marked as Pending for admin approval.');
     }
 
 
@@ -445,7 +449,7 @@ class MemberController extends Controller
             '3month' => 3,
             '6month' => 6,
             '12month' => 12,
-            'Walkin' => 1,
+            'WalkinService' => 1,
             'locker' => 1,
             'treadmill' => 1,
             '1' => 1,

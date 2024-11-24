@@ -30,6 +30,12 @@ use Spatie\Permission\Models\Role;
 
 use App\Http\Controllers\UserServicesController;
 use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\ConfirmationController;
+
+
+
+Route::get('/confirmation', [ConfirmationController::class, 'index'])->name('confirmation.index');
+
 
 Route::get('/FAQs', [QuestionController::class, 'index'])->name('administrator.FAQs');
 Route::post('/questions/store', [QuestionController::class, 'store'])->name('questions.store');
@@ -52,7 +58,13 @@ Route::get('/export-lockers', [MemberController::class, 'exportLockers'])->name(
 Route::get('/export-services', [MemberController::class, 'exportServices'])->name('export.services');
 Route::get('/export-treadmills', [MemberController::class, 'exportTreadmills'])->name('export.treadmills');
 
-
+// In web.php
+Route::post('/services/{service}/approve', [ConfirmationController::class, 'approveServiceEnd'])->name('services.approve');
+Route::post('/services/{service}/diapprove', [ConfirmationController::class, 'diapproveServiceEnd'])->name('services.disapprove');
+Route::post('/lockers/{locker}/approve', [ConfirmationController::class, 'approveLockerEnd'])->name('locker.approve');
+Route::post('/lockers/{locker}/diapprove', [ConfirmationController::class, 'disapproveLockerEnd'])->name('locker.disapprove');
+Route::post('/treadmills/{treadmill}/approve', [ConfirmationController::class, 'approveTreadmillEnd'])->name('treadmill.approve');
+Route::post('/treadmills/{treadmill}/diapprove', [ConfirmationController::class, 'disapproveTreadmillEnd'])->name('treadmill.disapprove');
 
 Route::post('/services/{service}/end', [MemberController::class, 'endService'])->name('services.end');
 Route::post('/lockers/{locker}/end', [MemberController::class, 'endLocker'])->name('locker.end');

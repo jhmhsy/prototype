@@ -17,6 +17,7 @@ return new class extends Migration {
             $table->decimal('amount', 8, 2);
             $table->integer('month');
             $table->enum('status', ['Active', 'Pre-paid', 'Expired', 'Due', 'Overdue', 'Ended', 'Impending']);
+            $table->enum('action_status', ['None', 'Pending', 'Suspended'])->default('None');
             $table->string('service_id')->unique();
         });
     }

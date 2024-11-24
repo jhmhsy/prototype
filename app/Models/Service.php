@@ -20,6 +20,7 @@ class Service extends Model
         'month',
         'status',
         'service_id',
+        'action_status'
     ];
 
     public function member()

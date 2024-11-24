@@ -23,34 +23,34 @@
                 Type</label>
 
             @if($member->membership_type == 'Regular')
-                <select id="service_type_{{ $member->id }}" name="service_type"
-                    class="dark:bg-peak_1 dark:text-white mt-1 block w-full py-2 px-3 border border-gray-300 dark:border-none bg-white rounded-md shadow-sm  sm:text-sm">
-                    <option value="1month">1 Month</option>
-                    <option value="1monthstudent">1 Month / Student</option>
-                    <option value="3month">3 Months</option>
-                    <option value="6month">6 Months</option>
-                    <option value="12month">12 Months</option>
-                </select>
+            <select id="service_type_{{ $member->id }}" name="service_type"
+                class="dark:bg-peak_1 dark:text-white mt-1 block w-full py-2 px-3 border border-gray-300 dark:border-none bg-white rounded-md shadow-sm  sm:text-sm">
+                <option value="1month">1 Month</option>
+                <option value="1monthstudent">1 Month / Student</option>
+                <option value="3month">3 Months</option>
+                <option value="6month">6 Months</option>
+                <option value="12month">12 Months</option>
+            </select>
             @elseif($member->membership_type == 'Walkin')
-                <select id="service_type_{{ $member->id }}" name="service_type"
-                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-peak_1 dark:border-gray-600 dark:text-white sm:text-sm">
-                    <option value="Walkin">Walkin</option>
-                </select>
+            <select id="service_type_{{ $member->id }}" name="service_type"
+                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-peak_1 dark:border-gray-600 dark:text-white sm:text-sm">
+                <option value="WalkinService">Walkin</option>
+            </select>
             @elseif($member->membership_type == 'Manual')
-                <select id="service_type_{{ $member->id }}" name="service_type"
-                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-peak_1 dark:border-gray-600 dark:text-white sm:text-sm">
-                    <option value="" selected disabled class="disabled">Choose an option
-                    <option value="1">1 Month</option>
-                    <option value="2">2 Month</option>
-                    <option value="3">3 Month</option>
-                    <option value="4">4 Month</option>
-                    <option value="5">5 Month</option>
-                    <option value="6">6 Month</option>
-                    <option value="7">7 Month</option>
-                    <option value="8">8 Month</option>
-                    <option value="9">9 Month</option>
-                    <option value="10">10 Month</option>
-                </select>
+            <select id="service_type_{{ $member->id }}" name="service_type"
+                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-peak_1 dark:border-gray-600 dark:text-white sm:text-sm">
+                <option value="" selected disabled class="disabled">Choose an option
+                <option value="1">1 Month</option>
+                <option value="2">2 Month</option>
+                <option value="3">3 Month</option>
+                <option value="4">4 Month</option>
+                <option value="5">5 Month</option>
+                <option value="6">6 Month</option>
+                <option value="7">7 Month</option>
+                <option value="8">8 Month</option>
+                <option value="9">9 Month</option>
+                <option value="10">10 Month</option>
+            </select>
             @endif
         </div>
 
@@ -81,13 +81,13 @@
             </div>
         </div>
         @if($member->membership_type == 'Manual')
-            <div>
-                <label for="amount" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                    Manual Price
-                </label>
-                <input type="number" name="amount"
-                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-peak_1 dark:border-gray-600 dark:text-white sm:text-sm">
-            </div>
+        <div>
+            <label for="amount" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                Manual Price
+            </label>
+            <input type="number" name="amount"
+                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-peak_1 dark:border-gray-600 dark:text-white sm:text-sm">
+        </div>
         @endif
 
 

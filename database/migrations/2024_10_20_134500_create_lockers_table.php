@@ -16,6 +16,7 @@ return new class extends Migration {
             $table->integer('month');
             $table->integer('locker_no');
             $table->enum('status', ['Active', 'Pre-paid', 'Expired', 'Due', 'Overdue', 'Ended', 'Impending']);
+            $table->enum('action_status', ['None', 'Pending', 'Suspended'])->default('None');
         });
     }
 

@@ -34,4 +34,5 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
     Yajra\DataTables\DataTablesServiceProvider::class,
+    App\Providers\SideNavigationDataProvider::class,
 ];
