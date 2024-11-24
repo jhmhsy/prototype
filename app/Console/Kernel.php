@@ -36,7 +36,17 @@ class Kernel extends ConsoleKernel
         $schedule->command('treadmill:update-status')->everyMinute();
 
         $schedule->command('membership:update-status')->everyMinute();
+
+        $schedule->command('app:service-due-reminder')->everyTwoSeconds();
+
+        $schedule->command(' app:locker-treadmill-reminder')->everyTwoSeconds();
+
+        $schedule->command(' app:membership-reminder')->everyTwoSeconds();
     }
+
+
+
+
 
 
 }

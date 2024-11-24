@@ -12,7 +12,7 @@ class Service extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'member_id',
+        'user_id', // origin member_id
         'service_type',
         'start_date',
         'due_date',
@@ -20,7 +20,8 @@ class Service extends Model
         'month',
         'status',
         'service_id',
-        'action_status'
+        'action_status',
+        'mail_flag'
     ];
 
     public function member()

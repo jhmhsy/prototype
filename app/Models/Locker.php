@@ -19,7 +19,8 @@ class Locker extends Model
         'amount',
         'month',
         'status',
-        'action_status'
+        'action_status',
+        'mail_flag'
     ];
 
     public function member()

@@ -18,7 +18,8 @@ class Treadmill extends Model
         'month',
         'amount',
         'status',
-        'action_status'
+        'action_status',
+        'mail_flag'
     ];
 
     public function member()

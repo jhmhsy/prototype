@@ -16,6 +16,7 @@ return new class extends Migration {
             $table->date('start_date');
             $table->date('due_date');
             $table->enum('status', ['Active', 'Pre-paid', 'Expired', 'Due', 'Overdue', 'Ended', 'Impending']);
+            $table->boolean('mail_flag')->default(0);
             $table->timestamps();
         });
     }

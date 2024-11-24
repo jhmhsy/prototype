@@ -27,3 +27,21 @@ Schedule::command('membership:update-status')
     ->everyMinute()
     ->appendOutputTo(storage_path('logs/scheduler.log'))
     ->emailOutputOnFailure('your-email@example.com');
+
+
+Schedule::command('app:service-due-reminder')
+    ->everyTwoSeconds()
+    ->appendOutputTo(storage_path('logs/scheduler.log'))
+    ->emailOutputOnFailure('your-email@example.com');
+
+
+Schedule::command('app:locker-treadmill-reminder')
+    ->everyTwoSeconds()
+    ->appendOutputTo(storage_path('logs/scheduler.log'))
+    ->emailOutputOnFailure('your-email@example.com');
+
+
+Schedule::command('app:membership-reminder')
+    ->everyTwoSeconds()
+    ->appendOutputTo(storage_path('logs/scheduler.log'))
+    ->emailOutputOnFailure('your-email@example.com');
