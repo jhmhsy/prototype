@@ -9,7 +9,6 @@
         <li><strong>Service Type:</strong> {{ $overdueServices->first()->service_type }}</li>
         <li><strong>Start Date:</strong> {{ $overdueServices->first()->start_date }}</li>
         <li><strong>Due Date:</strong> {{ $overdueServices->first()->due_date }}</li>
-        <li><strong>Current Status:</strong> {{ $overdueServices->first()->status }}</li>
     </ul>
 @endif
 
@@ -22,7 +21,6 @@
         <li><strong>Start Date:</strong> {{ $overdueLockers->first()->start_date }}</li>
         <li><strong>Due Date:</strong> {{ $overdueLockers->first()->due_date }}</li>
         <li><strong>Amount:</strong> {{ $overdueLockers->first()->amount }}</li>
-        <li><strong>Current Status:</strong> {{ $overdueTreadmills->first()->status }}</li>
     </ul>
 @endif
 
@@ -36,7 +34,6 @@
         <li><strong>Start Date:</strong> {{ $overdueTreadmills->first()->start_date }}</li>
         <li><strong>Due Date:</strong> {{ $overdueTreadmills->first()->due_date }}</li>
         <li><strong>Amount:</strong> {{ $overdueTreadmills->first()->amount }}</li>
-        <li><strong>Current Status:</strong> {{ $overdueTreadmills->first()->status }}</li>
     </ul>
 @endif
 
