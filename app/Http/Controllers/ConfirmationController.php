@@ -48,7 +48,6 @@ class ConfirmationController extends Controller
     {
         // Update service status to "Ended"
         $service->update(['action_status' => 'None']);
-        $this->updateServiceStatus();//immiately update after set as active default
 
 
         return back()->with('success', 'Service has been Dissaproved to end.');
