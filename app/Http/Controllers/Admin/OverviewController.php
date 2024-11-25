@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\DB;
 
 use App\Models\Member;
 use App\Models\Service;
+use App\Models\Locker;
+use App\Models\Treadmill;
 
 class OverviewController extends Controller
 {
@@ -25,9 +27,43 @@ class OverviewController extends Controller
             abort(404); // forbidden / not found
         }
 
+        $currentMonth = Carbon::now()->month;
+        $currentYear = Carbon::now()->year;
+        $currentMonthName = Carbon::now()->format('F');
+        $currentYearName = Carbon::now()->format('Y');
+
         try {
             $members = Member::count();
-            $subscription = Service::count();
+            $subscription = Service::whereMonth('created_at', $currentMonth)
+                ->whereYear('created_at', $currentYear)
+                ->count();
+            $oneMonth = Service::whereMonth('created_at', $currentMonth)
+                ->whereYear('created_at', $currentYear)
+                ->where('service_type', '1month')
+                ->count();
+            $oneMonthStudent = Service::whereMonth('created_at', $currentMonth)
+                ->whereYear('created_at', $currentYear)
+                ->where('service_type', '1monthstudent')
+                ->count();
+            $threeMonth = Service::whereMonth('created_at', $currentMonth)
+                ->whereYear('created_at', $currentYear)
+                ->where('service_type', '3month')
+                ->count();
+            $sixMonth = Service::whereMonth('created_at', $currentMonth)
+                ->whereYear('created_at', $currentYear)
+                ->where('service_type', '6month')
+                ->count();
+            $twelveMonth = Service::whereMonth('created_at', $currentMonth)
+                ->whereYear('created_at', $currentYear)
+                ->where('service_type', '12month')
+                ->count();
+            $walkinMonth = Service::whereMonth('created_at', $currentMonth)
+                ->whereYear('created_at', $currentYear)
+                ->where('service_type', 'WalkinService')
+                ->count();
+
+            $yearlySubscription = Service::whereYear('created_at', $currentYear)
+                ->count();
             $totalBooking = Booking::count() + RejectedBooking::count() + PendingBooking::count();
             $totalFeedbackRating = Feedback::whereBetween('rating', [3, 5])->count();
             //$sales =
@@ -42,7 +78,7 @@ class OverviewController extends Controller
 
 
         // MONTHLY CHECKIN TIMESTAMP TO CHART
-        $currentYear = Carbon::now()->year;
+
         $monthlyCheckins = CheckinRecord::select(
             DB::raw('MONTH(created_at) as month'),
             DB::raw('COUNT(*) as total_checkins')
@@ -86,6 +122,58 @@ class OverviewController extends Controller
         });
 
 
+        // MONTHLY MEMBERSHIP -----------------------------------------------------------------------------------------------------
+        $monthlyMemberships = Member::selectRaw('MONTH(created_at) as month, COUNT(*) as total')
+            ->whereYear('created_at', $currentYear)
+            ->groupBy('month')
+            ->orderBy('month')
+            ->pluck('total', 'month')
+            ->toArray();
+
+        // Ensure all months are represented
+        $yearlyMembershipData = [];
+        for ($i = 1; $i <= 12; $i++) {
+            $yearlyMembershipData[$i] = $monthlyMemberships[$i] ?? 0;
+        }
+
+        //MONTHLY SERVICES ( SERVICE  /  locker  / treadmill  ) -------------------------------------------------------------------
+
+        $monthlyServices = Service::selectRaw('MONTH(created_at) as month, COUNT(*) as total')
+            ->whereYear('created_at', $currentYear)
+            ->groupByRaw('MONTH(created_at)')
+            ->orderBy('month')
+            ->pluck('total', 'month')
+            ->toArray();
+
+        // Fetch monthly data for Lockers
+        $monthlyLockers = Locker::selectRaw('MONTH(created_at) as month, COUNT(*) as total')
+            ->whereYear('created_at', $currentYear)
+            ->groupByRaw('MONTH(created_at)')
+            ->orderBy('month')
+            ->pluck('total', 'month')
+            ->toArray();
+
+        // Fetch monthly data for Treadmills
+        $monthlyTreadmills = Treadmill::selectRaw('MONTH(created_at) as month, COUNT(*) as total')
+            ->whereYear('created_at', $currentYear)
+            ->groupByRaw('MONTH(created_at)')
+            ->orderBy('month')
+            ->pluck('total', 'month')
+            ->toArray();
+
+        // Ensure all months are represented
+        $yearlyServicesData = [];
+        $yearlyLockersData = [];
+        $yearlyTreadmillsData = [];
+
+        for ($i = 1; $i <= 12; $i++) {
+            $yearlyServicesData[$i] = $monthlyServices[$i] ?? 0;
+            $yearlyLockersData[$i] = $monthlyLockers[$i] ?? 0;
+            $yearlyTreadmillsData[$i] = $monthlyTreadmills[$i] ?? 0;
+        }
+
+
+
         return view('administrator.overview.index', compact(
             'members',
             'subscription',
@@ -93,8 +181,24 @@ class OverviewController extends Controller
             'totalFeedbackRating',
             'yearlyData',
             'currentYear',
+            'currentMonthName',
             'latestCheckins',
-            'latestMembers'
+            'latestMembers',
+            'yearlyMembershipData',
+            'currentYear',
+            'yearlyServicesData',
+            'yearlyLockersData',
+            'yearlyTreadmillsData',
+            'currentMonthName',
+            'currentYearName',
+            'yearlySubscription',
+            'oneMonth',
+            'oneMonthStudent',
+            'threeMonth',
+            'sixMonth',
+            'twelveMonth',
+            'walkinMonth'
+
         ));
 
     }

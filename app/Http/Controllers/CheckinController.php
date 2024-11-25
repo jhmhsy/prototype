@@ -178,7 +178,8 @@ class CheckinController extends Controller
             $search = $request->search;
             $query->whereHas('member', function ($q) use ($search) {
                 $q->where('name', 'like', '%' . $search . '%')
-                    ->orWhere('id_number', 'like', '%' . $search . '%');
+                    ->orWhere('id_number', 'like', '%' . $search . '%')
+                    ->orWhere('type', 'like', '%' . $search . '%');
             });
         }
 

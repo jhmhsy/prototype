@@ -93,7 +93,7 @@ class MemberController extends Controller
 
         $members = $query->paginate(10)->withQueryString();
 
-        $occupiedLockers = Locker::whereIn('status', ['Active', 'Due', 'Overdue'])->pluck('locker_no')->toArray();
+        $occupiedLockers = Locker::whereIn('status', ['Active', 'Pre-paid', 'Impending', 'Due', 'Overdue'])->pluck('locker_no')->toArray();
         $prices = Prices::pluck('price', 'service_type');
 
 
@@ -712,11 +712,6 @@ class MemberController extends Controller
     }
 
 
-    public function exportindex()
-    {
-        return view('administrator.export.index');
-
-    }
     public function exportMembers()
     {
         return Excel::download(new MembersExport, 'members.xlsx');
