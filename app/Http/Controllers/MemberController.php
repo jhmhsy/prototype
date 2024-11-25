@@ -248,10 +248,24 @@ class MemberController extends Controller
             }
             session()->forget('form_token');
 
+            $prices = Prices::pluck('price', 'service_type')->toArray();
+
+
+            $amount = 0; // Default for 'Manual' or undefined cases
+            if ($request->membership_type === 'Regular') {
+                $amount = $prices['Regular'] ?? 0; // Use 0 if price is not found
+            } elseif ($request->membership_type === 'Walkin') {
+                $amount = $prices['Walk-in'] ?? 0; // Use 0 if price is not found
+            }
+
+
+
+            $member = Member::create(array_merge(
+                $request->only(['name', 'phone', 'email', 'fb', 'membership_type']),
+                ['amount' => $amount]
+            ));
+
             $priceList = $this->getPriceList();
-
-            $member = Member::create($request->only(['name', 'phone', 'email', 'fb', 'membership_type']));
-
 
             // STORE MEMBERSHIP DURATION
             $startDate = now();

@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\TicketController;
 use App\Http\Controllers\Admin\UserController;
 //use App\Http\Controllers\DashController;
 use App\Http\Controllers\AssetController;
+use App\Http\Controllers\DailysalesController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Public\CalendarController;
@@ -218,6 +219,9 @@ Route::middleware(['auth'])->group(function () {
             //     Route::post('/scan', [TicketController::class, 'scanTicket'])->name('ticket.scanticket');
             //     Route::post('/scan/claim', [TicketController::class, 'claimTicket'])->name('ticket.claim');
             // });
+
+            Route::get('/dailysales', [DailysalesController::class, 'index'])->name('administrator.dailysales');
+
 
         });
         Route::resource('roles', RoleController::class);

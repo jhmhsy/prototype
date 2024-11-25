@@ -16,6 +16,7 @@ class Member extends Model
         'fb',
         'email',
         'membership_type',
+        'amount'
     ];
 
 
