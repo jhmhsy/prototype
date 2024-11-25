@@ -21,6 +21,17 @@
     </div>
 </div>
 
+<style>
+    /* Add this CSS to hide the scrollbar */
+    .scrollbar-hide::-webkit-scrollbar {
+        display: none; /* Safari and Chrome */
+    }
+    .scrollbar-hide {
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
+    }
+</style>
+
 <script>
     function swipeCards() {
         return {
