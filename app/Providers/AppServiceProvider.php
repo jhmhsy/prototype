@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Blade;
 use App\View\Components\DashLayout;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\URL;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -22,6 +23,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        if (config('app.env') !== 'local') { // Skip enforcing HTTPS in local environment
+            URL::forceScheme('https');
+        }
 
         // Register admin components
         Blade::anonymousComponentPath(resource_path('views/administrator/Components'), 'y');
@@ -42,5 +46,6 @@ class AppServiceProvider extends ServiceProvider
             list($pattern, $class) = explode(',', str_replace(['(', ')', ' ', "'"], '', $expression));
             return "<?= request()->is('$pattern') ? '$class' : ''; ?>";
         });
+
     }
 }
