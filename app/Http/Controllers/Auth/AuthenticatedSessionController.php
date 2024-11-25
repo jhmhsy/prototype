@@ -4,15 +4,17 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
-use Illuminate\Cache\RateLimiter;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
+use App\Traits\HandlesRateLimiting;
 
 class AuthenticatedSessionController extends Controller
 {
+    use HandlesRateLimiting;
+
     /**
      * Display the login view.
      */
@@ -28,7 +30,7 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
-        $request->ensureIsNotRateLimited();
+        $request->authenticate();
         $request->session()->regenerate();
         $userID = Auth::id();
         //$superAdminID = 1;
