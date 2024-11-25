@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\TicketController;
 use App\Http\Controllers\Admin\UserController;
 //use App\Http\Controllers\DashController;
+use App\Http\Controllers\AssetController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Public\CalendarController;
@@ -52,11 +53,10 @@ Route::middleware('auth')->group(function () {
 Route::get('/index/link/{id}', [LinkController::class, 'index'])->name('index.link');
 Route::post('/link/{member}', [LinkController::class, 'updateIdNumber'])->name('link.update');
 
-Route::get('/exports', [MemberController::class, 'exportindex'])->name('export.index');
-Route::get('/export-members', [MemberController::class, 'exportMembers'])->name('export.members');
-Route::get('/export-lockers', [MemberController::class, 'exportLockers'])->name('export.lockers');
-Route::get('/export-services', [MemberController::class, 'exportServices'])->name('export.services');
-Route::get('/export-treadmills', [MemberController::class, 'exportTreadmills'])->name('export.treadmills');
+Route::get('/export-members', [AssetController::class, 'exportMembers'])->name('export.members');
+Route::get('/export-lockers', [AssetController::class, 'exportLockers'])->name('export.lockers');
+Route::get('/export-services', [AssetController::class, 'exportServices'])->name('export.services');
+Route::get('/export-treadmills', [AssetController::class, 'exportTreadmills'])->name('export.treadmills');
 
 // In web.php
 Route::post('/services/{service}/approve', [ConfirmationController::class, 'approveServiceEnd'])->name('services.approve');
@@ -171,6 +171,8 @@ Route::middleware(['auth'])->group(function () {
     ], function () {
         Route::prefix('admin')->group(function () {
             Route::get('/overview', [OverviewController::class, 'index'])->name('administrator.overview');
+
+            Route::get('/asset', [AssetController::class, 'index'])->name('administrator.asset');
 
             // TEMPORARY THE GYM DONT USE THIS OR WE ARE TIRED IMPLEMENTING THIS
             // Route::prefix('reservations')->group(function () {

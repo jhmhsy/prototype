@@ -10,38 +10,31 @@ Artisan::command('inspire', function () {
 
 Schedule::command('locker:update-status')
     ->everyMinute()
-    ->appendOutputTo(storage_path('logs/scheduler.log'))
-    ->emailOutputOnFailure('your-email@example.com');
+    ->appendOutputTo(storage_path('logs/scheduler.log'));
 
 Schedule::command('service:update-status')
     ->everyMinute()
-    ->appendOutputTo(storage_path('logs/scheduler.log'))
-    ->emailOutputOnFailure('your-email@example.com');
+    ->appendOutputTo(storage_path('logs/scheduler.log'));
 
 Schedule::command('treadmill:update-status')
     ->everyMinute()
-    ->appendOutputTo(storage_path('logs/scheduler.log'))
-    ->emailOutputOnFailure('your-email@example.com');
+    ->appendOutputTo(storage_path('logs/scheduler.log'));
 
 Schedule::command('membership:update-status')
     ->everyMinute()
-    ->appendOutputTo(storage_path('logs/scheduler.log'))
-    ->emailOutputOnFailure('your-email@example.com');
+    ->appendOutputTo(storage_path('logs/scheduler.log'));
 
 
 Schedule::command('app:service-due-reminder')
     ->everyThirtyMinutes()
-    ->appendOutputTo(storage_path('logs/scheduler.log'))
-    ->emailOutputOnFailure('your-email@example.com');
+    ->appendOutputTo(storage_path('logs/scheduler.log'));
 
 
 Schedule::command('app:locker-treadmill-reminder')
     ->everyThirtyMinutes()
-    ->appendOutputTo(storage_path('logs/scheduler.log'))
-    ->emailOutputOnFailure('your-email@example.com');
+    ->appendOutputTo(storage_path('logs/scheduler.log'));
 
 
 Schedule::command('app:membership-reminder')
     ->everyThirtyMinutes()
-    ->appendOutputTo(storage_path('logs/scheduler.log'))
-    ->emailOutputOnFailure('your-email@example.com');
+    ->appendOutputTo(storage_path('logs/scheduler.log'));

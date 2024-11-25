@@ -9,7 +9,7 @@ class Service extends Model
 {
     use HasFactory;
 
-    public $timestamps = false;
+    public $timestamps = true;
 
     protected $fillable = [
         'user_id', // origin member_id

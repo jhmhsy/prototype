@@ -18,6 +18,7 @@ return new class extends Migration {
             $table->enum('status', ['Active', 'Pre-paid', 'Expired', 'Due', 'Overdue', 'Ended', 'Impending']);
             $table->enum('action_status', ['None', 'Pending', 'Suspended'])->default('None');
             $table->boolean('mail_flag')->default(0);
+            $table->timestamps();
         });
     }
 

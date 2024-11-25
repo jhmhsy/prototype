@@ -14,7 +14,7 @@
         <div id="map"></div>
         <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
         <script>
-            const gymLocation = [10.5202453, 124.0163538];
+            const gymLocation = [10.5203035, 124.0168337, 20.56];
             // Initialize map with zoom options             
             const map = L.map('map', {
                 center: gymLocation,

@@ -19,13 +19,14 @@ class HomeController extends Controller
             return redirect()->route('verification.notice');
         }
 
+        $superadminemail = config('app.superadminemail'); // admin gmail in app/config
 
         $events = Event::all();
         $prices = Prices::all();
 
         $equipments = Equipment::all();
         $questions = Question::all();
-        return view('welcome', compact('equipments', 'events', 'prices', 'questions'));
+        return view('welcome', compact('equipments', 'events', 'prices', 'questions', 'superadminemail'));
 
 
 

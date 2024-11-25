@@ -20,6 +20,7 @@ return new class extends Migration {
             $table->enum('action_status', ['None', 'Pending', 'Suspended'])->default('None');
             $table->tinyInteger('mail_flag')->default(0);
             $table->string('service_id')->unique();
+            $table->timestamps();
         });
     }
 
