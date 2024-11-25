@@ -44,7 +44,7 @@
 
             <!-- Footer sections-->
             <footer id="footer-section">
-                <x-homepage.footer-section />
+                @include ('components.homepage.footer-section')
             </footer>
         </div>
     </body>
