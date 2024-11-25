@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
+use Illuminate\Cache\RateLimiter;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -27,8 +28,7 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
-        $request->authenticate();
-
+        $request->ensureIsNotRateLimited();
         $request->session()->regenerate();
         $userID = Auth::id();
         //$superAdminID = 1;
@@ -38,14 +38,11 @@ class AuthenticatedSessionController extends Controller
             ->where('role_id', [1, 2])
             ->exists();
 
-
         if ($hasRole) {
             return redirect()->intended(route('administrator.overview', absolute: false))->with('success', 'Login successfully!');
         } else {
             return redirect()->intended(route('welcome', absolute: false))->with('success', 'Login successfully!');
-
         }
-
     }
 
     /**

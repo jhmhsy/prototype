@@ -98,7 +98,7 @@
                 <h3 class="mb-2 font-semibold text-md">Our Location</h3>
                 <address class="not-italic text-gray-400">
                     Gym One Danao <br>
-                    Near Juan Luna Road, Danao City, Cebu
+                    2nd floor of E.D.R Hardware and Construction Supply in Ilaya, Poblacion Danao City, Cebu
                 </address>
                 <p class="text-gray-400">Mon - Sat, 8:30 AM - 12:00 PM, 2:00 PM - 8:00 PM</p>
                 <p class="text-gray-400">Sunday, 2:00 PM - 8:00 PM</p>

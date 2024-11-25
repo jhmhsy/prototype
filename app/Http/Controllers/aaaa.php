@@ -32,9 +32,6 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class MemberController extends Controller
 {
-
-
-
     public function index(Request $request)
     {
 
