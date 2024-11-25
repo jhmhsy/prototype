@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\AssetController;
 use App\Http\Controllers\DailysalesController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProductsalesController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Public\CalendarController;
 use App\Http\Controllers\Public\FeatureController;
@@ -193,6 +194,14 @@ Route::middleware(['auth'])->group(function () {
             //     Route::post('/cancel/{id}', [ReservationsController::class, 'cancel'])->name('reservations.cancel');
             //     Route::post('/delete/{id}', [ReservationsController::class, 'delete'])->name('reservations.delete');
             // });
+
+
+            Route::get('/productsales', [ProductsalesController::class, 'index'])->name('administrator.productsales');
+            Route::post('/productsales/store', [ProductsalesController::class, 'store'])->name('productsales.store');
+            Route::put('/productsales/{id}', [ProductsalesController::class, 'update'])->name('productsales.update');
+            Route::delete('/productsales/{id}', [ProductsalesController::class, 'destroy'])->name('productsales.destroy');
+
+
 
             Route::get('/equipments', [EquipmentController::class, 'index'])->name('administrator.equipments');
             Route::post('/equipment/store', [EquipmentController::class, 'store'])->name('equipments.store');
