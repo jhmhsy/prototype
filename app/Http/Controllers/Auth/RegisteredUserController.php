@@ -13,9 +13,13 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use App\Traits\HandlesRateLimiting;
+use Illuminate\Validation\ValidationException;
 
 class RegisteredUserController extends Controller
 {
+    use HandlesRateLimiting;
+
     /**
      * Display the registration view.
      */
@@ -32,6 +36,8 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+        $this->ensureIsNotRateLimited($request->input('email'), $request->ip());
+
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
