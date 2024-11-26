@@ -10,6 +10,11 @@ class QuestionController extends Controller
     // View all questions
     public function index()
     {
+        if (!auth()->user()->canany(['faq-list', 'faq-view', 'faq-edit', 'faq-create', 'faq-delete'])) {
+            abort(404); // forbidden / not found
+        }
+
+
         $questions = Question::all();
         return view('administrator.questions.index', compact('questions'));
     }

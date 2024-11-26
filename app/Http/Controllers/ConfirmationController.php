@@ -13,6 +13,11 @@ class ConfirmationController extends Controller
     public function index()
     {
 
+
+        if (!auth()->user()->can('confirmation-list')) {
+            abort(404); // forbidden / not found
+        }
+
         $pendingServices = Service::where('action_status', 'Pending')
             ->with('member') // Eager load the related member
             ->get();

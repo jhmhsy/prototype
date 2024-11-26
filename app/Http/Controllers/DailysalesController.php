@@ -18,6 +18,10 @@ class DailysalesController extends Controller
     {
 
 
+        if (!auth()->user()->can('dailysales-list')) {
+            abort(404); // forbidden / not found
+        }
+
         // Get members whose 'created_at' is today or have services, lockers, or treadmills created today
         $members = Member::whereDate('created_at', today())
             ->with([

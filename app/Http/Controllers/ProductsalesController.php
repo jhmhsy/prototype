@@ -9,6 +9,13 @@ class ProductsalesController extends Controller
 {
     public function index()
     {
+
+      
+
+        if (!auth()->user()->can('productsales-list')) {
+            abort(404); // forbidden / not found
+        }
+
         $products = ProductSale::all();
         return view('administrator.productsales.index', compact('products'));
 

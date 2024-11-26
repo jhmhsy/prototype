@@ -54,6 +54,23 @@ Route::middleware('auth')->group(function () {
 Route::get('/index/link/{id}', [LinkController::class, 'index'])->name('index.link');
 Route::post('/link/{member}', [LinkController::class, 'updateIdNumber'])->name('link.update');
 
+Route::get('/export-members', [AssetController::class, 'exportMembers'])->name('export.members');
+Route::get('/export-lockers', [AssetController::class, 'exportLockers'])->name('export.lockers');
+Route::get('/export-services', [AssetController::class, 'exportServices'])->name('export.services');
+Route::get('/export-treadmills', [AssetController::class, 'exportTreadmills'])->name('export.treadmills');
+
+// In web.php
+Route::get('/confirmation', [ConfirmationController::class, 'index'])->name('confirmation.index');
+Route::post('/services/{service}/approve', [ConfirmationController::class, 'approveServiceEnd'])->name('services.approve');
+Route::post('/services/{service}/diapprove', [ConfirmationController::class, 'diapproveServiceEnd'])->name('services.disapprove');
+Route::post('/lockers/{locker}/approve', [ConfirmationController::class, 'approveLockerEnd'])->name('locker.approve');
+Route::post('/lockers/{locker}/diapprove', [ConfirmationController::class, 'disapproveLockerEnd'])->name('locker.disapprove');
+Route::post('/treadmills/{treadmill}/approve', [ConfirmationController::class, 'approveTreadmillEnd'])->name('treadmill.approve');
+Route::post('/treadmills/{treadmill}/diapprove', [ConfirmationController::class, 'disapproveTreadmillEnd'])->name('treadmill.disapprove');
+
+Route::post('/services/{service}/end', [MemberController::class, 'endService'])->name('services.end');
+Route::post('/lockers/{locker}/end', [MemberController::class, 'endLocker'])->name('locker.end');
+Route::post('/treadmills/{treadmill}/end', [MemberController::class, 'endTreadmill'])->name('treadmill.end');
 
 
 Route::post('/members/{member}/renew', action: [MemberController::class, 'renew'])->name('members.renew');
@@ -154,11 +171,8 @@ Route::middleware(['auth'])->group(function () {
         }
     ], function () {
         Route::prefix('admin')->group(function () {
-
-            // Overview
             Route::get('/overview', [OverviewController::class, 'index'])->name('administrator.overview');
 
-            // Services & Asset
             Route::get('/asset', [AssetController::class, 'index'])->name('administrator.asset');
 
             // TEMPORARY THE GYM DONT USE THIS OR WE ARE TIRED IMPLEMENTING THIS
@@ -180,54 +194,27 @@ Route::middleware(['auth'])->group(function () {
             //     Route::post('/delete/{id}', [ReservationsController::class, 'delete'])->name('reservations.delete');
             // });
 
-            // Member COntrols
-            Route::post('/services/{service}/end', [MemberController::class, 'endService'])->name('services.end');
-            Route::post('/lockers/{locker}/end', [MemberController::class, 'endLocker'])->name('locker.end');
-            Route::post('/treadmills/{treadmill}/end', [MemberController::class, 'endTreadmill'])->name('treadmill.end');
-
-            // Export Members
-            Route::get('/export-members', [AssetController::class, 'exportMembers'])->name('export.members');
-            Route::get('/export-lockers', [AssetController::class, 'exportLockers'])->name('export.lockers');
-            Route::get('/export-services', [AssetController::class, 'exportServices'])->name('export.services');
-            Route::get('/export-treadmills', [AssetController::class, 'exportTreadmills'])->name('export.treadmills');
-
-
-
-
-
-            // Admin Confirmatiion
-            Route::get('/confirmation', [ConfirmationController::class, 'index'])->name('confirmation.index');
-            Route::post('/services/{service}/approve', [ConfirmationController::class, 'approveServiceEnd'])->name('services.approve');
-            Route::post('/services/{service}/diapprove', [ConfirmationController::class, 'diapproveServiceEnd'])->name('services.disapprove');
-            Route::post('/lockers/{locker}/approve', [ConfirmationController::class, 'approveLockerEnd'])->name('locker.approve');
-            Route::post('/lockers/{locker}/diapprove', [ConfirmationController::class, 'disapproveLockerEnd'])->name('locker.disapprove');
-            Route::post('/treadmills/{treadmill}/approve', [ConfirmationController::class, 'approveTreadmillEnd'])->name('treadmill.approve');
-            Route::post('/treadmills/{treadmill}/diapprove', [ConfirmationController::class, 'disapproveTreadmillEnd'])->name('treadmill.disapprove');
-
-            // Prices
             Route::get('/prices', [PricesController::class, 'index'])->name('price.index');
             Route::put('/prices/{id}', [PricesController::class, 'update'])->name('prices.update');
 
-            // Product Sales
             Route::get('/productsales', [ProductsalesController::class, 'index'])->name('administrator.productsales');
             Route::post('/productsales/store', [ProductsalesController::class, 'store'])->name('productsales.store');
             Route::put('/productsales/{id}', [ProductsalesController::class, 'update'])->name('productsales.update');
             Route::delete('/productsales/{id}', [ProductsalesController::class, 'destroy'])->name('productsales.destroy');
 
 
-            // Equipments
+
             Route::get('/equipments', [EquipmentController::class, 'index'])->name('administrator.equipments');
             Route::post('/equipment/store', [EquipmentController::class, 'store'])->name('equipments.store');
             Route::put('/equipment/{id}', [EquipmentController::class, 'update'])->name('equipments.update');
             Route::delete('/equipment/{id}', [EquipmentController::class, 'destroy'])->name('equipments.destroy');
 
-            // Events
             Route::get('/events', [EventsController::class, 'index'])->name('administrator.events');
             Route::post('/events/store', [EventsController::class, 'store'])->name('events.store');
             Route::put('/events/{id}', [EventsController::class, 'update'])->name('events.update');
             Route::delete('/events/{id}', [EventsController::class, 'destroy'])->name('events.destroy');
 
-            // Tickets
+
             Route::get('/tickets', [TicketController::class, 'index'])->name('administrator.tickets');
             Route::get('/users', [UserController::class, 'index'])->name('administrator.users');
             Route::get('/roles', [RoleController::class, 'index'])->name('administrator.roles');
@@ -243,10 +230,8 @@ Route::middleware(['auth'])->group(function () {
             //     Route::post('/scan/claim', [TicketController::class, 'claimTicket'])->name('ticket.claim');
             // });
 
-            // Daily Sales
             Route::get('/dailysales', [DailysalesController::class, 'index'])->name('administrator.dailysales');
 
-            // FAQs
             Route::get('/FAQs', [QuestionController::class, 'index'])->name('administrator.FAQs');
             Route::post('/questions/store', [QuestionController::class, 'store'])->name('questions.store');
             Route::put('/questions/{id}', [QuestionController::class, 'update'])->name('questions.update');

@@ -21,6 +21,11 @@ class AssetController extends Controller
 
     public function index(Request $request)
     {
+        if (!auth()->user()->can('asset-list')) {
+            abort(404); // forbidden / not found
+        }
+
+
         $filter = $request->input('filter', 'services'); // Default to 'services'
         $status = $request->input('status', null);       // Default to null (no status filter)
 

@@ -1,3 +1,4 @@
+@can('dailysales-list')
 <x-dash-layout>
     <section class="container mx-auto px-4 py-6 space-y-6">
         {{-- Daily Sales Overview --}}
@@ -7,32 +8,32 @@
             </div>
 
             @foreach ($data as $memberData)
-                <div class="p-6 border-b border-gray-100 dark:border-gray-700">
-                    <h2 class="text-lg dark:text-white font-semibold mb-4">{{ $memberData['name'] }}</h2>
+            <div class="p-6 border-b border-gray-100 dark:border-gray-700">
+                <h2 class="text-lg dark:text-white font-semibold mb-4">{{ $memberData['name'] }}</h2>
 
-                    <div class="overflow-x-auto">
-                        <table class="w-full text-sm text-gray-500 text-left">
-                            <thead class="">
-                                <tr class=" text-gray-700 dark:text-gray-300">
-                                    <th class="px-4 py-3">Services</th>
-                                    <th class="px-4 py-3 text-right">Amount</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($memberData['details'] as $detail)
-                                    <tr class="border-b dark:border-gray-600 text-gray-700 dark:text-gray-300">
-                                        <td class="px-4 py-2">{{ $detail['type'] }}</td>
-                                        <td class="px-4 py-2 text-right">{{ $detail['amount'] }}</td>
-                                    </tr>
-                                @endforeach
-                                <tr class=" text-black dark:text-white font-bold">
-                                    <td class="px-4 py-2">Total Amount</td>
-                                    <td class="px-4 py-2 text-right">{{ $memberData['totalAmount'] }}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm text-gray-500 text-left">
+                        <thead class="">
+                            <tr class=" text-gray-700 dark:text-gray-300">
+                                <th class="px-4 py-3">Services</th>
+                                <th class="px-4 py-3 text-right">Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($memberData['details'] as $detail)
+                            <tr class="border-b dark:border-gray-600 text-gray-700 dark:text-gray-300">
+                                <td class="px-4 py-2">{{ $detail['type'] }}</td>
+                                <td class="px-4 py-2 text-right">{{ $detail['amount'] }}</td>
+                            </tr>
+                            @endforeach
+                            <tr class=" text-black dark:text-white font-bold">
+                                <td class="px-4 py-2">Total Amount</td>
+                                <td class="px-4 py-2 text-right">{{ $memberData['totalAmount'] }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
+            </div>
             @endforeach
         </div>
 
@@ -128,3 +129,4 @@
         </div>
     </section>
 </x-dash-layout>
+@endcan

@@ -40,8 +40,6 @@ class RoleController extends Controller
         $this->middleware('permission:member-edit', ['only' => ['memberEdit', 'updateMember']]);
         $this->middleware('permission:member-membership-renew', ['only' => ['renewMembership']]);
 
-
-
         // Subscription Management
         $this->middleware('permission:subscription-create', ['only' => ['subscriptionCreate', 'storeSubscription']]);
         $this->middleware('permission:subscription-extend', ['only' => ['extendSubscription']]);
@@ -59,16 +57,6 @@ class RoleController extends Controller
         $this->middleware('permission:treadmill-create', ['only' => ['createTreadmill', 'storeTreadmill']]);
         $this->middleware('permission:treadmill-extend', ['only' => ['extendTreadmill']]);
         $this->middleware('permission:treadmill-end', ['only' => ['endTreadmill']]);
-
-
-
-
-
-
-
-
-
-
 
         // Price Management
         $this->middleware('permission:price-view|price-edit', ['only' => ['index']]);
@@ -101,6 +89,26 @@ class RoleController extends Controller
         // Feedback and Help
         $this->middleware('permission:feedback-list', ['only' => ['feedbackIndex']]);
         $this->middleware('permission:help-list', ['only' => ['helpIndex']]);
+
+        $this->middleware('permission:faq-list', ['only' => ['index']]);
+
+        // ProductSales
+        $this->middleware('permission:productsales-list|productsales-view|productsales-create|productsales-edit|productsales-delete', ['only' => ['index']]);
+        $this->middleware('permission:faq-view');
+        $this->middleware('permission:faq-create', ['only' => ['store']]);
+        $this->middleware('permission:faq-edit', ['only' => ['update']]);
+        $this->middleware('permission:faq-delete', ['only' => ['destroy']]);
+
+        $this->middleware('permission:asset-list', ['only' => ['index']]);
+
+        $this->middleware('permission:dailysales-list', ['only' => ['index']]);
+
+        $this->middleware('permission:productsales-list', ['only' => ['index']]);
+
+        $this->middleware('permission:confirmation-list', ['only' => ['index']]);
+
+
+
     }
 
     /**

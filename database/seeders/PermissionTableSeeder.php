@@ -59,6 +59,18 @@ class PermissionTableSeeder extends Seeder
             'feedback-list',
             'help-list',
 
+            'faq-list',
+            'faq-view',
+            'faq-edit',
+            'faq-create',
+            'faq-delete',
+            'asset-list',
+            'dailysales-list',
+            'productsales-list',
+
+            'confirmation-list',
+
+
 
 
 

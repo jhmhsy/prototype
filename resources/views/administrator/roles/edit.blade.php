@@ -214,6 +214,19 @@
                                                     </div>
                                                 </label>
                                             </div>
+                                            <div class="space-y-2 relative">
+                                                <label class="flex items-center permission-label">
+                                                    <input type="checkbox" name="permission[]"
+                                                        value="{{ $permissions->where('name', 'confirmation-list')->first()->id }}"
+                                                        {{ $role->hasPermissionTo('confirmation-list') ? 'checked' : '' }}
+                                                        class="rounded">
+                                                    <span class="ml-2">Confirmation List</span>
+                                                    <div class="permission-tooltip absolute z-10 bg-white text-black text-xs py-1 px-2 mt-1 shadow-lg rounded border"
+                                                        style="display: none; opacity: 0; visibility: hidden; transition: opacity 0.2s, visibility 0.2s; left: 0; top: 100%; white-space: nowrap;">
+                                                        Can Confirm the approval/dissaproval id canceling subscriptions
+                                                    </div>
+                                                </label>
+                                            </div>
                                         </div>
                                     </div>
 
@@ -651,6 +664,126 @@
                                                 </div>
                                             </label>
                                         </div>
+                                    </div>
+                                </div>
+
+
+                                <!-- FAQ Management -->
+                                <div class="p-4 border-b dark:border-gray-800">
+                                    <h4 class="font-medium text-gray-500 mb-3">FAQ Management</h4>
+                                    <div class="space-y-2">
+                                        <div class="space-y-2 relative">
+                                            <label class="flex items-center permission-label">
+                                                <input type="checkbox" name="permission[]"
+                                                    value="{{ $permissions->where('name', 'faq-list')->first()->id }}"
+                                                    {{ $role->hasPermissionTo('faq-list') ? 'checked' : '' }}
+                                                    class="rounded">
+                                                <span class="ml-2">FAQ List</span>
+                                                <div class="permission-tooltip absolute z-10 bg-white text-black text-xs py-1 px-2 mt-1 shadow-lg rounded border"
+                                                    style="display: none; opacity: 0; visibility: hidden; transition: opacity 0.2s, visibility 0.2s; left: 0; top: 100%; white-space: nowrap;">
+                                                    Can view the list of FAQs.
+                                                </div>
+                                            </label>
+                                        </div>
+                                        <div class="space-y-2 relative">
+                                            <label class="flex items-center permission-label">
+                                                <input type="checkbox" name="permission[]"
+                                                    value="{{ $permissions->where('name', 'faq-view')->first()->id }}"
+                                                    {{ $role->hasPermissionTo('faq-view') ? 'checked' : '' }}
+                                                    class="rounded">
+                                                <span class="ml-2">View FAQ</span>
+                                                <div class="permission-tooltip absolute z-10 bg-white text-black text-xs py-1 px-2 mt-1 shadow-lg rounded border"
+                                                    style="display: none; opacity: 0; visibility: hidden; transition: opacity 0.2s, visibility 0.2s; left: 0; top: 100%; white-space: nowrap;">
+                                                    Can view details of a specific FAQ.
+                                                </div>
+                                            </label>
+                                        </div>
+                                        <div class="space-y-2 relative">
+                                            <label class="flex items-center permission-label">
+                                                <input type="checkbox" name="permission[]"
+                                                    value="{{ $permissions->where('name', 'faq-create')->first()->id }}"
+                                                    {{ $role->hasPermissionTo('faq-create') ? 'checked' : '' }}
+                                                    class="rounded">
+                                                <span class="ml-2">Create FAQ</span>
+                                                <div class="permission-tooltip absolute z-10 bg-white text-black text-xs py-1 px-2 mt-1 shadow-lg rounded border"
+                                                    style="display: none; opacity: 0; visibility: hidden; transition: opacity 0.2s, visibility 0.2s; left: 0; top: 100%; white-space: nowrap;">
+                                                    Can add a new FAQ.
+                                                </div>
+                                            </label>
+                                        </div>
+                                        <div class="space-y-2 relative">
+                                            <label class="flex items-center permission-label">
+                                                <input type="checkbox" name="permission[]"
+                                                    value="{{ $permissions->where('name', 'faq-edit')->first()->id }}"
+                                                    {{ $role->hasPermissionTo('faq-edit') ? 'checked' : '' }}
+                                                    class="rounded">
+                                                <span class="ml-2">Edit FAQ</span>
+                                                <div class="permission-tooltip absolute z-10 bg-white text-black text-xs py-1 px-2 mt-1 shadow-lg rounded border"
+                                                    style="display: none; opacity: 0; visibility: hidden; transition: opacity 0.2s, visibility 0.2s; left: 0; top: 100%; white-space: nowrap;">
+                                                    Can edit existing FAQs.
+                                                </div>
+                                            </label>
+                                        </div>
+                                        <div class="space-y-2 relative">
+                                            <label class="flex items-center permission-label">
+                                                <input type="checkbox" name="permission[]"
+                                                    value="{{ $permissions->where('name', 'faq-delete')->first()->id }}"
+                                                    {{ $role->hasPermissionTo('faq-delete') ? 'checked' : '' }}
+                                                    class="rounded">
+                                                <span class="ml-2">Delete FAQ</span>
+                                                <div class="permission-tooltip absolute z-10 bg-white text-black text-xs py-1 px-2 mt-1 shadow-lg rounded border"
+                                                    style="display: none; opacity: 0; visibility: hidden; transition: opacity 0.2s, visibility 0.2s; left: 0; top: 100%; white-space: nowrap;">
+                                                    Can delete FAQs.
+                                                </div>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Additional Permissions -->
+                                <div class="p-4 border-b dark:border-gray-800">
+                                    <h4 class="font-medium text-gray-500 mb-3">Additional Permissions</h4>
+                                    <div class="space-y-2">
+                                        <div class="space-y-2 relative">
+                                            <label class="flex items-center permission-label">
+                                                <input type="checkbox" name="permission[]"
+                                                    value="{{ $permissions->where('name', 'asset-list')->first()->id }}"
+                                                    {{ $role->hasPermissionTo('asset-list') ? 'checked' : '' }}
+                                                    class="rounded">
+                                                <span class="ml-2">Asset List</span>
+                                                <div class="permission-tooltip absolute z-10 bg-white text-black text-xs py-1 px-2 mt-1 shadow-lg rounded border"
+                                                    style="display: none; opacity: 0; visibility: hidden; transition: opacity 0.2s, visibility 0.2s; left: 0; top: 100%; white-space: nowrap;">
+                                                    Can view the list of assets.
+                                                </div>
+                                            </label>
+                                        </div>
+                                        <div class="space-y-2 relative">
+                                            <label class="flex items-center permission-label">
+                                                <input type="checkbox" name="permission[]"
+                                                    value="{{ $permissions->where('name', 'dailysales-list')->first()->id }}"
+                                                    {{ $role->hasPermissionTo('dailysales-list') ? 'checked' : '' }}
+                                                    class="rounded">
+                                                <span class="ml-2">Daily Sales List</span>
+                                                <div class="permission-tooltip absolute z-10 bg-white text-black text-xs py-1 px-2 mt-1 shadow-lg rounded border"
+                                                    style="display: none; opacity: 0; visibility: hidden; transition: opacity 0.2s, visibility 0.2s; left: 0; top: 100%; white-space: nowrap;">
+                                                    Can view daily sales reports.
+                                                </div>
+                                            </label>
+                                        </div>
+                                        <div class="space-y-2 relative">
+                                            <label class="flex items-center permission-label">
+                                                <input type="checkbox" name="permission[]"
+                                                    value="{{ $permissions->where('name', 'productsales-list')->first()->id }}"
+                                                    {{ $role->hasPermissionTo('productsales-list') ? 'checked' : '' }}
+                                                    class="rounded">
+                                                <span class="ml-2">Product Sales List</span>
+                                                <div class="permission-tooltip absolute z-10 bg-white text-black text-xs py-1 px-2 mt-1 shadow-lg rounded border"
+                                                    style="display: none; opacity: 0; visibility: hidden; transition: opacity 0.2s, visibility 0.2s; left: 0; top: 100%; white-space: nowrap;">
+                                                    Can view product sales reports.
+                                                </div>
+                                            </label>
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>

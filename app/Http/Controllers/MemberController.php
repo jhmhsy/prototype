@@ -665,7 +665,7 @@ class MemberController extends Controller
     public function changemembership(Request $request, Member $member)
     {
         $validated = $request->validate([
-            'membership_type' => 'required|in:Regular,Student',
+            'membership_type' => 'required|in:Regular,Manual',
         ]);
 
 
