@@ -19,7 +19,8 @@
 
         <!-- Darkmode button icon -->
         <div class="flex items-center gap-4 ">
-            <div role="group" dir="ltr" class="  items-center justify-center gap-1" tabindex="0" style="outline: none;">
+            <div role="group" dir="ltr" class=" hidden items-center justify-center gap-1" tabindex="0"
+                style="outline: none;">
                 <x-custom.darkmode />
             </div>
 
