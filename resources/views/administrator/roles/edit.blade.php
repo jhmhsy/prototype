@@ -191,6 +191,32 @@
                                             <div class="space-y-2 relative">
                                                 <label class="flex items-center permission-label">
                                                     <input type="checkbox" name="permission[]"
+                                                        value="{{ $permissions->where('name', 'member-view')->first()->id }}"
+                                                        {{ $role->hasPermissionTo('member-view') ? 'checked' : '' }}
+                                                        class="rounded">
+                                                    <span class="ml-2">Member View</span>
+                                                    <div class="permission-tooltip absolute z-10 bg-white text-black text-xs py-1 px-2 mt-1 shadow-lg rounded border"
+                                                        style="display: none; opacity: 0; visibility: hidden; transition: opacity 0.2s, visibility 0.2s; left: 0; top: 100%; white-space: nowrap;">
+                                                        Can view member details.
+                                                    </div>
+                                                </label>
+                                            </div>
+                                            <div class="space-y-2 relative">
+                                                <label class="flex items-center permission-label">
+                                                    <input type="checkbox" name="permission[]"
+                                                        value="{{ $permissions->where('name', 'member-services')->first()->id }}"
+                                                        {{ $role->hasPermissionTo('member-services') ? 'checked' : '' }}
+                                                        class="rounded">
+                                                    <span class="ml-2">Member Services</span>
+                                                    <div class="permission-tooltip absolute z-10 bg-white text-black text-xs py-1 px-2 mt-1 shadow-lg rounded border"
+                                                        style="display: none; opacity: 0; visibility: hidden; transition: opacity 0.2s, visibility 0.2s; left: 0; top: 100%; white-space: nowrap;">
+                                                        Can Open member Services.
+                                                    </div>
+                                                </label>
+                                            </div>
+                                            <div class="space-y-2 relative">
+                                                <label class="flex items-center permission-label">
+                                                    <input type="checkbox" name="permission[]"
                                                         value="{{ $permissions->where('name', 'member-edit')->first()->id }}"
                                                         {{ $role->hasPermissionTo('member-edit') ? 'checked' : '' }}
                                                         class="rounded">
@@ -211,6 +237,19 @@
                                                     <div class="permission-tooltip absolute z-10 bg-white text-black text-xs py-1 px-2 mt-1 shadow-lg rounded border"
                                                         style="display: none; opacity: 0; visibility: hidden; transition: opacity 0.2s, visibility 0.2s; left: 0; top: 100%; white-space: nowrap;">
                                                         Can renew a member's membership.
+                                                    </div>
+                                                </label>
+                                            </div>
+                                            <div class="space-y-2 relative">
+                                                <label class="flex items-center permission-label">
+                                                    <input type="checkbox" name="permission[]"
+                                                        value="{{ $permissions->where('name', 'member-delete')->first()->id }}"
+                                                        {{ $role->hasPermissionTo('member-delete') ? 'checked' : '' }}
+                                                        class="rounded">
+                                                    <span class="ml-2">Member Delete</span>
+                                                    <div class="permission-tooltip absolute z-10 bg-white text-black text-xs py-1 px-2 mt-1 shadow-lg rounded border"
+                                                        style="display: none; opacity: 0; visibility: hidden; transition: opacity 0.2s, visibility 0.2s; left: 0; top: 100%; white-space: nowrap;">
+                                                        Can Delete a member.
                                                     </div>
                                                 </label>
                                             </div>

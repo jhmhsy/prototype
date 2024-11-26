@@ -98,7 +98,7 @@
                             @empty
                             <tr>
                                 <td colspan="5" class="p-2 text-center">
-                                    No recent check-ins found.
+                                    No latest members found.
                                 </td>
                             </tr>
                             @endforelse

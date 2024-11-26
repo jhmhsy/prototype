@@ -1,7 +1,10 @@
 @canany([
 'member-list',
+'member-view',
+'member-services',
 'member-edit',
 'member-membership-renew',
+'member-delete',
 'subscription-extend',
 'subscription-end',
 'locker-extend',
@@ -83,7 +86,11 @@ const keynumber = "{{ $keynumber }}"; // Safe to use if sanitized by Blade
                         <th class="px-4 py-2 text-left">Type</th>
                         <th class="px-4 py-2 text-left">Yearly Status</th>
                         <th class="px-4 py-2 text-left">Checkin</th>
+
+                        @canany([ 'member-view', 'member-services',
+                        'member-edit','member-membership-renew','member-delete',])
                         <th class="px-4 py-2 text-left">Action</th>
+                        @endcanany
                     </tr>
                 </thead>
                 <tbody x-data="{ serviceFilter: 'all', statusFilter: 'current' }"
@@ -231,12 +238,15 @@ const keynumber = "{{ $keynumber }}"; // Safe to use if sanitized by Blade
 
 
 
-                        @can(['checkin-edit'])
+                        @can( 'member-services')
                         @include ('administrator.members.checkin')
                         @endcan
 
-                        <td class="px-4 align-middle">
 
+
+                        @canany([ 'member-view', 'member-services',
+                        'member-edit','member-membership-renew','member-delete',])
+                        <td class="px-4 align-middle">
                             <div class="action-dropdown flex items-center ">
                                 <button
                                     class="dropdown-button p-1 rounded-md hover:bg-gray-100 dark:hover:bg-peak_3 transition-colors relative">
@@ -268,7 +278,7 @@ const keynumber = "{{ $keynumber }}"; // Safe to use if sanitized by Blade
 
 
                                         <!-- disable if membershiptype = walkin else enable -->
-
+                                        @can( 'member-services')
                                         <button @click="openservices = true"
                                             class="w-full group flex items-center px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-peak_3"
                                             :class="{ 'cursor-not-allowed opacity-50': membershipType === 'Walkin' }">
@@ -282,7 +292,9 @@ const keynumber = "{{ $keynumber }}"; // Safe to use if sanitized by Blade
 
                                             Services
                                         </button>
+                                        @endcan
 
+                                        @can('member-membership-renew')
                                         <button @click="membershipOption = true"
                                             class="w-full group flex items-center px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-peak_3"
                                             :class="{ 'cursor-not-allowed opacity-50': membershipType === 'Walkin' }">
@@ -296,6 +308,7 @@ const keynumber = "{{ $keynumber }}"; // Safe to use if sanitized by Blade
                                             </svg>
                                             Membership
                                         </button>
+                                        @endcan
 
 
                                         @can('member-edit')
@@ -335,6 +348,9 @@ const keynumber = "{{ $keynumber }}"; // Safe to use if sanitized by Blade
                             @include ('administrator.members.delete')
 
                         </td>
+                        @endcanany
+
+
 
                     </tr>
 

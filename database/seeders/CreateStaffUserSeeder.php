@@ -18,7 +18,7 @@ class CreateStaffUserSeeder extends Seeder
             ['email' => 'staff@gmail.com'], // Check for existing user by email
             [
                 'name' => 'Staff',
-                'password' => bcrypt('asdasdasd'), // Use a secure password
+                'password' => bcrypt('gymonestaff'), // Use a secure password
                 'email_verified_at' => now(), // Set email as verified
             ]
         );

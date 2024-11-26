@@ -47,9 +47,12 @@ class MemberController extends Controller
         if (
             !auth()->user()->canany([
                 'member-create',
+                'member-view',
+                'member-services',
                 'member-list',
                 'member-edit',
                 'member-membership-renew',
+                'member-delete',
                 'subscription-create',
                 'subscription-extend',
                 'subscription-end',
