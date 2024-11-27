@@ -1,14 +1,15 @@
 <?php
 
 use \Illuminate\Support\Facades\Auth;
+use \Illuminate\Support\Facades\Gate;
 use App\Http\Controllers\Admin\EquipmentController;
 use App\Http\Controllers\Admin\EventsController;
 use App\Http\Controllers\Admin\FeedbackController;
 use App\Http\Controllers\Admin\HelpController;
 use App\Http\Controllers\Admin\OverviewController;
 use App\Http\Controllers\Admin\RoleController;
-use App\Http\Controllers\Admin\TicketController;
 //use App\Http\Controllers\DashController;
+use App\Http\Controllers\Admin\TicketController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\AssetController;
 use App\Http\Controllers\BarcodeController;
@@ -22,19 +23,20 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PricesController;
 use App\Http\Controllers\ProductsalesController;
 use App\Http\Controllers\ProfileController;
+
 use App\Http\Controllers\Public\CalendarController;
 
 use App\Http\Controllers\Public\FeatureController;
 
 use App\Http\Controllers\Public\ReservationsController;
-
 use App\Http\Controllers\QuestionController;
-use App\Http\Controllers\ScannerController;
 
+use App\Http\Controllers\ScannerController;
 use App\Http\Controllers\UserServicesController;
 use Illuminate\Support\Facades\Route;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
+
 
 
 

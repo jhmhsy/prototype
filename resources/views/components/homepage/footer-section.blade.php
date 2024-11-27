@@ -54,10 +54,10 @@
                 <form class="flex justify-center lg:justify-start">
 
                     @if (Auth::check())
-                        <x-custom.primary-button class="bg-lemon-base text-secondary" type="button"
+                        {{--<x-custom.primary-button class="bg-lemon-base text-secondary" type="button"
                             onclick="window.location.href = '{{ route('services.index') }}'">
                             My Services
-                        </x-custom.primary-button>
+                        </x-custom.primary-button>--}}
                     @else
                         <x-custom.primary-button class="bg-lemon-base text-secondary" type="button"
                             onclick="window.location.href = '{{ route('register') }}'">
