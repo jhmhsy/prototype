@@ -1,5 +1,6 @@
 <?php
 
+use \Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Admin\EquipmentController;
 use App\Http\Controllers\Admin\EventsController;
 use App\Http\Controllers\Admin\FeedbackController;
@@ -7,36 +8,33 @@ use App\Http\Controllers\Admin\HelpController;
 use App\Http\Controllers\Admin\OverviewController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\TicketController;
-use App\Http\Controllers\Admin\UserController;
 //use App\Http\Controllers\DashController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\AssetController;
+use App\Http\Controllers\BarcodeController;
+use App\Http\Controllers\CheckinController;
+use App\Http\Controllers\ConfirmationController;
 use App\Http\Controllers\DailysalesController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LinkController;
+use App\Http\Controllers\MemberController;
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\PricesController;
 use App\Http\Controllers\ProductsalesController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Public\CalendarController;
+
 use App\Http\Controllers\Public\FeatureController;
+
 use App\Http\Controllers\Public\ReservationsController;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PaymentController;
-use App\Http\Controllers\MemberController;
+
+use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\ScannerController;
-use App\Http\Controllers\CheckinController;
-use App\Http\Controllers\PricesController;
-
-use App\Http\Controllers\LinkController;
-
-use App\Http\Controllers\BarcodeController;
-
-use Spatie\Permission\Models\Permission;
-use Spatie\Permission\Models\Role;
 
 use App\Http\Controllers\UserServicesController;
-use App\Http\Controllers\QuestionController;
-use App\Http\Controllers\ConfirmationController;
-
-
-
+use Illuminate\Support\Facades\Route;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 
 
@@ -55,15 +53,11 @@ Route::get('/index/link/{id}', [LinkController::class, 'index'])->name('index.li
 Route::post('/link/{member}', [LinkController::class, 'updateIdNumber'])->name('link.update');
 
 
-
 Route::post('/members/{member}/renew', action: [MemberController::class, 'renew'])->name('members.renew');
 Route::post('/members/{member}/changemembership', action: [MemberController::class, 'changemembership'])->name('members.changemembership');
 
 
 Auth::routes(['verify' => true]);
-
-
-
 
 Route::get('/scanner', [ScannerController::class, 'index'])->name('scanner.index');
 Route::post('/api/scan', [ScannerController::class, 'process'])->name('scanner.process');
@@ -111,7 +105,6 @@ Route::post('/members/{id}/extendTreadmill', [MemberController::class, 'extendTr
 
 //Welcome Page  
 Route::middleware(['throttle:global'])->group(function () {
-
     Route::get('/', [HomeController::class, 'index'])->name('welcome');
 
 });
@@ -121,11 +114,11 @@ Route::get('/gym-map', [HomeController::class, 'showmap'])->name('gym-map');
 //⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎ 𝗣𝗨𝗕𝗟𝗜𝗖
 
 
-Route::get('/features', [FeatureController::class, 'show'])->name('features');
-Route::get('/calendar', [CalendarController::class, 'show'])->name('calendar');
-Route::post('/calendar', [ReservationsController::class, 'store'])->name('calendar.store');
-Route::get('/api/reserved-hours', [CalendarController::class, 'getReservedHours']);
-Route::get('/booking-status', 'CalendarController@getBookingStatus');
+//Route::get('/features', [FeatureController::class, 'show'])->name('features');
+//Route::get('/calendar', [CalendarController::class, 'show'])->name('calendar');
+//Route::post('/calendar', [ReservationsController::class, 'store'])->name('calendar.store');
+//Route::get('/api/reserved-hours', [CalendarController::class, 'getReservedHours']);
+//Route::get('/booking-status', 'CalendarController@getBookingStatus');
 
 Route::post('/reserve', [ReservationsController::class, 'store'])->name('reserve.store');
 Route::post('/feedback', [FeedbackController::class, 'store'])->name('feedback.store');

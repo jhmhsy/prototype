@@ -9,15 +9,15 @@
                     {{ Auth::check()
                         ? 'Stay connected, join exclusive events, and keep reaching new fitness heights.'
                         : 'Connect with like-minded individuals, attend exclusive
-                                                                                                                                            events, and take your fitness to new heights.' }}
+                                                                                                                                                                                    events, and take your fitness to new heights.' }}
                 </p>
             </div>
             <div class="max-w-sm mx-auto space-y-2">
                 @if (Auth::check())
-                        <x-custom.primary-button class="bg-lemon-base text-secondary" type="button"
-                            onclick="window.location.href = '{{ route('services.index') }}'">
-                            My Services
-                        </x-custom.primary-button>
+                    <x-custom.primary-button class="bg-lemon-base text-secondary" type="button"
+                        onclick="window.location.href = '{{ route('services.index') }}'">
+                        My Services
+                    </x-custom.primary-button>
                 @else
                     <form class="flex flex-col gap-2 sm:flex-row">
                         <x-forms.text-input
@@ -34,8 +34,10 @@
 
             </div>
             <p class="text-xs text-primary">
-                {{ Auth::check() ? 'Welcome back! Enjoy your benefits.' : 'Sign up to get notified about our latest updates and
-                promotions.'}}
+                {{ Auth::check()
+                    ? 'Welcome back! Enjoy your benefits.'
+                    : 'Sign up to get notified about our latest updates and
+                                                promotions.' }}
             </p>
         </div>
     </div>
@@ -75,6 +77,17 @@
 
                 <!-- Social Media Links -->
                 <div class="flex flex-col space-y-2 lg:space-y-4 items-center lg:items-start">
+                    <a href="#" class="flex items-center group text-gray-400 hover:text-gray-100">
+                        <svg class="w-4 h-4" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                            viewBox="0 0 24 24">
+                            <path fill-rule="evenodd"
+                                d="M12 6a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Zm-1.5 8a4 4 0 0 0-4 4 2 2 0 0 0 2 2h7a2 2 0 0 0 2-2 4 4 0 0 0-4-4h-3Zm6.82-3.096a5.51 5.51 0 0 0-2.797-6.293 3.5 3.5 0 1 1 2.796 6.292ZM19.5 18h.5a2 2 0 0 0 2-2 4 4 0 0 0-4-4h-1.1a5.503 5.503 0 0 1-.471.762A5.998 5.998 0 0 1 19.5 18ZM4 7.5a3.5 3.5 0 0 1 5.477-2.889 5.5 5.5 0 0 0-2.796 6.293A3.501 3.501 0 0 1 4 7.5ZM7.1 12H6a4 4 0 0 0-4 4 2 2 0 0 0 2 2h.5a5.998 5.998 0 0 1 3.071-5.238A5.505 5.505 0 0 1 7.1 12Z"
+                                clip-rule="evenodd" />
+                        </svg>
+
+                        <span>&nbsp; Meet our team</span>
+                    </a>
                     <a href="https://www.facebook.com/profile.php?id=61567209182726" target="_blank"
                         class="flex items-center group text-gray-400 hover:text-gray-100">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
