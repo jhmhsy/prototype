@@ -104,16 +104,18 @@ Route::post('/members/{id}/extendTreadmill', [MemberController::class, 'extendTr
 // Route::post('/webhook-receiver', [PaymentController::class, 'webhook'])->name('webhook');
 // Route::get('/payment-result', [PaymentController::class, 'showResult'])->name('payment.result');
 
-use App\Http\Middleware\CustomThrottleMiddleware;
+// use App\Http\Middleware\CustomThrottleMiddleware;
+// Route::middleware([CustomThrottleMiddleware::class])->group(function () {
+// });
+
+
 //Welcome Page  
-Route::middleware([CustomThrottleMiddleware::class])->group(function () {
+Route::middleware(['throttle:global'])->group(function () {
 
     Route::get('/', [HomeController::class, 'index'])->name('welcome');
 
 });
 
-// use to verify account first from email to login - use later dont delete
-// Route::get('/', [HomeController::class, 'index'])->name('welcome')->middleware('verified');
 
 Route::get('/gym-map', [HomeController::class, 'showmap'])->name('gym-map');
 //⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎ 𝗣𝗨𝗕𝗟𝗜𝗖

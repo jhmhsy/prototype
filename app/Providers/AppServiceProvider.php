@@ -4,6 +4,9 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\Cache\RateLimiting\Limit;
+use Illuminate\Http\Request;
 use App\View\Components\DashLayout;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\URL;
@@ -23,6 +26,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        RateLimiter::for('global', function (Request $request) {
+            return Limit::perMinute(50); // Limit 50 requests per minute
+        });
+
+
         if (config('app.env') !== 'local') { // Skip enforcing HTTPS in local environment
             URL::forceScheme('https');
         }
