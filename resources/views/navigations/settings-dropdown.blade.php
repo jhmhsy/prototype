@@ -16,7 +16,6 @@
     <!-- Authentication -->
     <form method="POST" action="{{ route('logout') }}">
         @csrf
-
         <x-forms.responsive-nav-link :href="route('logout')" class="hover:bg-red-500 " onclick="event.preventDefault();
                         this.closest('form').submit();">
             {{ __('Log Out') }}
