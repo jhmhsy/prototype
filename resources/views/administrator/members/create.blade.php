@@ -37,7 +37,7 @@
                         </h2>
                         <div class="mb-6">
                             <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                                Membership Type
+                                Annual Membership Fee
                             </label>
                             <select name="membership_type" id="membership_type" x-model="membershipType"
                                 class="mt-1 block w-full pl-3 pr-10 py-2 text-gray-500 border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:text-black dark:focus:text-white sm:text-sm rounded-md dark:bg-peak_1 dark:border-gray-600 ">

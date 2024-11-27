@@ -84,7 +84,6 @@ const keynumber = "{{ $keynumber }}"; // Safe to use if sanitized by Blade
                         <th class="px-4 py-2 text-left">Name</th>
                         <th class="px-4 py-2 text-left">Subscription</th>
                         <th class="px-4 py-2 text-left">Type</th>
-                        <th class="px-4 py-2 text-left">Yearly Status</th>
                         <th class="px-4 py-2 text-left">Checkin</th>
 
                         @canany([ 'member-view', 'member-services',
@@ -217,6 +216,11 @@ const keynumber = "{{ $keynumber }}"; // Safe to use if sanitized by Blade
 
 
                         <td class="whitespace-nowrap px-4 py-2">
+                            <button @click="membershipOption = true"
+                                class=" ml-5 md:ml-10 w-3 h-3  {{ $bgColor }} rounded-full"
+                                aria-label="{{ $status }} status" title="{{ $status }}" type="button">
+                            </button>
+
                             @if ($member->membership_type == 'Regular')
                             {{ $member->membership_type }} - {{ $prices['Regular'] ?? '' }}
                             @elseif ($member->membership_type == 'Walkin')
@@ -227,13 +231,6 @@ const keynumber = "{{ $keynumber }}"; // Safe to use if sanitized by Blade
                         </td>
 
 
-
-                        <td class="whitespace-nowrap px-4  py-2 ">
-                            <button @click="membershipOption = true"
-                                class=" ml-5 md:ml-10 w-3 h-3  {{ $bgColor }} rounded-full"
-                                aria-label="{{ $status }} status" title="{{ $status }}" type="button">
-                            </button>
-                        </td>
 
 
 

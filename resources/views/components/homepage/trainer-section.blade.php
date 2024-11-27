@@ -20,7 +20,10 @@
                         <p class="text-xs md:text-base">#Zero2Hero</p>
                     </div>
                     <div>
-                        <button class="inline-flex items-center px-4 py-2 border border-white/70 rounded-md font-semibold text-sm uppercase  shadow-md "><strike>Unavailable</strike></button>
+                        <buttonU
+                            class="inline-flex items-center px-4 py-2 border border-white/70 rounded-md font-semibold text-sm uppercase  shadow-md ">
+                            <strike>Under Contruction</strike>
+                        </buttonU>
                     </div>
                 </div>
             </div>
