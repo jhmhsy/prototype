@@ -3,30 +3,39 @@
         <div class="container grid items-center justify-center gap-4 px-4 m-auto text-center md:px-6">
             <div class="space-y-3 text-lemon-base">
                 <h2 class="text-3xl font-bold tracking-tighter text-lemon-base md:text-4xl/tight">
-                    Join Our Vibrant Community
+                    {{ Auth::check() ? 'Welcome Back!' : 'Join Our Vibrant Community' }}
                 </h2>
-                <p
-                    class="mx-auto max-w-[600px] md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed text-primary">
-                    Connect with like-minded individuals, attend exclusive
-                    events, and take your fitness to new heights.
+                <p class="mx-auto max-w-[600px] md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed text-primary">
+                    {{ Auth::check()
+                        ? 'Stay connected, join exclusive events, and keep reaching new fitness heights.'
+                        : 'Connect with like-minded individuals, attend exclusive
+                                                                                                                                            events, and take your fitness to new heights.' }}
                 </p>
             </div>
             <div class="max-w-sm mx-auto space-y-2">
-                <form class="flex flex-col gap-2 sm:flex-row">
-                    <x-forms.text-input
-                        class="items-center flex-1 w-full h-10 px-3 py-2 text-sm rounded-md sm:w-auto text-primary"
-                        placeholder="Enter your email" type="email" />
-                    <div>
+                @if (Auth::check())
                         <x-custom.primary-button class="bg-lemon-base text-secondary" type="button"
-                            onclick="window.location.href = '{{ route('register') }}'">
-                            Join Us
+                            onclick="window.location.href = '{{ route('services.index') }}'">
+                            My Services
                         </x-custom.primary-button>
-                    </div>
-                </form>
+                @else
+                    <form class="flex flex-col gap-2 sm:flex-row">
+                        <x-forms.text-input
+                            class="items-center flex-1 w-full h-10 px-3 py-2 text-sm rounded-md sm:w-auto text-primary"
+                            placeholder="Enter your email" type="email" />
+                        <div>
+                            <x-custom.primary-button class="bg-lemon-base text-secondary" type="button"
+                                onclick="window.location.href = '{{ route('register') }}'">
+                                Join Us
+                            </x-custom.primary-button>
+                        </div>
+                    </form>
+                @endif
+
             </div>
             <p class="text-xs text-primary">
-                Sign up to get notified about our latest updates and
-                promotions.
+                {{ Auth::check() ? 'Welcome back! Enjoy your benefits.' : 'Sign up to get notified about our latest updates and
+                promotions.'}}
             </p>
         </div>
     </div>
@@ -38,12 +47,21 @@
                 <span class="text-lg font-bold dark:text-white">Danao Gym</span>
 
                 <p class="text-gray-400">
-                    Join today and take the first step towards achieving your fitness goals.
+                    {{ Auth::check() ? 'Welcome back! Keep pushing towards your fitness goals and make every workout count.' : 'Join today and take the first step towards achieving your fitness goals.' }}
                 </p>
                 <form class="flex justify-center lg:justify-start">
-                    <x-custom.primary-button onclick="window.location.href = '{{ route('register') }}'" type="button">
-                        Join Now
-                    </x-custom.primary-button>
+
+                    @if (Auth::check())
+                        <x-custom.primary-button class="bg-lemon-base text-secondary" type="button"
+                            onclick="window.location.href = '{{ route('services.index') }}'">
+                            My Services
+                        </x-custom.primary-button>
+                    @else
+                        <x-custom.primary-button class="bg-lemon-base text-secondary" type="button"
+                            onclick="window.location.href = '{{ route('register') }}'">
+                            Join Us
+                        </x-custom.primary-button>
+                    @endif
                 </form>
                 <p class="text-xs text-gray-400">
                     By joining, you agree to our <a class="underline dark:text-tint_4" href="#">Privacy
@@ -76,7 +94,6 @@
                         </svg>
                         <span>&nbsp; {{ $superadminemail }}</span>
                     </a>
-
 
                     {{-- <a href="#" class="flex items-center group text-gray-400 hover:text-gray-100">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"

@@ -1,7 +1,7 @@
 <div class="items-center w-full py-4 bg-peak-5 text-primary">
     <div class="container w-[70%] p-5 m-auto">
         <div>
-            <h1 class="text-5xl font-raleway uppercase">Schedule Trainers</h1>
+            <h1 class="text-5xl font-raleway uppercase font-bold">Schedule Trainers</h1>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 p-5 w-full justify-between">
             <div class="polygon-1-wrapper relative">
@@ -22,7 +22,7 @@
                     <div>
                         <buttonU
                             class="inline-flex items-center px-4 py-2 border border-white/70 rounded-md font-semibold text-sm uppercase  shadow-md ">
-                            <strike>Under Contruction</strike>
+                            <strike>Under Construction</strike>
                         </buttonU>
                     </div>
                 </div>
