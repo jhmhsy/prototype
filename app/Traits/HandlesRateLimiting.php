@@ -9,9 +9,10 @@ use Illuminate\Validation\ValidationException;
 
 trait HandlesRateLimiting
 {
-    protected function ensureIsNotRateLimited($email, $ip){
+    protected function ensureIsNotRateLimited($email, $ip)
+    {
         $key = $this->throttleKey($email, $ip);
-        if(!RateLimiter::tooManyAttempts($key, 5)){
+        if (!RateLimiter::tooManyAttempts($key, 5)) {
             return;
         }
         event(new Lockout($this));
