@@ -216,8 +216,7 @@ const keynumber = "{{ $keynumber }}"; // Safe to use if sanitized by Blade
 
 
                         <td class="whitespace-nowrap px-4 py-2">
-                            <button @click="membershipOption = true"
-                                class=" ml-5 md:ml-10 w-3 h-3  {{ $bgColor }} rounded-full"
+                            <button @click="membershipOption = true" class="  w-3 h-3  {{ $bgColor }} rounded-full"
                                 aria-label="{{ $status }} status" title="{{ $status }}" type="button">
                             </button>
 
