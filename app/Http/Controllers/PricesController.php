@@ -35,6 +35,12 @@ class PricesController extends Controller
                 default:
                     $price->service_type = ucfirst($price->service_type); // Capitalize if unknown
                     break;
+                case 'WalkinService':
+                    $price->service_type = 'Walk-in';
+                    break;
+                case 'Walk-in':
+                    $price->service_type = 'Annual Walk-in Membership';
+                    break;
             }
             return $price;
         });
