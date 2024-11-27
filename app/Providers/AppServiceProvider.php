@@ -27,8 +27,9 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         RateLimiter::for('global', function (Request $request) {
-            return Limit::perMinute(50); // Limit 50 requests per minute
+            return Limit::perMinute(50)->by($request->ip()); // Limit 50 requests per minute per IP address
         });
+
 
 
         if (config('app.env') !== 'local') { // Skip enforcing HTTPS in local environment
