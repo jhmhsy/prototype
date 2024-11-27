@@ -82,7 +82,7 @@
                                     </button>
                                     @include('administrator.members.servicesIncludes.service-end-warning', ['service' => $service])
                                 @else
-                                    <span class="text-amber-500 "> Pending Approval</span>
+                                    <span class="text-amber-500 whitespace-nowrap"> Pending Approval</span>
                                 @endif
                             @endif
                         </td>
@@ -145,7 +145,7 @@
                                     </button>
                                     @include ('administrator.members.servicesIncludes.locker-end-warning')
                                 @else
-                                    <span class="text-amber-500 "> Pending Approval</span>
+                                    <span class="text-amber-500 whitespace-nowrap"> Pending Approval</span>
                                 @endif
                             @endif
                         </td>
@@ -213,7 +213,7 @@
                                     </button>
                                     @include ('administrator.members.servicesIncludes.treadmill-end-warning')
                                 @else
-                                    <span class="text-amber-500 "> Pending Approval</span>
+                                    <span class="text-amber-500 whitespace-nowrap"> Pending Approval</span>
                                 @endif
                             @endif
                         </td>

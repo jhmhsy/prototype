@@ -23,10 +23,13 @@ class RegisteredUserController extends Controller
     /**
      * Display the registration view.
      */
-    public function create(): View
+    public function create(Request $request): View
     {
         session()->put('form_token', uniqid());
-        return view('auth.register');
+
+        $email = $request->query('email', '');
+        return view('auth.register', ['prefilled_email' => $email]);
+        ;
     }
 
     /**
