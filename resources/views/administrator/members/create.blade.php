@@ -348,7 +348,7 @@
             </div>
 
 
-            @include ('administrator.members.create-includes.total-price')
+            <!-- @include ('administrator.members.create-includes.total-price') -->
         </div>
     </div>
     <!-- Month Input Limit Script -->
