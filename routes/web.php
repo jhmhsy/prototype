@@ -104,10 +104,13 @@ Route::post('/members/{id}/extendTreadmill', [MemberController::class, 'extendTr
 // Route::post('/webhook-receiver', [PaymentController::class, 'webhook'])->name('webhook');
 // Route::get('/payment-result', [PaymentController::class, 'showResult'])->name('payment.result');
 
-
+use App\Http\Middleware\CustomThrottleMiddleware;
 //Welcome Page  
+Route::middleware([CustomThrottleMiddleware::class])->group(function () {
 
-Route::get('/', [HomeController::class, 'index'])->name('welcome');
+    Route::get('/', [HomeController::class, 'index'])->name('welcome');
+
+});
 
 // use to verify account first from email to login - use later dont delete
 // Route::get('/', [HomeController::class, 'index'])->name('welcome')->middleware('verified');

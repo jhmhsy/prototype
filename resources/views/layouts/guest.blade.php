@@ -81,5 +81,17 @@
     </div>
 </body>
 
+<script>
+axios.post('/ratelimit')
+    .then(response => {
+        // Handle successful response
+    })
+    .catch(error => {
+        if (error.response && error.response.status === 429) {
+            // Display the wait time message
+            alert(`Please wait ${error.response.data.wait} seconds before trying again.`);
+        }
+    });
+</script>
 
 </html>

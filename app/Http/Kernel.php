@@ -13,7 +13,7 @@ class Kernel extends HttpKernel
      */
     protected $middleware = [
         // Global middleware
-        
+        \App\Http\Middleware\CustomThrottleMiddleware::class,
     ];
 
     /**
@@ -23,6 +23,8 @@ class Kernel extends HttpKernel
      */
     protected $routeMiddleware = [
         // Other middleware...
+        'custom.throttle' => \App\Http\Middleware\CustomThrottleMiddleware::class,
+
 
     ];
 
