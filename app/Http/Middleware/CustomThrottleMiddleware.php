@@ -14,7 +14,7 @@ class CustomThrottleMiddleware
 
         // Define the max number of attempts and the decay time (in seconds)
         $maxAttempts = 5;
-        $decaySeconds = 60; // 60 seconds cooldown
+        $decaySeconds = 8; // 60 seconds cooldown
 
         // Check if the request has exceeded the rate limit
         // But do not block the request, only track attempts
