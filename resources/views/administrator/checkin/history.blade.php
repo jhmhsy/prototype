@@ -46,7 +46,7 @@
         </div>
 
         <div class="overflow-x-auto rounded-md">
-            <table class="min-w-full divide-y divide-gray-200">
+            <table class="min-w-full divide-y divide-gray-200 dark:divide-white/30">
                 <thead class="bg-gray-50 dark:bg-peak_2">
                     <tr>
                         <th scope="col"

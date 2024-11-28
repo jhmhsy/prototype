@@ -14,13 +14,13 @@
                     <label for="filter" class="block text-sm font-medium text-gray-500 mb-1">Export Members</label>
                     <a href="{{ route('export.members') }}"
                         class="inline-flex items-center px-4 py-2 border border-gray-300 dark:border-white/10 hover:border-gray-700 text-black dark:text-white rounded-md transition-colors duration-300">
-                        <svg class="w-5 h-5 " fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4">
                             </path>
                         </svg>
-                        <span class="ml-2">Export</span>
+                        <span class="ml-2 text-md uppercase tracking-wide">Export</span>
                     </a>
                 </div>
             </div>
