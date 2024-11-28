@@ -371,7 +371,7 @@ dark:hover:bg-gray-700 dark:hover:text-white
                 @canany(['user-list', 'user-view', 'user-create', 'user-edit', 'user-delete'])
                     <li>
                         <a href="{{ route('administrator.users') }}"
-                            class="flex items-center p-2 rounded-lg group  {{ request()->routeIs('administrator.users') ? 'bg-gray-300 text-black dark:bg-gray-700 dark:text-white' : 'text-gray-500 dark:text-gray-500 hover:bg-gray-300 hover:text-black dark:hover:bg-gray-700 dark:hover:text-white' }}transition-colors duration-300">
+                            class="flex items-center p-2 rounded-lg group  {{ request()->routeIs('administrator.users') ? 'bg-gray-300 text-black dark:bg-gray-700 dark:text-white' : 'text-gray-500 dark:text-gray-500 hover:bg-gray-300 hover:text-black dark:hover:bg-gray-700 dark:hover:text-white' }} transition-colors duration-300">
                             <svg class="flex-shrink-0 w-4 h-4 transition duration-75" aria-hidden="true"
                                 xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
                                 <path
