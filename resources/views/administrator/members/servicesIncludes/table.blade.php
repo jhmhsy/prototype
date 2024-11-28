@@ -157,10 +157,9 @@
                                                         <g id="SVGRepo_iconCarrier">
                                                             <path d="M4.75 16L0 11.25V4.75L4.75 0H11.25L16 4.75V11.25L11.25 16H4.75Z"
                                                                 fill="#c00707"></path>
-
                                                         </g>
                                                     </svg>
-                                                    &nbsp
+                                                    &nbsp   
 
                                                     Stop
                                                 </button>
