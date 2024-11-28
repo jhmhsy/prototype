@@ -473,7 +473,7 @@ dark:hover:bg-gray-700 dark:hover:text-white
                         <a href="{{ route('administrator.dailysales') }}"
                             class="flex items-center p-2 rounded-lg group  {{ request()->routeIs('administrator.dailysales') ? 'bg-gray-300 text-black dark:bg-gray-700 dark:text-white' : 'text-gray-500 dark:text-gray-500 hover:bg-gray-300 hover:text-black dark:hover:bg-gray-700 dark:hover:text-white' }} transition-colors duration-300">
 
-                            <svg class="w-4z h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
+                            <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
                                 height="24" fill="none" viewBox="0 0 24 24">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                     stroke-width="2" d="M3 15v4m6-6v6m6-4v4m6-6v6M3 11l6-5 6 5 5.5-5.5" />
