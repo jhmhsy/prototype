@@ -1,16 +1,14 @@
 <?php
 
-use \Illuminate\Support\Facades\Auth;
-use \Illuminate\Support\Facades\Gate;
 use App\Http\Controllers\Admin\EquipmentController;
 use App\Http\Controllers\Admin\EventsController;
 use App\Http\Controllers\Admin\FeedbackController;
 use App\Http\Controllers\Admin\HelpController;
 use App\Http\Controllers\Admin\OverviewController;
 use App\Http\Controllers\Admin\RoleController;
-//use App\Http\Controllers\DashController;
 use App\Http\Controllers\Admin\TicketController;
 use App\Http\Controllers\Admin\UserController;
+//use App\Http\Controllers\DashController;
 use App\Http\Controllers\AssetController;
 use App\Http\Controllers\BarcodeController;
 use App\Http\Controllers\CheckinController;
@@ -23,41 +21,31 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PricesController;
 use App\Http\Controllers\ProductsalesController;
 use App\Http\Controllers\ProfileController;
-
 use App\Http\Controllers\Public\CalendarController;
-
 use App\Http\Controllers\Public\FeatureController;
-
 use App\Http\Controllers\Public\ReservationsController;
 use App\Http\Controllers\QuestionController;
-
 use App\Http\Controllers\ScannerController;
 use App\Http\Controllers\UserServicesController;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Route;
-use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
-
-
-
 
 Route::post('/questions/store', [QuestionController::class, 'store'])->name('questions.store');
 Route::put('/questions/{id}', [QuestionController::class, 'update'])->name('questions.update');
 Route::delete('/questions/{id}', [QuestionController::class, 'destroy'])->name('questions.destroy');
-
 
 Route::middleware('auth')->group(function () {
     Route::get('/services', [UserServicesController::class, 'index'])->name('services.index');
     Route::post('/update-id-number', [UserServicesController::class, 'updateIdNumber'])->name('update.id_number');
 });
 
-
 Route::get('/index/link/{id}', [LinkController::class, 'index'])->name('index.link');
 Route::post('/link/{member}', [LinkController::class, 'updateIdNumber'])->name('link.update');
 
-
 Route::post('/members/{member}/renew', action: [MemberController::class, 'renew'])->name('members.renew');
 Route::post('/members/{member}/changemembership', action: [MemberController::class, 'changemembership'])->name('members.changemembership');
-
 
 Auth::routes(['verify' => true]);
 
@@ -95,7 +83,6 @@ Route::post('/members/{id}/extendTreadmill', [MemberController::class, 'extendTr
 // Route::get('/success', [PaymentController::class, 'success']);
 // Route::get('/cancel', [PaymentController::class, 'cancel']);
 
-
 // Route::get('/create-payment', [PaymentController::class, 'pay'])->name('payment.create');
 // Route::post('/webhook-receiver', [PaymentController::class, 'webhook'])->name('webhook');
 // Route::get('/payment-result', [PaymentController::class, 'showResult'])->name('payment.result');
@@ -104,17 +91,16 @@ Route::post('/members/{id}/extendTreadmill', [MemberController::class, 'extendTr
 // Route::middleware([CustomThrottleMiddleware::class])->group(function () {
 // });
 
-
-//Welcome Page  
+//Welcome Page
 Route::middleware(['throttle:global'])->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('welcome');
-
+    Route::get('/developers', function () {
+        return view('subpages.developers');
+    })->name('developers');
 });
-
 
 Route::get('/gym-map', [HomeController::class, 'showmap'])->name('gym-map');
 //⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎ 𝗣𝗨𝗕𝗟𝗜𝗖
-
 
 //Route::get('/features', [FeatureController::class, 'show'])->name('features');
 //Route::get('/calendar', [CalendarController::class, 'show'])->name('calendar');
@@ -122,11 +108,11 @@ Route::get('/gym-map', [HomeController::class, 'showmap'])->name('gym-map');
 //Route::get('/api/reserved-hours', [CalendarController::class, 'getReservedHours']);
 //Route::get('/booking-status', 'CalendarController@getBookingStatus');
 
-Route::post('/reserve', [ReservationsController::class, 'store'])->name('reserve.store');
-Route::post('/feedback', [FeedbackController::class, 'store'])->name('feedback.store');
-Route::get('/reservation', function () {
-    return view('subpages.reservation');
-})->name('reservation');
+//Route::post('/reserve', [ReservationsController::class, 'store'])->name('reserve.store');
+//Route::post('/feedback', [FeedbackController::class, 'store'])->name('feedback.store');
+//Route::get('/reservation', function () {
+//    return view('subpages.reservation');
+//})->name('reservation');
 
 Route::get('/users', [UserController::class, 'index'])->name('admin.users.index');
 Route::get('/settings', [UserController::class, 'settings'])->name('admin.settings');
@@ -139,9 +125,7 @@ Route::get('/settings', [UserController::class, 'settings'])->name('admin.settin
 //     Route::post('/success', [TicketController::class, 'store'])->name('ticket.store');
 // });
 
-
 //⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎ 𝗔𝗗𝗠𝗜𝗡
-
 
 Route::middleware(['auth'])->group(function () {
     // Checks if the auth user has role "is-admin / is-super", if doesnt then abort
@@ -151,7 +135,7 @@ Route::middleware(['auth'])->group(function () {
                 return $next($request);
             }
             abort(404);
-        }
+        },
     ], function () {
         Route::prefix('admin')->group(function () {
 
@@ -191,10 +175,6 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/export-services', [AssetController::class, 'exportServices'])->name('export.services');
             Route::get('/export-treadmills', [AssetController::class, 'exportTreadmills'])->name('export.treadmills');
 
-
-
-
-
             // Admin Confirmatiion
             Route::get('/confirmation', [ConfirmationController::class, 'index'])->name('confirmation.index');
             Route::post('/services/{service}/approve', [ConfirmationController::class, 'approveServiceEnd'])->name('services.approve');
@@ -213,7 +193,6 @@ Route::middleware(['auth'])->group(function () {
             Route::post('/productsales/store', [ProductsalesController::class, 'store'])->name('productsales.store');
             Route::put('/productsales/{id}', [ProductsalesController::class, 'update'])->name('productsales.update');
             Route::delete('/productsales/{id}', [ProductsalesController::class, 'destroy'])->name('productsales.destroy');
-
 
             // Equipments
             Route::get('/equipments', [EquipmentController::class, 'index'])->name('administrator.equipments');
@@ -234,7 +213,6 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/feedback', [FeedbackController::class, 'index'])->name('administrator.feedback');
             Route::get('/help', [HelpController::class, 'index'])->name('administrator.help');
 
-
             // TEMPORARY HIDDEN BECAUSE GYM DONT USE THIS
             // Route::prefix('ticket')->group(function () {
             //     Route::get('/scan', [TicketController::class, 'showScanPage'])->name('ticket.scan');
@@ -252,15 +230,11 @@ Route::middleware(['auth'])->group(function () {
             Route::put('/questions/{id}', [QuestionController::class, 'update'])->name('questions.update');
             Route::delete('/questions/{id}', [QuestionController::class, 'destroy'])->name('questions.destroy');
 
-
         });
         Route::resource('roles', RoleController::class);
         Route::resource('users', UserController::class);
     });
 });
-
-
-
 
 //⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎ 𝗣𝗨𝗕𝗟𝗜𝗖 / 𝗔𝗨𝗧𝗛
 
@@ -277,8 +251,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/help', [HelpController::class, 'index'])->name('help');
 });
 
-
-
 //});
 
-require __DIR__ . '/auth.php';
+require __DIR__.'/auth.php';

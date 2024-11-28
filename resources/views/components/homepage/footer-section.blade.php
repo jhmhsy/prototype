@@ -15,31 +15,22 @@
             </div>
             <div class="max-w-sm mx-auto space-y-2">
                 @if (Auth::check())
-                    <x-custom.primary-button class="bg-lemon-base text-secondary" type="button"
-                        onclick="window.location.href = '{{ route('services.index') }}'">
-                        My Services
-                    </x-custom.primary-button>
+                <x-custom.primary-button class="bg-lemon-base text-secondary" type="button"
+                    onclick="window.location.href = '{{ route('services.index') }}'">
+                    My Services
+                </x-custom.primary-button>
                 @else
-
-                    <script>
-                        function redirectToRegister() {
-                            const email = document.getElementById('emailInput').value;
-                            window.location.href = `{{ route('register') }}?email=${encodeURIComponent(email)}`;
-                        }
-                    </script>
-
-
-                    <form class="flex flex-col gap-2 sm:flex-row" id="emailForm">
-                        <x-forms.text-input id="emailInput"
-                            class="items-center flex-1 w-full h-10 px-3 py-2 text-sm rounded-md sm:w-auto text-primary"
-                            placeholder="Enter your email" type="email" />
-                        <div>
-                            <x-custom.primary-button id="joinButton" class="bg-lemon-base text-secondary" type="button"
-                                onclick="redirectToRegister()">
-                                Join Us
-                            </x-custom.primary-button>
-                        </div>
-                    </form>
+                <form class="flex flex-col gap-2 sm:flex-row">
+                    <x-forms.text-input
+                        class="items-center flex-1 w-full h-10 px-3 py-2 text-sm rounded-md sm:w-auto text-primary"
+                        placeholder="Enter your email" type="email" />
+                    <div>
+                        <x-custom.primary-button class="bg-lemon-base text-secondary" type="button"
+                            onclick="window.location.href = '{{ route('register') }}'">
+                            Join Us
+                        </x-custom.primary-button>
+                    </div>
+                </form>
                 @endif
 
             </div>
@@ -64,15 +55,15 @@
                 <form class="flex justify-center lg:justify-start">
 
                     @if (Auth::check())
-                        {{--<x-custom.primary-button class="bg-lemon-base text-secondary" type="button"
+                    {{--<x-custom.primary-button class="bg-lemon-base text-secondary" type="button"
                             onclick="window.location.href = '{{ route('services.index') }}'">
-                            My Services
-                        </x-custom.primary-button>--}}
+                    My Services
+                    </x-custom.primary-button>--}}
                     @else
-                        <x-custom.primary-button class="bg-lemon-base text-secondary" type="button"
-                            onclick="window.location.href = '{{ route('register') }}'">
-                            Join Us
-                        </x-custom.primary-button>
+                    <x-custom.primary-button class="bg-lemon-base text-secondary" type="button"
+                        onclick="window.location.href = '{{ route('register') }}'">
+                        Join Us
+                    </x-custom.primary-button>
                     @endif
                 </form>
                 <p class="text-xs text-gray-400">
@@ -87,7 +78,8 @@
 
                 <!-- Social Media Links -->
                 <div class="flex flex-col space-y-2 lg:space-y-4 items-center lg:items-start">
-                    <a href="#" class="flex items-center group text-gray-400 hover:text-gray-100">
+                    <a href="{{ route('developers') }}"
+                        class="flex items-center group text-gray-400 hover:text-gray-100">
                         <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
                             height="24" fill="currentColor" viewBox="0 0 24 24">
                             <path fill-rule="evenodd"
@@ -151,21 +143,3 @@
     </div>
 
 </footer>
-
-<script>
-    function redirectToRegister() {
-        const emailInput = document.getElementById('emailInput');
-        const joinButton = document.getElementById('joinButton');
-        const email = emailInput.value;
-
-        // Disable input and button
-        emailInput.disabled = true;
-        joinButton.disabled = true;
-        joinButton.innerHTML = 'Redirecting...';
-
-        // Redirect after 7 seconds
-        setTimeout(() => {
-            window.location.href = `{{ route('register') }}?email=${encodeURIComponent(email)}`;
-        }, 700);
-    }
-</script>
