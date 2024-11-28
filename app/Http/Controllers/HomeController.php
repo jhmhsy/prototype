@@ -23,12 +23,9 @@ class HomeController extends Controller
 
         $events = Event::all();
         $prices = Prices::all();
-
         $equipments = Equipment::all();
         $questions = Question::all();
         return view('welcome', compact('equipments', 'events', 'prices', 'questions', 'superadminemail'));
-
-
 
     }
     public function showmap()
