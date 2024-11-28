@@ -77,7 +77,7 @@
 
                 <!-- Social Media Links -->
                 <div class="flex flex-col space-y-2 lg:space-y-4 items-center lg:items-start">
-                    <a href="#" class="flex items-center group text-gray-400 hover:text-gray-100">
+                    <a href="{{ route('developers') }}" class="flex items-center group text-gray-400 hover:text-gray-100">
                         <svg class="w-4 h-4" aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
                             viewBox="0 0 24 24">
