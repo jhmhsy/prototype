@@ -3,15 +3,14 @@
 <x-dash-layout title="Equipments">
     <x-custom.loader2 />
     <section x-data="{ createmodal: false ,viewmodal:false, Editmodal:false}">
-        <div class="rounded-lg  shadow-sm p-6  text-shade_9  
-                                     bg-white dark:bg-peak_1">
+        <div class="rounded-lg  shadow-sm p-6  bg-white dark:bg-peak_1">
             <div class="flex flex-col gap-2">
                 <div class="flex justify-between">
                     <h1 class="text-xl font-bold dark:text-white">Manage your Equipments</h1>
                     <div class="ml-auto flex items-center gap-2 ">
                         @can('equipment-create')
                         <button @click="createmodal = true"
-                            class="hover:bg-green-400 focus:bg-green-500 inline-flex items-center justify-center text-sm font-medium  border rounded-md px-3 h-8 gap-1">
+                            class="hover:bg-green-400 focus:bg-green-500 inline-flex items-center justify-center text-sm font-medium border dark:border-white/50 rounded-md px-3 h-8 gap-1">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                 stroke-linejoin="round" class="h-3.5 w-3.5 dark:text-white">
@@ -60,15 +59,15 @@
             </div>
 
             <div>
-                <div class="relative w-full overflow-auto pr-20">
-                    <table class="w-full caption-bottom text-sm ">
+                <div class="relative w-full overflow-auto">
+                    <table class="w-full caption-bottom text-sm rounded-md">
                         <thead class="text-black dark:text-white">
                             <tr
                                 class="dark:bg-peak_2 transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
                                 <th class="h-12 px-4 text-left align-middle font-medium">
                                     <a href="{{ route('administrator.equipments', ['sortBy' => 'no', 'sortDirection' => $sortBy === 'no' && $sortDirection === 'asc' ? 'desc' : 'asc', 'search' => request('search')]) }}"
                                         class="{{ $sortBy === 'no' ? 'text-black dark:text-white' : 'text-gray-500' }}">
-                                        No
+                                        No#
                                     </a>
                                 </th>
                                 <th class="h-12 px-4 text-left align-middle font-medium">
@@ -102,7 +101,7 @@
                                     </a>
                                 </th>
                                 @canany(['equipment-view', 'equipment-edit', 'equipment-delete'])
-                                <th class="h-12 px-4 text-center align-middle font-medium w-[120px]">
+                                <th class="h-12 px-4 text-center align-middle font-medium w-[120px] text-gray-500">
                                     Actions
                                 </th>
                                 @endcanany
