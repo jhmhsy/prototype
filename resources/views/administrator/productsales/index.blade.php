@@ -2,7 +2,7 @@
     <x-dash-layout title="products">
         <x-custom.loader2 />
         <section x-data="{ createmodal: false ,viewmodal:false, Editmodal:false}">
-            <div class="rounded-lg  shadow-sm p-6  text-shade_9  bg-white dark:bg-peak-1">
+            <div class="rounded-lg  shadow-sm p-6  text-shade_9  bg-white dark:bg-peak-3 border dark:border-white/10">
                 <div class="flex flex-col gap-2 mb-3">
                     <div class="flex justify-between">
                         <h1 class="text-xl font-bold dark:text-white">Manage your products</h1>

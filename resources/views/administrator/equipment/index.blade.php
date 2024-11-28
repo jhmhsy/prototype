@@ -3,7 +3,7 @@
 <x-dash-layout title="Equipments">
     <x-custom.loader2 />
     <section x-data="{ createmodal: false ,viewmodal:false, Editmodal:false}">
-        <div class="rounded-lg  shadow-sm p-6  bg-white dark:bg-peak_1">
+        <div class="rounded-lg  shadow-sm p-6  bg-white dark:bg-peak-3 border dark:border-white/10">
             <div class="flex flex-col gap-2">
                 <div class="flex justify-between">
                     <h1 class="text-xl font-bold dark:text-white">Manage your Equipments</h1>

@@ -1,13 +1,11 @@
 @can('confirmation-list')
 <x-dash-layout title="Roles">
-    <div class="container mx-auto py-8 px-4 sm:px-6 lg:px-8 text:black dark:text-gray-300"
+    <div class="container mx-auto py-8 px-4 sm:px-6 lg:px-8 text:black dark:text-gray-300 dark:bg-peak-3 border dark:border-white/10 rounded-lg"
         x-data="{ openeditmodal: null, openshowmodal: null, opencreatemodal: null }">
 
         <div class="flex flex-col gap-2">
             <div class="flex flex-row">
                 <h1 class="text-2xl font-bold mb-6">Confirmations</h1>
-
-
             </div>
 
         </div>
@@ -17,15 +15,14 @@
                 <div class="relative w-full overflow-auto">
                     <table class="w-full text-sm mb-3">
                         <thead class="text-black dark:text-white">
-                            <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+                            <tr class="border-b dark:border-white/50 transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted justify-evenly">
                                 <th class="h-12 px-4 text-left align-middle">Owner</th>
                                 <th class="h-12 px-4 text-left align-middle">Service Type</th>
                                 <th class="h-12 px-4 text-left align-middle">Status</th>
                                 <th class="h-12 px-4 text-left align-middle">Amount</th>
                                 <th class="h-12 px-4 text-left align-middle">Duration</th>
                                 <th class="h-12 px-4 text-left align-middle">Purpose</th>
-                                <th class="h-12 text-center align-middle font-medium">Actions</th>
-
+                                <th class="h-12 px-4 text-center align-middle">Actions</th>
                             </tr>
                         </thead>
 

@@ -1,7 +1,7 @@
 @canany(['event-list', 'event-view', 'event-create', 'event-edit', 'event-delete'])
 <x-dash-layout title="Events">
     <section x-data="{ createmodal: false ,viewmodal:false, Editmodal:false}">
-        <div class="rounded-lg shadow-sm p-6 bg-white dark:bg-peak-3">
+        <div class="rounded-lg shadow-sm p-6 bg-white dark:bg-peak-3 border dark:border-white/10">
 
             <div class="flex flex-col gap-2">
                 <div class="flex justify-between">
