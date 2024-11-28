@@ -10,7 +10,7 @@
 
         <div class="h-screen px-3 py-4 overflow-y-auto flex flex-col justify-between bg-gray-50 dark:bg-peak_2">
 
-            <ul class="space-y-2 overflow-y-auto font-medium">
+            <ul class="space-y-2 overflow-y-auto font-medium pr-2">
                 <li class="flex pb-5">
                     <button @click="toggleSidebar" class=" sm:hidden p-2 mr-4 focus:outline-none">
                         <svg style="display:none;" x-show="!sidebarOpen" class="w-6 h-6" fill="none"
@@ -112,9 +112,12 @@
                                         <svg class="w-4 h-4 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                             width="24" height="24" fill="none" viewBox="0 0 24 24">
                                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="2" d="M10 6.025A7.5 7.5 0 1 0 17.975 14H10V6.025Z" />
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                                 stroke-width="2"
-                                                d="M10 3v4a1 1 0 0 1-1 1H5m8 7.5 2.5 2.5M19 4v16a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V7.914a1 1 0 0 1 .293-.707l3.914-3.914A1 1 0 0 1 9.914 3H18a1 1 0 0 1 1 1Zm-5 9.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Z" />
+                                                d="M13.5 3c-.169 0-.334.014-.5.025V11h7.975c.011-.166.025-.331.025-.5A7.5 7.5 0 0 0 13.5 3Z" />
                                         </svg>
+
                                         <span class="ms-3 text-sm">Member Overview</span></a>
                                 </li>
                             @endcanany

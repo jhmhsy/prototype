@@ -29,7 +29,7 @@ class QuestionController extends Controller
         ]);
 
         Question::create($request->all());
-        return redirect()->back()->with('success', 'Question added successfully!');
+        return redirect()->back()->with('success', 'Question created!');
     }
 
     public function update(Request $request, $id)
@@ -42,7 +42,7 @@ class QuestionController extends Controller
 
         $question = Question::findOrFail($id);
         $question->update($request->all());
-        return redirect()->back()->with('success', 'Question updated successfully!');
+        return redirect()->back()->with('success', 'Question updated!');
     }
 
     // Delete a question
@@ -50,6 +50,6 @@ class QuestionController extends Controller
     {
         $question = Question::findOrFail($id);
         $question->delete();
-        return redirect()->back()->with('success', 'Question deleted successfully!');
+        return redirect()->back()->with('success', 'Question deleted!');
     }
 }

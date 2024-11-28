@@ -55,6 +55,6 @@ class PricesController extends Controller
         $price->update($validated);
 
 
-        return redirect()->back()->with('success', 'Price updated successfully');
+        return redirect()->back()->with('success', 'Price updated!');
     }
 }

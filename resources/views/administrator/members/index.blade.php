@@ -10,11 +10,6 @@
             <h2 class="text-3xl font-bold mb-4 dark:text-white">Members List</h2>
 
             <div class="flex justify-between items-center">
-                @if (!$members->isEmpty())
-                    <span class="text-sm text-gray-600 dark:text-gray-400">
-                        Page {{ $members->currentPage() }} of {{ $members->lastPage() }}
-                    </span>
-                @endif
                 <div class="export-card">
                     <label for="filter" class="block text-sm font-medium text-gray-500 mb-1">Export Members</label>
                     <a href="{{ route('export.members') }}"
@@ -29,6 +24,8 @@
                     </a>
                 </div>
             </div>
+            
+
             <div class="flex w-full gap-1 mt-4">
                 <!-- manual search  -->
 
@@ -49,9 +46,16 @@
                     </div>
                 </form>
             </div>
-            <div class="mt-2">
-                {{ $members->links('vendor.pagination.custom-pagination') }}
+            @if (!$members->isEmpty())
+            <div>
+                <span class="text-sm text-gray-600 dark:text-gray-400">
+                    Page {{ $members->currentPage() }} of {{ $members->lastPage() }}
+                </span>
+                <div class="mt-2">
+                    {{ $members->links('vendor.pagination.custom-pagination') }}
+                </div>
             </div>
+        @endif
             <div class="hidden" x-data="qrScanner()">
                 <input type="text" id="barcodeInput" name="search" x-model="scannedValue" x-ref="barcodeInput"
                     class="scan-input" placeholder="Barcode Input">

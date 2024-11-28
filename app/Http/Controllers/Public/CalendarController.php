@@ -34,7 +34,7 @@ class CalendarController extends Controller
             'time' => $request->time,
         ]);
 
-        return redirect()->back()->with('success', 'Booking has been made and is pending approval.');
+        return redirect()->back()->with('success', 'Booking submitted for approval.');
     }
 
     public function getReservedHours(Request $request)

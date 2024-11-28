@@ -48,6 +48,6 @@ class MembershipDueReminder extends Command
             }
         }
 
-        $this->info('Membership reminder process completed');
+        $this->info('Membership reminder completed');
     }
 }
