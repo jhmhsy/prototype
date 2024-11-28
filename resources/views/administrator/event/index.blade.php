@@ -1,7 +1,7 @@
 @canany(['event-list', 'event-view', 'event-create', 'event-edit', 'event-delete'])
 <x-dash-layout title="Events">
     <section x-data="{ createmodal: false ,viewmodal:false, Editmodal:false}">
-        <div class="rounded-lg shadow-sm p-6  bg-white dark:bg-peak_1">
+        <div class="rounded-lg shadow-sm p-6 bg-white dark:bg-peak-3">
 
             <div class="flex flex-col gap-2">
                 <div class="flex justify-between">
@@ -9,14 +9,14 @@
                     <div class="ml-auto flex items-center gap-2 ">
                         @can('event-create')
                             <button @click="createmodal = true"
-                                class="hover:bg-green-400 focus:bg-green-500 inline-flex items-center justify-center text-sm font-medium  border rounded-md px-3 h-8 gap-1">
+                                class="hover:bg-green-400 focus:bg-green-500 inline-flex items-center justify-center text-sm font-medium border dark:text-white dark:border-white/50 rounded-md px-3 h-8 gap-1">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                     stroke-linejoin="round" class="h-3.5 w-3.5 dark:text-white">
                                     <path d="M5 12h14"></path>
                                     <path d="M12 5v14"></path>
                                 </svg>
-                                <span class="sr-only sm:not-sr-only dark:text-white">New Event</span>
+                                <span class="sr-only sm:not-sr-only ">New Event</span>
                             </button>
                         @endcan
                     </div>
@@ -58,10 +58,10 @@
 
                 </div>
             </div>
-            <div class="relative w-full overflow-auto pr-20">
+            <div class="relative w-full overflow-auto">
                 <table class="w-full caption-bottom text-sm ">
                     <thead>
-                        <tr class="transition-colors hover:bg-muted/50 text-gray-500 dark:bg-peak_2">
+                        <tr class="transition-colors rounded-md hover:bg-muted/50 text-gray-500 dark:bg-peak_2">
                             <th class="h-12 px-4 text-left align-middle font-medium">
                                 <a href="{{ route('administrator.events', ['sortBy' => 'name', 'sortDirection' => $sortBy === 'name' && $sortDirection === 'asc' ? 'desc' : 'asc', 'search' => request('search')]) }}"
                                     class="{{ $sortBy === 'name' ? 'text-black dark:text-white' : 'text-gray-500' }}">
