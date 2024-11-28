@@ -46,7 +46,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="font-opensans antialiased min-w-screen bg-tint_1 dark:bg-peak_5">
+<body class="font-opensans antialiased min-w-screen bg-tint_1 dark:bg-peak-4">
     @include ('alerts.alert')
 
     <div x-data="layout()" x-init="init()" class="flex h-screen">
