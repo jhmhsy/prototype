@@ -24,7 +24,6 @@
                     </a>
                 </div>
             </div>
-            
 
             <div class="flex w-full gap-1 mt-4">
                 <!-- manual search  -->
@@ -47,15 +46,17 @@
                 </form>
             </div>
             @if (!$members->isEmpty())
-            <div>
-                <span class="text-sm text-gray-600 dark:text-gray-400">
-                    Page {{ $members->currentPage() }} of {{ $members->lastPage() }}
-                </span>
-                <div class="mt-2">
-                    {{ $members->links('vendor.pagination.custom-pagination') }}
+                <div class="flex justify-between mb-2 items-center">
+                    <div>
+                        <span class="text-sm text-gray-600 dark:text-gray-400">
+                            Page {{ $members->currentPage() }} of {{ $members->lastPage() }}
+                        </span>
+                    </div>
+                    <div>
+                        {{ $members->links('vendor.pagination.custom-pagination') }}
+                    </div>
                 </div>
-            </div>
-        @endif
+            @endif
             <div class="hidden" x-data="qrScanner()">
                 <input type="text" id="barcodeInput" name="search" x-model="scannedValue" x-ref="barcodeInput"
                     class="scan-input" placeholder="Barcode Input">
