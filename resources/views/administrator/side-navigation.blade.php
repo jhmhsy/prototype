@@ -41,9 +41,9 @@
                     <li>
                         <a href="{{ route('administrator.overview') }}"
                             class="flex items-center p-2 rounded-lg group 
-                            {{ request()->routeIs('administrator.overview') ? 'bg-gray-300 group dark:bg-gray-700 dark:text-white' : 'text-gray-500 dark:text-gray-500 
-                            hover:bg-gray-300 hover:text-black 
-                            dark:hover:bg-gray-700 dark:hover:text-white' }}
+                            {{ request()->routeIs('administrator.overview')
+                                ? 'bg-gray-300 group dark:bg-gray-700 dark:text-white'
+                                : 'text-gray-500 dark:text-gray-500 hover:bg-gray-300 hover:text-black dark:hover:bg-gray-700 dark:hover:text-white' }}
                             transition-colors duration-300">
                             <svg class="flex-shrink-0 w-4 h-4 transition duration-75" aria-hidden="true"
                                 xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
@@ -60,10 +60,12 @@
                     <li>
                         <a href="{{ route('administrator.asset') }}"
                             class="flex items-center p-2 rounded-lg group  {{ request()->routeIs('administrator.asset') ? 'bg-gray-300 text-black dark:bg-gray-700 dark:text-white' : 'text-gray-500 dark:text-gray-500 hover:bg-gray-300 hover:text-black dark:hover:bg-gray-700 dark:hover:text-white' }} transition-colors duration-300">
-                            <svg class="flex-shrink-0 w-4 h-4 transition duration-75" aria-hidden="true"
-                                xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
-                                <path
-                                    d="M6.143 0H1.857A1.857 1.857 0 0 0 0 1.857v4.286C0 7.169.831 8 1.857 8h4.286A1.857 1.857 0 0 0 8 6.143V1.857A1.857 1.857 0 0 0 6.143 0Zm10 0h-4.286A1.857 1.857 0 0 0 10 1.857v4.286C10 7.169 10.831 8 11.857 8h4.286A1.857 1.857 0 0 0 18 6.143V1.857A1.857 1.857 0 0 0 16.143 0Zm-10 10H1.857A1.857 1.857 0 0 0 0 11.857v4.286C0 17.169.831 18 1.857 18h4.286A1.857 1.857 0 0 0 8 16.143v-4.286A1.857 1.857 0 0 0 6.143 10Zm10 0h-4.286A1.857 1.857 0 0 0 10 11.857v4.286c0 1.026.831 1.857 1.857 1.857h4.286A1.857 1.857 0 0 0 18 16.143v-4.286A1.857 1.857 0 0 0 16.143 10Z" />
+                            <svg class="w-4 h-4 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
+                                height="24" fill="none" viewBox="0 0 24 24">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M21 13v-2a1 1 0 0 0-1-1h-.757l-.707-1.707.535-.536a1 1 0 0 0 0-1.414l-1.414-1.414a1 1 0 0 0-1.414 0l-.536.535L14 4.757V4a1 1 0 0 0-1-1h-2a1 1 0 0 0-1 1v.757l-1.707.707-.536-.535a1 1 0 0 0-1.414 0L4.929 6.343a1 1 0 0 0 0 1.414l.536.536L4.757 10H4a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h.757l.707 1.707-.535.536a1 1 0 0 0 0 1.414l1.414 1.414a1 1 0 0 0 1.414 0l.536-.535 1.707.707V20a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-.757l1.707-.708.536.536a1 1 0 0 0 1.414 0l1.414-1.414a1 1 0 0 0 0-1.414l-.535-.536.707-1.707H20a1 1 0 0 0 1-1Z" />
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
                             </svg>
                             <span class="ms-3 text-sm">Services & Asset</span>
                         </a>
@@ -83,16 +85,13 @@
                             hover:bg-gray-300 hover:text-black 
                             dark:hover:bg-gray-700 dark:hover:text-white transition-colors duration-300 rounded-lg group"
                             @click="open = !open" aria-controls="dropdown-example">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                class="w-4 h-4">
-                                <path
-                                    d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z">
-                                </path>
-                                <path d="M13 5v2"></path>
-                                <path d="M13 17v2"></path>
-                                <path d="M13 11v2"></path>
+
+                            <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
+                                height="24" fill="none" viewBox="0 0 24 24">
+                                <path stroke="currentColor" stroke-linecap="square" stroke-linejoin="round" stroke-width="2"
+                                    d="M10 19H5a1 1 0 0 1-1-1v-1a3 3 0 0 1 3-3h2m10 1a3 3 0 0 1-3 3m3-3a3 3 0 0 0-3-3m3 3h1m-4 3a3 3 0 0 1-3-3m3 3v1m-3-4a3 3 0 0 1 3-3m-3 3h-1m4-3v-1m-2.121 1.879-.707-.707m5.656 5.656-.707-.707m-4.242 0-.707.707m5.656-5.656-.707.707M12 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                             </svg>
+
                             <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap text-sm">
                                 Member Controls</span>
                             <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -110,7 +109,13 @@
                                 <li>
                                     <a href="{{ route('members.index') }}"
                                         class="flex items-center w-full p-2  dark:hover:text-white {{ request()->routeIs('members.index') ? 'bg-gray-300 text-black dark:bg-gray-700 dark:text-white' : 'text-gray-500 dark:text-gray-500 hover:bg-gray-300 hover:text-black dark:hover:bg-gray-700' }} text-sm pl-11 transition-colors duration-300 rounded-lg group">
-                                        Member Overview</a>
+                                        <svg class="w-4 h-4 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                            width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="2"
+                                                d="M10 3v4a1 1 0 0 1-1 1H5m8 7.5 2.5 2.5M19 4v16a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V7.914a1 1 0 0 1 .293-.707l3.914-3.914A1 1 0 0 1 9.914 3H18a1 1 0 0 1 1 1Zm-5 9.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Z" />
+                                        </svg>
+                                        <span class="ms-3 text-sm">Member Overview</span></a>
                                 </li>
                             @endcanany
 
@@ -118,15 +123,29 @@
                                 <li>
                                     <a href="{{ route('members.create') }}"
                                         class="flex items-center w-full p-2  dark:hover:text-white {{ request()->routeIs('members.create') ? 'bg-gray-300 text-black dark:bg-gray-700 dark:text-white' : 'text-gray-500 dark:text-gray-500 hover:bg-gray-300 hover:text-black dark:hover:bg-gray-700' }} text-sm pl-11 transition-colors duration-300 rounded-lg group">
-                                        Add Member</a>
+                                        <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                            width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="2" d="M5 12h14m-7 7V5" />
+                                        </svg>
+                                        <span class="ms-3 text-sm">Add Member</span>
+                                    </a>
                                 </li>
                             @endcanany
 
                             @canany(['checkin-log-list'])
                                 <li>
+
                                     <a href="{{ route('checkin.history') }}"
                                         class="flex items-center w-full p-2  dark:hover:text-white {{ request()->routeIs('checkin.history') ? 'bg-gray-300 text-black dark:bg-gray-700 dark:text-white' : 'text-gray-500 dark:text-gray-500 hover:bg-gray-300 hover:text-black dark:hover:bg-gray-700' }} text-sm pl-11 transition-colors duration-300 rounded-lg group">
-                                        Checkin Log</a>
+                                        <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                            width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                            <path fill-rule="evenodd"
+                                                d="M9 2.221V7H4.221a2 2 0 0 1 .365-.5L8.5 2.586A2 2 0 0 1 9 2.22ZM11 2v5a2 2 0 0 1-2 2H4v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2h-7Z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                        <span class="ms-3 text-sm">Check-in Log</span>
+                                    </a>
                                 </li>
                             @endcanany
 
@@ -140,15 +159,17 @@
                         <a href="{{ route('confirmation.index') }}"
                             class="flex items-center p-2 rounded-lg group text-gray-500 dark:text-gray-500 hover:bg-gray-300 hover:text-black dark:hover:bg-gray-700 dark:hover:text-white {{ request()->routeIs('confirmation.index') ? 'bg-gray-300 text-black dark:bg-gray-700 dark:text-white' : '' }} transition-colors duration-300">
                             <div class="relative flex items-center">
-                                <svg class="w-4 h-4 {{ request()->routeIs('confirmation.index') ? 'bg-gray-300 text-black dark:bg-gray-700 dark:text-white' : '' }}" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
-                                    height="24" fill="none" viewBox="0 0 24 24">
+                                <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                    width="24" height="24" fill="none" viewBox="0 0 24 24">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                         stroke-width="2"
-                                        d="M7 8v8a5 5 0 1 0 10 0V6.5a3.5 3.5 0 1 0-7 0V15a2 2 0 0 0 4 0V8" />
+                                        d="m8.032 12 1.984 1.984 4.96-4.96m4.55 5.272.893-.893a1.984 1.984 0 0 0 0-2.806l-.893-.893a1.984 1.984 0 0 1-.581-1.403V7.04a1.984 1.984 0 0 0-1.984-1.984h-1.262a1.983 1.983 0 0 1-1.403-.581l-.893-.893a1.984 1.984 0 0 0-2.806 0l-.893.893a1.984 1.984 0 0 1-1.403.581H7.04A1.984 1.984 0 0 0 5.055 7.04v1.262c0 .527-.209 1.031-.581 1.403l-.893.893a1.984 1.984 0 0 0 0 2.806l.893.893c.372.372.581.876.581 1.403v1.262a1.984 1.984 0 0 0 1.984 1.984h1.262c.527 0 1.031.209 1.403.581l.893.893a1.984 1.984 0 0 0 2.806 0l.893-.893a1.985 1.985 0 0 1 1.403-.581h1.262a1.984 1.984 0 0 0 1.984-1.984V15.7c0-.527.209-1.031.581-1.403Z" />
                                 </svg>
+
                             </div>
                             <div class="flex-1 ms-3 flex items-center">
-                                <span class="text-sm {{ request()->routeIs('confirmation.index') ? 'bg-gray-300 text-black dark:bg-gray-700 dark:text-white' : '' }}">Confirmations</span>
+                                <span
+                                    class="text-sm {{ request()->routeIs('confirmation.index') ? 'bg-gray-300 text-black dark:bg-gray-700 dark:text-white' : '' }}">Confirmations</span>
                                 @if ($totalPendings > 0)
                                     <span
                                         class="ml-2 inline-flex items-center justify-center w-5 h-5 text-xs font-medium text-white bg-red-500 rounded-full">
@@ -170,8 +191,10 @@
                             <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
                                 height="24" fill="none" viewBox="0 0 24 24">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                    stroke-width="2" d="M7 8v8a5 5 0 1 0 10 0V6.5a3.5 3.5 0 1 0-7 0V15a2 2 0 0 0 4 0V8" />
+                                    stroke-width="2"
+                                    d="M8 17.345a4.76 4.76 0 0 0 2.558 1.618c2.274.589 4.512-.446 4.999-2.31.487-1.866-1.273-3.9-3.546-4.49-2.273-.59-4.034-2.623-3.547-4.488.486-1.865 2.724-2.899 4.998-2.31.982.236 1.87.793 2.538 1.592m-3.879 12.171V21m0-18v2.2" />
                             </svg>
+
                             <span class="flex-1 ms-3 whitespace-nowrap text-sm">Price</span>
                         </a>
 
@@ -188,8 +211,10 @@
                             <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
                                 height="24" fill="none" viewBox="0 0 24 24">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                    stroke-width="2" d="M7 8v8a5 5 0 1 0 10 0V6.5a3.5 3.5 0 1 0-7 0V15a2 2 0 0 0 4 0V8" />
+                                    stroke-width="2"
+                                    d="M15.583 8.445h.01M10.86 19.71l-6.573-6.63a.993.993 0 0 1 0-1.4l7.329-7.394A.98.98 0 0 1 12.31 4l5.734.007A1.968 1.968 0 0 1 20 5.983v5.5a.992.992 0 0 1-.316.727l-7.44 7.5a.974.974 0 0 1-1.384.001Z" />
                             </svg>
+
                             <span class="flex-1 ms-3 whitespace-nowrap text-sm">Product Sales</span>
                         </a>
 
@@ -278,7 +303,8 @@
                 <!--︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼ EQUIPMENTS ︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼  -->
                 @canany(['equipment-list', 'equipment-view', 'equipment-create', 'equipment-edit', 'equipment-delete'])
                     <li>
-                        <a href="{{ route('administrator.equipments') }}" class="flex items-center p-2 rounded-lg group  {{ request()->routeIs('administrator.equipments') ? 'bg-gray-300 text-black dark:bg-gray-700 dark:text-white' : 'text-gray-500 dark:text-gray-500 hover:bg-gray-300 hover:text-black dark:hover:bg-gray-700 dark:hover:text-white' }} transition-colors duration-300">
+                        <a href="{{ route('administrator.equipments') }}"
+                            class="flex items-center p-2 rounded-lg group  {{ request()->routeIs('administrator.equipments') ? 'bg-gray-300 text-black dark:bg-gray-700 dark:text-white' : 'text-gray-500 dark:text-gray-500 hover:bg-gray-300 hover:text-black dark:hover:bg-gray-700 dark:hover:text-white' }} transition-colors duration-300">
                             <svg class="w-4 h-4 " viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
                                 transform="rotate(0)">
                                 <path d="M20.3873 7.1575L11.9999 12L3.60913 7.14978" stroke="currentColor"
@@ -412,8 +438,10 @@ dark:hover:bg-gray-700 dark:hover:text-white
                             <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
                                 height="24" fill="none" viewBox="0 0 24 24">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                    stroke-width="2" d="M7 8v8a5 5 0 1 0 10 0V6.5a3.5 3.5 0 1 0-7 0V15a2 2 0 0 0 4 0V8" />
+                                    stroke-width="2"
+                                    d="M7 11c.889-.086 1.416-.543 2.156-1.057a22.323 22.323 0 0 0 3.958-5.084 1.6 1.6 0 0 1 .582-.628 1.549 1.549 0 0 1 1.466-.087c.205.095.388.233.537.406a1.64 1.64 0 0 1 .384 1.279l-1.388 4.114M7 11H4v6.5A1.5 1.5 0 0 0 5.5 19v0A1.5 1.5 0 0 0 7 17.5V11Zm6.5-1h4.915c.286 0 .372.014.626.15.254.135.472.332.637.572a1.874 1.874 0 0 1 .215 1.673l-2.098 6.4C17.538 19.52 17.368 20 16.12 20c-2.303 0-4.79-.943-6.67-1.475" />
                             </svg>
+
                             <span class="flex-1 ms-3 whitespace-nowrap text-sm">Feedback</span>
                         </a>
 
@@ -442,14 +470,10 @@ dark:hover:bg-gray-700 dark:hover:text-white
                         <a href="{{ route('administrator.dailysales') }}"
                             class="flex items-center p-2 rounded-lg group  {{ request()->routeIs('administrator.dailysales') ? 'bg-gray-300 text-black dark:bg-gray-700 dark:text-white' : 'text-gray-500 dark:text-gray-500 hover:bg-gray-300 hover:text-black dark:hover:bg-gray-700 dark:hover:text-white' }} transition-colors duration-300">
 
-                            <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
-                                height="24" fill="currentColor" viewBox="0 0 24 24">
-                                <path fill-rule="evenodd"
-                                    d="M13 11.15V4a1 1 0 1 0-2 0v7.15L8.78 8.374a1 1 0 1 0-1.56 1.25l4 5a1 1 0 0 0 1.56 0l4-5a1 1 0 1 0-1.56-1.25L13 11.15Z"
-                                    clip-rule="evenodd" />
-                                <path fill-rule="evenodd"
-                                    d="M9.657 15.874 7.358 13H5a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2h-2.358l-2.3 2.874a3 3 0 0 1-4.685 0ZM17 16a1 1 0 1 0 0 2h.01a1 1 0 1 0 0-2H17Z"
-                                    clip-rule="evenodd" />
+                            <svg class="w-4z h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
+                                height="24" fill="none" viewBox="0 0 24 24">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="M3 15v4m6-6v6m6-4v4m6-6v6M3 11l6-5 6 5 5.5-5.5" />
                             </svg>
 
                             <span class="flex-1 ms-3 whitespace-nowrap text-sm">Daily Sales</span>
