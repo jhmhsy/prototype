@@ -57,7 +57,7 @@ class FeedbackController extends Controller
             'rating' => $request->input('rating'),
         ]);
 
-        return redirect()->back()->with('success', 'Feedback submitted successfully.');
+        return redirect()->back()->with('success', 'Feedback Submitted!');
     }
 
 

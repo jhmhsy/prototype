@@ -83,7 +83,7 @@ class EventsController extends Controller
         $event = Event::findOrFail($id);
         $event->update($request->all());
 
-        return redirect()->back()->with('success', 'Event updated successfully.');
+        return redirect()->back()->with('success', 'Event Updated!');
     }
 
 
@@ -92,6 +92,6 @@ class EventsController extends Controller
         $event = Event::findOrFail($id);
 
         $event->delete();
-        return redirect()->back()->with('success', 'Event Successfully Deleted.');
+        return redirect()->back()->with('success', 'Event Deleted!');
     }
 }

@@ -19,7 +19,7 @@ class LinkController extends Controller
     {
         // Check if the member already has an ID number assigned or is already linked
         if (!is_null($member->id_number)) {
-            return redirect()->back()->with('error', 'User is already linked.');
+            return redirect()->back()->with('error', 'User already linked.');
         }
 
         // Validate the incoming request
@@ -29,7 +29,7 @@ class LinkController extends Controller
 
         // Check if the ID number is already taken in qr_records table
         if (QrRecord::where('id_number', $request->id_number)->exists()) {
-            return redirect()->back()->with('error', 'This QR code is already taken. Choose another one');
+            return redirect()->back()->with('error', 'QR code already taken! Choose another one');
         }
 
         // Update the member's ID number if not yet linked to any qr already
@@ -44,7 +44,7 @@ class LinkController extends Controller
 
 
         return redirect()->route('members.index')
-            ->with('success', 'Qrcode linked successfully');
+            ->with('success', 'QR-code link success!');
 
     }
 

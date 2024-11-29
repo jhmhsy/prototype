@@ -2,9 +2,9 @@
 <x-dash-layout title="Prices">
 
 
-    <body class="bg-gray-100 dark:bg-peak_3">
-        <div class="container mx-auto px-2 sm:px-4 py-4 sm:py-8">
-            <h1 class="text-xl sm:text-2xl lg:text-3xl font-bold mb-4 sm:mb-8 dark:text-white">
+    <body class="bg-gray-100 p-4">
+        <div class="container mx-auto px-2 sm:px-4 py-4 sm:py-8 ">
+            <h1 class="text-xl sm:text-2xl lg:text-3xl font-bold mb-3 dark:text-white">
                 Service Prices
             </h1>
 

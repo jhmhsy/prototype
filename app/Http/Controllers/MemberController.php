@@ -401,7 +401,7 @@ class MemberController extends Controller
             // Commit the transaction
             DB::commit();
 
-            return redirect()->back()->with('success', 'Member registered successfully!');
+            return redirect()->back()->with('success', 'Member register success!');
         } catch (\Exception $e) {
             Log::error('Error storing member data: ' . $e->getMessage(), ['request' => $request->all()]);
             DB::rollBack();
@@ -426,7 +426,7 @@ class MemberController extends Controller
         $service->update(['action_status' => 'Pending']);
         Mail::to(config('app.superadminemail'))->send(new CancelServiceMail($service));
         // Redirect back with a success message
-        return redirect()->back()->with('success', 'Service marked as Pending for admin approval.');
+        return redirect()->back()->with('success', 'Pending for approval.');
     }
     public function endLocker(Locker $locker)
     {
@@ -436,7 +436,7 @@ class MemberController extends Controller
         Mail::to(config('app.superadminemail'))->send(new CancelLockerMail($locker)); // Ensure CancelLockerMail accepts Locker
 
         // Redirect back with a success message
-        return redirect()->back()->with('success', 'Locker marked as Pending for admin approval.');
+        return redirect()->back()->with('success', 'Posted! Pending for approval.');
     }
     public function endTreadmill(Treadmill $treadmill)
     {
@@ -446,7 +446,7 @@ class MemberController extends Controller
         Mail::to(config('app.superadminemail'))->send(new CancelTreadmillMail($treadmill));
 
         // Redirect back with a success message
-        return redirect()->back()->with('success', 'Treadmill marked as Pending for admin approval.');
+        return redirect()->back()->with('success', 'Posted! Pending for approval.');
     }
 
 
@@ -529,7 +529,7 @@ class MemberController extends Controller
         $member->services()->save($newService);
 
         $this->updateServiceStatus();
-        return redirect()->back()->with('success', 'Subscription extended successfully.');
+        return redirect()->back()->with('success', 'Subscription extended!');
     }
 
     public function rentLocker(Request $request, $id)
@@ -581,7 +581,7 @@ class MemberController extends Controller
 
         $this->updateLockerStatus();
 
-        return redirect()->back()->with('success', 'New locker rented successfully.');
+        return redirect()->back()->with('success', 'Locker rental Success!');
     }
 
     public function extendTreadmill(Request $request, $id)
@@ -628,7 +628,7 @@ class MemberController extends Controller
 
 
         $this->updateTreadmillStatus();
-        return redirect()->back()->with('success', 'New Treadmill rented successfully.');
+        return redirect()->back()->with('success', 'Treadmill rental success!');
     }
 
 
@@ -652,7 +652,7 @@ class MemberController extends Controller
                 'status' => 'Active'
             ]);
 
-            return redirect()->back()->with('success', 'Membership renewed successfully');
+            return redirect()->back()->with('success', 'Membership renewed!');
         } else {
 
             $member->membershipDuration()->create([
@@ -661,7 +661,7 @@ class MemberController extends Controller
                 'status' => 'Active'
             ]);
 
-            return redirect()->back()->with('success', 'New membership created and activated successfully');
+            return redirect()->back()->with('success', 'Membership activation success!');
         }
     }
 
@@ -675,7 +675,7 @@ class MemberController extends Controller
         $member->membership_type = $validated['membership_type'];
         $member->save();
 
-        return redirect()->back()->with('success', 'Membership type updated successfully');
+        return redirect()->back()->with('success', 'Membership updated!');
     }
 
 
@@ -696,7 +696,7 @@ class MemberController extends Controller
     {
         if ($request->input('form_token') !== session('form_token')) {
             // If duplicate submission, just go back to the previous page
-            return redirect()->back()->with('duplicate', 'Duplicate submission detected.');
+            return redirect()->back()->with('duplicate', 'Duplicate submission detected!');
         }
         return null; // Return null if there's no duplicate submission
     }

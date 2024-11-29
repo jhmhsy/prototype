@@ -1,59 +1,35 @@
-@canany([
-'member-list',
-'member-view',
-'member-services',
-'member-edit',
-'member-membership-renew',
-'member-delete',
-'subscription-extend',
-'subscription-end',
-'locker-extend',
-'locker-end',
-'treadmill-extend',
-'treadmill-end'
-])
-
+@canany(['member-list', 'member-view', 'member-services', 'member-edit', 'member-membership-renew', 'member-delete',
+'subscription-extend', 'subscription-end', 'locker-extend', 'locker-end', 'treadmill-extend', 'treadmill-end'])
 <script>
 const keynumber = "{{ $keynumber }}"; // Safe to use if sanitized by Blade
 </script>
 
 <x-dash-layout title="Members">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.8/html5-qrcode.min.js"></script>
-    <div class="container mx-auto" x-data="{ openLink: null, openshowmodal: false}" x-init="barcodeScanner().init()">
-        <h2 class="text-sm font-bold px-4 mb-4 dark:text-white">Members List</h2>
+    <div class="container mx-auto" x-data="{ openLink: null, openshowmodal: false }" x-init="barcodeScanner().init()">
+        <h2 class="text-3xl font-bold mb-4 dark:text-white">Members List</h2>
 
         <div class="flex justify-between items-center">
-            @if (!$members->isEmpty())
-            <span class="text-sm text-gray-600 dark:text-gray-400">
-                Page {{ $members->currentPage() }} of {{ $members->lastPage() }}
-            </span>
-            @endif
             <div class="export-card">
-
                 <label for="filter" class="block text-sm font-medium text-gray-500 mb-1">Export Members</label>
                 <a href="{{ route('export.members') }}"
-                    class="inline-flex items-center px-4 py-2 border-2 border-gray-300 hover:border-gray-700 text-black dark:text-white rounded-md transition-colors duration-300">
-                    <svg class="w-5 h-5 " fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    class="inline-flex items-center px-4 py-2 border border-gray-300 dark:border-white/10 hover:border-gray-700 text-black dark:text-white rounded-md transition-colors duration-300">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4">
                         </path>
                     </svg>
-                    <span class="ml-2">Export</span>
+                    <span class="ml-2 text-md uppercase tracking-wide">Export</span>
                 </a>
             </div>
         </div>
 
-
-
-        <div class="flex w-full gap-5 mt-4">
-            <div class="mt4">
-                {{ $members->links('vendor.pagination.custom-pagination') }}
-            </div>
-
+        <div class="flex w-full gap-1 mt-4">
             <!-- manual search  -->
+
             <form id="searchForm" action="{{ route('members.index') }}" method="GET" class="w-full ">
-                <div class="relative z-[5]">
+                <div class="relative z-[5] w-full">
                     <button type="submit"
                         class="absolute inset-y-0 left-0 flex items-center p-2 text-gray-500 dark:text-gray-400">
                         <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -65,19 +41,29 @@ const keynumber = "{{ $keynumber }}"; // Safe to use if sanitized by Blade
                     </button>
                     <input type="text" name="search" id="searchInput" maxlength="255" placeholder="Search by ID Number"
                         value="{{ request('search') }}"
-                        class="block w-full py-2 pl-10 pr-4 text-sm border border-gray-300 rounded-md dark:border-gray-800 dark:bg-peak_2 dark:text-white" />
-
+                        class="w-full py-2 pl-10 pr-4 text-sm border border-gray-300 rounded-md dark:border-gray-800 dark:bg-peak_2 dark:text-white" />
                 </div>
             </form>
         </div>
-
+        @if (!$members->isEmpty())
+        <div class="flex justify-between mb-2 items-center">
+            <div>
+                <span class="text-sm text-gray-600 dark:text-gray-400">
+                    Page {{ $members->currentPage() }} of {{ $members->lastPage() }}
+                </span>
+            </div>
+            <div>
+                {{ $members->links('vendor.pagination.custom-pagination') }}
+            </div>
+        </div>
+        @endif
         <div class="hidden" x-data="qrScanner()">
             <input type="text" id="barcodeInput" name="search" x-model="scannedValue" x-ref="barcodeInput"
                 class="scan-input" placeholder="Barcode Input">
         </div>
 
-        <div class="max-w-full overflow-x-auto p-4 border dark:border-none rounded-lg shadow-md">
-            <table class="min-w-full divide-y divide-border dark:border-none bg-white dark:bg-peak_1  rounded-lg ">
+        <div class="max-w-full overflow-x-auto p-4 border dark:border-white/10 rounded-lg shadow-md">
+            <table class="min-w-full divide-y divide-border dark:border-none bg-white dark:bg-peak-1  rounded-lg ">
                 <thead>
                     <tr class="border-b dark:border-none text-sm text-gray-500 dark:bg-peak_2">
                         <th class="px-4 py-2 text-left">QRID</th>
@@ -86,23 +72,21 @@ const keynumber = "{{ $keynumber }}"; // Safe to use if sanitized by Blade
                         <th class="px-4 py-2 text-left">Type</th>
                         <th class="px-4 py-2 text-left">Checkin</th>
 
-                        @canany([ 'member-view', 'member-services',
-                        'member-edit','member-membership-renew','member-delete',])
+                        @canany(['member-view', 'member-services', 'member-edit', 'member-membership-renew',
+                        'member-delete'])
                         <th class="px-4 py-2 text-left">Action</th>
                         @endcanany
                     </tr>
                 </thead>
                 <tbody x-data="{ serviceFilter: 'all', statusFilter: 'current' }"
                     class="divide-y divide-border dark:border-none">
-                    @if($members->isEmpty())
+                    @if ($members->isEmpty())
                     <td colspan="8" class="text-center p-2 text-gray-400">No Members Found</td>
                     @else
-                    @foreach($members as $member)
-
+                    @foreach ($members as $member)
                     <tr class="border-b dark:border-none hover:bg-gray-50 dark:hover:bg-gray-800 text-sm dark:text-white transition-colors py-10 {{ $loop->iteration % 2 == 0 ? 'bg-gray-100 dark:bg-peak_2' : '' }}"
                         :id="'member-' + '{{ $member->id_number }}'" x-init="checkAndOpen()"
-                        x-data="{ showWarning: false, serviceendWarning: false, lockerendWarning: false, treadmillendWaring: false, opendelete: false, membershipOption:false,renewConfirm: false, changeMembershipConfirm: false, openservices: false, opensmembershipswitch:false, openeditmodal:false, extendOpen: false, lockerOption: false ,extendLockerOpen:false,rentLockerOpen: false,  extendTreadmill: false, checkAndOpen() { if (keynumber === '{{ $member->id_number }}') { this.openservices = true; } }}">
-
+                        x-data="{ showWarning: false, serviceendWarning: false, lockerendWarning: false, treadmillendWaring: false, opendelete: false, membershipOption: false, renewConfirm: false, changeMembershipConfirm: false, openservices: false, opensmembershipswitch: false, openeditmodal: false, extendOpen: false, lockerOption: false, extendLockerOpen: false, rentLockerOpen: false, extendTreadmill: false, checkAndOpen() { if (keynumber === '{{ $member->id_number }}') { this.openservices = true; } } }">
 
                         @php
                         $statusColors = [
@@ -111,11 +95,16 @@ const keynumber = "{{ $keynumber }}"; // Safe to use if sanitized by Blade
                         'Impending' => ['bg-yellow-500', 'text-yellow-500'],
                         'Due' => ['bg-orange-500', 'text-orange-500'],
                         'Overdue' => ['bg-red-500', 'text-red-500'],
-                        'Expired' => ['bg-gray-500', 'text-gray-500']
+                        'Expired' => ['bg-gray-500', 'text-gray-500'],
                         ];
 
-                        $status = $member->membershipDuration ? $member->membershipDuration->status : 'Pre-paid';
-                        [$bgColor, $textColor] = $statusColors[$status] ?? ['bg-gray-500', 'text-white'];
+                        $status = $member->membershipDuration
+                        ? $member->membershipDuration->status
+                        : 'Pre-paid';
+                        [$bgColor, $textColor] = $statusColors[$status] ?? [
+                        'bg-gray-500',
+                        'text-white',
+                        ];
 
                         $alreadyCheckedIn = \App\Models\CheckinRecord::where('user_id', $member->id)
                         ->whereDate('checkin_date', \Carbon\Carbon::now()->toDateString())
@@ -124,34 +113,35 @@ const keynumber = "{{ $keynumber }}"; // Safe to use if sanitized by Blade
                         $buttonClass = '';
 
                         // Merge services, lockers, and treadmills into one collection
-                        $allItems = collect(array_merge($member->services->toArray(), $member->lockers->toArray(),
-                        $member->treadmills->toArray()));
+                        $allItems = collect(
+                        array_merge(
+                        $member->services->toArray(),
+                        $member->lockers->toArray(),
+                        $member->treadmills->toArray(),
+                        ),
+                        );
 
                         // Loop through the merged collection
                         foreach ($allItems as $item) {
-                        if ($item['status'] === "Overdue") {
-                        $buttonClass = "bg-red-500 hover:bg-red-600";
+                        if ($item['status'] === 'Overdue') {
+                        $buttonClass = 'bg-red-500 hover:bg-red-600';
                         break;
-                        } elseif ($item['status'] === "Due") {
-                        $buttonClass = "bg-orange-500 hover:bg-orange-600";
+                        } elseif ($item['status'] === 'Due') {
+                        $buttonClass = 'bg-orange-500 hover:bg-orange-600';
                         break;
-                        }elseif ($item['status'] === "Impending") {
-                        $buttonClass = "bg-yellow-500 hover:bg-yellow-600";
-
+                        } elseif ($item['status'] === 'Impending') {
+                        $buttonClass = 'bg-yellow-500 hover:bg-yellow-600';
                         }
-
-
                         }
 
                         // Default class for active or no overdue status
                         if (!$buttonClass) {
-                        $buttonClass = "bg-green-500 hover:bg-green-600"; // Class for active or default
+                        $buttonClass = 'bg-green-500 hover:bg-green-600'; // Class for active or default
                         }
                         @endphp
 
-
                         <td class="whitespace-nowrap px-4 py-2">
-                            @if($member->id_number)
+                            @if ($member->id_number)
                             <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30"
                                 viewBox="0 0 48 48">
                                 <linearGradient id="IMoH7gpu5un5Dx2vID39Ra_pIPl8tqh3igN_gr1" x1="9.858" x2="38.142"
@@ -180,13 +170,13 @@ const keynumber = "{{ $keynumber }}"; // Safe to use if sanitized by Blade
                             @endif
                         </td>
 
-
                         <td class="whitespace-nowrap px-4 py-2">{{ $member->name }}</td>
 
                         <td class="whitespace-nowrap px-4 py-2">
                             @php
-                            $activeService = $member->services->whereIn('status', ['Active', 'Due', 'Overdue',
-                            'Impending'])->first();
+                            $activeService = $member->services
+                            ->whereIn('status', ['Active', 'Due', 'Overdue', 'Impending'])
+                            ->first();
                             $statusColor = match ($activeService->status ?? 'N/A') {
                             'Active' => 'bg-green-500',
                             'Due' => 'bg-orange-500',
@@ -205,7 +195,7 @@ const keynumber = "{{ $keynumber }}"; // Safe to use if sanitized by Blade
                             <!-- Service Type -->
                             @if ($activeService)
                             {{ $activeService->service_type }}
-                            @if($member->membership_type == 'Manual')
+                            @if ($member->membership_type == 'Manual')
                             Month
                             @endif
                             @else
@@ -213,10 +203,9 @@ const keynumber = "{{ $keynumber }}"; // Safe to use if sanitized by Blade
                             @endif
                         </td>
 
-
-
                         <td class="whitespace-nowrap px-4 py-2">
-                            <button @click="membershipOption = true" class="  w-3 h-3  {{ $bgColor }} rounded-full"
+                            <button @click="membershipOption = true"
+                                class=" ml-5 md:ml-10 w-3 h-3  {{ $bgColor }} rounded-full"
                                 aria-label="{{ $status }} status" title="{{ $status }}" type="button">
                             </button>
 
@@ -229,19 +218,12 @@ const keynumber = "{{ $keynumber }}"; // Safe to use if sanitized by Blade
                             @endif
                         </td>
 
-
-
-
-
-
-                        @can( 'member-services')
+                        @can('member-services')
                         @include ('administrator.members.checkin')
                         @endcan
 
-
-
-                        @canany([ 'member-view', 'member-services',
-                        'member-edit','member-membership-renew','member-delete',])
+                        @canany(['member-view', 'member-services', 'member-edit', 'member-membership-renew',
+                        'member-delete'])
                         <td class="px-4 align-middle">
                             <div class="action-dropdown flex items-center ">
                                 <button
@@ -271,10 +253,8 @@ const keynumber = "{{ $keynumber }}"; // Safe to use if sanitized by Blade
                                         </button>
                                         @endcan
 
-
-
                                         <!-- disable if membershiptype = walkin else enable -->
-                                        @can( 'member-services')
+                                        @can('member-services')
                                         <button @click="openservices = true"
                                             class="w-full group flex items-center px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-peak_3"
                                             :class="{ 'cursor-not-allowed opacity-50': membershipType === 'Walkin' }">
@@ -306,9 +286,8 @@ const keynumber = "{{ $keynumber }}"; // Safe to use if sanitized by Blade
                                         </button>
                                         @endcan
 
-
                                         @can('member-edit')
-                                        <button @click="openeditmodal = {{$member->id}}"
+                                        <button @click="openeditmodal = {{ $member->id }}"
                                             class="w-full group flex items-center px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-peak_3">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                 fill="currentColor" class="w-4 h-4 mr-3" viewBox="0 0 16 16">
@@ -318,7 +297,6 @@ const keynumber = "{{ $keynumber }}"; // Safe to use if sanitized by Blade
                                             Edit
                                         </button>
                                         @endcan
-
 
                                         @can('member-delete')
                                         <button @click="opendelete = true"
@@ -334,7 +312,6 @@ const keynumber = "{{ $keynumber }}"; // Safe to use if sanitized by Blade
                                         </button>
                                         @endcan
 
-
                                     </div>
                                 </div>
                             </div>
@@ -346,14 +323,9 @@ const keynumber = "{{ $keynumber }}"; // Safe to use if sanitized by Blade
                         </td>
                         @endcanany
 
-
-
                     </tr>
 
-
-
                     <!-- Details modal -->
-
                     @endforeach
                     @endif
                 </tbody>

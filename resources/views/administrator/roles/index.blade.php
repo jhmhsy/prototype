@@ -1,6 +1,6 @@
 @canany(['role-list', 'role-view', 'role-create', 'role-edit', 'role-delete'])
     <x-dash-layout title="Roles">
-        <div class="container mx-auto py-8 px-4 sm:px-6 lg:px-8 text:black dark:text-gray-300"
+        <div class="container mx-auto py-8 px-4 sm:px-6 lg:px-8 dark:bg-peak-3 border dark:border-white/10 rounded-lg text:black dark:text-gray-300"
             x-data="{ openeditmodal: null, openshowmodal: null, opencreatemodal: null }">
 
             <div class="flex flex-col gap-2">
@@ -38,7 +38,7 @@
                     <div class="relative w-full overflow-auto">
                         <table class="w-full text-sm mb-3">
                             <thead class="text-black dark:text-white">
-                                <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+                                <tr class="border-b dark:border-white/10 transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
                                     <th class="h-12 px-4 text-left align-middle">ID</th>
                                     <th class="h-12 px-4 text-left align-middle">Name</th>
 
@@ -54,9 +54,6 @@
                                         class="transition-colors py-10 {{ $loop->iteration % 2 == 0 ? 'bg-gray-100 dark:bg-peak_2' : '' }}">
                                         <td class="px-4 align-middle text-black dark:text-white">{{ ++$i }}.</td>
                                         <td class="px-4 align-middle font-medium">{{ $role->name }}</td>
-
-
-
 
                                         @canany(['role-view', 'role-edit', 'role-delete'])
                                             <td class="px-4 align-middle">
