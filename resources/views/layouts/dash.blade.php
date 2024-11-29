@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>GymOne Dashboard | {{ $title }}</title>
+    <title>Dashboard | {{ $title }}</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -42,11 +42,11 @@
     <script src="{{ asset('js/screensize.js') }}" defer></script>
 
     <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
-    <link rel="icon" href="images\logo.png">
+    <link rel="icon" href="{{ asset('images/logo.png') }}">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="font-opensans antialiased min-w-screen bg-tint_1 dark:bg-peak_5">
+<body class="font-opensans antialiased min-w-screen bg-tint_1 dark:bg-peak-4">
     @include ('alerts.alert')
 
     <div x-data="layout()" x-init="init()" class="flex h-screen">

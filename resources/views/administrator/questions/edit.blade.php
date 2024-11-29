@@ -60,7 +60,7 @@
                    focus:ring-2 focus:ring-blue-500 focus:border-blue-500
                    dark:bg-peak_1 dark:border-gray-600 dark:focus:border-blue-400
                    dark:text-gray-100 dark:placeholder-gray-400
-                   transition duration-150 ease-in-out" required>{{ $question->extra_answer }}</textarea>
+                   transition duration-150 ease-in-out">{{ $question->extra_answer }}</textarea>
                             </div>
                             <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded">Update
                                 Question</button>

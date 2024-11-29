@@ -82,7 +82,7 @@ class CheckinController extends Controller
             ->exists();
 
         if ($alreadyCheckedIn) {
-            return redirect()->back()->with('error', 'You have already checked in today.');
+            return redirect()->back()->with('error', "You've already checked in today.");
         }
 
         // Load relationships if not already loaded
@@ -92,7 +92,7 @@ class CheckinController extends Controller
         $hasSubscriptions = $member->services->count() > 0 || $member->lockers->count() > 0 || $member->treadmills->count() > 0;
 
         if (!$hasSubscriptions) {
-            return redirect()->back()->with('error', 'Cannot check in: No active subscriptions found.');
+            return redirect()->back()->with('error', 'Invalid! No active subscriptions found.');
         }
 
         // Check if this is a forced check-in for overdue subscription
@@ -119,7 +119,7 @@ class CheckinController extends Controller
             return redirect()->back()->with([
                 'warning' => true,
                 'member_id' => $member->id,
-                'message' => 'Warning: User has overdue subscriptions.'
+                'message' => 'Warning: User subscription overdue'
             ]);
         }
 
@@ -149,7 +149,7 @@ class CheckinController extends Controller
 
         // If no valid subscription and no force check-in, prevent check-in
         if (!$hasValidSubscription && !$forceCheckin) {
-            return redirect()->back()->with('error', 'Cannot check in: No valid subscription found.');
+            return redirect()->back()->with('error', 'Invalid! No active subscription found.');
         }
 
         // Proceed with check-in
@@ -160,7 +160,7 @@ class CheckinController extends Controller
             'checkin_date' => $now->toDateString(),
         ]);
 
-        return redirect()->back()->with('success', 'User Checked-in successfully.');
+        return redirect()->back()->with('success', 'Check-in success!.');
     }
 
 

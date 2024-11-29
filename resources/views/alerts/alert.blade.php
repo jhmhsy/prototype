@@ -4,7 +4,7 @@ const Toast = Swal.mixin({
     toast: true,
     position: "top-end",
     showConfirmButton: false,
-    timer: 3000,
+    timer: 5000,
     timerProgressBar: true,
     showCloseButton: true,
     customClass: {
@@ -154,6 +154,12 @@ Toast.fire({
 
 .swal2-container-custom {
     padding: 0.5rem !important;
+}
+
+h2 {
+    margin-left: 0 !important;
+    font-size: 0.75rem /* 12px */;
+    line-height: 1rem /* 16px */;
 }
 </style>
 @endif
@@ -319,6 +325,12 @@ Toast.fire({
 .swal2-container-custom {
     padding: 0.5rem !important;
 }
+
+h2 {
+    margin-left: 0 !important;
+    font-size: 0.75rem /* 12px */;
+    line-height: 1rem /* 16px */;
+}
 </style>
 @endif
 
@@ -482,6 +494,12 @@ Toast.fire({
 
 .swal2-container-custom {
     padding: 0.5rem !important;
+}
+
+h2 {
+    margin-left: 0 !important;
+    font-size: 0.75rem /* 12px */;
+    line-height: 1rem /* 16px */;
 }
 </style>
 @endif

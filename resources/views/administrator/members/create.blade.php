@@ -12,7 +12,6 @@
             <p class="text-gray-600 dark:text-gray-400">Fill in the details below to register a new member</p>
         </div>
         <div class="w-full flex flex-wrap">
-
             <div class="container px-4 max-w-4xl w-full md:w-[65%]">
                 <!-- Header -->
 

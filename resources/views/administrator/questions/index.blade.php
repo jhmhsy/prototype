@@ -3,7 +3,7 @@
         <section x-data="{ createmodal: false ,viewmodal:false, Editmodal:false}">
             <div class="rounded-lg shadow-sm p-6  bg-white dark:bg-peak_1">
 
-                <div class="flex flex-col gap-2">
+                <div class="flex flex-col gap-2 mb-3">
                     <div class="flex justify-between">
                         <h1 class="text-xl font-bold dark:text-white">Manage FAQs</h1>
                         @can('faq-create')
@@ -22,7 +22,7 @@
                         @endcan
                     </div>
                 </div>
-                <div class="relative w-full overflow-auto pr-20">
+                <div class="relative w-full overflow-auto">
                     <table class="w-full caption-bottom text-sm ">
                         <thead>
                             <tr class="transition-colors hover:bg-muted/50 text-gray-500 dark:bg-peak_2">
@@ -35,8 +35,6 @@
                                 <th class="h-12 px-4 text-left align-middle font-medium">
                                     Extra Answer
                                 </th>
-
-
                                 @canany(['faq-edit', 'faq-view', 'faq-delete'])
                                     <th class="h-12 text-center align-middle font-medium">Actions</th>
                                 @endcanany
@@ -50,17 +48,14 @@
                             @else
                                             @foreach ($questions as $question)
                                                 <tr
-                                                    class=" transition-colors py-10 {{ $loop->iteration % 2 == 0 ? 'bg-gray-100 dark:bg-peak_2' : '' }}">
-
-                                                    <td class=" px-4 align-middle font-medium">
+                                                    class="transition-colors {{ $loop->iteration % 2 == 0 ? 'bg-gray-100 dark:bg-peak_2' : '' }}">
+                                                    <td class="px-4 py-2 align-middle font-medium">
                                                         {{ $question->question }}
                                                     </td>
-                                                    <td class="px-4 align-middle ">
+                                                    <td class="px-4 py-2 align-middle ">
                                                         {{ $question->answer }}
                                                     </td>
-
-                                                    <td class="px-4 align-middle ">
-
+                                                    <td class="px-4 py-2 align-middle ">
                                                         {{ $question->extra_answer }}
                                                     </td>
                                                     @canany(['faq-view', 'faq-edit', 'faq-delete'])

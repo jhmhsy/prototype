@@ -104,7 +104,7 @@ class ReservationsController extends Controller
             'date' => $request->date,
             'time' => $request->time,
         ]);
-        return redirect()->back()->with('success', 'Booking has been made and is pending approval.');
+        return redirect()->back()->with('success', 'Booking submitted for approval.');
     }
 
     public function accept($id)
@@ -113,7 +113,7 @@ class ReservationsController extends Controller
         Booking::create($pendingBooking->toArray());
         $pendingBooking->delete();
 
-        return redirect()->back()->with('success', 'Booking has been accepted.');
+        return redirect()->back()->with('success', 'Booking accepted!');
     }
 
     public function reject($id)
@@ -122,7 +122,7 @@ class ReservationsController extends Controller
         RejectedBooking::create($pendingBooking->toArray());
         $pendingBooking->delete();
 
-        return redirect()->back()->with('success', 'Booking has been rejected.');
+        return redirect()->back()->with('success', 'Booking rejected!');
     }
 
     public function restore($id)
@@ -132,7 +132,7 @@ class ReservationsController extends Controller
         PendingBooking::create($rejectBooking->toArray());
         $rejectBooking->delete();
 
-        return redirect()->back()->with('success', 'Booking has been restored.');
+        return redirect()->back()->with('success', 'Booking restored');
     }
 
     public function cancel($id)
@@ -141,7 +141,7 @@ class ReservationsController extends Controller
         PendingBooking::create($acceptedBookings->toArray());
         $acceptedBookings->delete();
 
-        return redirect()->back()->with('success', 'Booking has been canceled.');
+        return redirect()->back()->with('success', 'Booking canceled!');
     }
 
     public function delete($id)
@@ -149,7 +149,7 @@ class ReservationsController extends Controller
         $rejectBooking = RejectedBooking::findOrFail($id);
         $rejectBooking->delete();
 
-        return redirect()->back()->with('success', 'Booking has been Deleted.');
+        return redirect()->back()->with('success', 'Booking deleted!');
     }
 }
 

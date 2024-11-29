@@ -106,7 +106,7 @@ class EquipmentController extends Controller
 
         ]);
 
-        return redirect()->back()->with('success', 'equipment updated successfully.');
+        return redirect()->back()->with('success', 'Equipment updated!');
     }
 
 
@@ -115,6 +115,6 @@ class EquipmentController extends Controller
         $equipment = Equipment::findOrFail($id);
 
         $equipment->delete();
-        return redirect()->back()->with('success', 'equipment Successfully Deleted.');
+        return redirect()->back()->with('success', 'Equipment Deleted!');
     }
 }

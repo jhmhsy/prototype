@@ -1,8 +1,8 @@
 @canany(['feedback-list'])
     <x-dash-layout title="Feedback">
-        <div class="rounded-lg border shadow-sm p-6  text-shade_9  
+        <div class="rounded-lg border shadow-sm p-6 dark:bg-peak-3 text-secondary dark:text-white  
         border-shade_6/50 dark:border-white/5" data-v0-t="card">
-            <h1 class="text-lg font-bold mb-6 dark:text-white">Equipment Management</h1>
+            <h1 class="text-4xl font-bold mb-6 dark:text-white uppercase tracking-wider">Feedback reviews</h1>
 
             <section class="flex flex-col">
                 <div class="grid grid-cols-1 gap-6">
