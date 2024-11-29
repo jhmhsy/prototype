@@ -108,8 +108,8 @@ Route::get('/gym-map', [HomeController::class, 'showmap'])->name('gym-map');
 //Route::get('/api/reserved-hours', [CalendarController::class, 'getReservedHours']);
 //Route::get('/booking-status', 'CalendarController@getBookingStatus');
 
-//Route::post('/reserve', [ReservationsController::class, 'store'])->name('reserve.store');
-//Route::post('/feedback', [FeedbackController::class, 'store'])->name('feedback.store');
+// Route::post('/reserve', [ReservationsController::class, 'store'])->name('reserve.store');
+Route::post('/feedback', [FeedbackController::class, 'store'])->name('feedback.store');
 //Route::get('/reservation', function () {
 //    return view('subpages.reservation');
 //})->name('reservation');
@@ -253,4 +253,4 @@ Route::middleware('auth')->group(function () {
 
 //});
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

@@ -43,6 +43,7 @@
                         </li>
                     </ul>
                 </div>
+
                 <div
                     class="flex flex-col bg-peak-3 p-4 py-10 pr-10 rounded-lg shadow-lg text-left gap-4 backdrop-blur-md shadow-white/5">
                     <div>
@@ -85,6 +86,7 @@
                         </li>
                     </ul>
                 </div>
+
                 <div
                     class="flex flex-col bg-peak-3 p-4 py-10 pr-10 rounded-lg shadow-lg text-left gap-4 backdrop-blur-md shadow-white/5">
                     <div>
@@ -250,7 +252,7 @@
                 </div>
             </div>
 
-            <div class="grid grid-cols-2 mt-6 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 mt-6 gap-6">
                 <div
                     class="flex flex-col bg-peak-3 p-4 py-10 pr-10 rounded-lg shadow-lg text-left gap-4 backdrop-blur-md shadow-white/5">
                     <div class="grid grid-cols-2 gap-6">

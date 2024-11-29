@@ -5,8 +5,8 @@
             <h1 class="font-bold text-4xl">Have questions? We've got answers!</h1>
         </div>
         <div class="space-y-4 w-full">
-            <details class="border border-border rounded-md p-4 w-full">
-                <summary class="cursor-pointer">Where is the Gym Located?</summary>
+            <details class="border border-gray-800  rounded-md p-4 w-full">
+                <summary class="cursor-pointer text-gray-600">Where is the Gym Located?</summary>
                 <p class="text-sm italic pl-4">Gym One Danao is conveniently located near Juan Luna Road in Danao City,
                     Cebu.</p>
                 @include('gym-map')
@@ -14,16 +14,16 @@
             </details>
 
             @foreach ($questions as $question)
-            <details class="border border-border rounded-md p-4 w-full">
-                <summary class="cursor-pointer">{{ $question->question }}</summary>
-                <p class="text-sm italic pl-4">{{ $question->answer }}</p>
-                <p class="text-sm italic pl-4">{{ $question->extra_answer ? $question->extra_answer : '' }}</p>
-            </details>
+                <details class="border border-gray-800 rounded-md p-4 w-full">
+                    <summary class="cursor-pointer text-gray-600">{{ $question->question }}</summary>
+                    <p class="text-sm italic pl-4">{{ $question->answer }}</p>
+                    <p class="text-sm italic pl-4">{{ $question->extra_answer ? $question->extra_answer : '' }}</p>
+                </details>
             @endforeach
 
         </div>
         <div class="mt-2 contents-left flex items-center gap-2">
-            <p>Still have questions?</p>
+            <p class="text-gray-400">Still have questions?</p>
             <x-custom.secondary-button>
                 <a href="https://www.facebook.com/profile.php?id=61567209182726" target="_blank">Contact us</a>
             </x-custom.secondary-button>

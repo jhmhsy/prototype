@@ -7,9 +7,8 @@
 
         <!-- if auth is a SuperAdmin - doesnt need a services -->
         @if (auth()->user()->getRoleNames()->first() == 'SuperAdmin')
-        <div class="text-center mt-6">
-            <p class="text-white text-2xl mb-4">"Admin does not have a QR code—Is there any reason for the admin to have
-                one? I don't think so."</p>
+        <div ss="text-center mt-6">
+            <p class="text-white text-2xl mb-4">"Administrative users do not require a QR code."</p>
         </div>
 
         @else
