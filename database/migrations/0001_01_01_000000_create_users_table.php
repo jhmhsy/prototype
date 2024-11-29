@@ -12,7 +12,8 @@ return new class extends Migration {
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('id_number')->default('unlinked');
+            $table->string('id_number')->nullable();
+            $table->foreign('id_number')->references('id_number')->on('members')->onDelete('cascade');
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();

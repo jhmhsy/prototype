@@ -61,4 +61,10 @@ class Member extends Model
     {
         return $this->hasOne(MembershipDuration::class);
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id_number', 'id_number');
+    }
+
 }

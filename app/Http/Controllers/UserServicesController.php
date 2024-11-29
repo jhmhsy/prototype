@@ -24,21 +24,31 @@ class UserServicesController extends Controller
     }
 
 
+
+
     public function updateIdNumber(Request $request)
     {
+
         $request->validate([
-            'id_number' => 'required|string|max:255|unique:users,id_number',
+            'id_number' => 'required|string|max:255|exists:members,id_number|unique:users,id_number',
         ]);
 
-        // Update the authenticated user's id_number
         $user = Auth::user();
-        $user->id_number = $request->id_number;
-        $user->save();
 
-        // Manually flash the success message for the session
-        session()->flash('status', 'ID Number updated successfully!');
+        $member = Member::where('id_number', $request->id_number)->first();
 
-        return redirect()->back();
+        if ($member) {
+
+            $user->id_number = $request->id_number;
+            $user->save();
+
+            return redirect()->back()->with('status', session('ID Number updated successfully!'));
+        } else {
+
+            return redirect()->back()->with('status', 'No member found with this ID number');
+
+        }
+
     }
 
 }
