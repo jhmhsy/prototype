@@ -13,8 +13,7 @@ class PermissionTableSeeder extends Seeder
     public function run(): void
     {
         $permissions = [
-            'is-admin',
-            'is-super',
+            'system-admin',
             'is-user',
             'overview-list',
             'checkin-list',

@@ -45,33 +45,20 @@
                             <h3 class="text-xl font-semibold mb-4">Permissions</h3>
 
                             <div class="border dark:border-gray-800 rounded-lg max-h-[600px] overflow-y-auto">
-                                <!-- Is-Admin Permission -->
+                                <!-- system-admin Permission -->
                                 <div class="p-4 border-b dark:border-gray-800">
                                     <h4 class="font-medium text-gray-500 mb-3">Admin Permissions</h4>
                                     <div class="space-y-2 relative">
                                         <label class="flex items-center permission-label">
                                             <input type="checkbox" name="permission[]"
-                                                value="{{ $permissions->where('name', 'is-admin')->first()->id }}"
-                                                {{ $role->hasPermissionTo('is-admin') ? 'checked' : '' }}
+                                                value="{{ $permissions->where('name', 'system-admin')->first()->id }}"
+                                                {{ $role->hasPermissionTo('system-admin') ? 'checked' : '' }}
                                                 class="rounded">
-                                            <span class="ml-2">Is Admin</span>
+                                            <span class="ml-2">System Admin</span>
                                         </label>
                                         <div class="permission-tooltip absolute z-10 bg-white text-black text-xs py-1 px-2 mt-1 shadow-lg rounded border"
                                             style="display: none; opacity: 0; visibility: hidden; transition: opacity 0.2s, visibility 0.2s; left: 0; top: 100%; white-space: nowrap;">
-                                            Grants admin-level access.
-                                        </div>
-                                    </div>
-                                    <div class="space-y-2 relative">
-                                        <label class="flex items-center permission-label">
-                                            <input type="checkbox" name="permission[]"
-                                                value="{{ $permissions->where('name', 'is-super')->first()->id }}"
-                                                {{ $role->hasPermissionTo('is-super') ? 'checked' : '' }}
-                                                class="rounded">
-                                            <span class="ml-2">Is Super</span>
-                                        </label>
-                                        <div class="permission-tooltip absolute z-10 bg-white text-black text-xs py-1 px-2 mt-1 shadow-lg rounded border"
-                                            style="display: none; opacity: 0; visibility: hidden; transition: opacity 0.2s, visibility 0.2s; left: 0; top: 100%; white-space: nowrap;">
-                                            Grants superuser-level access.
+                                            Grants administrative access and is used to access the dashboard.
                                         </div>
                                     </div>
                                     <div class="space-y-2 relative">

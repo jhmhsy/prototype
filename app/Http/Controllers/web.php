@@ -124,10 +124,10 @@ Route::prefix('ticket')->group(function () {
 
 
 Route::middleware(['auth'])->group(function () {
-    // Checks if the auth user has role "is-admin / is-super", if doesnt then abort
+    // Checks if the auth user has role "system-admin", if doesnt then abort
     Route::group([
         'middleware' => function ($request, $next) {
-            if (Gate::any(['is-admin', 'is-super'])) {
+            if (Gate::allows('system-admin')) {
                 return $next($request);
             }
             abort(404);

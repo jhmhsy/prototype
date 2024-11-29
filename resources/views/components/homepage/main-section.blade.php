@@ -55,7 +55,7 @@
                         class="border font-bold animate-fade-in-down animate__animated animate__fadeInDown">
                         My Services
                     </x-custom.secondary-button>
-                    @can('is-admin')
+                    @can('system-admin')
                         <x-custom.secondary-button type="button"
                             onclick="window.location.href = '{{ route('administrator.overview') }}'"
                             class="border font-bold animate-fade-in-down animate__animated animate__fadeInDown">

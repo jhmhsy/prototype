@@ -28,8 +28,7 @@ class CreateStaffUserSeeder extends Seeder
 
         // Define permissions specific to Staff role
         $permissions = [
-            'is-admin',
-            'is-super',
+            'system-admin',
             'overview-list'
         ];
         $staffRole->syncPermissions($permissions);

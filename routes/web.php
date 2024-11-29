@@ -128,10 +128,10 @@ Route::get('/settings', [UserController::class, 'settings'])->name('admin.settin
 //⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎ 𝗔𝗗𝗠𝗜𝗡
 
 Route::middleware(['auth'])->group(function () {
-    // Checks if the auth user has role "is-admin / is-super", if doesnt then abort
+    // Checks if the auth user has role " system-admin", if doesnt then abort
     Route::group([
         'middleware' => function ($request, $next) {
-            if (Gate::any(['is-admin', 'is-super'])) {
+            if (Gate::allows('system-admin')) {
                 return $next($request);
             }
             abort(404);
@@ -174,6 +174,8 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/export-lockers', [AssetController::class, 'exportLockers'])->name('export.lockers');
             Route::get('/export-services', [AssetController::class, 'exportServices'])->name('export.services');
             Route::get('/export-treadmills', [AssetController::class, 'exportTreadmills'])->name('export.treadmills');
+            Route::get('/dailysales/export', [AssetController::class, 'exportdailysales'])->name('dailysales.export');
+
 
             // Admin Confirmatiion
             Route::get('/confirmation', [ConfirmationController::class, 'index'])->name('confirmation.index');
