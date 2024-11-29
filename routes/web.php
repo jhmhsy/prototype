@@ -174,7 +174,7 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/export-lockers', [AssetController::class, 'exportLockers'])->name('export.lockers');
             Route::get('/export-services', [AssetController::class, 'exportServices'])->name('export.services');
             Route::get('/export-treadmills', [AssetController::class, 'exportTreadmills'])->name('export.treadmills');
-            Route::get('/dailysales/export', [AssetController::class, 'exportdailysales'])->name('dailysales.export');
+            Route::get('/dailysales/export', [AssetController::class, 'export'])->name('dailysales.export');
 
 
             // Admin Confirmatiion

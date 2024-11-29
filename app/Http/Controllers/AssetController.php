@@ -14,6 +14,7 @@ use App\Exports\ServicesExport;
 use App\Exports\LockersExport;
 use App\Exports\TreadmillsExport;
 
+
 class AssetController extends Controller
 {
     // App\Http\Controllers\Administrator\AssetController.php
@@ -70,8 +71,7 @@ class AssetController extends Controller
         return Excel::download(new TreadmillsExport, 'treadmills.xlsx');
     }
 
-
-    public function exportdailysales()
+    public function export()
     {
         if (!auth()->user()->can('dailysales-list')) {
             abort(404);
@@ -79,52 +79,58 @@ class AssetController extends Controller
 
         $today = now()->toDateString();
 
+        // Fetch prices and map them by service type
         $prices = Prices::all();
         $priceData = $prices->keyBy('service_type')->mapWithKeys(function ($item) {
             return [$item->service_type => $item->price];
         });
 
-        $memberCounts = Member::whereDate('created_at', $today)
-            ->selectRaw('membership_type, COUNT(*) as count')
-            ->groupBy('membership_type')
-            ->pluck('count', 'membership_type')
-            ->toArray();
+        // Fetch and total all services bought today, group by service type
+        $custom1month = Service::whereDate('created_at', $today)->where('service_type', '1month')->sum('amount');
+        $custom1monthstudent = Service::whereDate('created_at', $today)->where('service_type', '1monthstudent')->sum('amount');
+        $custom3month = Service::whereDate('created_at', $today)->where('service_type', '3month')->sum('amount');
+        $custom6month = Service::whereDate('created_at', $today)->where('service_type', '6month')->sum('amount');
+        $custom12month = Service::whereDate('created_at', $today)->where('service_type', '12month')->sum('amount');
+        $customWalkinService = Service::whereDate('created_at', $today)->where('service_type', 'WalkinService')->sum('amount');
 
-        $serviceCounts = Service::whereDate('created_at', $today)
-            ->selectRaw('service_type, COUNT(*) as count')
-            ->groupBy('service_type')
-            ->pluck('count', 'service_type')
-            ->toArray();
-
+        // Fetch total amount for lockers and treadmills
         $lockerAmount = Locker::whereDate('created_at', $today)->sum('amount');
         $treadmillAmount = Treadmill::whereDate('created_at', $today)->sum('amount');
 
-        $defaultServiceTypes = ['1month', '1monthstudent', '3month', '6month', '12month', 'WalkinService'];
-        $serviceCounts = array_merge(array_fill_keys($defaultServiceTypes, 0), $serviceCounts);
+        // Fetch total amount for Regular and Walkin memberships
+        $regularMembershipAmount = Member::whereDate('created_at', $today)
+            ->where('membership_type', 'Regular')
+            ->sum('amount');
 
-        $totalMemberAmount =
-            ($priceData['Walk-in'] * $memberCounts['Walkin']) +
-            ($priceData['Regular'] * $memberCounts['Regular']);
+        $walkinMembershipAmount = Member::whereDate('created_at', $today)
+            ->where('membership_type', 'Walkin')
+            ->sum('amount');
 
-        $totalServiceAmount = 0;
-        foreach (['1month', '1monthstudent', '3month', '6month', '12month', 'WalkinService'] as $serviceType) {
-            $totalServiceAmount += ($priceData[$serviceType] ?? 0) * ($serviceCounts[$serviceType] ?? 0);
-        }
+        // Calculate total sales
+        $totalSales = $lockerAmount + $treadmillAmount + $custom1month + $custom1monthstudent + $custom3month + $custom6month + $custom12month + $customWalkinService + $regularMembershipAmount + $walkinMembershipAmount;
 
-        $totalSales = $totalMemberAmount + $totalServiceAmount + $lockerAmount + $treadmillAmount;
+        // Prepare data to be exported
+        $data = [
+            ['Type' => '1 Month', 'Amount' => $custom1month],
+            ['Type' => '1 Month (Student)', 'Amount' => $custom1monthstudent],
+            ['Type' => '3 Months', 'Amount' => $custom3month],
+            ['Type' => '6 Months', 'Amount' => $custom6month],
+            ['Type' => '12 Months', 'Amount' => $custom12month],
+            ['Type' => 'Walk-in Service', 'Amount' => $customWalkinService],
+            ['Type' => 'Lockers', 'Amount' => $lockerAmount],
+            ['Type' => 'Treadmills', 'Amount' => $treadmillAmount],
+            ['Type' => 'Regular Membership', 'Amount' => $regularMembershipAmount],
+            ['Type' => 'Walkin Membership', 'Amount' => $walkinMembershipAmount],
+            ['Type' => 'TOTAL', 'Amount' => $totalSales]
+        ];
 
+        // Download Excel with the daily sales data
         return Excel::download(
-            new \App\Exports\DailySalesExport(
-                $serviceCounts,
-                $priceData,
-                $memberCounts,
-                $lockerAmount,
-                $treadmillAmount,
-                $totalSales
-            ),
+            new \App\Exports\DailySalesExport($data),
             'daily_sales_' . now()->format('Y-m-d') . '.xlsx'
         );
     }
+
 
 
 }
