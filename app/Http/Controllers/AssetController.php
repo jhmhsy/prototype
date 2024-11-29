@@ -111,6 +111,9 @@ class AssetController extends Controller
 
         // Prepare data to be exported
         $data = [
+
+            ['Type' => 'Regular Membership', 'Amount' => $regularMembershipAmount],
+            ['Type' => 'Walkin Membership', 'Amount' => $walkinMembershipAmount],
             ['Type' => '1 Month', 'Amount' => $custom1month],
             ['Type' => '1 Month (Student)', 'Amount' => $custom1monthstudent],
             ['Type' => '3 Months', 'Amount' => $custom3month],
@@ -119,8 +122,6 @@ class AssetController extends Controller
             ['Type' => 'Walk-in Service', 'Amount' => $customWalkinService],
             ['Type' => 'Lockers', 'Amount' => $lockerAmount],
             ['Type' => 'Treadmills', 'Amount' => $treadmillAmount],
-            ['Type' => 'Regular Membership', 'Amount' => $regularMembershipAmount],
-            ['Type' => 'Walkin Membership', 'Amount' => $walkinMembershipAmount],
             ['Type' => 'TOTAL', 'Amount' => $totalSales]
         ];
 
