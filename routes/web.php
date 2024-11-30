@@ -42,6 +42,7 @@ Route::middleware(['throttle:global'])->group(function () {
 
 
 
+    // public rani kay ambot di mo work ig ibutang sa admin ahhahaha
     // Service Autoset Latest Dates : used to auto set the dates when extending services
     Route::get('/members/{member}/start-date/{relation}', [MemberController::class, 'getRelationStartDate'])
         ->name('members.get-relation-start-date')

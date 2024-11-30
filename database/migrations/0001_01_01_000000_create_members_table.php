@@ -9,7 +9,7 @@ return new class extends Migration {
     {
         Schema::create('members', function (Blueprint $table) {
             $table->id();
-            $table->string('id_number')->nullable()->default('******')->unique();
+            $table->string('id_number')->nullable()->default('******');
             $table->string('name');
             $table->string('phone')->unique()->nullable();
             $table->string('fb')->nullable();
@@ -17,6 +17,8 @@ return new class extends Migration {
             $table->enum('membership_type', ['Regular', 'Student', 'Walkin', 'Manual']);
             $table->decimal('amount', 8, 2);
             $table->timestamps();
+
+            $table->index('id_number');
 
         });
     }
