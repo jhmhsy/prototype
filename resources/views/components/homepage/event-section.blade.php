@@ -1,4 +1,4 @@
-<div x-data="{ isOpen: false }" class="fixed right-0 top-1/2 -translate-y-1/2 z-50 flex items-center">
+<div x-data="{ isOpen: false }" class="fixed right-0 top-1/2 -translate-y-1/2 z-50 select-none flex items-center">
     <!-- Sliding Panel -->
 
     <div style="display:none;" x-show="isOpen" x-transition:enter="transition ease-out duration-300"
@@ -7,6 +7,13 @@
         x-transition:leave-end="translate-x-full opacity-0"
         class="absolute right-0 bg-peak_2 shadow-2xl rounded-lg overflow-hidden border-l-4 border-yellow-300 w-80">
         <div class="relative">
+            <button @click="isOpen = false" class="absolute top-2 right-2 text-gray-500 z-30 hover:text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+
             <div class="swiper-container events-swiper">
                 <div class="swiper-wrapper">
                     @foreach ($events as $event)
