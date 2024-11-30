@@ -19,6 +19,7 @@ return new class extends Migration {
             $table->time('time');
             $table->string('image')->nullable(); // Change to singular and make nullable
             $table->timestamps();
+            $table->string('status')->default('active');
         });
     }
 

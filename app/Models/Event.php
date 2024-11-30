@@ -9,5 +9,5 @@ class Event extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'location', 'details', 'date', 'time', 'image']; // Change to singular
+    protected $fillable = ['name', 'location', 'details', 'date', 'time', 'image', 'status']; // Change to singular
 }

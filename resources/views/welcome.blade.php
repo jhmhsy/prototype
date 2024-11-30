@@ -41,7 +41,7 @@
 
 
         @if($events->isNotEmpty())
-            @include('components.homepage.event-section')
+        @include('components.homepage.event-section')
         @else
         @endif
 

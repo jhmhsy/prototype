@@ -108,14 +108,19 @@ class AssetController extends Controller
             ->where('membership_type', 'Walkin')
             ->sum('amount');
 
+        $manualMembershipAmount = Member::whereDate('created_at', $today)
+            ->where('membership_type', 'Manual')
+            ->sum('amount');
+
         // Calculate total sales
-        $totalSales = $lockerAmount + $treadmillAmount + $custom1month + $custom1monthstudent + $custom3month + $custom6month + $custom12month + $customWalkinService + $regularMembershipAmount + $walkinMembershipAmount;
+        $totalSales = $lockerAmount + $treadmillAmount + $custom1month + $custom1monthstudent + $custom3month + $custom6month + $custom12month + $customWalkinService + $regularMembershipAmount + $walkinMembershipAmount + $manualMembershipAmount;
 
         // Prepare data to be exported
         $data = [
 
             ['Type' => 'Regular Membership', 'Amount' => $regularMembershipAmount],
             ['Type' => 'Walkin Membership', 'Amount' => $walkinMembershipAmount],
+            ['Type' => 'Manual Membership', 'Amount' => $manualMembershipAmount],
             ['Type' => '1 Month', 'Amount' => $custom1month],
             ['Type' => '1 Month (Student)', 'Amount' => $custom1monthstudent],
             ['Type' => '3 Months', 'Amount' => $custom3month],

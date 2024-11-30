@@ -21,7 +21,7 @@ class HomeController extends Controller
 
         $superadminemail = config('app.superadminemail'); // admin gmail in app/config
 
-        $events = Event::all();
+        $events = Event::where('status', 'active')->get();
         $prices = Prices::all();
         $equipments = Equipment::all();
         $questions = Question::all();
