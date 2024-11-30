@@ -27,9 +27,10 @@
                                 <x-forms.field :float="true" class="space-y-2" :value="__('Email')"
                                     :errors="$errors->get('email')" :for="'email'">
                                     <x-custom.floating-input id="email" class="block mt-1 w-full" type="email"
-                                        name="email" :value="$prefilled_email ?? old('email')" placeholder=" " required
+                                        name="email" :value="request('email') ?? old('email')" placeholder=" " required
                                         autocomplete="username" />
                                 </x-forms.field>
+
                                 <x-forms.field :float="true" class="space-y-2" :value="__('Password')"
                                     :errors="$errors->get('password')" :for="'password'">
                                     <x-custom.floating-input id="password" class="block mt-1 w-full" type="password"

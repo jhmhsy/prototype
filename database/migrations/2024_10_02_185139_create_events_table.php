@@ -17,9 +17,9 @@ return new class extends Migration {
             $table->text('details');
             $table->date('date');
             $table->time('time');
+            $table->string('image')->nullable(); // Change to singular and make nullable
             $table->timestamps();
         });
-
     }
 
     /**

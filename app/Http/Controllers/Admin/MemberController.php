@@ -434,6 +434,8 @@ class MemberController extends Controller
         // Redirect back with a success message
         return redirect()->back()->with('success', 'Pending for approval.');
     }
+
+
     public function endLocker(Locker $locker)
     {
         // Update status to "Ended"

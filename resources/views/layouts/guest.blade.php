@@ -41,6 +41,10 @@
     <link href="{{ asset('path/to/flowbite/dist/flowbite.min.css') }}" rel="stylesheet">
     <script src="{{ asset('path/to/flowbite/dist/flowbite.min.js') }}" defer></script>
 
+    <link href="https://unpkg.com/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+
     <!-- Custom Scripts -->
     <script src="{{ asset('js/darkmode.js') }}" defer></script>
     <script src="{{ asset('js/hrefScrollAnimation.js') }}" defer></script>
@@ -63,11 +67,11 @@
     <!-- Header Section -->
     <div>
         @isset($header)
-            <header>
-                <div class="px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
-                    {{ $header }}
-                </div>
-            </header>
+        <header>
+            <div class="px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
+                {{ $header }}
+            </div>
+        </header>
         @endisset
 
         <!-- Main Content -->
@@ -82,16 +86,16 @@
 </body>
 
 <script>
-    axios.post('/ratelimit')
-        .then(response => {
-            // Handle successful response
-        })
-        .catch(error => {
-            if (error.response && error.response.status === 429) {
-                // Display the wait time message
-                alert(`Please wait ${error.response.data.wait} seconds before trying again.`);
-            }
-        });
+axios.post('/ratelimit')
+    .then(response => {
+        // Handle successful response
+    })
+    .catch(error => {
+        if (error.response && error.response.status === 429) {
+            // Display the wait time message
+            alert(`Please wait ${error.response.data.wait} seconds before trying again.`);
+        }
+    });
 </script>
 
 </html>

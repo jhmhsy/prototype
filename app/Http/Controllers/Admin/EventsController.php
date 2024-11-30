@@ -32,6 +32,8 @@ class EventsController extends Controller
             ->orderBy($sortBy, $sortDirection)
             ->paginate(10);
 
+
+
         session()->put('form_token', uniqid());
         return view('administrator.event.index', compact('events', 'sortBy', 'sortDirection', 'search'));
     }
@@ -40,12 +42,10 @@ class EventsController extends Controller
 
     public function store(Request $request)
     {
-
         $redirectResponse = $this->checkIfDuplicate($request);
         if ($redirectResponse) {
             return $redirectResponse;
         }
-
 
         session()->forget('form_token');
 
@@ -55,11 +55,32 @@ class EventsController extends Controller
             'details' => 'required|string|max:300',
             'date' => 'required|date',
             'time' => 'required|date_format:H:i',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:10240', // Singular
         ]);
 
-        Event::create($validatedData);
-        return redirect()->route('events')->with('success', 'Event Successfuly Added!');
+        $imagePath = null;
+
+        $imagePath = null;
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('images/events', 'public');
+
+            // Optional: Log the path for debugging
+            \Log::info('Stored Image Path: ' . $imagePath);
+        }
+
+        Event::create([
+            'name' => $validatedData['name'],
+            'location' => $validatedData['location'],
+            'details' => $validatedData['details'],
+            'date' => $validatedData['date'],
+            'time' => $validatedData['time'],
+            'image' => $imagePath, // This will now be like 'images/events/filename.jpg'
+        ]);
+
+        return redirect()->route('events')->with('success', 'Event Successfully Added!');
     }
+
+
 
     private function checkIfDuplicate(Request $request)
     {

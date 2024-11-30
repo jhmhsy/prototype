@@ -75,6 +75,19 @@
                         </select>
                     </div>
 
+                    <div class="mb-4">
+                        <label for="images" class="block text-sm font-medium text-gray-500">Upload Images</label>
+                        <input type="file" name="image" id="image"
+                            class="mt-1 block w-full @error('image') border-red-500 @enderror" accept="image/*">
+
+                        @error('images.*')
+                            <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
+                        @enderror
+
+                        <small class="text-gray-500">You can upload up to 1 image. Each image must be smaller than 40MB
+                            and in JPEG, PNG, JPG, or GIF format.</small>
+                    </div>
+
                     <button
                         class="bg-white text-black border-2 rounded-md text-sm font-medium hover:bg-darkgray hover:text-white h-10 px-4 py-2 w-full"
                         type="submit">

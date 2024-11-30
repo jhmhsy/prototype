@@ -23,15 +23,19 @@
                 <form class="flex flex-col gap-2 sm:flex-row">
                     <x-forms.text-input
                         class="items-center flex-1 w-full h-10 px-3 py-2 text-sm rounded-md sm:w-auto text-primary"
-                        placeholder="Enter your email" type="email" />
+                        placeholder="Enter your email" type="email" id="email-input" />
                     <div>
                         <x-custom.primary-button class="bg-lemon-base text-secondary" type="button"
-                            onclick="window.location.href = '{{ route('register') }}'">
+                            onclick="redirectWithEmail()">
                             Join Us
                         </x-custom.primary-button>
                     </div>
                 </form>
                 @endif
+
+                <script>
+
+                </script>
 
             </div>
             <p class="text-xs text-primary">

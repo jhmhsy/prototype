@@ -47,6 +47,10 @@
                 @include ('components.homepage.footer-section')
             </footer>
         </div>
+
+
+        @include('components.homepage.event-section')
+
     </body>
 
 
