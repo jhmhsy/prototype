@@ -12,7 +12,7 @@
             <p class="text-gray-600 dark:text-gray-400">Fill in the details below to register a new member</p>
         </div>
         <div class="w-full flex flex-wrap">
-            <div class="container px-4 max-w-4xl w-full md:w-[65%]">
+            <div class="container px-4 w-full">
                 <!-- Header -->
 
 
@@ -32,7 +32,8 @@
                     <!-- Basic Information Card -->
                     <div
                         class="bg-white dark:bg-peak_2 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-6">
-                        <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Membership Registration
+                        <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Annual Membership
+                            Registration
                         </h2>
                         <div class="mb-6">
                             <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
@@ -45,6 +46,21 @@
                                 <option value="Walkin">Walkin - ₱{{ $prices['Walk-in'] ?? 'N/A' }}</option>
                                 <option value="Manual">Manual</option>
                             </select>
+
+
+                            <template x-if="membershipType === 'Manual'">
+
+                                <!-- Manual Membership Price -->
+                                <div class="mt-5">
+                                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                                        Manual price
+                                    </label>
+                                    <input type="number" name="manual-price"
+                                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-peak_1 dark:border-gray-600 dark:text-white sm:text-sm">
+                                </div>
+                            </template>
+
+
                         </div>
 
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -103,7 +119,7 @@
 
                         <div class="bg-white dark:bg-peak_2 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-6"
                             x-data="{ includeService: false, subscriptions: 1, serviceStartDate: '' }">
-                            <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Subscription Service
+                            <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Service Plan
                             </h2>
 
                             <div class="mb-4">
@@ -111,7 +127,7 @@
                                     <input type="checkbox" x-model="includeService"
                                         @change="if (includeService) { subscriptions = 1; serviceStartDate = new Date().toISOString().slice(0, 10); } else { serviceStartDate = ''; }"
                                         class="rounded border-gray-300 text-blue-600 shadow-sm focus:border-blue-500 focus:ring-blue-500">
-                                    <span class="ml-2 text-gray-700 dark:text-gray-300">Include Subscriptions</span>
+                                    <span class="ml-2 text-gray-700 dark:text-gray-300">Include Service Plan</span>
                                 </label>
                             </div>
 

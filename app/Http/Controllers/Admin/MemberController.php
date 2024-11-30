@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
+
+use App\Http\Controllers\Controller;
 
 use App\Mail\CancelLockerMail;
 use App\Mail\CancelServiceMail;
@@ -211,6 +213,8 @@ class MemberController extends Controller
             'email' => ['nullable', 'string', 'lowercase', 'email', 'max:100', 'unique:' . Member::class],
             'membership_type' => 'required|in:Regular,Manual,Walkin',
 
+            'manual-price' => 'nullable|numeric|min:0'
+
         ]);
 
 
@@ -259,6 +263,8 @@ class MemberController extends Controller
                 $amount = $prices['Regular'] ?? 0; // Use 0 if price is not found
             } elseif ($request->membership_type === 'Walkin') {
                 $amount = $prices['Walk-in'] ?? 0; // Use 0 if price is not found
+            } elseif ($request->membership_type === 'Manual') {
+                $amount = $request->input('manual-price') ?? 0; // Use 0 if price is not found
             }
 
 

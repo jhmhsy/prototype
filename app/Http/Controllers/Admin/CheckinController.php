@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
+
+use App\Http\Controllers\Controller;
 
 use App\Models\Member;
 
@@ -13,64 +15,7 @@ use Illuminate\Support\Facades\Mail;
 
 class CheckinController extends Controller
 {
-    public function index(Request $request)
-    {
 
-        if (!auth()->user()->canany(['checkin-list', 'checkin-edit'])) {
-            abort(404); // forbidden / not found
-        }
-
-        $query = Member::query()->with(['services', 'lockers']);
-
-        if ($request->has('search')) {
-            $searchTerm = $request->search;
-            $query->where(function ($query) use ($searchTerm) {
-                $query->where('id_number', 'like', '%' . $searchTerm . '%')
-                    ->orWhere('id', 'like', '%' . $searchTerm . '%')
-                    ->orWhere('name', 'like', '%' . $searchTerm . '%');
-            });
-        }
-
-
-
-        // Get paginated results
-        $members = $query->paginate(10);
-        $membersCount = $members->count();
-
-        // Process each member's subscription status
-        foreach ($members as $member) {
-            // Initialize subscription status flags
-            $member->hasSubscriptions = false;
-            $member->hasOverdueSubscription = false;
-            $member->hasValidSubscription = false;
-
-            // Check services
-            foreach ($member->services as $service) {
-                $member->hasSubscriptions = true; // Has at least one service
-
-                if ($service->status === 'Overdue') {
-                    $member->hasOverdueSubscription = true;
-                }
-                if (in_array($service->status, ['Due', 'Active', 'Pre-paid'])) {
-                    $member->hasValidSubscription = true;
-                }
-            }
-
-            // Check lockers
-            foreach ($member->lockers as $locker) {
-                $member->hasSubscriptions = true; // Has at least one locker
-
-                if ($locker->status === 'Overdue') {
-                    $member->hasOverdueSubscription = true;
-                }
-                if (in_array($locker->status, ['Due', 'Active', 'Pre-paid'])) {
-                    $member->hasValidSubscription = true;
-                }
-            }
-        }
-
-        return view('administrator.checkin.index', compact('members', 'membersCount'));
-    }
 
     public function checkin(Request $request, Member $member)
     {

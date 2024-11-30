@@ -28,9 +28,6 @@ class HomeController extends Controller
         return view('welcome', compact('equipments', 'events', 'prices', 'questions', 'superadminemail'));
 
     }
-    public function showmap()
-    {
-        return view('gym-map');
-    }
+
 
 }

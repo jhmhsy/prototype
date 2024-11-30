@@ -10,10 +10,7 @@ use Illuminate\Support\Facades\Validator;
 
 class ScannerController extends Controller
 {
-    public function index()
-    {
-        return view('scanner');
-    }
+
 
     public function process(Request $request)
     {
