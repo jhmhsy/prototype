@@ -20,7 +20,13 @@ class LinkController extends Controller
     public function updateIdNumber(Request $request, Member $member)
     {
         // Check if the member already has an ID number assigned or is already linked
-        if (!is_null($member->id_number)) {
+
+        // Original
+        // if (!is_null($member->id_number)) {
+        //     return redirect()->back()->with('error', 'User already linked.');
+        // }
+
+        if ($member->id_number !== '******') {
             return redirect()->back()->with('error', 'User already linked.');
         }
 

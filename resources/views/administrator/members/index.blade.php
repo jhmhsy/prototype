@@ -141,7 +141,12 @@ const keynumber = "{{ $keynumber }}"; // Safe to use if sanitized by Blade
                         @endphp
 
                         <td class="whitespace-nowrap px-4 py-2">
-                            @if ($member->id_number)
+                            @if ($member->id_number == "******")
+                            <a href="{{ route('index.link', $member->id) }}"
+                                class="text-white bg-red-500 hover:bg-red-700 rounded px-3 py-1">
+                                Link
+                            </a>
+                            @elseif ($member->id_number !== "******")
                             <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30"
                                 viewBox="0 0 48 48">
                                 <linearGradient id="IMoH7gpu5un5Dx2vID39Ra_pIPl8tqh3igN_gr1" x1="9.858" x2="38.142"
@@ -162,11 +167,7 @@ const keynumber = "{{ $keynumber }}"; // Safe to use if sanitized by Blade
                                     d="M21.293,32.707l-8-8c-0.391-0.391-0.391-1.024,0-1.414l1.414-1.414	c0.391-0.391,1.024-0.391,1.414,0L22,27.758l10.879-10.879c0.391-0.391,1.024-0.391,1.414,0l1.414,1.414	c0.391-0.391,0.391,1.024,0,1.414l-13,13C22.317,33.098,21.683,33.098,21.293,32.707z">
                                 </path>
                             </svg>
-                            @else
-                            <a href="{{ route('index.link', $member->id) }}"
-                                class="text-white bg-red-500 hover:bg-red-700 rounded px-3 py-1">
-                                Link
-                            </a>
+
                             @endif
                         </td>
 
