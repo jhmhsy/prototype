@@ -12,7 +12,7 @@
         </div>
         <p class="text-muted-foreground mb-6 text-gray-500">Please confirm that you want to <span
                 class="text-red-500">"DELETE"</span> this Member
-            ( <span class="text-black">{{$member->name}}</span> ), along
+            ( <span class="text-black dark:text-white">{{$member->name}}</span> ), along
             with all their current subscriptions and subscription history.
         </p>
 

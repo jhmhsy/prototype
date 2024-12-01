@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Mail\CancelLockerMail;
 use App\Mail\CancelServiceMail;
 use App\Mail\CancelTreadmillMail;
+use App\Mail\MemberDeletion;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
@@ -757,10 +758,28 @@ class MemberController extends Controller
 
     public function destroy($id)
     {
-        $member = Member::findOrFail($id);
-        $member->delete();  // This will delete the member and all related data due to cascading delete
 
-        return redirect()->route('members.index')->with('success', 'Member deleted successfully.');
+
+        if (auth()->user()->getRoleNames()->first() == 'SuperAdmin') { //auto delete if the admin is deleting
+
+            $member = Member::findOrFail($id);
+            $member->delete();
+
+            return redirect()->route('members.index')->with('success', 'Member deleted successfully.');
+
+        } else { //auth user not superadmin requires approval before delte
+
+            $member = Member::find($id);
+            if (!$member) {
+                return response()->json(['message' => 'Member not found'], 404);
+            }
+            Mail::to(config('app.superadminemail'))->send(new MemberDeletion($member));
+            $member->update(['action_status' => 'Pending']);
+
+            return redirect()->route('members.index')->with('success', 'Waiting for Deletion Approval.');
+        }
+
+
     }
 
     public function update(Request $request, $id)

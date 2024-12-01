@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Service Due Reminder</title>
+    <title>Service Plan Due Reminder</title>
 </head>
 
 <body>

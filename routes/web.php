@@ -201,6 +201,9 @@ Route::middleware(['throttle:global'])->group(function () {
 
                 // Admin Confirmatiion
                 Route::get('/confirmation', [ConfirmationController::class, 'index'])->name('confirmation.index');
+
+                Route::post('/members/{member}/approve', [ConfirmationController::class, 'approveMemberEnd'])->name('member.approve');
+                Route::post('/members/{member}/diapprove', [ConfirmationController::class, 'disapproveMemberEnd'])->name('member.disapprove');
                 Route::post('/services/{service}/approve', [ConfirmationController::class, 'approveServiceEnd'])->name('services.approve');
                 Route::post('/services/{service}/diapprove', [ConfirmationController::class, 'diapproveServiceEnd'])->name('services.disapprove');
                 Route::post('/lockers/{locker}/approve', [ConfirmationController::class, 'approveLockerEnd'])->name('locker.approve');

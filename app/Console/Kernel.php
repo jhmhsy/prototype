@@ -41,7 +41,9 @@ class Kernel extends ConsoleKernel
 
         $schedule->command(' app:locker-treadmill-reminder')->everyThirtyMinutes();
 
-        $schedule->command(' app:membership-reminder')->everyThirtyMinutes();
+        $schedule->command(' app:membership-reminder')->everyTwoSeconds();
+
+        $schedule->command('events:update-status')->everyThirtyMinutes();
     }
 
     protected $commands = [

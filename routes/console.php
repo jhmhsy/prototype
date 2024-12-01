@@ -21,7 +21,7 @@ Schedule::command('treadmill:update-status')
     ->appendOutputTo(storage_path('logs/scheduler.log'));
 
 Schedule::command('membership:update-status')
-    ->everyMinute()
+    ->everyTwoSeconds()
     ->appendOutputTo(storage_path('logs/scheduler.log'));
 
 
@@ -36,7 +36,7 @@ Schedule::command('app:locker-treadmill-reminder')
 
 
 Schedule::command('app:membership-reminder')
-    ->everyThirtyMinutes()
+    ->everyTwoSeconds()
     ->appendOutputTo(storage_path('logs/scheduler.log'));
 
 Schedule::command('events:update-status')

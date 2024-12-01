@@ -15,6 +15,7 @@ return new class extends Migration {
             $table->string('fb')->nullable();
             $table->string('email')->unique()->nullable();
             $table->enum('membership_type', ['Regular', 'Student', 'Walkin', 'Manual']);
+            $table->enum('action_status', ['None', 'Pending'])->default('None');
             $table->decimal('amount', 8, 2);
             $table->timestamps();
 

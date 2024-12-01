@@ -6,11 +6,11 @@
 </head>
 
 <body>
-    <h1>Membership Expiration Reminder</h1>
+    <h1>Annual Membership Expiration Reminder</h1>
 
     <p>Dear {{ $member->name }},</p>
 
-    <p>This is a reminder that your membership is due to expire soon:</p>
+    <p>This is a reminder that your Annual Membership is due to expire soon:</p>
 
     <ul>
         <li>Membership Type: {{ $member->membership_type }}</li>

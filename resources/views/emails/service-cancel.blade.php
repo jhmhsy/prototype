@@ -1,4 +1,4 @@
-<h1>Services Cancelation - Pending</h1>
+<h1>Services Plan Cancelation - Pending</h1>
 <p>A service has been marked for <strong>cancellation</strong> and is awaiting admin approval.</p>
 
 <p>Below is the details of Canceled Service:</p>

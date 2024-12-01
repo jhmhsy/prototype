@@ -70,7 +70,10 @@ const keynumber = "{{ $keynumber }}"; // Safe to use if sanitized by Blade
                         <th class="px-4 py-2 text-left">Name</th>
                         <th class="px-4 py-2 text-left">Subscription</th>
                         <th class="px-4 py-2 text-left">Type</th>
+
+                        @can('member-services')
                         <th class="px-4 py-2 text-left">Checkin</th>
+                        @endcan
 
                         @canany(['member-view', 'member-services', 'member-edit', 'member-membership-renew',
                         'member-delete'])
@@ -171,8 +174,10 @@ const keynumber = "{{ $keynumber }}"; // Safe to use if sanitized by Blade
                             @endif
                         </td>
 
+                        <!-- Name -->
                         <td class="whitespace-nowrap px-4 py-2">{{ $member->name }}</td>
 
+                        <!-- Subscription -->
                         <td class="whitespace-nowrap px-4 py-2">
                             @php
                             $activeService = $member->services
@@ -203,10 +208,9 @@ const keynumber = "{{ $keynumber }}"; // Safe to use if sanitized by Blade
                             N/A
                             @endif
                         </td>
-
+                        <!-- Type -->
                         <td class="whitespace-nowrap px-4 py-2">
-                            <button @click="membershipOption = true"
-                                class=" ml-5 md:ml-10 w-3 h-3  {{ $bgColor }} rounded-full"
+                            <button @click="membershipOption = true" class="w-3 h-3  {{ $bgColor }} rounded-full"
                                 aria-label="{{ $status }} status" title="{{ $status }}" type="button">
                             </button>
 
@@ -219,13 +223,18 @@ const keynumber = "{{ $keynumber }}"; // Safe to use if sanitized by Blade
                             @endif
                         </td>
 
+                        <!-- Checkin -->
                         @can('member-services')
                         @include ('administrator.members.checkin')
                         @endcan
 
+
+                        <!-- ACtion -->
                         @canany(['member-view', 'member-services', 'member-edit', 'member-membership-renew',
                         'member-delete'])
                         <td class="px-4 align-middle">
+
+                            @if($member->action_status !== 'Pending')
                             <div class="action-dropdown flex items-center ">
                                 <button
                                     class="dropdown-button p-1 rounded-md hover:bg-gray-100 dark:hover:bg-peak_3 transition-colors relative">
@@ -316,6 +325,12 @@ const keynumber = "{{ $keynumber }}"; // Safe to use if sanitized by Blade
                                     </div>
                                 </div>
                             </div>
+                            @else
+                            <span class="text-amber-600 whitespace-nowrap"> Waiting for deletion Approval</span>
+                            @endif
+
+
+
                             @include ('administrator.members.services')
                             @include ('administrator.members.show')
                             @include ('administrator.members.edit')
