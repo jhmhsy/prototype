@@ -203,13 +203,13 @@ Route::middleware(['throttle:global'])->group(function () {
                 Route::get('/confirmation', [ConfirmationController::class, 'index'])->name('confirmation.index');
 
                 Route::post('/members/{member}/approve', [ConfirmationController::class, 'approveMemberEnd'])->name('member.approve');
-                Route::post('/members/{member}/diapprove', [ConfirmationController::class, 'disapproveMemberEnd'])->name('member.disapprove');
+                Route::post('/members/{member}/disapprove', [ConfirmationController::class, 'disapproveMemberEnd'])->name('member.disapprove');
                 Route::post('/services/{service}/approve', [ConfirmationController::class, 'approveServiceEnd'])->name('services.approve');
-                Route::post('/services/{service}/diapprove', [ConfirmationController::class, 'diapproveServiceEnd'])->name('services.disapprove');
+                Route::post('/services/{service}/disapprove', [ConfirmationController::class, 'disapproveServiceEnd'])->name('services.disapprove');
                 Route::post('/lockers/{locker}/approve', [ConfirmationController::class, 'approveLockerEnd'])->name('locker.approve');
-                Route::post('/lockers/{locker}/diapprove', [ConfirmationController::class, 'disapproveLockerEnd'])->name('locker.disapprove');
+                Route::post('/lockers/{locker}/disapprove', [ConfirmationController::class, 'disapproveLockerEnd'])->name('locker.disapprove');
                 Route::post('/treadmills/{treadmill}/approve', [ConfirmationController::class, 'approveTreadmillEnd'])->name('treadmill.approve');
-                Route::post('/treadmills/{treadmill}/diapprove', [ConfirmationController::class, 'disapproveTreadmillEnd'])->name('treadmill.disapprove');
+                Route::post('/treadmills/{treadmill}/disapprove', [ConfirmationController::class, 'disapproveTreadmillEnd'])->name('treadmill.disapprove');
 
                 // Checkin`s
                 Route::post('/checkin/{member}', [CheckinController::class, 'checkin'])->name('checkin.store');

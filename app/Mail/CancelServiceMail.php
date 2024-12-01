@@ -21,7 +21,7 @@ class CancelServiceMail extends Mailable
     public function __construct(Service $service)
     {
         $this->service = $service;
-        $this->confirmationUrl = url('/confirmation');  // This dynamically generates the URL
+        $this->confirmationUrl = url('/admin/confirmation');  // This dynamically generates the URL
     }
 
     public function build()

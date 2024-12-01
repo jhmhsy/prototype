@@ -30,12 +30,12 @@ class Kernel extends HttpKernel
 
     protected function schedule(Schedule $schedule)
     {
-        
-        $schedule->command('locker:update-status')->everyThirtyMinutes();
 
-        $schedule->command('app:service-due-reminder')->everyThirtyMinutes();
+        $schedule->command('locker:update-status')->everyTwoSeconds();
 
-        $schedule->command('events:update-status')->everyThirtyMinutes();
+        $schedule->command('app:service-due-reminder')->everyTwoSeconds();
+
+        $schedule->command('events:update-status')->everyTwoSeconds();
     }
 
 }

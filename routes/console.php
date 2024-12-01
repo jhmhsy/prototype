@@ -9,15 +9,15 @@ Artisan::command('inspire', function () {
 })->purpose('Display an inspiring quote')->hourly();
 
 Schedule::command('locker:update-status')
-    ->everyMinute()
+    ->everyTwoSeconds()
     ->appendOutputTo(storage_path('logs/scheduler.log'));
 
 Schedule::command('service:update-status')
-    ->everyMinute()
+    ->everyTwoSeconds()
     ->appendOutputTo(storage_path('logs/scheduler.log'));
 
 Schedule::command('treadmill:update-status')
-    ->everyMinute()
+    ->everyTwoSeconds()
     ->appendOutputTo(storage_path('logs/scheduler.log'));
 
 Schedule::command('membership:update-status')
@@ -26,12 +26,12 @@ Schedule::command('membership:update-status')
 
 
 Schedule::command('app:service-due-reminder')
-    ->everyThirtyMinutes()
+    ->everyTwoSeconds()
     ->appendOutputTo(storage_path('logs/scheduler.log'));
 
 
 Schedule::command('app:locker-treadmill-reminder')
-    ->everyThirtyMinutes()
+    ->everyTwoSeconds()
     ->appendOutputTo(storage_path('logs/scheduler.log'));
 
 
@@ -40,5 +40,5 @@ Schedule::command('app:membership-reminder')
     ->appendOutputTo(storage_path('logs/scheduler.log'));
 
 Schedule::command('events:update-status')
-    ->everyThirtyMinutes()
+    ->everyTwoSeconds()
     ->appendOutputTo(storage_path('logs/scheduler.log'));

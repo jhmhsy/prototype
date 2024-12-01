@@ -284,7 +284,7 @@
                                                         </button>
                                                     </form>
                                                     <form action="{{ route('treadmill.disapprove', $treadmill->id) }}"
-                                                        methomethod="POST">
+                                                        method="POST">
                                                         @csrf
                                                         <button type="submit"
                                                             class="w-full group flex items-center px-4 py-2 text-sm text-red-600 dark:text-red-400 hover:bg-gray-100 dark:hover:bg-peak_3">

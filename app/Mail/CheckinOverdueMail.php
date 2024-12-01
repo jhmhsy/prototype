@@ -24,7 +24,7 @@ class CheckinOverdueMail extends Mailable
         $this->overdueLockers = $overdueLockers;
         $this->overdueServices = $overdueServices;
         $this->overdueTreadmills = $overdueTreadmills;
-        $this->confirmationUrl = url('/members/index?search=' . urlencode($member->name));
+        $this->confirmationUrl = url('/admin/members/index?search=' . urlencode($member->name));
     }
 
     public function build()

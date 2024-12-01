@@ -53,7 +53,7 @@ class ConfirmationController extends Controller
         return back()->with('success', 'Service has been approved and ended.');
     }
 
-    public function diapproveServiceEnd(Service $service)
+    public function disapproveServiceEnd(Service $service)
     {
         // Update service status to "Ended"
         $service->update(['action_status' => 'None']);

@@ -20,7 +20,7 @@ class MemberDeletion extends Mailable
     public function __construct(Member $member)
     {
         $this->member = $member;
-        $this->confirmationUrl = url('/confirmation');
+        $this->confirmationUrl = url('/admin/confirmation');
     }
 
     /**

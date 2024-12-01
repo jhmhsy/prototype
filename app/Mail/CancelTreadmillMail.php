@@ -21,7 +21,7 @@ class CancelTreadmillMail extends Mailable
     public function __construct(Treadmill $treadmill)
     {
         $this->treadmill = $treadmill;
-        $this->confirmationUrl = url('/confirmation');  // This dynamically generates the URL
+        $this->confirmationUrl = url('/admin/confirmation');  // This dynamically generates the URL
     }
 
     public function build()

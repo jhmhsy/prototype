@@ -21,7 +21,7 @@ class CancelLockerMail extends Mailable
     public function __construct(Locker $locker)
     {
         $this->locker = $locker;
-        $this->confirmationUrl = url('/confirmation');  // This dynamically generates the URL
+        $this->confirmationUrl = url('/admin/confirmation');  // This dynamically generates the URL
     }
 
     public function build()
