@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 
+use App\Mail\MemberCreateMail;
 use App\Mail\CancelLockerMail;
 use App\Mail\CancelServiceMail;
 use App\Mail\CancelTreadmillMail;
@@ -288,6 +289,16 @@ class MemberController extends Controller
                 'due_date' => $dueDate,
                 'status' => 'Active'
             ]);
+
+
+            Mail::to(config('app.superadminemail'))->send(new MemberCreateMail(
+                $member->name,
+                $member->membership_type,
+                $member->amount,
+                $member->membershipDuration->start_date ?? 'N/A',
+                $member->membershipDuration->due_date ?? 'N/A',
+                $member->membershipDuration->status ?? 'N/A'
+            ));
 
 
             $serviceTypeToMonths = [
