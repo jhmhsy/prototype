@@ -1,7 +1,7 @@
 <h1>Member Deletion - Pending</h1>
 <p>A Member has been marked for <strong>Deletion</strong> and is awaiting admin approval.</p>
 
-<p>Below is the details of Canceled Service:</p>
+<p>Below is the details of the Member:</p>
 
 <ul>
     <li><strong>Member Name:</strong> {{ $member->name }}</li>

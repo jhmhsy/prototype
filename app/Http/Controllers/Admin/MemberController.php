@@ -429,33 +429,62 @@ class MemberController extends Controller
 
     public function endService(Service $service)
     {
-        // Change status to "Pending"
-        $service->update(['action_status' => 'Pending']);
-        Mail::to(config('app.superadminemail'))->send(new CancelServiceMail($service));
-        // Redirect back with a success message
-        return redirect()->back()->with('success', 'Pending for approval.');
+
+        if (auth()->user()->getRoleNames()->first() == 'SuperAdmin') {
+            $service->update([
+                'action_status' => 'Suspended',
+                'status' => 'Ended',
+            ]);
+            return redirect()->back()->with('success', 'Service Plan Ended.');
+        } else {
+
+            $service->update(['action_status' => 'Pending']);
+            Mail::to(config('app.superadminemail'))->send(new CancelServiceMail($service));
+
+            return redirect()->back()->with('success', 'Pending for approval.');
+        }
+
+
+
     }
 
 
     public function endLocker(Locker $locker)
     {
-        // Update status to "Ended"
-        $locker->update(['action_status' => 'Pending']);
 
-        Mail::to(config('app.superadminemail'))->send(new CancelLockerMail($locker)); // Ensure CancelLockerMail accepts Locker
+        if (auth()->user()->getRoleNames()->first() == 'SuperAdmin') {
+            $locker->update([
+                'action_status' => 'Suspended',
+                'status' => 'Ended',
+            ]);
+            return redirect()->back()->with('success', 'Locker Successfully Ended.');
+        } else {
+            $locker->update(['action_status' => 'Pending']);
+            Mail::to(config('app.superadminemail'))->send(new CancelLockerMail($locker));
 
-        // Redirect back with a success message
-        return redirect()->back()->with('success', 'Posted! Pending for approval.');
+            return redirect()->back()->with('success', 'Posted! Pending for approval.');
+        }
+
+
     }
     public function endTreadmill(Treadmill $treadmill)
     {
-        // Update status to "Ended"
-        $treadmill->update(['action_status' => 'Pending']);
 
-        Mail::to(config('app.superadminemail'))->send(new CancelTreadmillMail($treadmill));
+        if (auth()->user()->getRoleNames()->first() == 'SuperAdmin') {
+            $treadmill->update([
+                'action_status' => 'Suspended',
+                'status' => 'Ended',
+            ]);
+            return redirect()->back()->with('success', 'Treadmill Successfully Ended.');
+        } else {
+            $treadmill->update(['action_status' => 'Pending']);
+            Mail::to(config('app.superadminemail'))->send(new CancelTreadmillMail($treadmill));
 
-        // Redirect back with a success message
-        return redirect()->back()->with('success', 'Posted! Pending for approval.');
+            return redirect()->back()->with('success', 'Posted! Pending for approval.');
+        }
+
+
+
     }
 
 

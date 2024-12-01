@@ -45,7 +45,7 @@
                                         {{ $member->membershipDuration->due_date ?? 'N/A' }}
                                     </td>
                                     <td class="whitespace-nowrap px-4 text-left text-amber-700">
-                                        Member Pending Deletion
+                                        Member Pending for Deletion
                                     </td>
                                     <td class="px-4 align-middle">
                                         <div class="action-dropdown flex items-center justify-center">
@@ -120,7 +120,7 @@
                                         {{ $service->start_date }} - {{ $service->due_date }}
                                     </td>
                                     <td class="whitespace-nowrap px-4 text-left text-amber-700">
-                                        Service Pending Deletion
+                                        Service Pending for Cancelation
                                     </td>
                                     <td class="px-4 align-middle">
                                         <div class="action-dropdown flex items-center justify-center">
@@ -184,7 +184,8 @@
                                     <td class="whitespace-nowrap px-4 text-left">{{ $locker->start_date }} -
                                         {{ $locker->due_date }}
                                     </td>
-                                    <td class="whitespace-nowrap px-4 text-left text-amber-700">Service Pending Deletion
+                                    <td class="whitespace-nowrap px-4 text-left text-amber-700">Locker Pending for
+                                        Cancelation
                                     </td>
                                     <td class="px-4 align-middle">
                                         <div class="action-dropdown flex items-center justify-center">
@@ -248,7 +249,8 @@
                                     <td class="whitespace-nowrap px-4 text-left">{{ $treadmill->start_date }} -
                                         {{ $treadmill->due_date }}
                                     </td>
-                                    <td class="whitespace-nowrap px-4 text-left text-amber-700">Service Pending Deletion
+                                    <td class="whitespace-nowrap px-4 text-left text-amber-700">Treadmill Pending for
+                                        Cancelation
                                     </td>
                                     <td class="px-4 align-middle">
                                         <div class="action-dropdown flex items-center justify-center">
