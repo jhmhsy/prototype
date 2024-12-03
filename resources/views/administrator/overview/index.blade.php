@@ -1,7 +1,7 @@
 @canany(['overview-list'])
 <x-dash-layout title="Overview">
     <div class="text-night dark:text-white flex flex-col space-y-3 overflow-auto">
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 dark:text-white">
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 dark:text-white">
             <div
                 class="bg-white dark:bg-peak-2  border border-gray-300 dark:border-none rounded-lg px-4 py-5 flex space-x-2 items-center">
                 <svg width="50" height="50" xmlns="http://www.w3.org/2000/svg"
@@ -54,10 +54,8 @@
 
 
         <!---------------------------------------- CHARTS--------------------- -->
-        <div class="grid md:grid-cols-1 lg:grid-cols-2 gap-6">
-            <div class="rounded-lg  shadow-sm grid grid-cols-1 gap-5">
-
-
+        <div class="grid md:grid-cols-1 lg:grid-cols-2 gap-4">
+            <div class="rounded-lg  shadow-sm grid grid-cols-1 gap-4">
                 <div class="border border-gray-300 dark:border-gray-800 rounded-lg">
                     <canvas id="membershipChart"></canvas>
                 </div>
@@ -67,7 +65,7 @@
                 </div>
 
             </div>
-            <div class="grid grid-cols-1 gap-5">
+            <div class="grid grid-cols-1 gap-4">
                 <div
                     class=" max-w-full h-full overflow-x-auto bg-white dark:bg-peak-2 border border-gray-300 dark:border-none rounded-lg p-5">
                     <h2 class="font-bold">New Members</h2>
@@ -147,7 +145,7 @@
                 </div>
             </div>
         </div>
-        <div class="grid md:grid-cols-1 lg:grid-cols-2 gap-6">
+        <div class="grid md:grid-cols-1 lg:grid-cols-2 gap-4">
 
             <div
                 class="w-full h-full p-6 text-gray-500 border border-gray-300 dark:border-gray-800 rounded-lg  overflow-auto">

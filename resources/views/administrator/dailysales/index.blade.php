@@ -61,7 +61,7 @@
 
                 <div class="p-6">
                     <div class="bg-white dark:bg-peak_2 p-6 rounded-lg space-y-6mx-auto">
-                        <div class="border-b border-gray-200 dark:border-gray-700 pb-4">
+                        <div class="border-b mb-2 border-gray-200 dark:border-gray-700 pb-4">
                             <h3 class="text-lg font-semibold mb-4 text-black dark:text-white">Membership Total</h3>
                             <div class="space-y-3">
                                 <div class="flex justify-between items-center">
@@ -83,7 +83,7 @@
                             </div>
                         </div>
 
-                        <div class="border-b border-gray-200 dark:border-gray-700 pb-4">
+                        <div class="border-b mb-2 border-gray-200 dark:border-gray-700 pb-4">
                             <h3 class="text-lg font-semibold mb-4 text-black dark:text-white">Services Total</h3>
                             <div class="space-y-3">
                                 <div class="flex justify-between items-center">
@@ -135,7 +135,7 @@
 
                         <div class="mt-2 pt-4 border-gray-200 dark:border-gray-700">
                             <div class="flex justify-between items-center">
-                                <span class="text-xl font-bold text-gray-500">Total Sales</span>
+                                <span class="text-xl font-bold text-primary">Total Sales</span>
                                 <span
                                     class="text-black dark:text-white text-xl font-bold">₱{{ number_format($totalSales, 2) }}</span>
                             </div>
