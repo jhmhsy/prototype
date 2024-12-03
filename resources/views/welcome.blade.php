@@ -19,7 +19,7 @@
 
             <!-- trainer sections-->
             <div id="trainer-section">
-                <x-homepage.trainer-section />
+                <x-homepage.trainer />
             </div>
 
             <!-- pricing sections-->
