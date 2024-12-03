@@ -11,11 +11,11 @@
                     Danao City, Cebu</p>
                 @include('gym-map')
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 items-center mx-auto gap-3 py-3">
-                    <img src="{{ asset('/images/public/previews1.jpg') }}" alt="location"
+                    <img src="{{ asset('/images/public/preview1.jpg') }}" alt="location"
                         class="w-full max-w-xs mx-auto">
-                    <img src="{{ asset('/images/public/previews2.jpg') }}" alt="location"
+                    <img src="{{ asset('/images/public/preview2.jpg') }}" alt="location"
                         class="w-full max-w-xs mx-auto">
-                    <img src="{{ asset('/images/public/previews3.jpg') }}" alt="location"
+                    <img src="{{ asset('/images/public/preview3.jpg') }}" alt="location"
                         class="w-full max-w-xs mx-auto">
                 </div>
 
