@@ -24,6 +24,9 @@
     <x-forms.nav-link href="/#footer-section" class="nav-link">
         {{ __('Contacts') }}
     </x-forms.nav-link>
+    <x-forms.nav-link href="/about-us" class="nav-link">
+        {{ __('About Us') }}
+    </x-forms.nav-link>
 
     @if (Auth::user())
         <x-forms.nav-link href="{{ route('services.index') }}" class="nav-link">
@@ -61,6 +64,9 @@
 
     <x-forms.responsive-nav-link href="/#footer-section">
         {{ __('Contacts') }}
+    </x-forms.responsive-nav-link>
+    <x-forms.responsive-nav-link href="/about-us">
+        {{ __('About Us') }}
     </x-forms.responsive-nav-link>
 
     @if (Auth::user())
