@@ -10,7 +10,7 @@
                     <div class="w-full sm:w-auto ">
                         <label for="filter" class="block text-sm font-medium text-gray-500 mb-1">Filter By Type</label>
                         <select name="filter" id="filter" onchange="this.form.submit()"
-                            class="w-full rounded-md dark:bg-peak_2 text-gray-500 border-white/10 shadow-sm focus:ring focus:border-blue-500 focus:text-black dark:focus:text-white">
+                            class="w-full rounded-md dark:bg-peak_2 text-gray-500 border-white/10 shadow-sm focus:ring-1/2 focus:border-blue-500 focus:text-black dark:focus:text-white">
                             <option value="services" {{ $filter === 'services' ? 'selected' : '' }}>Services</option>
                             <option value="lockers" {{ $filter === 'lockers' ? 'selected' : '' }}>Lockers</option>
                             <option value="treadmills" {{ $filter === 'treadmills' ? 'selected' : '' }}>Treadmills</option>
@@ -21,7 +21,7 @@
                     <div class="w-full sm:w-auto">
                         <label for="status" class="block text-sm font-medium text-gray-500 mb-1">Filter By Status</label>
                         <select name="status" id="status" onchange="this.form.submit()"
-                            class="w-full rounded-md dark:bg-peak_2 text-gray-500 border-white/10 shadow-sm focus:ring focus:border-blue-500 focus:text-black dark:focus:text-white">
+                            class="w-full rounded-md dark:bg-peak_2 text-gray-500 border-white/10 shadow-sm focus:ring-1/2 focus:border-blue-500 focus:text-black dark:focus:text-white">
                             <option value="">All Statuses</option>
                             @foreach (['Active', 'Pre-paid', 'Due', 'Overdue', 'Ended', 'Impending'] as $availableStatus)
                                 <option value="{{ $availableStatus }}" {{ $status === $availableStatus ? 'selected' : '' }}>

@@ -126,7 +126,7 @@
                                 <label class="inline-flex items-center">
                                     <input type="checkbox" x-model="includeService"
                                         @change="if (includeService) { subscriptions = 1; serviceStartDate = new Date().toISOString().slice(0, 10); } else { serviceStartDate = ''; }"
-                                        class="rounded border-gray-300 text-blue-600 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                                        class="rounded border-gray-300 text-blue-600 shadow-sm focus:border-blue-500 focus:ring-blue-500 focus:ring-1/2">
                                     <span class="ml-2 text-gray-700 dark:text-gray-300">Include Service Plan</span>
                                 </label>
                             </div>
@@ -148,7 +148,7 @@
 
                                                 <template x-if="membershipType === 'Regular'">
                                                     <select :name="'service_type_' + i"
-                                                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-peak_1 dark:border-gray-600 dark:text-white sm:text-sm">
+                                                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 focus:ring-1/2 dark:bg-peak_1 dark:border-gray-600 dark:text-white sm:text-sm">
                                                         <option value="" selected disabled class="disabled">Choose an
                                                             option
                                                         </option>
@@ -172,7 +172,7 @@
                                                 </template>
                                                 <template x-if="membershipType === 'Walkin'">
                                                     <select :name="'service_type_' + i"
-                                                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-peak_1 dark:border-gray-600 dark:text-white sm:text-sm">
+                                                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 focus:ring-1/2 dark:bg-peak_1 dark:border-gray-600 dark:text-white sm:text-sm">
                                                         <option value="WalkinService">Walkin -
                                                             ₱{{ $prices['WalkinService'] ?? 'N/A' }}
                                                         </option>
@@ -181,7 +181,7 @@
                                                 <template x-if="membershipType === 'Manual'">
                                                     <!-- Manual membership options -->
                                                     <select :name="'service_type_' + i"
-                                                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-peak_1 dark:border-gray-600 dark:text-white sm:text-sm">
+                                                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 focus:ring-1/2 dark:bg-peak_1 dark:border-gray-600 dark:text-white sm:text-sm">
                                                         <option value="" selected disabled class="disabled">Choose an
                                                             option
                                                         <option value="1">1 Month</option>
@@ -208,7 +208,7 @@
                                                     Start Date
                                                 </label>
                                                 <input type="date" :name="'start_date_' + i" :value="serviceStartDate"
-                                                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-peak_1 dark:border-gray-600 dark:text-white sm:text-sm">
+                                                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 focus:ring-1/2 dark:bg-peak_1 dark:border-gray-600 dark:text-white sm:text-sm">
                                             </div>
 
                                             <!-- Manual membership options -->
@@ -243,7 +243,7 @@
 
 
                                 <button type="button" @click="subscriptions < 4 ? subscriptions++ : null"
-                                    class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50"
+                                    class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50"
                                     x-bind:disabled="subscriptions >= 4">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20"
                                         fill="currentColor">
