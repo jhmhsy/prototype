@@ -10,18 +10,11 @@
             <!-- Card Container -->
             <div class="max-w-7xl w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 p-8">
                 <!-- Team Member Cards -->
-                <div class="group transform transition-all duration-300 hover:scale-105 hover:z-10">
+                <div class="transform transition-all duration-300 hover:scale-105 hover:z-10">
                     <div
                         class="bg-peak-3 rounded-xl overflow-hidden shadow-2xl border border-peak-4 hover:border-peak-2 transition-colors">
                         <div class="relative aspect-[3/4]">
-                            <!-- First Image (default) -->
-                            <img src="{{ asset('/images/devs/alay.png') }}" alt="Henry"
-                                class="h-full w-full object-cover transition-opacity duration-300 ease-in-out group-hover:opacity-0">
-
-                            <!-- Second Image (on hover) -->
-                            <img src="{{ asset('/images/devs/transform1.png') }}" alt="Henry Transform"
-                                class="h-full w-full object-cover absolute top-0 left-0 transition-opacity duration-300 ease-in-out opacity-0 group-hover:opacity-100">
-
+                            <img src={{ asset("/images/devs/alay.png") }} alt="AlAY" class="h-full w-full object-cover">
                             <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                         </div>
                         <div class="p-4 text-center space-y-1">
@@ -31,18 +24,11 @@
                     </div>
                 </div>
 
-                <div class="group transform transition-all duration-300 hover:scale-105 hover:z-10">
+                <div class="transform transition-all duration-300 hover:scale-105 hover:z-10">
                     <div
                         class="bg-peak-3 rounded-xl overflow-hidden shadow-2xl border border-peak-4 hover:border-peak-2 transition-colors">
                         <div class="relative aspect-[3/4]">
-                            <!-- First Image (default) -->
-                            <img src="{{ asset('/images/devs/dya.png') }}" alt="Henry"
-                                class="h-full w-full object-cover transition-opacity duration-300 ease-in-out group-hover:opacity-0">
-
-                            <!-- Second Image (on hover) -->
-                            <img src="{{ asset('/images/devs/transform2.png') }}" alt="Henry Transform"
-                                class="h-full w-full object-cover absolute top-0 left-0 transition-opacity duration-300 ease-in-out opacity-0 group-hover:opacity-100">
-
+                            <img src={{ asset("/images/devs/dya.png") }} alt="Dya" class="h-full w-full object-cover">
                             <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                         </div>
                         <div class="p-4 text-center space-y-1">
@@ -52,46 +38,32 @@
                     </div>
                 </div>
 
-                <div class="group transform transition-all duration-300 hover:scale-105 hover:z-10">
+                <div class="transform transition-all duration-300 hover:scale-105 hover:z-10">
                     <div
                         class="bg-peak-3 rounded-xl overflow-hidden shadow-2xl border border-peak-4 hover:border-peak-2 transition-colors">
                         <div class="relative aspect-[3/4]">
-                            <!-- First Image (default) -->
-                            <img src="{{ asset('/images/devs/henry.png') }}" alt="Henry"
-                                class="h-full w-full object-cover transition-opacity duration-300 ease-in-out group-hover:opacity-0">
-
-                            <!-- Second Image (on hover) -->
-                            <img src="{{ asset('/images/devs/transform3.png') }}" alt="Henry Transform"
-                                class="h-full w-full object-cover absolute top-0 left-0 transition-opacity duration-300 ease-in-out opacity-0 group-hover:opacity-100">
-
+                            <img src={{ asset("/images/devs/henry.png") }} alt="Henry"
+                                class="h-full w-full object-cover">
                             <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                         </div>
                         <div class="p-4 text-center space-y-1">
                             <h3 class="text-xl font-bold text-white tracking-wide">Mahusay, John Henry</h3>
-                            <p class="text-xs text-gray-300 italic">Project Manager/Full-Stack Engineer</p>
+                            <p class="text-xs text-gray-300 italic">Full-Stack Engineer</p>
                         </div>
                     </div>
                 </div>
 
-
-
-                <div class="group transform transition-all duration-300 hover:scale-105 hover:z-10">
+                <div class="transform transition-all duration-300 hover:scale-105 hover:z-10">
                     <div
                         class="bg-peak-3 rounded-xl overflow-hidden shadow-2xl border border-peak-4 hover:border-peak-2 transition-colors">
                         <div class="relative aspect-[3/4]">
-                            <!-- First Image (default) -->
-                            <img src="{{ asset('/images/devs/jason.png') }}" alt="Henry"
-                                class="h-full w-full object-cover transition-opacity duration-300 ease-in-out group-hover:opacity-0">
-
-                            <!-- Second Image (on hover) -->
-                            <img src="{{ asset('/images/devs/transform4.png') }}" alt="Henry Transform"
-                                class="h-full w-full object-cover absolute top-0 left-0 transition-opacity duration-300 ease-in-out opacity-0 group-hover:opacity-100">
-
+                            <img src={{ asset("/images/devs/jason.png") }} alt="Jason"
+                                class="h-full w-full object-cover">
                             <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                         </div>
                         <div class="p-4 text-center space-y-1">
                             <h3 class="text-xl font-bold text-white tracking-wide">Sullano, Jason</h3>
-                            <p class="text-xs text-gray-300 italic">Full-Stack Engineer</p>
+                            <p class="text-xs text-gray-300 italic">Project Manager/Full-Stack Engineer</p>
                         </div>
                     </div>
                 </div>
