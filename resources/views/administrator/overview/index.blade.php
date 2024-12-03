@@ -146,7 +146,6 @@
             </div>
         </div>
         <div class="grid md:grid-cols-1 lg:grid-cols-2 gap-4">
-
             <div
                 class="w-full h-full p-6 text-gray-500 border border-gray-300 dark:border-gray-800 rounded-lg  overflow-auto">
                 <h2 class="text-sm font-semibold mb-4">Monthly Subscription Overview</h2>
