@@ -7,6 +7,8 @@ export default {
     safelist: [
         'polygon-1',
         'polygon-2',
+        'polygon-1-wrapper',
+        'polygon-2-wrapper',
     ],
     content: [
         "./src/**/*.{html,js,php}",
