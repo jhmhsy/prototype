@@ -87,7 +87,11 @@
             }
         }
     </script>
-
+    <style>
+        *{
+            transition: all .2s;
+        }
+    </style>
 
 </body>
 

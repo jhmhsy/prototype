@@ -12,8 +12,8 @@
                 <div class="p-2">
                     <div class="relative w-full overflow-auto">
                         <table class="w-full text-sm mb-3">
-                            <thead class="text-black dark:text-gray-500">
-                                <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+                            <thead class="text-black bg-peak-2 dark:text-gray-500">
+                                <tr class="border-b dark:border-white/10 transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
                                     <th class="h-12 px-4 text-left align-middle">Owner</th>
                                     <th class="h-12 px-4 text-left align-middle">Type</th>
                                     <th class="h-12 px-4 text-left align-middle">Status</th>

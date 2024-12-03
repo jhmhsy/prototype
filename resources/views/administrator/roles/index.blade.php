@@ -38,7 +38,7 @@
                     <div class="relative w-full overflow-auto">
                         <table class="w-full text-sm mb-3">
                             <thead class="text-black dark:text-white">
-                                <tr class="border-b dark:border-white/10 transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+                                <tr class="border-b bg-peak-2 dark:border-white/10 transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
                                     <th class="h-12 px-4 text-left align-middle">ID</th>
                                     <th class="h-12 px-4 text-left align-middle">Name</th>
 
