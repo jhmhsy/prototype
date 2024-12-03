@@ -31,28 +31,3 @@
         </div>
     </div>
 </div>
-<style>
-    .polygon-1-wrapper {
-        width: 100%;
-        max-width: 500px;
-        height: 300px;
-        overflow: visible;
-    }
-
-    .polygon-1 {
-        width: 100%;
-        height: 300px;
-        clip-path: polygon(0 0, 100% 0, 80% 100%, 0% 100%);
-        position: relative;
-        z-index: 5;
-    }
-
-    .polygon-2 {
-        width: 100%;
-        height: 300px;
-        max-width: 500px;
-        clip-path: polygon(20% 1%, 100% 0%, 100% 100%, 0% 100%);
-        z-index: 5;
-        
-    }
-</style>
