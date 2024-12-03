@@ -7,24 +7,28 @@
         <div class="space-y-4 w-full">
             <details class="border border-gray-800  rounded-md p-4 w-full">
                 <summary class="cursor-pointer text-gray-400">Where is Gym One Located?</summary>
-                <p class="text-sm italic pl-4">2nd floor of E.D.R Hardware and Construction Supply in Ilaya, Poblacion Danao City, Cebu</p>
+                <p class="text-sm italic pl-4">2nd floor of E.D.R Hardware and Construction Supply in Ilaya, Poblacion
+                    Danao City, Cebu</p>
                 @include('gym-map')
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 items-center mx-auto gap-3 py-3">
-                    <img src="{{ asset('/images/public/preview1.jpg') }}" alt="location" class="w-full max-w-xs mx-auto">
-                    <img src="{{ asset('/images/public/preview2.jpg') }}" alt="location" class="w-full max-w-xs mx-auto">
-                    <img src="{{ asset('/images/public/preview3.jpg') }}" alt="location" class="w-full max-w-xs mx-auto">
+                    <img src="{{ asset('/images/public/preview1.jpg') }}" alt="location"
+                        class="w-full max-w-xs mx-auto">
+                    <img src="{{ asset('/images/public/preview2.jpg') }}" alt="location"
+                        class="w-full max-w-xs mx-auto">
+                    <img src="{{ asset('/images/public/preview3.jpg') }}" alt="location"
+                        class="w-full max-w-xs mx-auto">
                 </div>
-                
+
 
             </details>
             </details>
 
             @foreach ($questions as $question)
-                <details class="border border-gray-800 rounded-md p-4 w-full">
-                    <summary class="cursor-pointer text-gray-400">{{ $question->question }}</summary>
-                    <p class="text-sm italic pl-4">{{ $question->answer }}</p>
-                    <p class="text-sm italic pl-4">{{ $question->extra_answer ? $question->extra_answer : '' }}</p>
-                </details>
+            <details class="border border-gray-800 rounded-md p-4 w-full">
+                <summary class="cursor-pointer text-gray-400">{{ $question->question }}</summary>
+                <p class="text-sm italic pl-4">{{ $question->answer }}</p>
+                <p class="text-sm italic pl-4">{{ $question->extra_answer ? $question->extra_answer : '' }}</p>
+            </details>
             @endforeach
 
         </div>
