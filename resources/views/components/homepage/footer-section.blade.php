@@ -15,22 +15,22 @@
             </div>
             <div class="max-w-sm mx-auto space-y-2">
                 @if (Auth::check())
-                <x-custom.primary-button class="bg-lemon-base text-secondary" type="button"
-                    onclick="window.location.href = '{{ route('services.index') }}'">
-                    My Services
-                </x-custom.primary-button>
+                    <x-custom.primary-button class="bg-lemon-base text-secondary" type="button"
+                        onclick="window.location.href = '{{ route('services.index') }}'">
+                        My Services
+                    </x-custom.primary-button>
                 @else
-                <form class="flex flex-col gap-2 sm:flex-row">
-                    <x-forms.text-input
-                        class="items-center flex-1 w-full h-10 px-3 py-2 text-sm rounded-md sm:w-auto text-primary"
-                        placeholder="Enter your email" type="email" id="email-input" />
-                    <div>
-                        <x-custom.primary-button class="bg-lemon-base text-secondary" type="button"
-                            onclick="redirectWithEmail()">
-                            Join Us
-                        </x-custom.primary-button>
-                    </div>
-                </form>
+                    <form class="flex flex-col gap-2 sm:flex-row">
+                        <x-forms.text-input
+                            class="items-center flex-1 w-full h-10 px-3 py-2 text-sm rounded-md sm:w-auto text-primary"
+                            placeholder="Enter your email" type="email" id="email-input" />
+                        <div>
+                            <x-custom.primary-button class="bg-lemon-base text-secondary" type="button"
+                                onclick="redirectWithEmail()">
+                                Join Us
+                            </x-custom.primary-button>
+                        </div>
+                    </form>
                 @endif
 
                 <script>
@@ -59,15 +59,15 @@
                 <form class="flex justify-center lg:justify-start">
 
                     @if (Auth::check())
-                    {{--<x-custom.primary-button class="bg-lemon-base text-secondary" type="button"
+                        {{--<x-custom.primary-button class="bg-lemon-base text-secondary" type="button"
                             onclick="window.location.href = '{{ route('services.index') }}'">
-                    My Services
-                    </x-custom.primary-button>--}}
+                            My Services
+                        </x-custom.primary-button>--}}
                     @else
-                    <x-custom.primary-button class="bg-lemon-base text-secondary" type="button"
-                        onclick="window.location.href = '{{ route('register') }}'">
-                        Join Us
-                    </x-custom.primary-button>
+                        <x-custom.primary-button class="bg-lemon-base text-secondary" type="button"
+                            onclick="window.location.href = '{{ route('register') }}'">
+                            Join Us
+                        </x-custom.primary-button>
                     @endif
                 </form>
                 <p class="text-xs text-gray-400">
@@ -111,6 +111,17 @@
                                 clip-rule="evenodd" />
                         </svg>
                         <span>&nbsp; {{ $superadminemail }}</span>
+                    </a>
+                    <a href="https://www.facebook.com/profile.php?id=61567209182726" target="_blank"
+                        class="flex items-center group text-gray-400 hover:text-gray-100">
+                        <svg class="w-4 h-4 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
+                            height="24" fill="currentColor" viewBox="0 0 24 24">
+                            <path fill-rule="evenodd"
+                                d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm9.408-5.5a1 1 0 1 0 0 2h.01a1 1 0 1 0 0-2h-.01ZM10 10a1 1 0 1 0 0 2h1v3h-1a1 1 0 1 0 0 2h4a1 1 0 1 0 0-2h-1v-4a1 1 0 0 0-1-1h-2Z"
+                                clip-rule="evenodd" />
+                        </svg>
+
+                        <span class="ml-2">About Us</span>
                     </a>
 
                     {{-- <a href="#" class="flex items-center group text-gray-400 hover:text-gray-100">
