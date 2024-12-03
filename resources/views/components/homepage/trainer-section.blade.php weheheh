@@ -3,7 +3,7 @@
         <div>
             <h1 class="text-5xl font-raleway uppercase font-bold">Schedule Trainers</h1>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 p-5 w-full justify-between">
+        <div class="grid grid-cols-1 md:grid-cols-2 p-5 gap-5 w-full justify-between">
 
             <div class="polygon-2 flex flex-col p-10 md:pr-5 gap-5 bg-yellow-500 pl-12 sm:pl-24 md:pl-16 lg:pl-20">
                 <div class="space-y-1">
