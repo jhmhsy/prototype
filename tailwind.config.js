@@ -4,14 +4,18 @@ import forms from "@tailwindcss/forms";
 /** @type {import('tailwindcss').Config} */
 export default {
     darkMode: "class", // Explicitly disable dark mode
+    safelist: [
+        'polygon-1',
+        'polygon-2',
+    ],
     content: [
         "./src/**/*.{html,js,php}",
         "./vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php",
-        "./storage/framework/views/*.php",
         "./resources/views/**/*.blade.php",
         "./resources/**/*.vue",
         "./resources/**/*.js",
         "./node_modules/flowbite/**/*.js",
+        "./storage/framework/views/*.php",
     ],
     theme: {
         transitionProperty: {
