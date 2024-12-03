@@ -17,10 +17,6 @@
                 <x-homepage.equipment-section />
             </div>
 
-            <!-- trainer sections-->
-            <div id="trainer-section">
-                <x-homepage.trainer />
-            </div>
 
             <!-- pricing sections-->
             <div id="pricing-section">
@@ -41,7 +37,7 @@
 
 
         @if($events->isNotEmpty())
-            @include('components.homepage.event-section')
+        @include('components.homepage.event-section')
         @else
         @endif
 
