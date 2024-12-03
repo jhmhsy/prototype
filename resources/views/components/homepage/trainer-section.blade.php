@@ -9,6 +9,7 @@
                     <div class="absolute w-full xl:w-[85%] h-[150%] t-[-40%] z-50 inset-0">
                         <img src="/images/public/trainer_2.png" alt="Trainer Image"
                             class="object-cover w-full h-full" />
+                            
                     </div>
                 </div>
             </div>
