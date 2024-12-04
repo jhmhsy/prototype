@@ -159,7 +159,7 @@
                                                                 fill="#c00707"></path>
                                                         </g>
                                                     </svg>
-                                                    &nbsp   
+                                                    &nbsp
 
                                                     Stop
                                                 </button>
