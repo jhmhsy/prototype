@@ -27,7 +27,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         RateLimiter::for('global', function (Request $request) {
-            return Limit::perMinute(100)->by($request->ip()); // Limit 50 requests per minute per IP address
+            return Limit::perMinute(150)->by($request->ip()); // Limit 50 requests per minute per IP address
         });
 
 

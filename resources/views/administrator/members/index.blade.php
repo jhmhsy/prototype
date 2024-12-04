@@ -6,7 +6,8 @@ const keynumber = "{{ $keynumber }}"; // Safe to use if sanitized by Blade
 
 <x-dash-layout title="Members">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.8/html5-qrcode.min.js"></script>
-    <div class="container mx-auto" x-data="{ openLink: null, openshowmodal: false }" x-init="barcodeScanner().init()">
+    <div class="container mx-1 md:mx-5" x-data="{ openLink: null, openshowmodal: false }"
+        x-init="barcodeScanner().init()">
         <h2 class="text-3xl font-bold mb-4 dark:text-white">Members List</h2>
 
         <div class="flex justify-between items-center">
