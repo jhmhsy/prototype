@@ -33,7 +33,7 @@
                         </div>
                         <div class="p-4 text-center space-y-1">
                             <h3 class="text-xl font-bold text-white tracking-wide">Azarcon, Diana</h3>
-                            <p class="text-xs text-gray-300 italic">Research Lead/Full-Stack Engineer</p>
+                            <p class="text-xs text-gray-300 italic">Research Lead/Back-End Engineer</p>
                         </div>
                     </div>
                 </div>
