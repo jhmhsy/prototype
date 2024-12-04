@@ -204,7 +204,13 @@ const keynumber = "{{ $keynumber }}"; // Safe to use if sanitized by Blade
 
                             <!-- Service Type -->
                             @if ($activeService)
+
+                            @if($activeService->service_type == "WalkinService")
+                            Walk-in
+                            @else
                             {{ $activeService->service_type }}
+                            @endif
+
                             @if ($member->membership_type == 'Manual')
                             Month
                             @endif

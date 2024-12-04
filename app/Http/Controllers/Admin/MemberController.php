@@ -449,7 +449,6 @@ class MemberController extends Controller
             ]);
             return redirect()->back()->with('success', 'Service Plan Ended.');
         } else {
-
             $service->update(['action_status' => 'Pending']);
             Mail::to(config('app.superadminemail'))->send(new CancelServiceMail($service));
 
