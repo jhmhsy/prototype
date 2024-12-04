@@ -102,10 +102,10 @@
                                         <td class="border-b border-gray-500 py-3 px-4  text-sm">
                                             {{ $service->month }}
                                         </td>
-                                        <td class="border-b border-gray-500 py-3 px-4  text-sm">
+                                        <td class="border-b whitespace-nowrap border-gray-500 py-3 px-4  text-sm">
                                             {{ \Carbon\Carbon::parse($service->start_date)->format('M j, Y') }}
                                         </td>
-                                        <td class="border-b border-gray-500 py-3 px-4  text-sm">
+                                        <td class="border-b whitespace-nowrap border-gray-500 py-3 px-4  text-sm">
                                             {{ \Carbon\Carbon::parse($service->due_date)->format('M j, Y') }}
                                         </td>
                                         @php
@@ -131,10 +131,10 @@
                                         <td class="border-b border-gray-500 py-3 px-4  text-sm">
                                             {{ $locker->month }}
                                         </td>
-                                        <td class="border-b border-gray-500 py-3 px-4  text-sm">
+                                        <td class="border-b whitespace-nowrap border-gray-500 py-3 px-4  text-sm">
                                             {{ \Carbon\Carbon::parse($locker->start_date)->format('M j, Y') }}
                                         </td>
-                                        <td class="border-b border-gray-500 py-3 px-4  text-sm">
+                                        <td class="border-b whitespace-nowrap border-gray-500 py-3 px-4  text-sm">
                                             {{ \Carbon\Carbon::parse($locker->due_date)->format('M j, Y') }}
                                         </td>
                                         <td class="border-b border-gray-500 py-3 px-4  text-sm {{ match ($locker->status) {
@@ -161,10 +161,10 @@
                                         <td class="border-b border-gray-500 py-3 px-4  text-sm">
                                             {{ $treadmill->month }}
                                         </td>
-                                        <td class="border-b border-gray-500 py-3 px-4  text-sm">
+                                        <td class="border-b whitespace-nowrap border-gray-500 py-3 px-4  text-sm">
                                             {{ \Carbon\Carbon::parse($treadmill->start_date)->format('M j, Y') }}
                                         </td>
-                                        <td class="border-b border-gray-500 py-3 px-4  text-sm">
+                                        <td class="border-b whitespace-nowrap border-gray-500 py-3 px-4  text-sm">
                                             {{ \Carbon\Carbon::parse($treadmill->due_date)->format('M j, Y') }}
                                         </td>
                                         @php
