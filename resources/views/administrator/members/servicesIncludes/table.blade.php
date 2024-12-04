@@ -22,7 +22,7 @@
 
 
                 @if($service->service_type == "1monthstudent")
-                1month-s
+                1 Month (Student)
                 @elseif($service->service_type == "WalkinService")
                 Walk-in
                 @else

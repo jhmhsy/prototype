@@ -39,8 +39,11 @@ class PricesController extends Controller
                 case 'WalkinService':
                     $price->service_type = 'Walk-in';
                     break;
+                case 'Regular':
+                    $price->service_type = 'Annual Membership (Regular) ';
+                    break;
                 case 'Walk-in':
-                    $price->service_type = 'Annual Walk-in Membership';
+                    $price->service_type = 'Annual Membership (Walk-in) ';
                     break;
             }
             return $price;

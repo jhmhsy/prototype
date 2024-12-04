@@ -44,7 +44,7 @@
                                 <th class="h-12 px-4 text-left align-middle">Name</th>
 
                                 @canany(['role-view', 'role-edit', 'role-delete'])
-                                ti <th class="h-12 text-center align-middle font-medium">Actions</th>
+                                <th class="h-12 text-center align-middle font-medium">Actions</th>
                                 @endcanany
                             </tr>
                         </thead>

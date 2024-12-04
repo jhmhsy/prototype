@@ -74,6 +74,7 @@ class MemberController extends Controller
 
         $query = Member::with(['services', 'lockers', 'treadmills', 'qrcode', 'membershipDuration'])
             ->orderBy('created_at', 'desc');
+
         $keynumber = '*****';
 
         if ($request->has('search')) {

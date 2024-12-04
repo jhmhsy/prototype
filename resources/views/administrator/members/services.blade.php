@@ -35,18 +35,18 @@
                             </button>
                             <p class="dark:text-white my-auto">
                                 @if ($member->membershipDuration)
-                                    @if ($member->membership_type === 'Walkin')
-                                        Limited 1/day up until
-                                        {{ \Carbon\Carbon::parse($member->membershipDuration->due_date)->format('M j, Y') }}
-                                    @else
-                                        {{ \Carbon\Carbon::parse($member->membershipDuration->start_date)->format('M j, Y') }}
-                                        -
-                                        {{ \Carbon\Carbon::parse($member->membershipDuration->due_date)->format('M j, Y') }}
-                                    @endif
+                                @if ($member->membership_type === 'Walkin')
+                                Limited 1/day up until
+                                {{ \Carbon\Carbon::parse($member->membershipDuration->due_date)->format('M j, Y') }}
+                                @else
+                                {{ \Carbon\Carbon::parse($member->membershipDuration->start_date)->format('M j, Y') }}
+                                -
+                                {{ \Carbon\Carbon::parse($member->membershipDuration->due_date)->format('M j, Y') }}
+                                @endif
 
 
                                 @else
-                                    <span class="text-gray-500">No membership duration available</span>
+                                <span class="text-gray-500">No membership duration available</span>
                                 @endif
                             </p>
                         </div>
@@ -73,34 +73,31 @@
                 @include ('administrator.members.servicesIncludes.table')
             </div>
         </div>
-
-
     </div>
-
 
     <div class="p-6">
         <div class="grid grid-cols-1 lg:grid-cols-2 lg:flex gap-5 justify-between items-center overflow-y-auto">
             <div class=" grid grid-cols-1 lg:grid-cols-3 gap-4  text-md sm:text-sm">
 
                 @can('subscription-extend')
-                    <button @click="extendOpen = true; openservices = false;"
-                        onclick="refreshDate({{ $member->id }}, 'services', 'service')"
-                        class="border dark:border-blue-500 border-black hover:border-blue-600 dark:text-blue-500 text-black  hover:bg-blue-600 hover:text-white active:bg-blue-700 active:text-white px-4 py-2 rounded-lg">Subscription
-                    </button>
+                <button @click="extendOpen = true; openservices = false;"
+                    onclick="refreshDate({{ $member->id }}, 'services', 'service')"
+                    class="border dark:border-blue-500 border-black hover:border-blue-600 dark:text-blue-500 text-black  hover:bg-blue-600 hover:text-white active:bg-blue-700 active:text-white px-4 py-2 rounded-lg">Subscription
+                </button>
                 @endcan
 
                 @can('locker-extend')
-                    <button @click="lockerOption = true; openservices = false"
-                        onclick="refreshDate({{ $member->id }}, 'lockers', 'locker')"
-                        class="border dark:border-blue-500 border-black hover:border-blue-600 dark:text-blue-500 text-black  hover:bg-blue-600 hover:text-white active:bg-blue-700 active:text-white px-4 py-2 rounded-lg">Locker
-                    </button>
+                <button @click="lockerOption = true; openservices = false"
+                    onclick="refreshDate({{ $member->id }}, 'lockers', 'locker')"
+                    class="border dark:border-blue-500 border-black hover:border-blue-600 dark:text-blue-500 text-black  hover:bg-blue-600 hover:text-white active:bg-blue-700 active:text-white px-4 py-2 rounded-lg">Locker
+                </button>
                 @endcan
 
                 @can('treadmill-extend')
-                    <button @click="extendTreadmill = true; openservices = false"
-                        onclick="refreshDate({{ $member->id }}, 'treadmills', 'treadmill')"
-                        class="border dark:border-blue-500 border-black hover:border-blue-600 dark:text-blue-500 text-black  hover:bg-blue-600 hover:text-white active:bg-blue-700 active:text-white px-4 py-2 rounded-lg">Treadmill
-                    </button>
+                <button @click="extendTreadmill = true; openservices = false"
+                    onclick="refreshDate({{ $member->id }}, 'treadmills', 'treadmill')"
+                    class="border dark:border-blue-500 border-black hover:border-blue-600 dark:text-blue-500 text-black  hover:bg-blue-600 hover:text-white active:bg-blue-700 active:text-white px-4 py-2 rounded-lg">Treadmill
+                </button>
                 @endcan
             </div>
 
@@ -108,53 +105,53 @@
 
                 @if (!$member->hasSubscriptions && !$member->hasLockers && !$member->hasTreadmills)
 
-                    <button disabled for="has no active subscription"
-                        class=" bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded transition duration-300">
-                        No Subscription
-                    </button>
+                <button disabled for="has no active subscription"
+                    class=" bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded transition duration-300">
+                    No Subscription
+                </button>
                 @elseif ($member->hasSubscriptions || $member->hasLockers || $member->hasTreadmill)
 
-                    <!-- not yet checked in -->
-                    @if (!$alreadyCheckedIn)
+                <!-- not yet checked in -->
+                @if (!$alreadyCheckedIn)
 
-                        <!-- if is overdue -->
-                        @if ($member->hasOverdueSubscription || $member->hasOverdueLocker || $member->hasOverdueTreadmill)
-                            <button @click="openservices = false; showWarning = true;" for="with overdue subscription"
-                                class=" bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded transition duration-300">
-
-
-                                Check-in (Warning)
-                            </button>
-
-                            <!-- if has active / good -->
-                        @elseif ($member->hasActiveSubscription || $member->hasActiveLocker || $member->hasActiveTreadmill)
-                            <form action="{{ route('checkin.store', $member) }}" method="POST" class="w-full ">
-                                @csrf
-                                <button type="submit" for="hasnt checked in yet"
-                                    onclick="this.disabled = true; this.innerText = 'Checking in...'; this.form.submit();"
-                                    class=" {{ $buttonClass }} w-full text-white px-4 py-2 rounded transition duration-300">
-                                    Check-in
-                                </button>
-                            </form>
-
-                            <!-- if has no active subscription -->
-                        @elseif (!$member->hasActiveSubscription && !$member->hasActiveLocker && !$member->hasActiveTreadmill)
-                            <button disabled for="has no active subscription"
-                                class=" bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded transition duration-300">
-                                No Active Subscription
-                            </button>
-                        @endif
-
-                        <!-- if already checked in -->
-                    @elseif ($alreadyCheckedIn)
-
-                        <button disabled for="already checked in"
-                            class=" bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded transition duration-300">
-                            Checked In
-                        </button>
+                <!-- if is overdue -->
+                @if ($member->hasOverdueSubscription || $member->hasOverdueLocker || $member->hasOverdueTreadmill)
+                <button @click="openservices = false; showWarning = true;" for="with overdue subscription"
+                    class=" bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded transition duration-300">
 
 
-                    @endif
+                    Check-in (Warning)
+                </button>
+
+                <!-- if has active / good -->
+                @elseif ($member->hasActiveSubscription || $member->hasActiveLocker || $member->hasActiveTreadmill)
+                <form action="{{ route('checkin.store', $member) }}" method="POST" class="w-full ">
+                    @csrf
+                    <button type="submit" for="hasnt checked in yet"
+                        onclick="this.disabled = true; this.innerText = 'Checking in...'; this.form.submit();"
+                        class=" {{ $buttonClass }} w-full text-white px-4 py-2 rounded transition duration-300">
+                        Check-in
+                    </button>
+                </form>
+
+                <!-- if has no active subscription -->
+                @elseif (!$member->hasActiveSubscription && !$member->hasActiveLocker && !$member->hasActiveTreadmill)
+                <button disabled for="has no active subscription"
+                    class=" bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded transition duration-300">
+                    No Active Subscription
+                </button>
+                @endif
+
+                <!-- if already checked in -->
+                @elseif ($alreadyCheckedIn)
+
+                <button disabled for="already checked in"
+                    class=" bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded transition duration-300">
+                    Checked In
+                </button>
+
+
+                @endif
                 @endif
 
                 <div class="hidden lg:block">
@@ -178,13 +175,13 @@
 
 
 @can('subscription-extend')
-    @include ('administrator.members.servicesIncludes.extend-service')
+@include ('administrator.members.servicesIncludes.extend-service')
 @endcan
 @can('locker-extend')
-    @include ('administrator.members.servicesIncludes.extend-locker')
+@include ('administrator.members.servicesIncludes.extend-locker')
 @endcan
 @can('treadmill-extend')
-    @include ('administrator.members.servicesIncludes.extend-treadmill')
+@include ('administrator.members.servicesIncludes.extend-treadmill')
 @endcan
 
 
