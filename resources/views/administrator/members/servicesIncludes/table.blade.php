@@ -23,6 +23,14 @@
 
                 @if($service->service_type == "1monthstudent")
                 1 Month (Student)
+                @elseif($service->service_type == "1month")
+                1 Month
+                @elseif($service->service_type == "3month")
+                3 Month
+                @elseif($service->service_type == "6month")
+                6 Month
+                @elseif($service->service_type == "12month")
+                12 Month
                 @elseif($service->service_type == "WalkinService")
                 Walk-in
                 @else

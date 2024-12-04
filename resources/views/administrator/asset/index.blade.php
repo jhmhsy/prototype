@@ -110,8 +110,19 @@
                                             @if ($filter === 'services')
                                                 <td class="px-4 py-2 w-1/6 text-left">
 
+
+
+
                                                     @if($item->service_type == "1monthstudent")
                                                         1 Month (Student)
+                                                    @elseif($item->service_type == "1month")
+                                                        1 Month
+                                                    @elseif($item->service_type == "3month")
+                                                        3 Month
+                                                    @elseif($item->service_type == "6month")
+                                                        6 Month
+                                                    @elseif($item->service_type == "12month")
+                                                        12 Month
                                                     @elseif($item->service_type == "WalkinService")
                                                         Walk-in
                                                     @elseif ($item->member->membership_type == "Manual")

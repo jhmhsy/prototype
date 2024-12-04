@@ -71,6 +71,7 @@ class PermissionTableSeeder extends Seeder
             'productsales-list',
 
             'confirmation-list',
+            'checkin-info',
 
 
 

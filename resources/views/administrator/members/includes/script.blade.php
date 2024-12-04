@@ -79,4 +79,4 @@
 
 <!-- tool tip to see information when hover on button -->
 <link href="{{ asset('css/tooltip.css') }}" rel="stylesheet" defer>
-<script src="{{ asset('js/tooltip.js') }}" defer></script>inc
+<script src="{{ asset('js/tooltip.js') }}" defer></script>

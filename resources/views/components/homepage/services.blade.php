@@ -55,10 +55,10 @@
                     </div>
                 </div>
 
-                <!-- Service Details Card -->
+
                 <div class="w-full md:w-[70%] p-6 bg-card text-card-foreground rounded-lg shadow-md">
 
-
+                    <!-- Service Details Card -->
                     <h2 class="text-2xl font-bold mb-4 text-md text-white">Service Details</h2>
                     <div class="overflow-x-auto relative">
                         <div class="overflow-y-auto max-h-[500px]">
@@ -95,7 +95,26 @@
                                     @foreach($member->services as $service)
                                     <tr class="hover:bg-muted/50 transition-colors text-white">
                                         <td class="border-b border-gray-500 py-3 px-4  text-sm">
+
+                                            @if($service->service_type == "1monthstudent")
+                                            1 Month (Student)
+                                            @elseif($service->service_type == "1month")
+                                            1 Month
+                                            @elseif($service->service_type == "3month")
+                                            3 Month
+                                            @elseif($service->service_type == "6month")
+                                            6 Month
+                                            @elseif($service->service_type == "12month")
+                                            12 Month
+                                            @elseif($service->service_type == "WalkinService")
+                                            Walk-in
+                                            @elseif ($service->member->membership_type == "Manual")
+                                            {{ $service->service_type }} Month
+                                            @else
                                             {{ $service->service_type }}
+                                            @endif
+
+
                                         </td>
                                         <td class="border-b border-gray-500 py-3 px-4  text-sm">
                                             ₱{{ $service->amount }}</td>
@@ -182,6 +201,61 @@
                                         </td>
                                     </tr>
                                     @endforeach
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- CHeckin Records Details Card -->
+                    <h2 class="text-2xl font-bold mt-10 mb-4 text-md text-white">Check Logs</h2>
+                    <div class="overflow-x-auto relative">
+                        <div class="overflow-y-auto max-h-[500px]">
+                            <table class="w-full text-left border-collapse min-w-[800px]">
+                                <thead class="sticky top-0 bg-card z-10 text-sm">
+                                    <tr class="text-gray-500">
+                                        <th
+                                            class="border-b border-gray-500 py-3 px-4 text-sm font-medium text-muted-foreground">
+                                            Name
+                                        </th>
+                                        <th
+                                            class="border-b border-gray-500 py-3 px-4 text-sm font-medium text-muted-foreground">
+                                            Date
+                                        </th>
+                                        <th
+                                            class="border-b border-gray-500 py-3 px-4 text-sm font-medium text-muted-foreground">
+                                            Time
+                                        </th>
+                                        <th
+                                            class="border-b border-gray-500 py-3 px-4 text-sm font-medium text-muted-foreground">
+                                            Type
+                                        </th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if ($member && $member->checkinRecords->isNotEmpty())
+                                    @foreach ($member->checkinRecords as $record)
+                                    <tr class="hover:bg-muted/50 transition-colors text-gray-400">
+                                        <td class="border-b border-gray-500 py-3 px-4  text-sm">
+                                            {{ $member->name }}
+                                        </td>
+                                        <td class="border-b border-gray-500 py-3 px-4  text-sm">
+                                            {{ $record->checkin_date }}
+                                        </td>
+
+                                        <td class="border-b border-gray-500 py-3 px-4  text-sm ">
+                                            {{ $record->checkin_time }}
+                                        </td>
+
+                                        <td class="border-b border-gray-500 py-3 px-4  text-sm ">
+                                            {{ $record->type }}
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                    @else
+                                    <p>No check-in records available.</p>
+                                    @endif
 
                                 </tbody>
                             </table>

@@ -14,7 +14,7 @@ class UserServicesController extends Controller
         $userEmail = Auth::user()->email;
 
         // Fetch only the member with the matching id_number and its relationships
-        $member = Member::with(['services', 'lockers', 'treadmills', 'qrcode', 'membershipDuration'])
+        $member = Member::with(['checkinRecords', 'services', 'lockers', 'treadmills', 'qrcode', 'membershipDuration'])
             ->where('id_number', $userIdNumber)
             ->orWhere('email', $userEmail)
             ->first();
