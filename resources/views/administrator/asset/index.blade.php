@@ -91,11 +91,11 @@
                         @elseif ($filter === 'treadmills')
                             <th class="px-4 py-2 w-1/6 text-left">Service Name</th>
                         @endif
-                        <th class="px-4 py-2 w-1/6 text-left">Start Date</th>
-                        <th class="px-4 py-2 w-1/6 text-left">Due Date</th>
-                        <th class="px-4 py-2 w-1/6 text-right">Amount</th>
-                        <th class="px-4 py-2 w-1/6 text-left">Month</th>
-                        <th class="px-4 py-2 w-1/6 text-left">Status</th>
+                        <th class="px-4 py-2 w-1/6 text-center">Start Date</th>
+                        <th class="px-4 py-2 w-1/6 text-center">Due Date</th>
+                        <th class="px-4 py-2 w-1/6 text-center">Amount</th>
+                        <th class="px-4 py-2 w-1/6 text-center">Month</th>
+                        <th class="px-4 py-2 w-1/6 text-center">Status</th>
                     </tr>
                 </thead>
                 <tbody>
