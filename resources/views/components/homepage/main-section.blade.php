@@ -2,7 +2,8 @@
     /* Removed keyframes and animation classes */
 </style>
 
-<section class="bg-peak-4 relative flex items-center justify-center w-full min-h-screen px-4 md:px-10 md:justify-between"
+<section
+    class="bg-peak-4 relative flex items-center justify-center w-full min-h-screen px-4 md:px-10 md:justify-between"
     style="background: url('images/public/background-4.webp') right 2.3rem / cover no-repeat;">
     <div class="absolute inset-0 bg-black opacity-50"></div>
     <div
@@ -14,17 +15,16 @@
                     GYM ONE
                 </h1>
                 <div class="flex flex-col items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30"
-                        viewBox="0 0 48 48">
-                        <linearGradient id="IMoH7gpu5un5Dx2vID39Ra_pIPl8tqh3igN_gr1" x1="9.858" x2="38.142"
-                            y1="9.858" y2="38.142" gradientUnits="userSpaceOnUse">
+                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30" viewBox="0 0 48 48">
+                        <linearGradient id="IMoH7gpu5un5Dx2vID39Ra_pIPl8tqh3igN_gr1" x1="9.858" x2="38.142" y1="9.858"
+                            y2="38.142" gradientUnits="userSpaceOnUse">
                             <stop offset="0" stop-color="#9dffce"></stop>
                             <stop offset="1" stop-color="#50d18d"></stop>
                         </linearGradient>
                         <path fill="url(#IMoH7gpu5un5Dx2vID39Ra_pIPl8tqh3igN_gr1)"
                             d="M44,24c0,11.045-8.955,20-20,20S4,35.045,4,24S12.955,4,24,4S44,12.955,44,24z"></path>
-                        <linearGradient id="IMoH7gpu5un5Dx2vID39Rb_pIPl8tqh3igN_gr2" x1="13" x2="36"
-                            y1="24.793" y2="24.793" gradientUnits="userSpaceOnUse">
+                        <linearGradient id="IMoH7gpu5un5Dx2vID39Rb_pIPl8tqh3igN_gr2" x1="13" x2="36" y1="24.793"
+                            y2="24.793" gradientUnits="userSpaceOnUse">
                             <stop offset=".824" stop-color="#135d36"></stop>
                             <stop offset=".931" stop-color="#125933"></stop>
                             <stop offset="1" stop-color="#11522f"></stop>
@@ -44,12 +44,7 @@
                 Top-notch Equipments Combined with Affordable Prices
             </p>
             <div class="gap-2 text-center md:text-left">
-                @if (!Auth::user())
-                    <x-custom.secondary-button type="button" onclick="window.location.href = '{{ route('register') }}'"
-                        class="border font-bold animate-fade-in-down animate__animated animate__fadeInDown">
-                        Register Now
-                    </x-custom.secondary-button>
-                @else
+                @if(Auth::check())
                     <x-custom.secondary-button type="button"
                         onclick="window.location.href = '{{ route('services.index') }}'"
                         class="border font-bold animate-fade-in-down animate__animated animate__fadeInDown">
@@ -62,6 +57,13 @@
                             Dashboard
                         </x-custom.secondary-button>
                     @endcan
+                @else
+                    <x-custom.secondary-button type="button" onclick="window.location.href = '{{ route('register') }}'"
+                        class="border font-bold animate-fade-in-down animate__animated animate__fadeInDown">
+                        Register Now
+                    </x-custom.secondary-button>
+
+
                 @endif
             </div>
 
@@ -69,7 +71,7 @@
     </div>
     <script>
         // JavaScript to observe elements and add 'animate__animated' class on scroll
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function () {
             const animateOnScrollElements = document.querySelectorAll('.animate-fade-in-down');
 
             const observer = new IntersectionObserver(entries => {
