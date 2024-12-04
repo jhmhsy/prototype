@@ -9,36 +9,36 @@ Artisan::command('inspire', function () {
 })->purpose('Display an inspiring quote')->hourly();
 
 Schedule::command('locker:update-status')
-    ->everyTwoSeconds()
+    ->everyMinute()
     ->appendOutputTo(storage_path('logs/scheduler.log'));
 
 Schedule::command('service:update-status')
-    ->everyTwoSeconds()
+    ->everyMinute()
     ->appendOutputTo(storage_path('logs/scheduler.log'));
 
 Schedule::command('treadmill:update-status')
-    ->everyTwoSeconds()
+    ->everyMinute()
     ->appendOutputTo(storage_path('logs/scheduler.log'));
 
 Schedule::command('membership:update-status')
-    ->everyTwoSeconds()
+    ->everyMinute()
     ->appendOutputTo(storage_path('logs/scheduler.log'));
 
 
 Schedule::command('app:service-due-reminder')
-    ->everyTwoSeconds()
+    ->everyMinute()
     ->appendOutputTo(storage_path('logs/scheduler.log'));
 
 
 Schedule::command('app:locker-treadmill-reminder')
-    ->everyTwoSeconds()
+    ->everyMinute()
     ->appendOutputTo(storage_path('logs/scheduler.log'));
 
 
 Schedule::command('app:membership-reminder')
-    ->everyTwoSeconds()
+    ->everyMinute()
     ->appendOutputTo(storage_path('logs/scheduler.log'));
 
 Schedule::command('events:update-status')
-    ->everyTwoSeconds()
+    ->everyMinute()
     ->appendOutputTo(storage_path('logs/scheduler.log'));

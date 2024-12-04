@@ -29,21 +29,21 @@ class Kernel extends ConsoleKernel
 
     protected function schedule(Schedule $schedule): void
     {
-        $schedule->command('locker:update-status')->everyTwoSeconds();
+        $schedule->command('locker:update-status')->everyMinute();
 
-        $schedule->command('service:update-status')->everyTwoSeconds();
+        $schedule->command('service:update-status')->everyMinute();
 
-        $schedule->command('treadmill:update-status')->everyTwoSeconds();
+        $schedule->command('treadmill:update-status')->everyMinute();
 
-        $schedule->command('membership:update-status')->everyTwoSeconds();
+        $schedule->command('membership:update-status')->everyMinute();
 
-        $schedule->command('app:service-due-reminder')->everyTwoSeconds();
+        $schedule->command('app:service-due-reminder')->everyMinute();
 
-        $schedule->command(' app:locker-treadmill-reminder')->everyTwoSeconds();
+        $schedule->command(' app:locker-treadmill-reminder')->everyMinute();
 
-        $schedule->command(' app:membership-reminder')->everyTwoSeconds();
+        $schedule->command(' app:membership-reminder')->everyMinute();
 
-        $schedule->command('events:update-status')->everyTwoSeconds();
+        $schedule->command('events:update-status')->everyMinute();
     }
 
     protected $commands = [
