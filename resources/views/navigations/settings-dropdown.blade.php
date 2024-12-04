@@ -25,7 +25,7 @@
         @endif
 
         @if ($dropdown ?? false)
-            <div class=" sm:flex sm:items-center z-50 select-none cursor-pointer ">
+            <div class="sm:flex sm:items-center z-50 select-none cursor-pointer ">
                 <x-custom.dropdown align="right" width="56">
                     <x-slot name="trigger">
                         <x-forms.nav-link custom="{{ request()->is('admin/*') }}" class="flex items-center">
