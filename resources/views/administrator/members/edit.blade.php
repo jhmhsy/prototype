@@ -105,7 +105,7 @@
                     <div class="form-group row mb-0">
 
                         <div class="flex justify-end space-x-2">
-                            <button @click="openeditmodal = true" class="  px-4 py-2 rounded-md">Cancel</button>
+
                             <button type="submit" class="  px-4 py-2 rounded-md ">Update</button>
                         </div>
                     </div>

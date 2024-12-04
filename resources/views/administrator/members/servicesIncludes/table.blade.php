@@ -19,10 +19,15 @@
                     x-show="(serviceFilter === 'all' || serviceFilter === 'service') && ((statusFilter === 'current' && ['Active', 'Pre-paid', 'Impending', 'Due', 'Overdue'].includes('{{ $service->status }}')) || (statusFilter === 'expired' && ['Expired', 'Ended'].includes('{{ $service->status }}')))">
 
                     <td class="whitespace-nowrap border-b dark:border-gray-500 border-r px-4 py-2">
-                        {{ $service->service_type }}
 
-                        @if($member->membership_type == 'Manual')
-                            &nbsp;Months
+
+                        @if($service->service_type == "1monthstudent")
+                            1month-s
+                        @else
+                            {{ $service->service_type }}
+                            @if($member->membership_type == 'Manual')
+                                &nbsp;Months
+                            @endif
                         @endif
                     </td>
 

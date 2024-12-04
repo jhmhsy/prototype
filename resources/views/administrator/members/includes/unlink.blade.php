@@ -19,7 +19,7 @@
             <div>
                 <button
                     class="bg-black text-white hover:bg-black/80 px-4 py-2 rounded w-24 focus:outline-none focus:ring-2 focus:ring-offset-2"
-                    @click="unlinkConfirm=false, membershipOption=true">
+                    @click="unlinkConfirm=false">
                     Cancel
                 </button>
             </div>
