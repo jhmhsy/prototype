@@ -417,6 +417,7 @@ class MemberController extends Controller
 
             $this->updateServiceStatus();
             $this->updateLockerStatus();
+            $this->updateTreadmillStatus();
 
             // Commit the transaction
             DB::commit();
