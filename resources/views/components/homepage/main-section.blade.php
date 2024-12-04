@@ -44,7 +44,7 @@
                 Top-notch Equipments Combined with Affordable Prices
             </p>
             <div class="gap-2 text-center md:text-left">
-                @if (!auth())
+                @if (!Auth::user())
                     <x-custom.secondary-button type="button" onclick="window.location.href = '{{ route('register') }}'"
                         class="border font-bold animate-fade-in-down animate__animated animate__fadeInDown">
                         Register Now
