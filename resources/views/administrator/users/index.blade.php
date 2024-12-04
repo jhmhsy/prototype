@@ -1,8 +1,6 @@
 @canany(['user-list', 'user-view', 'user-create', 'user-edit', 'user-delete'])
 <x-dash-layout title="Users">
-
-
-    <div class="flex flex-col rounded-lg border shadow-sm p-6 border-white/10 dark:border-white/5 dark:bg-peak-3"
+    <div class="mx-1 md:mx-3 lg:mx-5 flex flex-col rounded-lg border shadow-sm p-6 border-white/10 dark:border-white/5 dark:bg-peak-3"
         x-data="{ openUserId: null, openshowmodal: null, opencreatemodal: null }">
 
         <div class="flex flex-col gap-2 ">
@@ -223,6 +221,7 @@
                 </div>
             </div>
         </div>
+    </div>
 
 </x-dash-layout>
 @endcanany

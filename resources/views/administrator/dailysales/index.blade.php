@@ -1,8 +1,8 @@
 @can('dailysales-list')
-<x-dash-layout>
+<x-dash-layout class="">
 
     {{-- Daily Sales Overview --}}
-    <div class="w-full bg-white dark:bg-peak_2 rounded-lg">
+    <div class="mx-1 md:mx-3 lg:mx-5 w-full bg-white dark:bg-peak_2 rounded-lg">
         <div class="px-6  py-4 flex flex-col md:flex-row  justify-between border-gray-200 dark:border-gray-700">
             <h1 class=" my-auto text-xl font-bold text-gray-800 dark:text-white">Daily Sales Overview</h1>
 
@@ -54,7 +54,7 @@
     </div>
 
     {{-- Daily Member Sales --}}
-    <div class="bg-white dark:bg-peak_2 rounded-lg shadow-md">
+    <div class="mx-1 md:mx-3 lg:mx-5 bg-white dark:bg-peak_2 rounded-lg shadow-md">
         <div class="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
             <h1 class="text-xl font-bold text-gray-800 dark:text-white">Daily Member Sales</h1>
         </div>
