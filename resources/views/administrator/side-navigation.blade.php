@@ -230,23 +230,28 @@
                 @endcanany
 
                 <!--︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼ PRODUCT SALES ︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼  -->
+                {{--
                 @can('productsales-list')
                 <li>
                     <a href="{{ route('administrator.productsales') }}"
-                        class="flex items-center p-2 rounded-lg group  {{ request()->routeIs('administrator.productsales') ? 'bg-gray-300 text-black dark:bg-gray-700 dark:text-white' : 'text-gray-500 dark:text-gray-500  hover:bg-gray-300 hover:text-black dark:hover:bg-gray-700 dark:hover:text-white' }} transition-colors duration-300">
-                        <!-- Added transition classes -->
+                class="flex items-center p-2 rounded-lg group
+                {{ request()->routeIs('administrator.productsales') ? 'bg-gray-300 text-black dark:bg-gray-700 dark:text-white' : 'text-gray-500 dark:text-gray-500  hover:bg-gray-300 hover:text-black dark:hover:bg-gray-700 dark:hover:text-white' }}
+                transition-colors duration-300">
+                <!-- Added transition classes -->
 
-                        <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
-                            height="24" fill="none" viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M15.583 8.445h.01M10.86 19.71l-6.573-6.63a.993.993 0 0 1 0-1.4l7.329-7.394A.98.98 0 0 1 12.31 4l5.734.007A1.968 1.968 0 0 1 20 5.983v5.5a.992.992 0 0 1-.316.727l-7.44 7.5a.974.974 0 0 1-1.384.001Z" />
-                        </svg>
+                <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                    fill="none" viewBox="0 0 24 24">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M15.583 8.445h.01M10.86 19.71l-6.573-6.63a.993.993 0 0 1 0-1.4l7.329-7.394A.98.98 0 0 1 12.31 4l5.734.007A1.968 1.968 0 0 1 20 5.983v5.5a.992.992 0 0 1-.316.727l-7.44 7.5a.974.974 0 0 1-1.384.001Z" />
+                </svg>
 
-                        <span class="flex-1 ms-3 whitespace-nowrap text-sm">Product Sales</span>
-                    </a>
+                <span class="flex-1 ms-3 whitespace-nowrap text-sm">Product Sales</span>
+                </a>
 
                 </li>
                 @endcan
+
+                ---}}
 
                 <!--︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼ RESERVATION ︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼  -->
 
@@ -493,25 +498,21 @@ dark:hover:bg-gray-700 dark:hover:text-white
                 @endcanany -->
 
                 <!--︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼ DAILY SALES ︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼  -->
-                {{--
                 @can('dailysales-list')
                 <li>
                     <a href="{{ route('administrator.dailysales') }}"
-                class="flex items-center p-2 rounded-lg group
-                {{ request()->routeIs('administrator.dailysales') ? 'bg-gray-300 text-black dark:bg-gray-700 dark:text-white' : 'text-gray-500 dark:text-gray-500 hover:bg-gray-300 hover:text-black dark:hover:bg-gray-700 dark:hover:text-white' }}
-                transition-colors duration-300">
+                        class="flex items-center p-2 rounded-lg group  {{ request()->routeIs('administrator.dailysales') ? 'bg-gray-300 text-black dark:bg-gray-700 dark:text-white' : 'text-gray-500 dark:text-gray-500 hover:bg-gray-300 hover:text-black dark:hover:bg-gray-700 dark:hover:text-white' }} transition-colors duration-300">
 
-                <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                    fill="none" viewBox="0 0 24 24">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M3 15v4m6-6v6m6-4v4m6-6v6M3 11l6-5 6 5 5.5-5.5" />
-                </svg>
+                        <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
+                            height="24" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 15v4m6-6v6m6-4v4m6-6v6M3 11l6-5 6 5 5.5-5.5" />
+                        </svg>
 
-                <span class="flex-1 ms-3 whitespace-nowrap text-sm">Daily Sales</span>
-                </a>
+                        <span class="flex-1 ms-3 whitespace-nowrap text-sm">Daily Sales</span>
+                    </a>
                 </li>
                 @endcan
-                --}}
 
                 <!--︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼ FAQs ︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼  -->
                 @canany(['faq-list', 'faq-view', 'faq-edit', 'faq-create', 'faq-delete'])
