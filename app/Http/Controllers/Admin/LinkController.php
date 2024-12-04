@@ -56,4 +56,21 @@ class LinkController extends Controller
 
     }
 
+
+    public function unlinkMember($id)
+    {
+        // Find the member by ID
+        $member = Member::find($id);
+
+        if ($member && $member->id_number !== '******') {
+            $member->id_number = '******';
+            $member->save();
+
+            return redirect()->back()->with('success', 'Member unlinked successfully.');
+        }
+
+        return redirect()->back()->with('error', 'Unable to unlink member.');
+    }
+
+
 }

@@ -89,7 +89,7 @@ const keynumber = "{{ $keynumber }}"; // Safe to use if sanitized by Blade
                     @foreach ($members as $member)
                     <tr class="border-b dark:border-none hover:bg-gray-50 dark:hover:bg-gray-800 text-sm dark:text-white transition-colors py-10 {{ $loop->iteration % 2 == 0 ? 'bg-gray-100 dark:bg-peak_2' : '' }}"
                         :id="'member-' + '{{ $member->id_number }}'" x-init="checkAndOpen()"
-                        x-data="{ showWarning: false, serviceendWarning: false, lockerendWarning: false, treadmillendWaring: false, opendelete: false, membershipOption: false, renewConfirm: false, changeMembershipConfirm: false, openservices: false, opensmembershipswitch: false, openeditmodal: false, extendOpen: false, lockerOption: false, extendLockerOpen: false, rentLockerOpen: false, extendTreadmill: false, checkAndOpen() { if (keynumber === '{{ $member->id_number }}') { this.openservices = true; } } }">
+                        x-data="{ showWarning: false, serviceendWarning: false, lockerendWarning: false, treadmillendWaring: false, opendelete: false, membershipOption: false, renewConfirm: false,unlinkConfirm : false, changeMembershipConfirm: false, openservices: false, opensmembershipswitch: false, openeditmodal: false, extendOpen: false, lockerOption: false, extendLockerOpen: false, rentLockerOpen: false, extendTreadmill: false, checkAndOpen() { if (keynumber === '{{ $member->id_number }}') { this.openservices = true; } } }">
 
                         @php
                         $statusColors = [
@@ -150,27 +150,31 @@ const keynumber = "{{ $keynumber }}"; // Safe to use if sanitized by Blade
                                 Link
                             </a>
                             @elseif ($member->id_number !== "******")
-                            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30"
-                                viewBox="0 0 48 48">
-                                <linearGradient id="IMoH7gpu5un5Dx2vID39Ra_pIPl8tqh3igN_gr1" x1="9.858" x2="38.142"
-                                    y1="9.858" y2="38.142" gradientUnits="userSpaceOnUse">
-                                    <stop offset="0" stop-color="#9dffce"></stop>
-                                    <stop offset="1" stop-color="#50d18d"></stop>
-                                </linearGradient>
-                                <path fill="url(#IMoH7gpu5un5Dx2vID39Ra_pIPl8tqh3igN_gr1)"
-                                    d="M44,24c0,11.045-8.955,20-20,20S4,35.045,4,24S12.955,4,24,4S44,12.955,44,24z">
-                                </path>
-                                <linearGradient id="IMoH7gpu5un5Dx2vID39Rb_pIPl8tqh3igN_gr2" x1="13" x2="36" y1="24.793"
-                                    y2="24.793" gradientUnits="userSpaceOnUse">
-                                    <stop offset=".824" stop-color="#135d36"></stop>
-                                    <stop offset=".931" stop-color="#125933"></stop>
-                                    <stop offset="1" stop-color="#11522f"></stop>
-                                </linearGradient>
-                                <path fill="url(#IMoH7gpu5un5Dx2vID39Rb_pIPl8tqh3igN_gr2)"
-                                    d="M21.293,32.707l-8-8c-0.391-0.391-0.391-1.024,0-1.414l1.414-1.414	c0.391-0.391,1.024-0.391,1.414,0L22,27.758l10.879-10.879c0.391-0.391,1.024-0.391,1.414,0l1.414,1.414	c0.391-0.391,0.391,1.024,0,1.414l-13,13C22.317,33.098,21.683,33.098,21.293,32.707z">
-                                </path>
-                            </svg>
 
+                            <button type="button" @click="unlinkConfirm = true" class="mx-auto">
+                                <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30"
+                                    viewBox="0 0 48 48">
+                                    <linearGradient id="IMoH7gpu5un5Dx2vID39Ra_pIPl8tqh3igN_gr1" x1="9.858" x2="38.142"
+                                        y1="9.858" y2="38.142" gradientUnits="userSpaceOnUse">
+                                        <stop offset="0" stop-color="#9dffce"></stop>
+                                        <stop offset="1" stop-color="#50d18d"></stop>
+                                    </linearGradient>
+                                    <path fill="url(#IMoH7gpu5un5Dx2vID39Ra_pIPl8tqh3igN_gr1)"
+                                        d="M44,24c0,11.045-8.955,20-20,20S4,35.045,4,24S12.955,4,24,4S44,12.955,44,24z">
+                                    </path>
+                                    <linearGradient id="IMoH7gpu5un5Dx2vID39Rb_pIPl8tqh3igN_gr2" x1="13" x2="36"
+                                        y1="24.793" y2="24.793" gradientUnits="userSpaceOnUse">
+                                        <stop offset=".824" stop-color="#135d36"></stop>
+                                        <stop offset=".931" stop-color="#125933"></stop>
+                                        <stop offset="1" stop-color="#11522f"></stop>
+                                    </linearGradient>
+                                    <path fill="url(#IMoH7gpu5un5Dx2vID39Rb_pIPl8tqh3igN_gr2)"
+                                        d="M21.293,32.707l-8-8c-0.391-0.391-0.391-1.024,0-1.414l1.414-1.414	c0.391-0.391,1.024-0.391,1.414,0L22,27.758l10.879-10.879c0.391-0.391,1.024-0.391,1.414,0l1.414,1.414	c0.391-0.391,0.391,1.024,0,1.414l-13,13C22.317,33.098,21.683,33.098,21.293,32.707z">
+                                    </path>
+                                </svg>
+                            </button>
+
+                            @include ('administrator.members.includes.unlink')
                             @endif
                         </td>
 
@@ -328,8 +332,6 @@ const keynumber = "{{ $keynumber }}"; // Safe to use if sanitized by Blade
                             @else
                             <span class="text-amber-600 whitespace-nowrap"> Waiting for deletion Approval</span>
                             @endif
-
-
 
                             @include ('administrator.members.services')
                             @include ('administrator.members.show')

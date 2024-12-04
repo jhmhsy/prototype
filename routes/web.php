@@ -189,6 +189,8 @@ Route::middleware(['throttle:global'])->group(function () {
                 // Member Links to QR
                 Route::get('/index/link/{id}', [LinkController::class, 'index'])->name('index.link');
                 Route::post('/link/{member}', [LinkController::class, 'updateIdNumber'])->name('link.update');
+                Route::put('/members/{id}/unlink', [LinkController::class, 'unlinkMember'])->name('member.unlink');
+
 
                 // Member Renewal
                 Route::post('/members/{member}/renew', action: [MemberController::class, 'renew'])->name('members.renew');
