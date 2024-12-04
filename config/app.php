@@ -6,7 +6,7 @@ return [
 
     'env' => env('APP_ENV', 'production'),
 
-    'superadminemail' => 'gymonedanao@gmail.com', // the emai where notifications are send, put gym owners email here @
+    'superadminemail' => 'sirjone100@gmail.com', // the emai where notifications are send, put gym owners email here @
 
 
 
