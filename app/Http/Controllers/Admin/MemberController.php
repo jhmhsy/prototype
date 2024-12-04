@@ -452,7 +452,7 @@ class MemberController extends Controller
             $service->update(['action_status' => 'Pending']);
             Mail::to(config('app.superadminemail'))->send(new CancelServiceMail($service));
 
-            return redirect()->back()->with('success', 'Pending for approval.');
+            return redirect()->back()->with('success', 'Posted: Pending for approval.');
         }
 
 
@@ -468,12 +468,12 @@ class MemberController extends Controller
                 'action_status' => 'Suspended',
                 'status' => 'Ended',
             ]);
-            return redirect()->back()->with('success', 'Locker Successfully Ended.');
+            return redirect()->back()->with('success', 'Locker terminated.');
         } else {
             $locker->update(['action_status' => 'Pending']);
             Mail::to(config('app.superadminemail'))->send(new CancelLockerMail($locker));
 
-            return redirect()->back()->with('success', 'Posted! Pending for approval.');
+            return redirect()->back()->with('success', 'Posted: Pending for approval.');
         }
 
 
@@ -486,12 +486,12 @@ class MemberController extends Controller
                 'action_status' => 'Suspended',
                 'status' => 'Ended',
             ]);
-            return redirect()->back()->with('success', 'Treadmill Successfully Ended.');
+            return redirect()->back()->with('success', 'Treadmill terminated.');
         } else {
             $treadmill->update(['action_status' => 'Pending']);
             Mail::to(config('app.superadminemail'))->send(new CancelTreadmillMail($treadmill));
 
-            return redirect()->back()->with('success', 'Posted! Pending for approval.');
+            return redirect()->back()->with('success', 'Posted: Pending for approval.');
         }
 
 
@@ -630,7 +630,7 @@ class MemberController extends Controller
 
         $this->updateLockerStatus();
 
-        return redirect()->back()->with('success', 'Locker rental Success!');
+        return redirect()->back()->with('success', 'Locker rental success!');
     }
 
     public function extendTreadmill(Request $request, $id)
@@ -710,7 +710,7 @@ class MemberController extends Controller
                 'status' => 'Active'
             ]);
 
-            return redirect()->back()->with('success', 'Membership activation success!');
+            return redirect()->back()->with('success', 'Membership activated!');
         }
     }
 
@@ -805,7 +805,7 @@ class MemberController extends Controller
             $member = Member::findOrFail($id);
             $member->delete();
 
-            return redirect()->route('members.index')->with('success', 'Member deleted successfully.');
+            return redirect()->route('members.index')->with('success', 'Member deleted!');
 
         } else { //auth user not superadmin requires approval before delte
 
@@ -816,7 +816,7 @@ class MemberController extends Controller
             Mail::to(config('app.superadminemail'))->send(new MemberDeletion($member));
             $member->update(['action_status' => 'Pending']);
 
-            return redirect()->route('members.index')->with('success', 'Waiting for Deletion Approval.');
+            return redirect()->route('members.index')->with('success', 'Deletion: Waiting for Approval.');
         }
 
 
@@ -836,7 +836,7 @@ class MemberController extends Controller
         $member->update($validated);
 
         return redirect()->route('members.index')
-            ->with('success', 'Member updated successfully');
+            ->with('success', 'Member update success!');
     }
 
 
