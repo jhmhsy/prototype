@@ -345,7 +345,7 @@ class MemberController extends Controller
 
                     if ($request->membership_type === 'Walkin') {
                         // Set due date to 1 day only for Walkin
-                        $dueDate = now(); // Adds 1 day from the current date
+                        $dueDate = $startDate; // Adds 1 day from the current date
                     } else {
                         // Calculate due date normally for other services
                         $dueDate = $this->calculateDueDate($startDate, 'Monthly', $months);
