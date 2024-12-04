@@ -58,7 +58,7 @@
             @include ('administrator.header-navigation')
 
             <!-- Main content -->
-            <main class="flex-1 px-6 sm:overflow-y-auto py-5">
+            <main class="flex-1 sm:overflow-y-auto py-5">
                 <x-custom.loader2 />
                 {{ $slot }}
             </main>
@@ -88,7 +88,7 @@
         }
     </script>
     <style>
-        *{
+        * {
             transition: all .2s;
         }
     </style>

@@ -1,7 +1,7 @@
 @canany(['overview-list'])
 <x-dash-layout title="Overview">
-    <div class="text-night dark:text-white flex flex-col space-y-3 overflow-auto">
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 dark:text-white">
+    <div class="text-night dark:text-white flex flex-col space-y-3 overflow-auto px-3 lg:px-6 ">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 dark:text-white">
             <div
                 class="bg-white dark:bg-peak-2  border border-gray-300 dark:border-none rounded-lg px-4 py-5 flex space-x-2 items-center">
                 <svg width="50" height="50" xmlns="http://www.w3.org/2000/svg"
