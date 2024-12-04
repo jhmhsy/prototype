@@ -129,9 +129,12 @@
                                         </td>
                                         @php
                                         $statusClass = match ($service->status) {
-                                        'Active' => 'text-green-600', 'Pre-paid' => 'text-blue-700', 'Due'
-                                        => 'text-orange-500', 'Overdue' => 'text-red-700', 'Expired' =>
-                                        'text-gray-500', default => '',
+                                        'Active' => 'text-green-600',
+                                        'Pre-paid' => 'text-blue-700',
+                                        'Impending' => 'text-yellow-500',
+                                        'Due' => 'text-orange-500',
+                                        'Overdue' => 'text-red-700',
+                                        'Expired' => 'text-gray-500', default => '',
                                         };
                                         @endphp
                                         <td class="border-b border-gray-500 py-3 px-4  text-sm {{ $statusClass }}">
