@@ -118,58 +118,15 @@
 
 
                         <div class="bg-white dark:bg-peak_2 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-6"
-                            x-data="{ 
-        includeService: false, 
-        subscriptions: 1, 
-        serviceStartDate: '', 
-        serviceType: '',
-        calculateDueDate(startDate, serviceType) {
-            if (!startDate || !serviceType) return '';
-            
-            const start = new Date(startDate);
-            let dueDate = new Date(start);
-            
-            switch(serviceType) {
-                case '1month':
-                case '1monthstudent':
-                    dueDate.setMonth(start.getMonth() + 1);
-                    break;
-                case '3month':
-                    dueDate.setMonth(start.getMonth() + 3);
-                    break;
-                case '6month':
-                    dueDate.setMonth(start.getMonth() + 6);
-                    break;
-                case '12month':
-                    dueDate.setMonth(start.getMonth() + 12);
-                    break;
-                case 'WalkinService':
-                    // For walk-in, assume a default of 1 day
-                    dueDate.setMonth(start.getMonth());
-                    break;
-                default:
-                    // For manual months
-                    if (!isNaN(parseInt(serviceType))) {
-                        dueDate.setMonth(start.getMonth() + parseInt(serviceType));
-                    }
-            }
-            
-            // Format the date to YYYY-MM-DD
-            return dueDate.toISOString().slice(0, 10);
-        }
-    }">
+                            x-data="{ includeService: false, subscriptions: 1, serviceStartDate: '' }">
                             <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Service Plan
                             </h2>
 
                             <div class="mb-4">
                                 <label class="inline-flex items-center">
-                                    <input type="checkbox" x-model="includeService" @change="if (includeService) { 
-                    subscriptions = 1; 
-                    serviceStartDate = new Date().toISOString().slice(0, 10); 
-                } else { 
-                    serviceStartDate = ''; 
-                    serviceType = ''; 
-                }" class="rounded border-gray-300 text-blue-600 shadow-sm focus:border-blue-500 focus:ring-blue-500 focus:ring-1/2">
+                                    <input type="checkbox" x-model="includeService"
+                                        @change="if (includeService) { subscriptions = 1; serviceStartDate = new Date().toISOString().slice(0, 10); } else { serviceStartDate = ''; }"
+                                        class="rounded border-gray-300 text-blue-600 shadow-sm focus:border-blue-500 focus:ring-blue-500 focus:ring-1/2">
                                     <span class="ml-2 text-gray-700 dark:text-gray-300">Include Service Plan</span>
                                 </label>
                             </div>
@@ -181,7 +138,8 @@
                                             Subscription <span x-text="i"></span>
                                         </h3>
 
-                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4"
+                                            x-data="membershipCalculator()" x-init="calculateDueDate()">
                                             <div>
                                                 <label :for="'service_type_' + i"
                                                     class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
@@ -190,10 +148,10 @@
                                                 <!-- Regular membership options -->
 
                                                 <template x-if="membershipType === 'Regular'">
-                                                    <select :name="'service_type_' + i" x-model="serviceType"
-                                                        @change="serviceStartDate = new Date().toISOString().slice(0, 10)"
+                                                    <select :name="'service_type_' + i" @change="calculateDueDate()"
+                                                        x-model="selectedServiceType"
                                                         class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 focus:ring-1/2 dark:bg-peak_1 dark:border-gray-600 dark:text-white sm:text-sm">
-                                                        <option value="" selected class="disabled">Choose an
+                                                        <option value="" selected disabled class="disabled">Choose an
                                                             option
                                                         </option>
 
@@ -212,14 +170,14 @@
                                                         <option value="12month">12 Months -
                                                             ₱{{ $prices['12month'] ?? 'N/A' }}
                                                         </option>
-
                                                     </select>
                                                 </template>
                                                 <template x-if="membershipType === 'Walkin'">
-                                                    <select :name="'service_type_' + i" x-model="serviceType"
-                                                        @change="serviceStartDate = new Date().toISOString().slice(0, 10)"
+                                                    <select :name="'service_type_' + i" @change="calculateDueDate()"
+                                                        x-model="selectedServiceType"
                                                         class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 focus:ring-1/2 dark:bg-peak_1 dark:border-gray-600 dark:text-white sm:text-sm">
-                                                        <option value="" selected class="disabled">Choose an
+
+                                                        <option value="" selected disabled class="disabled">Choose an
                                                             option
                                                         </option>
                                                         <option value="WalkinService">Walkin -
@@ -229,10 +187,10 @@
                                                 </template>
                                                 <template x-if="membershipType === 'Manual'">
                                                     <!-- Manual membership options -->
-                                                    <select :name="'service_type_' + i" x-model="serviceType"
-                                                        @change="serviceStartDate = new Date().toISOString().slice(0, 10)"
+                                                    <select :name="'service_type_' + i" @change="calculateDueDate()"
+                                                        x-model="selectedServiceType"
                                                         class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 focus:ring-1/2 dark:bg-peak_1 dark:border-gray-600 dark:text-white sm:text-sm">
-                                                        <option value="" selected class="disabled">Choose an
+                                                        <option value="" selected disabled class="disabled">Choose an
                                                             option
                                                         <option value="1">1 Month</option>
                                                         <option value="2">2 Month</option>
@@ -252,14 +210,13 @@
 
                                             </div>
 
-                                            <div class="grid grid-cols-2 gap-5">
-                                                <div>
-                                                    <label :for="'start_date_' + i"
+                                            <div class="grid grid-cols-2  gap-5">
+                                                <div> <label :for="'start_date_' + i"
                                                         class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                                                         Start Date
                                                     </label>
                                                     <input type="date" :name="'start_date_' + i"
-                                                        x-model="serviceStartDate" :value="serviceStartDate"
+                                                        :value="serviceStartDate"
                                                         class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 focus:ring-1/2 dark:bg-peak_1 dark:border-gray-600 dark:text-white sm:text-sm">
                                                 </div>
                                                 <div>
@@ -267,10 +224,9 @@
                                                         class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                                                         Due Date
                                                     </label>
-                                                    <input type="date"
-                                                        :value="calculateDueDate(serviceStartDate, serviceType)"
-                                                        readonly disabled
+                                                    <input type="date" x-model="serviceDueDate"
                                                         class="mt-1 block w-full rounded-md  border-none focus:ring-blue-500 focus:ring-1/2 dark:bg-peak_1  dark:text-white sm:text-sm">
+
                                                 </div>
                                             </div>
 
@@ -324,30 +280,7 @@
                         <!-- Locker Section -->
                         @canany(['locker-create'])
                         <div class="bg-white dark:bg-peak_2 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-6"
-                            x-data="{ 
-        includeLocker: false, 
-        lockerStartDate: '', 
-        lockerMonth: null,
-        calculateLockerDueDate() {
-            if (!this.lockerStartDate || !this.lockerMonth) return '';
-            
-            const start = new Date(this.lockerStartDate);
-            const dueDate = new Date(start);
-            
-            // Add the full number of months
-            dueDate.setMonth(start.getMonth() + Math.floor(this.lockerMonth));
-            
-            // If there's a fractional month, add those days
-            const fractionalDays = Math.round((this.lockerMonth % 1) * 30);
-            dueDate.setDate(dueDate.getDate() + fractionalDays);
-            
-            return dueDate.toISOString().slice(0, 10);
-        },
-        formatLockerPrice() {
-            if (!this.lockerMonth) return '0';
-            return (this.lockerMonth * 100).toFixed(2);
-        }
-    }">
+                            x-data="{ includeLocker: false, lockerStartDate: '' }">
                             <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Locker</h2>
 
                             <div class="mb-4">
@@ -362,6 +295,15 @@
                             <div x-show="includeLocker" class="space-y-4">
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                     <div>
+                                        <label for="locker_start_date"
+                                            class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                                            Start Date
+                                        </label>
+                                        <input type="date" name="locker_start_date" x-model="lockerStartDate"
+                                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-peak_1 dark:border-gray-600 dark:text-white sm:text-sm">
+                                    </div>
+
+                                    <div>
                                         <label for="locker_no"
                                             class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                                             Locker Number
@@ -369,8 +311,8 @@
                                         <select id="locker_no" name="locker_no"
                                             class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-peak_1 dark:border-gray-600 dark:text-white sm:text-sm">
                                             <option value="" disabled selected>Select a locker</option>
-                                            @for ($j = 1; $j <= 40; $j++) <option value="{{ $j }}"
-                                                {{ in_array($j, $occupiedLockers) ? 'disabled' : '' }}>
+                                            @for ($j = 1; $j <= 40; $j++) <option value="{{ $j }}" {{ in_array($j,
+                                                $occupiedLockers) ? 'disabled' : '' }}>
                                                 Locker No. {{ $j }}
                                                 {{ in_array($j, $occupiedLockers) ? '(Unavailable)' : '' }}
                                                 </option>
@@ -378,35 +320,13 @@
                                         </select>
                                     </div>
 
-                                    <div class="grid grid-cols-2 gap-5">
-                                        <div>
-                                            <label for="locker_start_date"
-                                                class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                                                Start Date
-                                            </label>
-                                            <input type="date" name="locker_start_date" x-model="lockerStartDate"
-                                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-peak_1 dark:border-gray-600 dark:text-white sm:text-sm">
-                                        </div>
-                                        <div>
-                                            <label for="locker_due_date"
-                                                class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                                                Due Date
-                                            </label>
-                                            <input type="date" name="locker_due_date" :value="calculateLockerDueDate()"
-                                                readonly
-                                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-peak_1 dark:border-gray-600 dark:text-white sm:text-sm">
-                                        </div>
-                                    </div>
-
-
-
                                     <div>
                                         <label for="locker_month"
                                             class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                                             Duration (months) - 100/month
                                         </label>
                                         <input type="number" name="locker_month" step="0.01"
-                                            x-model.number="lockerMonth" oninput="monthInputLimit(this)"
+                                            oninput="monthInputLimit(this)"
                                             class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-peak_1 dark:border-gray-600 dark:text-white sm:text-sm">
                                     </div>
                                 </div>
@@ -417,30 +337,8 @@
                         <!-- Treadmill Section -->
                         @canany(['treadmill-create'])
                         <div class="bg-white dark:bg-peak_2 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-6"
-                            x-data="{ 
-        includeTreadmill: false, 
-        treadmillStartDate: '', 
-        treadmillMonth: null,
-        calculateTreadmillDueDate() {
-            if (!this.treadmillStartDate || !this.treadmillMonth) return '';
-            
-            const start = new Date(this.treadmillStartDate);
-            const dueDate = new Date(start);
-            
-            // Add the full number of months
-            dueDate.setMonth(start.getMonth() + Math.floor(this.treadmillMonth));
-            
-            // If there's a fractional month, add those days
-            const fractionalDays = Math.round((this.treadmillMonth % 1) * 30);
-            dueDate.setDate(dueDate.getDate() + fractionalDays);
-            
-            return dueDate.toISOString().slice(0, 10);
-        },
-        formatTreadmillPrice() {
-            if (!this.treadmillMonth) return '0';
-            return (this.treadmillMonth * 200).toFixed(2);
-        }
-    }" x-init="treadmillStartDate = includeTreadmill ? new Date().toISOString().slice(0, 10) : ''">
+                            x-data="{ includeTreadmill: false, treadmillStartDate: '' }"
+                            x-init="treadmillStartDate = includeTreadmill ? new Date().toISOString().slice(0, 10) : ''">
                             <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Treadmill</h2>
 
                             <div class="mb-4">
@@ -453,37 +351,22 @@
                             </div>
                             <div x-show="includeTreadmill" class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div>
+                                    <label for="treadmill_start_date"
+                                        class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                                        Start Date
+                                    </label>
+                                    <input type="date" name="treadmill_start_date" x-model="treadmillStartDate"
+                                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-peak_1 dark:border-gray-600 dark:text-white sm:text-sm">
+                                </div>
+
+                                <div>
                                     <label for="treadmill_months"
                                         class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                                         Duration (months)
                                     </label>
-                                    <input type="number" name="treadmill_months" x-model.number="treadmillMonth"
-                                        oninput="monthInputLimit(this)"
+                                    <input type="number" name="treadmill_months" oninput="monthInputLimit(this)"
                                         class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-peak_1 dark:border-gray-600 dark:text-white sm:text-sm">
                                 </div>
-
-                                <div class="grid grid-cols-2 gap-5">
-
-                                    <div>
-                                        <label for="treadmill_start_date"
-                                            class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                                            Start Date
-                                        </label>
-                                        <input type="date" name="treadmill_start_date" x-model="treadmillStartDate"
-                                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-peak_1 dark:border-gray-600 dark:text-white sm:text-sm">
-                                    </div>
-                                    <div>
-                                        <label for="treadmill_due_date"
-                                            class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                                            Due Date
-                                        </label>
-                                        <input type="date" name="treadmill_due_date"
-                                            :value="calculateTreadmillDueDate()" readonly
-                                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-peak_1 dark:border-gray-600 dark:text-white sm:text-sm">
-                                    </div>
-                                </div>
-
-
                             </div>
                         </div>
                         @endcan
@@ -511,7 +394,73 @@
     </script>
 
 
+    <script>
+    function membershipCalculator() {
+        return {
+            serviceStartDate: '',
+            selectedServiceType: '',
+            serviceDueDate: '',
 
+            calculateDueDate() {
+                if (!this.serviceStartDate || !this.selectedServiceType) return;
+
+                // Convert start date to JavaScript Date object
+                const startDate = new Date(this.serviceStartDate);
+
+                // Calculate due date based on selected service type
+                const dueDate = new Date(startDate);
+
+                switch (this.selectedServiceType) {
+                    case '1month':
+                    case '1':
+                        dueDate.setMonth(startDate.getMonth() + 1);
+                        break;
+                    case '2':
+                        dueDate.setMonth(startDate.getMonth() + 2);
+                        break;
+                    case '3month':
+                    case '3':
+                        dueDate.setMonth(startDate.getMonth() + 3);
+                        break;
+                    case '4':
+                        dueDate.setMonth(startDate.getMonth() + 4);
+                        break;
+                    case '5':
+                        dueDate.setMonth(startDate.getMonth() + 5);
+                        break;
+                    case '6month':
+                    case '6':
+                        dueDate.setMonth(startDate.getMonth() + 6);
+                        break;
+                    case '7':
+                        dueDate.setMonth(startDate.getMonth() + 7);
+                        break;
+                    case '8':
+                        dueDate.setMonth(startDate.getMonth() + 8);
+                        break;
+                    case '9':
+                        dueDate.setMonth(startDate.getMonth() + 9);
+                        break;
+                    case '10':
+                        dueDate.setMonth(startDate.getMonth() + 10);
+                        break;
+                    case '12month':
+                        dueDate.setMonth(startDate.getMonth() + 12);
+                        break;
+                    case 'WalkinService':
+                        // Set the dueDate to tomorrow (1 day after the startDate)
+                        dueDate = new Date(startDate); // Clone the startDate
+                        dueDate.setDate(startDate.getDate() + 1); // Add 1 day
+                        break;
+
+                }
+
+                // Format the date to YYYY-MM-DD for the input
+                this.serviceDueDate = dueDate.toISOString().split('T')[0];
+            }
+        }
+    }
+    </script>
 
 </x-dash-layout>
 @endcanany
