@@ -24,8 +24,14 @@
                 </div>
                 @endif
 
-                <form action="{{ route('members.store') }}" method="POST" class="space-y-8"
-                    x-data="{ registering: false}" @submit="registering = true">
+                <form action="{{ route('members.store') }}" method="POST" class="space-y-8" x-data="{ registering: false,   formData: {
+            membership_type: '{{ old('membership_type') ?? 'Regular' }}',
+            manual_price: '{{ old('manual-price') ?? '' }}',
+            name: '{{ old('name') ?? '' }}',
+            phone: '{{ old('phone') ?? '' }}',
+            email: '{{ old('email') ?? '' }}',
+            fb: '{{ old('fb') ?? '' }}'
+        }}" @submit="registering = true">
                     @csrf
                     <input type="hidden" name="form_token" value="{{ session('form_token') }}">
 
@@ -69,7 +75,7 @@
                                     class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                                     Name
                                 </label>
-                                <input type="text" id="name" name="name" required maxlength="50"
+                                <input type="text" id="name" name="name" x-model="formData.name" required maxlength="50"
                                     class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-peak_1 dark:border-gray-600 dark:text-white sm:text-sm">
                             </div>
 
@@ -78,7 +84,7 @@
                                     class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                                     Phone
                                 </label>
-                                <input type="tel" id="phone" name="phone" maxlength="20"
+                                <input type="tel" id="phone" name="phone" x-model="formData.phone" maxlength="20"
                                     class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-peak_1 dark:border-gray-600 dark:text-white sm:text-sm">
                                 @error('phone')
                                 <span class="text-red-500 text-sm">{{ $message }}</span>
@@ -92,7 +98,7 @@
                                     class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                                     Email
                                 </label>
-                                <input type="email" id="email" name="email" maxlength="100"
+                                <input type="email" id="email" name="email" x-model="formData.email" maxlength="100"
                                     class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-peak_1 dark:border-gray-600 dark:text-white sm:text-sm">
 
                                 <!-- Display error message if any -->
@@ -106,7 +112,7 @@
                                 <label for="fb" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                                     Facebook (optional)
                                 </label>
-                                <input type="text" id="fb" name="fb" maxlength="50"
+                                <input type="text" id="fb" name="fb" x-model="formData.fb" maxlength="50"
                                     class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-peak_1 dark:border-gray-600 dark:text-white sm:text-sm">
                             </div>
                         </div>
@@ -393,8 +399,8 @@
                                                 Due Date
                                             </label>
                                             <input type="date" name="locker_due_date" :value="calculateLockerDueDate()"
-                                                readonly
-                                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-peak_1 dark:border-gray-600 dark:text-white sm:text-sm">
+                                                disabled readonly
+                                                class="mt-1 block w-full rounded-md  shadow-sm  focus:ring-blue-500 dark:bg-peak_1 border-none dark:text-white sm:text-sm">
                                         </div>
                                     </div>
 
@@ -477,9 +483,9 @@
                                             class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                                             Due Date
                                         </label>
-                                        <input type="date" name="treadmill_due_date"
+                                        <input type="date" name="treadmill_due_date" disabled
                                             :value="calculateTreadmillDueDate()" readonly
-                                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-peak_1 dark:border-gray-600 dark:text-white sm:text-sm">
+                                            class="mt-1 block w-full rounded-md border-none shadow-sm focus:ring-blue-500 dark:bg-peak_1  dark:text-white sm:text-sm">
                                     </div>
                                 </div>
 
