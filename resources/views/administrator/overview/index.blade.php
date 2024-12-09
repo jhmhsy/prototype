@@ -76,14 +76,14 @@
                                 class=" transition-colors py-10 {{ $loop->iteration % 2 == 0 ? 'bg-gray-100 dark:bg-peak_2' : '' }}">
                                 <td class="p-2">{{ $member->rank }}</td>
                                 <td class="p-2">
-                                    <a href="{{ url('members/index?search=' . urlencode($member->name)) }}"
+                                    <a href="{{ url('admin/members/index?search=' . urlencode($member->name)) }}"
                                         class="whitespace-nowrap hover:underline hove">
                                         {{ $member->name }}
                                     </a>
                                 </td>
 
                                 <td class="p-2">
-                                    <a href="{{ url('members/index?search=' . urlencode($member->membership_type)) }}"
+                                    <a href="{{ url('admin/members/index?search=' . urlencode($member->membership_type)) }}"
                                         class="whitespace-nowrap hover:underline hove">
                                         {{ $member->membership_type }}
                                     </a>
@@ -114,14 +114,14 @@
                                 <td class="p-2">{{ $checkin->rank }}</td>
 
                                 <td class="p-2">
-                                    <a href="{{ url('checkin/history?search=' . urlencode($checkin->member->name)) }}"
+                                    <a href="{{ url('admin/checkin/history?search=' . urlencode($checkin->member->name)) }}"
                                         class="whitespace-nowrap hover:underline">
                                         {{ $checkin->member->name }}
                                     </a>
                                 </td>
 
                                 <td class="p-2">
-                                    <a href="{{ url('checkin/history?search=' . urlencode($checkin->type)) }}"
+                                    <a href="{{ url('admin/checkin/history?search=' . urlencode($checkin->type)) }}"
                                         class="whitespace-nowrap hover:underline">
                                         {{ $checkin->type }}
                                     </a>
