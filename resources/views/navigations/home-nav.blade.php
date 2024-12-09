@@ -9,10 +9,6 @@
         </x-forms.nav-link>
     @endif
 
-    {{-- {{-- <x-forms.nav-link :href="route('reservation')" :active="request()->routeIs('reservation')">
-        {{ __('Reservation') }}
-</x-forms.nav-link> --}}
-
     <x-forms.nav-link href="/#equipment-section" class="nav-link">
         {{ __('Features') }}
     </x-forms.nav-link>
@@ -33,10 +29,6 @@
             {{ __('My Services') }}
         </x-forms.nav-link>
     @endif
-
-    {{-- <x-forms.nav-link :href="route('calendar')" :active="request()->routeIs('calendar')">
-        {{ __('Calendar') }}
-</x-forms.nav-link> --}}
 @endif
 
 @if ($responsive ?? false)
@@ -50,9 +42,6 @@
         </x-forms.responsive-nav-link>
     @endif
 
-    {{-- <x-forms.responsive-nav-link :href="route('reservation')" :active="request()->routeIs('reservation')">
-        {{ __('Reservation') }}
-</x-forms.responsive-nav-link> --}}
 
     <x-forms.responsive-nav-link href="/#equipment-section">
         {{ __('Features') }}

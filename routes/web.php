@@ -18,14 +18,7 @@ use App\Http\Controllers\Admin\PricesController;
 use App\Http\Controllers\Admin\ProductsalesController;
 use App\Http\Controllers\Admin\QuestionController;
 
-
-use App\Http\Controllers\Public\CalendarController;
-use App\Http\Controllers\Public\FeatureController;
-use App\Http\Controllers\Public\ReservationsController;
-
-
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ScannerController;
 use App\Http\Controllers\UserServicesController;
@@ -57,52 +50,28 @@ Route::middleware(['throttle:global'])->group(function () {
     Route::post('/api/scan', [ScannerController::class, 'process'])->name('scanner.process');
 
 
-    // Route::post('/pay', [PaymentController::class, 'pay'])->name('payment.pay');
-    // Route::get('/success', [PaymentController::class, 'success']);
-    // Route::get('/cancel', [PaymentController::class, 'cancel']);
-
-    // Route::get('/create-payment', [PaymentController::class, 'pay'])->name('payment.create');
-    // Route::post('/webhook-receiver', [PaymentController::class, 'webhook'])->name('webhook');
-    // Route::get('/payment-result', [PaymentController::class, 'showResult'])->name('payment.result');
-
-    //Welcome Page
-
-    Route::get('/', [HomeController::class, 'index'])->name('welcome');
-    Route::get('/developers', function () {
-        return view('subpages.developers');
-    })->name('developers');
-
-    Route::get('/about-us', function () {
-        return view('subpages.aboutus');
-    })->name('about-us');
 
 
     //⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎ 𝗣𝗨𝗕𝗟𝗜𝗖
 
 
-    //Route::get('/features', [FeatureController::class, 'show'])->name('features');
-    //Route::get('/calendar', [CalendarController::class, 'show'])->name('calendar');
-//Route::post('/calendar', [ReservationsController::class, 'store'])->name('calendar.store');
-//Route::get('/api/reserved-hours', [CalendarController::class, 'getReservedHours']);
-//Route::get('/booking-status', 'CalendarController@getBookingStatus');
+    //Welcome Page
+    Route::get('/', [HomeController::class, 'index'])->name('welcome');
 
+    // Developers ? 
+    Route::get('/developers', function () {
+        return view('subpages.developers');
+    })->name('developers');
 
-    // Route::post('/reserve', [ReservationsController::class, 'store'])->name('reserve.store');
+    // About us
+    Route::get('/about-us', function () {
+        return view('subpages.aboutus');
+    })->name('about-us');
+
+    // others
     Route::post('/feedback', [FeedbackController::class, 'store'])->name('feedback.store');
-    //Route::get('/reservation', function () {
-//    return view('subpages.reservation');
-//})->name('reservation');
-
     Route::get('/users', [UserController::class, 'index'])->name('admin.users.index');
     Route::get('/settings', [UserController::class, 'settings'])->name('admin.settings');
-
-    // TEMPORARY HIDDEN BECAUSE GYM DONT USE THIS
-// Route::prefix('ticket')->group(function () {
-//     Route::get('/selection', [TicketController::class, 'show'])->name('ticket.show');
-//     Route::get('/success', [TicketController::class, 'success'])->name('ticket.success');
-//     Route::get('/index', [TicketController::class, 'index'])->name('ticket.index');
-//     Route::post('/success', [TicketController::class, 'store'])->name('ticket.store');
-// });
 
     //⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎⏹︎ 𝗣𝗨𝗕𝗟𝗜𝗖 / 𝗔𝗨𝗧𝗛
 
@@ -112,17 +81,16 @@ Route::middleware(['throttle:global'])->group(function () {
         Route::get('/services', [UserServicesController::class, 'index'])->name('services.index');
         Route::post('/update-id-number', [UserServicesController::class, 'updateIdNumber'])->name('update.id_number');
 
-
-
-
+        // Profile / Settings
         Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
         Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
         Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+        // homepage I dont know
         Route::resource('equipment', EquipmentController::class);
         Route::get('/events', [EventsController::class, 'index'])->name('events');
-        // TEMPORARY HIDDEN BECAUSE GYM DONT USE THIS
-        // Route::get('/ticket', [TicketController::class, 'index'])->name('ticket');
+
+        // haha
         Route::get('/feedback', [FeedbackController::class, 'index'])->name('feedback');
         Route::get('/help', [HelpController::class, 'index'])->name('help');
     });
@@ -147,26 +115,6 @@ Route::middleware(['throttle:global'])->group(function () {
 
                 // Services & Asset
                 Route::get('/asset', [AssetController::class, 'index'])->name('administrator.asset');
-
-                // TEMPORARY THE GYM DONT USE THIS OR WE ARE TIRED IMPLEMENTING THIS
-                // Route::prefix('reservations')->group(function () {
-                //     //Navigation
-                //     Route::get('/unifiedview', [ReservationsController::class, 'index'])->name('administrator.unifiedview');
-                //     Route::get('/active', [ReservationsController::class, 'active'])->name('administrator.active');
-                //     Route::get('/pending', [ReservationsController::class, 'pending'])->name('administrator.pending');
-                //     Route::get('/suspended', [ReservationsController::class, 'suspended'])->name('administrator.suspended');
-                //     Route::get('/history', [ReservationsController::class, 'history'])->name('administrator.history');
-
-                //     //button Configuration
-                //     Route::get('/reservations', [ReservationsController::class, 'index'])->name('reservations');
-                //     Route::post('/', [ReservationsController::class, 'store'])->name('reservations.store');
-                //     Route::post('/accept/{id}', [ReservationsController::class, 'accept'])->name('reservations.accept');
-                //     Route::post('/reject/{id}', [ReservationsController::class, 'reject'])->name('reservations.reject');
-                //     Route::post('/restore/{id}', [ReservationsController::class, 'restore'])->name('reservations.restore');
-                //     Route::post('/cancel/{id}', [ReservationsController::class, 'cancel'])->name('reservations.cancel');
-                //     Route::post('/delete/{id}', [ReservationsController::class, 'delete'])->name('reservations.delete');
-                // });
-
 
 
                 // Member COntrols
@@ -250,14 +198,6 @@ Route::middleware(['throttle:global'])->group(function () {
                 Route::get('/feedback', [FeedbackController::class, 'index'])->name('administrator.feedback');
                 Route::get('/help', [HelpController::class, 'index'])->name('administrator.help');
 
-                // TEMPORARY HIDDEN BECAUSE GYM DONT USE THIS
-                // Route::prefix('ticket')->group(function () {
-                //     Route::get('/scan', [TicketController::class, 'showScanPage'])->name('ticket.scan');
-                //     Route::get('/transaction', [TicketController::class, 'transaction'])->name('ticket.transaction');
-                //     Route::post('/scan', [TicketController::class, 'scanTicket'])->name('ticket.scanticket');
-                //     Route::post('/scan/claim', [TicketController::class, 'claimTicket'])->name('ticket.claim');
-                // });
-
                 // Daily Sales
                 Route::get('/dailysales', [DailysalesController::class, 'index'])->name('administrator.dailysales');
 
@@ -271,8 +211,6 @@ Route::middleware(['throttle:global'])->group(function () {
                 Route::post('/questions/store', [QuestionController::class, 'store'])->name('questions.store');
                 Route::put('/questions/{id}', [QuestionController::class, 'update'])->name('questions.update');
                 Route::delete('/questions/{id}', [QuestionController::class, 'destroy'])->name('questions.destroy');
-
-
 
             });
             Route::resource('roles', RoleController::class);

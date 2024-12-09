@@ -12,10 +12,10 @@ Gym One is a comprehensive web application designed to streamline your fitness j
 
 ### Key Features
 
--   **Session Booking**: Easily reserve your spot in classes with just a few clicks.
--   **Membership Management**: Manage your membership details and billing information effortlessly.
--   **Real-time Updates**: Stay informed with the latest class schedules and availability.
--   **QR Code Scanning**: Utilize QR code technology for quick check-ins and access.
+- **Session Booking**: Easily reserve your spot in classes with just a few clicks.
+- **Membership Management**: Manage your membership details and billing information effortlessly.
+- **Real-time Updates**: Stay informed with the latest class schedules and availability.
+- **QR Code Scanning**: Utilize QR code technology for quick check-ins and access.
 
 ## Learning and Support
 
