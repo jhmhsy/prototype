@@ -76,7 +76,7 @@
                             @foreach ($checkins as $checkin)
                                 <tr>
                                     <td class="px-6 py-4 ">
-                                        <a href="{{ url('members/index?search=' . urlencode($checkin->member->name)) }}"
+                                        <a href="{{ url('admin/members/index?search=' . urlencode($checkin->member->name)) }}"
                                             class="whitespace-nowrap hover:underline hove">
                                             {{ $checkin->member->name }}
                                         </a>
