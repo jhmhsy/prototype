@@ -100,3 +100,33 @@ Run migrations to create database tables:
 `php artisan serve `
 
 Your project is now set up and running locally!
+
+# Tech Stack
+
+### Frontend
+
+- **HTML5**: The backbone for structuring the content and layout of the web pages.
+- **Tailwind CSS**: A utility-first CSS framework that allows for rapid custom styling and responsive design.
+- **Alpine.js**: A lightweight JavaScript framework that adds interactivity and dynamic behavior without the overhead of larger frameworks.
+- **JavaScript**: Handles frontend logic and enhances user experience with interactive elements and client-side functionalities.
+
+### Backend
+
+- **Laravel**: A powerful PHP framework for building secure, scalable web applications with elegant syntax and robust features.
+- **PHP**: The server-side scripting language that powers the backend, delivering dynamic content and logic.
+
+### Database
+
+- **MySQL**: A relational database management system (RDBMS) for storing and managing structured data.
+
+### Version Control
+
+- **Git**: For version control, ensuring collaboration and tracking changes.
+- **GitHub**: A platform for hosting code repositories, managing projects, and collaborating with other developers.
+
+### Development Tools
+
+- **XAMPP**: A local development environment for running Apache, MySQL, and PHP.
+- **Composer**: Dependency management tool for PHP, used to install and manage Laravel packages and other PHP dependencies.
+- **Node.js & npm**: JavaScript runtime and package manager used for handling frontend dependencies and build tools.
+- **Visual Studio Code (VSCode)**: A versatile code editor with powerful extensions and features for PHP, JavaScript, and Laravel development.
