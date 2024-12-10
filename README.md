@@ -6,16 +6,97 @@
   </a>
 </p>
 
-## About Gym One
+# Overview
 
-Gym One is a comprehensive web application designed to streamline your fitness journey. Built on the Laravel framework, it offers a range of features to enhance your gym experience, including session booking, membership management, and real-time updates.
+**Gymone** is an integrated web-based fitness gym management system designed to optimize and automate gym operations. By digitizing key processes, Gymone enables gym staff to concentrate on delivering exceptional service while the system efficiently handles administrative tasks.
 
-### Key Features
+# Key Features
 
-- **Session Booking**: Easily reserve your spot in classes with just a few clicks.
+### Main
+
 - **Membership Management**: Manage your membership details and billing information effortlessly.
-- **Real-time Updates**: Stay informed with the latest class schedules and availability.
+- **Real-time Updates**: Stay informed with the current subscribed services updated in realtime
 - **QR Code Scanning**: Utilize QR code technology for quick check-ins and access.
+
+### 1. User Management
+
+- **Three-tiered access system**
+  - **Users**: Regular gym members with basic access.
+  - **Staff**: Handles daily operations like check-ins and subscriptions.
+  - **Admins**: Manages system settings, reports, and user access.
+
+### 2. Membership Management
+
+- **Online registration and account creation**
+- **Real-time tracking of membership durations**
+- **Automatic subscription status updates and reminders**
+- **Flexible membership types and service subscriptions**
+
+### 3. Member Services
+
+- **Monthly service subscriptions**
+- **Locker rentals**
+- **Treadmill access**
+- **QR code-based check-ins and service tracking**
+
+### 4. Administrative Tools
+
+- **Comprehensive dashboard with key metrics**
+- **Member overview and management**
+- **Service and subscription tracking**
+- **Sales and membership reports**
+- **Product inventory management**
+
+### 5. Automated Notifications
+
+- **Account verification emails**
+- **Subscription status updates**
+- **Membership expiration reminders**
+
+### 6. Advanced Search and Filtering
+
+- **Member search by name, ID, email**
+- **QR code scanning for quick member lookup**
+- **Service status filtering** (active, pre-paid, due, etc.)
+
+---
+
+# Technical Specifications
+
+### Platform
+
+- **Web-based application**
+- Accessible via modern web browsers
+- Hosted at: [https://gymonedanao.com/](https://gymonedanao.com/)
+
+### User Interface
+
+- **Responsive design**
+- Navigation sections: Home, Features, Pricing, Contacts, My Services
+- Profile management with security and display options
+
+### Security and Access Control
+
+#### Role-Based Access
+
+- Customizable user roles and permissions
+- Granular control over system access
+- Secure login and account verification process
+
+### Continuous Development
+
+- Ongoing improvements to features
+- Planned expansions for Inventory Sales tracking and Trainer Management
+
+---
+
+# Getting Started
+
+1. Visit [https://gymonedanao.com/](https://gymonedanao.com/)
+2. Register a new account
+3. Verify your email
+4. Complete membership registration
+5. Start using gym services!
 
 ## Learning and Support
 
@@ -133,90 +214,3 @@ Your project is now set up and running locally!
 - **Node.js & npm**: JavaScript runtime and package manager used for handling frontend dependencies and build tools.
 - **Visual Studio Code (VSCode)**: A versatile code editor with powerful extensions and features for PHP, JavaScript, and Laravel development.
 
----
-
-# Overview
-
-**Gymone** is an integrated web-based fitness gym management system designed to optimize and automate gym operations. By digitizing key processes, Gymone enables gym staff to concentrate on delivering exceptional service while the system efficiently handles administrative tasks.
-
-# Key Features
-
-### 1. User Management
-
-- **Three-tiered access system**
-  - **Users**: Regular gym members with basic access.
-  - **Staff**: Handles daily operations like check-ins and subscriptions.
-  - **Admins**: Manages system settings, reports, and user access.
-
-### 2. Membership Management
-
-- **Online registration and account creation**
-- **Real-time tracking of membership durations**
-- **Automatic subscription status updates and reminders**
-- **Flexible membership types and service subscriptions**
-
-### 3. Member Services
-
-- **Monthly service subscriptions**
-- **Locker rentals**
-- **Treadmill access**
-- **QR code-based check-ins and service tracking**
-
-### 4. Administrative Tools
-
-- **Comprehensive dashboard with key metrics**
-- **Member overview and management**
-- **Service and subscription tracking**
-- **Sales and membership reports**
-- **Product inventory management**
-
-### 5. Automated Notifications
-
-- **Account verification emails**
-- **Subscription status updates**
-- **Membership expiration reminders**
-
-### 6. Advanced Search and Filtering
-
-- **Member search by name, ID, email**
-- **QR code scanning for quick member lookup**
-- **Service status filtering** (active, pre-paid, due, etc.)
-
----
-
-# Technical Specifications
-
-### Platform
-
-- **Web-based application**
-- Accessible via modern web browsers
-- Hosted at: [https://gymonedanao.com/](https://gymonedanao.com/)
-
-### User Interface
-
-- **Responsive design**
-- Navigation sections: Home, Features, Pricing, Contacts, My Services
-- Profile management with security and display options
-
-### Security and Access Control
-
-#### Role-Based Access
-
-- Customizable user roles and permissions
-- Granular control over system access
-- Secure login and account verification process
-
-### Continuous Development
-
-- Ongoing improvements to features
-- Planned expansions for equipment tracking and event management
-
----
-
-# Getting Started
-
-1. Visit [https://gymonedanao.com/](https://gymonedanao.com/)
-2. Register a new account
-3. Verify your email
-4. Complete membership registration
-5. Start using gym services!
