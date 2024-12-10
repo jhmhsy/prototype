@@ -41,16 +41,16 @@ This README provides a brief overview of the Gym One application, highlighting i
 
 Before starting, ensure the following tools are installed:
 
-## XAMPP
+### XAMPP
 
 Download: https://www.apachefriends.org/
 Install and start the Apache and MySQL services using the XAMPP Control Panel.
 
-## Composer
+### Composer
 
 Download: https://getcomposer.org/
 
-## Node.js and npm
+### Node.js and npm
 
 Download: https://nodejs.org/
 
@@ -59,19 +59,19 @@ Download: https://code.visualstudio.com/
 
 # Installation Steps
 
-## Install Dependencies
+### Install Dependencies
 
 `composer install `
 
-## Install JavaScript and CSS dependencies:
+### Install JavaScript and CSS dependencies:
 
 `npm install `
 
-## Set Up the Environment File
+### Set Up the Environment File
 
 `cp .env.example .env `
 
-## Update .env with your database details:
+### Update .env with your database details:
 
 DB_CONNECTION=mysql  
 DB_HOST=127.0.0.1  
@@ -80,22 +80,22 @@ DB_DATABASE=gym_system
 DB_USERNAME=root  
 DB_PASSWORD=
 
-## Set Up the Database
+### Set Up the Database
 
 Open phpMyAdmin at http://localhost/phpmyadmin.
 Create a new database named gym_system.
 Run migrations to create database tables:
 `php artisan migrate`
 
-## Generate a New Application Key
+### Generate a New Application Key
 
 `php artisan key:generate `
 
-## Compile Frontend Assets
+### Compile Frontend Assets
 
 `npm run dev `
 
-## Start the Development Server
+### Start the Development Server
 
 `php artisan serve `
 
