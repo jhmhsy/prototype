@@ -57,12 +57,12 @@
                     <div
                         class="bg-peak-3 rounded-xl overflow-hidden shadow-2xl border border-peak-4 hover:border-peak-2 transition-colors">
                         <div class="relative aspect-[3/4]">
-                            <img src={{ asset("/images/devs/henry.png") }} alt="Henry"
+                            <img src={{ asset("/images/devs/jason.png") }} alt="Henry"
                                 class="h-full w-full object-cover">
                             <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                         </div>
                         <div class="p-4 text-center space-y-1">
-                            <h3 class="text-xl font-bold text-white tracking-wide">Mahusay, John Henry</h3>
+                            <h3 class="text-xl font-bold text-white tracking-wide">Sullano, Jason</h3>
                             <p class="text-xs text-gray-300 italic">Project Manager/Full-Stack Engineer</p>
                         </div>
                     </div>
